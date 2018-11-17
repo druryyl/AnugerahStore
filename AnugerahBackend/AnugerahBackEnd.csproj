@@ -46,6 +46,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StokBarang\ColorBL.cs" />
+    <Compile Include="StokBarang\ColorDal.cs" />
+    <Compile Include="StokBarang\ColorModel.cs" />
+    <Compile Include="StokBarang\MerkBL.cs" />
+    <Compile Include="StokBarang\MerkDal.cs" />
+    <Compile Include="StokBarang\MerkModel.cs" />
     <Compile Include="Support\ParameterNoBL.cs" />
     <Compile Include="Support\ParameterNoDal.cs" />
     <Compile Include="Support\ParameterNoModel.cs" />

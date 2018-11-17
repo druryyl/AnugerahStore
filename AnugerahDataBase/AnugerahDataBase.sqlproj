@@ -58,9 +58,15 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="Support" />
+    <Folder Include="StokBarang" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Support\Userr.sql" />
     <Build Include="Support\ParameterNo.sql" />
+    <Build Include="StokBarang\Color.sql" />
+    <Build Include="StokBarang\Merk.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AnugerahDataBase.publish.xml" />
   </ItemGroup>
 </Project>
