@@ -49,6 +49,9 @@
     <Compile Include="StokBarang\ColorBL.cs" />
     <Compile Include="StokBarang\ColorDal.cs" />
     <Compile Include="StokBarang\ColorModel.cs" />
+    <Compile Include="StokBarang\JenisBrgBL.cs" />
+    <Compile Include="StokBarang\JenisBrgDal.cs" />
+    <Compile Include="StokBarang\JenisBrgModel.cs" />
     <Compile Include="StokBarang\MerkBL.cs" />
     <Compile Include="StokBarang\MerkDal.cs" />
     <Compile Include="StokBarang\MerkModel.cs" />

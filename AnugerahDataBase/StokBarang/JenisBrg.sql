@@ -1,0 +1,10 @@
+﻿CREATE TABLE [dbo].[JenisBrg]
+(
+	[JenisBrgID] VARCHAR(3) NOT NULL CONSTRAINT DF_JenisBrg_JenisBrgID DEFAULT(''),
+	JenisBrgName VARCHAR(30) NOT NULL CONSTRAINT DF_JenisBrg_JenisBrgName DEFAULT(''),
+)
+GO
+
+CREATE UNIQUE CLUSTERED INDEX IX_JenisBrg_JenisBrgID
+	ON JenisBrg(JenisBrgID)
+GO

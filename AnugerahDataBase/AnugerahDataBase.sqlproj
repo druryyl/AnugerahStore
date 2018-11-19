@@ -65,6 +65,8 @@
     <Build Include="Support\ParameterNo.sql" />
     <Build Include="StokBarang\Color.sql" />
     <Build Include="StokBarang\Merk.sql" />
+    <Build Include="StokBarang\JenisBrg.sql" />
+    <Build Include="StokBarang\JenisBrgTipe.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AnugerahDataBase.publish.xml" />
