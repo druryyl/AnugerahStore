@@ -1,10 +1,12 @@
-﻿using System;
+﻿using AnugerahBackend.Support.Dal;
+using AnugerahBackend.Support.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AnugerahBackend.Support
+namespace AnugerahBackend.Support.BL
 {
 
     public interface IParameterNoBL

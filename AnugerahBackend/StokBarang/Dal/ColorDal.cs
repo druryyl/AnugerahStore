@@ -1,4 +1,5 @@
-﻿using Ics.Helper.Extensions;
+﻿using AnugerahBackend.StokBarang.Model;
+using Ics.Helper.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AnugerahBackend.StokBarang
+namespace AnugerahBackend.StokBarang.Dal
 {
 
     public interface IColorDal

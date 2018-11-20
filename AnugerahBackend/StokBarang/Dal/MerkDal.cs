@@ -1,4 +1,5 @@
-﻿using Ics.Helper.Extensions;
+﻿using AnugerahBackend.StokBarang.Model;
+using Ics.Helper.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -7,63 +8,63 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AnugerahBackend.StokBarang
+namespace AnugerahBackend.StokBarang.Dal
 {
 
-    public interface IJenisBrgDal
+    public interface IMerkDal
     {
-        void Insert(JenisBrgModel jenisBrg);
+        void Insert(MerkModel merk);
 
-        void Update(JenisBrgModel jenisBrg);
+        void Update(MerkModel merk);
 
         void Delete(string id);
 
-        JenisBrgModel GetData(string id);
+        MerkModel GetData(string id);
 
-        IEnumerable<JenisBrgModel> ListData();
+        IEnumerable<MerkModel> ListData();
     }
 
-    public class JenisBrgDal : IJenisBrgDal
+    public class MerkDal : IMerkDal
     {
         public string _connString;
 
-        public JenisBrgDal()
+        public MerkDal()
         {
             _connString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
         }
 
-        public void Insert(JenisBrgModel jenisBrg)
+        public void Insert(MerkModel merk)
         {
             var sSql = @"
                 INSERT INTO
-                    JenisBrg (
-                        JenisBrgID, JenisBrgName)
+                    Merk (
+                        MerkID, MerkName)
                 VALUES (
-                        @JenisBrgID, @JenisBrgName) ";
+                        @MerkID, @MerkName) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@JenisBrgID", jenisBrg.JenisBrgID);
-                cmd.AddParam("@JenisBrgName", jenisBrg.JenisBrgName);
+                cmd.AddParam("@MerkID", merk.MerkID);
+                cmd.AddParam("@MerkName", merk.MerkName);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
         }
 
-        public void Update(JenisBrgModel jenisBrg)
+        public void Update(MerkModel merk)
         {
             var sSql = @"
                 UPDATE
-                    JenisBrg 
+                    Merk 
                 SET
-                    JenisBrgName = @JenisBrgName
+                    MerkName = @MerkName
                 WHERE
-                    JenisBrgID = @JenisBrgID ";
+                    MerkID = @MerkID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@JenisBrgID", jenisBrg.JenisBrgID);
-                cmd.AddParam("@JenisBrgName", jenisBrg.JenisBrgName);
+                cmd.AddParam("@MerkID", merk.MerkID);
+                cmd.AddParam("@MerkName", merk.MerkName);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -73,40 +74,40 @@ namespace AnugerahBackend.StokBarang
         {
             var sSql = @"
                 DELETE
-                    JenisBrg 
+                    Merk 
                 WHERE
-                    JenisBrgID = @JenisBrgID ";
+                    MerkID = @MerkID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@JenisBrgID", id);
+                cmd.AddParam("@MerkID", id);
             }
         }
 
-        public JenisBrgModel GetData(string id)
+        public MerkModel GetData(string id)
         {
-            JenisBrgModel result = null;
+            MerkModel result = null;
             var sSql = @"
                 SELECT
-                    aa.JenisBrgName
+                    aa.MerkName
                 FROM
-                    JenisBrg aa
+                    Merk aa
                 WHERE
-                    aa.JenisBrgID = @JenisBrgID ";
+                    aa.MerkID = @MerkID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@JenisBrgID", id);
+                cmd.AddParam("@MerkID", id);
                 conn.Open();
                 using (var dr = cmd.ExecuteReader())
                 {
                     if (dr.HasRows)
                     {
                         dr.Read();
-                        result = new JenisBrgModel
+                        result = new MerkModel
                         {
-                            JenisBrgID = id,
-                            JenisBrgName = dr["JenisBrgName"].ToString()
+                            MerkID = id,
+                            MerkName = dr["MerkName"].ToString()
                         };
                     }
                 }
@@ -114,14 +115,14 @@ namespace AnugerahBackend.StokBarang
             return result;
         }
 
-        public IEnumerable<JenisBrgModel> ListData()
+        public IEnumerable<MerkModel> ListData()
         {
-            List<JenisBrgModel> result = null;
+            List<MerkModel> result = null;
             var sSql = @"
                 SELECT
-                    aa.JenisBrgID, aa.JenisBrgName
+                    aa.MerkID, aa.MerkName
                 FROM
-                    JenisBrg aa ";
+                    Merk aa ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
@@ -130,13 +131,13 @@ namespace AnugerahBackend.StokBarang
                 {
                     if (dr.HasRows)
                     {
-                        result = new List<JenisBrgModel>();
+                        result = new List<MerkModel>();
                         while (dr.Read())
                         {
-                            var item = new JenisBrgModel
+                            var item = new MerkModel
                             {
-                                JenisBrgID = dr["JenisBrgID"].ToString(),
-                                JenisBrgName = dr["JenisBrgName"].ToString()
+                                MerkID = dr["MerkID"].ToString(),
+                                MerkName = dr["MerkName"].ToString()
                             };
                             result.Add(item);
                         }

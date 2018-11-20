@@ -1,4 +1,5 @@
-﻿using Ics.Helper.Extensions;
+﻿using AnugerahBackend.Support.Model;
+using Ics.Helper.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -7,66 +8,63 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AnugerahBackend.Support
+namespace AnugerahBackend.Support.Dal
 {
-    public interface IUserrDal
-    {
-        void Insert(UserrModel userr);
 
-        void Update(UserrModel userr);
+    public interface IParameterNoDal
+    {
+        void Insert(ParameterNoModel paramterNo);
+
+        void Update(ParameterNoModel paramterNo);
 
         void Delete(string id);
 
-        UserrModel GetData(string id);
+        ParameterNoModel GetData(string id);
 
-        IEnumerable<UserrModel> ListData();
+        IEnumerable<ParameterNoModel> ListData();
     }
 
-
-    public class UserrDal : IUserrDal
+    public class ParameterNoDal : IParameterNoDal
     {
         public string _connString;
 
-        public UserrDal()
+        public ParameterNoDal()
         {
             _connString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
         }
 
-        public void Insert(UserrModel userr)
+        public void Insert(ParameterNoModel parameterNo)
         {
             var sSql = @"
                 INSERT INTO
-                    Userr (
-                        UserrID, UserrName, Password)
+                    ParameterNo (
+                        Prefix, Value)
                 VALUES (
-                        @UserrID, @UserrName, @Password) ";
+                        @Prefix, @Value) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@UserrID", userr.UserrID);
-                cmd.AddParam("@UserrName", userr.UserrName);
-                cmd.AddParam("@Password", userr.Password);
+                cmd.AddParam("@Prefix", parameterNo.Prefix);
+                cmd.AddParam("@Value", parameterNo.Value);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
         }
 
-        public void Update(UserrModel userr)
+        public void Update(ParameterNoModel parameterNo)
         {
             var sSql = @"
                 UPDATE
-                    Userr 
+                    ParameterNo 
                 SET
-                    UserrName = @UserrName,
-                    Password = @Password
+                    Value = @Value
                 WHERE
-                    UserrID = @UserrID ";
+                    Prefix = @Prefix ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@UserrID", userr.UserrID);
-                cmd.AddParam("@UserrName", userr.UserrName);
-                cmd.AddParam("@Password", userr.Password);
+                cmd.AddParam("@Prefix", parameterNo.Prefix);
+                cmd.AddParam("@Value", parameterNo.Value);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -76,41 +74,40 @@ namespace AnugerahBackend.Support
         {
             var sSql = @"
                 DELETE
-                    Userr 
+                    ParameterNo 
                 WHERE
-                    UserrID = @UserrID ";
+                    Prefix = @Prefix ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@UserrID", id);
+                cmd.AddParam("@Prefix", id);
             }
         }
 
-        public UserrModel GetData(string id)
+        public ParameterNoModel GetData(string id)
         {
-            UserrModel result = null;
+            ParameterNoModel result = null;
             var sSql = @"
                 SELECT
-                    aa.UserrName, aa.Password
+                    aa.Value
                 FROM
-                    Userr aa
+                    ParameterNo aa
                 WHERE
-                    aa.UserrID = @UserrID ";
+                    aa.Prefix = @Prefix ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@UserrID", id);
+                cmd.AddParam("@Prefix", id);
                 conn.Open();
                 using (var dr = cmd.ExecuteReader())
                 {
                     if (dr.HasRows)
                     {
                         dr.Read();
-                        result = new UserrModel
+                        result = new ParameterNoModel
                         {
-                            UserrID = id,
-                            UserrName = dr["UserrName"].ToString(),
-                            Password = dr["Password"].ToString()
+                            Prefix = id,
+                            Value = Convert.ToInt64(dr["Value"])
                         };
                     }
                 }
@@ -118,14 +115,14 @@ namespace AnugerahBackend.Support
             return result;
         }
 
-        public IEnumerable<UserrModel> ListData()
+        public IEnumerable<ParameterNoModel> ListData()
         {
-            List<UserrModel> result = null;
+            List<ParameterNoModel> result = null;
             var sSql = @"
                 SELECT
-                    aa.UserrID, aa.UserrName, aa.Password
+                    aa.Prefix, aa.Value
                 FROM
-                    Userr aa ";
+                    ParameterNo aa ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
@@ -134,14 +131,13 @@ namespace AnugerahBackend.Support
                 {
                     if (dr.HasRows)
                     {
-                        result = new List<UserrModel>();
+                        result = new List<ParameterNoModel>();
                         while (dr.Read())
                         {
-                            var item = new UserrModel
+                            var item = new ParameterNoModel
                             {
-                                UserrID = dr["UserrID"].ToString(),
-                                UserrName = dr["UserrName"].ToString(),
-                                Password = dr["Password"].ToString()
+                                Prefix = dr["Prefix"].ToString(),
+                                Value = Convert.ToInt64(dr["Value"])
                             };
                             result.Add(item);
                         }

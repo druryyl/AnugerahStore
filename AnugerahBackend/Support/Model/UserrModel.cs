@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AnugerahBackend.Support
+namespace AnugerahBackend.Support.Model
 {
-
     public class UserrModel
     {
         public string UserrID { get; set; }

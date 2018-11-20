@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AnugerahBackend.StokBarang
+namespace AnugerahBackend.StokBarang.Model
 {
-
     public class MerkModel
     {
         public string MerkID { get; set; }

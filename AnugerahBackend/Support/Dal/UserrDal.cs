@@ -1,4 +1,5 @@
-﻿using Ics.Helper.Extensions;
+﻿using AnugerahBackend.Support.Model;
+using Ics.Helper.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -7,63 +8,66 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AnugerahBackend.StokBarang
+namespace AnugerahBackend.Support.Dal
 {
-
-    public interface IMerkDal
+    public interface IUserrDal
     {
-        void Insert(MerkModel merk);
+        void Insert(UserrModel userr);
 
-        void Update(MerkModel merk);
+        void Update(UserrModel userr);
 
         void Delete(string id);
 
-        MerkModel GetData(string id);
+        UserrModel GetData(string id);
 
-        IEnumerable<MerkModel> ListData();
+        IEnumerable<UserrModel> ListData();
     }
 
-    public class MerkDal : IMerkDal
+
+    public class UserrDal : IUserrDal
     {
         public string _connString;
 
-        public MerkDal()
+        public UserrDal()
         {
             _connString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
         }
 
-        public void Insert(MerkModel merk)
+        public void Insert(UserrModel userr)
         {
             var sSql = @"
                 INSERT INTO
-                    Merk (
-                        MerkID, MerkName)
+                    Userr (
+                        UserrID, UserrName, Password)
                 VALUES (
-                        @MerkID, @MerkName) ";
+                        @UserrID, @UserrName, @Password) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@MerkID", merk.MerkID);
-                cmd.AddParam("@MerkName", merk.MerkName);
+                cmd.AddParam("@UserrID", userr.UserrID);
+                cmd.AddParam("@UserrName", userr.UserrName);
+                cmd.AddParam("@Password", userr.Password);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
         }
 
-        public void Update(MerkModel merk)
+        public void Update(UserrModel userr)
         {
             var sSql = @"
                 UPDATE
-                    Merk 
+                    Userr 
                 SET
-                    MerkName = @MerkName
+                    UserrName = @UserrName,
+                    Password = @Password
                 WHERE
-                    MerkID = @MerkID ";
+                    UserrID = @UserrID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@MerkID", merk.MerkID);
-                cmd.AddParam("@MerkName", merk.MerkName);
+                cmd.AddParam("@UserrID", userr.UserrID);
+                cmd.AddParam("@UserrName", userr.UserrName);
+                cmd.AddParam("@Password", userr.Password);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -73,40 +77,41 @@ namespace AnugerahBackend.StokBarang
         {
             var sSql = @"
                 DELETE
-                    Merk 
+                    Userr 
                 WHERE
-                    MerkID = @MerkID ";
+                    UserrID = @UserrID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@MerkID", id);
+                cmd.AddParam("@UserrID", id);
             }
         }
 
-        public MerkModel GetData(string id)
+        public UserrModel GetData(string id)
         {
-            MerkModel result = null;
+            UserrModel result = null;
             var sSql = @"
                 SELECT
-                    aa.MerkName
+                    aa.UserrName, aa.Password
                 FROM
-                    Merk aa
+                    Userr aa
                 WHERE
-                    aa.MerkID = @MerkID ";
+                    aa.UserrID = @UserrID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@MerkID", id);
+                cmd.AddParam("@UserrID", id);
                 conn.Open();
                 using (var dr = cmd.ExecuteReader())
                 {
                     if (dr.HasRows)
                     {
                         dr.Read();
-                        result = new MerkModel
+                        result = new UserrModel
                         {
-                            MerkID = id,
-                            MerkName = dr["MerkName"].ToString()
+                            UserrID = id,
+                            UserrName = dr["UserrName"].ToString(),
+                            Password = dr["Password"].ToString()
                         };
                     }
                 }
@@ -114,14 +119,14 @@ namespace AnugerahBackend.StokBarang
             return result;
         }
 
-        public IEnumerable<MerkModel> ListData()
+        public IEnumerable<UserrModel> ListData()
         {
-            List<MerkModel> result = null;
+            List<UserrModel> result = null;
             var sSql = @"
                 SELECT
-                    aa.MerkID, aa.MerkName
+                    aa.UserrID, aa.UserrName, aa.Password
                 FROM
-                    Merk aa ";
+                    Userr aa ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
@@ -130,13 +135,14 @@ namespace AnugerahBackend.StokBarang
                 {
                     if (dr.HasRows)
                     {
-                        result = new List<MerkModel>();
+                        result = new List<UserrModel>();
                         while (dr.Read())
                         {
-                            var item = new MerkModel
+                            var item = new UserrModel
                             {
-                                MerkID = dr["MerkID"].ToString(),
-                                MerkName = dr["MerkName"].ToString()
+                                UserrID = dr["UserrID"].ToString(),
+                                UserrName = dr["UserrName"].ToString(),
+                                Password = dr["Password"].ToString()
                             };
                             result.Add(item);
                         }

@@ -46,21 +46,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StokBarang\ColorBL.cs" />
-    <Compile Include="StokBarang\ColorDal.cs" />
-    <Compile Include="StokBarang\ColorModel.cs" />
-    <Compile Include="StokBarang\JenisBrgBL.cs" />
-    <Compile Include="StokBarang\JenisBrgDal.cs" />
-    <Compile Include="StokBarang\JenisBrgModel.cs" />
-    <Compile Include="StokBarang\MerkBL.cs" />
-    <Compile Include="StokBarang\MerkDal.cs" />
-    <Compile Include="StokBarang\MerkModel.cs" />
-    <Compile Include="Support\ParameterNoBL.cs" />
-    <Compile Include="Support\ParameterNoDal.cs" />
-    <Compile Include="Support\ParameterNoModel.cs" />
-    <Compile Include="Support\UserrBL.cs" />
-    <Compile Include="Support\UserrDal.cs" />
-    <Compile Include="Support\UserrModel.cs" />
+    <Compile Include="StokBarang\BL\ColorBL.cs" />
+    <Compile Include="StokBarang\Dal\ColorDal.cs" />
+    <Compile Include="StokBarang\Dal\JenisBrgTipeDal.cs" />
+    <Compile Include="StokBarang\Model\ColorModel.cs" />
+    <Compile Include="StokBarang\BL\JenisBrgBL.cs" />
+    <Compile Include="StokBarang\Dal\JenisBrgDal.cs" />
+    <Compile Include="StokBarang\Model\JenisBrgModel.cs" />
+    <Compile Include="StokBarang\BL\MerkBL.cs" />
+    <Compile Include="StokBarang\Dal\MerkDal.cs" />
+    <Compile Include="StokBarang\Model\JenisBrgTipeModel.cs" />
+    <Compile Include="StokBarang\Model\MerkModel.cs" />
+    <Compile Include="Support\BL\ParameterNoBL.cs" />
+    <Compile Include="Support\Dal\ParameterNoDal.cs" />
+    <Compile Include="Support\Model\ParameterNoModel.cs" />
+    <Compile Include="Support\BL\UserrBL.cs" />
+    <Compile Include="Support\Dal\UserrDal.cs" />
+    <Compile Include="Support\Model\UserrModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

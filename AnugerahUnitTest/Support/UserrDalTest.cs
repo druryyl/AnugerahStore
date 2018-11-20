@@ -1,4 +1,6 @@
 ﻿using AnugerahBackend.Support;
+using AnugerahBackend.Support.Dal;
+using AnugerahBackend.Support.Model;
 using FluentAssertions;
 using Ics.Helper.Database;
 using System;
@@ -8,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace AnugerahUnitTest.Support
+namespace AnugerahUnitTest.Support.Dal
 {
 
     public interface IUserrDalTest

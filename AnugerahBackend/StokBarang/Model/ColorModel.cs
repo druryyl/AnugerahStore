@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AnugerahBackend.StokBarang
+namespace AnugerahBackend.StokBarang.Model
 {
 
     public class ColorModel

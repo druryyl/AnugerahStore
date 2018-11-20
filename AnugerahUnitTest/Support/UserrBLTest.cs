@@ -1,4 +1,7 @@
 ﻿using AnugerahBackend.Support;
+using AnugerahBackend.Support.BL;
+using AnugerahBackend.Support.Dal;
+using AnugerahBackend.Support.Model;
 using FluentAssertions;
 using Moq;
 using System;
@@ -8,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace AnugerahUnitTest.Support
+namespace AnugerahUnitTest.Support.BL
 {
 
     public interface IUserrBLTest

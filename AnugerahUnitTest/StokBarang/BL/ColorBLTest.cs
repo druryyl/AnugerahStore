@@ -1,4 +1,7 @@
 ﻿using AnugerahBackend.StokBarang;
+using AnugerahBackend.StokBarang.BL;
+using AnugerahBackend.StokBarang.Dal;
+using AnugerahBackend.StokBarang.Model;
 using FluentAssertions;
 using Moq;
 using System;
@@ -8,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace AnugerahUnitTest.StokBarang
+namespace AnugerahUnitTest.StokBarang.BL
 {
 
     public interface IColorBLTest

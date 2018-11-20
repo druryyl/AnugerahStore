@@ -1,4 +1,5 @@
-﻿using Ics.Helper.Extensions;
+﻿using AnugerahBackend.StokBarang.Model;
+using Ics.Helper.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -7,63 +8,63 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AnugerahBackend.Support
+namespace AnugerahBackend.StokBarang.Dal
 {
 
-    public interface IParameterNoDal
+    public interface IJenisBrgDal
     {
-        void Insert(ParameterNoModel paramterNo);
+        void Insert(JenisBrgModel jenisBrg);
 
-        void Update(ParameterNoModel paramterNo);
+        void Update(JenisBrgModel jenisBrg);
 
         void Delete(string id);
 
-        ParameterNoModel GetData(string id);
+        JenisBrgModel GetData(string id);
 
-        IEnumerable<ParameterNoModel> ListData();
+        IEnumerable<JenisBrgModel> ListData();
     }
 
-    public class ParameterNoDal : IParameterNoDal
+    public class JenisBrgDal : IJenisBrgDal
     {
         public string _connString;
 
-        public ParameterNoDal()
+        public JenisBrgDal()
         {
             _connString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
         }
 
-        public void Insert(ParameterNoModel parameterNo)
+        public void Insert(JenisBrgModel jenisBrg)
         {
             var sSql = @"
                 INSERT INTO
-                    ParameterNo (
-                        Prefix, Value)
+                    JenisBrg (
+                        JenisBrgID, JenisBrgName)
                 VALUES (
-                        @Prefix, @Value) ";
+                        @JenisBrgID, @JenisBrgName) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@Prefix", parameterNo.Prefix);
-                cmd.AddParam("@Value", parameterNo.Value);
+                cmd.AddParam("@JenisBrgID", jenisBrg.JenisBrgID);
+                cmd.AddParam("@JenisBrgName", jenisBrg.JenisBrgName);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
         }
 
-        public void Update(ParameterNoModel parameterNo)
+        public void Update(JenisBrgModel jenisBrg)
         {
             var sSql = @"
                 UPDATE
-                    ParameterNo 
+                    JenisBrg 
                 SET
-                    Value = @Value
+                    JenisBrgName = @JenisBrgName
                 WHERE
-                    Prefix = @Prefix ";
+                    JenisBrgID = @JenisBrgID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@Prefix", parameterNo.Prefix);
-                cmd.AddParam("@Value", parameterNo.Value);
+                cmd.AddParam("@JenisBrgID", jenisBrg.JenisBrgID);
+                cmd.AddParam("@JenisBrgName", jenisBrg.JenisBrgName);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -73,40 +74,40 @@ namespace AnugerahBackend.Support
         {
             var sSql = @"
                 DELETE
-                    ParameterNo 
+                    JenisBrg 
                 WHERE
-                    Prefix = @Prefix ";
+                    JenisBrgID = @JenisBrgID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@Prefix", id);
+                cmd.AddParam("@JenisBrgID", id);
             }
         }
 
-        public ParameterNoModel GetData(string id)
+        public JenisBrgModel GetData(string id)
         {
-            ParameterNoModel result = null;
+            JenisBrgModel result = null;
             var sSql = @"
                 SELECT
-                    aa.Value
+                    aa.JenisBrgName
                 FROM
-                    ParameterNo aa
+                    JenisBrg aa
                 WHERE
-                    aa.Prefix = @Prefix ";
+                    aa.JenisBrgID = @JenisBrgID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@Prefix", id);
+                cmd.AddParam("@JenisBrgID", id);
                 conn.Open();
                 using (var dr = cmd.ExecuteReader())
                 {
                     if (dr.HasRows)
                     {
                         dr.Read();
-                        result = new ParameterNoModel
+                        result = new JenisBrgModel
                         {
-                            Prefix = id,
-                            Value = Convert.ToInt64(dr["Value"])
+                            JenisBrgID = id,
+                            JenisBrgName = dr["JenisBrgName"].ToString()
                         };
                     }
                 }
@@ -114,14 +115,14 @@ namespace AnugerahBackend.Support
             return result;
         }
 
-        public IEnumerable<ParameterNoModel> ListData()
+        public IEnumerable<JenisBrgModel> ListData()
         {
-            List<ParameterNoModel> result = null;
+            List<JenisBrgModel> result = null;
             var sSql = @"
                 SELECT
-                    aa.Prefix, aa.Value
+                    aa.JenisBrgID, aa.JenisBrgName
                 FROM
-                    ParameterNo aa ";
+                    JenisBrg aa ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
@@ -130,13 +131,13 @@ namespace AnugerahBackend.Support
                 {
                     if (dr.HasRows)
                     {
-                        result = new List<ParameterNoModel>();
+                        result = new List<JenisBrgModel>();
                         while (dr.Read())
                         {
-                            var item = new ParameterNoModel
+                            var item = new JenisBrgModel
                             {
-                                Prefix = dr["Prefix"].ToString(),
-                                Value = Convert.ToInt64(dr["Value"])
+                                JenisBrgID = dr["JenisBrgID"].ToString(),
+                                JenisBrgName = dr["JenisBrgName"].ToString()
                             };
                             result.Add(item);
                         }

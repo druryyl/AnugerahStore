@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AnugerahBackend.Support
+namespace AnugerahBackend.Support.Model
 {
-
     public class ParameterNoModel
     {
         public string Prefix { get; set; }

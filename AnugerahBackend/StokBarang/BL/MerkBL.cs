@@ -1,10 +1,12 @@
-﻿using System;
+﻿using AnugerahBackend.StokBarang.Dal;
+using AnugerahBackend.StokBarang.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AnugerahBackend.StokBarang
+namespace AnugerahBackend.StokBarang.BL
 {
 
     public interface IMerkBL
