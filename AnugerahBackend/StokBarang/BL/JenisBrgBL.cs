@@ -25,15 +25,19 @@ namespace AnugerahBackend.StokBarang.BL
     public class JenisBrgBL : IJenisBrgBL
     {
         private IJenisBrgDal _jenisBrgDal;
+        private ITipeBrgBL _tipeBrgBL;
+        private IJenisBrg2TipeDal _jenisBrg2TipeDal;
 
         public JenisBrgBL()
         {
             _jenisBrgDal = new JenisBrgDal();
+            _tipeBrgBL = new TipeBrgBL();
         }
 
-        public JenisBrgBL(IJenisBrgDal injJenisBrgDal)
+        public JenisBrgBL(IJenisBrgDal injJenisBrgDal, IJenisBrg2TipeDal injTipeBrgDal)
         {
             _jenisBrgDal = injJenisBrgDal;
+            _tipeBrgBL = injTipeBrgDal;
         }
 
         public JenisBrgModel Save(JenisBrgModel jenisBrg)
@@ -53,21 +57,40 @@ namespace AnugerahBackend.StokBarang.BL
                 _jenisBrgDal.Update(result);
             }
 
+            //  save detil;
+            //  hapus detil lama
+            _jenisBrg2TipeDal.Delete(jenisBrg.JenisBrgID);
+            int noUrut = 0;
+            //  insert ulang detil baru
+            foreach (var item in jenisBrg.ListTipe)
+            {
+                noUrut++;
+                item.NoUrut = noUrut;
+                _jenisBrg2TipeDal.Insert(item);
+            }
             return result;
         }
 
         public void Delete(string id)
         {
             _jenisBrgDal.Delete(id);
+            _jenisBrg2TipeDal.Delete(id);
         }
 
         public JenisBrgModel GetData(string id)
         {
-            return _jenisBrgDal.GetData(id);
+            //  get header
+            var jenisBrg = _jenisBrgDal.GetData(id);
+            //  get detail
+            var listJenisBrg2Tipe = _jenisBrg2TipeDal.ListData(id);
+            //  attact detil to header
+            jenisBrg.ListTipe = listJenisBrg2Tipe;
+            return jenisBrg;
         }
 
         public IEnumerable<JenisBrgModel> ListData()
         {
+            //  hanya list header saja
             return _jenisBrgDal.ListData();
         }
 
@@ -87,6 +110,19 @@ namespace AnugerahBackend.StokBarang.BL
             if (jenisBrg.JenisBrgName.Trim() == "")
             {
                 throw new ArgumentException("JenisBrgName empty");
+            }
+
+            //  cek detil
+            if (jenisBrg.ListTipe != null)
+            {
+                foreach (var item in jenisBrg.ListTipe)
+                {
+                    var tipeBrg = _tipeBrgBL.GetData(item.TipeBrgID);
+                    if (tipeBrg == null)
+                        throw new ArgumentException("TipeBrgID invalid");
+                    item.TipeBrgName = tipeBrg.TipeBrgName;
+                }
+
             }
 
             return result;

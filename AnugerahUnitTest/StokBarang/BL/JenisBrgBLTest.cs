@@ -33,11 +33,14 @@ namespace AnugerahUnitTest.StokBarang.BL
     {
         public IJenisBrgBL _jenisBrgBL;
         public Mock<IJenisBrgDal> _jenisBrgDal;
+        public Mock<IJenisBrg2TipeDal> _jenisBrg2TipeDal;
 
         public JenisBrgBLTest()
         {
             _jenisBrgDal = new Mock<IJenisBrgDal>();
-            _jenisBrgBL = new JenisBrgBL(_jenisBrgDal.Object);
+            _jenisBrg2TipeDal = new Mock<IJenisBrg2TipeDal>();
+
+            _jenisBrgBL = new JenisBrgBL(_jenisBrgDal.Object, _jenisBrg2TipeDal.Object);
         }
 
         JenisBrgModel JenisBrgDataFactory()

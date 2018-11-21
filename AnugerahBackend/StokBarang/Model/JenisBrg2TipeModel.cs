@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace AnugerahBackend.StokBarang.Model
 {
-
-    public class JenisBrgModel
+    public class JenisBrg2TipeModel
     {
         public string JenisBrgID { get; set; }
-        public string JenisBrgName { get; set; }
-        public IEnumerable<JenisBrg2TipeModel> ListTipe { get; set; }
+        public string TipeBrgID { get; set; }
+        public string TipeBrgName { get; set; }
+        public int NoUrut { get; set; }
     }
 }
