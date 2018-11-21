@@ -12,9 +12,7 @@ namespace AnugerahBackend.StokBarang.BL
     public interface IJenisBrgBL
     {
         JenisBrgModel Save(JenisBrgModel jenisBrg);
-
         void Delete(string id);
-
         JenisBrgModel GetData(string id);
 
         IEnumerable<JenisBrgModel> ListData();
@@ -25,8 +23,8 @@ namespace AnugerahBackend.StokBarang.BL
     public class JenisBrgBL : IJenisBrgBL
     {
         private IJenisBrgDal _jenisBrgDal;
-        private ITipeBrgBL _tipeBrgBL;
         private IJenisBrg2TipeDal _jenisBrg2TipeDal;
+        private ITipeBrgBL _tipeBrgBL;
 
         public JenisBrgBL()
         {

@@ -71,5 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="AnugerahDataBase.publish.xml" />
+    <None Include="AnugerahDataBaseTest.publish.xml" />
+    <None Include="AnugerahProduction.publish.xml" />
   </ItemGroup>
 </Project>
