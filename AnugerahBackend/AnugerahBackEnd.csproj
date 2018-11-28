@@ -57,7 +57,6 @@
     <Compile Include="StokBarang\Model\JenisBrgModel.cs" />
     <Compile Include="StokBarang\BL\MerkBL.cs" />
     <Compile Include="StokBarang\Dal\MerkDal.cs" />
-    <Compile Include="StokBarang\Model\JenisBrg2TipeModel.cs" />
     <Compile Include="StokBarang\Model\MerkModel.cs" />
     <Compile Include="StokBarang\Model\TipeBrgModel.cs" />
     <Compile Include="Support\BL\ParameterNoBL.cs" />

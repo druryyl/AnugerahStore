@@ -11,5 +11,7 @@ namespace AnugerahBackend.StokBarang.Model
     {
         public string TipeBrgID { get; set; }
         public string TipeBrgName { get; set; }
+        public string JenisBrgID { get; set; }  
+        public string JenisBrgName { get; set; }
     }
 }

@@ -14,9 +14,7 @@ namespace AnugerahBackend.StokBarang.BL
         JenisBrgModel Save(JenisBrgModel jenisBrg);
         void Delete(string id);
         JenisBrgModel GetData(string id);
-
         IEnumerable<JenisBrgModel> ListData();
-
         JenisBrgModel TryValidate(JenisBrgModel jenisBrg);
     }
 
@@ -24,18 +22,22 @@ namespace AnugerahBackend.StokBarang.BL
     {
         private IJenisBrgDal _jenisBrgDal;
         private IJenisBrg2TipeDal _jenisBrg2TipeDal;
+
         private ITipeBrgBL _tipeBrgBL;
 
         public JenisBrgBL()
         {
             _jenisBrgDal = new JenisBrgDal();
+            _jenisBrg2TipeDal = new JenisBrg2TipeDal();
             _tipeBrgBL = new TipeBrgBL();
         }
 
-        public JenisBrgBL(IJenisBrgDal injJenisBrgDal, IJenisBrg2TipeDal injTipeBrgDal)
+        public JenisBrgBL(IJenisBrgDal injJenisBrgDal, 
+            IJenisBrg2TipeDal injJenisBrg2TipeDal, ITipeBrgBL injTipeBrgBL)
         {
             _jenisBrgDal = injJenisBrgDal;
-            _tipeBrgBL = injTipeBrgDal;
+            _jenisBrg2TipeDal = injJenisBrg2TipeDal;
+            _tipeBrgBL = injTipeBrgBL;
         }
 
         public JenisBrgModel Save(JenisBrgModel jenisBrg)

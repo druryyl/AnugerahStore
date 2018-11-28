@@ -34,13 +34,16 @@ namespace AnugerahUnitTest.StokBarang.BL
         public IJenisBrgBL _jenisBrgBL;
         public Mock<IJenisBrgDal> _jenisBrgDal;
         public Mock<IJenisBrg2TipeDal> _jenisBrg2TipeDal;
+        public Mock<ITipeBrgBL> _tipeBrgBL;
 
         public JenisBrgBLTest()
         {
             _jenisBrgDal = new Mock<IJenisBrgDal>();
             _jenisBrg2TipeDal = new Mock<IJenisBrg2TipeDal>();
+            _tipeBrgBL = new Mock<ITipeBrgBL>();
 
-            _jenisBrgBL = new JenisBrgBL(_jenisBrgDal.Object, _jenisBrg2TipeDal.Object);
+            _jenisBrgBL = new JenisBrgBL(_jenisBrgDal.Object, 
+                _jenisBrg2TipeDal.Object, _tipeBrgBL.Object);
         }
 
         JenisBrgModel JenisBrgDataFactory()
@@ -48,7 +51,11 @@ namespace AnugerahUnitTest.StokBarang.BL
             var result = new JenisBrgModel
             {
                 JenisBrgID = "A1",
-                JenisBrgName = "B1"
+                JenisBrgName = "B1",
+                ListTipe  = new List<JenisBrg2TipeModel>
+                {
+                    new JenisBrg2TipeModel{JenisBrgID = "A1", TipeBrgID = "C1"}
+                }
             };
             return result;
         }

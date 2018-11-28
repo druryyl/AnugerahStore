@@ -39,14 +39,15 @@ namespace AnugerahBackend.StokBarang.Dal
             var sSql = @"
                 INSERT INTO
                     TipeBrg (
-                        TipeBrgID, TipeBrgName)
+                        TipeBrgID, TipeBrgName, JenisBrgID)
                 VALUES (
-                        @TipeBrgID, @TipeBrgName) ";
+                        @TipeBrgID, @TipeBrgName, @JenisBrgID) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
                 cmd.AddParam("@TipeBrgID", tipeBrg.TipeBrgID);
                 cmd.AddParam("@TipeBrgName", tipeBrg.TipeBrgName);
+                cmd.AddParam("@JenisBrgID", tipeBrg.JenisBrgID);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -58,7 +59,8 @@ namespace AnugerahBackend.StokBarang.Dal
                 UPDATE
                     TipeBrg 
                 SET
-                    TipeBrgName = @TipeBrgName
+                    TipeBrgName = @TipeBrgName,
+                    JenisBrgID = @JenisBrgID
                 WHERE
                     TipeBrgID = @TipeBrgID ";
             using (var conn = new SqlConnection(_connString))
@@ -66,6 +68,7 @@ namespace AnugerahBackend.StokBarang.Dal
             {
                 cmd.AddParam("@TipeBrgID", tipeBrg.TipeBrgID);
                 cmd.AddParam("@TipeBrgName", tipeBrg.TipeBrgName);
+                cmd.AddParam("@JenisBrgID", tipeBrg.JenisBrgID);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -90,9 +93,11 @@ namespace AnugerahBackend.StokBarang.Dal
             TipeBrgModel result = null;
             var sSql = @"
                 SELECT
-                    aa.TipeBrgName
+                    aa.TipeBrgName, aa.JenisBrgID,
+                    ISNULL(bb.JenisBrgName, '')
                 FROM
                     TipeBrg aa
+                    LEFT JOIN JenisBrg bb ON aa.JenisBrgID = bb.JenisBrgID
                 WHERE
                     aa.TipeBrgID = @TipeBrgID ";
             using (var conn = new SqlConnection(_connString))
@@ -108,7 +113,9 @@ namespace AnugerahBackend.StokBarang.Dal
                         result = new TipeBrgModel
                         {
                             TipeBrgID = id,
-                            TipeBrgName = dr["TipeBrgName"].ToString()
+                            TipeBrgName = dr["TipeBrgName"].ToString(),
+                            JenisBrgID = dr["JenisBrgID"].ToString(),
+                            JenisBrgName = dr["JenisBrgName"].ToString()
                         };
                     }
                 }
@@ -121,7 +128,9 @@ namespace AnugerahBackend.StokBarang.Dal
             List<TipeBrgModel> result = null;
             var sSql = @"
                 SELECT
-                    aa.TipeBrgID, aa.TipeBrgName
+                    aa.TipeBrgID, aa.TipeBrgName,
+                    aa.JenisBrgID,
+                    ISNULL(bb.JenisBrgName, '') JenisBrgName
                 FROM
                     TipeBrg aa ";
             using (var conn = new SqlConnection(_connString))
@@ -138,7 +147,10 @@ namespace AnugerahBackend.StokBarang.Dal
                             var item = new TipeBrgModel
                             {
                                 TipeBrgID = dr["TipeBrgID"].ToString(),
-                                TipeBrgName = dr["TipeBrgName"].ToString()
+                                TipeBrgName = dr["TipeBrgName"].ToString(),
+                                JenisBrgID = dr["JenisBrgID"].ToString(),
+                                JenisBrgName = dr["JenisBrgName"].ToString()
+
                             };
                             result.Add(item);
                         }
