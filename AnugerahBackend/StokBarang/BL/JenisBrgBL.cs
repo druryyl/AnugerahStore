@@ -22,8 +22,6 @@ namespace AnugerahBackend.StokBarang.BL
     {
         private IJenisBrgDal _jenisBrgDal;
 
-        private ITipeBrgBL _tipeBrgBL;
-
         public JenisBrgBL()
         {
             _jenisBrgDal = new JenisBrgDal();

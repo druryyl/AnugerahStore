@@ -66,5 +66,13 @@ namespace AnugerahWinform.StokBarang
         {
             DialogResult = DialogResult.Cancel;
         }
+
+        private void JenisBrgEntryForm_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if(e.KeyCode == Keys.Escape)
+            {
+                DialogResult = DialogResult.Cancel;
+            }
+        }
     }
 }
