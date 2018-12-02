@@ -10,7 +10,6 @@ namespace AnugerahBackend.StokBarang.Model
     public class ColorModel
     {
         public string ColorID { get; set; }
-        public string ColorName { get; set; }
         public int RedValue { get; set; }
         public int GreenValue { get; set; }
         public int BlueValue { get; set; }

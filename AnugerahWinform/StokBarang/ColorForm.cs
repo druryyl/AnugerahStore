@@ -8,13 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AnugerahWinform
+namespace AnugerahWinform.StokBarang
 {
-    public partial class Form1 : Form
+    public partial class ColorForm : Form
     {
-        public Form1()
+        public ColorForm()
         {
             InitializeComponent();
+
         }
     }
 }

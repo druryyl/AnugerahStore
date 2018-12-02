@@ -36,7 +36,6 @@ namespace AnugerahUnitTest.StokBarang.BL
             var result = new ColorModel
             {
                 ColorID = "A1",
-                ColorName = "B1"
             };
             return result;
         }
@@ -46,7 +45,6 @@ namespace AnugerahUnitTest.StokBarang.BL
             var result = new ColorModel
             {
                 ColorID = "A2",
-                ColorName = "B2"
             };
             return result;
         }

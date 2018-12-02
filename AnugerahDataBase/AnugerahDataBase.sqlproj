@@ -69,8 +69,7 @@
     <Build Include="StokBarang\TipeBrg.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="AnugerahDataBase.publish.xml" />
-    <None Include="AnugerahDataBaseTest.publish.xml" />
-    <None Include="AnugerahProduction.publish.xml" />
+    <None Include="AnugerahDevelopment.publish.xml" />
+    <None Include="AnugerahTest.publish.xml" />
   </ItemGroup>
 </Project>

@@ -150,7 +150,6 @@ namespace AnugerahBackend.StokBarang.Dal
                                 TipeBrgName = dr["TipeBrgName"].ToString(),
                                 JenisBrgID = dr["JenisBrgID"].ToString(),
                                 JenisBrgName = dr["JenisBrgName"].ToString()
-
                             };
                             result.Add(item);
                         }

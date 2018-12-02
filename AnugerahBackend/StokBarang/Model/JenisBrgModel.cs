@@ -11,6 +11,5 @@ namespace AnugerahBackend.StokBarang.Model
     {
         public string JenisBrgID { get; set; }
         public string JenisBrgName { get; set; }
-        public IEnumerable<JenisBrg2TipeModel> ListTipe { get; set; }
     }
 }

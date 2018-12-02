@@ -81,6 +81,8 @@ namespace AnugerahBackend.StokBarang.Dal
             using (var cmd = new SqlCommand(sSql, conn))
             {
                 cmd.AddParam("@JenisBrgID", id);
+                conn.Open();
+                cmd.ExecuteNonQuery();
             }
         }
 

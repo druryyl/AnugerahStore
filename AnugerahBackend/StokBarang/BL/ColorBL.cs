@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace AnugerahBackend.StokBarang.BL
 {
@@ -20,6 +21,8 @@ namespace AnugerahBackend.StokBarang.BL
         IEnumerable<ColorModel> ListData();
 
         ColorModel TryValidate(ColorModel color);
+
+        void DataSeed();
     }
 
 
@@ -85,12 +88,36 @@ namespace AnugerahBackend.StokBarang.BL
             {
                 throw new ArgumentException("ColorID empty");
             }
-            if (color.ColorName.Trim() == "")
-            {
-                throw new ArgumentException("ColorName empty");
-            }
-
             return result;
+        }
+
+        public void DataSeed()
+        {
+            //  kosongkan table color
+            var listColor = _colorDal.ListData();
+            if (listColor != null)
+            {
+                foreach(var item in listColor)
+                {
+                    _colorDal.Delete(item.ColorID);
+                }
+            }
+            var colors = Enum.GetValues(typeof(KnownColor));
+            foreach(KnownColor item in colors)
+            {
+                var color = Color.FromKnownColor(item);
+                if (!color.IsSystemColor)
+                {
+                    var model = new ColorModel
+                    {
+                        ColorID = color.Name,
+                        RedValue = color.R,
+                        GreenValue = color.G,
+                        BlueValue = color.B,
+                    };
+                    _colorDal.Insert(model);
+                }
+            }
         }
     }
 }

@@ -38,16 +38,15 @@ namespace AnugerahBackend.StokBarang.Dal
             var sSql = @"
                 INSERT INTO
                     Color (
-                        ColorID, ColorName, 
-                        RedValue, GreenValue, BlueValue)
+                        ColorID, RedValue, 
+                        GreenValue, BlueValue)
                 VALUES (
-                        @ColorID, @ColorName,
-                        @RedValue, @GreenValue, @BlueValue) ";
+                        @ColorID, @RedValue, 
+                        @GreenValue, @BlueValue) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
                 cmd.AddParam("@ColorID", color.ColorID);
-                cmd.AddParam("@ColorName", color.ColorName);
                 cmd.AddParam("@RedValue", color.RedValue);
                 cmd.AddParam("@GreenValue", color.GreenValue);
                 cmd.AddParam("@BlueValue", color.BlueValue);
@@ -62,17 +61,15 @@ namespace AnugerahBackend.StokBarang.Dal
                 UPDATE
                     Color 
                 SET
-                    ColorName = @ColorName,
                     RedValue = @RedValue,
                     GreenValue = @GreenValue,
-                    BlueValue = @BlueValue
+                    BlueValue = @BlueValue,
                 WHERE
                     ColorID = @ColorID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
                 cmd.AddParam("@ColorID", color.ColorID);
-                cmd.AddParam("@ColorName", color.ColorName);
                 cmd.AddParam("@RedValue", color.RedValue);
                 cmd.AddParam("@GreenValue", color.GreenValue);
                 cmd.AddParam("@BlueValue", color.BlueValue);
@@ -102,8 +99,9 @@ namespace AnugerahBackend.StokBarang.Dal
             ColorModel result = null;
             var sSql = @"
                 SELECT
-                    aa.ColorName, aa.RedValue,
-                    aa.GreenValue, aa.BlueValue
+                    aa.RedValue,
+                    aa.GreenValue, aa.BlueValue,
+                    aa.CustomName
                 FROM
                     Color aa
                 WHERE
@@ -121,10 +119,9 @@ namespace AnugerahBackend.StokBarang.Dal
                         result = new ColorModel
                         {
                             ColorID = id,
-                            ColorName = dr["ColorName"].ToString(),
                             RedValue = Convert.ToInt16(dr["RedValue"]),
                             GreenValue = Convert.ToInt16(dr["GreenValue"]),
-                            BlueValue = Convert.ToInt16(dr["BlueValue"])
+                            BlueValue = Convert.ToInt16(dr["BlueValue"]),
                         };
                     }
                 }
@@ -137,8 +134,8 @@ namespace AnugerahBackend.StokBarang.Dal
             List<ColorModel> result = null;
             var sSql = @"
                 SELECT
-                    aa.ColorID, aa.ColorName,
-                    aa.RedValue, aa.GreenValue, aa.BlueValue
+                    aa.ColorID, aa.RedValue, 
+                    aa.GreenValue, aa.BlueValue
                 FROM
                     Color aa ";
             using (var conn = new SqlConnection(_connString))
@@ -155,10 +152,9 @@ namespace AnugerahBackend.StokBarang.Dal
                             var item = new ColorModel
                             {
                                 ColorID = dr["ColorID"].ToString(),
-                                ColorName = dr["ColorName"].ToString(),
                                 RedValue = Convert.ToInt16(dr["RedValue"]),
                                 GreenValue = Convert.ToInt16(dr["GreenValue"]),
-                                BlueValue = Convert.ToInt16(dr["BlueValue"])
+                                BlueValue = Convert.ToInt16(dr["BlueValue"]),
                             };
                             result.Add(item);
                         }

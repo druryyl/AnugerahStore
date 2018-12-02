@@ -18,7 +18,6 @@ namespace AnugerahUnitTest.StokBarang.BL
     {
         void TryValidate_ValidData_NoEx();
         void TryValidate_ColorID_Empty_ArgEx();
-        void TryValidate_ColorName_Empty_ArgEx();
 
 
         void Save_DataExist_CallDalInsert();
@@ -45,7 +44,9 @@ namespace AnugerahUnitTest.StokBarang.BL
             var result = new ColorModel
             {
                 ColorID = "A1",
-                ColorName = "B1"
+                RedValue = 10,
+                GreenValue = 20,
+                BlueValue = 30
             };
             return result;
         }
@@ -55,7 +56,9 @@ namespace AnugerahUnitTest.StokBarang.BL
             var result = new ColorModel
             {
                 ColorID = "A2",
-                ColorName = "B2"
+                RedValue = 30,
+                GreenValue = 40,
+                BlueValue = 50
             };
             return result;
         }
@@ -85,21 +88,6 @@ namespace AnugerahUnitTest.StokBarang.BL
 
             //  assert
             ex.Message.Should().Contain("ColorID empty");
-        }
-
-        [Fact]
-        public void TryValidate_ColorName_Empty_ArgEx()
-        {
-            //  arrange
-            var expected = ColorDataFactory();
-            expected.ColorName = "";
-
-            //  act
-            var ex = Assert.Throws<ArgumentException>(
-                () => _colorBL.TryValidate(expected));
-
-            //  assert
-            ex.Message.Should().Contain("ColorName empty");
         }
 
         [Fact]
@@ -169,5 +157,13 @@ namespace AnugerahUnitTest.StokBarang.BL
             //  assert
             _colorDal.Verify(x => x.ListData(), Times.Once);
         }
+
+        [Fact]
+        public void DataSeed()
+        {
+            var seeder = new ColorBL();
+            seeder.DataSeed();
+        }
+
     }
 }
