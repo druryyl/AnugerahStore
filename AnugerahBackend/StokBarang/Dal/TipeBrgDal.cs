@@ -22,6 +22,7 @@ namespace AnugerahBackend.StokBarang.Dal
         TipeBrgModel GetData(string id);
 
         IEnumerable<TipeBrgModel> ListData();
+        IEnumerable<TipeBrgModel> ListData(string jenisBrgID);
     }
 
 
@@ -136,6 +137,45 @@ namespace AnugerahBackend.StokBarang.Dal
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
+                conn.Open();
+                using (var dr = cmd.ExecuteReader())
+                {
+                    if (dr.HasRows)
+                    {
+                        result = new List<TipeBrgModel>();
+                        while (dr.Read())
+                        {
+                            var item = new TipeBrgModel
+                            {
+                                TipeBrgID = dr["TipeBrgID"].ToString(),
+                                TipeBrgName = dr["TipeBrgName"].ToString(),
+                                JenisBrgID = dr["JenisBrgID"].ToString(),
+                                JenisBrgName = dr["JenisBrgName"].ToString()
+                            };
+                            result.Add(item);
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+
+        public IEnumerable<TipeBrgModel> ListData(string jenisBrgID)
+        {
+            List<TipeBrgModel> result = null;
+            var sSql = @"
+                SELECT
+                    aa.TipeBrgID, aa.TipeBrgName,
+                    aa.JenisBrgID,
+                    ISNULL(bb.JenisBrgName, '') JenisBrgName
+                FROM
+                    TipeBrg aa 
+                WHERE
+                    aa.JenisBrgID = @JenisBrgID ";
+            using (var conn = new SqlConnection(_connString))
+            using (var cmd = new SqlCommand(sSql, conn))
+            {
+                cmd.AddParam("@JenisBrgID", jenisBrgID);
                 conn.Open();
                 using (var dr = cmd.ExecuteReader())
                 {

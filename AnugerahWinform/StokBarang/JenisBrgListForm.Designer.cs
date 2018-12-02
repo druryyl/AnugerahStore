@@ -30,8 +30,6 @@
         {
             this.DeleteButton = new System.Windows.Forms.Button();
             this.JenisBrgGrid = new System.Windows.Forms.DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.JenisBrgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NewButton = new System.Windows.Forms.Button();
             this.ExitButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.JenisBrgGrid)).BeginInit();
@@ -51,26 +49,11 @@
             // 
             this.JenisBrgGrid.BackgroundColor = System.Drawing.Color.Beige;
             this.JenisBrgGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.JenisBrgGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ID,
-            this.JenisBrgName});
             this.JenisBrgGrid.Location = new System.Drawing.Point(12, 12);
             this.JenisBrgGrid.Name = "JenisBrgGrid";
             this.JenisBrgGrid.Size = new System.Drawing.Size(478, 401);
             this.JenisBrgGrid.TabIndex = 2;
             this.JenisBrgGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.JenisBrgGrid_CellContentClick);
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.Width = 50;
-            // 
-            // JenisBrgName
-            // 
-            this.JenisBrgName.HeaderText = "Jenis Brg Name";
-            this.JenisBrgName.Name = "JenisBrgName";
-            this.JenisBrgName.Width = 300;
             // 
             // NewButton
             // 
@@ -116,7 +99,5 @@
         private System.Windows.Forms.DataGridView JenisBrgGrid;
         private System.Windows.Forms.Button NewButton;
         private System.Windows.Forms.Button ExitButton;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn JenisBrgName;
     }
 }

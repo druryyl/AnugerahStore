@@ -107,6 +107,7 @@
             this.TipeBrgMenu.Name = "TipeBrgMenu";
             this.TipeBrgMenu.Size = new System.Drawing.Size(192, 22);
             this.TipeBrgMenu.Text = "ST04 - &Tipe Brg...";
+            this.TipeBrgMenu.Click += new System.EventHandler(this.TipeBrgMenu_Click);
             // 
             // BarangMenu
             // 

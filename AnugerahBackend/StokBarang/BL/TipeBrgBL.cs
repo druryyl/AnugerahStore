@@ -19,6 +19,8 @@ namespace AnugerahBackend.StokBarang.BL
 
         IEnumerable<TipeBrgModel> ListData();
 
+        IEnumerable<TipeBrgModel> ListData(string jenisBrgID);
+
         TipeBrgModel TryValidate(TipeBrgModel tipeBrg);
     }
 
@@ -90,6 +92,11 @@ namespace AnugerahBackend.StokBarang.BL
             }
 
             return result;
+        }
+
+        public IEnumerable<TipeBrgModel> ListData(string jenisBrgID)
+        {
+            return _tipeBrgDal.ListData(jenisBrgID);
         }
     }
 }

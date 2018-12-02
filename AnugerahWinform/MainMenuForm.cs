@@ -24,5 +24,12 @@ namespace AnugerahWinform
             form.MdiParent = this;
             form.Show();
         }
+
+        private void TipeBrgMenu_Click(object sender, EventArgs e)
+        {
+            var form = new TipeBrgListForm();
+            form.MdiParent = this;
+            form.Show();
+        }
     }
 }
