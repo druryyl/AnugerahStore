@@ -20,15 +20,21 @@ namespace AnugerahWinform
 
         private void JenisBrgMenu_Click(object sender, EventArgs e)
         {
-            var form = new JenisBrgListForm();
-            form.MdiParent = this;
+            var form = new JenisBrgListForm
+            {
+                MdiParent = this,
+                StartPosition = FormStartPosition.CenterParent
+            };
             form.Show();
         }
 
         private void TipeBrgMenu_Click(object sender, EventArgs e)
         {
-            var form = new TipeBrgListForm();
-            form.MdiParent = this;
+            var form = new TipeBrgListForm
+            {
+                MdiParent = this,
+                StartPosition = FormStartPosition.CenterParent
+            };
             form.Show();
         }
     }

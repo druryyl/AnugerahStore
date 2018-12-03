@@ -40,7 +40,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.Beige;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.JenisBrgIDLabel);
             this.panel1.Controls.Add(this.JenisBrgNameTextBox);
@@ -70,16 +70,20 @@
             // 
             // JenisBrgNameTextBox
             // 
+            this.JenisBrgNameTextBox.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JenisBrgNameTextBox.Location = new System.Drawing.Point(131, 76);
+            this.JenisBrgNameTextBox.MaxLength = 30;
             this.JenisBrgNameTextBox.Name = "JenisBrgNameTextBox";
-            this.JenisBrgNameTextBox.Size = new System.Drawing.Size(181, 21);
+            this.JenisBrgNameTextBox.Size = new System.Drawing.Size(181, 20);
             this.JenisBrgNameTextBox.TabIndex = 1;
             // 
             // JenisBrgIDTextBox
             // 
+            this.JenisBrgIDTextBox.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JenisBrgIDTextBox.Location = new System.Drawing.Point(131, 49);
+            this.JenisBrgIDTextBox.MaxLength = 3;
             this.JenisBrgIDTextBox.Name = "JenisBrgIDTextBox";
-            this.JenisBrgIDTextBox.Size = new System.Drawing.Size(48, 21);
+            this.JenisBrgIDTextBox.Size = new System.Drawing.Size(48, 20);
             this.JenisBrgIDTextBox.TabIndex = 0;
             // 
             // OKButton
@@ -106,7 +110,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.DarkKhaki;
             this.ClientSize = new System.Drawing.Size(418, 204);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.OKButton);
@@ -116,7 +119,7 @@
             this.KeyPreview = true;
             this.Name = "JenisBrgEntryForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "JenisBrgEntryForm";
+            this.Text = "Entry Jenis Brg";
             this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.JenisBrgEntryForm_PreviewKeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

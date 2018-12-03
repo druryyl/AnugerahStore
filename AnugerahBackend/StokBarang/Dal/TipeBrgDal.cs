@@ -95,7 +95,7 @@ namespace AnugerahBackend.StokBarang.Dal
             var sSql = @"
                 SELECT
                     aa.TipeBrgName, aa.JenisBrgID,
-                    ISNULL(bb.JenisBrgName, '')
+                    ISNULL(bb.JenisBrgName, '') JenisBrgName
                 FROM
                     TipeBrg aa
                     LEFT JOIN JenisBrg bb ON aa.JenisBrgID = bb.JenisBrgID
@@ -133,7 +133,8 @@ namespace AnugerahBackend.StokBarang.Dal
                     aa.JenisBrgID,
                     ISNULL(bb.JenisBrgName, '') JenisBrgName
                 FROM
-                    TipeBrg aa ";
+                    TipeBrg aa 
+                    LEFT JOIN JenisBrg bb ON aa.JenisBrgID = bb.JenisBrgID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
@@ -170,6 +171,7 @@ namespace AnugerahBackend.StokBarang.Dal
                     ISNULL(bb.JenisBrgName, '') JenisBrgName
                 FROM
                     TipeBrg aa 
+                    LEFT JOIN JenisBrg bb ON aa.JenisBrgID = bb.JenisBrgID
                 WHERE
                     aa.JenisBrgID = @JenisBrgID ";
             using (var conn = new SqlConnection(_connString))

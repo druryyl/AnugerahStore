@@ -19,6 +19,7 @@ namespace AnugerahWinform.StokBarang
         {
             InitializeComponent();
             _jenisBrgBL = new JenisBrgBL();
+            SetLayoutJenisBrgGrid();
             ListData();
         }
 
@@ -37,6 +38,11 @@ namespace AnugerahWinform.StokBarang
                 }
             }
         }
+        private void EditButton_Click(object sender, EventArgs e)
+        {
+            var id = JenisBrgGrid.CurrentRow.Cells["JenisBrgID"].Value.ToString();
+            EditData(id);
+        }
         private void DeleteButton_Click(object sender, EventArgs e)
         {
             if (JenisBrgGrid.SelectedRows.Count == 0) return;
@@ -49,9 +55,18 @@ namespace AnugerahWinform.StokBarang
             }
             ListData();
         }
-        private void JenisBrgGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void ExitButton_Click(object sender, EventArgs e)
         {
-            var id = JenisBrgGrid.Rows[e.RowIndex].Cells["JenisBrgID"].Value.ToString();
+            this.Close();
+        }
+
+        private void JenisBrgGrid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var id = JenisBrgGrid.CurrentRow.Cells["JenisBrgID"].Value.ToString();
+            EditData(id);
+        }
+        private void EditData(string id)
+        {
             using (var formEntry = new JenisBrgEntryForm(id))
             {
                 var result = formEntry.ShowDialog();
@@ -65,21 +80,21 @@ namespace AnugerahWinform.StokBarang
                 }
             }
         }
-
         private void SetLayoutJenisBrgGrid()
         {
             JenisBrgGrid.DefaultCellStyle.Font = new Font("Courier New", 8, FontStyle.Regular);
             JenisBrgGrid.ColumnHeadersDefaultCellStyle.Font = new Font("Verdana", 8, FontStyle.Bold);
 
             JenisBrgGrid.Columns.Clear();
-            JenisBrgGrid.Rows.Clear();
+
 
             JenisBrgGrid.Columns.Add("JenisBrgID", "ID");
             JenisBrgGrid.Columns["JenisBrgID"].Width = 30;
+            JenisBrgGrid.Columns["JenisBrgID"].ReadOnly = true;
 
             JenisBrgGrid.Columns.Add("JenisBrgName", "JenisBrg Name");
             JenisBrgGrid.Columns["JenisBrgName"].Width = 300;
-
+            JenisBrgGrid.Columns["JenisBrgID"].ReadOnly = true;
         }
         private void ListData()
         {
@@ -87,17 +102,47 @@ namespace AnugerahWinform.StokBarang
             if (listJenisBrg == null)
                 return;
 
-            SetLayoutJenisBrgGrid();
-            foreach(var item in listJenisBrg)
+            JenisBrgGrid.Rows.Clear();
+            foreach (var item in listJenisBrg)
             {
                 object[] rowData = { item.JenisBrgID, item.JenisBrgName };
                 JenisBrgGrid.Rows.Add(rowData);
             }
         }
 
-        private void ExitButton_Click(object sender, EventArgs e)
+        private void SearchButton_Click(object sender, EventArgs e)
         {
-            this.Close();
+
+            var searchKeyword = SearchTextBox.Text.ToLower();
+            
+            //  jika keyword kosong, tampilkan semua
+            if (searchKeyword.Trim() == "")
+            {
+                ListData();
+                return;
+            }
+
+            JenisBrgGrid.Rows.Clear();
+            var listJenisBrg = _jenisBrgBL.ListData();
+            if (listJenisBrg == null)
+                return;
+
+            var searchResult =
+                (
+                    from c in listJenisBrg
+                    where c.JenisBrgName.ToLower().Contains(searchKeyword)
+                    select c
+                ).ToList();
+
+            if (!searchResult.Any())
+                return;
+
+            foreach (var item in searchResult)
+            {
+                object[] rowData = { item.JenisBrgID, item.JenisBrgName };
+                JenisBrgGrid.Rows.Add(rowData);
+            }
+
         }
     }
 }
