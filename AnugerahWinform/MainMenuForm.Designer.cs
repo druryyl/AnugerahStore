@@ -114,6 +114,7 @@
             this.BarangMenu.Name = "BarangMenu";
             this.BarangMenu.Size = new System.Drawing.Size(192, 22);
             this.BarangMenu.Text = "ST05 - &Barang...";
+            this.BarangMenu.Click += new System.EventHandler(this.BarangMenu_Click);
             // 
             // toolStripMenuItem1
             // 

@@ -37,5 +37,15 @@ namespace AnugerahWinform
             };
             form.Show();
         }
+
+        private void BarangMenu_Click(object sender, EventArgs e)
+        {
+            var form = new BarangListForm
+            {
+                MdiParent = this,
+                StartPosition = FormStartPosition.CenterParent
+            };
+            form.Show();
+        }
     }
 }

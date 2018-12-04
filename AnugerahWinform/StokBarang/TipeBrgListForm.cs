@@ -116,6 +116,42 @@ namespace AnugerahWinform.StokBarang
                 }
             }
         }
+        private void EditButton_Click(object sender, EventArgs e)
+        {
+            //  ambil ID jenisbrg
+            var currentRow = JenisBrgGrid.CurrentRow;
+            if (currentRow == null)
+                return;
+            var jenisBrgID = currentRow.Cells["JenisBrgID"].Value.ToString();
+
+            //  ambil id tipebrg
+            currentRow = TipeBrgGrid.CurrentRow;
+            if (currentRow == null)
+                return;
+            var tipeBrgID = currentRow.Cells["TipeBrgID"].Value.ToString();
+
+            using (var formEntry = new TipeBrgEntryForm(jenisBrgID, tipeBrgID))
+            {
+                var result = formEntry.ShowDialog();
+                switch (result)
+                {
+                    case DialogResult.OK:
+                        ListDataJenisBrg();
+                        //  kembalikan aktif row
+                        foreach (DataGridViewRow row in JenisBrgGrid.Rows)
+                        {
+                            if (row.Cells["JenisBrgID"].Value.ToString() == jenisBrgID)
+                            {
+                                row.Selected = true;
+                            }
+                        }
+                        ListDataTipeBrg(jenisBrgID, "");
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
         private void JenisBrgGrid_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             if (JenisBrgGrid.CurrentRow == null)
@@ -201,41 +237,6 @@ namespace AnugerahWinform.StokBarang
             }
         }
 
-        private void EditButton_Click(object sender, EventArgs e)
-        {
-            //  ambil ID jenisbrg
-            var currentRow = JenisBrgGrid.CurrentRow;
-            if (currentRow == null)
-                return;
-            var jenisBrgID = currentRow.Cells["JenisBrgID"].Value.ToString();
 
-            //  ambil id tipebrg
-            currentRow = TipeBrgGrid.CurrentRow;
-            if (currentRow == null)
-                return;
-            var tipeBrgID = currentRow.Cells["TipeBrgID"].Value.ToString();
-
-            using (var formEntry = new TipeBrgEntryForm(jenisBrgID, tipeBrgID))
-            {
-                var result = formEntry.ShowDialog();
-                switch (result)
-                {
-                    case DialogResult.OK:
-                        ListDataJenisBrg();
-                        //  kembalikan aktif row
-                        foreach (DataGridViewRow row in JenisBrgGrid.Rows)
-                        {
-                            if (row.Cells["JenisBrgID"].Value.ToString() == jenisBrgID)
-                            {
-                                row.Selected = true;
-                            }
-                        }
-                        ListDataTipeBrg(jenisBrgID, "");
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
     }
 }
