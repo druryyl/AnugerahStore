@@ -78,6 +78,12 @@
     <Compile Include="StokBarang\JenisBrgListForm.Designer.cs">
       <DependentUpon>JenisBrgListForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="StokBarang\SubJenisBrgListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StokBarang\SubJenisBrgListForm.Designer.cs">
+      <DependentUpon>SubJenisBrgListForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="StokBarang\TipeBrgEntryForm.cs">
       <SubType>Form</SubType>
     </Compile>
