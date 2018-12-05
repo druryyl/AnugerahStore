@@ -69,6 +69,7 @@
     <Build Include="StokBarang\TipeBrg.sql" />
     <Build Include="StokBarang\Brg.sql" />
     <Build Include="StokBarang\BrgPhoto.sql" />
+    <Build Include="StokBarang\SubJenisBrg.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AnugerahDevelopment.publish.xml" />

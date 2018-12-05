@@ -161,8 +161,8 @@ namespace AnugerahUnitTest.StokBarang.BL
         [Fact]
         public void DataSeed()
         {
-            var seeder = new ColorBL();
-            seeder.DataSeed();
+            //var seeder = new ColorBL();
+            //seeder.DataSeed();
         }
 
     }

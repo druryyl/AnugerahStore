@@ -63,7 +63,7 @@ namespace AnugerahBackend.StokBarang.Dal
                 SET
                     RedValue = @RedValue,
                     GreenValue = @GreenValue,
-                    BlueValue = @BlueValue,
+                    BlueValue = @BlueValue
                 WHERE
                     ColorID = @ColorID ";
             using (var conn = new SqlConnection(_connString))
@@ -100,8 +100,7 @@ namespace AnugerahBackend.StokBarang.Dal
             var sSql = @"
                 SELECT
                     aa.RedValue,
-                    aa.GreenValue, aa.BlueValue,
-                    aa.CustomName
+                    aa.GreenValue, aa.BlueValue
                 FROM
                     Color aa
                 WHERE

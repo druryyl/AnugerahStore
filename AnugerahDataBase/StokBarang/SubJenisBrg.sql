@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[SubJenisBrg]
+(
+	SubJenisBrgID VARCHAR(5) NOT NULL CONSTRAINT DF_SubJenisBrg_SubJenisBrgID DEFAULT(''),
+	SubJenisBrgName VARCHAR(20) NOT NULL CONSTRAINT DF_SubJenisBrg_SubJenisBrgName DEFAULT(''),
+    JenisBrgID VARCHAR(3) NOT NULL CONSTRAINT DF_SubJenisBrg_JenisBrgID DEFAULT (''),
+
+	CONSTRAINT PK_SubJenisBrg_SubJenisBrgID PRIMARY KEY CLUSTERED (SubJenisBrgID),
+)	
+GO

@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.treeView1 = new System.Windows.Forms.TreeView();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.BarangGrid = new System.Windows.Forms.DataGridView();
             this.SearchText = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.SearchLabel = new System.Windows.Forms.Label();
+            this.BarangTabControl = new System.Windows.Forms.TabControl();
+            this.KlasifikasiTab = new System.Windows.Forms.TabPage();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.comboBox5 = new System.Windows.Forms.ComboBox();
@@ -54,18 +54,18 @@
             this.BrgNameText = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.BrgIDText = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.PhotoTab = new System.Windows.Forms.TabPage();
+            this.PricingTab = new System.Windows.Forms.TabPage();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.button4 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BarangGrid)).BeginInit();
+            this.BarangTabControl.SuspendLayout();
+            this.KlasifikasiTab.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.PricingTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -79,14 +79,14 @@
             this.treeView1.Size = new System.Drawing.Size(254, 576);
             this.treeView1.TabIndex = 0;
             // 
-            // dataGridView1
+            // BarangGrid
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(263, 53);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(602, 216);
-            this.dataGridView1.TabIndex = 1;
+            this.BarangGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.BarangGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BarangGrid.Location = new System.Drawing.Point(263, 53);
+            this.BarangGrid.Name = "BarangGrid";
+            this.BarangGrid.Size = new System.Drawing.Size(602, 216);
+            this.BarangGrid.TabIndex = 1;
             // 
             // SearchText
             // 
@@ -96,76 +96,78 @@
             this.SearchText.Size = new System.Drawing.Size(543, 21);
             this.SearchText.TabIndex = 2;
             // 
-            // label1
+            // SearchLabel
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "&Search";
+            this.SearchLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.SearchLabel.AutoSize = true;
+            this.SearchLabel.Location = new System.Drawing.Point(3, 13);
+            this.SearchLabel.Name = "SearchLabel";
+            this.SearchLabel.Size = new System.Drawing.Size(47, 13);
+            this.SearchLabel.TabIndex = 3;
+            this.SearchLabel.Text = "&Search";
             // 
-            // tabControl1
+            // BarangTabControl
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(263, 275);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(602, 304);
-            this.tabControl1.TabIndex = 6;
+            this.BarangTabControl.Controls.Add(this.KlasifikasiTab);
+            this.BarangTabControl.Controls.Add(this.PhotoTab);
+            this.BarangTabControl.Controls.Add(this.PricingTab);
+            this.BarangTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BarangTabControl.Location = new System.Drawing.Point(263, 275);
+            this.BarangTabControl.Name = "BarangTabControl";
+            this.BarangTabControl.SelectedIndex = 0;
+            this.BarangTabControl.Size = new System.Drawing.Size(602, 304);
+            this.BarangTabControl.TabIndex = 6;
             // 
-            // tabPage1
+            // KlasifikasiTab
             // 
-            this.tabPage1.Controls.Add(this.button3);
-            this.tabPage1.Controls.Add(this.button2);
-            this.tabPage1.Controls.Add(this.button1);
-            this.tabPage1.Controls.Add(this.panel1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(594, 278);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Data Barang";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.KlasifikasiTab.Controls.Add(this.button3);
+            this.KlasifikasiTab.Controls.Add(this.button2);
+            this.KlasifikasiTab.Controls.Add(this.button1);
+            this.KlasifikasiTab.Controls.Add(this.panel1);
+            this.KlasifikasiTab.Location = new System.Drawing.Point(4, 22);
+            this.KlasifikasiTab.Name = "KlasifikasiTab";
+            this.KlasifikasiTab.Padding = new System.Windows.Forms.Padding(3);
+            this.KlasifikasiTab.Size = new System.Drawing.Size(594, 278);
+            this.KlasifikasiTab.TabIndex = 0;
+            this.KlasifikasiTab.Text = "Data Barang";
+            this.KlasifikasiTab.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // button3
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(591, 282);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Photo";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.Location = new System.Drawing.Point(429, 251);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 32;
+            this.button3.Text = "Delete";
+            this.button3.UseVisualStyleBackColor = true;
             // 
-            // tabPage3
+            // button2
             // 
-            this.tabPage3.Controls.Add(this.dataGridView2);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(591, 282);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Pricing";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Location = new System.Drawing.Point(510, 251);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 31;
+            this.button2.Text = "Exit";
+            this.button2.UseVisualStyleBackColor = true;
             // 
-            // dataGridView2
+            // button1
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(6, 6);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(579, 270);
-            this.dataGridView2.TabIndex = 2;
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(348, 251);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 30;
+            this.button1.Text = "Save";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BackColor = System.Drawing.Color.Beige;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.comboBox5);
@@ -326,9 +328,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 19);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(60, 13);
+            this.label2.Size = new System.Drawing.Size(66, 13);
             this.label2.TabIndex = 30;
-            this.label2.Text = "Kode Brg";
+            this.label2.Text = "Barang ID";
             // 
             // BrgIDText
             // 
@@ -338,35 +340,34 @@
             this.BrgIDText.Size = new System.Drawing.Size(272, 21);
             this.BrgIDText.TabIndex = 29;
             // 
-            // button1
+            // PhotoTab
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(348, 251);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 30;
-            this.button1.Text = "Save";
-            this.button1.UseVisualStyleBackColor = true;
+            this.PhotoTab.Location = new System.Drawing.Point(4, 22);
+            this.PhotoTab.Name = "PhotoTab";
+            this.PhotoTab.Padding = new System.Windows.Forms.Padding(3);
+            this.PhotoTab.Size = new System.Drawing.Size(594, 278);
+            this.PhotoTab.TabIndex = 1;
+            this.PhotoTab.Text = "Photo";
+            this.PhotoTab.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // PricingTab
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(510, 251);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 31;
-            this.button2.Text = "Exit";
-            this.button2.UseVisualStyleBackColor = true;
+            this.PricingTab.Controls.Add(this.dataGridView2);
+            this.PricingTab.Location = new System.Drawing.Point(4, 22);
+            this.PricingTab.Name = "PricingTab";
+            this.PricingTab.Padding = new System.Windows.Forms.Padding(3);
+            this.PricingTab.Size = new System.Drawing.Size(594, 278);
+            this.PricingTab.TabIndex = 2;
+            this.PricingTab.Text = "Pricing";
+            this.PricingTab.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // dataGridView2
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(429, 251);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 32;
-            this.button3.Text = "Delete";
-            this.button3.UseVisualStyleBackColor = true;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(6, 6);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(579, 270);
+            this.dataGridView2.TabIndex = 2;
             // 
             // button4
             // 
@@ -383,8 +384,8 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.tabControl1, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.BarangTabControl, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.BarangGrid, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.treeView1, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -398,7 +399,8 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.label1);
+            this.panel2.BackColor = System.Drawing.Color.Beige;
+            this.panel2.Controls.Add(this.SearchLabel);
             this.panel2.Controls.Add(this.SearchText);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(263, 3);
@@ -416,13 +418,13 @@
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "BarangListForm";
             this.Text = "BarangListForm";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BarangGrid)).EndInit();
+            this.BarangTabControl.ResumeLayout(false);
+            this.KlasifikasiTab.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.PricingTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -433,11 +435,11 @@
         #endregion
 
         private System.Windows.Forms.TreeView treeView1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView BarangGrid;
         private System.Windows.Forms.TextBox SearchText;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.Label SearchLabel;
+        private System.Windows.Forms.TabControl BarangTabControl;
+        private System.Windows.Forms.TabPage KlasifikasiTab;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
@@ -458,8 +460,8 @@
         private System.Windows.Forms.TextBox BrgNameText;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox BrgIDText;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage PhotoTab;
+        private System.Windows.Forms.TabPage PricingTab;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
