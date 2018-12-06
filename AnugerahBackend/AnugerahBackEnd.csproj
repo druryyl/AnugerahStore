@@ -47,12 +47,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StokBarang\BL\BrgBL.cs" />
     <Compile Include="StokBarang\BL\ColorBL.cs" />
     <Compile Include="StokBarang\BL\SubJenisBrgBL.cs" />
     <Compile Include="StokBarang\BL\TipeBrgBL.cs" />
+    <Compile Include="StokBarang\Dal\BrgDal.cs" />
     <Compile Include="StokBarang\Dal\ColorDal.cs" />
     <Compile Include="StokBarang\Dal\SubJenisBrgDal.cs" />
     <Compile Include="StokBarang\Dal\TipeBrgDal.cs" />
+    <Compile Include="StokBarang\Model\BrgModel.cs" />
     <Compile Include="StokBarang\Model\ColorModel.cs" />
     <Compile Include="StokBarang\BL\JenisBrgBL.cs" />
     <Compile Include="StokBarang\Dal\JenisBrgDal.cs" />

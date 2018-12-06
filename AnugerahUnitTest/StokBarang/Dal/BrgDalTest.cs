@@ -12,7 +12,7 @@ using Xunit;
 namespace AnugerahUnitTest.StokBarang.Dal
 {
 
-    public interface ISubJenisBrgDalTest
+    public interface IBrgDalTest
     {
         void Insert_ValidData_NoEx();
         void Update_ValidDat_NoEx();
@@ -21,33 +21,39 @@ namespace AnugerahUnitTest.StokBarang.Dal
         void ListData_ValidData_NoEx();
     }
 
-    public class SubJenisBrgDalTest : ISubJenisBrgDalTest
+    public class BrgDalTest : IBrgDalTest
     {
-        private ISubJenisBrgDal _subJenisBrgDal;
+        private IBrgDal _brgDal;
 
-        public SubJenisBrgDalTest()
+        public BrgDalTest()
         {
-            _subJenisBrgDal = new SubJenisBrgDal();
+            _brgDal = new BrgDal();
         }
 
-        SubJenisBrgModel SubJenisBrgDataFactory()
+        BrgModel BrgDataFactory()
         {
-            var result = new SubJenisBrgModel
+            var result = new BrgModel
             {
-                SubJenisBrgID = "A1",
-                SubJenisBrgName = "B1",
-                JenisBrgID = "C1"
+                BrgID = "A1",
+                BrgName = "B1",
+                Keterangan = "C1",
+                SubJenisBrgID = "D1",
+                MerkID = "E1",
+                ColorID = "F1"
             };
             return result;
         }
 
-        SubJenisBrgModel SubJenisBrg2DataFactory()
+        BrgModel Brg2DataFactory()
         {
-            var result = new SubJenisBrgModel
+            var result = new BrgModel
             {
-                SubJenisBrgID = "A2",
-                SubJenisBrgName = "B2",
-                JenisBrgID = "C2"
+                BrgID = "A2",
+                BrgName = "B2",
+                Keterangan = "C2",
+                SubJenisBrgID = "D2",
+                MerkID = "E2",
+                ColorID = "F2"
             };
             return result;
         }
@@ -58,10 +64,10 @@ namespace AnugerahUnitTest.StokBarang.Dal
             using (var trans = TransHelper.NewScope())
             {
                 //  arrange
-                var expected = SubJenisBrgDataFactory();
+                var expected = BrgDataFactory();
 
                 //  act
-                _subJenisBrgDal.Insert(expected);
+                _brgDal.Insert(expected);
 
                 //  assert
             }
@@ -73,10 +79,10 @@ namespace AnugerahUnitTest.StokBarang.Dal
             using (var trans = TransHelper.NewScope())
             {
                 //  arrang
-                var expected = SubJenisBrgDataFactory();
+                var expected = BrgDataFactory();
 
                 //  act
-                _subJenisBrgDal.Update(expected);
+                _brgDal.Update(expected);
 
                 //  assert
             }
@@ -88,11 +94,11 @@ namespace AnugerahUnitTest.StokBarang.Dal
             using (var trans = TransHelper.NewScope())
             {
                 //  arrange
-                var expected = SubJenisBrgDataFactory();
-                _subJenisBrgDal.Insert(expected);
+                var expected = BrgDataFactory();
+                _brgDal.Insert(expected);
 
                 //  act
-                _subJenisBrgDal.Delete("A");
+                _brgDal.Delete("A");
 
                 //  assert
             }
@@ -104,16 +110,18 @@ namespace AnugerahUnitTest.StokBarang.Dal
             using (var trans = TransHelper.NewScope())
             {
                 //  arrange
-                var expected = SubJenisBrgDataFactory();
-                _subJenisBrgDal.Insert(expected);
+                var expected = BrgDataFactory();
+                _brgDal.Insert(expected);
 
                 //  act
-                var actual = _subJenisBrgDal.GetData("A1");
+                var actual = _brgDal.GetData("A1");
 
                 //  assert
                 actual.Should().BeEquivalentTo(expected,
                     config => config
-                        .Excluding(x => x.JenisBrgName));
+                        .Excluding(x => x.SubJenisBrgName)
+                        .Excluding(x => x.ColorName)
+                        .Excluding(x => x.MerkName));
             }
         }
 
@@ -123,25 +131,25 @@ namespace AnugerahUnitTest.StokBarang.Dal
             using (var trans = TransHelper.NewScope())
             {
                 //  arrange
-                var item1 = SubJenisBrgDataFactory();
-                _subJenisBrgDal.Insert(item1);
-                var item2 = SubJenisBrg2DataFactory();
-                item2.JenisBrgID = item1.JenisBrgID;
-                _subJenisBrgDal.Insert(item2);
-                var expected = new List<SubJenisBrgModel>
+                var item1 = BrgDataFactory();
+                _brgDal.Insert(item1);
+                var item2 = Brg2DataFactory();
+                _brgDal.Insert(item2);
+                var expected = new List<BrgModel>
                 {
                     item1, item2
                 };
 
                 //  act
-                var actual = _subJenisBrgDal.ListData("C1");
+                var actual = _brgDal.ListData();
 
                 //  assert
                 actual.Should().BeEquivalentTo(expected,
                     config => config
-                        .Excluding(x => x.JenisBrgName));
+                        .Excluding(x => x.SubJenisBrgName)
+                        .Excluding(x => x.ColorName)
+                        .Excluding(x => x.MerkName));
             }
         }
-
     }
 }

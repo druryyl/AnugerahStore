@@ -21,6 +21,7 @@ namespace AnugerahBackend.StokBarang.Dal
 
         SubJenisBrgModel GetData(string id);
 
+        IEnumerable<SubJenisBrgModel> ListData(string jenisBrgID);
         IEnumerable<SubJenisBrgModel> ListData();
     }
 
@@ -125,6 +126,46 @@ namespace AnugerahBackend.StokBarang.Dal
             return result;
         }
 
+        public IEnumerable<SubJenisBrgModel> ListData(string jenisBrgID)
+        {
+            List<SubJenisBrgModel> result = null;
+            var sSql = @"
+                SELECT
+                    aa.SubJenisBrgID, aa.SubJenisBrgName,
+                    aa.JenisBrgID, 
+                    ISNULL(bb.JenisBrgName, '') JenisBrgName
+                FROM
+                    SubJenisBrg aa 
+                    LEFT JOIN JenisBrg bb ON aa.JenisBrgID = bb.JenisBrgID 
+                WHERE
+                    aa.JenisBrgID = @JenisBrgID ";
+            using (var conn = new SqlConnection(_connString))
+            using (var cmd = new SqlCommand(sSql, conn))
+            {
+                cmd.AddParam("@JenisBrgID", jenisBrgID);
+                conn.Open();
+                using (var dr = cmd.ExecuteReader())
+                {
+                    if (dr.HasRows)
+                    {
+                        result = new List<SubJenisBrgModel>();
+                        while (dr.Read())
+                        {
+                            var item = new SubJenisBrgModel
+                            {
+                                SubJenisBrgID = dr["SubJenisBrgID"].ToString(),
+                                SubJenisBrgName = dr["SubJenisBrgName"].ToString(),
+                                JenisBrgID = dr["JenisBrgID"].ToString(),
+                                JenisBrgName = dr["JenisBrgName"].ToString()
+                            };
+                            result.Add(item);
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+
         public IEnumerable<SubJenisBrgModel> ListData()
         {
             List<SubJenisBrgModel> result = null;
@@ -135,7 +176,7 @@ namespace AnugerahBackend.StokBarang.Dal
                     ISNULL(bb.JenisBrgName, '') JenisBrgName
                 FROM
                     SubJenisBrg aa 
-                    LEFT JOIN JenisBrg bb ON aa.JenisBrgID = bb.JenisBrgID ";
+                    LEFT JOIN JenisBrg bb ON aa.JenisBrgID = bb.JenisBrgID  ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
@@ -161,5 +202,6 @@ namespace AnugerahBackend.StokBarang.Dal
             }
             return result;
         }
+
     }
 }

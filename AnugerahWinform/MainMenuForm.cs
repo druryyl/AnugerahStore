@@ -47,5 +47,15 @@ namespace AnugerahWinform
             };
             form.Show();
         }
+
+        private void sT08SubJenisBrgToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new SubJenisBrgListForm
+            {
+                MdiParent = this,
+                StartPosition = FormStartPosition.CenterParent
+            };
+            form.Show();
+        }
     }
 }

@@ -173,10 +173,10 @@ namespace AnugerahUnitTest.StokBarang.BL
             //  arrange
 
             //  act
-            var actual = _subJenisBrgBL.ListData();
+            var actual = _subJenisBrgBL.ListData("");
 
             //  assert
-            _subJenisBrgDal.Verify(x => x.ListData(), Times.Once);
+            _subJenisBrgDal.Verify(x => x.ListData(""), Times.Once);
         }
     }
 }

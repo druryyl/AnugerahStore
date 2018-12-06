@@ -78,6 +78,12 @@
     <Compile Include="StokBarang\JenisBrgListForm.Designer.cs">
       <DependentUpon>JenisBrgListForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="StokBarang\SubJenisBrgEntryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StokBarang\SubJenisBrgEntryForm.Designer.cs">
+      <DependentUpon>SubJenisBrgEntryForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="StokBarang\SubJenisBrgListForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +125,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StokBarang\JenisBrgListForm.resx">
       <DependentUpon>JenisBrgListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StokBarang\SubJenisBrgEntryForm.resx">
+      <DependentUpon>SubJenisBrgEntryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StokBarang\SubJenisBrgListForm.resx">
+      <DependentUpon>SubJenisBrgListForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StokBarang\TipeBrgEntryForm.resx">
       <DependentUpon>TipeBrgEntryForm.cs</DependentUpon>

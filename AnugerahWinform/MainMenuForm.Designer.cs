@@ -52,6 +52,7 @@
             this.jL02PenjualanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.jL03InfoPenjualanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sT08SubJenisBrgToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,6 +74,7 @@
             this.ColorMenu,
             this.MerkMenu,
             this.JenisBrgMenu,
+            this.sT08SubJenisBrgToolStripMenuItem,
             this.TipeBrgMenu,
             this.BarangMenu,
             this.toolStripMenuItem1,
@@ -225,6 +227,13 @@
             this.jL03InfoPenjualanToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
             this.jL03InfoPenjualanToolStripMenuItem.Text = "JL03 - Info Penjualan...";
             // 
+            // sT08SubJenisBrgToolStripMenuItem
+            // 
+            this.sT08SubJenisBrgToolStripMenuItem.Name = "sT08SubJenisBrgToolStripMenuItem";
+            this.sT08SubJenisBrgToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.sT08SubJenisBrgToolStripMenuItem.Text = "ST08 - Sub Jenis Brg...";
+            this.sT08SubJenisBrgToolStripMenuItem.Click += new System.EventHandler(this.sT08SubJenisBrgToolStripMenuItem_Click);
+            // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -269,6 +278,7 @@
         private System.Windows.Forms.ToolStripMenuItem jL02PenjualanToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
         private System.Windows.Forms.ToolStripMenuItem jL03InfoPenjualanToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sT08SubJenisBrgToolStripMenuItem;
     }
 }
 

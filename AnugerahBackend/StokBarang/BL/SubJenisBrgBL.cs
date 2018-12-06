@@ -18,6 +18,7 @@ namespace AnugerahBackend.StokBarang.BL
 
         SubJenisBrgModel GetData(string id);
 
+        IEnumerable<SubJenisBrgModel> ListData(string jenisBrgID);
         IEnumerable<SubJenisBrgModel> ListData();
 
         SubJenisBrgModel TryValidate(SubJenisBrgModel subJenisBrg);
@@ -68,6 +69,11 @@ namespace AnugerahBackend.StokBarang.BL
         public SubJenisBrgModel GetData(string id)
         {
             return _subJenisBrgDal.GetData(id);
+        }
+
+        public IEnumerable<SubJenisBrgModel> ListData(string jenisBrgID)
+        {
+            return _subJenisBrgDal.ListData(jenisBrgID);
         }
 
         public IEnumerable<SubJenisBrgModel> ListData()

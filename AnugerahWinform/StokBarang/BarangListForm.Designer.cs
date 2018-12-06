@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.SubJenisBrgTree = new System.Windows.Forms.TreeView();
             this.BarangGrid = new System.Windows.Forms.DataGridView();
             this.SearchText = new System.Windows.Forms.TextBox();
             this.SearchLabel = new System.Windows.Forms.Label();
@@ -36,20 +36,21 @@
             this.KlasifikasiTab = new System.Windows.Forms.TabPage();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.SaveButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ColorPanel = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.comboBox5 = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.ColorComboBox = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.MerkComboBox = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.KeteranganLabel = new System.Windows.Forms.Label();
+            this.SubJenisBrgComboBox = new System.Windows.Forms.ComboBox();
+            this.JenisBrgComboBox = new System.Windows.Forms.ComboBox();
+            this.KeteranganText = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.BrgNameText = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -70,14 +71,14 @@
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // treeView1
+            // SubJenisBrgTree
             // 
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.Location = new System.Drawing.Point(3, 3);
-            this.treeView1.Name = "treeView1";
-            this.tableLayoutPanel1.SetRowSpan(this.treeView1, 3);
-            this.treeView1.Size = new System.Drawing.Size(254, 576);
-            this.treeView1.TabIndex = 0;
+            this.SubJenisBrgTree.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SubJenisBrgTree.Location = new System.Drawing.Point(3, 3);
+            this.SubJenisBrgTree.Name = "SubJenisBrgTree";
+            this.tableLayoutPanel1.SetRowSpan(this.SubJenisBrgTree, 3);
+            this.SubJenisBrgTree.Size = new System.Drawing.Size(254, 576);
+            this.SubJenisBrgTree.TabIndex = 0;
             // 
             // BarangGrid
             // 
@@ -122,7 +123,7 @@
             // 
             this.KlasifikasiTab.Controls.Add(this.button3);
             this.KlasifikasiTab.Controls.Add(this.button2);
-            this.KlasifikasiTab.Controls.Add(this.button1);
+            this.KlasifikasiTab.Controls.Add(this.SaveButton);
             this.KlasifikasiTab.Controls.Add(this.panel1);
             this.KlasifikasiTab.Location = new System.Drawing.Point(4, 22);
             this.KlasifikasiTab.Name = "KlasifikasiTab";
@@ -152,15 +153,16 @@
             this.button2.Text = "Exit";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // SaveButton
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(348, 251);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 30;
-            this.button1.Text = "Save";
-            this.button1.UseVisualStyleBackColor = true;
+            this.SaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.SaveButton.Location = new System.Drawing.Point(348, 251);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(75, 23);
+            this.SaveButton.TabIndex = 30;
+            this.SaveButton.Text = "Save";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // panel1
             // 
@@ -169,18 +171,19 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.Beige;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.ColorPanel);
             this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.comboBox5);
             this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.comboBox4);
+            this.panel1.Controls.Add(this.ColorComboBox);
             this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.comboBox3);
+            this.panel1.Controls.Add(this.MerkComboBox);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.comboBox2);
-            this.panel1.Controls.Add(this.comboBox1);
-            this.panel1.Controls.Add(this.textBox4);
+            this.panel1.Controls.Add(this.KeteranganLabel);
+            this.panel1.Controls.Add(this.SubJenisBrgComboBox);
+            this.panel1.Controls.Add(this.JenisBrgComboBox);
+            this.panel1.Controls.Add(this.KeteranganText);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.BrgNameText);
             this.panel1.Controls.Add(this.label2);
@@ -189,6 +192,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(579, 239);
             this.panel1.TabIndex = 29;
+            // 
+            // ColorPanel
+            // 
+            this.ColorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ColorPanel.BackColor = System.Drawing.Color.Salmon;
+            this.ColorPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ColorPanel.Location = new System.Drawing.Point(503, 142);
+            this.ColorPanel.Name = "ColorPanel";
+            this.ColorPanel.Size = new System.Drawing.Size(64, 51);
+            this.ColorPanel.TabIndex = 45;
+            this.ColorPanel.MouseLeave += new System.EventHandler(this.ColorPanel_MouseLeave);
+            this.ColorPanel.MouseHover += new System.EventHandler(this.ColorPanel_MouseHover);
             // 
             // label9
             // 
@@ -203,6 +218,7 @@
             // comboBox5
             // 
             this.comboBox5.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.comboBox5.Enabled = false;
             this.comboBox5.FormattingEnabled = true;
             this.comboBox5.Location = new System.Drawing.Point(305, 199);
             this.comboBox5.Name = "comboBox5";
@@ -219,14 +235,15 @@
             this.label8.TabIndex = 42;
             this.label8.Text = "Warna";
             // 
-            // comboBox4
+            // ColorComboBox
             // 
-            this.comboBox4.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(305, 159);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(262, 21);
-            this.comboBox4.TabIndex = 41;
+            this.ColorComboBox.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.ColorComboBox.FormattingEnabled = true;
+            this.ColorComboBox.Location = new System.Drawing.Point(305, 159);
+            this.ColorComboBox.Name = "ColorComboBox";
+            this.ColorComboBox.Size = new System.Drawing.Size(192, 21);
+            this.ColorComboBox.TabIndex = 41;
+            this.ColorComboBox.SelectedIndexChanged += new System.EventHandler(this.ColorComboBox_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -238,14 +255,14 @@
             this.label7.TabIndex = 40;
             this.label7.Text = "Merk";
             // 
-            // comboBox3
+            // MerkComboBox
             // 
-            this.comboBox3.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(305, 115);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(262, 21);
-            this.comboBox3.TabIndex = 39;
+            this.MerkComboBox.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.MerkComboBox.FormattingEnabled = true;
+            this.MerkComboBox.Location = new System.Drawing.Point(305, 115);
+            this.MerkComboBox.Name = "MerkComboBox";
+            this.MerkComboBox.Size = new System.Drawing.Size(262, 21);
+            this.MerkComboBox.TabIndex = 39;
             // 
             // label6
             // 
@@ -253,9 +270,9 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(302, 59);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(31, 13);
+            this.label6.Size = new System.Drawing.Size(61, 13);
             this.label6.TabIndex = 38;
-            this.label6.Text = "Tipe";
+            this.label6.Text = "Sub Jenis";
             // 
             // label5
             // 
@@ -267,42 +284,43 @@
             this.label5.TabIndex = 37;
             this.label5.Text = "Jenis";
             // 
-            // label4
+            // KeteranganLabel
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 99);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 13);
-            this.label4.TabIndex = 36;
-            this.label4.Text = "Deskripsi";
+            this.KeteranganLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.KeteranganLabel.AutoSize = true;
+            this.KeteranganLabel.Location = new System.Drawing.Point(12, 99);
+            this.KeteranganLabel.Name = "KeteranganLabel";
+            this.KeteranganLabel.Size = new System.Drawing.Size(73, 13);
+            this.KeteranganLabel.TabIndex = 36;
+            this.KeteranganLabel.Text = "Keterangan";
             // 
-            // comboBox2
+            // SubJenisBrgComboBox
             // 
-            this.comboBox2.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(305, 75);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(262, 21);
-            this.comboBox2.TabIndex = 35;
+            this.SubJenisBrgComboBox.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.SubJenisBrgComboBox.FormattingEnabled = true;
+            this.SubJenisBrgComboBox.Location = new System.Drawing.Point(305, 75);
+            this.SubJenisBrgComboBox.Name = "SubJenisBrgComboBox";
+            this.SubJenisBrgComboBox.Size = new System.Drawing.Size(262, 21);
+            this.SubJenisBrgComboBox.TabIndex = 35;
             // 
-            // comboBox1
+            // JenisBrgComboBox
             // 
-            this.comboBox1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(305, 35);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(262, 21);
-            this.comboBox1.TabIndex = 34;
+            this.JenisBrgComboBox.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.JenisBrgComboBox.FormattingEnabled = true;
+            this.JenisBrgComboBox.Location = new System.Drawing.Point(305, 35);
+            this.JenisBrgComboBox.Name = "JenisBrgComboBox";
+            this.JenisBrgComboBox.Size = new System.Drawing.Size(262, 21);
+            this.JenisBrgComboBox.TabIndex = 34;
+            this.JenisBrgComboBox.SelectedValueChanged += new System.EventHandler(this.JenisBrgComboBox_SelectedValueChanged);
             // 
-            // textBox4
+            // KeteranganText
             // 
-            this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox4.Location = new System.Drawing.Point(15, 115);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(272, 105);
-            this.textBox4.TabIndex = 33;
+            this.KeteranganText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.KeteranganText.Location = new System.Drawing.Point(15, 115);
+            this.KeteranganText.Multiline = true;
+            this.KeteranganText.Name = "KeteranganText";
+            this.KeteranganText.Size = new System.Drawing.Size(272, 105);
+            this.KeteranganText.TabIndex = 33;
             // 
             // label3
             // 
@@ -386,7 +404,7 @@
             this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.BarangTabControl, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.BarangGrid, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.treeView1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.SubJenisBrgTree, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -434,7 +452,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.TreeView SubJenisBrgTree;
         private System.Windows.Forms.DataGridView BarangGrid;
         private System.Windows.Forms.TextBox SearchText;
         private System.Windows.Forms.Label SearchLabel;
@@ -442,20 +460,18 @@
         private System.Windows.Forms.TabPage KlasifikasiTab;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox comboBox5;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.ComboBox ColorComboBox;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox MerkComboBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label KeteranganLabel;
+        private System.Windows.Forms.ComboBox SubJenisBrgComboBox;
+        private System.Windows.Forms.ComboBox JenisBrgComboBox;
+        private System.Windows.Forms.TextBox KeteranganText;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox BrgNameText;
         private System.Windows.Forms.Label label2;
@@ -466,5 +482,8 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel ColorPanel;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox comboBox5;
     }
 }
