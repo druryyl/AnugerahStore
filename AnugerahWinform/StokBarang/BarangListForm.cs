@@ -1,5 +1,6 @@
 ﻿using AnugerahBackend.StokBarang.BL;
 using AnugerahBackend.StokBarang.Model;
+using AnugerahBackend.Support.BL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,6 +20,7 @@ namespace AnugerahWinform.StokBarang
         private IMerkBL _merkBL;
         private IColorBL _colorBL;
         private IBrgBL _brgBL;
+        private IParameterNoBL _paramNoBL;
 
         private int panelColorTop;
         private int panelColorLeft;
@@ -31,6 +33,7 @@ namespace AnugerahWinform.StokBarang
             _merkBL = new MerkBL();
             _colorBL = new ColorBL();
             _brgBL = new BrgBL();
+            _paramNoBL = new ParameterNoBL();
 
             LoadListSubJenisBrgTree();
             LoadJenisBrgCombo();
@@ -81,6 +84,8 @@ namespace AnugerahWinform.StokBarang
             JenisBrgComboBox.DataSource = listJenisBrg;
             JenisBrgComboBox.DisplayMember = "JenisBrgName";
             JenisBrgComboBox.ValueMember = "JenisBrgID";
+
+            JenisBrgComboBox.SelectedItem = null;
         }
 
         void LoadSubJenisBrgCombo()
@@ -104,6 +109,8 @@ namespace AnugerahWinform.StokBarang
             SubJenisBrgComboBox.DataSource = listSubJenisBrg;
             SubJenisBrgComboBox.DisplayMember = "SubJenisBrgName";
             SubJenisBrgComboBox.ValueMember = "SubJenisBrgID";
+
+            SubJenisBrgComboBox.SelectedItem = null;
         }
 
         void LoadMerkCombo()
@@ -122,6 +129,8 @@ namespace AnugerahWinform.StokBarang
             MerkComboBox.DataSource = listMerk;
             MerkComboBox.DisplayMember = "MerkName";
             MerkComboBox.ValueMember = "MerkID";
+
+            MerkComboBox.SelectedItem = null;
         }
 
         void LoadColorCombo()
@@ -155,7 +164,59 @@ namespace AnugerahWinform.StokBarang
             ColorComboBox.DisplayMember = "ColorID";
             ColorComboBox.ValueMember = "ColorID";
             ColorPanel.BackColor = Color.FromName(ColorComboBox.SelectedValue.ToString());
+
+            ColorComboBox.SelectedItem = null;
         }
+
+        void LoadBrgGrid(string subJenisBrgID)
+        {
+            BarangGrid.Rows.Clear();
+            var subJenisBrg = new SubJenisBrgModel
+            {
+                SubJenisBrgID = subJenisBrgID
+            };
+
+            var listBrg = _brgBL.ListData(subJenisBrg);
+            if (listBrg == null)
+                return;
+
+            foreach(var item in listBrg.OrderBy(x => x.BrgName))
+            {
+                object[] rowData = {item.BrgID, item.BrgName, item.JenisBrgName,
+                            item.SubJenisBrgName, item.MerkName, item.ColorID};
+                BarangGrid.Rows.Add(rowData);
+            }
+
+            ClearDetilBrg();
+        }
+        void LoadBrgGridSearch(string brgName)
+        {
+            BarangGrid.Rows.Clear();
+            var listBrg = _brgBL.ListData(brgName);
+
+            if (listBrg == null)
+                return;
+
+            foreach (var item in listBrg.OrderBy(x => x.BrgName))
+            {
+                object[] rowData = {item.BrgID, item.BrgName, item.JenisBrgName,
+                            item.SubJenisBrgName, item.MerkName, item.ColorID};
+                BarangGrid.Rows.Add(rowData);
+            }
+            ClearDetilBrg();
+        }
+
+        private void ClearDetilBrg()
+        {
+            // kosongkan tampilan jika berhasil
+            BrgIDText.Clear();
+            BrgNameText.Clear();
+            KeteranganText.Clear();
+            LoadJenisBrgCombo();
+            LoadColorCombo();
+            LoadMerkCombo();
+        }
+
 
         private void JenisBrgComboBox_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -164,6 +225,7 @@ namespace AnugerahWinform.StokBarang
 
         private void ColorComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (ColorComboBox.SelectedValue == null) return;
             ColorPanel.BackColor = Color.FromName(ColorComboBox.SelectedValue.ToString());
         }
 
@@ -180,14 +242,19 @@ namespace AnugerahWinform.StokBarang
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
+            //  cek inputan combobox
+            var subJenisID = SubJenisBrgComboBox.SelectedValue ?? "";
+            var merkID = MerkComboBox.SelectedValue ?? "";
+            var colorID = ColorComboBox.SelectedValue ?? "";
+
             var brg = new BrgModel
             {
                 BrgID = BrgIDText.Text,
                 BrgName = BrgNameText.Text,
                 Keterangan = KeteranganText.Text,
-                ColorID = ColorComboBox.SelectedValue.ToString(),
-                SubJenisBrgID = SubJenisBrgComboBox.SelectedValue.ToString(),
-                MerkID = MerkComboBox.SelectedValue.ToString()
+                ColorID = colorID.ToString(),
+                SubJenisBrgID = subJenisID.ToString(),
+                MerkID = merkID.ToString()
             };
 
             try
@@ -207,6 +274,78 @@ namespace AnugerahWinform.StokBarang
             LoadJenisBrgCombo();
             LoadColorCombo();
             LoadMerkCombo();
+        }
+
+        private void BrgIDText_Validating(object sender, CancelEventArgs e)
+        {
+            LoadDataBrg(BrgIDText.Text);
+        }
+
+        void LoadDataBrg(string brgID)
+        {
+            var brg = _brgBL.GetData(brgID);
+            BrgIDText.Text = brgID;
+            if (brg == null)
+            {
+                BrgNameText.Clear();
+                KeteranganText.Clear();
+                LoadJenisBrgCombo();
+                LoadColorCombo();
+                LoadMerkCombo();
+            }
+            else
+            {
+                BrgNameText.Text = brg.BrgName;
+                KeteranganText.Text = brg.Keterangan;
+                var subJenisBrg = _subJenisBrgBL.GetData(brg.SubJenisBrgID);
+                if (subJenisBrg != null)
+                    JenisBrgComboBox.SelectedValue = subJenisBrg.JenisBrgID;
+                else
+                    JenisBrgComboBox.SelectedValue = "";
+
+                LoadSubJenisBrgCombo();
+                SubJenisBrgComboBox.SelectedValue = brg.SubJenisBrgID;
+
+                MerkComboBox.SelectedValue = brg.MerkID;
+                ColorComboBox.SelectedValue = brg.ColorID;
+            }
+        }
+        private void SubJenisBrgTree_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            var subJenisBrgID = SubJenisBrgTree.SelectedNode.Name;
+            LoadBrgGrid(subJenisBrgID);
+        }
+
+        private void BarangGrid_RowLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            var currentRow = BarangGrid.Rows[e.RowIndex];
+            if (currentRow == null) return;
+
+            var brgID = currentRow.Cells["BrgID"].Value;
+            if (brgID == null) return;
+
+            LoadDataBrg(brgID.ToString());
+        }
+
+        private void BrgIDText_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.F1:
+                    //  jika sudah terisi, exit
+                    if (BrgIDText.Text.Trim() != "") return;
+                    //  generate nomor baru da tampilkan
+                    var newID = _paramNoBL.GenNewID("B", 5);
+                    BrgIDText.Text = newID;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+            LoadBrgGridSearch(SearchText.Text);
         }
     }
 }

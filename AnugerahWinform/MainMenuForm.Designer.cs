@@ -33,6 +33,7 @@
             this.ColorMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.MerkMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.JenisBrgMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.sT08SubJenisBrgToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TipeBrgMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.BarangMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
@@ -52,8 +53,17 @@
             this.jL02PenjualanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.jL03InfoPenjualanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sT08SubJenisBrgToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.BarangShortcutButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.MainMenuStrip.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainMenuStrip
@@ -64,7 +74,7 @@
             this.penjualanToolStripMenuItem});
             this.MainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.MainMenuStrip.Name = "MainMenuStrip";
-            this.MainMenuStrip.Size = new System.Drawing.Size(900, 24);
+            this.MainMenuStrip.Size = new System.Drawing.Size(1109, 24);
             this.MainMenuStrip.TabIndex = 1;
             this.MainMenuStrip.Text = "menuStrip1";
             // 
@@ -103,6 +113,13 @@
             this.JenisBrgMenu.Size = new System.Drawing.Size(192, 22);
             this.JenisBrgMenu.Text = "ST03 - &Jenis Brg...";
             this.JenisBrgMenu.Click += new System.EventHandler(this.JenisBrgMenu_Click);
+            // 
+            // sT08SubJenisBrgToolStripMenuItem
+            // 
+            this.sT08SubJenisBrgToolStripMenuItem.Name = "sT08SubJenisBrgToolStripMenuItem";
+            this.sT08SubJenisBrgToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.sT08SubJenisBrgToolStripMenuItem.Text = "ST08 - Sub Jenis Brg...";
+            this.sT08SubJenisBrgToolStripMenuItem.Click += new System.EventHandler(this.sT08SubJenisBrgToolStripMenuItem_Click);
             // 
             // TipeBrgMenu
             // 
@@ -227,26 +244,130 @@
             this.jL03InfoPenjualanToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
             this.jL03InfoPenjualanToolStripMenuItem.Text = "JL03 - Info Penjualan...";
             // 
-            // sT08SubJenisBrgToolStripMenuItem
+            // panel1
             // 
-            this.sT08SubJenisBrgToolStripMenuItem.Name = "sT08SubJenisBrgToolStripMenuItem";
-            this.sT08SubJenisBrgToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.sT08SubJenisBrgToolStripMenuItem.Text = "ST08 - Sub Jenis Brg...";
-            this.sT08SubJenisBrgToolStripMenuItem.Click += new System.EventHandler(this.sT08SubJenisBrgToolStripMenuItem_Click);
+            this.panel1.Controls.Add(this.tableLayoutPanel1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 24);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1109, 83);
+            this.panel1.TabIndex = 3;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 7;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.Controls.Add(this.button5, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.button4, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.button3, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.button2, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.button1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.BarangShortcutButton, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1109, 83);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // BarangShortcutButton
+            // 
+            this.BarangShortcutButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BarangShortcutButton.Image = global::AnugerahWinform.Properties.Resources.favicon;
+            this.BarangShortcutButton.Location = new System.Drawing.Point(183, 3);
+            this.BarangShortcutButton.Name = "BarangShortcutButton";
+            this.BarangShortcutButton.Size = new System.Drawing.Size(84, 77);
+            this.BarangShortcutButton.TabIndex = 0;
+            this.BarangShortcutButton.Text = "Pricing";
+            this.BarangShortcutButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BarangShortcutButton.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.Image = global::AnugerahWinform.Properties.Resources.favicon;
+            this.button1.Location = new System.Drawing.Point(93, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(84, 77);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Items";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button2.Image = global::AnugerahWinform.Properties.Resources.favicon;
+            this.button2.Location = new System.Drawing.Point(3, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(84, 77);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "Stock";
+            this.button2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button3.Image = global::AnugerahWinform.Properties.Resources.favicon;
+            this.button3.Location = new System.Drawing.Point(453, 3);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(84, 77);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "Sale";
+            this.button3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button4.Image = global::AnugerahWinform.Properties.Resources.favicon;
+            this.button4.Location = new System.Drawing.Point(363, 3);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(84, 77);
+            this.button4.TabIndex = 4;
+            this.button4.Text = "Purchasing";
+            this.button4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button5.Image = global::AnugerahWinform.Properties.Resources.favicon;
+            this.button5.Location = new System.Drawing.Point(273, 3);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(84, 77);
+            this.button5.TabIndex = 5;
+            this.button5.Text = "Sale";
+            this.button5.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button5.UseVisualStyleBackColor = true;
             // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(900, 659);
+            this.BackgroundImage = global::AnugerahWinform.Properties.Resources.anugerah_sps;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.ClientSize = new System.Drawing.Size(1109, 731);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.MainMenuStrip);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IsMdiContainer = true;
             this.Name = "MainMenuForm";
             this.Text = "Anugerah Store";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.MainMenuForm_Load);
             this.MainMenuStrip.ResumeLayout(false);
             this.MainMenuStrip.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -279,6 +400,14 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
         private System.Windows.Forms.ToolStripMenuItem jL03InfoPenjualanToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sT08SubJenisBrgToolStripMenuItem;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Button BarangShortcutButton;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
     }
 }
 

@@ -1,5 +1,7 @@
 ﻿using AnugerahBackend.StokBarang.Dal;
 using AnugerahBackend.StokBarang.Model;
+using AnugerahBackend.Support.BL;
+using Ics.Helper.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +20,9 @@ namespace AnugerahBackend.StokBarang.BL
         BrgModel GetData(string id);
 
         IEnumerable<BrgModel> ListData();
+        IEnumerable<BrgModel> ListData(SubJenisBrgModel subJenisBrg);
+        IEnumerable<BrgModel> ListData(string searchKeyword);
+
 
         BrgModel TryValidate(BrgModel brg);
     }
@@ -28,6 +33,7 @@ namespace AnugerahBackend.StokBarang.BL
         private ISubJenisBrgBL _subJenisBrgBL;
         private IMerkBL _merkBL;
         private IColorBL _colorBL;
+        private IParameterNoBL _paramNoBL;
 
         public BrgBL()
         {
@@ -35,6 +41,7 @@ namespace AnugerahBackend.StokBarang.BL
             _subJenisBrgBL = new SubJenisBrgBL();
             _merkBL = new MerkBL();
             _colorBL = new ColorBL();
+            _paramNoBL = new ParameterNoBL();
         }
 
         public BrgBL(IBrgDal injBrgDal, ISubJenisBrgBL injSubJenisBrgBL,
@@ -52,15 +59,27 @@ namespace AnugerahBackend.StokBarang.BL
             var result = brg;
             result = TryValidate(brg);
 
-            //  save
-            var dummyBrg = _brgDal.GetData(brg.BrgID);
-            if (dummyBrg == null)
+            using (var trans = TransHelper.NewScope())
             {
-                _brgDal.Insert(result);
-            }
-            else
-            {
-                _brgDal.Update(result);
+                //  save
+                if (brg.BrgID.Trim() == "")
+                {
+                    brg.BrgID = _paramNoBL.GenNewID("B", 5);
+                    _brgDal.Insert(result);
+                }
+                else
+                {
+                    var dummyBrg = _brgDal.GetData(brg.BrgID);
+                    if (dummyBrg == null)
+                    {
+                        _brgDal.Insert(result);
+                    }
+                    else
+                    {
+                        _brgDal.Update(result);
+                    }
+                }
+                trans.Complete();
             }
 
             return result;
@@ -90,10 +109,6 @@ namespace AnugerahBackend.StokBarang.BL
                 throw new ArgumentNullException(nameof(brg));
             }
 
-            if (brg.BrgID.Trim() == "")
-            {
-                throw new ArgumentException("BrgID empty");
-            }
             if (brg.BrgName.Trim() == "")
             {
                 throw new ArgumentException("BrgName empty");
@@ -131,6 +146,16 @@ namespace AnugerahBackend.StokBarang.BL
                 }
             }
             return result;
+        }
+
+        public IEnumerable<BrgModel> ListData(SubJenisBrgModel subJenisBrg)
+        {
+            return _brgDal.ListData(subJenisBrg);
+        }
+
+        public IEnumerable<BrgModel> ListData(string searchKeyword)
+        {
+            return _brgDal.ListData(searchKeyword);
         }
     }
 }

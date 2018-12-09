@@ -30,8 +30,13 @@
         {
             this.SubJenisBrgTree = new System.Windows.Forms.TreeView();
             this.BarangGrid = new System.Windows.Forms.DataGridView();
+            this.BrgID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BrgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.JenisBrgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubJenisName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MerkName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColorID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SearchText = new System.Windows.Forms.TextBox();
-            this.SearchLabel = new System.Windows.Forms.Label();
             this.BarangTabControl = new System.Windows.Forms.TabControl();
             this.KlasifikasiTab = new System.Windows.Forms.TabPage();
             this.button3 = new System.Windows.Forms.Button();
@@ -61,6 +66,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.SearchButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.BarangGrid)).BeginInit();
             this.BarangTabControl.SuspendLayout();
             this.KlasifikasiTab.SuspendLayout();
@@ -77,35 +83,75 @@
             this.SubJenisBrgTree.Location = new System.Drawing.Point(3, 3);
             this.SubJenisBrgTree.Name = "SubJenisBrgTree";
             this.tableLayoutPanel1.SetRowSpan(this.SubJenisBrgTree, 3);
-            this.SubJenisBrgTree.Size = new System.Drawing.Size(254, 576);
+            this.SubJenisBrgTree.Size = new System.Drawing.Size(216, 576);
             this.SubJenisBrgTree.TabIndex = 0;
+            this.SubJenisBrgTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.SubJenisBrgTree_AfterSelect);
             // 
             // BarangGrid
             // 
+            this.BarangGrid.AllowUserToAddRows = false;
+            this.BarangGrid.AllowUserToDeleteRows = false;
             this.BarangGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.BarangGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.BrgID,
+            this.BrgName,
+            this.JenisBrgName,
+            this.SubJenisName,
+            this.MerkName,
+            this.ColorID});
             this.BarangGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BarangGrid.Location = new System.Drawing.Point(263, 53);
+            this.BarangGrid.Location = new System.Drawing.Point(225, 53);
             this.BarangGrid.Name = "BarangGrid";
-            this.BarangGrid.Size = new System.Drawing.Size(602, 216);
-            this.BarangGrid.TabIndex = 1;
+            this.BarangGrid.ReadOnly = true;
+            this.BarangGrid.Size = new System.Drawing.Size(697, 216);
+            this.BarangGrid.TabIndex = 34;
+            this.BarangGrid.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.BarangGrid_RowLeave);
+            // 
+            // BrgID
+            // 
+            this.BrgID.HeaderText = "Brg ID";
+            this.BrgID.Name = "BrgID";
+            this.BrgID.ReadOnly = true;
+            this.BrgID.Width = 50;
+            // 
+            // BrgName
+            // 
+            this.BrgName.HeaderText = "Nama Barang";
+            this.BrgName.Name = "BrgName";
+            this.BrgName.ReadOnly = true;
+            this.BrgName.Width = 200;
+            // 
+            // JenisBrgName
+            // 
+            this.JenisBrgName.HeaderText = "Jenis Brg";
+            this.JenisBrgName.Name = "JenisBrgName";
+            this.JenisBrgName.ReadOnly = true;
+            // 
+            // SubJenisName
+            // 
+            this.SubJenisName.HeaderText = "Sub Jenis";
+            this.SubJenisName.Name = "SubJenisName";
+            this.SubJenisName.ReadOnly = true;
+            // 
+            // MerkName
+            // 
+            this.MerkName.HeaderText = "Merk";
+            this.MerkName.Name = "MerkName";
+            this.MerkName.ReadOnly = true;
+            // 
+            // ColorID
+            // 
+            this.ColorID.HeaderText = "Color";
+            this.ColorID.Name = "ColorID";
+            this.ColorID.ReadOnly = true;
             // 
             // SearchText
             // 
             this.SearchText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.SearchText.Location = new System.Drawing.Point(59, 10);
+            this.SearchText.Location = new System.Drawing.Point(10, 11);
             this.SearchText.Name = "SearchText";
-            this.SearchText.Size = new System.Drawing.Size(543, 21);
+            this.SearchText.Size = new System.Drawing.Size(597, 21);
             this.SearchText.TabIndex = 2;
-            // 
-            // SearchLabel
-            // 
-            this.SearchLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.SearchLabel.AutoSize = true;
-            this.SearchLabel.Location = new System.Drawing.Point(3, 13);
-            this.SearchLabel.Name = "SearchLabel";
-            this.SearchLabel.Size = new System.Drawing.Size(47, 13);
-            this.SearchLabel.TabIndex = 3;
-            this.SearchLabel.Text = "&Search";
             // 
             // BarangTabControl
             // 
@@ -113,10 +159,10 @@
             this.BarangTabControl.Controls.Add(this.PhotoTab);
             this.BarangTabControl.Controls.Add(this.PricingTab);
             this.BarangTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BarangTabControl.Location = new System.Drawing.Point(263, 275);
+            this.BarangTabControl.Location = new System.Drawing.Point(225, 275);
             this.BarangTabControl.Name = "BarangTabControl";
             this.BarangTabControl.SelectedIndex = 0;
-            this.BarangTabControl.Size = new System.Drawing.Size(602, 304);
+            this.BarangTabControl.Size = new System.Drawing.Size(697, 304);
             this.BarangTabControl.TabIndex = 6;
             // 
             // KlasifikasiTab
@@ -128,7 +174,7 @@
             this.KlasifikasiTab.Location = new System.Drawing.Point(4, 22);
             this.KlasifikasiTab.Name = "KlasifikasiTab";
             this.KlasifikasiTab.Padding = new System.Windows.Forms.Padding(3);
-            this.KlasifikasiTab.Size = new System.Drawing.Size(594, 278);
+            this.KlasifikasiTab.Size = new System.Drawing.Size(689, 278);
             this.KlasifikasiTab.TabIndex = 0;
             this.KlasifikasiTab.Text = "Data Barang";
             this.KlasifikasiTab.UseVisualStyleBackColor = true;
@@ -136,7 +182,7 @@
             // button3
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(429, 251);
+            this.button3.Location = new System.Drawing.Point(524, 251);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 32;
@@ -146,7 +192,7 @@
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(510, 251);
+            this.button2.Location = new System.Drawing.Point(605, 251);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 31;
@@ -156,7 +202,7 @@
             // SaveButton
             // 
             this.SaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.SaveButton.Location = new System.Drawing.Point(348, 251);
+            this.SaveButton.Location = new System.Drawing.Point(443, 251);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(75, 23);
             this.SaveButton.TabIndex = 30;
@@ -170,7 +216,6 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.Beige;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.ColorPanel);
             this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.comboBox5);
@@ -190,7 +235,7 @@
             this.panel1.Controls.Add(this.BrgIDText);
             this.panel1.Location = new System.Drawing.Point(6, 6);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(579, 239);
+            this.panel1.Size = new System.Drawing.Size(674, 239);
             this.panel1.TabIndex = 29;
             // 
             // ColorPanel
@@ -198,7 +243,7 @@
             this.ColorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ColorPanel.BackColor = System.Drawing.Color.Salmon;
             this.ColorPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ColorPanel.Location = new System.Drawing.Point(503, 142);
+            this.ColorPanel.Location = new System.Drawing.Point(600, 144);
             this.ColorPanel.Name = "ColorPanel";
             this.ColorPanel.Size = new System.Drawing.Size(64, 51);
             this.ColorPanel.TabIndex = 45;
@@ -209,7 +254,7 @@
             // 
             this.label9.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(302, 183);
+            this.label9.Location = new System.Drawing.Point(399, 184);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(71, 13);
             this.label9.TabIndex = 44;
@@ -220,7 +265,7 @@
             this.comboBox5.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.comboBox5.Enabled = false;
             this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(305, 199);
+            this.comboBox5.Location = new System.Drawing.Point(402, 200);
             this.comboBox5.Name = "comboBox5";
             this.comboBox5.Size = new System.Drawing.Size(262, 21);
             this.comboBox5.TabIndex = 43;
@@ -229,7 +274,7 @@
             // 
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(302, 139);
+            this.label8.Location = new System.Drawing.Point(399, 140);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(43, 13);
             this.label8.TabIndex = 42;
@@ -238,8 +283,10 @@
             // ColorComboBox
             // 
             this.ColorComboBox.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.ColorComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.ColorComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.ColorComboBox.FormattingEnabled = true;
-            this.ColorComboBox.Location = new System.Drawing.Point(305, 159);
+            this.ColorComboBox.Location = new System.Drawing.Point(402, 160);
             this.ColorComboBox.Name = "ColorComboBox";
             this.ColorComboBox.Size = new System.Drawing.Size(192, 21);
             this.ColorComboBox.TabIndex = 41;
@@ -249,7 +296,7 @@
             // 
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(302, 99);
+            this.label7.Location = new System.Drawing.Point(399, 100);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(35, 13);
             this.label7.TabIndex = 40;
@@ -258,8 +305,10 @@
             // MerkComboBox
             // 
             this.MerkComboBox.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.MerkComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.MerkComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.MerkComboBox.FormattingEnabled = true;
-            this.MerkComboBox.Location = new System.Drawing.Point(305, 115);
+            this.MerkComboBox.Location = new System.Drawing.Point(402, 116);
             this.MerkComboBox.Name = "MerkComboBox";
             this.MerkComboBox.Size = new System.Drawing.Size(262, 21);
             this.MerkComboBox.TabIndex = 39;
@@ -268,7 +317,7 @@
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(302, 59);
+            this.label6.Location = new System.Drawing.Point(399, 60);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(61, 13);
             this.label6.TabIndex = 38;
@@ -278,7 +327,7 @@
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(302, 19);
+            this.label5.Location = new System.Drawing.Point(399, 20);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(35, 13);
             this.label5.TabIndex = 37;
@@ -288,7 +337,7 @@
             // 
             this.KeteranganLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.KeteranganLabel.AutoSize = true;
-            this.KeteranganLabel.Location = new System.Drawing.Point(12, 99);
+            this.KeteranganLabel.Location = new System.Drawing.Point(12, 100);
             this.KeteranganLabel.Name = "KeteranganLabel";
             this.KeteranganLabel.Size = new System.Drawing.Size(73, 13);
             this.KeteranganLabel.TabIndex = 36;
@@ -297,8 +346,10 @@
             // SubJenisBrgComboBox
             // 
             this.SubJenisBrgComboBox.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.SubJenisBrgComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.SubJenisBrgComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.SubJenisBrgComboBox.FormattingEnabled = true;
-            this.SubJenisBrgComboBox.Location = new System.Drawing.Point(305, 75);
+            this.SubJenisBrgComboBox.Location = new System.Drawing.Point(402, 76);
             this.SubJenisBrgComboBox.Name = "SubJenisBrgComboBox";
             this.SubJenisBrgComboBox.Size = new System.Drawing.Size(262, 21);
             this.SubJenisBrgComboBox.TabIndex = 35;
@@ -306,8 +357,10 @@
             // JenisBrgComboBox
             // 
             this.JenisBrgComboBox.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.JenisBrgComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.JenisBrgComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.JenisBrgComboBox.FormattingEnabled = true;
-            this.JenisBrgComboBox.Location = new System.Drawing.Point(305, 35);
+            this.JenisBrgComboBox.Location = new System.Drawing.Point(402, 36);
             this.JenisBrgComboBox.Name = "JenisBrgComboBox";
             this.JenisBrgComboBox.Size = new System.Drawing.Size(262, 21);
             this.JenisBrgComboBox.TabIndex = 34;
@@ -316,17 +369,18 @@
             // KeteranganText
             // 
             this.KeteranganText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.KeteranganText.Location = new System.Drawing.Point(15, 115);
+            this.KeteranganText.Location = new System.Drawing.Point(15, 116);
+            this.KeteranganText.MaxLength = 255;
             this.KeteranganText.Multiline = true;
             this.KeteranganText.Name = "KeteranganText";
-            this.KeteranganText.Size = new System.Drawing.Size(272, 105);
+            this.KeteranganText.Size = new System.Drawing.Size(369, 105);
             this.KeteranganText.TabIndex = 33;
             // 
             // label3
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 59);
+            this.label3.Location = new System.Drawing.Point(12, 60);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(40, 13);
             this.label3.TabIndex = 32;
@@ -335,16 +389,18 @@
             // BrgNameText
             // 
             this.BrgNameText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.BrgNameText.Location = new System.Drawing.Point(15, 75);
+            this.BrgNameText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.BrgNameText.Location = new System.Drawing.Point(15, 76);
+            this.BrgNameText.MaxLength = 35;
             this.BrgNameText.Name = "BrgNameText";
-            this.BrgNameText.Size = new System.Drawing.Size(272, 21);
+            this.BrgNameText.Size = new System.Drawing.Size(369, 21);
             this.BrgNameText.TabIndex = 31;
             // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 19);
+            this.label2.Location = new System.Drawing.Point(12, 20);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(66, 13);
             this.label2.TabIndex = 30;
@@ -353,17 +409,21 @@
             // BrgIDText
             // 
             this.BrgIDText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.BrgIDText.Location = new System.Drawing.Point(15, 35);
+            this.BrgIDText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.BrgIDText.Location = new System.Drawing.Point(15, 36);
+            this.BrgIDText.MaxLength = 5;
             this.BrgIDText.Name = "BrgIDText";
-            this.BrgIDText.Size = new System.Drawing.Size(272, 21);
+            this.BrgIDText.Size = new System.Drawing.Size(369, 21);
             this.BrgIDText.TabIndex = 29;
+            this.BrgIDText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BrgIDText_KeyDown);
+            this.BrgIDText.Validating += new System.ComponentModel.CancelEventHandler(this.BrgIDText_Validating);
             // 
             // PhotoTab
             // 
             this.PhotoTab.Location = new System.Drawing.Point(4, 22);
             this.PhotoTab.Name = "PhotoTab";
             this.PhotoTab.Padding = new System.Windows.Forms.Padding(3);
-            this.PhotoTab.Size = new System.Drawing.Size(594, 278);
+            this.PhotoTab.Size = new System.Drawing.Size(689, 278);
             this.PhotoTab.TabIndex = 1;
             this.PhotoTab.Text = "Photo";
             this.PhotoTab.UseVisualStyleBackColor = true;
@@ -374,7 +434,7 @@
             this.PricingTab.Location = new System.Drawing.Point(4, 22);
             this.PricingTab.Name = "PricingTab";
             this.PricingTab.Padding = new System.Windows.Forms.Padding(3);
-            this.PricingTab.Size = new System.Drawing.Size(594, 278);
+            this.PricingTab.Size = new System.Drawing.Size(689, 278);
             this.PricingTab.TabIndex = 2;
             this.PricingTab.Text = "Pricing";
             this.PricingTab.UseVisualStyleBackColor = true;
@@ -399,8 +459,8 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.07834F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.92166F));
             this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.BarangTabControl, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.BarangGrid, 1, 1);
@@ -412,25 +472,36 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 310F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(868, 582);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(925, 582);
             this.tableLayoutPanel1.TabIndex = 32;
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Beige;
-            this.panel2.Controls.Add(this.SearchLabel);
+            this.panel2.Controls.Add(this.SearchButton);
             this.panel2.Controls.Add(this.SearchText);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(263, 3);
+            this.panel2.Location = new System.Drawing.Point(225, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(602, 44);
+            this.panel2.Size = new System.Drawing.Size(697, 44);
             this.panel2.TabIndex = 33;
+            // 
+            // SearchButton
+            // 
+            this.SearchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.SearchButton.Location = new System.Drawing.Point(613, 9);
+            this.SearchButton.Name = "SearchButton";
+            this.SearchButton.Size = new System.Drawing.Size(75, 23);
+            this.SearchButton.TabIndex = 31;
+            this.SearchButton.Text = "Search";
+            this.SearchButton.UseVisualStyleBackColor = true;
+            this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
             // 
             // BarangListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(868, 582);
+            this.ClientSize = new System.Drawing.Size(925, 582);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.button4);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -455,7 +526,6 @@
         private System.Windows.Forms.TreeView SubJenisBrgTree;
         private System.Windows.Forms.DataGridView BarangGrid;
         private System.Windows.Forms.TextBox SearchText;
-        private System.Windows.Forms.Label SearchLabel;
         private System.Windows.Forms.TabControl BarangTabControl;
         private System.Windows.Forms.TabPage KlasifikasiTab;
         private System.Windows.Forms.Button button3;
@@ -485,5 +555,12 @@
         private System.Windows.Forms.Panel ColorPanel;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox comboBox5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BrgID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BrgName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn JenisBrgName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SubJenisName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MerkName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColorID;
+        private System.Windows.Forms.Button SearchButton;
     }
 }

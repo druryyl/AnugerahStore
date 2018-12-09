@@ -113,6 +113,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="StokBarang\BarangListForm.resx">
       <DependentUpon>BarangListForm.cs</DependentUpon>
@@ -156,6 +157,15 @@
       <Project>{CED634A7-852F-4D06-81FD-CACA0D63A017}</Project>
       <Name>AnugerahBackEnd</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\anugerah_sps.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\photo_2018-12-09_19-56-09.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\favicon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

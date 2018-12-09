@@ -57,5 +57,20 @@ namespace AnugerahWinform
             };
             form.Show();
         }
+
+        private void MainMenuForm_Load(object sender, EventArgs e)
+        {
+            Controls.OfType<MdiClient>().FirstOrDefault().BackColor = Color.Black;
+        }
+
+        private void StudentMenuButton_Click(object sender, EventArgs e)
+        {
+            var form = new BarangListForm
+            {
+                MdiParent = this,
+                StartPosition = FormStartPosition.CenterParent
+            };
+            form.Show();
+        }
     }
 }

@@ -71,7 +71,8 @@ namespace AnugerahBackend.StokBarang.Dal
                     Keterangan = @Keterangan,
                     SubJenisBrgID = @SubJenisBrgID,
                     MerkID = @MerkID,
-                    ColorID = @ColorID  
+                    ColorID = @ColorID,
+                    UpdateTimestamp = @UpdateTimestamp
                 WHERE
                     BrgID = @BrgID ";
             using (var conn = new SqlConnection(_connString))
@@ -80,9 +81,10 @@ namespace AnugerahBackend.StokBarang.Dal
                 cmd.AddParam("@BrgID", brg.BrgID);
                 cmd.AddParam("@BrgName", brg.BrgName);
                 cmd.AddParam("@Keterangan", brg.Keterangan);
-                cmd.AddParam("@SubJenisBrgID", brg.Keterangan);
+                cmd.AddParam("@SubJenisBrgID", brg.SubJenisBrgID);
                 cmd.AddParam("@MerkID", brg.MerkID);
                 cmd.AddParam("@ColorID", brg.ColorID);
+                cmd.AddParam("@UpdateTimestamp", DateTime.Now);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -109,6 +111,7 @@ namespace AnugerahBackend.StokBarang.Dal
                 SELECT
                     aa.BrgName, aa.Keterangan,
                     aa.SubJenisBrgID, aa.MerkID, aa.ColorID,
+                    aa.CreateTimestamp, aa.UpdateTimestamp,
                     ISNULL(bb.SubJenisBrgName, '') SubJenisBrgName,
                     ISNULL(cc.MerkName, '') MerkName
                 FROM
@@ -137,6 +140,9 @@ namespace AnugerahBackend.StokBarang.Dal
                             MerkID = dr["MerkID"].ToString(),
                             MerkName = dr["MerkName"].ToString(),
                             ColorID = dr["ColorID"].ToString(),
+
+                            CreateTimestamp = Convert.ToDateTime(dr["CreateTimestamp"]),
+                            UpdateTimestamp = Convert.ToDateTime(dr["UpdateTimestamp"])
                         };
                     }
                 }
@@ -151,18 +157,22 @@ namespace AnugerahBackend.StokBarang.Dal
                 SELECT
                     aa.BrgID, aa.BrgName, aa.Keterangan,
                     aa.SubJenisBrgID, aa.MerkID, aa.ColorID,
+                    aa.CreateTimestamp, aa.UpdateTimestamp,
                     ISNULL(bb.SubJenisBrgName, '') SubJenisBrgName,
-                    ISNULL(cc.MerkName, '') MerkName
+                    ISNULL(cc.MerkName, '') MerkName,
+                    ISNULL(bb.JenisBrgID, '') JenisBrgID,
+                    ISNULL(dd.JenisBrgName, '') JenisBrgName
                 FROM
                     Brg aa
                     LEFT JOIN SubJenisBrg bb ON aa.SubJenisBrgID = bb.SubJenisBrgID
-                    LEFT JOIN Merk cc ON aa.MerkID = cc.MerkID ";
+                    LEFT JOIN Merk cc ON aa.MerkID = cc.MerkID 
+                    LEFT JOIN JenisBrg dd ON bb.JenisBrgID = dd.JenisBrgID ";
             switch (tipeList)
             {
                 case TipeListDataEnum.All:
                     break;
                 case TipeListDataEnum.SubJenisBrg:
-                    sSql += " WHERE aa.SubJenisBrgID == @SubJenisBrgID ";
+                    sSql += " WHERE aa.SubJenisBrgID = @SubJenisBrgID ";
                     break;
                 case TipeListDataEnum.SearchName:
                     sSql += " WHERE aa.BrgName LIKE @BrgName ";
@@ -206,6 +216,11 @@ namespace AnugerahBackend.StokBarang.Dal
                                 MerkID = dr["MerkID"].ToString(),
                                 MerkName = dr["MerkName"].ToString(),
                                 ColorID = dr["ColorID"].ToString(),
+                                JenisBrgID = dr["JenisBrgID"].ToString(),
+                                JenisBrgName = dr["JenisBrgName"].ToString(),
+
+                                CreateTimestamp = Convert.ToDateTime(dr["CreateTimestamp"]),
+                                UpdateTimestamp = Convert.ToDateTime(dr["UpdateTimestamp"])
                             };
                             result.Add(item);
                         }
