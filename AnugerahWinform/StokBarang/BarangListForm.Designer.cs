@@ -67,6 +67,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.SearchButton = new System.Windows.Forms.Button();
+            this.PrgBar = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.BarangGrid)).BeginInit();
             this.BarangTabControl.SuspendLayout();
             this.KlasifikasiTab.SuspendLayout();
@@ -82,7 +83,7 @@
             this.SubJenisBrgTree.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SubJenisBrgTree.Location = new System.Drawing.Point(3, 3);
             this.SubJenisBrgTree.Name = "SubJenisBrgTree";
-            this.tableLayoutPanel1.SetRowSpan(this.SubJenisBrgTree, 3);
+            this.tableLayoutPanel1.SetRowSpan(this.SubJenisBrgTree, 4);
             this.SubJenisBrgTree.Size = new System.Drawing.Size(216, 576);
             this.SubJenisBrgTree.TabIndex = 0;
             this.SubJenisBrgTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.SubJenisBrgTree_AfterSelect);
@@ -103,7 +104,7 @@
             this.BarangGrid.Location = new System.Drawing.Point(225, 53);
             this.BarangGrid.Name = "BarangGrid";
             this.BarangGrid.ReadOnly = true;
-            this.BarangGrid.Size = new System.Drawing.Size(697, 216);
+            this.BarangGrid.Size = new System.Drawing.Size(697, 196);
             this.BarangGrid.TabIndex = 34;
             this.BarangGrid.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.BarangGrid_RowLeave);
             // 
@@ -159,7 +160,7 @@
             this.BarangTabControl.Controls.Add(this.PhotoTab);
             this.BarangTabControl.Controls.Add(this.PricingTab);
             this.BarangTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BarangTabControl.Location = new System.Drawing.Point(225, 275);
+            this.BarangTabControl.Location = new System.Drawing.Point(225, 255);
             this.BarangTabControl.Name = "BarangTabControl";
             this.BarangTabControl.SelectedIndex = 0;
             this.BarangTabControl.Size = new System.Drawing.Size(697, 304);
@@ -465,13 +466,15 @@
             this.tableLayoutPanel1.Controls.Add(this.BarangTabControl, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.BarangGrid, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.SubJenisBrgTree, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.PrgBar, 1, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 310F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(925, 582);
             this.tableLayoutPanel1.TabIndex = 32;
             // 
@@ -496,6 +499,14 @@
             this.SearchButton.Text = "Search";
             this.SearchButton.UseVisualStyleBackColor = true;
             this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
+            // 
+            // PrgBar
+            // 
+            this.PrgBar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PrgBar.Location = new System.Drawing.Point(225, 565);
+            this.PrgBar.Name = "PrgBar";
+            this.PrgBar.Size = new System.Drawing.Size(697, 14);
+            this.PrgBar.TabIndex = 35;
             // 
             // BarangListForm
             // 
@@ -562,5 +573,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn MerkName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColorID;
         private System.Windows.Forms.Button SearchButton;
+        private System.Windows.Forms.ProgressBar PrgBar;
     }
 }

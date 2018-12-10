@@ -25,6 +25,11 @@ namespace AnugerahWinform.StokBarang
         private int panelColorTop;
         private int panelColorLeft;
 
+        enum ListBrgOrderEnum
+        {
+            BrgID, BrgName, SubJenis, Merk, Color, LastUpdate
+        }
+
         public BarangListForm()
         {
             InitializeComponent();
@@ -180,16 +185,19 @@ namespace AnugerahWinform.StokBarang
             if (listBrg == null)
                 return;
 
-            foreach(var item in listBrg.OrderBy(x => x.BrgName))
+            PrgBar.Value = 0;
+            PrgBar.Maximum = listBrg.Count();
+            foreach (var item in listBrg.OrderBy(x => x.BrgName))
             {
+                PrgBar.Value++;
                 object[] rowData = {item.BrgID, item.BrgName, item.JenisBrgName,
                             item.SubJenisBrgName, item.MerkName, item.ColorID};
                 BarangGrid.Rows.Add(rowData);
             }
-
+            PrgBar.Value = 0;
             ClearDetilBrg();
         }
-        void LoadBrgGridSearch(string brgName)
+        void LoadBrgGridSearch(string brgName, ListBrgOrderEnum order)
         {
             BarangGrid.Rows.Clear();
             var listBrg = _brgBL.ListData(brgName);
@@ -197,13 +205,43 @@ namespace AnugerahWinform.StokBarang
             if (listBrg == null)
                 return;
 
-            foreach (var item in listBrg.OrderBy(x => x.BrgName))
+            IEnumerable<BrgModel> listBrgOrdered;
+            switch (order)
             {
+                case ListBrgOrderEnum.BrgID:
+                    listBrgOrdered = listBrg.OrderBy(x => x.BrgID);
+                    break;
+                case ListBrgOrderEnum.BrgName:
+                    listBrgOrdered = listBrg.OrderBy(x => x.BrgName);
+                    break;
+                case ListBrgOrderEnum.SubJenis:
+                    listBrgOrdered = listBrg.OrderBy(x => x.SubJenisBrgName);
+                    break;
+                case ListBrgOrderEnum.Merk:
+                    listBrgOrdered = listBrg.OrderBy(x => x.MerkName);
+                    break;
+                case ListBrgOrderEnum.Color:
+                    listBrgOrdered = listBrg.OrderBy(x => x.ColorID);
+                    break;
+                case ListBrgOrderEnum.LastUpdate:
+                    listBrgOrdered = listBrg.OrderByDescending(x => x.UpdateTimestamp);
+                    break;
+                default:
+                    listBrgOrdered = listBrg.OrderBy(x => x.BrgID);
+                    break;
+            }
+            PrgBar.Value = 0;
+            PrgBar.Maximum = listBrgOrdered.Count();
+            foreach (var item in listBrgOrdered)
+            {
+                PrgBar.Value++;
+                //this.Refresh();
                 object[] rowData = {item.BrgID, item.BrgName, item.JenisBrgName,
                             item.SubJenisBrgName, item.MerkName, item.ColorID};
                 BarangGrid.Rows.Add(rowData);
             }
             ClearDetilBrg();
+            PrgBar.Value = 0;
         }
 
         private void ClearDetilBrg()
@@ -345,7 +383,54 @@ namespace AnugerahWinform.StokBarang
 
         private void SearchButton_Click(object sender, EventArgs e)
         {
-            LoadBrgGridSearch(SearchText.Text);
+            var searchText = SearchText.Text;
+            if (searchText.Contains(@"/id"))
+            {
+                searchText = RemoveParameterSearch();
+                LoadBrgGridSearch(searchText, ListBrgOrderEnum.BrgID);
+                return;
+            }
+            if (searchText.Contains(@"/sub"))
+            {
+                searchText = RemoveParameterSearch();
+                LoadBrgGridSearch(searchText, ListBrgOrderEnum.SubJenis);
+                return;
+            }
+            if (searchText.Contains(@"/merk"))
+            {
+                searchText = RemoveParameterSearch();
+                LoadBrgGridSearch(searchText, ListBrgOrderEnum.Merk);
+                return;
+            }
+            if (searchText.Contains(@"/color"))
+            {
+                searchText = RemoveParameterSearch();
+                LoadBrgGridSearch(searchText, ListBrgOrderEnum.Color);
+                return;
+            }
+            if (searchText.Contains(@"/update"))
+            {
+                searchText = RemoveParameterSearch();
+                LoadBrgGridSearch(searchText, ListBrgOrderEnum.LastUpdate);
+                return;
+            }
+
+            searchText = RemoveParameterSearch();
+            LoadBrgGridSearch(searchText, ListBrgOrderEnum.BrgName);
+            return;
+
+        }
+
+        private string RemoveParameterSearch()
+        {
+            var result = "";
+            var searchText = SearchText.Text.Trim();
+            foreach(char c in searchText)
+            {
+                if (c == '/') break;
+                result += c;
+            }
+            return result;
         }
     }
 }
