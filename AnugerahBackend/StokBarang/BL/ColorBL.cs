@@ -22,6 +22,7 @@ namespace AnugerahBackend.StokBarang.BL
 
         ColorModel TryValidate(ColorModel color);
 
+        Color GetFromRGB(string id);
         void DataSeed();
     }
 
@@ -118,6 +119,12 @@ namespace AnugerahBackend.StokBarang.BL
                     _colorDal.Insert(model);
                 }
             }
+        }
+
+        public Color GetFromRGB(string id)
+        {
+            var colorModel = _colorDal.GetData(id);
+            return Color.FromArgb(colorModel.RedValue, colorModel.GreenValue, colorModel.BlueValue);
         }
     }
 }

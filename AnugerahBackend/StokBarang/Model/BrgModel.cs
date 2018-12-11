@@ -19,7 +19,8 @@ namespace AnugerahBackend.StokBarang.Model
         public string MerkName { get; set; }
         public string ColorID { get; set; }
         public string ColorName { get; set; }
-
+        public string Kemasan { get; set;
+        }
         public DateTime CreateTimestamp { get; set; }
         public DateTime UpdateTimestamp { get; set; }
     }

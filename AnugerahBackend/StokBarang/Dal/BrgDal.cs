@@ -21,6 +21,7 @@ namespace AnugerahBackend.StokBarang.Dal
         IEnumerable<BrgModel> ListData();
         IEnumerable<BrgModel> ListData(SubJenisBrgModel subJenisBrg);
         IEnumerable<BrgModel> ListData(string keywordSearch);
+        IEnumerable<string> ListKemasan();
     }
 
 
@@ -44,10 +45,12 @@ namespace AnugerahBackend.StokBarang.Dal
                 INSERT INTO
                     Brg (
                         BrgID, BrgName, Keterangan,
-                        SubJenisBrgID, MerkID, ColorID)
+                        SubJenisBrgID, MerkID, ColorID,
+                        Kemasan)
                 VALUES (
                         @BrgID, @BrgName, @Keterangan,
-                        @SubJenisBrgID, @MerkID, @ColorID) ";
+                        @SubJenisBrgID, @MerkID, @ColorID, 
+                        @Kemasan) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
@@ -57,6 +60,7 @@ namespace AnugerahBackend.StokBarang.Dal
                 cmd.AddParam("@SubJenisBrgID", brg.SubJenisBrgID);
                 cmd.AddParam("@MerkID", brg.MerkID);
                 cmd.AddParam("@ColorID", brg.ColorID);
+                cmd.AddParam("@Kemasan", brg.Kemasan);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -72,6 +76,7 @@ namespace AnugerahBackend.StokBarang.Dal
                     SubJenisBrgID = @SubJenisBrgID,
                     MerkID = @MerkID,
                     ColorID = @ColorID,
+                    Kemasan = @Kemasan,
                     UpdateTimestamp = @UpdateTimestamp
                 WHERE
                     BrgID = @BrgID ";
@@ -84,6 +89,7 @@ namespace AnugerahBackend.StokBarang.Dal
                 cmd.AddParam("@SubJenisBrgID", brg.SubJenisBrgID);
                 cmd.AddParam("@MerkID", brg.MerkID);
                 cmd.AddParam("@ColorID", brg.ColorID);
+                cmd.AddParam("@Kemasan", brg.Kemasan);
                 cmd.AddParam("@UpdateTimestamp", DateTime.Now);
                 conn.Open();
                 cmd.ExecuteNonQuery();
@@ -111,6 +117,7 @@ namespace AnugerahBackend.StokBarang.Dal
                 SELECT
                     aa.BrgName, aa.Keterangan,
                     aa.SubJenisBrgID, aa.MerkID, aa.ColorID,
+                    aa.Kemasan, 
                     aa.CreateTimestamp, aa.UpdateTimestamp,
                     ISNULL(bb.SubJenisBrgName, '') SubJenisBrgName,
                     ISNULL(cc.MerkName, '') MerkName
@@ -140,6 +147,7 @@ namespace AnugerahBackend.StokBarang.Dal
                             MerkID = dr["MerkID"].ToString(),
                             MerkName = dr["MerkName"].ToString(),
                             ColorID = dr["ColorID"].ToString(),
+                            Kemasan = dr["Kemasan"].ToString(),
 
                             CreateTimestamp = Convert.ToDateTime(dr["CreateTimestamp"]),
                             UpdateTimestamp = Convert.ToDateTime(dr["UpdateTimestamp"])
@@ -157,6 +165,7 @@ namespace AnugerahBackend.StokBarang.Dal
                 SELECT
                     aa.BrgID, aa.BrgName, aa.Keterangan,
                     aa.SubJenisBrgID, aa.MerkID, aa.ColorID,
+                    aa.Kemasan, 
                     aa.CreateTimestamp, aa.UpdateTimestamp,
                     ISNULL(bb.SubJenisBrgName, '') SubJenisBrgName,
                     ISNULL(cc.MerkName, '') MerkName,
@@ -218,6 +227,7 @@ namespace AnugerahBackend.StokBarang.Dal
                                 ColorID = dr["ColorID"].ToString(),
                                 JenisBrgID = dr["JenisBrgID"].ToString(),
                                 JenisBrgName = dr["JenisBrgName"].ToString(),
+                                Kemasan = dr["Kemasan"].ToString(),
 
                                 CreateTimestamp = Convert.ToDateTime(dr["CreateTimestamp"]),
                                 UpdateTimestamp = Convert.ToDateTime(dr["UpdateTimestamp"])
@@ -243,6 +253,35 @@ namespace AnugerahBackend.StokBarang.Dal
         public IEnumerable<BrgModel> ListData(string keywordSearch)
         {
             return ListData(TipeListDataEnum.SearchName, keywordSearch);
+        }
+
+        public IEnumerable<string> ListKemasan()
+        {
+            List<string> result = null;
+
+            var sSql = @"
+                SELECT DISTINCT
+                    Kemasan
+                FROM
+                    Brg ";
+            using (var conn = new SqlConnection(_connString))
+            using (var cmd = new SqlCommand(sSql, conn))
+            {
+                conn.Open();
+                using (var dr = cmd.ExecuteReader())
+                {
+                    if (dr.HasRows)
+                    {
+                        result = new List<string>();
+                        while (dr.Read())
+                        {
+                            var item = dr["Kemasan"].ToString();
+                            result.Add(item);
+                        }
+                    }
+                }
+            }
+            return result;
         }
     }
 }

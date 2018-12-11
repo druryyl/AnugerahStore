@@ -18,27 +18,11 @@ namespace AnugerahWinform
             InitializeComponent();
         }
 
-        private void JenisBrgMenu_Click(object sender, EventArgs e)
+        private void MainMenuForm_Load(object sender, EventArgs e)
         {
-            var form = new JenisBrgListForm
-            {
-                MdiParent = this,
-                StartPosition = FormStartPosition.CenterParent
-            };
-            form.Show();
+            Controls.OfType<MdiClient>().FirstOrDefault().BackColor = Color.Black;
         }
-
-        private void TipeBrgMenu_Click(object sender, EventArgs e)
-        {
-            var form = new TipeBrgListForm
-            {
-                MdiParent = this,
-                StartPosition = FormStartPosition.CenterParent
-            };
-            form.Show();
-        }
-
-        private void BarangMenu_Click(object sender, EventArgs e)
+        private void BarangButton_Click(object sender, EventArgs e)
         {
             var form = new BarangListForm
             {
@@ -47,8 +31,16 @@ namespace AnugerahWinform
             };
             form.Show();
         }
-
-        private void sT08SubJenisBrgToolStripMenuItem_Click(object sender, EventArgs e)
+        private void JenisButton_Click(object sender, EventArgs e)
+        {
+            var form = new JenisBrgListForm
+            {
+                MdiParent = this,
+                StartPosition = FormStartPosition.CenterParent
+            };
+            form.Show();
+        }
+        private void SubJenisButton_Click(object sender, EventArgs e)
         {
             var form = new SubJenisBrgListForm
             {
@@ -58,14 +50,9 @@ namespace AnugerahWinform
             form.Show();
         }
 
-        private void MainMenuForm_Load(object sender, EventArgs e)
+        private void ColorButton_Click(object sender, EventArgs e)
         {
-            Controls.OfType<MdiClient>().FirstOrDefault().BackColor = Color.Black;
-        }
-
-        private void StudentMenuButton_Click(object sender, EventArgs e)
-        {
-            var form = new BarangListForm
+            var form = new ColorForm
             {
                 MdiParent = this,
                 StartPosition = FormStartPosition.CenterParent

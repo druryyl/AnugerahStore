@@ -28,386 +28,361 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.MainMenuStrip = new System.Windows.Forms.MenuStrip();
-            this.barangToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ColorMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.MerkMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.JenisBrgMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.sT08SubJenisBrgToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.TipeBrgMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.BarangMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.StokOpnameMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
-            this.InfoStokMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.pembelianToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bL01DistributorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bL02OrderBeliToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bL03PembelianToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
-            this.bL04InfoPembelianToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.penjualanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.jL01HargaJualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
-            this.jL02PenjualanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
-            this.jL03InfoPenjualanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.BarangShortcutButton = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.MainMenuStrip.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenuForm));
+            this.ribbon1 = new System.Windows.Forms.Ribbon();
+            this.ribbonTab1 = new System.Windows.Forms.RibbonTab();
+            this.PurchasingRibbonPanel = new System.Windows.Forms.RibbonPanel();
+            this.PurchaseOrderButton = new System.Windows.Forms.RibbonButton();
+            this.DeliveryButton = new System.Windows.Forms.RibbonButton();
+            this.ReturButton = new System.Windows.Forms.RibbonButton();
+            this.SalesRibbonPanel = new System.Windows.Forms.RibbonPanel();
+            this.SellingButton = new System.Windows.Forms.RibbonButton();
+            this.PreOrderButton = new System.Windows.Forms.RibbonButton();
+            this.ribbonSeparator1 = new System.Windows.Forms.RibbonSeparator();
+            this.PricingButton = new System.Windows.Forms.RibbonButton();
+            this.StockManagementRibbonPanel = new System.Windows.Forms.RibbonPanel();
+            this.StockOpnameButton = new System.Windows.Forms.RibbonButton();
+            this.Adjustment = new System.Windows.Forms.RibbonButton();
+            this.BarangPanel = new System.Windows.Forms.RibbonPanel();
+            this.BarangButton = new System.Windows.Forms.RibbonButton();
+            this.ribbonSeparator5 = new System.Windows.Forms.RibbonSeparator();
+            this.JenisButton = new System.Windows.Forms.RibbonButton();
+            this.SubJenisButton = new System.Windows.Forms.RibbonButton();
+            this.MerkButton = new System.Windows.Forms.RibbonButton();
+            this.ColorButton = new System.Windows.Forms.RibbonButton();
+            this.ribbonTab2 = new System.Windows.Forms.RibbonTab();
+            this.BrgButton = new System.Windows.Forms.RibbonPanel();
+            this.ribbonButton2 = new System.Windows.Forms.RibbonButton();
+            this.ribbonSeparator2 = new System.Windows.Forms.RibbonSeparator();
+            this.ribbonButton3 = new System.Windows.Forms.RibbonButton();
+            this.ribbonSeparator3 = new System.Windows.Forms.RibbonSeparator();
+            this.ribbonButton5 = new System.Windows.Forms.RibbonButton();
+            this.ribbonButton6 = new System.Windows.Forms.RibbonButton();
+            this.ribbonSeparator4 = new System.Windows.Forms.RibbonSeparator();
+            this.ribbonButton7 = new System.Windows.Forms.RibbonButton();
+            this.ribbonTab3 = new System.Windows.Forms.RibbonTab();
+            this.ribbonSeparator6 = new System.Windows.Forms.RibbonSeparator();
             this.SuspendLayout();
             // 
-            // MainMenuStrip
-            // 
-            this.MainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.barangToolStripMenuItem,
-            this.pembelianToolStripMenuItem,
-            this.penjualanToolStripMenuItem});
-            this.MainMenuStrip.Location = new System.Drawing.Point(0, 0);
-            this.MainMenuStrip.Name = "MainMenuStrip";
-            this.MainMenuStrip.Size = new System.Drawing.Size(1109, 24);
-            this.MainMenuStrip.TabIndex = 1;
-            this.MainMenuStrip.Text = "menuStrip1";
+            // ribbon1
+            // 
+            this.ribbon1.CaptionBarVisible = false;
+            this.ribbon1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.ribbon1.Location = new System.Drawing.Point(0, 0);
+            this.ribbon1.Minimized = false;
+            this.ribbon1.Name = "ribbon1";
+            // 
+            // 
+            // 
+            this.ribbon1.OrbDropDown.BorderRoundness = 8;
+            this.ribbon1.OrbDropDown.Location = new System.Drawing.Point(0, 0);
+            this.ribbon1.OrbDropDown.Name = "";
+            this.ribbon1.OrbDropDown.Size = new System.Drawing.Size(527, 447);
+            this.ribbon1.OrbDropDown.TabIndex = 0;
+            this.ribbon1.RibbonTabFont = new System.Drawing.Font("Trebuchet MS", 9F);
+            this.ribbon1.Size = new System.Drawing.Size(1109, 136);
+            this.ribbon1.TabIndex = 5;
+            this.ribbon1.Tabs.Add(this.ribbonTab1);
+            this.ribbon1.Tabs.Add(this.ribbonTab2);
+            this.ribbon1.Tabs.Add(this.ribbonTab3);
+            this.ribbon1.TabsMargin = new System.Windows.Forms.Padding(12, 2, 20, 0);
+            this.ribbon1.Text = "ribbon1";
+            this.ribbon1.ThemeColor = System.Windows.Forms.RibbonTheme.Black;
+            // 
+            // ribbonTab1
+            // 
+            this.ribbonTab1.Name = "ribbonTab1";
+            this.ribbonTab1.Panels.Add(this.PurchasingRibbonPanel);
+            this.ribbonTab1.Panels.Add(this.SalesRibbonPanel);
+            this.ribbonTab1.Panels.Add(this.StockManagementRibbonPanel);
+            this.ribbonTab1.Panels.Add(this.BarangPanel);
+            this.ribbonTab1.Text = "Transaction";
+            // 
+            // PurchasingRibbonPanel
+            // 
+            this.PurchasingRibbonPanel.Items.Add(this.PurchaseOrderButton);
+            this.PurchasingRibbonPanel.Items.Add(this.DeliveryButton);
+            this.PurchasingRibbonPanel.Items.Add(this.ReturButton);
+            this.PurchasingRibbonPanel.Name = "PurchasingRibbonPanel";
+            this.PurchasingRibbonPanel.Text = "Purchasing";
+            // 
+            // PurchaseOrderButton
+            // 
+            this.PurchaseOrderButton.Image = ((System.Drawing.Image)(resources.GetObject("PurchaseOrderButton.Image")));
+            this.PurchaseOrderButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("PurchaseOrderButton.LargeImage")));
+            this.PurchaseOrderButton.Name = "PurchaseOrderButton";
+            this.PurchaseOrderButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("PurchaseOrderButton.SmallImage")));
+            this.PurchaseOrderButton.Text = "Purchase Order";
+            // 
+            // DeliveryButton
+            // 
+            this.DeliveryButton.Image = ((System.Drawing.Image)(resources.GetObject("DeliveryButton.Image")));
+            this.DeliveryButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("DeliveryButton.LargeImage")));
+            this.DeliveryButton.Name = "DeliveryButton";
+            this.DeliveryButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("DeliveryButton.SmallImage")));
+            this.DeliveryButton.Text = "Delivery Order";
+            // 
+            // ReturButton
+            // 
+            this.ReturButton.Image = ((System.Drawing.Image)(resources.GetObject("ReturButton.Image")));
+            this.ReturButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("ReturButton.LargeImage")));
+            this.ReturButton.Name = "ReturButton";
+            this.ReturButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("ReturButton.SmallImage")));
+            this.ReturButton.Text = "Return";
+            // 
+            // SalesRibbonPanel
+            // 
+            this.SalesRibbonPanel.Items.Add(this.SellingButton);
+            this.SalesRibbonPanel.Items.Add(this.PreOrderButton);
+            this.SalesRibbonPanel.Items.Add(this.ribbonSeparator1);
+            this.SalesRibbonPanel.Items.Add(this.PricingButton);
+            this.SalesRibbonPanel.Name = "SalesRibbonPanel";
+            this.SalesRibbonPanel.Text = "Sales";
+            // 
+            // SellingButton
+            // 
+            this.SellingButton.Image = ((System.Drawing.Image)(resources.GetObject("SellingButton.Image")));
+            this.SellingButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("SellingButton.LargeImage")));
+            this.SellingButton.Name = "SellingButton";
+            this.SellingButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("SellingButton.SmallImage")));
+            this.SellingButton.Text = "Selling";
+            // 
+            // PreOrderButton
+            // 
+            this.PreOrderButton.Image = ((System.Drawing.Image)(resources.GetObject("PreOrderButton.Image")));
+            this.PreOrderButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("PreOrderButton.LargeImage")));
+            this.PreOrderButton.Name = "PreOrderButton";
+            this.PreOrderButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("PreOrderButton.SmallImage")));
+            this.PreOrderButton.Text = "Pre-Order";
+            // 
+            // ribbonSeparator1
+            // 
+            this.ribbonSeparator1.Name = "ribbonSeparator1";
+            // 
+            // PricingButton
+            // 
+            this.PricingButton.Image = ((System.Drawing.Image)(resources.GetObject("PricingButton.Image")));
+            this.PricingButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("PricingButton.LargeImage")));
+            this.PricingButton.Name = "PricingButton";
+            this.PricingButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("PricingButton.SmallImage")));
+            this.PricingButton.Text = "Pricing";
+            // 
+            // StockManagementRibbonPanel
             // 
-            // barangToolStripMenuItem
+            this.StockManagementRibbonPanel.Items.Add(this.StockOpnameButton);
+            this.StockManagementRibbonPanel.Items.Add(this.Adjustment);
+            this.StockManagementRibbonPanel.Name = "StockManagementRibbonPanel";
+            this.StockManagementRibbonPanel.Text = "Stock";
+            // 
+            // StockOpnameButton
+            // 
+            this.StockOpnameButton.Image = ((System.Drawing.Image)(resources.GetObject("StockOpnameButton.Image")));
+            this.StockOpnameButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("StockOpnameButton.LargeImage")));
+            this.StockOpnameButton.Name = "StockOpnameButton";
+            this.StockOpnameButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("StockOpnameButton.SmallImage")));
+            this.StockOpnameButton.Text = "Posting";
+            // 
+            // Adjustment
             // 
-            this.barangToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ColorMenu,
-            this.MerkMenu,
-            this.JenisBrgMenu,
-            this.sT08SubJenisBrgToolStripMenuItem,
-            this.TipeBrgMenu,
-            this.BarangMenu,
-            this.toolStripMenuItem1,
-            this.StokOpnameMenu,
-            this.toolStripMenuItem6,
-            this.InfoStokMenu});
-            this.barangToolStripMenuItem.Name = "barangToolStripMenuItem";
-            this.barangToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
-            this.barangToolStripMenuItem.Text = "&Stok";
+            this.Adjustment.Image = ((System.Drawing.Image)(resources.GetObject("Adjustment.Image")));
+            this.Adjustment.LargeImage = ((System.Drawing.Image)(resources.GetObject("Adjustment.LargeImage")));
+            this.Adjustment.Name = "Adjustment";
+            this.Adjustment.SmallImage = ((System.Drawing.Image)(resources.GetObject("Adjustment.SmallImage")));
+            this.Adjustment.Text = "Adjustment";
+            // 
+            // BarangPanel
             // 
-            // ColorMenu
+            this.BarangPanel.Items.Add(this.BarangButton);
+            this.BarangPanel.Items.Add(this.ribbonSeparator5);
+            this.BarangPanel.Items.Add(this.JenisButton);
+            this.BarangPanel.Items.Add(this.SubJenisButton);
+            this.BarangPanel.Items.Add(this.ribbonSeparator6);
+            this.BarangPanel.Items.Add(this.MerkButton);
+            this.BarangPanel.Items.Add(this.ColorButton);
+            this.BarangPanel.Name = "BarangPanel";
+            this.BarangPanel.Text = "Barang";
             // 
-            this.ColorMenu.Name = "ColorMenu";
-            this.ColorMenu.Size = new System.Drawing.Size(192, 22);
-            this.ColorMenu.Text = "ST01 - &Color...";
+            // BarangButton
             // 
-            // MerkMenu
+            this.BarangButton.Image = ((System.Drawing.Image)(resources.GetObject("BarangButton.Image")));
+            this.BarangButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("BarangButton.LargeImage")));
+            this.BarangButton.Name = "BarangButton";
+            this.BarangButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("BarangButton.SmallImage")));
+            this.BarangButton.Text = "Barang";
+            this.BarangButton.Click += new System.EventHandler(this.BarangButton_Click);
             // 
-            this.MerkMenu.Name = "MerkMenu";
-            this.MerkMenu.Size = new System.Drawing.Size(192, 22);
-            this.MerkMenu.Text = "ST02 - &Merk...";
+            // ribbonSeparator5
             // 
-            // JenisBrgMenu
+            this.ribbonSeparator5.Name = "ribbonSeparator5";
             // 
-            this.JenisBrgMenu.Name = "JenisBrgMenu";
-            this.JenisBrgMenu.Size = new System.Drawing.Size(192, 22);
-            this.JenisBrgMenu.Text = "ST03 - &Jenis Brg...";
-            this.JenisBrgMenu.Click += new System.EventHandler(this.JenisBrgMenu_Click);
+            // JenisButton
             // 
-            // sT08SubJenisBrgToolStripMenuItem
+            this.JenisButton.Image = ((System.Drawing.Image)(resources.GetObject("JenisButton.Image")));
+            this.JenisButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("JenisButton.LargeImage")));
+            this.JenisButton.Name = "JenisButton";
+            this.JenisButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("JenisButton.SmallImage")));
+            this.JenisButton.Text = "Jenis";
+            this.JenisButton.Click += new System.EventHandler(this.JenisButton_Click);
             // 
-            this.sT08SubJenisBrgToolStripMenuItem.Name = "sT08SubJenisBrgToolStripMenuItem";
-            this.sT08SubJenisBrgToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.sT08SubJenisBrgToolStripMenuItem.Text = "ST08 - Sub Jenis Brg...";
-            this.sT08SubJenisBrgToolStripMenuItem.Click += new System.EventHandler(this.sT08SubJenisBrgToolStripMenuItem_Click);
+            // SubJenisButton
             // 
-            // TipeBrgMenu
+            this.SubJenisButton.Image = ((System.Drawing.Image)(resources.GetObject("SubJenisButton.Image")));
+            this.SubJenisButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("SubJenisButton.LargeImage")));
+            this.SubJenisButton.Name = "SubJenisButton";
+            this.SubJenisButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("SubJenisButton.SmallImage")));
+            this.SubJenisButton.Text = "Sub Jenis";
+            this.SubJenisButton.Click += new System.EventHandler(this.SubJenisButton_Click);
             // 
-            this.TipeBrgMenu.Name = "TipeBrgMenu";
-            this.TipeBrgMenu.Size = new System.Drawing.Size(192, 22);
-            this.TipeBrgMenu.Text = "ST04 - &Tipe Brg...";
-            this.TipeBrgMenu.Click += new System.EventHandler(this.TipeBrgMenu_Click);
+            // MerkButton
             // 
-            // BarangMenu
+            this.MerkButton.Image = ((System.Drawing.Image)(resources.GetObject("MerkButton.Image")));
+            this.MerkButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("MerkButton.LargeImage")));
+            this.MerkButton.Name = "MerkButton";
+            this.MerkButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("MerkButton.SmallImage")));
+            this.MerkButton.Text = "Merk";
             // 
-            this.BarangMenu.Name = "BarangMenu";
-            this.BarangMenu.Size = new System.Drawing.Size(192, 22);
-            this.BarangMenu.Text = "ST05 - &Barang...";
-            this.BarangMenu.Click += new System.EventHandler(this.BarangMenu_Click);
+            // ColorButton
             // 
-            // toolStripMenuItem1
+            this.ColorButton.Image = ((System.Drawing.Image)(resources.GetObject("ColorButton.Image")));
+            this.ColorButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("ColorButton.LargeImage")));
+            this.ColorButton.Name = "ColorButton";
+            this.ColorButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("ColorButton.SmallImage")));
+            this.ColorButton.Text = "Color";
+            this.ColorButton.Click += new System.EventHandler(this.ColorButton_Click);
             // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(189, 6);
+            // ribbonTab2
             // 
-            // StokOpnameMenu
+            this.ribbonTab2.Name = "ribbonTab2";
+            this.ribbonTab2.Panels.Add(this.BrgButton);
+            this.ribbonTab2.Text = "Master Data";
             // 
-            this.StokOpnameMenu.Name = "StokOpnameMenu";
-            this.StokOpnameMenu.Size = new System.Drawing.Size(192, 22);
-            this.StokOpnameMenu.Text = "ST06 - Stop &Opname...";
+            // BrgButton
             // 
-            // toolStripMenuItem6
+            this.BrgButton.Items.Add(this.ribbonButton2);
+            this.BrgButton.Items.Add(this.ribbonSeparator3);
+            this.BrgButton.Items.Add(this.ribbonButton5);
+            this.BrgButton.Items.Add(this.ribbonButton6);
+            this.BrgButton.Items.Add(this.ribbonButton7);
+            this.BrgButton.Name = "BrgButton";
+            this.BrgButton.Text = "Barang Items";
             // 
-            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(189, 6);
+            // ribbonButton2
             // 
-            // InfoStokMenu
+            this.ribbonButton2.DropDownItems.Add(this.ribbonSeparator2);
+            this.ribbonButton2.DropDownItems.Add(this.ribbonButton3);
+            this.ribbonButton2.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton2.Image")));
+            this.ribbonButton2.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton2.LargeImage")));
+            this.ribbonButton2.Name = "ribbonButton2";
+            this.ribbonButton2.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton2.SmallImage")));
+            this.ribbonButton2.Text = "Barang Items";
             // 
-            this.InfoStokMenu.Name = "InfoStokMenu";
-            this.InfoStokMenu.Size = new System.Drawing.Size(192, 22);
-            this.InfoStokMenu.Text = "ST07 - Info &Stok...";
+            // ribbonSeparator2
             // 
-            // pembelianToolStripMenuItem
+            this.ribbonSeparator2.Name = "ribbonSeparator2";
             // 
-            this.pembelianToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bL01DistributorToolStripMenuItem,
-            this.toolStripMenuItem2,
-            this.bL02OrderBeliToolStripMenuItem,
-            this.bL03PembelianToolStripMenuItem,
-            this.toolStripMenuItem3,
-            this.bL04InfoPembelianToolStripMenuItem});
-            this.pembelianToolStripMenuItem.Name = "pembelianToolStripMenuItem";
-            this.pembelianToolStripMenuItem.Size = new System.Drawing.Size(75, 20);
-            this.pembelianToolStripMenuItem.Text = "Pembelian";
+            // ribbonButton3
             // 
-            // bL01DistributorToolStripMenuItem
+            this.ribbonButton3.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton3.Image")));
+            this.ribbonButton3.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton3.LargeImage")));
+            this.ribbonButton3.Name = "ribbonButton3";
+            this.ribbonButton3.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton3.SmallImage")));
+            this.ribbonButton3.Text = "ribbonButton3";
             // 
-            this.bL01DistributorToolStripMenuItem.Name = "bL01DistributorToolStripMenuItem";
-            this.bL01DistributorToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
-            this.bL01DistributorToolStripMenuItem.Text = "BL01 - Distributor...";
+            // ribbonSeparator3
             // 
-            // toolStripMenuItem2
+            this.ribbonSeparator3.Name = "ribbonSeparator3";
             // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(196, 6);
+            // ribbonButton5
             // 
-            // bL02OrderBeliToolStripMenuItem
+            this.ribbonButton5.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton5.Image")));
+            this.ribbonButton5.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton5.LargeImage")));
+            this.ribbonButton5.Name = "ribbonButton5";
+            this.ribbonButton5.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton5.SmallImage")));
+            this.ribbonButton5.Text = "ribbonButton5";
             // 
-            this.bL02OrderBeliToolStripMenuItem.Name = "bL02OrderBeliToolStripMenuItem";
-            this.bL02OrderBeliToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
-            this.bL02OrderBeliToolStripMenuItem.Text = "BL02 - Order Beli...";
+            // ribbonButton6
             // 
-            // bL03PembelianToolStripMenuItem
-            // 
-            this.bL03PembelianToolStripMenuItem.Name = "bL03PembelianToolStripMenuItem";
-            this.bL03PembelianToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
-            this.bL03PembelianToolStripMenuItem.Text = "BL03 - Pembelian...";
+            this.ribbonButton6.DropDownItems.Add(this.ribbonSeparator4);
+            this.ribbonButton6.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton6.Image")));
+            this.ribbonButton6.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton6.LargeImage")));
+            this.ribbonButton6.Name = "ribbonButton6";
+            this.ribbonButton6.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton6.SmallImage")));
+            this.ribbonButton6.Text = "ribbonButton6";
             // 
-            // toolStripMenuItem3
+            // ribbonSeparator4
             // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(196, 6);
-            // 
-            // bL04InfoPembelianToolStripMenuItem
-            // 
-            this.bL04InfoPembelianToolStripMenuItem.Name = "bL04InfoPembelianToolStripMenuItem";
-            this.bL04InfoPembelianToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
-            this.bL04InfoPembelianToolStripMenuItem.Text = "BL04 - Info Pembelian...";
-            // 
-            // penjualanToolStripMenuItem
-            // 
-            this.penjualanToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.jL01HargaJualToolStripMenuItem,
-            this.toolStripMenuItem4,
-            this.jL02PenjualanToolStripMenuItem,
-            this.toolStripMenuItem5,
-            this.jL03InfoPenjualanToolStripMenuItem});
-            this.penjualanToolStripMenuItem.Name = "penjualanToolStripMenuItem";
-            this.penjualanToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
-            this.penjualanToolStripMenuItem.Text = "Penjualan";
-            // 
-            // jL01HargaJualToolStripMenuItem
-            // 
-            this.jL01HargaJualToolStripMenuItem.Name = "jL01HargaJualToolStripMenuItem";
-            this.jL01HargaJualToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.jL01HargaJualToolStripMenuItem.Text = "JL01 - Harga Jual...";
-            // 
-            // toolStripMenuItem4
-            // 
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(189, 6);
-            // 
-            // jL02PenjualanToolStripMenuItem
-            // 
-            this.jL02PenjualanToolStripMenuItem.Name = "jL02PenjualanToolStripMenuItem";
-            this.jL02PenjualanToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.jL02PenjualanToolStripMenuItem.Text = "JL02 - Penjualan...";
-            // 
-            // toolStripMenuItem5
-            // 
-            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(189, 6);
-            // 
-            // jL03InfoPenjualanToolStripMenuItem
-            // 
-            this.jL03InfoPenjualanToolStripMenuItem.Name = "jL03InfoPenjualanToolStripMenuItem";
-            this.jL03InfoPenjualanToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.jL03InfoPenjualanToolStripMenuItem.Text = "JL03 - Info Penjualan...";
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.tableLayoutPanel1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 24);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1109, 83);
-            this.panel1.TabIndex = 3;
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 7;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.Controls.Add(this.button5, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.button4, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.button3, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.button2, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.button1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.BarangShortcutButton, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1109, 83);
-            this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // BarangShortcutButton
-            // 
-            this.BarangShortcutButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BarangShortcutButton.Image = global::AnugerahWinform.Properties.Resources.favicon;
-            this.BarangShortcutButton.Location = new System.Drawing.Point(183, 3);
-            this.BarangShortcutButton.Name = "BarangShortcutButton";
-            this.BarangShortcutButton.Size = new System.Drawing.Size(84, 77);
-            this.BarangShortcutButton.TabIndex = 0;
-            this.BarangShortcutButton.Text = "Pricing";
-            this.BarangShortcutButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.BarangShortcutButton.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.Image = global::AnugerahWinform.Properties.Resources.favicon;
-            this.button1.Location = new System.Drawing.Point(93, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(84, 77);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Items";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.Image = global::AnugerahWinform.Properties.Resources.favicon;
-            this.button2.Location = new System.Drawing.Point(3, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(84, 77);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Stock";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button3.Image = global::AnugerahWinform.Properties.Resources.favicon;
-            this.button3.Location = new System.Drawing.Point(453, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(84, 77);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Sale";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button4.Image = global::AnugerahWinform.Properties.Resources.favicon;
-            this.button4.Location = new System.Drawing.Point(363, 3);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(84, 77);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "Purchasing";
-            this.button4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button5.Image = global::AnugerahWinform.Properties.Resources.favicon;
-            this.button5.Location = new System.Drawing.Point(273, 3);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(84, 77);
-            this.button5.TabIndex = 5;
-            this.button5.Text = "Sale";
-            this.button5.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button5.UseVisualStyleBackColor = true;
+            this.ribbonSeparator4.Name = "ribbonSeparator4";
+            // 
+            // ribbonButton7
+            // 
+            this.ribbonButton7.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton7.Image")));
+            this.ribbonButton7.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton7.LargeImage")));
+            this.ribbonButton7.Name = "ribbonButton7";
+            this.ribbonButton7.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton7.SmallImage")));
+            this.ribbonButton7.Text = "ribbonButton7";
+            // 
+            // ribbonTab3
+            // 
+            this.ribbonTab3.Name = "ribbonTab3";
+            this.ribbonTab3.Text = "Report";
+            // 
+            // ribbonSeparator6
+            // 
+            this.ribbonSeparator6.Name = "ribbonSeparator6";
             // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::AnugerahWinform.Properties.Resources.anugerah_sps;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(1109, 731);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.MainMenuStrip);
+            this.Controls.Add(this.ribbon1);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IsMdiContainer = true;
+            this.KeyPreview = true;
             this.Name = "MainMenuForm";
             this.Text = "Anugerah Store";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MainMenuForm_Load);
-            this.MainMenuStrip.ResumeLayout(false);
-            this.MainMenuStrip.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip MainMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem barangToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ColorMenu;
-        private System.Windows.Forms.ToolStripMenuItem MerkMenu;
-        private System.Windows.Forms.ToolStripMenuItem JenisBrgMenu;
-        private System.Windows.Forms.ToolStripMenuItem TipeBrgMenu;
-        private System.Windows.Forms.ToolStripMenuItem BarangMenu;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem StokOpnameMenu;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;
-        private System.Windows.Forms.ToolStripMenuItem InfoStokMenu;
-        private System.Windows.Forms.ToolStripMenuItem pembelianToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem bL01DistributorToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem bL02OrderBeliToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem bL03PembelianToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
-        private System.Windows.Forms.ToolStripMenuItem bL04InfoPembelianToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem penjualanToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem jL01HargaJualToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
-        private System.Windows.Forms.ToolStripMenuItem jL02PenjualanToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
-        private System.Windows.Forms.ToolStripMenuItem jL03InfoPenjualanToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sT08SubJenisBrgToolStripMenuItem;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button BarangShortcutButton;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Ribbon ribbon1;
+        private System.Windows.Forms.RibbonTab ribbonTab1;
+        private System.Windows.Forms.RibbonPanel PurchasingRibbonPanel;
+        private System.Windows.Forms.RibbonTab ribbonTab2;
+        private System.Windows.Forms.RibbonTab ribbonTab3;
+        private System.Windows.Forms.RibbonButton PurchaseOrderButton;
+        private System.Windows.Forms.RibbonButton DeliveryButton;
+        private System.Windows.Forms.RibbonButton ReturButton;
+        private System.Windows.Forms.RibbonPanel SalesRibbonPanel;
+        private System.Windows.Forms.RibbonButton SellingButton;
+        private System.Windows.Forms.RibbonButton PreOrderButton;
+        private System.Windows.Forms.RibbonPanel StockManagementRibbonPanel;
+        private System.Windows.Forms.RibbonButton StockOpnameButton;
+        private System.Windows.Forms.RibbonSeparator ribbonSeparator1;
+        private System.Windows.Forms.RibbonButton PricingButton;
+        private System.Windows.Forms.RibbonPanel BrgButton;
+        private System.Windows.Forms.RibbonButton ribbonButton2;
+        private System.Windows.Forms.RibbonSeparator ribbonSeparator2;
+        private System.Windows.Forms.RibbonButton ribbonButton3;
+        private System.Windows.Forms.RibbonSeparator ribbonSeparator3;
+        private System.Windows.Forms.RibbonButton ribbonButton5;
+        private System.Windows.Forms.RibbonButton ribbonButton6;
+        private System.Windows.Forms.RibbonSeparator ribbonSeparator4;
+        private System.Windows.Forms.RibbonButton ribbonButton7;
+        private System.Windows.Forms.RibbonButton Adjustment;
+        private System.Windows.Forms.RibbonPanel BarangPanel;
+        private System.Windows.Forms.RibbonButton BarangButton;
+        private System.Windows.Forms.RibbonSeparator ribbonSeparator5;
+        private System.Windows.Forms.RibbonButton JenisButton;
+        private System.Windows.Forms.RibbonButton SubJenisButton;
+        private System.Windows.Forms.RibbonButton MerkButton;
+        private System.Windows.Forms.RibbonButton ColorButton;
+        private System.Windows.Forms.RibbonSeparator ribbonSeparator6;
     }
 }
 

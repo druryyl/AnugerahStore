@@ -30,12 +30,6 @@
         {
             this.SubJenisBrgTree = new System.Windows.Forms.TreeView();
             this.BarangGrid = new System.Windows.Forms.DataGridView();
-            this.BrgID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BrgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.JenisBrgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubJenisName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MerkName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColorID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SearchText = new System.Windows.Forms.TextBox();
             this.BarangTabControl = new System.Windows.Forms.TabControl();
             this.KlasifikasiTab = new System.Windows.Forms.TabPage();
@@ -45,7 +39,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.ColorPanel = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.KemasanComboBox = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.ColorComboBox = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -68,6 +62,13 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.SearchButton = new System.Windows.Forms.Button();
             this.PrgBar = new System.Windows.Forms.ProgressBar();
+            this.BrgID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BrgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.JenisBrgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubJenisName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MerkName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Kemasan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColorID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.BarangGrid)).BeginInit();
             this.BarangTabControl.SuspendLayout();
             this.KlasifikasiTab.SuspendLayout();
@@ -99,6 +100,7 @@
             this.JenisBrgName,
             this.SubJenisName,
             this.MerkName,
+            this.Kemasan,
             this.ColorID});
             this.BarangGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BarangGrid.Location = new System.Drawing.Point(225, 53);
@@ -107,44 +109,6 @@
             this.BarangGrid.Size = new System.Drawing.Size(697, 196);
             this.BarangGrid.TabIndex = 34;
             this.BarangGrid.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.BarangGrid_RowLeave);
-            // 
-            // BrgID
-            // 
-            this.BrgID.HeaderText = "Brg ID";
-            this.BrgID.Name = "BrgID";
-            this.BrgID.ReadOnly = true;
-            this.BrgID.Width = 50;
-            // 
-            // BrgName
-            // 
-            this.BrgName.HeaderText = "Nama Barang";
-            this.BrgName.Name = "BrgName";
-            this.BrgName.ReadOnly = true;
-            this.BrgName.Width = 200;
-            // 
-            // JenisBrgName
-            // 
-            this.JenisBrgName.HeaderText = "Jenis Brg";
-            this.JenisBrgName.Name = "JenisBrgName";
-            this.JenisBrgName.ReadOnly = true;
-            // 
-            // SubJenisName
-            // 
-            this.SubJenisName.HeaderText = "Sub Jenis";
-            this.SubJenisName.Name = "SubJenisName";
-            this.SubJenisName.ReadOnly = true;
-            // 
-            // MerkName
-            // 
-            this.MerkName.HeaderText = "Merk";
-            this.MerkName.Name = "MerkName";
-            this.MerkName.ReadOnly = true;
-            // 
-            // ColorID
-            // 
-            this.ColorID.HeaderText = "Color";
-            this.ColorID.Name = "ColorID";
-            this.ColorID.ReadOnly = true;
             // 
             // SearchText
             // 
@@ -219,7 +183,7 @@
             this.panel1.BackColor = System.Drawing.Color.Beige;
             this.panel1.Controls.Add(this.ColorPanel);
             this.panel1.Controls.Add(this.label9);
-            this.panel1.Controls.Add(this.comboBox5);
+            this.panel1.Controls.Add(this.KemasanComboBox);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.ColorComboBox);
             this.panel1.Controls.Add(this.label7);
@@ -257,19 +221,21 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(399, 184);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(71, 13);
+            this.label9.Size = new System.Drawing.Size(60, 13);
             this.label9.TabIndex = 44;
-            this.label9.Text = "[Reserved]";
+            this.label9.Text = "Kemasan";
             // 
-            // comboBox5
+            // KemasanComboBox
             // 
-            this.comboBox5.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.comboBox5.Enabled = false;
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(402, 200);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(262, 21);
-            this.comboBox5.TabIndex = 43;
+            this.KemasanComboBox.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.KemasanComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.KemasanComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.KemasanComboBox.FormattingEnabled = true;
+            this.KemasanComboBox.Location = new System.Drawing.Point(402, 200);
+            this.KemasanComboBox.MaxLength = 20;
+            this.KemasanComboBox.Name = "KemasanComboBox";
+            this.KemasanComboBox.Size = new System.Drawing.Size(262, 21);
+            this.KemasanComboBox.TabIndex = 43;
             // 
             // label8
             // 
@@ -508,6 +474,51 @@
             this.PrgBar.Size = new System.Drawing.Size(697, 14);
             this.PrgBar.TabIndex = 35;
             // 
+            // BrgID
+            // 
+            this.BrgID.HeaderText = "Brg ID";
+            this.BrgID.Name = "BrgID";
+            this.BrgID.ReadOnly = true;
+            this.BrgID.Width = 50;
+            // 
+            // BrgName
+            // 
+            this.BrgName.HeaderText = "Nama Barang";
+            this.BrgName.Name = "BrgName";
+            this.BrgName.ReadOnly = true;
+            this.BrgName.Width = 200;
+            // 
+            // JenisBrgName
+            // 
+            this.JenisBrgName.HeaderText = "Jenis Brg";
+            this.JenisBrgName.Name = "JenisBrgName";
+            this.JenisBrgName.ReadOnly = true;
+            // 
+            // SubJenisName
+            // 
+            this.SubJenisName.HeaderText = "Sub Jenis";
+            this.SubJenisName.Name = "SubJenisName";
+            this.SubJenisName.ReadOnly = true;
+            // 
+            // MerkName
+            // 
+            this.MerkName.HeaderText = "Merk";
+            this.MerkName.Name = "MerkName";
+            this.MerkName.ReadOnly = true;
+            // 
+            // Kemasan
+            // 
+            this.Kemasan.HeaderText = "Kemasan";
+            this.Kemasan.Name = "Kemasan";
+            this.Kemasan.ReadOnly = true;
+            this.Kemasan.Width = 80;
+            // 
+            // ColorID
+            // 
+            this.ColorID.HeaderText = "Color";
+            this.ColorID.Name = "ColorID";
+            this.ColorID.ReadOnly = true;
+            // 
             // BarangListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -565,14 +576,15 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel ColorPanel;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox comboBox5;
+        private System.Windows.Forms.ComboBox KemasanComboBox;
+        private System.Windows.Forms.Button SearchButton;
+        private System.Windows.Forms.ProgressBar PrgBar;
         private System.Windows.Forms.DataGridViewTextBoxColumn BrgID;
         private System.Windows.Forms.DataGridViewTextBoxColumn BrgName;
         private System.Windows.Forms.DataGridViewTextBoxColumn JenisBrgName;
         private System.Windows.Forms.DataGridViewTextBoxColumn SubJenisName;
         private System.Windows.Forms.DataGridViewTextBoxColumn MerkName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Kemasan;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColorID;
-        private System.Windows.Forms.Button SearchButton;
-        private System.Windows.Forms.ProgressBar PrgBar;
     }
 }

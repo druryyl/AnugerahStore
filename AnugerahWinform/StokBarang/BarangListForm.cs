@@ -1,4 +1,5 @@
 ﻿using AnugerahBackend.StokBarang.BL;
+using AnugerahBackend.StokBarang.Dal;
 using AnugerahBackend.StokBarang.Model;
 using AnugerahBackend.Support.BL;
 using System;
@@ -16,6 +17,7 @@ namespace AnugerahWinform.StokBarang
     public partial class BarangListForm : Form
     {
         private IJenisBrgBL _jenisBrgBL;
+        private IBrgDal _brgDal;
         private ISubJenisBrgBL _subJenisBrgBL;
         private IMerkBL _merkBL;
         private IColorBL _colorBL;
@@ -27,7 +29,8 @@ namespace AnugerahWinform.StokBarang
 
         enum ListBrgOrderEnum
         {
-            BrgID, BrgName, SubJenis, Merk, Color, LastUpdate
+            BrgID, BrgName, SubJenis, Merk,
+            Color, LastUpdate, Kemasan
         }
 
         public BarangListForm()
@@ -38,12 +41,14 @@ namespace AnugerahWinform.StokBarang
             _merkBL = new MerkBL();
             _colorBL = new ColorBL();
             _brgBL = new BrgBL();
+            _brgDal = new BrgDal();
             _paramNoBL = new ParameterNoBL();
 
             LoadListSubJenisBrgTree();
             LoadJenisBrgCombo();
             LoadMerkCombo();
             LoadColorCombo();
+            LoadKemasanComboBox();
 
             panelColorTop = ColorPanel.Top;
             panelColorLeft = ColorPanel.Left;
@@ -168,9 +173,27 @@ namespace AnugerahWinform.StokBarang
             ColorComboBox.DataSource = listColorWithHue;
             ColorComboBox.DisplayMember = "ColorID";
             ColorComboBox.ValueMember = "ColorID";
-            ColorPanel.BackColor = Color.FromName(ColorComboBox.SelectedValue.ToString());
+            ColorPanel.BackColor = _colorBL.GetFromRGB(ColorComboBox.SelectedValue.ToString());
 
             ColorComboBox.SelectedItem = null;
+        }
+
+        void LoadKemasanComboBox()
+        {
+            KemasanComboBox.DataSource = null;
+            KemasanComboBox.Items.Clear();
+
+            //  ambil data
+            var listKemasan = _brgDal.ListKemasan();
+
+            //  exit jika kosong
+            if (listKemasan == null)
+                return;
+
+            var listKemasanOrdered = listKemasan
+                .OrderBy(x => x)
+                .ToList();
+            KemasanComboBox.DataSource = listKemasanOrdered;
         }
 
         void LoadBrgGrid(string subJenisBrgID)
@@ -191,7 +214,8 @@ namespace AnugerahWinform.StokBarang
             {
                 PrgBar.Value++;
                 object[] rowData = {item.BrgID, item.BrgName, item.JenisBrgName,
-                            item.SubJenisBrgName, item.MerkName, item.ColorID};
+                            item.SubJenisBrgName, item.MerkName, item.Kemasan,
+                            item.ColorID};
                 BarangGrid.Rows.Add(rowData);
             }
             PrgBar.Value = 0;
@@ -226,6 +250,9 @@ namespace AnugerahWinform.StokBarang
                 case ListBrgOrderEnum.LastUpdate:
                     listBrgOrdered = listBrg.OrderByDescending(x => x.UpdateTimestamp);
                     break;
+                case ListBrgOrderEnum.Kemasan:
+                    listBrgOrdered = listBrg.OrderBy(x => x.Kemasan);
+                    break;
                 default:
                     listBrgOrdered = listBrg.OrderBy(x => x.BrgID);
                     break;
@@ -235,10 +262,12 @@ namespace AnugerahWinform.StokBarang
             foreach (var item in listBrgOrdered)
             {
                 PrgBar.Value++;
-                //this.Refresh();
                 object[] rowData = {item.BrgID, item.BrgName, item.JenisBrgName,
-                            item.SubJenisBrgName, item.MerkName, item.ColorID};
+                            item.SubJenisBrgName, item.MerkName, item.Kemasan,
+                            item.ColorID};
                 BarangGrid.Rows.Add(rowData);
+                if(item.ColorID.Trim() != "")
+                    BarangGrid.Rows[PrgBar.Value-1].Cells["ColorID"].Style.BackColor = Color.FromName(item.ColorID);
             }
             ClearDetilBrg();
             PrgBar.Value = 0;
@@ -253,6 +282,7 @@ namespace AnugerahWinform.StokBarang
             LoadJenisBrgCombo();
             LoadColorCombo();
             LoadMerkCombo();
+            LoadKemasanComboBox();
         }
 
 
@@ -284,7 +314,7 @@ namespace AnugerahWinform.StokBarang
             var subJenisID = SubJenisBrgComboBox.SelectedValue ?? "";
             var merkID = MerkComboBox.SelectedValue ?? "";
             var colorID = ColorComboBox.SelectedValue ?? "";
-
+            var kemasan = KemasanComboBox.Text;
             var brg = new BrgModel
             {
                 BrgID = BrgIDText.Text,
@@ -292,7 +322,8 @@ namespace AnugerahWinform.StokBarang
                 Keterangan = KeteranganText.Text,
                 ColorID = colorID.ToString(),
                 SubJenisBrgID = subJenisID.ToString(),
-                MerkID = merkID.ToString()
+                MerkID = merkID.ToString(),
+                Kemasan = kemasan
             };
 
             try
@@ -312,6 +343,7 @@ namespace AnugerahWinform.StokBarang
             LoadJenisBrgCombo();
             LoadColorCombo();
             LoadMerkCombo();
+            LoadKemasanComboBox();
         }
 
         private void BrgIDText_Validating(object sender, CancelEventArgs e)
@@ -330,6 +362,7 @@ namespace AnugerahWinform.StokBarang
                 LoadJenisBrgCombo();
                 LoadColorCombo();
                 LoadMerkCombo();
+                LoadKemasanComboBox();
             }
             else
             {
@@ -346,6 +379,7 @@ namespace AnugerahWinform.StokBarang
 
                 MerkComboBox.SelectedValue = brg.MerkID;
                 ColorComboBox.SelectedValue = brg.ColorID;
+                KemasanComboBox.Text = brg.Kemasan;
             }
         }
         private void SubJenisBrgTree_AfterSelect(object sender, TreeViewEventArgs e)
@@ -414,7 +448,12 @@ namespace AnugerahWinform.StokBarang
                 LoadBrgGridSearch(searchText, ListBrgOrderEnum.LastUpdate);
                 return;
             }
-
+            if (searchText.Contains(@"/kemasan"))
+            {
+                searchText = RemoveParameterSearch();
+                LoadBrgGridSearch(searchText, ListBrgOrderEnum.Kemasan);
+                return;
+            }
             searchText = RemoveParameterSearch();
             LoadBrgGridSearch(searchText, ListBrgOrderEnum.BrgName);
             return;
@@ -430,7 +469,7 @@ namespace AnugerahWinform.StokBarang
                 if (c == '/') break;
                 result += c;
             }
-            return result;
+            return result.Trim();
         }
     }
 }
