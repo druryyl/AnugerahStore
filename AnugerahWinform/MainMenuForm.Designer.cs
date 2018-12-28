@@ -48,6 +48,7 @@
             this.ribbonSeparator5 = new System.Windows.Forms.RibbonSeparator();
             this.JenisButton = new System.Windows.Forms.RibbonButton();
             this.SubJenisButton = new System.Windows.Forms.RibbonButton();
+            this.ribbonSeparator6 = new System.Windows.Forms.RibbonSeparator();
             this.MerkButton = new System.Windows.Forms.RibbonButton();
             this.ColorButton = new System.Windows.Forms.RibbonButton();
             this.ribbonTab2 = new System.Windows.Forms.RibbonTab();
@@ -61,7 +62,6 @@
             this.ribbonSeparator4 = new System.Windows.Forms.RibbonSeparator();
             this.ribbonButton7 = new System.Windows.Forms.RibbonButton();
             this.ribbonTab3 = new System.Windows.Forms.RibbonTab();
-            this.ribbonSeparator6 = new System.Windows.Forms.RibbonSeparator();
             this.SuspendLayout();
             // 
             // ribbon1
@@ -166,6 +166,7 @@
             this.PricingButton.Name = "PricingButton";
             this.PricingButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("PricingButton.SmallImage")));
             this.PricingButton.Text = "Pricing";
+            this.PricingButton.Click += new System.EventHandler(this.PricingButton_Click);
             // 
             // StockManagementRibbonPanel
             // 
@@ -233,6 +234,10 @@
             this.SubJenisButton.Text = "Sub Jenis";
             this.SubJenisButton.Click += new System.EventHandler(this.SubJenisButton_Click);
             // 
+            // ribbonSeparator6
+            // 
+            this.ribbonSeparator6.Name = "ribbonSeparator6";
+            // 
             // MerkButton
             // 
             this.MerkButton.Image = ((System.Drawing.Image)(resources.GetObject("MerkButton.Image")));
@@ -275,6 +280,7 @@
             this.ribbonButton2.Name = "ribbonButton2";
             this.ribbonButton2.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton2.SmallImage")));
             this.ribbonButton2.Text = "Barang Items";
+            this.ribbonButton2.Click += new System.EventHandler(this.ribbonButton2_Click);
             // 
             // ribbonSeparator2
             // 
@@ -326,14 +332,11 @@
             this.ribbonTab3.Name = "ribbonTab3";
             this.ribbonTab3.Text = "Report";
             // 
-            // ribbonSeparator6
-            // 
-            this.ribbonSeparator6.Name = "ribbonSeparator6";
-            // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::AnugerahWinform.Properties.Resources.anugerah_sps;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(1109, 731);
             this.Controls.Add(this.ribbon1);
@@ -341,7 +344,7 @@
             this.IsMdiContainer = true;
             this.KeyPreview = true;
             this.Name = "MainMenuForm";
-            this.Text = "Anugerah Store";
+            this.Text = "MyHospital - Asset Management";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MainMenuForm_Load);
             this.ResumeLayout(false);

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="ffdeb6b3-8bfd-406c-94cf-3af2cee2c2e0" ChangeDateTime="12/22/2018 18:36:01">
+    <Property Name="ElementName" Value="[dbo].[Color].[TextColor]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Color]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IsWhiteForeColor" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="df6a8a0f-a85a-44fb-9178-4ea10309fc37" ChangeDateTime="12/24/2018 05:49:01">
+    <Property Name="ElementName" Value="[dbo].[Pricing].[PriceTag]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Pricing]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PriceTagID" />
+  </Operation>
+</Operations>

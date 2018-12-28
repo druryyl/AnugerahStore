@@ -13,5 +13,6 @@ namespace AnugerahBackend.StokBarang.Model
         public int RedValue { get; set; }
         public int GreenValue { get; set; }
         public int BlueValue { get; set; }
+        public bool IsWhiteForeColor { get; set; }
     }
 }

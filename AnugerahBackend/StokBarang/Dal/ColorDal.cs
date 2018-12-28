@@ -39,10 +39,12 @@ namespace AnugerahBackend.StokBarang.Dal
                 INSERT INTO
                     Color (
                         ColorID, RedValue, 
-                        GreenValue, BlueValue)
+                        GreenValue, BlueValue,
+                        IsWhiteForeColor)
                 VALUES (
                         @ColorID, @RedValue, 
-                        @GreenValue, @BlueValue) ";
+                        @GreenValue, @BlueValue
+                        @IsWhiteForeColor) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
@@ -50,6 +52,7 @@ namespace AnugerahBackend.StokBarang.Dal
                 cmd.AddParam("@RedValue", color.RedValue);
                 cmd.AddParam("@GreenValue", color.GreenValue);
                 cmd.AddParam("@BlueValue", color.BlueValue);
+                cmd.AddParam("@IsWhiteForeColor", color.IsWhiteForeColor);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -63,7 +66,8 @@ namespace AnugerahBackend.StokBarang.Dal
                 SET
                     RedValue = @RedValue,
                     GreenValue = @GreenValue,
-                    BlueValue = @BlueValue
+                    BlueValue = @BlueValue,
+                    IsWhiteForeColor = @IsWhiteForeColor
                 WHERE
                     ColorID = @ColorID ";
             using (var conn = new SqlConnection(_connString))
@@ -73,6 +77,7 @@ namespace AnugerahBackend.StokBarang.Dal
                 cmd.AddParam("@RedValue", color.RedValue);
                 cmd.AddParam("@GreenValue", color.GreenValue);
                 cmd.AddParam("@BlueValue", color.BlueValue);
+                cmd.AddParam("@IsWhiteForeColor", color.IsWhiteForeColor);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -100,7 +105,8 @@ namespace AnugerahBackend.StokBarang.Dal
             var sSql = @"
                 SELECT
                     aa.RedValue,
-                    aa.GreenValue, aa.BlueValue
+                    aa.GreenValue, aa.BlueValue,
+                    aa.IsWhiteForeColor
                 FROM
                     Color aa
                 WHERE
@@ -121,6 +127,7 @@ namespace AnugerahBackend.StokBarang.Dal
                             RedValue = Convert.ToInt16(dr["RedValue"]),
                             GreenValue = Convert.ToInt16(dr["GreenValue"]),
                             BlueValue = Convert.ToInt16(dr["BlueValue"]),
+                            IsWhiteForeColor = Convert.ToBoolean(dr["IsWhiteForeColor"])
                         };
                     }
                 }
@@ -134,7 +141,8 @@ namespace AnugerahBackend.StokBarang.Dal
             var sSql = @"
                 SELECT
                     aa.ColorID, aa.RedValue, 
-                    aa.GreenValue, aa.BlueValue
+                    aa.GreenValue, aa.BlueValue,
+                    aa.IsWhiteForeColor
                 FROM
                     Color aa ";
             using (var conn = new SqlConnection(_connString))
@@ -154,6 +162,7 @@ namespace AnugerahBackend.StokBarang.Dal
                                 RedValue = Convert.ToInt16(dr["RedValue"]),
                                 GreenValue = Convert.ToInt16(dr["GreenValue"]),
                                 BlueValue = Convert.ToInt16(dr["BlueValue"]),
+                                IsWhiteForeColor = Convert.ToBoolean(dr["IsWhiteForeColor"])
                             };
                             result.Add(item);
                         }

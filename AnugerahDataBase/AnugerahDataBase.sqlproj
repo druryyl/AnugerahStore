@@ -59,6 +59,7 @@
     <Folder Include="Properties" />
     <Folder Include="Support" />
     <Folder Include="StokBarang" />
+    <Folder Include="Penjualan" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Support\Userr.sql" />
@@ -70,9 +71,14 @@
     <Build Include="StokBarang\Brg.sql" />
     <Build Include="StokBarang\BrgPhoto.sql" />
     <Build Include="StokBarang\SubJenisBrg.sql" />
+    <Build Include="Penjualan\PriceTagDetail.sql" />
+    <Build Include="Penjualan\PriceTag.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AnugerahDevelopment.publish.xml" />
     <None Include="AnugerahTest.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="AnugerahDataBase.refactorlog" />
   </ItemGroup>
 </Project>

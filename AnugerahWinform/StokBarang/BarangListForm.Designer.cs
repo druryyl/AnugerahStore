@@ -30,6 +30,13 @@
         {
             this.SubJenisBrgTree = new System.Windows.Forms.TreeView();
             this.BarangGrid = new System.Windows.Forms.DataGridView();
+            this.BrgID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BrgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.JenisBrgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubJenisName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MerkName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Kemasan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColorID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SearchText = new System.Windows.Forms.TextBox();
             this.BarangTabControl = new System.Windows.Forms.TabControl();
             this.KlasifikasiTab = new System.Windows.Forms.TabPage();
@@ -62,13 +69,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.SearchButton = new System.Windows.Forms.Button();
             this.PrgBar = new System.Windows.Forms.ProgressBar();
-            this.BrgID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BrgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.JenisBrgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubJenisName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MerkName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Kemasan = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColorID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.BarangGrid)).BeginInit();
             this.BarangTabControl.SuspendLayout();
             this.KlasifikasiTab.SuspendLayout();
@@ -109,6 +109,51 @@
             this.BarangGrid.Size = new System.Drawing.Size(697, 196);
             this.BarangGrid.TabIndex = 34;
             this.BarangGrid.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.BarangGrid_RowLeave);
+            // 
+            // BrgID
+            // 
+            this.BrgID.HeaderText = "Brg ID";
+            this.BrgID.Name = "BrgID";
+            this.BrgID.ReadOnly = true;
+            this.BrgID.Width = 50;
+            // 
+            // BrgName
+            // 
+            this.BrgName.HeaderText = "Nama Barang";
+            this.BrgName.Name = "BrgName";
+            this.BrgName.ReadOnly = true;
+            this.BrgName.Width = 300;
+            // 
+            // JenisBrgName
+            // 
+            this.JenisBrgName.HeaderText = "Jenis Brg";
+            this.JenisBrgName.Name = "JenisBrgName";
+            this.JenisBrgName.ReadOnly = true;
+            // 
+            // SubJenisName
+            // 
+            this.SubJenisName.HeaderText = "Sub Jenis";
+            this.SubJenisName.Name = "SubJenisName";
+            this.SubJenisName.ReadOnly = true;
+            // 
+            // MerkName
+            // 
+            this.MerkName.HeaderText = "Merk";
+            this.MerkName.Name = "MerkName";
+            this.MerkName.ReadOnly = true;
+            // 
+            // Kemasan
+            // 
+            this.Kemasan.HeaderText = "Kemasan";
+            this.Kemasan.Name = "Kemasan";
+            this.Kemasan.ReadOnly = true;
+            this.Kemasan.Width = 80;
+            // 
+            // ColorID
+            // 
+            this.ColorID.HeaderText = "Color";
+            this.ColorID.Name = "ColorID";
+            this.ColorID.ReadOnly = true;
             // 
             // SearchText
             // 
@@ -163,6 +208,7 @@
             this.button2.TabIndex = 31;
             this.button2.Text = "Exit";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // SaveButton
             // 
@@ -473,51 +519,6 @@
             this.PrgBar.Name = "PrgBar";
             this.PrgBar.Size = new System.Drawing.Size(697, 14);
             this.PrgBar.TabIndex = 35;
-            // 
-            // BrgID
-            // 
-            this.BrgID.HeaderText = "Brg ID";
-            this.BrgID.Name = "BrgID";
-            this.BrgID.ReadOnly = true;
-            this.BrgID.Width = 50;
-            // 
-            // BrgName
-            // 
-            this.BrgName.HeaderText = "Nama Barang";
-            this.BrgName.Name = "BrgName";
-            this.BrgName.ReadOnly = true;
-            this.BrgName.Width = 200;
-            // 
-            // JenisBrgName
-            // 
-            this.JenisBrgName.HeaderText = "Jenis Brg";
-            this.JenisBrgName.Name = "JenisBrgName";
-            this.JenisBrgName.ReadOnly = true;
-            // 
-            // SubJenisName
-            // 
-            this.SubJenisName.HeaderText = "Sub Jenis";
-            this.SubJenisName.Name = "SubJenisName";
-            this.SubJenisName.ReadOnly = true;
-            // 
-            // MerkName
-            // 
-            this.MerkName.HeaderText = "Merk";
-            this.MerkName.Name = "MerkName";
-            this.MerkName.ReadOnly = true;
-            // 
-            // Kemasan
-            // 
-            this.Kemasan.HeaderText = "Kemasan";
-            this.Kemasan.Name = "Kemasan";
-            this.Kemasan.ReadOnly = true;
-            this.Kemasan.Width = 80;
-            // 
-            // ColorID
-            // 
-            this.ColorID.HeaderText = "Color";
-            this.ColorID.Name = "ColorID";
-            this.ColorID.ReadOnly = true;
             // 
             // BarangListForm
             // 

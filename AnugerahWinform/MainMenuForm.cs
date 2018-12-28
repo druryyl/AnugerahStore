@@ -1,4 +1,5 @@
-﻿using AnugerahWinform.StokBarang;
+﻿using AnugerahWinform.Penjualan;
+using AnugerahWinform.StokBarang;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -53,6 +54,26 @@ namespace AnugerahWinform
         private void ColorButton_Click(object sender, EventArgs e)
         {
             var form = new ColorForm
+            {
+                MdiParent = this,
+                StartPosition = FormStartPosition.CenterParent
+            };
+            form.Show();
+        }
+
+        private void PricingButton_Click(object sender, EventArgs e)
+        {
+            var form = new PricingForm
+            {
+                MdiParent = this,
+                StartPosition = FormStartPosition.CenterParent
+            };
+            form.Show();
+        }
+
+        private void ribbonButton2_Click(object sender, EventArgs e)
+        {
+            var form = new KryotonTestForm
             {
                 MdiParent = this,
                 StartPosition = FormStartPosition.CenterParent

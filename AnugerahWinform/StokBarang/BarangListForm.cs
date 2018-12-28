@@ -173,7 +173,8 @@ namespace AnugerahWinform.StokBarang
             ColorComboBox.DataSource = listColorWithHue;
             ColorComboBox.DisplayMember = "ColorID";
             ColorComboBox.ValueMember = "ColorID";
-            ColorPanel.BackColor = _colorBL.GetFromRGB(ColorComboBox.SelectedValue.ToString());
+            var color = _colorBL.GetData(ColorComboBox.SelectedValue.ToString());
+            ColorPanel.BackColor = _colorBL.GetFromRGB(color);
 
             ColorComboBox.SelectedItem = null;
         }
@@ -217,11 +218,23 @@ namespace AnugerahWinform.StokBarang
                             item.SubJenisBrgName, item.MerkName, item.Kemasan,
                             item.ColorID};
                 BarangGrid.Rows.Add(rowData);
+                if (item.ColorID.Trim() != "")
+                {
+                    var color = _colorBL.GetData(item.ColorID);
+                    if(color!= null)
+                    {
+                        BarangGrid.Rows[PrgBar.Value - 1].Cells["ColorID"].Style.BackColor = _colorBL.GetFromRGB(color);
+                        if (color.IsWhiteForeColor)
+                            BarangGrid.Rows[PrgBar.Value - 1].Cells["ColorID"].Style.ForeColor = Color.White;
+                    }
+                }
+
+
             }
             PrgBar.Value = 0;
             ClearDetilBrg();
         }
-        void LoadBrgGridSearch(string brgName, ListBrgOrderEnum order)
+        void LoadBrgGridSearch(string brgName, ListBrgOrderEnum order, int top)
         {
             BarangGrid.Rows.Clear();
             var listBrg = _brgBL.ListData(brgName);
@@ -257,6 +270,9 @@ namespace AnugerahWinform.StokBarang
                     listBrgOrdered = listBrg.OrderBy(x => x.BrgID);
                     break;
             }
+
+            if (top > 0) listBrgOrdered = listBrgOrdered.ToList().Take(top);
+
             PrgBar.Value = 0;
             PrgBar.Maximum = listBrgOrdered.Count();
             foreach (var item in listBrgOrdered)
@@ -266,8 +282,16 @@ namespace AnugerahWinform.StokBarang
                             item.SubJenisBrgName, item.MerkName, item.Kemasan,
                             item.ColorID};
                 BarangGrid.Rows.Add(rowData);
-                if(item.ColorID.Trim() != "")
-                    BarangGrid.Rows[PrgBar.Value-1].Cells["ColorID"].Style.BackColor = Color.FromName(item.ColorID);
+                if (item.ColorID.Trim() != "")
+                {
+                    var color = _colorBL.GetData(item.ColorID);
+                    if (color != null)
+                    {
+                        BarangGrid.Rows[PrgBar.Value - 1].Cells["ColorID"].Style.BackColor = _colorBL.GetFromRGB(color);
+                        if (color.IsWhiteForeColor)
+                            BarangGrid.Rows[PrgBar.Value - 1].Cells["ColorID"].Style.ForeColor = Color.White;
+                    }
+                }
             }
             ClearDetilBrg();
             PrgBar.Value = 0;
@@ -294,7 +318,11 @@ namespace AnugerahWinform.StokBarang
         private void ColorComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ColorComboBox.SelectedValue == null) return;
-            ColorPanel.BackColor = Color.FromName(ColorComboBox.SelectedValue.ToString());
+
+            var color = _colorBL.GetData(ColorComboBox.SelectedValue.ToString());
+
+            ColorPanel.BackColor = Color.FromArgb(
+                color.RedValue,color.GreenValue, color.BlueValue);
         }
 
         private void ColorPanel_MouseHover(object sender, EventArgs e)
@@ -418,44 +446,51 @@ namespace AnugerahWinform.StokBarang
         private void SearchButton_Click(object sender, EventArgs e)
         {
             var searchText = SearchText.Text;
+            var top = 0;
+            if (searchText.Contains(@"/top10"))  top = 10;
+            if (searchText.Contains(@"/top20")) top = 20;
+            if (searchText.Contains(@"/top50")) top = 50;
+            if (searchText.Contains(@"/top100")) top = 100;
+
             if (searchText.Contains(@"/id"))
             {
                 searchText = RemoveParameterSearch();
-                LoadBrgGridSearch(searchText, ListBrgOrderEnum.BrgID);
+                LoadBrgGridSearch(searchText, ListBrgOrderEnum.BrgID, top);
                 return;
             }
             if (searchText.Contains(@"/sub"))
             {
                 searchText = RemoveParameterSearch();
-                LoadBrgGridSearch(searchText, ListBrgOrderEnum.SubJenis);
+                LoadBrgGridSearch(searchText, ListBrgOrderEnum.SubJenis, top);
                 return;
             }
             if (searchText.Contains(@"/merk"))
             {
                 searchText = RemoveParameterSearch();
-                LoadBrgGridSearch(searchText, ListBrgOrderEnum.Merk);
+                LoadBrgGridSearch(searchText, ListBrgOrderEnum.Merk, top);
                 return;
             }
             if (searchText.Contains(@"/color"))
             {
                 searchText = RemoveParameterSearch();
-                LoadBrgGridSearch(searchText, ListBrgOrderEnum.Color);
+                LoadBrgGridSearch(searchText, ListBrgOrderEnum.Color, top);
                 return;
             }
             if (searchText.Contains(@"/update"))
             {
                 searchText = RemoveParameterSearch();
-                LoadBrgGridSearch(searchText, ListBrgOrderEnum.LastUpdate);
+                LoadBrgGridSearch(searchText, ListBrgOrderEnum.LastUpdate, top);
                 return;
             }
             if (searchText.Contains(@"/kemasan"))
             {
                 searchText = RemoveParameterSearch();
-                LoadBrgGridSearch(searchText, ListBrgOrderEnum.Kemasan);
+                LoadBrgGridSearch(searchText, ListBrgOrderEnum.Kemasan, top);
                 return;
             }
+
             searchText = RemoveParameterSearch();
-            LoadBrgGridSearch(searchText, ListBrgOrderEnum.BrgName);
+            LoadBrgGridSearch(searchText, ListBrgOrderEnum.BrgName, top);
             return;
 
         }
@@ -470,6 +505,11 @@ namespace AnugerahWinform.StokBarang
                 result += c;
             }
             return result.Trim();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
