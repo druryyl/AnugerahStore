@@ -23,7 +23,8 @@ namespace AnugerahBackend.StokBarang.BL
         IEnumerable<BrgModel> ListData(SubJenisBrgModel subJenisBrg);
         IEnumerable<BrgModel> ListData(string searchKeyword);
 
-
+        IEnumerable<BrgJenisModel> ListGrouping();
+        
         BrgModel TryValidate(BrgModel brg);
     }
 
@@ -156,6 +157,65 @@ namespace AnugerahBackend.StokBarang.BL
         public IEnumerable<BrgModel> ListData(string searchKeyword)
         {
             return _brgDal.ListData(searchKeyword);
+        }
+
+        public IEnumerable<BrgJenisModel> ListGrouping()
+        {
+            var resultFlat = _brgDal.ListGrouping();
+            if (resultFlat == null)
+                return null;
+
+            var result = new List<BrgJenisModel>();
+            foreach(var item in resultFlat)
+            {
+                var jenisTemp = result.Find(x => x.JenisID == item.JenisBrgID);
+                if (jenisTemp == null)
+                {
+                    jenisTemp = new BrgJenisModel
+                    {
+                        JenisID = item.JenisBrgID,
+                        JenisName = item.JenisBrgName
+                    };
+                    result.Add(jenisTemp);
+                }
+
+                var subJenis = jenisTemp.ListSub.Find(x => x.SubID == item.SubJenisID);
+                if (subJenis == null)
+                {
+                    subJenis = new BrgJenisSubModel
+                    {
+                        SubID = item.SubJenisID,
+                        SubName = item.SubJenisName
+                    };
+                    jenisTemp.ListSub.Add(subJenis);
+                }
+
+                var merk = subJenis.ListMerk.Find(x => x.MerkID == item.MerkID);
+                if (merk == null)
+                {
+                    merk = new BrgJenisSubMerkModel
+                    {
+                        MerkID = item.MerkID,
+                        MerkName = item.MerkName
+                    };
+                    subJenis.ListMerk.Add(merk);
+                }
+
+                var color = merk.ListColor.Find(x => x.ColorID == item.ColorID);
+                if(color == null)
+                {
+                    color = new BrgJenisSubMerkColorModel
+                    {
+                        ColorID = item.ColorID,
+                        ColorName = item.ColorID,
+                        RedValue = item.RedValue,
+                        GreenValue = item.GreenValue,
+                        BlueValue = item.BlueValue
+                    };
+                    merk.ListColor.Add(color);
+                }
+            }
+            return result;
         }
     }
 }

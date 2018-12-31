@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace AnugerahBackend.Penjualan.Model
 {
-    public class PriceTagDetailModel
+    public class BrgPriceModel
     {
         public string BrgID { get; set; }
-        public int Minimum { get; set; }
-        public double Price { get; set; }
-        public double Discount { get; set; }
+        public int Qty { get; set; }
+        public double Harga { get; set; }
+        public double Diskon { get; set; }
+
     }
 }

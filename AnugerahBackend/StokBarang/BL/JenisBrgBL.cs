@@ -15,6 +15,7 @@ namespace AnugerahBackend.StokBarang.BL
         void Delete(string id);
         JenisBrgModel GetData(string id);
         IEnumerable<JenisBrgModel> ListData();
+
         JenisBrgModel TryValidate(JenisBrgModel jenisBrg);
     }
 

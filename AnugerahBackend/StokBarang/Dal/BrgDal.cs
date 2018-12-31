@@ -22,8 +22,8 @@ namespace AnugerahBackend.StokBarang.Dal
         IEnumerable<BrgModel> ListData(SubJenisBrgModel subJenisBrg);
         IEnumerable<BrgModel> ListData(string keywordSearch);
         IEnumerable<string> ListKemasan();
+        IEnumerable<BrgJenisFlatModel> ListGrouping();
     }
-
 
     public class BrgDal : IBrgDal
     {
@@ -282,6 +282,61 @@ namespace AnugerahBackend.StokBarang.Dal
                 }
             }
             return result;
+        }
+
+        public IEnumerable<BrgJenisFlatModel> ListGrouping()
+        {
+            List<BrgJenisFlatModel> result = null;
+
+            var sSql = @"
+                SELECT DISTINCT
+	                ISNULL(bb.JenisBrgID, '') JenisBrgID,
+	                ISNULL(cc.JenisBrgName, '') JenisBrgName,
+	                aa.SubJenisBrgID,
+	                ISNULL(bb.SubJenisBrgName, '') SubJenisBrgName,
+	                aa.MerkID, ISNULL(dd.MerkName, '') MerkName,
+	                aa.ColorID, 
+	                ISNULL(ee.RedValue,0) RedValue,
+	                ISNULL(ee.GreenValue,0) GreenValue,
+	                ISNULL(ee.BlueValue,0) BlueValue
+                FROM
+	                Brg aa
+	                LEFT JOIN SubJenisBrg bb ON aa.SubJenisBrgID = bb.SubJenisBrgID
+	                LEFT JOIN JenisBrg cc ON bb.JenisBrgID = cc.JenisBrgID
+	                LEFT JOIN Merk dd ON aa.MerkID = dd.MerkID
+	                LEFT JOIN Color ee ON aa.ColorID = ee.ColorID
+                ";
+            using (var conn = new SqlConnection(_connString))
+            using (var cmd = new SqlCommand(sSql, conn))
+            {
+                conn.Open();
+                using (var dr = cmd.ExecuteReader())
+                {
+                    if (dr.HasRows)
+                    {
+                        result = new List<BrgJenisFlatModel>();
+
+                        while (dr.Read())
+                        {
+                            var item = new BrgJenisFlatModel
+                            {
+                                JenisBrgID = dr["JenisBrgID"].ToString(),
+                                JenisBrgName = dr["JenisBrgName"].ToString(),
+                                SubJenisID = dr["SubJenisBrgID"].ToString(),
+                                SubJenisName = dr["SubJenisBrgName"].ToString(),
+                                MerkID = dr["MerkID"].ToString(),
+                                MerkName = dr["MerkName"].ToString(),
+                                ColorID = dr["ColorID"].ToString(),
+                                RedValue = Convert.ToInt16(dr["RedValue"]),
+                                GreenValue = Convert.ToInt16(dr["GreenValue"]),
+                                BlueValue = Convert.ToInt16(dr["BlueValue"]),
+                            };
+                            result.Add(item);
+                        }
+                    }
+                }
+            }
+            return result; ;
         }
     }
 }

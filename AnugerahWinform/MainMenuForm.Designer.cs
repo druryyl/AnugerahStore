@@ -87,7 +87,7 @@
             this.ribbon1.Tabs.Add(this.ribbonTab3);
             this.ribbon1.TabsMargin = new System.Windows.Forms.Padding(12, 2, 20, 0);
             this.ribbon1.Text = "ribbon1";
-            this.ribbon1.ThemeColor = System.Windows.Forms.RibbonTheme.Black;
+            this.ribbon1.ThemeColor = System.Windows.Forms.RibbonTheme.Blue_2010;
             // 
             // ribbonTab1
             // 

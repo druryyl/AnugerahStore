@@ -10,62 +10,62 @@ using System.Threading.Tasks;
 
 namespace AnugerahBackend.Penjualan.Dal
 {
-
-    public interface IPricingDal
+    public interface IBrgPriceDal
     {
-        void Insert(PriceTagDetailModel pricing);
-
-        void Update(PriceTagDetailModel pricing);
-
-        void Delete(string id);
-
-        PriceTagDetailModel GetData(string id);
-
-        IEnumerable<PriceTagDetailModel> ListData();
+        void Insert(BrgPriceModel brgPrice);
+        void Update(BrgPriceModel brgPrice);
+        void Delete(string brgID);
+        IEnumerable<BrgPriceModel> ListData(string brgID);
     }
 
 
-    public class PricingDal : IPricingDal
+    public class BrgPriceDal : IBrgPriceDal
     {
         public string _connString;
 
-        public PricingDal()
+        public BrgPriceDal()
         {
             _connString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
         }
 
-        public void Insert(PriceTagDetailModel pricing)
+        public void Insert(BrgPriceModel brgPrice)
         {
             var sSql = @"
                 INSERT INTO
-                    Pricing (
-                        BrgID, Price)
+                    BrgPrice (
+                        BrgID, Qty, Harga, Diskon)
                 VALUES (
-                        @BrgID, @Price) ";
+                        @BrgID, @Qty, @Harga, @Diskon) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@BrgID", pricing.BrgID);
-                cmd.AddParam("@Price", pricing.Price);
+                cmd.AddParam("@BrgID", brgPrice.BrgID);
+                cmd.AddParam("@Qty", brgPrice.Qty);
+                cmd.AddParam("@Harga", brgPrice.Harga);
+                cmd.AddParam("@Diskon", brgPrice.Diskon);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
         }
 
-        public void Update(PriceTagDetailModel pricing)
+        public void Update(BrgPriceModel brgPrice)
         {
             var sSql = @"
                 UPDATE
-                    Pricing 
+                    BrgPrice 
                 SET
-                    Price = @Price
+                    Qty = @Qty,
+                    Harga = @Harga,
+                    Dikson = @Diskon
                 WHERE
                     BrgID = @BrgID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@BrgID", pricing.BrgID);
-                cmd.AddParam("@Price", pricing.Price);
+                cmd.AddParam("@BrgID", brgPrice.BrgID);
+                cmd.AddParam("@Qty", brgPrice.Qty);
+                cmd.AddParam("@Harga", brgPrice.Harga);
+                cmd.AddParam("@Diskon", brgPrice.Diskon);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -75,7 +75,7 @@ namespace AnugerahBackend.Penjualan.Dal
         {
             var sSql = @"
                 DELETE
-                    Pricing 
+                    BrgPrice 
                 WHERE
                     BrgID = @BrgID ";
             using (var conn = new SqlConnection(_connString))
@@ -85,60 +85,34 @@ namespace AnugerahBackend.Penjualan.Dal
             }
         }
 
-        public PriceTagDetailModel GetData(string id)
+        public IEnumerable<BrgPriceModel> ListData(string brgID)
         {
-            PriceTagDetailModel result = null;
+            List<BrgPriceModel> result = null;
             var sSql = @"
                 SELECT
-                    aa.Price
+                    aa.BrgID, aa.Qty, aa.Harga, aa.Disok
                 FROM
-                    Pricing aa
+                    BrgPrice aa 
                 WHERE
-                    aa.BrgID = @BrgID ";
+                    BrgID = @BrgID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@BrgID", id);
+                cmd.AddParam("@BrgID", brgID);
                 conn.Open();
                 using (var dr = cmd.ExecuteReader())
                 {
                     if (dr.HasRows)
                     {
-                        dr.Read();
-                        result = new PriceTagDetailModel
-                        {
-                            BrgID = id,
-                            Price = Convert.ToDouble(dr["Price"])
-                        };
-                    }
-                }
-            }
-            return result;
-        }
-
-        public IEnumerable<PriceTagDetailModel> ListData()
-        {
-            List<PriceTagDetailModel> result = null;
-            var sSql = @"
-                SELECT
-                    aa.BrgID, aa.Price
-                FROM
-                    Pricing aa ";
-            using (var conn = new SqlConnection(_connString))
-            using (var cmd = new SqlCommand(sSql, conn))
-            {
-                conn.Open();
-                using (var dr = cmd.ExecuteReader())
-                {
-                    if (dr.HasRows)
-                    {
-                        result = new List<PriceTagDetailModel>();
+                        result = new List<BrgPriceModel>();
                         while (dr.Read())
                         {
-                            var item = new PriceTagDetailModel
+                            var item = new BrgPriceModel
                             {
                                 BrgID = dr["BrgID"].ToString(),
-                                Price = Convert.ToDouble(dr["Price"])
+                                Qty = Convert.ToInt16(dr["Qty"]),
+                                Harga = Convert.ToDouble(dr["Harga"]),
+                                Diskon = Convert.ToDouble(dr["Diskon"])
                             };
                             result.Add(item);
                         }

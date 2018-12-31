@@ -71,8 +71,7 @@
     <Build Include="StokBarang\Brg.sql" />
     <Build Include="StokBarang\BrgPhoto.sql" />
     <Build Include="StokBarang\SubJenisBrg.sql" />
-    <Build Include="Penjualan\PriceTagDetail.sql" />
-    <Build Include="Penjualan\PriceTag.sql" />
+    <Build Include="Penjualan\BrgPrice.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AnugerahDevelopment.publish.xml" />

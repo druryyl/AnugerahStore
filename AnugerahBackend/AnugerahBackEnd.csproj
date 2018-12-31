@@ -47,11 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Penjualan\BL\PricingBL.cs" />
-    <Compile Include="Penjualan\Dal\PriceTagDal.cs" />
-    <Compile Include="Penjualan\Dal\PricingDal.cs" />
-    <Compile Include="Penjualan\Model\PriceTagDetailModel.cs" />
-    <Compile Include="Penjualan\Model\PriceTagModel.cs" />
+    <Compile Include="Penjualan\Dal\BrgPriceDal.cs" />
+    <Compile Include="Penjualan\Model\BrgPriceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StokBarang\BL\BrgBL.cs" />
     <Compile Include="StokBarang\BL\ColorBL.cs" />
@@ -78,6 +75,8 @@
     <Compile Include="Support\Dal\UserrDal.cs" />
     <Compile Include="Support\Model\UserrModel.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Penjualan\BL\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
