@@ -20,6 +20,7 @@ namespace AnugerahBackend.StokBarang.BL
         BrgModel GetData(string id);
 
         IEnumerable<BrgModel> ListData();
+        IEnumerable<BrgModel> ListData(string jenisID, string subID, string merkID, string colorID);
         IEnumerable<BrgModel> ListData(SubJenisBrgModel subJenisBrg);
         IEnumerable<BrgModel> ListData(string searchKeyword);
 
@@ -216,6 +217,11 @@ namespace AnugerahBackend.StokBarang.BL
                 }
             }
             return result;
+        }
+
+        public IEnumerable<BrgModel> ListData(string jenisID, string subID, string merkID, string colorID)
+        {
+            return _brgDal.ListData(jenisID, subID, merkID, colorID)
         }
     }
 }

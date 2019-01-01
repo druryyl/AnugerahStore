@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.MainSplitContainer = new ComponentFactory.Krypton.Toolkit.KryptonSplitContainer();
             this.JenisTreeView = new ComponentFactory.Krypton.Toolkit.KryptonTreeView();
             this.BrgSplitContainer = new ComponentFactory.Krypton.Toolkit.KryptonSplitContainer();
@@ -99,6 +99,7 @@
             this.JenisTreeView.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.ProfessionalOffice2003;
             this.JenisTreeView.Size = new System.Drawing.Size(225, 557);
             this.JenisTreeView.TabIndex = 0;
+            this.JenisTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.JenisTreeView_AfterSelect);
             // 
             // BrgSplitContainer
             // 
@@ -142,8 +143,8 @@
             // 
             // BrgKodeCol
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.BrgKodeCol.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.BrgKodeCol.DefaultCellStyle = dataGridViewCellStyle6;
             this.BrgKodeCol.HeaderText = "Kode";
             this.BrgKodeCol.Name = "BrgKodeCol";
             this.BrgKodeCol.ReadOnly = true;
