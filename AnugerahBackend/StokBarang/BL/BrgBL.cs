@@ -221,7 +221,7 @@ namespace AnugerahBackend.StokBarang.BL
 
         public IEnumerable<BrgModel> ListData(string jenisID, string subID, string merkID, string colorID)
         {
-            return _brgDal.ListData(jenisID, subID, merkID, colorID)
+            return _brgDal.ListData(jenisID, subID, merkID, colorID);
         }
     }
 }

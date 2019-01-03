@@ -21,6 +21,8 @@ namespace AnugerahBackend.StokBarang.Dal
         IEnumerable<BrgModel> ListData();
         IEnumerable<BrgModel> ListData(SubJenisBrgModel subJenisBrg);
         IEnumerable<BrgModel> ListData(string keywordSearch);
+        IEnumerable<BrgModel> ListData(string jenisID, string subID, string merkID, string colorID);
+
         IEnumerable<string> ListKemasan();
         IEnumerable<BrgJenisFlatModel> ListGrouping();
     }
@@ -337,6 +339,96 @@ namespace AnugerahBackend.StokBarang.Dal
                 }
             }
             return result; ;
+        }
+
+        public IEnumerable<BrgModel> ListData(string jenisBrgID, string subID, string merkID, string colorID)
+        {
+            const string NO_ID = "X";
+
+            List<BrgModel> result = null;
+            var sSql = @"
+                SELECT
+                    aa.BrgID, aa.BrgName, aa.Keterangan,
+                    aa.SubJenisBrgID, aa.MerkID, aa.ColorID,
+                    aa.Kemasan, 
+                    aa.CreateTimestamp, aa.UpdateTimestamp,
+                    ISNULL(bb.SubJenisBrgName, '') SubJenisBrgName,
+                    ISNULL(cc.MerkName, '') MerkName,
+                    ISNULL(bb.JenisBrgID, '') JenisBrgID,
+                    ISNULL(dd.JenisBrgName, '') JenisBrgName
+                FROM
+                    Brg aa
+                    LEFT JOIN SubJenisBrg bb ON aa.SubJenisBrgID = bb.SubJenisBrgID
+                    LEFT JOIN Merk cc ON aa.MerkID = cc.MerkID 
+                    LEFT JOIN JenisBrg dd ON bb.JenisBrgID = dd.JenisBrgID 
+                WHERE
+                    dd.JenisBrgID = @JenisBrgID ";
+            
+            if(subID.Trim() != "")
+                sSql += @" 
+                    AND aa.SubJenisBrgID = @SubJenisBrgID ";
+
+            if(merkID.Trim() != "")
+                sSql += @"
+                    AND aa.MerkID = @MerkID ";
+
+            if(colorID.Trim() != "")
+                sSql += @"
+                    AND aa.ColorID = @ColorID ";
+
+            using (var conn = new SqlConnection(_connString))
+            using (var cmd = new SqlCommand(sSql, conn))
+            {
+                cmd.AddParam("@JenisBrgID", jenisBrgID);
+
+                if (subID.Trim() != "")
+                    cmd.AddParam("@SubJenisBrgID", subID);
+                
+                if(merkID.Trim() != "")
+                {
+                    if (merkID == NO_ID) merkID = "";
+                    cmd.AddParam("@MerkID", merkID);
+                }
+
+                if (colorID.Trim() != "")
+                {
+                    if (colorID == NO_ID) colorID = "";
+                    cmd.AddParam("@ColorID", colorID);
+                }
+
+                conn.Open();
+                using (var dr = cmd.ExecuteReader())
+                {
+                    if (dr.HasRows)
+                    {
+                        result = new List<BrgModel>();
+                        while (dr.Read())
+                        {
+                            var item = new BrgModel
+                            {
+                                BrgID = dr["BrgID"].ToString(),
+                                BrgName = dr["BrgName"].ToString(),
+                                Keterangan = dr["Keterangan"].ToString(),
+                                SubJenisBrgID = dr["SubJenisBrgID"].ToString(),
+                                SubJenisBrgName = dr["SubJenisBrgName"].ToString(),
+                                MerkID = dr["MerkID"].ToString(),
+                                MerkName = dr["MerkName"].ToString(),
+                                ColorID = dr["ColorID"].ToString(),
+                                JenisBrgID = dr["JenisBrgID"].ToString(),
+                                JenisBrgName = dr["JenisBrgName"].ToString(),
+                                Kemasan = dr["Kemasan"].ToString(),
+
+                                CreateTimestamp = Convert.ToDateTime(dr["CreateTimestamp"]),
+                                UpdateTimestamp = Convert.ToDateTime(dr["UpdateTimestamp"])
+                            };
+                            result.Add(item);
+                        }
+                    }
+                }
+            }
+            return result;
+
+            return result;
         }
     }
 }

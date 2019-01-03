@@ -132,5 +132,10 @@ namespace AnugerahWinform.Penjualan
             var listBrg = _brgBL.ListData(jenisID, subID, merkID, colorID);
 
         }
+
+        private void FillGridBrg(IEnumerable<BrgModel> listBrg)
+        {
+
+        }
     }
 }

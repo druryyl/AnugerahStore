@@ -14,4 +14,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="PriceTagID" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="3af0dd92-6716-4b06-b4f1-5416aa757521" ChangeDateTime="01/02/2019 14:43:23">
+    <Property Name="ElementName" Value="[dbo].[Brg].[IX_Brg_SubJenisBrgID_MerkID_ColorID (SubJenisBrgID, MerkID, ColorID)]" />
+    <Property Name="ElementType" Value="SqlIndex" />
+    <Property Name="ParentElementName" Value="[dbo].[Brg]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[IX_Brg_SubJenisBrgID_MerkID_ColorID]" />
+  </Operation>
 </Operations>

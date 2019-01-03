@@ -13,3 +13,10 @@
 
 	CONSTRAINT PK_Brg_BrgID PRIMARY KEY CLUSTERED (BrgID)
 )
+
+GO
+
+CREATE INDEX IX_Brg_SubJenisBrgID_MerkID_ColorID
+	ON Brg  (SubJenisBrgID, MerkID, ColorID)
+		WITH(FILLFACTOR=80)
+GO
