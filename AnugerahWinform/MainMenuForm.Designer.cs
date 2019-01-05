@@ -146,6 +146,7 @@
             this.SellingButton.Name = "SellingButton";
             this.SellingButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("SellingButton.SmallImage")));
             this.SellingButton.Text = "Selling";
+            this.SellingButton.Click += new System.EventHandler(this.SellingButton_Click);
             // 
             // PreOrderButton
             // 

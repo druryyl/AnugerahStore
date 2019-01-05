@@ -81,6 +81,12 @@
     <Compile Include="Penjualan\KryotonTestForm.Designer.cs">
       <DependentUpon>KryotonTestForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Penjualan\PenjualanForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Penjualan\PenjualanForm.Designer.cs">
+      <DependentUpon>PenjualanForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Penjualan\PricingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,11 +143,20 @@
     <Compile Include="StokBarang\TipeBrgListForm.Designer.cs">
       <DependentUpon>TipeBrgListForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Support\SearchingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Support\SearchingForm.Designer.cs">
+      <DependentUpon>SearchingForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="MainMenuForm.resx">
       <DependentUpon>MainMenuForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Penjualan\KryotonTestForm.resx">
       <DependentUpon>KryotonTestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Penjualan\PenjualanForm.resx">
+      <DependentUpon>PenjualanForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Penjualan\PricingForm.resx">
       <DependentUpon>PricingForm.cs</DependentUpon>
@@ -179,6 +194,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StokBarang\TipeBrgListForm.resx">
       <DependentUpon>TipeBrgListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Support\SearchingForm.resx">
+      <DependentUpon>SearchingForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -80,5 +80,15 @@ namespace AnugerahWinform
             };
             form.Show();
         }
+
+        private void SellingButton_Click(object sender, EventArgs e)
+        {
+            var form = new PenjualanForm
+            {
+                MdiParent = this,
+                StartPosition = FormStartPosition.CenterParent
+            };
+            form.Show();
+        }
     }
 }

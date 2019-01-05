@@ -231,7 +231,7 @@ namespace AnugerahWinform.Penjualan
                     tempString += string.Format(" - {0:n0}", item.Diskon);
 
                 stringPriceFlat += tempString;
-                stringPriceFlat += "  ";
+                stringPriceFlat += " ֍֍֍ ";
             }
             currentRow.Cells["BrgPriceCol"].Value = stringPriceFlat;
         }
