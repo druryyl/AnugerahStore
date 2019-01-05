@@ -29,26 +29,33 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.MainSplitContainer = new ComponentFactory.Krypton.Toolkit.KryptonSplitContainer();
+            this.PrgBar = new System.Windows.Forms.ProgressBar();
+            this.LoadJenisBrgTreeView = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.JenisTreeView = new ComponentFactory.Krypton.Toolkit.KryptonTreeView();
             this.BrgSplitContainer = new ComponentFactory.Krypton.Toolkit.KryptonSplitContainer();
             this.BrgGrid = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
-            this.BrgKodeCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BrgNamaCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BrgJenisCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BrgMerkCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BrgColorCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BrgPriceCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PriceSplitContainer = new ComponentFactory.Krypton.Toolkit.KryptonSplitContainer();
             this.PriceGrid = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
-            this.PriceQtyCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PriceHargaCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PriceDiskonCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExitButton = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.DeleteButton = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.SaveButton = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.PasteButton = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.CopyButton = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.PriceQtyCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PriceHargaCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PriceDiskonCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BrgKodeCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BrgNamaCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BrgJenisCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubJenisCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BrgMerkCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BrgColorCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BrgPriceCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.MainSplitContainer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainSplitContainer.Panel1)).BeginInit();
             this.MainSplitContainer.Panel1.SuspendLayout();
@@ -81,23 +88,45 @@
             // 
             // MainSplitContainer.Panel1
             // 
+            this.MainSplitContainer.Panel1.Controls.Add(this.PrgBar);
+            this.MainSplitContainer.Panel1.Controls.Add(this.LoadJenisBrgTreeView);
             this.MainSplitContainer.Panel1.Controls.Add(this.JenisTreeView);
             // 
             // MainSplitContainer.Panel2
             // 
             this.MainSplitContainer.Panel2.Controls.Add(this.BrgSplitContainer);
             this.MainSplitContainer.SeparatorStyle = ComponentFactory.Krypton.Toolkit.SeparatorStyle.HighProfile;
-            this.MainSplitContainer.Size = new System.Drawing.Size(969, 557);
+            this.MainSplitContainer.Size = new System.Drawing.Size(1066, 557);
             this.MainSplitContainer.SplitterDistance = 225;
             this.MainSplitContainer.TabIndex = 0;
             // 
+            // PrgBar
+            // 
+            this.PrgBar.Location = new System.Drawing.Point(3, 519);
+            this.PrgBar.Name = "PrgBar";
+            this.PrgBar.Size = new System.Drawing.Size(219, 10);
+            this.PrgBar.TabIndex = 6;
+            this.PrgBar.Visible = false;
+            // 
+            // LoadJenisBrgTreeView
+            // 
+            this.LoadJenisBrgTreeView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LoadJenisBrgTreeView.Location = new System.Drawing.Point(3, 529);
+            this.LoadJenisBrgTreeView.Name = "LoadJenisBrgTreeView";
+            this.LoadJenisBrgTreeView.Size = new System.Drawing.Size(219, 25);
+            this.LoadJenisBrgTreeView.TabIndex = 5;
+            this.LoadJenisBrgTreeView.Values.Text = "Load Data";
+            this.LoadJenisBrgTreeView.Click += new System.EventHandler(this.LoadJenisBrgTreeView_Click);
+            // 
             // JenisTreeView
             // 
-            this.JenisTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.JenisTreeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.JenisTreeView.Location = new System.Drawing.Point(0, 0);
             this.JenisTreeView.Name = "JenisTreeView";
-            this.JenisTreeView.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.ProfessionalOffice2003;
-            this.JenisTreeView.Size = new System.Drawing.Size(225, 557);
+            this.JenisTreeView.Size = new System.Drawing.Size(225, 513);
             this.JenisTreeView.TabIndex = 0;
             this.JenisTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.JenisTreeView_AfterSelect);
             // 
@@ -118,7 +147,7 @@
             // 
             this.BrgSplitContainer.Panel2.Controls.Add(this.PriceSplitContainer);
             this.BrgSplitContainer.SeparatorStyle = ComponentFactory.Krypton.Toolkit.SeparatorStyle.HighProfile;
-            this.BrgSplitContainer.Size = new System.Drawing.Size(739, 557);
+            this.BrgSplitContainer.Size = new System.Drawing.Size(836, 557);
             this.BrgSplitContainer.SplitterDistance = 372;
             this.BrgSplitContainer.TabIndex = 0;
             // 
@@ -131,6 +160,7 @@
             this.BrgKodeCol,
             this.BrgNamaCol,
             this.BrgJenisCol,
+            this.SubJenisCol,
             this.BrgMerkCol,
             this.BrgColorCol,
             this.BrgPriceCol});
@@ -138,50 +168,9 @@
             this.BrgGrid.Location = new System.Drawing.Point(0, 0);
             this.BrgGrid.Name = "BrgGrid";
             this.BrgGrid.ReadOnly = true;
-            this.BrgGrid.Size = new System.Drawing.Size(739, 372);
+            this.BrgGrid.Size = new System.Drawing.Size(836, 372);
             this.BrgGrid.TabIndex = 0;
-            // 
-            // BrgKodeCol
-            // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.BrgKodeCol.DefaultCellStyle = dataGridViewCellStyle6;
-            this.BrgKodeCol.HeaderText = "Kode";
-            this.BrgKodeCol.Name = "BrgKodeCol";
-            this.BrgKodeCol.ReadOnly = true;
-            this.BrgKodeCol.Width = 50;
-            // 
-            // BrgNamaCol
-            // 
-            this.BrgNamaCol.HeaderText = "Nama Brg";
-            this.BrgNamaCol.Name = "BrgNamaCol";
-            this.BrgNamaCol.ReadOnly = true;
-            this.BrgNamaCol.Width = 200;
-            // 
-            // BrgJenisCol
-            // 
-            this.BrgJenisCol.HeaderText = "Jenis";
-            this.BrgJenisCol.Name = "BrgJenisCol";
-            this.BrgJenisCol.ReadOnly = true;
-            this.BrgJenisCol.Width = 150;
-            // 
-            // BrgMerkCol
-            // 
-            this.BrgMerkCol.HeaderText = "Merk";
-            this.BrgMerkCol.Name = "BrgMerkCol";
-            this.BrgMerkCol.ReadOnly = true;
-            // 
-            // BrgColorCol
-            // 
-            this.BrgColorCol.HeaderText = "Color";
-            this.BrgColorCol.Name = "BrgColorCol";
-            this.BrgColorCol.ReadOnly = true;
-            this.BrgColorCol.Width = 80;
-            // 
-            // BrgPriceCol
-            // 
-            this.BrgPriceCol.HeaderText = "Price";
-            this.BrgPriceCol.Name = "BrgPriceCol";
-            this.BrgPriceCol.ReadOnly = true;
+            this.BrgGrid.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.BrgGrid_RowEnter);
             // 
             // PriceSplitContainer
             // 
@@ -202,8 +191,8 @@
             this.PriceSplitContainer.Panel2.Controls.Add(this.SaveButton);
             this.PriceSplitContainer.Panel2.Controls.Add(this.PasteButton);
             this.PriceSplitContainer.Panel2.Controls.Add(this.CopyButton);
-            this.PriceSplitContainer.Size = new System.Drawing.Size(739, 180);
-            this.PriceSplitContainer.SplitterDistance = 568;
+            this.PriceSplitContainer.Size = new System.Drawing.Size(836, 180);
+            this.PriceSplitContainer.SplitterDistance = 665;
             this.PriceSplitContainer.TabIndex = 0;
             // 
             // PriceGrid
@@ -216,23 +205,8 @@
             this.PriceGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PriceGrid.Location = new System.Drawing.Point(0, 0);
             this.PriceGrid.Name = "PriceGrid";
-            this.PriceGrid.Size = new System.Drawing.Size(568, 180);
+            this.PriceGrid.Size = new System.Drawing.Size(665, 180);
             this.PriceGrid.TabIndex = 0;
-            // 
-            // PriceQtyCol
-            // 
-            this.PriceQtyCol.HeaderText = "Min Qty";
-            this.PriceQtyCol.Name = "PriceQtyCol";
-            // 
-            // PriceHargaCol
-            // 
-            this.PriceHargaCol.HeaderText = "Harga";
-            this.PriceHargaCol.Name = "PriceHargaCol";
-            // 
-            // PriceDiskonCol
-            // 
-            this.PriceDiskonCol.HeaderText = "Diskon";
-            this.PriceDiskonCol.Name = "PriceDiskonCol";
             // 
             // ExitButton
             // 
@@ -263,6 +237,7 @@
             this.SaveButton.Size = new System.Drawing.Size(160, 25);
             this.SaveButton.TabIndex = 2;
             this.SaveButton.Values.Text = "Save";
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // PasteButton
             // 
@@ -283,12 +258,95 @@
             this.CopyButton.Size = new System.Drawing.Size(160, 25);
             this.CopyButton.TabIndex = 0;
             this.CopyButton.Values.Text = "Copy";
+            this.CopyButton.Click += new System.EventHandler(this.CopyButton_Click);
+            // 
+            // PriceQtyCol
+            // 
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.Format = "N0";
+            dataGridViewCellStyle6.NullValue = null;
+            this.PriceQtyCol.DefaultCellStyle = dataGridViewCellStyle6;
+            this.PriceQtyCol.HeaderText = "Min Qty";
+            this.PriceQtyCol.Name = "PriceQtyCol";
+            // 
+            // PriceHargaCol
+            // 
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.Format = "N0";
+            dataGridViewCellStyle7.NullValue = null;
+            this.PriceHargaCol.DefaultCellStyle = dataGridViewCellStyle7;
+            this.PriceHargaCol.HeaderText = "Harga";
+            this.PriceHargaCol.Name = "PriceHargaCol";
+            // 
+            // PriceDiskonCol
+            // 
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.Format = "N2";
+            dataGridViewCellStyle8.NullValue = null;
+            this.PriceDiskonCol.DefaultCellStyle = dataGridViewCellStyle8;
+            this.PriceDiskonCol.HeaderText = "Diskon";
+            this.PriceDiskonCol.Name = "PriceDiskonCol";
+            // 
+            // BrgKodeCol
+            // 
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.BrgKodeCol.DefaultCellStyle = dataGridViewCellStyle9;
+            this.BrgKodeCol.HeaderText = "Kode";
+            this.BrgKodeCol.Name = "BrgKodeCol";
+            this.BrgKodeCol.ReadOnly = true;
+            this.BrgKodeCol.Width = 50;
+            // 
+            // BrgNamaCol
+            // 
+            this.BrgNamaCol.HeaderText = "Nama Brg";
+            this.BrgNamaCol.Name = "BrgNamaCol";
+            this.BrgNamaCol.ReadOnly = true;
+            this.BrgNamaCol.Width = 200;
+            // 
+            // BrgJenisCol
+            // 
+            this.BrgJenisCol.HeaderText = "Jenis";
+            this.BrgJenisCol.Name = "BrgJenisCol";
+            this.BrgJenisCol.ReadOnly = true;
+            this.BrgJenisCol.Width = 150;
+            // 
+            // SubJenisCol
+            // 
+            this.SubJenisCol.HeaderText = "Sub Jenis";
+            this.SubJenisCol.Name = "SubJenisCol";
+            this.SubJenisCol.ReadOnly = true;
+            // 
+            // BrgMerkCol
+            // 
+            this.BrgMerkCol.HeaderText = "Merk";
+            this.BrgMerkCol.Name = "BrgMerkCol";
+            this.BrgMerkCol.ReadOnly = true;
+            // 
+            // BrgColorCol
+            // 
+            this.BrgColorCol.HeaderText = "Color";
+            this.BrgColorCol.Name = "BrgColorCol";
+            this.BrgColorCol.ReadOnly = true;
+            this.BrgColorCol.Width = 80;
+            // 
+            // BrgPriceCol
+            // 
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.BrgPriceCol.DefaultCellStyle = dataGridViewCellStyle10;
+            this.BrgPriceCol.HeaderText = "Price";
+            this.BrgPriceCol.Name = "BrgPriceCol";
+            this.BrgPriceCol.ReadOnly = true;
+            this.BrgPriceCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // PricingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(969, 557);
+            this.ClientSize = new System.Drawing.Size(1066, 557);
             this.Controls.Add(this.MainSplitContainer);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "PricingForm";
@@ -330,14 +388,17 @@
         private ComponentFactory.Krypton.Toolkit.KryptonButton SaveButton;
         private ComponentFactory.Krypton.Toolkit.KryptonButton PasteButton;
         private ComponentFactory.Krypton.Toolkit.KryptonButton CopyButton;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BrgKodeCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BrgNamaCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BrgJenisCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BrgMerkCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BrgColorCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BrgPriceCol;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton LoadJenisBrgTreeView;
+        private System.Windows.Forms.ProgressBar PrgBar;
         private System.Windows.Forms.DataGridViewTextBoxColumn PriceQtyCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn PriceHargaCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn PriceDiskonCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BrgKodeCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BrgNamaCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BrgJenisCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SubJenisCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BrgMerkCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BrgColorCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BrgPriceCol;
     }
 }

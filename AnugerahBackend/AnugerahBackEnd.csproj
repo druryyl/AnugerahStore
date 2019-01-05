@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Penjualan\BL\BrgPriceBL.cs" />
     <Compile Include="Penjualan\Dal\BrgPriceDal.cs" />
     <Compile Include="Penjualan\Model\BrgPriceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -75,8 +76,6 @@
     <Compile Include="Support\Dal\UserrDal.cs" />
     <Compile Include="Support\Model\UserrModel.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Penjualan\BL\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

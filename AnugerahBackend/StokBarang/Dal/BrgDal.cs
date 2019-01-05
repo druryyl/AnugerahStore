@@ -386,13 +386,13 @@ namespace AnugerahBackend.StokBarang.Dal
                 
                 if(merkID.Trim() != "")
                 {
-                    if (merkID == NO_ID) merkID = "";
+                    if (merkID.ToUpper() == NO_ID.ToUpper()) merkID = "";
                     cmd.AddParam("@MerkID", merkID);
                 }
 
                 if (colorID.Trim() != "")
                 {
-                    if (colorID == NO_ID) colorID = "";
+                    if (colorID.ToUpper() == NO_ID.ToUpper()) colorID = "";
                     cmd.AddParam("@ColorID", colorID);
                 }
 

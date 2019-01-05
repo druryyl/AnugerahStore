@@ -12,8 +12,7 @@ namespace AnugerahBackend.Penjualan.Dal
 {
     public interface IBrgPriceDal
     {
-        void Insert(BrgPriceModel brgPrice);
-        void Update(BrgPriceModel brgPrice);
+        void Insert(string brgID, BrgPriceModel brgPrice);
         void Delete(string brgID);
         IEnumerable<BrgPriceModel> ListData(string brgID);
     }
@@ -28,7 +27,7 @@ namespace AnugerahBackend.Penjualan.Dal
             _connString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
         }
 
-        public void Insert(BrgPriceModel brgPrice)
+        public void Insert(string brgID, BrgPriceModel brgPrice)
         {
             var sSql = @"
                 INSERT INTO
@@ -39,30 +38,7 @@ namespace AnugerahBackend.Penjualan.Dal
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@BrgID", brgPrice.BrgID);
-                cmd.AddParam("@Qty", brgPrice.Qty);
-                cmd.AddParam("@Harga", brgPrice.Harga);
-                cmd.AddParam("@Diskon", brgPrice.Diskon);
-                conn.Open();
-                cmd.ExecuteNonQuery();
-            }
-        }
-
-        public void Update(BrgPriceModel brgPrice)
-        {
-            var sSql = @"
-                UPDATE
-                    BrgPrice 
-                SET
-                    Qty = @Qty,
-                    Harga = @Harga,
-                    Dikson = @Diskon
-                WHERE
-                    BrgID = @BrgID ";
-            using (var conn = new SqlConnection(_connString))
-            using (var cmd = new SqlCommand(sSql, conn))
-            {
-                cmd.AddParam("@BrgID", brgPrice.BrgID);
+                cmd.AddParam("@BrgID", brgID);
                 cmd.AddParam("@Qty", brgPrice.Qty);
                 cmd.AddParam("@Harga", brgPrice.Harga);
                 cmd.AddParam("@Diskon", brgPrice.Diskon);
@@ -82,6 +58,8 @@ namespace AnugerahBackend.Penjualan.Dal
             using (var cmd = new SqlCommand(sSql, conn))
             {
                 cmd.AddParam("@BrgID", id);
+                conn.Open();
+                cmd.ExecuteNonQuery();
             }
         }
 
@@ -90,7 +68,7 @@ namespace AnugerahBackend.Penjualan.Dal
             List<BrgPriceModel> result = null;
             var sSql = @"
                 SELECT
-                    aa.BrgID, aa.Qty, aa.Harga, aa.Disok
+                    aa.BrgID, aa.Qty, aa.Harga, aa.Diskon
                 FROM
                     BrgPrice aa 
                 WHERE
