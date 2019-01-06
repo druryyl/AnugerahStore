@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace AnugerahBackend.StokBarang.BL
 {
 
-    public interface IBrgBL
+    public interface IBrgBL : ISearchData<BrgSearchResultModel>
     {
         BrgModel Save(BrgModel brg);
 
@@ -30,7 +30,7 @@ namespace AnugerahBackend.StokBarang.BL
         BrgModel TryValidate(BrgModel brg);
     }
 
-    public class BrgBL : IBrgBL, ISearchData<BrgSearchResultModel>
+    public class BrgBL : IBrgBL
     {
         private IBrgDal _brgDal;
         private ISubJenisBrgBL _subJenisBrgBL;
@@ -228,6 +228,7 @@ namespace AnugerahBackend.StokBarang.BL
         public IEnumerable<BrgSearchResultModel> Search(string keyword)
         {
             var result = _brgDal.Search(keyword);
+            return result;
         }
     }
 }

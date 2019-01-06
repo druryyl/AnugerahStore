@@ -444,16 +444,51 @@ namespace AnugerahBackend.StokBarang.Dal
                     BrgID, BrgName
                 FROM
                     Brg
-                WHERE
-                    ";
-            var whereClause = "";
+                WHERE ";
 
-            foreach (string word in words)
+            if (words.Count() >= 1)
+                sSql += @" BrgName LIKE @BrgName1 ";
+            if (words.Count() >= 2)
+                sSql += @" AND BrgName LIKE @BrgName2 ";
+            if (words.Count() >= 3)
+                sSql += @" AND BrgName LIKE @BrgName3 ";
+            if (words.Count() >= 4)
+                sSql += @" AND BrgName LIKE @BrgName4 ";
+            if (words.Count() >= 5)
+                sSql += @" AND BrgName LIKE @BrgName5 ";
+
+            using (var conn = new SqlConnection(_connString))
+            using (var cmd = new SqlCommand(sSql, conn))
             {
-                whereClause += " BrgName LIKE @
+                if (words.Count() >= 1)
+                    cmd.AddParam("@BrgName1", "%" + words[0] + "%");
+                if (words.Count() >= 2)
+                    cmd.AddParam("@BrgName2", "%" + words[1] + "%");
+                if (words.Count() >= 3)
+                    cmd.AddParam("@BrgName3", "%" + words[2] + "%");
+                if (words.Count() >= 4)
+                    cmd.AddParam("@BrgName4", "%" + words[3] + "%");
+                if (words.Count() >= 5)
+                    cmd.AddParam("@BrgName5", "%" + words[4] + "%");
+
+                conn.Open();
+                using(var dr = cmd.ExecuteReader())
+                {
+                    if (dr.HasRows)
+                    {
+                        result = new List<BrgSearchResultModel>();
+                        while (dr.Read())
+                        {
+                            var item = new BrgSearchResultModel
+                            {
+                                BrgID = dr["BrgID"].ToString(),
+                                BrgName = dr["BrgName"].ToString()
+                            };
+                            result.Add(item);
+                        }
+                    }
+                }
             }
-
-
             return result;
         }
     }

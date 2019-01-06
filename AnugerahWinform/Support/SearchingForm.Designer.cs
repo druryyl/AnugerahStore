@@ -53,7 +53,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.ListDataGrid);
-            this.splitContainer1.Size = new System.Drawing.Size(637, 492);
+            this.splitContainer1.Size = new System.Drawing.Size(455, 492);
             this.splitContainer1.SplitterDistance = 25;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -62,8 +62,9 @@
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox1.Location = new System.Drawing.Point(0, 0);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(637, 21);
+            this.textBox1.Size = new System.Drawing.Size(455, 21);
             this.textBox1.TabIndex = 0;
+            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
             // ListDataGrid
             // 
@@ -72,18 +73,21 @@
             this.ListDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ListDataGrid.Location = new System.Drawing.Point(0, 0);
             this.ListDataGrid.Name = "ListDataGrid";
-            this.ListDataGrid.Size = new System.Drawing.Size(637, 463);
+            this.ListDataGrid.Size = new System.Drawing.Size(455, 463);
             this.ListDataGrid.TabIndex = 0;
             // 
             // SearchingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(637, 492);
+            this.ClientSize = new System.Drawing.Size(455, 492);
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "SearchingForm";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SearchingForm";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();

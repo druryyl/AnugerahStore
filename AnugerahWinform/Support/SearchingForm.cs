@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AnugerahBackend.Support;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,15 +13,20 @@ namespace AnugerahWinform.Support
 {
     public partial class SearchingForm<T> : Form
     {
-        public IEnumerable<T> ListData;
-
-        public SearchingForm(IEnumerable<T> listData)
+        ISearchData<T> _searchBL;
+        public SearchingForm(ISearchData<T> _injSearchBL)
         {
             InitializeComponent();
-            ListData = listData;
-            ListDataGrid.DataSource = ListData;
+            _searchBL = _injSearchBL;
+        }
 
-            ListDataGrid.AutoResizeColumn(1);
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                var listData = _searchBL.Search(textBox1.Text);
+                ListDataGrid.DataSource = listData;
+            }
         }
     }
 }
