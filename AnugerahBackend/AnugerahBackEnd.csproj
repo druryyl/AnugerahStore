@@ -71,6 +71,7 @@
     <Compile Include="StokBarang\Model\TipeBrgModel.cs" />
     <Compile Include="Support\BL\ParameterNoBL.cs" />
     <Compile Include="Support\Dal\ParameterNoDal.cs" />
+    <Compile Include="Support\ISearchData.cs" />
     <Compile Include="Support\Model\ParameterNoModel.cs" />
     <Compile Include="Support\BL\UserrBL.cs" />
     <Compile Include="Support\Dal\UserrDal.cs" />

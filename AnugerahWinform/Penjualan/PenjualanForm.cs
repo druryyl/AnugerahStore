@@ -1,4 +1,7 @@
-﻿using System;
+﻿using AnugerahBackend.StokBarang.BL;
+using AnugerahBackend.StokBarang.Model;
+using AnugerahWinform.Support;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +15,20 @@ namespace AnugerahWinform.Penjualan
 {
     public partial class PenjualanForm : Form
     {
+        IBrgBL _brgBL;
         public PenjualanForm()
         {
             InitializeComponent();
+
+            _brgBL = new BrgBL();
+        }
+
+        private void newButton_Click(object sender, EventArgs e)
+        {
+            var listBarang = _brgBL.ListData(textBox1.Text);
+
+            var searchForm = new SearchingForm<BrgModel>(listBarang);
+            searchForm.ShowDialog();
         }
     }
 }

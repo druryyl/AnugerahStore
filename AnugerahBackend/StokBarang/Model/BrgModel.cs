@@ -80,4 +80,10 @@ namespace AnugerahBackend.StokBarang.Model
         public int GreenValue { get;set; }
         public int BlueValue { get; set; }
     }
+
+    public class BrgSearchResultModel
+    {
+        public string BrgID { get; set; }
+        public string BrgName { get; set; }
+    }
 }

@@ -18,8 +18,9 @@ namespace AnugerahWinform.Support
         {
             InitializeComponent();
             ListData = listData;
-
             ListDataGrid.DataSource = ListData;
+
+            ListDataGrid.AutoResizeColumn(1);
         }
     }
 }

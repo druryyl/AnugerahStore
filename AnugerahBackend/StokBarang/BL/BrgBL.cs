@@ -1,5 +1,6 @@
 ﻿using AnugerahBackend.StokBarang.Dal;
 using AnugerahBackend.StokBarang.Model;
+using AnugerahBackend.Support;
 using AnugerahBackend.Support.BL;
 using Ics.Helper.Database;
 using System;
@@ -29,7 +30,7 @@ namespace AnugerahBackend.StokBarang.BL
         BrgModel TryValidate(BrgModel brg);
     }
 
-    public class BrgBL : IBrgBL
+    public class BrgBL : IBrgBL, ISearchData<BrgSearchResultModel>
     {
         private IBrgDal _brgDal;
         private ISubJenisBrgBL _subJenisBrgBL;
@@ -222,6 +223,11 @@ namespace AnugerahBackend.StokBarang.BL
         public IEnumerable<BrgModel> ListData(string jenisID, string subID, string merkID, string colorID)
         {
             return _brgDal.ListData(jenisID, subID, merkID, colorID);
+        }
+
+        public IEnumerable<BrgSearchResultModel> Search(string keyword)
+        {
+            var result = _brgDal.Search(keyword);
         }
     }
 }

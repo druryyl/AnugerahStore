@@ -221,7 +221,6 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(148, 15);
             this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(142, 21);
             this.textBox1.TabIndex = 0;
             // 
@@ -268,6 +267,7 @@
             this.newButton.TabIndex = 9;
             this.newButton.Text = "New";
             this.newButton.UseVisualStyleBackColor = true;
+            this.newButton.Click += new System.EventHandler(this.newButton_Click);
             // 
             // catatanButton
             // 

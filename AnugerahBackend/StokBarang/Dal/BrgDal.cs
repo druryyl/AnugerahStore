@@ -25,6 +25,7 @@ namespace AnugerahBackend.StokBarang.Dal
 
         IEnumerable<string> ListKemasan();
         IEnumerable<BrgJenisFlatModel> ListGrouping();
+        IEnumerable<BrgSearchResultModel> Search(string keyword);
     }
 
     public class BrgDal : IBrgDal
@@ -427,6 +428,31 @@ namespace AnugerahBackend.StokBarang.Dal
                 }
             }
             return result;
+
+            return result;
+        }
+
+        public IEnumerable<BrgSearchResultModel> Search(string keyword)
+        {
+            List<BrgSearchResultModel> result = null;
+            if (keyword.Trim() == "") return null;
+
+            string[] words = keyword.Split(' ');
+            
+            var sSql = @" 
+                SELECT 
+                    BrgID, BrgName
+                FROM
+                    Brg
+                WHERE
+                    ";
+            var whereClause = "";
+
+            foreach (string word in words)
+            {
+                whereClause += " BrgName LIKE @
+            }
+
 
             return result;
         }
