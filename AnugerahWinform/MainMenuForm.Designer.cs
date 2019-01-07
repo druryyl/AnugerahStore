@@ -191,6 +191,7 @@
             this.Adjustment.Name = "Adjustment";
             this.Adjustment.SmallImage = ((System.Drawing.Image)(resources.GetObject("Adjustment.SmallImage")));
             this.Adjustment.Text = "Adjustment";
+            this.Adjustment.Click += new System.EventHandler(this.Adjustment_Click);
             // 
             // BarangPanel
             // 

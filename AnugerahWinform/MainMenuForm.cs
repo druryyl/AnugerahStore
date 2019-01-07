@@ -28,7 +28,7 @@ namespace AnugerahWinform
             var form = new BarangListForm
             {
                 MdiParent = this,
-                StartPosition = FormStartPosition.CenterParent
+                StartPosition = FormStartPosition.CenterScreen
             };
             form.Show();
         }
@@ -37,7 +37,7 @@ namespace AnugerahWinform
             var form = new JenisBrgListForm
             {
                 MdiParent = this,
-                StartPosition = FormStartPosition.CenterParent
+                StartPosition = FormStartPosition.CenterScreen
             };
             form.Show();
         }
@@ -46,7 +46,7 @@ namespace AnugerahWinform
             var form = new SubJenisBrgListForm
             {
                 MdiParent = this,
-                StartPosition = FormStartPosition.CenterParent
+                StartPosition = FormStartPosition.CenterScreen
             };
             form.Show();
         }
@@ -56,7 +56,7 @@ namespace AnugerahWinform
             var form = new ColorForm
             {
                 MdiParent = this,
-                StartPosition = FormStartPosition.CenterParent
+                StartPosition = FormStartPosition.CenterScreen
             };
             form.Show();
         }
@@ -66,7 +66,7 @@ namespace AnugerahWinform
             var form = new PricingForm
             {
                 MdiParent = this,
-                StartPosition = FormStartPosition.CenterParent
+                StartPosition = FormStartPosition.CenterScreen
             };
             form.Show();
         }
@@ -86,7 +86,17 @@ namespace AnugerahWinform
             var form = new PenjualanForm
             {
                 MdiParent = this,
-                StartPosition = FormStartPosition.CenterParent
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            form.Show();
+        }
+
+        private void Adjustment_Click(object sender, EventArgs e)
+        {
+            var form = new StokAdjustmentForm
+            {
+                MdiParent = this,
+                StartPosition = FormStartPosition.CenterScreen
             };
             form.Show();
         }
