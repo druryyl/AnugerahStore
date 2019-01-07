@@ -337,6 +337,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::AnugerahWinform.Properties.Resources.anugerah_sps;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(1109, 731);
             this.Controls.Add(this.ribbon1);
@@ -344,7 +345,7 @@
             this.IsMdiContainer = true;
             this.KeyPreview = true;
             this.Name = "MainMenuForm";
-            this.Text = "MyHospital - Asset Management";
+            this.Text = "Anugerah SPS";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MainMenuForm_Load);
             this.ResumeLayout(false);
