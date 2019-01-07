@@ -95,11 +95,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StokBarang\AdjustmentForm.cs">
+    <Compile Include="StokBarang\StokAdjustmentForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StokBarang\AdjustmentForm.Designer.cs">
-      <DependentUpon>AdjustmentForm.cs</DependentUpon>
+    <Compile Include="StokBarang\StokAdjustmentForm.Designer.cs">
+      <DependentUpon>StokAdjustmentForm.cs</DependentUpon>
     </Compile>
     <Compile Include="StokBarang\BarangListForm.cs">
       <SubType>Form</SubType>
@@ -177,8 +177,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="StokBarang\AdjustmentForm.resx">
-      <DependentUpon>AdjustmentForm.cs</DependentUpon>
+    <EmbeddedResource Include="StokBarang\StokAdjustmentForm.resx">
+      <DependentUpon>StokAdjustmentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StokBarang\BarangListForm.resx">
       <DependentUpon>BarangListForm.cs</DependentUpon>

@@ -1,6 +1,6 @@
 ﻿namespace AnugerahWinform.StokBarang
 {
-    partial class AdjustmentForm
+    partial class StokAdjustmentForm
     {
         /// <summary>
         /// Required designer variable.
@@ -40,6 +40,12 @@
             this.newButton = new System.Windows.Forms.Button();
             this.catatanButton = new System.Windows.Forms.Label();
             this.detilBrgGrid = new System.Windows.Forms.DataGridView();
+            this.kodeBrgColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.namaBrgColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QtyAwal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QtyAdjust = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QtyAkhir = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.diskonColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.exitButton = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
@@ -49,12 +55,6 @@
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.listDataGrid = new System.Windows.Forms.DataGridView();
-            this.kodeBrgColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.namaBrgColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QtyAwal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QtyAdjust = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QtyAkhir = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.diskonColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mainTabControl.SuspendLayout();
             this.entryDataTabPage.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -196,6 +196,40 @@
             this.detilBrgGrid.Size = new System.Drawing.Size(941, 362);
             this.detilBrgGrid.TabIndex = 10;
             // 
+            // kodeBrgColumn
+            // 
+            this.kodeBrgColumn.HeaderText = "Kode";
+            this.kodeBrgColumn.Name = "kodeBrgColumn";
+            this.kodeBrgColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.kodeBrgColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // namaBrgColumn
+            // 
+            this.namaBrgColumn.HeaderText = "Nama Barang";
+            this.namaBrgColumn.Name = "namaBrgColumn";
+            this.namaBrgColumn.ReadOnly = true;
+            this.namaBrgColumn.Width = 350;
+            // 
+            // QtyAwal
+            // 
+            this.QtyAwal.HeaderText = "Qty Awal";
+            this.QtyAwal.Name = "QtyAwal";
+            // 
+            // QtyAdjust
+            // 
+            this.QtyAdjust.HeaderText = "Qty Adjust";
+            this.QtyAdjust.Name = "QtyAdjust";
+            // 
+            // QtyAkhir
+            // 
+            this.QtyAkhir.HeaderText = "Qty Akhir";
+            this.QtyAkhir.Name = "QtyAkhir";
+            // 
+            // diskonColumn
+            // 
+            this.diskonColumn.HeaderText = "HPP";
+            this.diskonColumn.Name = "diskonColumn";
+            // 
             // exitButton
             // 
             this.exitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -236,7 +270,7 @@
             this.listDataTabPage.Location = new System.Drawing.Point(4, 22);
             this.listDataTabPage.Name = "listDataTabPage";
             this.listDataTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.listDataTabPage.Size = new System.Drawing.Size(971, 553);
+            this.listDataTabPage.Size = new System.Drawing.Size(955, 514);
             this.listDataTabPage.TabIndex = 1;
             this.listDataTabPage.Text = "List Data";
             this.listDataTabPage.UseVisualStyleBackColor = true;
@@ -284,52 +318,18 @@
             this.listDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.listDataGrid.Location = new System.Drawing.Point(6, 33);
             this.listDataGrid.Name = "listDataGrid";
-            this.listDataGrid.Size = new System.Drawing.Size(961, 514);
+            this.listDataGrid.Size = new System.Drawing.Size(945, 475);
             this.listDataGrid.TabIndex = 11;
             // 
-            // kodeBrgColumn
-            // 
-            this.kodeBrgColumn.HeaderText = "Kode";
-            this.kodeBrgColumn.Name = "kodeBrgColumn";
-            this.kodeBrgColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.kodeBrgColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // namaBrgColumn
-            // 
-            this.namaBrgColumn.HeaderText = "Nama Barang";
-            this.namaBrgColumn.Name = "namaBrgColumn";
-            this.namaBrgColumn.ReadOnly = true;
-            this.namaBrgColumn.Width = 350;
-            // 
-            // QtyAwal
-            // 
-            this.QtyAwal.HeaderText = "Qty Awal";
-            this.QtyAwal.Name = "QtyAwal";
-            // 
-            // QtyAdjust
-            // 
-            this.QtyAdjust.HeaderText = "Qty Adjust";
-            this.QtyAdjust.Name = "QtyAdjust";
-            // 
-            // QtyAkhir
-            // 
-            this.QtyAkhir.HeaderText = "Qty Akhir";
-            this.QtyAkhir.Name = "QtyAkhir";
-            // 
-            // diskonColumn
-            // 
-            this.diskonColumn.HeaderText = "HPP";
-            this.diskonColumn.Name = "diskonColumn";
-            // 
-            // AdjustmentForm
+            // StokAdjustmentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(963, 540);
             this.Controls.Add(this.mainTabControl);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Name = "AdjustmentForm";
-            this.Text = "AdjustmentForm";
+            this.Name = "StokAdjustmentForm";
+            this.Text = "StokAdjustmentForm";
             this.mainTabControl.ResumeLayout(false);
             this.entryDataTabPage.ResumeLayout(false);
             this.panel1.ResumeLayout(false);

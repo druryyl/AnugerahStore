@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace AnugerahWinform.StokBarang
 {
-    public partial class AdjustmentForm : Form
+    public partial class StokAdjustmentForm : Form
     {
-        public AdjustmentForm()
+        public StokAdjustmentForm()
         {
             InitializeComponent();
         }

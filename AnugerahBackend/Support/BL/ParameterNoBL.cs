@@ -103,7 +103,7 @@ namespace AnugerahBackend.Support.BL
             {
                 newParamNo = new ParameterNoModel
                 {
-                    Prefix = "B",
+                    Prefix = prefix,
                     Value = 2
                 };
                 newNo = 1;
