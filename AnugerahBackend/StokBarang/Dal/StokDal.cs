@@ -1,5 +1,6 @@
 ﻿using AnugerahBackend.StokBarang.Model;
 using Ics.Helper.Extensions;
+using Ics.Helper.StringDateTime;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -46,15 +47,14 @@ namespace AnugerahBackend.StokBarang.Dal
             {
                 cmd.AddParam("@StokID", stok.StokID);
                 cmd.AddParam("@BrgID", stok.BrgID);
-
-                cmd.AddParam("@TglMasuk", ) 
-                cmd.AddParam("@JamMasuk", )
-                cmd.AddParam("@TrsMasukID", )
-                cmd.AddParam("@TrsDOID", )
-                cmd.AddParam("@BatchNo", )
-                cmd.AddParam("@QtyIn", )
-                cmd.AddParam("@QtySaldo", )
-                cmd.AddParam("@Hpp", )
+                cmd.AddParam("@TglMasuk", stok.TglMasuk.ToTglYMD());
+                cmd.AddParam("@JamMasuk", stok.JamMasuk);
+                cmd.AddParam("@TrsMasukID", stok.TrsMasukID);
+                cmd.AddParam("@TrsDOID", stok.TrsDOID);
+                cmd.AddParam("@BatchNo", stok.BatchNo);
+                cmd.AddParam("@QtyIn", stok.QtyIn);
+                cmd.AddParam("@QtySaldo", stok.QtySaldo);
+                cmd.AddParam("@Hpp", stok.Hpp);
 
                 cmd.ExecuteNonQuery();
             }
@@ -64,9 +64,17 @@ namespace AnugerahBackend.StokBarang.Dal
         {
             var sSql = @"
                 UPDATE
-                    Stok 
+                    Stok,
                 SET
                     BrgID = @BrgID
+                    TglMasuk = @TglMasuk, 
+                    JamMasuk = @JamMasuk, 
+                    TrsMasukID = @TrsMasukID, 
+                    TrsDOID = @TrsDOID, 
+                    BatchNo = @BatchNo, 
+                    QtyIn = @QtyIn, 
+                    QtySaldo = @QtySaldo, 
+                    Hpp = @Hpp
                 WHERE
                     StokID = @StokID ";
             using (var conn = new SqlConnection(_connString))
@@ -74,6 +82,14 @@ namespace AnugerahBackend.StokBarang.Dal
             {
                 cmd.AddParam("@StokID", stok.StokID);
                 cmd.AddParam("@BrgID", stok.BrgID);
+                cmd.AddParam("@TglMasuk", stok.TglMasuk.ToTglYMD());
+                cmd.AddParam("@JamMasuk", stok.JamMasuk);
+                cmd.AddParam("@TrsMasukID", stok.TrsMasukID);
+                cmd.AddParam("@TrsDOID", stok.TrsDOID);
+                cmd.AddParam("@BatchNo", stok.BatchNo);
+                cmd.AddParam("@QtyIn", stok.QtyIn);
+                cmd.AddParam("@QtySaldo", stok.QtySaldo);
+                cmd.AddParam("@Hpp", stok.Hpp);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -90,6 +106,8 @@ namespace AnugerahBackend.StokBarang.Dal
             using (var cmd = new SqlCommand(sSql, conn))
             {
                 cmd.AddParam("@StokID", id);
+                conn.Open();
+                cmd.ExecuteNonQuery();
             }
         }
 
