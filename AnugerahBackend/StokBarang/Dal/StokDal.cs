@@ -116,9 +116,13 @@ namespace AnugerahBackend.StokBarang.Dal
             StokModel result = null;
             var sSql = @"
                 SELECT
-                    aa.BrgID
+                    aa.StokID, aa.BrgID, aa.TglMasuk, aa.JamMasuk, 
+                    aa.TrsMasukID, aa.TrsDOID, aa.BatchNo, 
+                    aa.QtyIn, aa.QtySaldo, aa.Hpp,
+                    ISNULL(bb.BrgName, '') BrgName
                 FROM
                     Stok aa
+                    LEFT JOIN Brg bb ON aa.BrgID = bb.BrgID
                 WHERE
                     aa.StokID = @StokID ";
             using (var conn = new SqlConnection(_connString))
@@ -134,7 +138,16 @@ namespace AnugerahBackend.StokBarang.Dal
                         result = new StokModel
                         {
                             StokID = id,
-                            BrgID = dr["BrgID"].ToString()
+                            BrgID = dr["BrgID"].ToString(),
+                            BrgName = dr["BrgName"].ToString(),
+                            TglMasuk = dr["TglMasuk"].ToString().ToTglDMY(),
+                            JamMasuk = dr["JamMasuk"].ToString(),
+                            TrsMasukID = dr["TrsMasukID"].ToString(),
+                            TrsDOID = dr["TrsDOID"].ToString(),
+                            BatchNo = dr["BatchNo"].ToString(),
+                            QtyIn = Convert.ToInt64(dr["QtyIn"]),
+                            QtySaldo = Convert.ToInt64(dr["QtyOut"]),
+                            Hpp = Convert.ToDouble(dr["Hpp"])
                         };
                     }
                 }
@@ -147,9 +160,13 @@ namespace AnugerahBackend.StokBarang.Dal
             List<StokModel> result = null;
             var sSql = @"
                 SELECT
-                    aa.StokID, aa.BrgID
+                    aa.StokID, aa.BrgID, aa.TglMasuk, aa.JamMasuk, 
+                    aa.TrsMasukID, aa.TrsDOID, aa.BatchNo, 
+                    aa.QtyIn, aa.QtySaldo, aa.Hpp,
+                    ISNULL(bb.BrgName, '') BrgName
                 FROM
-                    Stok aa ";
+                    Stok aa
+                    LEFT JOIN Brg bb ON aa.BrgID = bb.BrgID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
@@ -164,7 +181,16 @@ namespace AnugerahBackend.StokBarang.Dal
                             var item = new StokModel
                             {
                                 StokID = dr["StokID"].ToString(),
-                                BrgID = dr["BrgID"].ToString()
+                                BrgID = dr["BrgID"].ToString(),
+                                BrgName = dr["BrgName"].ToString(),
+                                TglMasuk = dr["TglMasuk"].ToString().ToTglDMY(),
+                                JamMasuk = dr["JamMasuk"].ToString(),
+                                TrsMasukID = dr["TrsMasukID"].ToString(),
+                                TrsDOID = dr["TrsDOID"].ToString(),
+                                BatchNo = dr["BatchNo"].ToString(),
+                                QtyIn = Convert.ToInt64(dr["QtyIn"]),
+                                QtySaldo = Convert.ToInt64(dr["QtyOut"]),
+                                Hpp = Convert.ToDouble(dr["Hpp"])
                             };
                             result.Add(item);
                         }
