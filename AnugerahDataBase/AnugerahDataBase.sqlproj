@@ -72,12 +72,13 @@
     <Build Include="StokBarang\BrgPhoto.sql" />
     <Build Include="StokBarang\SubJenisBrg.sql" />
     <Build Include="Penjualan\BrgPrice.sql" />
-    <Build Include="StokBarang\KartuStok.sql" />
-    <Build Include="StokBarang\SaldoStok.sql" />
     <Build Include="StokBarang\StokAdjustment.sql" />
     <Build Include="StokBarang\StokAdjustment2.sql" />
     <Build Include="Penjualan\Penjualan.sql" />
     <Build Include="Penjualan\Penjualan2.sql" />
+    <Build Include="StokBarang\JenisMutasi.sql" />
+    <Build Include="StokBarang\Stok.sql" />
+    <Build Include="StokBarang\StokDetil.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AnugerahDevelopment.publish.xml" />

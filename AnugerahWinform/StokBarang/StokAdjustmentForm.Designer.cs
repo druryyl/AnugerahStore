@@ -28,24 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.entryDataTabPage = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.KeteranganTextBox = new System.Windows.Forms.TextBox();
+            this.NoTrsTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.tglTransaksiDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.TanggalDateTime = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
-            this.newButton = new System.Windows.Forms.Button();
+            this.JamTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.NewButton = new System.Windows.Forms.Button();
             this.catatanButton = new System.Windows.Forms.Label();
-            this.detilBrgGrid = new System.Windows.Forms.DataGridView();
-            this.kodeBrgColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.namaBrgColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QtyAwal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QtyAdjust = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QtyAkhir = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.diskonColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BrgGrid = new System.Windows.Forms.DataGridView();
+            this.BrgKodeCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BrgNamaCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BrgQtyAwalCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BrgQtyAdjustCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BrgQtyAkhirCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BrgHppCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.exitButton = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
@@ -58,7 +59,7 @@
             this.mainTabControl.SuspendLayout();
             this.entryDataTabPage.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.detilBrgGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BrgGrid)).BeginInit();
             this.listDataTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.listDataGrid)).BeginInit();
             this.SuspendLayout();
@@ -76,9 +77,8 @@
             // 
             // entryDataTabPage
             // 
-            this.entryDataTabPage.BackColor = System.Drawing.Color.MistyRose;
             this.entryDataTabPage.Controls.Add(this.panel1);
-            this.entryDataTabPage.Controls.Add(this.detilBrgGrid);
+            this.entryDataTabPage.Controls.Add(this.BrgGrid);
             this.entryDataTabPage.Controls.Add(this.exitButton);
             this.entryDataTabPage.Controls.Add(this.deleteButton);
             this.entryDataTabPage.Controls.Add(this.saveButton);
@@ -93,36 +93,35 @@
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.textBox7);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.KeteranganTextBox);
+            this.panel1.Controls.Add(this.NoTrsTextBox);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.tglTransaksiDateTimePicker);
+            this.panel1.Controls.Add(this.TanggalDateTime);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.maskedTextBox1);
-            this.panel1.Controls.Add(this.newButton);
+            this.panel1.Controls.Add(this.JamTextBox);
+            this.panel1.Controls.Add(this.NewButton);
             this.panel1.Controls.Add(this.catatanButton);
             this.panel1.Location = new System.Drawing.Point(6, 6);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(943, 105);
             this.panel1.TabIndex = 13;
             // 
-            // textBox7
+            // KeteranganTextBox
             // 
-            this.textBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox7.Location = new System.Drawing.Point(615, 15);
-            this.textBox7.Multiline = true;
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(313, 74);
-            this.textBox7.TabIndex = 13;
+            this.KeteranganTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.KeteranganTextBox.Location = new System.Drawing.Point(615, 15);
+            this.KeteranganTextBox.Multiline = true;
+            this.KeteranganTextBox.Name = "KeteranganTextBox";
+            this.KeteranganTextBox.Size = new System.Drawing.Size(313, 74);
+            this.KeteranganTextBox.TabIndex = 13;
             // 
-            // textBox1
+            // NoTrsTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(148, 15);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(142, 21);
-            this.textBox1.TabIndex = 0;
+            this.NoTrsTextBox.Location = new System.Drawing.Point(148, 15);
+            this.NoTrsTextBox.Name = "NoTrsTextBox";
+            this.NoTrsTextBox.Size = new System.Drawing.Size(142, 21);
+            this.NoTrsTextBox.TabIndex = 0;
             // 
             // label1
             // 
@@ -133,14 +132,14 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "No. Adjustment";
             // 
-            // tglTransaksiDateTimePicker
+            // TanggalDateTime
             // 
-            this.tglTransaksiDateTimePicker.CustomFormat = "dd-MMM-yyyy";
-            this.tglTransaksiDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.tglTransaksiDateTimePicker.Location = new System.Drawing.Point(148, 42);
-            this.tglTransaksiDateTimePicker.Name = "tglTransaksiDateTimePicker";
-            this.tglTransaksiDateTimePicker.Size = new System.Drawing.Size(114, 21);
-            this.tglTransaksiDateTimePicker.TabIndex = 1;
+            this.TanggalDateTime.CustomFormat = "dd-MMM-yyyy";
+            this.TanggalDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.TanggalDateTime.Location = new System.Drawing.Point(148, 42);
+            this.TanggalDateTime.Name = "TanggalDateTime";
+            this.TanggalDateTime.Size = new System.Drawing.Size(114, 21);
+            this.TanggalDateTime.TabIndex = 1;
             // 
             // label2
             // 
@@ -151,22 +150,22 @@
             this.label2.TabIndex = 7;
             this.label2.Text = "Tanggal";
             // 
-            // maskedTextBox1
+            // JamTextBox
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(268, 42);
-            this.maskedTextBox1.Mask = "HH:mm:ss";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(73, 21);
-            this.maskedTextBox1.TabIndex = 8;
+            this.JamTextBox.Location = new System.Drawing.Point(268, 42);
+            this.JamTextBox.Mask = "HH:mm:ss";
+            this.JamTextBox.Name = "JamTextBox";
+            this.JamTextBox.Size = new System.Drawing.Size(73, 21);
+            this.JamTextBox.TabIndex = 8;
             // 
-            // newButton
+            // NewButton
             // 
-            this.newButton.Location = new System.Drawing.Point(296, 13);
-            this.newButton.Name = "newButton";
-            this.newButton.Size = new System.Drawing.Size(59, 23);
-            this.newButton.TabIndex = 9;
-            this.newButton.Text = "New";
-            this.newButton.UseVisualStyleBackColor = true;
+            this.NewButton.Location = new System.Drawing.Point(296, 13);
+            this.NewButton.Name = "NewButton";
+            this.NewButton.Size = new System.Drawing.Size(59, 23);
+            this.NewButton.TabIndex = 9;
+            this.NewButton.Text = "New";
+            this.NewButton.UseVisualStyleBackColor = true;
             // 
             // catatanButton
             // 
@@ -178,57 +177,60 @@
             this.catatanButton.TabIndex = 11;
             this.catatanButton.Text = "Keterangan";
             // 
-            // detilBrgGrid
+            // BrgGrid
             // 
-            this.detilBrgGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.BrgGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.detilBrgGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.detilBrgGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.kodeBrgColumn,
-            this.namaBrgColumn,
-            this.QtyAwal,
-            this.QtyAdjust,
-            this.QtyAkhir,
-            this.diskonColumn});
-            this.detilBrgGrid.Location = new System.Drawing.Point(6, 117);
-            this.detilBrgGrid.Name = "detilBrgGrid";
-            this.detilBrgGrid.Size = new System.Drawing.Size(941, 362);
-            this.detilBrgGrid.TabIndex = 10;
+            this.BrgGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.BrgGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.BrgKodeCol,
+            this.BrgNamaCol,
+            this.BrgQtyAwalCol,
+            this.BrgQtyAdjustCol,
+            this.BrgQtyAkhirCol,
+            this.BrgHppCol});
+            this.BrgGrid.Location = new System.Drawing.Point(6, 117);
+            this.BrgGrid.Name = "BrgGrid";
+            this.BrgGrid.Size = new System.Drawing.Size(941, 362);
+            this.BrgGrid.TabIndex = 10;
+            this.BrgGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BrgGrid_KeyDown);
             // 
-            // kodeBrgColumn
+            // BrgKodeCol
             // 
-            this.kodeBrgColumn.HeaderText = "Kode";
-            this.kodeBrgColumn.Name = "kodeBrgColumn";
-            this.kodeBrgColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.kodeBrgColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Beige;
+            this.BrgKodeCol.DefaultCellStyle = dataGridViewCellStyle1;
+            this.BrgKodeCol.HeaderText = "Kode";
+            this.BrgKodeCol.Name = "BrgKodeCol";
+            this.BrgKodeCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.BrgKodeCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // namaBrgColumn
+            // BrgNamaCol
             // 
-            this.namaBrgColumn.HeaderText = "Nama Barang";
-            this.namaBrgColumn.Name = "namaBrgColumn";
-            this.namaBrgColumn.ReadOnly = true;
-            this.namaBrgColumn.Width = 350;
+            this.BrgNamaCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.BrgNamaCol.HeaderText = "Nama Barang";
+            this.BrgNamaCol.Name = "BrgNamaCol";
+            this.BrgNamaCol.ReadOnly = true;
             // 
-            // QtyAwal
+            // BrgQtyAwalCol
             // 
-            this.QtyAwal.HeaderText = "Qty Awal";
-            this.QtyAwal.Name = "QtyAwal";
+            this.BrgQtyAwalCol.HeaderText = "Qty Awal";
+            this.BrgQtyAwalCol.Name = "BrgQtyAwalCol";
             // 
-            // QtyAdjust
+            // BrgQtyAdjustCol
             // 
-            this.QtyAdjust.HeaderText = "Qty Adjust";
-            this.QtyAdjust.Name = "QtyAdjust";
+            this.BrgQtyAdjustCol.HeaderText = "Qty Adjust";
+            this.BrgQtyAdjustCol.Name = "BrgQtyAdjustCol";
             // 
-            // QtyAkhir
+            // BrgQtyAkhirCol
             // 
-            this.QtyAkhir.HeaderText = "Qty Akhir";
-            this.QtyAkhir.Name = "QtyAkhir";
+            this.BrgQtyAkhirCol.HeaderText = "Qty Akhir";
+            this.BrgQtyAkhirCol.Name = "BrgQtyAkhirCol";
             // 
-            // diskonColumn
+            // BrgHppCol
             // 
-            this.diskonColumn.HeaderText = "HPP";
-            this.diskonColumn.Name = "diskonColumn";
+            this.BrgHppCol.HeaderText = "HPP";
+            this.BrgHppCol.Name = "BrgHppCol";
             // 
             // exitButton
             // 
@@ -334,7 +336,7 @@
             this.entryDataTabPage.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.detilBrgGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BrgGrid)).EndInit();
             this.listDataTabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.listDataGrid)).EndInit();
             this.ResumeLayout(false);
@@ -346,15 +348,15 @@
         private System.Windows.Forms.TabControl mainTabControl;
         private System.Windows.Forms.TabPage entryDataTabPage;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox KeteranganTextBox;
+        private System.Windows.Forms.TextBox NoTrsTextBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker tglTransaksiDateTimePicker;
+        private System.Windows.Forms.DateTimePicker TanggalDateTime;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
-        private System.Windows.Forms.Button newButton;
+        private System.Windows.Forms.MaskedTextBox JamTextBox;
+        private System.Windows.Forms.Button NewButton;
         private System.Windows.Forms.Label catatanButton;
-        private System.Windows.Forms.DataGridView detilBrgGrid;
+        private System.Windows.Forms.DataGridView BrgGrid;
         private System.Windows.Forms.Button exitButton;
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.Button saveButton;
@@ -364,11 +366,11 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DataGridView listDataGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn kodeBrgColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn namaBrgColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn QtyAwal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn QtyAdjust;
-        private System.Windows.Forms.DataGridViewTextBoxColumn QtyAkhir;
-        private System.Windows.Forms.DataGridViewTextBoxColumn diskonColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BrgKodeCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BrgNamaCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BrgQtyAwalCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BrgQtyAdjustCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BrgQtyAkhirCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BrgHppCol;
     }
 }
