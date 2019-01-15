@@ -20,4 +20,12 @@ namespace AnugerahBackend.StokBarang.Model
         public long QtySaldo { get; set; }
         public double Hpp { get; set; }
     }
+
+    public class StokSearchModel
+    {
+        public string BrgID { get; set; }
+        public string BrgName { get; set; }
+        public string BatchNo { get; set; }
+        public long Qty { get; set; }
+    }
 }

@@ -1,5 +1,6 @@
 ﻿CREATE TABLE [dbo].[StokDetil]
 (
+	StokDetilID VARCHAR(13) NOT NULL CONSTRAINT DF_StokDetil_StokDetilID DEFAULT(''),
 	StokID VARCHAR(10) NOT NULL CONSTRAINT DF_StokDetil_StokID DEFAULT(''),
 	TglTrs VARCHAR(10) NOT NULL CONSTRAINT DF_StokDetil_TglTrs DEFAULT('3000-01-01'),
 	JamTrs VARCHAR(8) NOT NULL CONSTRAINT DF_StokDetil_JamTrs DEFAULT('00:00:00'),
@@ -12,5 +13,11 @@
 )
 GO
 
+CREATE UNIQUE INDEX IX_StokDetil_StokDetilID
+	ON StokDetil (StokDetilID)
+	WITH(FILLFACTOR=70)
+GO
+
 CREATE CLUSTERED INDEX IX_StokDetil_StokID_TglTrs_JamTrs
 	ON StokDetil (StokID, TglTrs, JamTrs)
+GO

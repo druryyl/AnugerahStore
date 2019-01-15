@@ -55,6 +55,7 @@
     <Compile Include="StokBarang\BL\ColorBL.cs" />
     <Compile Include="StokBarang\BL\JenisMutasiBL.cs" />
     <Compile Include="StokBarang\BL\StokAdjustmentBL.cs" />
+    <Compile Include="StokBarang\BL\StokBL.cs" />
     <Compile Include="StokBarang\BL\SubJenisBrgBL.cs" />
     <Compile Include="StokBarang\BL\TipeBrgBL.cs" />
     <Compile Include="StokBarang\Dal\BrgDal.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="StokBarang\Dal\StokAdjustment2Dal.cs" />
     <Compile Include="StokBarang\Dal\StokAdjustmentDal.cs" />
     <Compile Include="StokBarang\Dal\StokDal.cs" />
+    <Compile Include="StokBarang\Dal\StokDetilDal.cs" />
     <Compile Include="StokBarang\Dal\SubJenisBrgDal.cs" />
     <Compile Include="StokBarang\Dal\TipeBrgDal.cs" />
     <Compile Include="StokBarang\Model\BrgModel.cs" />

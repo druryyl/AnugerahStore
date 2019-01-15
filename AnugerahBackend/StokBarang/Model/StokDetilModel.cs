@@ -8,6 +8,7 @@ namespace AnugerahBackend.StokBarang.Model
 {
     public class StokDetilModel
     {
+        public string StokDetilID { get; set; }
         public string StokID { get; set; }
         public string TglTrs { get; set; }
         public string JamTrs { get; set; }
