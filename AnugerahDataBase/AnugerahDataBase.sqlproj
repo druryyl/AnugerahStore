@@ -77,8 +77,8 @@
     <Build Include="Penjualan\Penjualan.sql" />
     <Build Include="Penjualan\Penjualan2.sql" />
     <Build Include="StokBarang\JenisMutasi.sql" />
-    <Build Include="StokBarang\Stok.sql" />
-    <Build Include="StokBarang\StokDetil.sql" />
+    <Build Include="StokBarang\StokControl.sql" />
+    <Build Include="StokBarang\StokControl2.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AnugerahDevelopment.publish.xml" />
