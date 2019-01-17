@@ -1,5 +1,6 @@
 ﻿using AnugerahBackend.StokBarang.Model;
 using Ics.Helper.Extensions;
+using Ics.Helper.StringDateTime;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -76,10 +77,12 @@ namespace AnugerahBackend.StokBarang.Dal
             List<StokControl2Model> result = null;
             var sSql = @"
                 SELECT
-                    stokControl2ID, StokID, TglTrs, JamTrs, ReffTrsID,
-                    JenisMutasiID, QtyIn, QtyOut, NilaiIn, NilaiOut
+                    aa.stokControl2ID, aa.StokID, aa.TglTrs, aa.JamTrs, aa.ReffTrsID,
+                    aa.JenisMutasiID, aa.QtyIn, aa.QtyOut, aa.NilaiIn, aa.NilaiOut,
+                    ISNULL(bb.JenisMutasiName, '') JenisMutasiName
                 FROM
-                    stokControl2
+                    StokControl2 aa
+                    LEFT JOIN JenisMutasi bb ON aa.JenisMutasiID = bb.JenisMutasiID
                 WHERE
                     stokControl2ID = @stokControl2ID ";
             using (var conn = new SqlConnection(_connString))
@@ -98,13 +101,22 @@ namespace AnugerahBackend.StokBarang.Dal
                             {
                                 StokControl2ID = dr["stokControl2ID"].ToString(),
                                 StokControlID = dr["StokID"].ToString(),
-                                TglTrs = dr["TglTrs"].ToString().ToTglDMY
-
-                            }
+                                TglTrs = dr["TglTrs"].ToString().ToTglDMY(),
+                                JamTrs = dr["JamTrs"].ToString(),
+                                ReffTrsID = dr["ReffTrsID"].ToString(),
+                                JenisMutasiID = dr["JenisMutasiID"].ToString(),
+                                JenisMutasiName = dr["JenisMutasiName"].ToString(),
+                                QtyIn = Convert.ToInt64(dr["QtyIn"]),
+                                QtyOut = Convert.ToInt64(dr["QtyOut"]),
+                                NilaiIn = Convert.ToDouble(dr["NilaiIn"]),
+                                NilaiOut = Convert.ToDouble(dr["NilaiOut"])
+                            };
+                            result.Add(item);
                         }
                     }
                 }
             }
+            return result;
         }
     }
 

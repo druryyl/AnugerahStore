@@ -14,6 +14,7 @@ namespace AnugerahBackend.StokBarang.Model
         public string JamTrs { get; set; }
         public string ReffTrsID { get; set; }
         public string JenisMutasiID { get; set; }
+        public string JenisMutasiName { get; set; }
         public long QtyIn { get; set; }
         public long QtyOut { get; set; }
         public double NilaiIn { get; set; }
