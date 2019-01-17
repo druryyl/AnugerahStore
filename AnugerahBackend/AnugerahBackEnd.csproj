@@ -63,8 +63,8 @@
     <Compile Include="StokBarang\Dal\JenisMutasiDal.cs" />
     <Compile Include="StokBarang\Dal\StokAdjustment2Dal.cs" />
     <Compile Include="StokBarang\Dal\StokAdjustmentDal.cs" />
-    <Compile Include="StokBarang\Dal\StokDal.cs" />
-    <Compile Include="StokBarang\Dal\StokDetilDal.cs" />
+    <Compile Include="StokBarang\Dal\StokControlDal.cs" />
+    <Compile Include="StokBarang\Dal\StokControl2Dal.cs" />
     <Compile Include="StokBarang\Dal\SubJenisBrgDal.cs" />
     <Compile Include="StokBarang\Dal\TipeBrgDal.cs" />
     <Compile Include="StokBarang\Model\BrgModel.cs" />
@@ -78,8 +78,8 @@
     <Compile Include="StokBarang\Model\MerkModel.cs" />
     <Compile Include="StokBarang\Model\StokAdjustment2Model.cs" />
     <Compile Include="StokBarang\Model\StokAdjustmentModel.cs" />
-    <Compile Include="StokBarang\Model\StokDetilModel.cs" />
-    <Compile Include="StokBarang\Model\StokModel.cs" />
+    <Compile Include="StokBarang\Model\StokControl2Model.cs" />
+    <Compile Include="StokBarang\Model\StokControlModel.cs" />
     <Compile Include="StokBarang\Model\SubJenisBrgModel.cs" />
     <Compile Include="StokBarang\Model\TipeBrgModel.cs" />
     <Compile Include="Support\BL\ParameterNoBL.cs" />

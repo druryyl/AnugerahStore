@@ -11,41 +11,41 @@ using System.Threading.Tasks;
 
 namespace AnugerahBackend.StokBarang.Dal
 {
-    public interface IStokDal
+    public interface IStokControlDal
     {
-        void Insert(StokModel stok);
-        void Update(StokModel stok);
-        void Delete(string stokID);
-        StokModel GetData(string stokID);
-        IEnumerable<StokModel> ListData();
+        void Insert(StokControlModel stokControl);
+        void Update(StokControlModel stokControl);
+        void Delete(string stokControlID);
+        StokControlModel GetData(string stokControlID);
+        IEnumerable<StokControlModel> ListData();
     }
 
 
-    public class StokDal : IStokDal
+    public class StokControlDal : IStokControlDal
     {
         public string _connString;
 
-        public StokDal()
+        public StokControlDal()
         {
             _connString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
         }
 
-        public void Insert(StokModel stok)
+        public void Insert(StokControlModel stok)
         {
             var sSql = @"
                 INSERT INTO
-                    Stok (
-                        StokID, BrgID, TglMasuk, JamMasuk, 
+                    StokControl (
+                        StokControlID, BrgID, TglMasuk, JamMasuk, 
                         TrsMasukID, TrsDOID, BatchNo, 
                         QtyIn, QtySaldo, Hpp)
                 VALUES (
-                        @StokID, @BrgID, @TglMasuk, @JamMasuk, 
+                        @StokControlID, @BrgID, @TglMasuk, @JamMasuk, 
                         @TrsMasukID, @TrsDOID, @BatchNo, 
                         @QtyIn, @QtySaldo, @Hpp) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@StokID", stok.StokID);
+                cmd.AddParam("@StokControlID", stok.StokControlID);
                 cmd.AddParam("@BrgID", stok.BrgID);
                 cmd.AddParam("@TglMasuk", stok.TglMasuk.ToTglYMD());
                 cmd.AddParam("@JamMasuk", stok.JamMasuk);
@@ -60,11 +60,11 @@ namespace AnugerahBackend.StokBarang.Dal
             }
         }
 
-        public void Update(StokModel stok)
+        public void Update(StokControlModel stok)
         {
             var sSql = @"
                 UPDATE
-                    Stok,
+                    StokControl,
                 SET
                     BrgID = @BrgID
                     TglMasuk = @TglMasuk, 
@@ -76,11 +76,11 @@ namespace AnugerahBackend.StokBarang.Dal
                     QtySaldo = @QtySaldo, 
                     Hpp = @Hpp
                 WHERE
-                    StokID = @StokID ";
+                    StokControlID = @StokControlID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@StokID", stok.StokID);
+                cmd.AddParam("@StokControlID", stok.StokControlID);
                 cmd.AddParam("@BrgID", stok.BrgID);
                 cmd.AddParam("@TglMasuk", stok.TglMasuk.ToTglYMD());
                 cmd.AddParam("@JamMasuk", stok.JamMasuk);
@@ -99,32 +99,32 @@ namespace AnugerahBackend.StokBarang.Dal
         {
             var sSql = @"
                 DELETE
-                    Stok 
+                    StokControl 
                 WHERE
-                    StokID = @StokID ";
+                    StokControlID = @StokControlID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@StokID", id);
+                cmd.AddParam("@StokControlID", id);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
         }
 
-        public StokModel GetData(string id)
+        public StokControlModel GetData(string id)
         {
-            StokModel result = null;
+            StokControlModel result = null;
             var sSql = @"
                 SELECT
-                    aa.StokID, aa.BrgID, aa.TglMasuk, aa.JamMasuk, 
+                    aa.StokControlID, aa.BrgID, aa.TglMasuk, aa.JamMasuk, 
                     aa.TrsMasukID, aa.TrsDOID, aa.BatchNo, 
                     aa.QtyIn, aa.QtySaldo, aa.Hpp,
                     ISNULL(bb.BrgName, '') BrgName
                 FROM
-                    Stok aa
+                    StokControl aa
                     LEFT JOIN Brg bb ON aa.BrgID = bb.BrgID
                 WHERE
-                    aa.StokID = @StokID ";
+                    aa.StokControlID = @StokControlID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
@@ -135,9 +135,9 @@ namespace AnugerahBackend.StokBarang.Dal
                     if (dr.HasRows)
                     {
                         dr.Read();
-                        result = new StokModel
+                        result = new StokControlModel
                         {
-                            StokID = id,
+                            StokControlID = id,
                             BrgID = dr["BrgID"].ToString(),
                             BrgName = dr["BrgName"].ToString(),
                             TglMasuk = dr["TglMasuk"].ToString().ToTglDMY(),
@@ -155,12 +155,12 @@ namespace AnugerahBackend.StokBarang.Dal
             return result;
         }
 
-        public IEnumerable<StokModel> ListData()
+        public IEnumerable<StokControlModel> ListData()
         {
-            List<StokModel> result = null;
+            List<StokControlModel> result = null;
             var sSql = @"
                 SELECT
-                    aa.StokID, aa.BrgID, aa.TglMasuk, aa.JamMasuk, 
+                    aa.StokControlID, aa.BrgID, aa.TglMasuk, aa.JamMasuk, 
                     aa.TrsMasukID, aa.TrsDOID, aa.BatchNo, 
                     aa.QtyIn, aa.QtySaldo, aa.Hpp,
                     ISNULL(bb.BrgName, '') BrgName
@@ -175,12 +175,12 @@ namespace AnugerahBackend.StokBarang.Dal
                 {
                     if (dr.HasRows)
                     {
-                        result = new List<StokModel>();
+                        result = new List<StokControlModel>();
                         while (dr.Read())
                         {
-                            var item = new StokModel
+                            var item = new StokControlModel
                             {
-                                StokID = dr["StokID"].ToString(),
+                                StokControlID = dr["StokControlID"].ToString(),
                                 BrgID = dr["BrgID"].ToString(),
                                 BrgName = dr["BrgName"].ToString(),
                                 TglMasuk = dr["TglMasuk"].ToString().ToTglDMY(),

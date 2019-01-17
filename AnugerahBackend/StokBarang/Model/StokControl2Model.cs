@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace AnugerahBackend.StokBarang.Model
 {
-    public class StokDetilModel
+    public class StokControl2Model
     {
-        public string StokDetilID { get; set; }
-        public string StokID { get; set; }
+        public string StokControl2ID { get; set; }
+        public string StokControlID { get; set; }
         public string TglTrs { get; set; }
         public string JamTrs { get; set; }
         public string ReffTrsID { get; set; }

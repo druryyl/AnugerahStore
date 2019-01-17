@@ -12,92 +12,93 @@ namespace AnugerahBackend.StokBarang.Dal
 {
     public interface IStokDetilDal
     {
-        void Insert(StokDetilModel stokDetil);
-        void Delete(string stokDetilID);
-        IEnumerable<StokDetilModel> ListData(string stokID);
+        void Insert(StokControl2Model stokControl2);
+        void Delete(string stokControl2ID);
+        IEnumerable<StokControl2Model> ListData(string stokControlID);
     }
 
-    public class StokDetilDal : IStokDetilDal
+    public class StokControl2Dal : IStokDetilDal
     {
         public string _connString;
 
-        public StokDetilDal()
+        public StokControl2Dal()
         {
             _connString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
         }
 
-        public void Insert(StokDetilModel stokDetil)
+        public void Insert(StokControl2Model stokControl2)
         {
             var sSql = @"
                 INSERT INTO
-                    StokDetil (
-                        StokDetilID, StokID, TglTrs, JamTrs, ReffTrsID,
+                    StokControl2 (
+                        StokControl2ID, StokID, TglTrs, JamTrs, ReffTrsID,
                         JenisMutasiID, QtyIn, QtyOut, NilaiIn, NilaiOut)
                 VALUES (
-                        @StokDetilID, @StokID, @TglTrs, @JamTrs, @ReffTrsID,
+                        @StokControl2ID, @StokID, @TglTrs, @JamTrs, @ReffTrsID,
                         @JenisMutasiID, @QtyIn, @QtyOut, @NilaiIn, @NilaiOut) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@StokDetilID", stokDetil.StokDetilID);
-                cmd.AddParam("@StokID", stokDetil.StokID);
-                cmd.AddParam("@TglTrs", stokDetil.TglTrs);
-                cmd.AddParam("@JamTrs", stokDetil.JamTrs);
-                cmd.AddParam("@ReffTrsID", stokDetil.ReffTrsID);
-                cmd.AddParam("@JenisMutasiID", stokDetil.JenisMutasiID);
-                cmd.AddParam("@QtyIn", stokDetil.QtyIn);
-                cmd.AddParam("@QtyOut", stokDetil.QtyOut);
-                cmd.AddParam("@NilaiIn", stokDetil.NilaiIn );
-                cmd.AddParam("@NilaiOut", stokDetil.NilaiOut);
+                cmd.AddParam("@StokControl2ID", stokControl2.StokControl2ID);
+                cmd.AddParam("@StokControlID", stokControl2.StokControlID);
+                cmd.AddParam("@TglTrs", stokControl2.TglTrs);
+                cmd.AddParam("@JamTrs", stokControl2.JamTrs);
+                cmd.AddParam("@ReffTrsID", stokControl2.ReffTrsID);
+                cmd.AddParam("@JenisMutasiID", stokControl2.JenisMutasiID);
+                cmd.AddParam("@QtyIn", stokControl2.QtyIn);
+                cmd.AddParam("@QtyOut", stokControl2.QtyOut);
+                cmd.AddParam("@NilaiIn", stokControl2.NilaiIn );
+                cmd.AddParam("@NilaiOut", stokControl2.NilaiOut);
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
         }
 
-        public void Delete(string stokDetilID)
+        public void Delete(string StokControl2ID)
         {
             var sSql = @"
                 DELETE
-                    StokDetil
+                    StokControl2
                 WHERE
                     StokDetilID = @StokDetilID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@StokDetilID", stokDetilID);
+                cmd.AddParam("@StokControl2ID", StokControl2ID);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
         }
 
-        public IEnumerable<StokDetilModel> ListData(string stokID)
+        public IEnumerable<StokControl2Model> ListData(string stokControlID)
         {
-            List<StokDetilModel> result = null;
+            List<StokControl2Model> result = null;
             var sSql = @"
                 SELECT
-                    StokDetilID, StokID, TglTrs, JamTrs, ReffTrsID,
+                    stokControl2ID, StokID, TglTrs, JamTrs, ReffTrsID,
                     JenisMutasiID, QtyIn, QtyOut, NilaiIn, NilaiOut
                 FROM
-                    StokDetil
+                    stokControl2
                 WHERE
-                    StokID = @StokID ";
+                    stokControl2ID = @stokControl2ID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@StokID", stokID);
+                cmd.AddParam("@StokID", stokControlID);
                 conn.Open();
                 using (var dr = cmd.ExecuteReader())
                 {
                     if (dr.HasRows)
                     {
-                        result = new List<StokDetilModel>();
+                        result = new List<StokControl2Model>();
                         while (dr.Read())
                         {
-                            var item = new StokDetilModel
+                            var item = new StokControl2Model
                             {
-                                StokDetilID = dr["StokDetilID"].ToString(),
-                                StokID = dr["StokID"].ToString(),
+                                StokControl2ID = dr["stokControl2ID"].ToString(),
+                                StokControlID = dr["StokID"].ToString(),
+                                TglTrs = dr["TglTrs"].ToString().ToTglDMY
 
                             }
                         }

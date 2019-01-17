@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace AnugerahBackend.StokBarang.Model
 {
-    public class StokModel
+    public class StokControlModel
     {
-        public string StokID { get; set; }
+        public string StokControlID { get; set; }
         public string BrgID { get; set; }
         public string BrgName { get; set; }
         public string TglMasuk { get; set; }
