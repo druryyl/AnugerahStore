@@ -14,7 +14,7 @@ namespace AnugerahBackend.StokBarang.Dal
     {
         void Insert(StokDetilModel stokDetil);
         void Delete(string stokDetilID);
-        IEnumerable<StokDetilModel> ListData(string stokID)
+        IEnumerable<StokDetilModel> ListData(string stokID);
     }
 
     public class StokDetilDal : IStokDetilDal
@@ -25,6 +25,7 @@ namespace AnugerahBackend.StokBarang.Dal
         {
             _connString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
         }
+
         public void Insert(StokDetilModel stokDetil)
         {
             var sSql = @"
@@ -49,16 +50,60 @@ namespace AnugerahBackend.StokBarang.Dal
                 cmd.AddParam("@NilaiIn", stokDetil.NilaiIn );
                 cmd.AddParam("@NilaiOut", stokDetil.NilaiOut);
 
+                conn.Open();
+                cmd.ExecuteNonQuery();
             }
         }
+
         public void Delete(string stokDetilID)
         {
-            throw new NotImplementedException();
+            var sSql = @"
+                DELETE
+                    StokDetil
+                WHERE
+                    StokDetilID = @StokDetilID ";
+            using (var conn = new SqlConnection(_connString))
+            using (var cmd = new SqlCommand(sSql, conn))
+            {
+                cmd.AddParam("@StokDetilID", stokDetilID);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public IEnumerable<StokDetilModel> ListData(string stokID)
         {
-            throw new NotImplementedException();
+            List<StokDetilModel> result = null;
+            var sSql = @"
+                SELECT
+                    StokDetilID, StokID, TglTrs, JamTrs, ReffTrsID,
+                    JenisMutasiID, QtyIn, QtyOut, NilaiIn, NilaiOut
+                FROM
+                    StokDetil
+                WHERE
+                    StokID = @StokID ";
+            using (var conn = new SqlConnection(_connString))
+            using (var cmd = new SqlCommand(sSql, conn))
+            {
+                cmd.AddParam("@StokID", stokID);
+                conn.Open();
+                using (var dr = cmd.ExecuteReader())
+                {
+                    if (dr.HasRows)
+                    {
+                        result = new List<StokDetilModel>();
+                        while (dr.Read())
+                        {
+                            var item = new StokDetilModel
+                            {
+                                StokDetilID = dr["StokDetilID"].ToString(),
+                                StokID = dr["StokID"].ToString(),
+
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
