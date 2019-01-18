@@ -16,7 +16,7 @@ namespace AnugerahBackend.StokBarang.Dal
         void Insert(StokInOutModel stokInOut);
         void Delete(string stokInOutID);
         StokInOutModel GetData(string stokInOutID);
-        IEnumerable<StokInOutModel> ListData(string stokInOut);
+        IEnumerable<StokInOutModel> ListData(string stokInID);
     }
 
     public class StokInOutDal : IStokInOutDal
@@ -68,13 +68,13 @@ namespace AnugerahBackend.StokBarang.Dal
         {
             var sSql = @"
                 DELETE
-                    StokControl2
+                    StokInOut
                 WHERE
-                    StokDetilID = @StokDetilID ";
+                    StokInOutID = @StokInOutID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@StokControl2ID", stokInOutID);
+                cmd.AddParam("@StokInOutID", stokInOutID);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -85,14 +85,14 @@ namespace AnugerahBackend.StokBarang.Dal
             StokInOutModel result = null;
             var sSql = @"
                 SELECT
-                    aa.StoInID, aa.StokInOutID, aa.TglTrs, aa.JamTrs, 
+                    aa.StokInID, aa.StokInOutID, aa.TglTrs, aa.JamTrs, 
                     aa.ReffTrsID, aa.JenisMutasiID, 
                     aa.BrgID, aa.StokControlID, 
                     aa.QtyIn, aa.QtyOut, aa.Hpp, aa.HargaJual,
                     ISNULL(bb.BrgName, '') BrgName, 
                     ISNULL(cc.JenisMutasiName, '') JenisMutasiName
                 FROM
-                    StokControl2 aa
+                    StokInOut aa
                     LEFT JOIN Brg bb ON aa.BrgId = bb.BrgID
                     LEFT JOIN JenisMutasi cc ON aa.JenisMutasiID = cc.JenisMutasiID
                 WHERE
@@ -108,8 +108,8 @@ namespace AnugerahBackend.StokBarang.Dal
                     dr.Read();
                     result = new StokInOutModel
                     {
-                        StokInID = stokInOutID,
-                        StokInOutID = dr["StokID"].ToString(),
+                        StokInOutID = stokInOutID,
+                        StokInID = dr["StokInID"].ToString(),
                         TglTrs = dr["TglTrs"].ToString().ToTglDMY(),
                         JamTrs = dr["JamTrs"].ToString(),
                         ReffTrsID = dr["ReffTrsID"].ToString(),
@@ -135,14 +135,14 @@ namespace AnugerahBackend.StokBarang.Dal
             List<StokInOutModel> result = null;
             var sSql = @"
                 SELECT
-                    aa.StoInID, aa.StokInOutID, aa.TglTrs, aa.JamTrs, 
+                    aa.StokInID, aa.StokInOutID, aa.TglTrs, aa.JamTrs, 
                     aa.ReffTrsID, aa.JenisMutasiID, 
                     aa.BrgID, aa.StokControlID, 
                     aa.QtyIn, aa.QtyOut, aa.Hpp, aa.HargaJual,
                     ISNULL(bb.BrgName, '') BrgName, 
                     ISNULL(cc.JenisMutasiName, '') JenisMutasiName
                 FROM
-                    StokControl2 aa
+                    StokInOut aa
                     LEFT JOIN Brg bb ON aa.BrgId = bb.BrgID
                     LEFT JOIN JenisMutasi cc ON aa.JenisMutasiID = cc.JenisMutasiID
                 WHERE
@@ -161,8 +161,8 @@ namespace AnugerahBackend.StokBarang.Dal
                         {
                             var item = new StokInOutModel
                             {
-                                StokInID = dr["stokControl2ID"].ToString(),
-                                StokInOutID= dr["StokID"].ToString(),
+                                StokInID = stokInID,
+                                StokInOutID= dr["StokInOutID"].ToString(),
                                 TglTrs = dr["TglTrs"].ToString().ToTglDMY(),
                                 JamTrs = dr["JamTrs"].ToString(),
                                 ReffTrsID = dr["ReffTrsID"].ToString(),
@@ -186,6 +186,4 @@ namespace AnugerahBackend.StokBarang.Dal
             return result;
         }
     }
-
-
 }

@@ -88,6 +88,7 @@
     <Compile Include="StokBarang\Dal\MerkDalTest.cs" />
     <Compile Include="StokBarang\Dal\StokInDalTest.cs" />
     <Compile Include="StokBarang\Dal\SubJenisBrgDalTest.cs" />
+    <Compile Include="StokBarang\Dal\StokInOutDalTest.cs" />
     <Compile Include="Support\ParameterNoBLTest.cs" />
     <Compile Include="Support\ParameterNoDalTest.cs" />
     <Compile Include="Support\UserrBLTest.cs" />

@@ -177,7 +177,7 @@ namespace AnugerahUnitTest.StokBarang.Dal
                 };
 
                 //  act
-                var actual = _stokInDal.ListData(item1.StokControlID);
+                var actual = _stokInDal.ListDataByStokControl(item1.StokControlID);
 
                 //  assert
                 actual.Should().BeEquivalentTo(expected,

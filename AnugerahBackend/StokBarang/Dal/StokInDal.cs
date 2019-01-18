@@ -40,9 +40,9 @@ namespace AnugerahBackend.StokBarang.Dal
                         TrsMasukID, QtyIn, QtySaldo, Hpp, 
                         StokControlID, TrsDOID)
                 VALUES (
-                        @StokControlID, @BrgID, @TglMasuk, @JamMasuk, 
-                        @TrsMasukID, @TrsDOID, @BatchNo, 
-                        @QtyIn, @QtySaldo, @Hpp) ";
+                        @StokInID, @BrgID, @TglMasuk, @JamMasuk, 
+                        @TrsMasukID, @QtyIn, @QtySaldo, @Hpp, 
+                        @StokControlID, @TrsDOID) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
@@ -58,7 +58,7 @@ namespace AnugerahBackend.StokBarang.Dal
 
                 cmd.AddParam("@StokControlID", stokIn.StokControlID);
                 cmd.AddParam("@TrsDOID", stokIn.TrsDOID);
-
+                conn.Open();
                 cmd.ExecuteNonQuery();
             }
         }
@@ -67,17 +67,17 @@ namespace AnugerahBackend.StokBarang.Dal
         {
             var sSql = @"
                 UPDATE
-                    StokIn,
+                    StokIn
                 SET
-                    BrgID = @BrgID
+                    BrgID = @BrgID,
                     TglMasuk = @TglMasuk, 
                     JamMasuk = @JamMasuk, 
                     TrsMasukID = @TrsMasukID, 
                     QtyIn = @QtyIn, 
                     QtySaldo = @QtySaldo, 
-                    Hpp = @Hpp
+                    Hpp = @Hpp,
                     StokControlID = @StokControlID, 
-                    TrsDOID = @TrsDOID, 
+                    TrsDOID = @TrsDOID
                 WHERE
                     StokControlID = @StokControlID ";
             using (var conn = new SqlConnection(_connString))
@@ -111,7 +111,7 @@ namespace AnugerahBackend.StokBarang.Dal
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@StokControlID", id);
+                cmd.AddParam("@StokInID", stokInID);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -131,11 +131,11 @@ namespace AnugerahBackend.StokBarang.Dal
                     StokIn aa
                     LEFT JOIN Brg bb ON aa.BrgID = bb.BrgID
                 WHERE
-                    aa.StokControlID = @StokControlID ";
+                    aa.StokInID = @StokInID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@StokID", stokInID);
+                cmd.AddParam("@StokInID", stokInID);
                 conn.Open();
                 using (var dr = cmd.ExecuteReader())
                 {
@@ -151,7 +151,7 @@ namespace AnugerahBackend.StokBarang.Dal
                             JamMasuk = dr["JamMasuk"].ToString(),
                             TrsMasukID = dr["TrsMasukID"].ToString(),
                             QtyIn = Convert.ToInt64(dr["QtyIn"]),
-                            QtySaldo = Convert.ToInt64(dr["QtyOut"]),
+                            QtySaldo = Convert.ToInt64(dr["QtySaldo"]),
                             Hpp = Convert.ToDouble(dr["Hpp"]),
                             StokControlID = dr["StokControlID"].ToString(),
                             TrsDOID = dr["TrsDOID"].ToString(),
@@ -180,6 +180,7 @@ namespace AnugerahBackend.StokBarang.Dal
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
+                cmd.AddParam("@BrgID", brgID);
                 conn.Open();
                 using (var dr = cmd.ExecuteReader())
                 {
@@ -198,7 +199,7 @@ namespace AnugerahBackend.StokBarang.Dal
                                 TrsMasukID = dr["TrsMasukID"].ToString(),
 
                                 QtyIn = Convert.ToInt64(dr["QtyIn"]),
-                                QtySaldo = Convert.ToInt64(dr["QtyOut"]),
+                                QtySaldo = Convert.ToInt64(dr["QtySaldo"]),
                                 Hpp = Convert.ToDouble(dr["Hpp"]),
 
                                 StokControlID = dr["StokControlID"].ToString(),
@@ -233,6 +234,7 @@ namespace AnugerahBackend.StokBarang.Dal
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
+                cmd.AddParam("@StokControlID", stokControlID);
                 conn.Open();
                 using (var dr = cmd.ExecuteReader())
                 {
@@ -251,7 +253,7 @@ namespace AnugerahBackend.StokBarang.Dal
                                 TrsMasukID = dr["TrsMasukID"].ToString(),
 
                                 QtyIn = Convert.ToInt64(dr["QtyIn"]),
-                                QtySaldo = Convert.ToInt64(dr["QtyOut"]),
+                                QtySaldo = Convert.ToInt64(dr["QtySaldo"]),
                                 Hpp = Convert.ToDouble(dr["Hpp"]),
 
                                 StokControlID = dr["StokControlID"].ToString(),
