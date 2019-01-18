@@ -38,14 +38,15 @@ namespace AnugerahBackend.StokBarang.Dal
             var sSql = @"
                 INSERT INTO
                     JenisMutasi (
-                        JenisMutasiID, JenisMutasiNAme)
+                        JenisMutasiID, JenisMutasiName, IsBrgMasuk)
                 VALUES (
-                        @JenisMutasiID, @JenisMutasiNAme) ";
+                        @JenisMutasiID, @JenisMutasiName, @IsBrgMasuk) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
                 cmd.AddParam("@JenisMutasiID", jenisMutasi.JenisMutasiID);
                 cmd.AddParam("@JenisMutasiNAme", jenisMutasi.JenisMutasiName);
+                cmd.AddParam("@IsBrgMasuk", jenisMutasi.IsBrgMasuk);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -55,9 +56,10 @@ namespace AnugerahBackend.StokBarang.Dal
         {
             var sSql = @"
                 UPDATE
-                    JenisMutasi 
+                    JenisMutasi
                 SET
                     JenisMutasiNAme = @JenisMutasiNAme
+                    IsBrgMasuk = @IsBrgMasuk
                 WHERE
                     JenisMutasiID = @JenisMutasiID ";
             using (var conn = new SqlConnection(_connString))
@@ -65,6 +67,8 @@ namespace AnugerahBackend.StokBarang.Dal
             {
                 cmd.AddParam("@JenisMutasiID", jenisMutasi.JenisMutasiID);
                 cmd.AddParam("@JenisMutasiNAme", jenisMutasi.JenisMutasiName);
+                cmd.AddParam("@IsBrgMasuk", jenisMutasi.IsBrgMasuk);
+
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -91,7 +95,7 @@ namespace AnugerahBackend.StokBarang.Dal
             JenisMutasiModel result = null;
             var sSql = @"
                 SELECT
-                    aa.JenisMutasiNAme
+                    aa.JenisMutasiNAme, aa.IsBrgMasuk
                 FROM
                     JenisMutasi aa
                 WHERE
@@ -109,7 +113,8 @@ namespace AnugerahBackend.StokBarang.Dal
                         result = new JenisMutasiModel
                         {
                             JenisMutasiID = id,
-                            JenisMutasiName = dr["JenisMutasiNAme"].ToString()
+                            JenisMutasiName = dr["JenisMutasiNAme"].ToString(),
+                            IsBrgMasuk = Convert.ToBoolean(dr["IsBrgMasuk"])
                         };
                     }
                 }
@@ -122,7 +127,8 @@ namespace AnugerahBackend.StokBarang.Dal
             List<JenisMutasiModel> result = null;
             var sSql = @"
                 SELECT
-                    aa.JenisMutasiID, aa.JenisMutasiNAme
+                    aa.JenisMutasiID, aa.JenisMutasiNAme,
+                    aa.IsBrgMasuk   
                 FROM
                     JenisMutasi aa ";
             using (var conn = new SqlConnection(_connString))
@@ -139,7 +145,8 @@ namespace AnugerahBackend.StokBarang.Dal
                             var item = new JenisMutasiModel
                             {
                                 JenisMutasiID = dr["JenisMutasiID"].ToString(),
-                                JenisMutasiName = dr["JenisMutasiNAme"].ToString()
+                                JenisMutasiName = dr["JenisMutasiNAme"].ToString(),
+                                IsBrgMasuk = Convert.ToBoolean(dr["IsBrgMasuk"])
                             };
                             result.Add(item);
                         }

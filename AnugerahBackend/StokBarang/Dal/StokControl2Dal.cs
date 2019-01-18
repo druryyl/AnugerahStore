@@ -11,14 +11,14 @@ using System.Threading.Tasks;
 
 namespace AnugerahBackend.StokBarang.Dal
 {
-    public interface IStokDetilDal
+    public interface IStokControl2Dal
     {
         void Insert(StokControl2Model stokControl2);
         void Delete(string stokControl2ID);
         IEnumerable<StokControl2Model> ListData(string stokControlID);
     }
 
-    public class StokControl2Dal : IStokDetilDal
+    public class StokControl2Dal : IStokControl2Dal
     {
         public string _connString;
 

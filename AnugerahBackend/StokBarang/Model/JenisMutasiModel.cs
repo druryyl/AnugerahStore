@@ -10,5 +10,6 @@ namespace AnugerahBackend.StokBarang.Model
     {
         public string JenisMutasiID { get; set; }
         public string JenisMutasiName { get; set; }
+        public bool IsBrgMasuk { get; set; }
     }
 }

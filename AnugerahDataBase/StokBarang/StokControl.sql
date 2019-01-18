@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[StokControl]
 (
-	StokControlID VARCHAR(10) NOT NULL CONSTRAINT DF_Stok_StokID DEFAULT(''),
+	StokControlID VARCHAR(13) NOT NULL CONSTRAINT DF_Stok_StokID DEFAULT(''),
 	BrgID VARCHAR(5) NOT NULL CONSTRAINT DF_Stok_BrgID DEFAULT(''),
 	TglMasuk VARCHAR(10) NOT NULL CONSTRAINT DF_Stok_TglMasuk DEFAULT('3000-01-01'),
 	JamMasuk VARCHAR(8) NOT NULL CONSTRAINT DF_Stok_JamMasuk DEFAULT('00:00:00'),
@@ -16,9 +16,9 @@
 GO
 
 CREATE INDEX IX_Stok_BatchNo 
-	ON Stok (BatchNo)
+	ON StokControl (BatchNo)
 GO
 
 CREATE INDEX IX_Stok_BrgID_TglMasuk_JamMasuk_QtySaldo
-	ON Stok (BrgID, TglMasuk, JamMasuk, QtySaldo)
+	ON StokControl (BrgID, TglMasuk, JamMasuk, QtySaldo)
 GO
