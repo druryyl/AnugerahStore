@@ -6,19 +6,20 @@ using System.Threading.Tasks;
 
 namespace AnugerahBackend.StokBarang.Model
 {
-    public class StokControlModel
+    public class StokInModel
     {
-        public string StokControlID { get; set; }
+        public string StokInID { get; set; }
         public string BrgID { get; set; }
         public string BrgName { get; set; }
         public string TglMasuk { get; set; }
         public string JamMasuk { get; set; }
         public string TrsMasukID { get; set; }
-        public string TrsDOID { get; set; }
-        public string BatchNo { get; set; }
         public long QtyIn { get; set; }
         public long QtySaldo { get; set; }
         public double Hpp { get; set; }
+        
+        public string StokControlID { get; set; }
+        public string TrsDOID { get; set; }
     }
 
     public class StokSearchModel

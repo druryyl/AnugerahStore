@@ -11,33 +11,33 @@ using System.Threading.Tasks;
 
 namespace AnugerahBackend.StokBarang.Dal
 {
-    public interface IStokControlDal
+    public interface IStokInDal
     {
-        void Insert(StokControlModel stokControl);
-        void Update(StokControlModel stokControl);
-        void Delete(string stokControlID);
-        StokControlModel GetData(string stokControlID);
-        IEnumerable<StokControlModel> ListData();
+        void Insert(StokInModel stokIn);
+        void Update(StokInModel stokIn);
+        void Delete(string stokInID);
+        StokInModel GetData(string stokInID);
+        IEnumerable<StokInModel> ListData(string brgID);
     }
 
 
-    public class StokControlDal : IStokControlDal
+    public class StokInDal : IStokInDal
     {
         public string _connString;
 
-        public StokControlDal()
+        public StokInDal()
         {
             _connString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
         }
 
-        public void Insert(StokControlModel stok)
+        public void Insert(StokInModel stokIn)
         {
             var sSql = @"
                 INSERT INTO
-                    StokControl (
-                        StokControlID, BrgID, TglMasuk, JamMasuk, 
-                        TrsMasukID, TrsDOID, BatchNo, 
-                        QtyIn, QtySaldo, Hpp)
+                    StokIn (
+                        StokInID, BrgID, TglMasuk, JamMasuk, 
+                        TrsMasukID, QtyIn, QtySaldo, Hpp, 
+                        StokControlID, TrsDOID)
                 VALUES (
                         @StokControlID, @BrgID, @TglMasuk, @JamMasuk, 
                         @TrsMasukID, @TrsDOID, @BatchNo, 
@@ -45,63 +45,68 @@ namespace AnugerahBackend.StokBarang.Dal
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@StokControlID", stok.StokControlID);
-                cmd.AddParam("@BrgID", stok.BrgID);
-                cmd.AddParam("@TglMasuk", stok.TglMasuk.ToTglYMD());
-                cmd.AddParam("@JamMasuk", stok.JamMasuk);
-                cmd.AddParam("@TrsMasukID", stok.TrsMasukID);
-                cmd.AddParam("@TrsDOID", stok.TrsDOID);
-                cmd.AddParam("@BatchNo", stok.BatchNo);
-                cmd.AddParam("@QtyIn", stok.QtyIn);
-                cmd.AddParam("@QtySaldo", stok.QtySaldo);
-                cmd.AddParam("@Hpp", stok.Hpp);
+                cmd.AddParam("@StokInID", stokIn.StokInID);
+                cmd.AddParam("@BrgID", stokIn.BrgID);
+                cmd.AddParam("@TglMasuk", stokIn.TglMasuk.ToTglYMD());
+                cmd.AddParam("@JamMasuk", stokIn.JamMasuk);
+                cmd.AddParam("@TrsMasukID", stokIn.TrsMasukID);
+
+                cmd.AddParam("@QtyIn", stokIn.QtyIn);
+                cmd.AddParam("@QtySaldo", stokIn.QtySaldo);
+                cmd.AddParam("@Hpp", stokIn.Hpp);
+
+                cmd.AddParam("@StokControlID", stokIn.StokControlID);
+                cmd.AddParam("@TrsDOID", stokIn.TrsDOID);
 
                 cmd.ExecuteNonQuery();
             }
         }
 
-        public void Update(StokControlModel stok)
+        public void Update(StokInModel stokIn)
         {
             var sSql = @"
                 UPDATE
-                    StokControl,
+                    StokIn,
                 SET
                     BrgID = @BrgID
                     TglMasuk = @TglMasuk, 
                     JamMasuk = @JamMasuk, 
                     TrsMasukID = @TrsMasukID, 
-                    TrsDOID = @TrsDOID, 
-                    BatchNo = @BatchNo, 
                     QtyIn = @QtyIn, 
                     QtySaldo = @QtySaldo, 
                     Hpp = @Hpp
+                    StokControlID = @StokControlID, 
+                    TrsDOID = @TrsDOID, 
                 WHERE
                     StokControlID = @StokControlID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@StokControlID", stok.StokControlID);
-                cmd.AddParam("@BrgID", stok.BrgID);
-                cmd.AddParam("@TglMasuk", stok.TglMasuk.ToTglYMD());
-                cmd.AddParam("@JamMasuk", stok.JamMasuk);
-                cmd.AddParam("@TrsMasukID", stok.TrsMasukID);
-                cmd.AddParam("@TrsDOID", stok.TrsDOID);
-                cmd.AddParam("@BatchNo", stok.BatchNo);
-                cmd.AddParam("@QtyIn", stok.QtyIn);
-                cmd.AddParam("@QtySaldo", stok.QtySaldo);
-                cmd.AddParam("@Hpp", stok.Hpp);
+                cmd.AddParam("@StokInID", stokIn.StokInID);
+                cmd.AddParam("@BrgID", stokIn.BrgID);
+                cmd.AddParam("@TglMasuk", stokIn.TglMasuk.ToTglYMD());
+                cmd.AddParam("@JamMasuk", stokIn.JamMasuk);
+                cmd.AddParam("@TrsMasukID", stokIn.TrsMasukID);
+
+                cmd.AddParam("@QtyIn", stokIn.QtyIn);
+                cmd.AddParam("@QtySaldo", stokIn.QtySaldo);
+                cmd.AddParam("@Hpp", stokIn.Hpp);
+
+                cmd.AddParam("@StokControlID", stokIn.StokControlID);
+                cmd.AddParam("@TrsDOID", stokIn.TrsDOID);
+
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
         }
 
-        public void Delete(string id)
+        public void Delete(string stokInID)
         {
             var sSql = @"
                 DELETE
-                    StokControl 
+                    StokIn 
                 WHERE
-                    StokControlID = @StokControlID ";
+                    StokInID = @StokInID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
@@ -111,43 +116,44 @@ namespace AnugerahBackend.StokBarang.Dal
             }
         }
 
-        public StokControlModel GetData(string id)
+        public StokInModel GetData(string stokInID)
         {
-            StokControlModel result = null;
+            StokInModel result = null;
             var sSql = @"
                 SELECT
-                    aa.StokControlID, aa.BrgID, aa.TglMasuk, aa.JamMasuk, 
-                    aa.TrsMasukID, aa.TrsDOID, aa.BatchNo, 
+                    aa.StokInID, aa.BrgID, aa.TglMasuk, aa.JamMasuk, 
+                    aa.TrsMasukID, 
                     aa.QtyIn, aa.QtySaldo, aa.Hpp,
+                    aa.StokControlID, aa.TrsDOID, 
                     ISNULL(bb.BrgName, '') BrgName
                 FROM
-                    StokControl aa
+                    StokIn aa
                     LEFT JOIN Brg bb ON aa.BrgID = bb.BrgID
                 WHERE
                     aa.StokControlID = @StokControlID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@StokID", id);
+                cmd.AddParam("@StokID", stokInID);
                 conn.Open();
                 using (var dr = cmd.ExecuteReader())
                 {
                     if (dr.HasRows)
                     {
                         dr.Read();
-                        result = new StokControlModel
+                        result = new StokInModel
                         {
-                            StokControlID = id,
+                            StokInID = stokInID,
                             BrgID = dr["BrgID"].ToString(),
                             BrgName = dr["BrgName"].ToString(),
                             TglMasuk = dr["TglMasuk"].ToString().ToTglDMY(),
                             JamMasuk = dr["JamMasuk"].ToString(),
                             TrsMasukID = dr["TrsMasukID"].ToString(),
-                            TrsDOID = dr["TrsDOID"].ToString(),
-                            BatchNo = dr["BatchNo"].ToString(),
                             QtyIn = Convert.ToInt64(dr["QtyIn"]),
                             QtySaldo = Convert.ToInt64(dr["QtyOut"]),
-                            Hpp = Convert.ToDouble(dr["Hpp"])
+                            Hpp = Convert.ToDouble(dr["Hpp"]),
+                            StokControlID = dr["StokControlID"].ToString(),
+                            TrsDOID = dr["TrsDOID"].ToString(),
                         };
                     }
                 }
@@ -155,18 +161,21 @@ namespace AnugerahBackend.StokBarang.Dal
             return result;
         }
 
-        public IEnumerable<StokControlModel> ListData()
+        public IEnumerable<StokInModel> ListData(string brgID)
         {
-            List<StokControlModel> result = null;
+            List<StokInModel> result = null;
             var sSql = @"
                 SELECT
-                    aa.StokControlID, aa.BrgID, aa.TglMasuk, aa.JamMasuk, 
-                    aa.TrsMasukID, aa.TrsDOID, aa.BatchNo, 
+                    aa.StokInID, aa.BrgID, aa.TglMasuk, aa.JamMasuk, 
+                    aa.TrsMasukID, 
                     aa.QtyIn, aa.QtySaldo, aa.Hpp,
+                    aa.StokControlID, aa.TrsDOID, 
                     ISNULL(bb.BrgName, '') BrgName
                 FROM
-                    Stok aa
-                    LEFT JOIN Brg bb ON aa.BrgID = bb.BrgID ";
+                    StokIn aa
+                    LEFT JOIN Brg bb ON aa.BrgID = bb.BrgID 
+                WHERE
+                    aa.BrgID = @BrgID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
@@ -175,22 +184,24 @@ namespace AnugerahBackend.StokBarang.Dal
                 {
                     if (dr.HasRows)
                     {
-                        result = new List<StokControlModel>();
+                        result = new List<StokInModel>();
                         while (dr.Read())
                         {
-                            var item = new StokControlModel
+                            var item = new StokInModel
                             {
-                                StokControlID = dr["StokControlID"].ToString(),
+                                StokInID = dr["StokInID"].ToString(),
                                 BrgID = dr["BrgID"].ToString(),
                                 BrgName = dr["BrgName"].ToString(),
                                 TglMasuk = dr["TglMasuk"].ToString().ToTglDMY(),
                                 JamMasuk = dr["JamMasuk"].ToString(),
                                 TrsMasukID = dr["TrsMasukID"].ToString(),
-                                TrsDOID = dr["TrsDOID"].ToString(),
-                                BatchNo = dr["BatchNo"].ToString(),
+
                                 QtyIn = Convert.ToInt64(dr["QtyIn"]),
                                 QtySaldo = Convert.ToInt64(dr["QtyOut"]),
-                                Hpp = Convert.ToDouble(dr["Hpp"])
+                                Hpp = Convert.ToDouble(dr["Hpp"]),
+
+                                StokControlID = dr["StokControlID"].ToString(),
+                                TrsDOID = dr["TrsDOID"].ToString(),
                             };
                             result.Add(item);
                         }

@@ -26,15 +26,15 @@ namespace AnugerahBackend.StokBarang.BL
     public class StokControlBL : IStokControlBL
     {
         private IStokControlDal _stokControlDal;
-        private IStokControl2Dal _stokControl2Dal;
+        private IStokInOutDal _stokControl2Dal;
         private IBrgBL _brgBL;
         private IJenisMutasiBL _jenisMutasiBL;
         private IParameterNoBL _paramNoBL;
 
         public StokControlBL()
         {
-            _stokControlDal = new StokControlDal();
-            _stokControl2Dal = new StokControl2Dal();
+            _stokControlDal = new StokInDal();
+            _stokControl2Dal = new StokInOutDal();
 
             _brgBL = new BrgBL();
             _jenisMutasiBL = new JenisMutasiBL();
@@ -51,6 +51,7 @@ namespace AnugerahBackend.StokBarang.BL
         public void AddStok(string brgID, string tgl, string jam, long qty, double hpp,
             string jenisMutasiID, string trsMasukID, string trsDOID, string batchNo)
         {
+            #region VALIDASI-INPUT
             //  validasi brg
             var brg = _brgBL.GetData(brgID);
             if (brg == null)
@@ -84,6 +85,7 @@ namespace AnugerahBackend.StokBarang.BL
                 var errMsg = string.Format("Jam invalid: {0}", jam);
                 throw new ArgumentException(errMsg);
             }
+            #endregion
 
             //  proses simpan stok control
             var prefix = string.Format("{0}-{1}-",
@@ -108,7 +110,7 @@ namespace AnugerahBackend.StokBarang.BL
             //  proses simpan stok control2
             var prefix2 = stokControlID+"-";
             var stokControl2ID = _paramNoBL.GenNewID(prefix2, 16);
-            var stokControl2 = new StokControl2Model
+            var stokControl2 = new StokInOutModel
             {
                 StokControl2ID = stokControl2ID,
                 StokControlID = stokControlID,
