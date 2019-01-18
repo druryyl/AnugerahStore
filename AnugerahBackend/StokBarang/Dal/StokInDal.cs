@@ -18,6 +18,7 @@ namespace AnugerahBackend.StokBarang.Dal
         void Delete(string stokInID);
         StokInModel GetData(string stokInID);
         IEnumerable<StokInModel> ListData(string brgID);
+        IEnumerable<StokInModel> ListDataByStokControl(string stokControlID);
     }
 
 
@@ -176,6 +177,59 @@ namespace AnugerahBackend.StokBarang.Dal
                     LEFT JOIN Brg bb ON aa.BrgID = bb.BrgID 
                 WHERE
                     aa.BrgID = @BrgID ";
+            using (var conn = new SqlConnection(_connString))
+            using (var cmd = new SqlCommand(sSql, conn))
+            {
+                conn.Open();
+                using (var dr = cmd.ExecuteReader())
+                {
+                    if (dr.HasRows)
+                    {
+                        result = new List<StokInModel>();
+                        while (dr.Read())
+                        {
+                            var item = new StokInModel
+                            {
+                                StokInID = dr["StokInID"].ToString(),
+                                BrgID = dr["BrgID"].ToString(),
+                                BrgName = dr["BrgName"].ToString(),
+                                TglMasuk = dr["TglMasuk"].ToString().ToTglDMY(),
+                                JamMasuk = dr["JamMasuk"].ToString(),
+                                TrsMasukID = dr["TrsMasukID"].ToString(),
+
+                                QtyIn = Convert.ToInt64(dr["QtyIn"]),
+                                QtySaldo = Convert.ToInt64(dr["QtyOut"]),
+                                Hpp = Convert.ToDouble(dr["Hpp"]),
+
+                                StokControlID = dr["StokControlID"].ToString(),
+                                TrsDOID = dr["TrsDOID"].ToString(),
+                            };
+                            result.Add(item);
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+
+        public IEnumerable<StokInModel> ListDataByStokControl(string stokControlID)
+        {
+            List<StokInModel> result = null;
+            var sSql = @"
+                SELECT
+                    aa.StokInID, aa.BrgID, aa.TglMasuk, aa.JamMasuk, 
+                    aa.TrsMasukID, 
+                    aa.QtyIn, aa.QtySaldo, aa.Hpp,
+                    aa.StokControlID, aa.TrsDOID, 
+                    ISNULL(bb.BrgName, '') BrgName
+                FROM
+                    StokIn aa
+                    LEFT JOIN Brg bb ON aa.BrgID = bb.BrgID 
+                WHERE
+                    aa.StokControlID = @StokControlID 
+                    AND aa.QtySaldo <> 0
+                ORDER BY
+                    aa.StokInID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
