@@ -80,6 +80,56 @@ namespace AnugerahBackend.StokBarang.Dal
             }
         }
 
+        public StokInOutModel GetData(string stokInOutID)
+        {
+            StokInOutModel result = null;
+            var sSql = @"
+                SELECT
+                    aa.StoInID, aa.StokInOutID, aa.TglTrs, aa.JamTrs, 
+                    aa.ReffTrsID, aa.JenisMutasiID, 
+                    aa.BrgID, aa.StokControlID, 
+                    aa.QtyIn, aa.QtyOut, aa.Hpp, aa.HargaJual,
+                    ISNULL(bb.BrgName, '') BrgName, 
+                    ISNULL(cc.JenisMutasiName, '') JenisMutasiName
+                FROM
+                    StokControl2 aa
+                    LEFT JOIN Brg bb ON aa.BrgId = bb.BrgID
+                    LEFT JOIN JenisMutasi cc ON aa.JenisMutasiID = cc.JenisMutasiID
+                WHERE
+                    StokInOutID = @StokInOutID ";
+            using (var conn = new SqlConnection(_connString))
+            using (var cmd = new SqlCommand(sSql, conn))
+            {
+                cmd.AddParam("@StokInOutID", stokInOutID);
+                conn.Open();
+                var dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    dr.Read();
+                    result = new StokInOutModel
+                    {
+                        StokInID = stokInOutID,
+                        StokInOutID = dr["StokID"].ToString(),
+                        TglTrs = dr["TglTrs"].ToString().ToTglDMY(),
+                        JamTrs = dr["JamTrs"].ToString(),
+                        ReffTrsID = dr["ReffTrsID"].ToString(),
+                        JenisMutasiID = dr["JenisMutasiID"].ToString(),
+                        JenisMutasiName = dr["JenisMutasiName"].ToString(),
+
+                        BrgID = dr["BrgID"].ToString(),
+                        BrgName = dr["BrgName"].ToString(),
+                        StokControlID = dr["StokControlID"].ToString(),
+
+                        QtyIn = Convert.ToInt64(dr["QtyIn"]),
+                        QtyOut = Convert.ToInt64(dr["QtyOut"]),
+                        Hpp = Convert.ToDouble(dr["Hpp"]),
+                        HargaJual = Convert.ToDouble(dr["HargaJual"])
+                    };
+                }
+            }
+            return result;
+        }
+
         public IEnumerable<StokInOutModel> ListData(string stokInID)
         {
             List<StokInOutModel> result = null;
