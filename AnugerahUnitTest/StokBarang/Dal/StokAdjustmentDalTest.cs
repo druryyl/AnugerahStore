@@ -1,10 +1,14 @@
 ﻿using AnugerahBackend.StokBarang.Dal;
 using AnugerahBackend.StokBarang.Model;
+using FluentAssertions;
+using Ics.Helper.Database;
+using Ics.Helper.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xunit;
 
 namespace AnugerahUnitTest.StokBarang.Dal
 {
@@ -13,7 +17,6 @@ namespace AnugerahUnitTest.StokBarang.Dal
         void InsertTest();
         void UpdateTest();
         void DeleteTest();
-        void VoidTest();
         void GetDataTest();
         void ListDataTest();
 
@@ -44,37 +47,97 @@ namespace AnugerahUnitTest.StokBarang.Dal
             };
             return result;
         }
-
+        [Fact]
         public void InsertTest()
         {
-            throw new NotImplementedException();
+            using (var trans = TransHelper.NewScope())
+            {
+                //  arrange
+                var expected = StokAdjustmentDataFactory();
+
+                //  act
+                _stokAdjustmentDal.Insert(expected);
+
+                //  assert
+
+            }
         }
 
+        [Fact]
         public void UpdateTest()
         {
-            throw new NotImplementedException();
+            using (var trans = TransHelper.NewScope())
+            {
+                //  arrange
+                var expected = StokAdjustmentDataFactory();
+
+                //  act
+                _stokAdjustmentDal.Update(expected);
+
+                //  assert
+            }
         }
 
+        [Fact]
         public void DeleteTest()
         {
-            throw new NotImplementedException();
+            using (var trans = TransHelper.NewScope())
+            {
+                //  arrange
+                var expected = StokAdjustmentDataFactory();
+                _stokAdjustmentDal.Insert(expected);
+
+                //  act
+                _stokAdjustmentDal.Delete(expected.StokAdjustmentID);
+
+                //  assert
+            }
         }
 
-        public void VoidTest()
-        {
-            throw new NotImplementedException();
-        }
-
+        [Fact]
         public void GetDataTest()
         {
-            throw new NotImplementedException();
+            using (var trans = TransHelper.NewScope())
+            {
+                //  arrange
+                var expected = StokAdjustmentDataFactory();
+                _stokAdjustmentDal.Insert(expected);
+
+                //  act
+                var actual = _stokAdjustmentDal.GetData(expected.StokAdjustmentID);
+
+                //  assert
+                actual.Should().BeEquivalentTo(expected,
+                    config => config
+                        .Excluding(x => x.ListBrg));
+            }
         }
 
+        [Fact]
         public void ListDataTest()
         {
-            throw new NotImplementedException();
-        }
+            using (var trans = TransHelper.NewScope())
+            {
+                //  arrange
+                var expected1 = StokAdjustmentDataFactory();
+                var expected2 = expected1.CloneObject();
+                expected2.StokAdjustmentID = "A2";
+                var expected = new List<StokAdjustmentModel>
+                {
+                    expected1, expected2
+                };
+                _stokAdjustmentDal.Insert(expected1);
+                _stokAdjustmentDal.Insert(expected1);
 
-        a
+                //  act
+                var actual = _stokAdjustmentDal.ListData(expected1.TglTrs, expected2.TglTrs);
+
+
+                //  assert
+                actual.Should().BeEquivalentTo(expected,
+                    config => config
+                        .Excluding(x => x.ListBrg));
+            }
+        }
     }
 }

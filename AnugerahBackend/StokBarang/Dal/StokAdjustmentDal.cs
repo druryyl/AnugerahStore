@@ -19,8 +19,6 @@ namespace AnugerahBackend.StokBarang.Dal
         void Update(StokAdjustmentModel stokAdjustment);
 
         void Delete(string stringID);
-        void Void(string id, string userrIDVoid);
-
         StokAdjustmentModel GetData(string id);
 
         IEnumerable<StokAdjustmentModel> ListData(string tgl1, string tgl2);
@@ -106,30 +104,6 @@ namespace AnugerahBackend.StokBarang.Dal
                 cmd.AddParam("@StokAdjustmentID", id);
                 conn.Open();
                 cmd.ExecuteNonQuery();
-            }
-        }
-
-        public void Void(string id, string userrIDVoid)
-        {
-            var sSql = @"
-                UPDATE
-                    StokAdjustment 
-                SET
-                    TglVoid = @TglVoid,
-                    JamVoid = @JamVoid,
-                    UserrIDVoid = @UserrIDVoid
-                WHERE
-                    StokAdjustmentID = @StokAdjustmentID ";
-            using (var conn = new SqlConnection(_connString))
-            using (var cmd = new SqlCommand(sSql, conn))
-            {
-                cmd.AddParam("@TglVoid", DateTime.Now.ToString("yyyy-MM-dd"));
-                cmd.AddParam("@JamVoid", DateTime.Now.ToString("HH:mm:ss"));
-                cmd.AddParam("@UserrIDVoid", userrIDVoid);
-                cmd.AddParam("@StokAdjustmentID", id);
-
-                conn.Open();
-                cmd.ExecuteReader();
             }
         }
 
