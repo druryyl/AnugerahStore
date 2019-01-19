@@ -127,7 +127,7 @@ namespace AnugerahUnitTest.StokBarang.Dal
                     expected1, expected2
                 };
                 _stokAdjustmentDal.Insert(expected1);
-                _stokAdjustmentDal.Insert(expected1);
+                _stokAdjustmentDal.Insert(expected2);
 
                 //  act
                 var actual = _stokAdjustmentDal.ListData(expected1.TglTrs, expected2.TglTrs);

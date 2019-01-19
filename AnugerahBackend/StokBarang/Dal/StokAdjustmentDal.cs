@@ -113,7 +113,7 @@ namespace AnugerahBackend.StokBarang.Dal
             var sSql = @"
                 SELECT
                     aa.TglTrs, aa.JamTrs,aa.UserrID, aa.Keterangan,
-                    aa.TglVoid, aa.JamVoid aa.UserrIDVoid
+                    aa.TglVoid, aa.JamVoid, aa.UserrIDVoid
                 FROM
                     StokAdjustment aa
                 WHERE
@@ -136,6 +136,7 @@ namespace AnugerahBackend.StokBarang.Dal
                             UserrID = dr["UserrID"].ToString(),
                             TglVoid = dr["TglVoid"].ToString().ToTglDMY(),
                             JamVoid = dr["JamVoid"].ToString(),
+                            UserrIDVoid = dr["UserrIDVoid"].ToString(),
                             Keterangan = dr["Keterangan"].ToString(),
                         };
                     }
@@ -179,6 +180,7 @@ namespace AnugerahBackend.StokBarang.Dal
                                 UserrID = dr["UserrID"].ToString(),
                                 TglVoid = dr["TglVoid"].ToString().ToTglDMY(),
                                 JamVoid = dr["JamVoid"].ToString(),
+                                UserrIDVoid = dr["UserrIDVoid"].ToString(),
                                 Keterangan = dr["Keterangan"].ToString(),
                             };
                             result.Add(item);
