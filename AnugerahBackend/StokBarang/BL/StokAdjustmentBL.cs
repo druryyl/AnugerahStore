@@ -147,7 +147,6 @@ namespace AnugerahBackend.StokBarang.BL
                 //  re-calc qty akhir
                 item.QtyAkhir = item.QtyAwal + item.QtyAdjust;
             }
-
             return result;
         }
     }
