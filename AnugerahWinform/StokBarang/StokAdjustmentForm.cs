@@ -17,6 +17,7 @@ namespace AnugerahWinform.StokBarang
     {
         private IBrgBL _brgBL;
         private IStokBL _stokBL;
+        private DataSet _stokAdjDataSet;
 
         public StokAdjustmentForm()
         {
@@ -24,18 +25,11 @@ namespace AnugerahWinform.StokBarang
             _brgBL = new BrgBL();
             _stokBL = new StokBL();
 
-
         }
-
-        private void BrgGrid_KeyDown(object sender, KeyEventArgs e)
+        private void StokAdjustmentForm_Load(object sender, EventArgs e)
         {
-            if(e.KeyCode == Keys.F1)
-            {
-                var searchForm = new SearchingForm<BrgSearchResultModel>(_brgBL);
-                searchForm.ShowDialog();
-            }
+            AddRow();
         }
-
         private void BrgGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;
@@ -47,7 +41,13 @@ namespace AnugerahWinform.StokBarang
                 ShowDataBrgGrid(e.RowIndex);
             }
         }
-
+        private void BrgGrid_CellValidated(object sender, DataGridViewCellEventArgs e)
+        {
+            var brgName = DetilAdjTable.Rows[e.RowIndex]["BrgName"].ToString();
+            if ((brgName.Trim() != "") && (e.RowIndex == DetilAdjTable.Rows.Count-1))
+                AddRow();
+                
+        }
         private void SearchBrg(int rowIndex)
         {
             var searchForm = new SearchingForm<BrgSearchResultModel>(_brgBL);
@@ -55,17 +55,13 @@ namespace AnugerahWinform.StokBarang
             if(resultDialog == DialogResult.OK)
             {
                 var result = searchForm.SelectedDataKey;
-                var row = BrgGrid.Rows[rowIndex];
-                row.Cells["BrgKodeCol"].Value = result;
-                row.Cells["BrgQtyAdjustCol"].Selected = true;
+                DetilAdjTable.Rows[rowIndex]["BrgID"] = result;
             }
         }
-
         private void ShowDataBrgGrid(int rowIndex)
         {
             //  get key (KodeBrg)
-            var row = BrgGrid.Rows[rowIndex];
-            var kodeBrg = row.Cells["BrgKodeCol"].Value.ToString();
+            string kodeBrg = (string)DetilAdjTable.Rows[rowIndex]["BrgID"];
 
             //  get nama barang
             var brgName = "";
@@ -75,46 +71,22 @@ namespace AnugerahWinform.StokBarang
 
             //  get stok
             long qtyAwal = _stokBL.GetStok(kodeBrg);
-            row.Cells["BrgQtyAwalCol"].Value = qtyAwal;
 
             //  tampilkan di grid
-            row.Cells["BrgNamaCol"].Value = brgName;
-            row.Cells["BrgQtyAwalCol"].Value = qtyAwal;
+            DetilAdjTable.Rows[rowIndex]["BrgName"] = brgName;
+            DetilAdjTable.Rows[rowIndex]["QtyAwal"] = qtyAwal;
         }
-
-        private void StokAdjustmentForm_Load(object sender, EventArgs e)
+        private void AddRow()
         {
-            BrgGrid.Rows.Add("A11","", "Karet Rakel 23 mm", 4112, 5, 4117, 52450);
-
-            //BrgGrid.Columns["BrgQtyAwalCol"].DefaultCellStyle.Format = "N2";
-            //BrgQtyAwalCol.DefaultCellStyle.Format = "N2";
-            //BrgQtyAdjustCol.DefaultCellStyle.Format = "N2";
-            //BrgQtyAkhirCol.DefaultCellStyle.Format = "N2";
-            //BrgHppCol.DefaultCellStyle.Format = "N2";
+            DetilAdjTable.Rows.Add("", "", 0, 0, 0, 0);
         }
 
         private void BrgGrid_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            var theGrid = (DataGridView)sender;
-            if(e.ColumnIndex == BrgQtyAwalCol.Index)
+            if (e.ColumnIndex == 0)
             {
-                var string1 = e.FormattedValue.ToString();
-                theGrid.Rows[e.RowIndex].Cells["BrgQtyAwalCol"].Value = Convert.ToInt32(string1); 
+                ShowDataBrgGrid(e.RowIndex);
             }
-        }
-
-        private void BrgGrid_CellValidated(object sender, DataGridViewCellEventArgs e)
-        {
-            string brgID = BrgGrid.Rows[e.RowIndex].Cells["BrgKodeCol"].Value.ToString();
-            string namaBrg = BrgGrid.Rows[e.RowIndex].Cells["BrgNamaCol"].Value.ToString();
-            long qtyAwal = Convert.ToInt64(BrgGrid.Rows[e.RowIndex].Cells["BrgQtyAwalCol"].Value);
-            long qtyAdjust = Convert.ToInt64(BrgGrid.Rows[e.RowIndex].Cells["BrgQtyAdjustCol"].Value);
-            long qtyAkhir = Convert.ToInt64(BrgGrid.Rows[e.RowIndex].Cells["BrgQtyAkhirCol"].Value);
-            long hpp = Convert.ToInt64(BrgGrid.Rows[e.RowIndex].Cells["BrgHppCol"].Value);
-
-            object[] rowData = { brgID, "", namaBrg, qtyAwal, qtyAdjust, qtyAkhir, hpp };
-            BrgGrid.Rows.Add(rowData);
-
         }
     }
 }
