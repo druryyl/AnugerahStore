@@ -55,7 +55,7 @@
     <Compile Include="StokBarang\BL\ColorBL.cs" />
     <Compile Include="StokBarang\BL\JenisMutasiBL.cs" />
     <Compile Include="StokBarang\BL\StokAdjustmentBL.cs" />
-    <Compile Include="StokBarang\BL\StoklBL.cs" />
+    <Compile Include="StokBarang\BL\StokBL.cs" />
     <Compile Include="StokBarang\BL\SubJenisBrgBL.cs" />
     <Compile Include="StokBarang\BL\TipeBrgBL.cs" />
     <Compile Include="StokBarang\Dal\BrgDal.cs" />

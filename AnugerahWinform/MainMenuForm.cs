@@ -21,7 +21,7 @@ namespace AnugerahWinform
 
         private void MainMenuForm_Load(object sender, EventArgs e)
         {
-            Controls.OfType<MdiClient>().FirstOrDefault().BackColor = Color.Black;
+            Controls.OfType<MdiClient>().FirstOrDefault().BackColor = Color.DarkGray;
         }
         private void BarangButton_Click(object sender, EventArgs e)
         {

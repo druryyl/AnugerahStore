@@ -13,7 +13,7 @@ using Ics.Helper.Database;
 
 namespace AnugerahBackend.StokBarang.BL
 {
-    public interface IStokInOutBL : ISearchData<StokSearchModel>
+    public interface IStokBL : ISearchData<StokSearchModel>
     {
         void AddStok(string brgID, long qty, double hpp, 
             string tgl, string jam, string trsMasukID, 
@@ -25,9 +25,11 @@ namespace AnugerahBackend.StokBarang.BL
 
         void RemoveStok(BrgModel brg, long qty, double hargaJual,
             string jenisMutasiID, string trsReffID);
+
+        long GetStok(string brgID);
     }
 
-    public class StokInOutBL : IStokInOutBL
+    public class StokBL : IStokBL
     {
         private const string PREFIX_STOK_IN = "SI";
 
@@ -39,7 +41,7 @@ namespace AnugerahBackend.StokBarang.BL
         private IParameterNoBL _paramNoBL;
 
         #region CONSTRUCTOR
-        public StokInOutBL()
+        public StokBL()
         {
             _stokInDal = new StokInDal();
             _stokInOutDal = new StokInOutDal();
@@ -50,7 +52,7 @@ namespace AnugerahBackend.StokBarang.BL
 
         }
 
-        public StokInOutBL(
+        public StokBL(
             IStokInDal injStokInDal, IStokInOutDal injStokInOutDal,
             IBrgBL injBrgBL, IJenisMutasiBL injJenisMutasiBL,
             IParameterNoBL injParamNoBL)
@@ -155,6 +157,15 @@ namespace AnugerahBackend.StokBarang.BL
                 trans.Complete();
             }
             #endregion
+        }
+
+        public long GetStok(string brgID)
+        {
+            long result = 0;
+            var listStok = _stokInDal.ListData(brgID);
+            if (listStok != null)
+                result = listStok.Sum(x => x.QtySaldo);
+            return result;
         }
 
         public void RemoveStok(string stokControlID, long qty, double hargaJual,

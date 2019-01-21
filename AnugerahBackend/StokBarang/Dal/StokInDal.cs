@@ -176,7 +176,8 @@ namespace AnugerahBackend.StokBarang.Dal
                     StokIn aa
                     LEFT JOIN Brg bb ON aa.BrgID = bb.BrgID 
                 WHERE
-                    aa.BrgID = @BrgID ";
+                    aa.BrgID = @BrgID 
+                    AND aa.QtySaldo <> 0";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {

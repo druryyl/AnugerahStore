@@ -63,9 +63,19 @@ namespace AnugerahWinform.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap anugerah_sps {
+        internal static System.Drawing.Bitmap background {
             get {
-                object obj = ResourceManager.GetObject("anugerah_sps", resourceCulture);
+                object obj = ResourceManager.GetObject("background", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap background3 {
+            get {
+                object obj = ResourceManager.GetObject("background3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -86,16 +96,6 @@ namespace AnugerahWinform.Properties {
         internal static System.Drawing.Bitmap icons8_clothes_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-clothes-48", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap photo_2018_12_09_19_56_09 {
-            get {
-                object obj = ResourceManager.GetObject("photo_2018-12-09_19-56-09", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

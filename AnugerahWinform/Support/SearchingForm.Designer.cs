@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.KeywordTextBox = new System.Windows.Forms.TextBox();
             this.ListDataGrid = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -48,7 +49,7 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.textBox1);
+            this.splitContainer1.Panel1.Controls.Add(this.KeywordTextBox);
             // 
             // splitContainer1.Panel2
             // 
@@ -57,17 +58,20 @@
             this.splitContainer1.SplitterDistance = 25;
             this.splitContainer1.TabIndex = 0;
             // 
-            // textBox1
+            // KeywordTextBox
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(0, 0);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(455, 21);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+            this.KeywordTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.KeywordTextBox.Location = new System.Drawing.Point(0, 0);
+            this.KeywordTextBox.Name = "KeywordTextBox";
+            this.KeywordTextBox.Size = new System.Drawing.Size(455, 21);
+            this.KeywordTextBox.TabIndex = 0;
+            this.KeywordTextBox.TextChanged += new System.EventHandler(this.KeywordTextBox_TextChanged);
+            this.KeywordTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeywordTextBox_KeyDown);
             // 
             // ListDataGrid
             // 
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.ListDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.ListDataGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.ListDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ListDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -75,6 +79,7 @@
             this.ListDataGrid.Name = "ListDataGrid";
             this.ListDataGrid.Size = new System.Drawing.Size(455, 463);
             this.ListDataGrid.TabIndex = 0;
+            this.ListDataGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListDataGrid_CellDoubleClick);
             // 
             // SearchingForm
             // 
@@ -83,12 +88,13 @@
             this.ClientSize = new System.Drawing.Size(455, 492);
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MinimizeBox = false;
             this.Name = "SearchingForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SearchingForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SearchingForm_FormClosed);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -102,7 +108,7 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox KeywordTextBox;
         private System.Windows.Forms.DataGridView ListDataGrid;
     }
 }
