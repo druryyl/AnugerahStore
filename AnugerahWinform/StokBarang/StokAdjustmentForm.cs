@@ -48,6 +48,14 @@ namespace AnugerahWinform.StokBarang
                 AddRow();
                 
         }
+        private void BrgGrid_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (e.ColumnIndex == 0)
+            {
+                ShowDataBrgGrid(e.RowIndex);
+            }
+        }
+
         private void SearchBrg(int rowIndex)
         {
             var searchForm = new SearchingForm<BrgSearchResultModel>(_brgBL);
@@ -81,12 +89,5 @@ namespace AnugerahWinform.StokBarang
             DetilAdjTable.Rows.Add("", "", 0, 0, 0, 0);
         }
 
-        private void BrgGrid_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
-        {
-            if (e.ColumnIndex == 0)
-            {
-                ShowDataBrgGrid(e.RowIndex);
-            }
-        }
     }
 }
