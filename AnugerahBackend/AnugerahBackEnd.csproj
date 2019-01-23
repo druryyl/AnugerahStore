@@ -48,8 +48,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Penjualan\BL\BrgPriceBL.cs" />
+    <Compile Include="Penjualan\BL\PenjualanBL.cs" />
     <Compile Include="Penjualan\Dal\BrgPriceDal.cs" />
+    <Compile Include="Penjualan\Dal\Penjualan2Dal.cs" />
+    <Compile Include="Penjualan\Dal\PenjualanDal.cs" />
     <Compile Include="Penjualan\Model\BrgPriceModel.cs" />
+    <Compile Include="Penjualan\Model\Penjualan2Model.cs" />
+    <Compile Include="Penjualan\Model\PenjualanModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StokBarang\BL\BrgBL.cs" />
     <Compile Include="StokBarang\BL\ColorBL.cs" />
