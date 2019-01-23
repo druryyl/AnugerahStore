@@ -15,18 +15,35 @@ namespace AnugerahWinform.Support
     {
         ISearchData<T> _searchBL;
         public string SelectedDataKey;
-
-        public SearchingForm(ISearchData<T> _injSearchBL)
+        private bool _isFilterTgl;
+        public SearchingForm(ISearchData<T> _injSearchBL, bool isShowTgl)
         {
             InitializeComponent();
             _searchBL = _injSearchBL;
+            _isFilterTgl = isShowTgl;
+            
+            if (!isShowTgl)
+            {
+                Tgl1DatePicker.Visible = false;
+                Tgl2DatePicker.Visible = false;
+                splitContainer1.FixedPanel = FixedPanel.None;
+                splitContainer1.SplitterDistance -= Tgl1DatePicker.Height + 5;
+                splitContainer1.FixedPanel = FixedPanel.Panel1;
+            }
         }
 
         private void KeywordTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.KeyCode == Keys.Enter)
             {
-                var listData = _searchBL.Search(KeywordTextBox.Text);
+                IEnumerable<T> listData;
+                if (!_isFilterTgl)
+                    listData = _searchBL.Search(KeywordTextBox.Text);
+                else
+                    listData = _searchBL.Search(KeywordTextBox.Text,
+                        Tgl1DatePicker.Value.ToString("dd-MM-yyyy"),
+                        Tgl2DatePicker.Value.ToString("dd-MM-yyyy"));
+
                 ListDataGrid.DataSource = listData;
                 foreach(DataGridViewColumn col in ListDataGrid.Columns)
                 {

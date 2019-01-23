@@ -25,7 +25,7 @@ namespace AnugerahWinform.Penjualan
 
         private void newButton_Click(object sender, EventArgs e)
         {
-            var searchForm = new SearchingForm<BrgSearchResultModel>(_brgBL);
+            var searchForm = new SearchingForm<BrgSearchResultModel>(_brgBL, false);
             searchForm.ShowDialog();
         }
     }

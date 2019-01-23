@@ -81,10 +81,13 @@ namespace AnugerahBackend.StokBarang.Dal
                     ISNULL(bb.BrgName, '') BrgName
                 FROM
                     StokAdjustment2 aa 
-                    LEFT JOIN Brg bb ON aa.BrgID = bb.BrgID ";
+                    LEFT JOIN Brg bb ON aa.BrgID = bb.BrgID 
+                WHERE
+                    aa.StokAdjustmentID = @StokAdjustmentID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
+                cmd.AddParam("@StokAdjustmentID", stokAdjustmentID);
                 conn.Open();
                 using (var dr = cmd.ExecuteReader())
                 {

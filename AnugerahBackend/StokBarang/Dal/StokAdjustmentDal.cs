@@ -1,4 +1,5 @@
 ﻿using AnugerahBackend.StokBarang.Model;
+using AnugerahBackend.Support;
 using Ics.Helper.Extensions;
 using Ics.Helper.StringDateTime;
 using System;
@@ -22,6 +23,7 @@ namespace AnugerahBackend.StokBarang.Dal
         StokAdjustmentModel GetData(string id);
 
         IEnumerable<StokAdjustmentModel> ListData(string tgl1, string tgl2);
+        IEnumerable<StokAdjustmentSearchModel> Search(string keyword, string tgl1, string tgl2);
     }
 
 
@@ -189,6 +191,50 @@ namespace AnugerahBackend.StokBarang.Dal
                 }
             }
             return result;
+        }
+
+        public IEnumerable<StokAdjustmentSearchModel> Search(string keyword, string tgl1, string tgl2)
+        {
+
+            {
+                List<StokAdjustmentSearchModel> result = null;
+                var sSql = @"
+                SELECT
+                    aa.StokAdjustmentID, 
+                    aa.TglTrs, aa.JamTrs, aa.UserrIDVoid,
+                    aa.Keterangan
+                FROM
+                    StokAdjustment aa 
+                WHERE
+                    aa.TglTrs BETWEEN @Tgl1 AND @Tgl2
+                ";
+                using (var conn = new SqlConnection(_connString))
+                using (var cmd = new SqlCommand(sSql, conn))
+                {
+                    cmd.AddParam("@Tgl1", tgl1.ToTglYMD());
+                    cmd.AddParam("@Tgl2", tgl2.ToTglYMD());
+                    conn.Open();
+                    using (var dr = cmd.ExecuteReader())
+                    {
+                        if (dr.HasRows)
+                        {
+                            result = new List<StokAdjustmentSearchModel>();
+                            while (dr.Read())
+                            {
+                                var item = new StokAdjustmentSearchModel
+                                {
+                                    StokAdjustmentID = dr["StokAdjustmentID"].ToString(),
+                                    TglTrs = dr["TglTrs"].ToString().ToTglDMY(),
+                                    JamTrs = dr["JamTrs"].ToString(),
+                                    Keterangan = dr["Keterangan"].ToString(),
+                                };
+                                result.Add(item);
+                            }
+                        }
+                    }
+                }
+                return result;
+            }
         }
     }
 }

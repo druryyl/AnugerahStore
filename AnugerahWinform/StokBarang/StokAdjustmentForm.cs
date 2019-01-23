@@ -1,6 +1,7 @@
 ﻿using AnugerahBackend.StokBarang.BL;
 using AnugerahBackend.StokBarang.Model;
 using AnugerahWinform.Support;
+using Ics.Helper.StringDateTime;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -45,9 +46,9 @@ namespace AnugerahWinform.StokBarang
         private void BrgGrid_CellValidated(object sender, DataGridViewCellEventArgs e)
         {
             var brgName = DetilAdjTable.Rows[e.RowIndex]["BrgName"].ToString();
-            if ((brgName.Trim() != "") && (e.RowIndex == DetilAdjTable.Rows.Count-1))
+            if ((brgName.Trim() != "") && (e.RowIndex == DetilAdjTable.Rows.Count - 1))
                 AddRow();
-                
+
         }
         private void BrgGrid_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
@@ -59,14 +60,26 @@ namespace AnugerahWinform.StokBarang
 
         private void SearchBrg(int rowIndex)
         {
-            var searchForm = new SearchingForm<BrgSearchResultModel>(_brgBL);
+            var searchForm = new SearchingForm<BrgSearchResultModel>(_brgBL, true);
             var resultDialog = searchForm.ShowDialog();
-            if(resultDialog == DialogResult.OK)
+            if (resultDialog == DialogResult.OK)
             {
                 var result = searchForm.SelectedDataKey;
                 DetilAdjTable.Rows[rowIndex]["BrgID"] = result;
             }
         }
+
+        private void SearchKodeTrs()
+        {
+            var searchForm = new SearchingForm<StokAdjustmentSearchModel>(_stokAdjustmentBL,true);
+            var resultDialog = searchForm.ShowDialog();
+            if (resultDialog == DialogResult.OK)
+            {
+                var result = searchForm.SelectedDataKey;
+                NoTrsTextBox.Text = result;
+            }
+        }
+
         private void ShowDataBrgGrid(int rowIndex)
         {
             //  get key (KodeBrg)
@@ -75,7 +88,7 @@ namespace AnugerahWinform.StokBarang
             //  get nama barang
             var brgName = "";
             var brg = _brgBL.GetData(kodeBrg);
-            if(brg != null)
+            if (brg != null)
                 brgName = brg.BrgName;
 
             //  get stok
@@ -98,6 +111,8 @@ namespace AnugerahWinform.StokBarang
         private void SaveButton_Click(object sender, EventArgs e)
         {
             SaveTransaksi();
+            ClearForm();
+            AddRow();
         }
 
         private void SaveTransaksi()
@@ -145,6 +160,69 @@ namespace AnugerahWinform.StokBarang
             var result = _stokAdjustmentBL.Save(stokAdj);
             if (result != null)
                 LastIDLabel.Text = result.StokAdjustmentID;
+        }
+
+        private void JamTrsTimer_Tick(object sender, EventArgs e)
+        {
+            JamTextBox.Text = DateTime.Now.ToString("HH:mm:ss");
+        }
+
+        private void NewButton_Click(object sender, EventArgs e)
+        {
+            ClearForm();
+        }
+
+        private void ClearForm()
+        {
+            NoTrsTextBox.Clear();
+            TanggalDateTime.Value = DateTime.Now;
+            KeteranganTextBox.Clear();
+            DetilAdjTable.Rows.Clear();
+            JamTrsTimer.Enabled = true;
+        }
+
+        private void NoTrsTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.F1)
+            {
+                SearchKodeTrs();
+                TanggalDateTime.Focus();
+            }
+        }
+
+        private void NoTrsTextBox_Validated(object sender, EventArgs e)
+        {
+            ShowData();
+        }
+
+        private void ShowData()
+        {
+            JamTrsTimer.Enabled = false;
+            var id = NoTrsTextBox.Text;
+            var stokAdj = _stokAdjustmentBL.GetData(id);
+
+            if (stokAdj == null)
+            {
+                ClearForm();
+                return;
+            }
+
+            TanggalDateTime.Value = stokAdj.TglTrs.ToDate();
+            JamTextBox.Text = stokAdj.JamTrs;
+            KeteranganTextBox.Text = stokAdj.Keterangan;
+            DetilAdjTable.Rows.Clear();
+            foreach (var item in stokAdj.ListBrg)
+            {
+                DetilAdjTable.Rows.Add(
+                    item.BrgID,
+                    item.BrgName,
+                    item.QtyAwal,
+                    item.QtyAdjust,
+                    item.QtyAkhir,
+                    item.HppAdjust
+                    );
+            }
+            AddRow();
         }
     }
 }

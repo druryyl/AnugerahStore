@@ -230,5 +230,10 @@ namespace AnugerahBackend.StokBarang.BL
             var result = _brgDal.Search(keyword);
             return result;
         }
+
+        public IEnumerable<BrgSearchResultModel> Search(string keyword, string tgl1, string tgl2)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

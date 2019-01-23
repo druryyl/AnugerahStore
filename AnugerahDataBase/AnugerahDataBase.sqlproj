@@ -60,6 +60,7 @@
     <Folder Include="Support" />
     <Folder Include="StokBarang" />
     <Folder Include="Penjualan" />
+    <Folder Include="Queries" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Support\Userr.sql" />

@@ -1,5 +1,6 @@
 ﻿using AnugerahBackend.StokBarang.Dal;
 using AnugerahBackend.StokBarang.Model;
+using AnugerahBackend.Support;
 using AnugerahBackend.Support.BL;
 using Ics.Helper.Database;
 using Ics.Helper.StringDateTime;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 namespace AnugerahBackend.StokBarang.BL
 {
 
-    public interface IStokAdjustmentBL
+    public interface IStokAdjustmentBL : ISearchData<StokAdjustmentSearchModel>
     {
         StokAdjustmentModel Save(StokAdjustmentModel stokAdjustment);
 
@@ -143,6 +144,17 @@ namespace AnugerahBackend.StokBarang.BL
                 //  re-calc qty akhir
                 item.QtyAkhir = item.QtyAwal + item.QtyAdjust;
             }
+            return result;
+        }
+
+        public IEnumerable<StokAdjustmentSearchModel> Search(string keyword)
+        {
+            throw new NotImplementedException(); 
+        }
+
+        public IEnumerable<StokAdjustmentSearchModel> Search(string keyword, string tgl1, string tgl2)
+        {
+            var result = _stokAdjustmentDal.Search(keyword, tgl1, tgl2);
             return result;
         }
     }

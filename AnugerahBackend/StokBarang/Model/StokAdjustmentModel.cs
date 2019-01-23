@@ -19,4 +19,12 @@ namespace AnugerahBackend.StokBarang.Model
 
         public IEnumerable<StokAdjustment2Model> ListBrg { get; set; }
     }
+
+    public class StokAdjustmentSearchModel
+    {
+        public string StokAdjustmentID { get; set; }
+        public string TglTrs { get; set; }
+        public string JamTrs { get; set; }
+        public string Keterangan { get; set; }
+    }
 }
