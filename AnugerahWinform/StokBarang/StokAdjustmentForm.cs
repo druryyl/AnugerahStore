@@ -17,11 +17,12 @@ namespace AnugerahWinform.StokBarang
     {
         private IBrgBL _brgBL;
         private IStokBL _stokBL;
-        private DataSet _stokAdjDataSet;
+        private IStokAdjustmentBL _stokAdjustmentBL;
 
         public StokAdjustmentForm()
         {
             InitializeComponent();
+            _stokAdjustmentBL = new StokAdjustmentBL();
             _brgBL = new BrgBL();
             _stokBL = new StokBL();
 
@@ -89,5 +90,61 @@ namespace AnugerahWinform.StokBarang
             DetilAdjTable.Rows.Add("", "", 0, 0, 0, 0);
         }
 
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            SaveTransaksi();
+        }
+
+        private void SaveTransaksi()
+        {
+            var kodeTrs = NoTrsTextBox.Text;
+            var tglTrs = TanggalDateTime.Value.ToString("dd-MM-yyyy");
+            var jamTrs = JamTextBox.Text;
+            var keterangan = KeteranganTextBox.Text;
+            var dtlTrs = new List<StokAdjustment2Model>();
+            var noUrut = 0;
+            List<StokAdjustment2Model> listDetilAdj = null;
+            foreach (DataRow dr in DetilAdjTable.Rows)
+            {
+                if (listDetilAdj == null)
+                    listDetilAdj = new List<StokAdjustment2Model>();
+
+                if (dr["BrgID"].ToString().Trim() == "") continue;
+
+                var dtlAdj = new StokAdjustment2Model()
+                {
+                    NoUrut = noUrut,
+                    BrgID = dr["BrgID"].ToString(),
+                    BrgName = "",
+                    QtyAwal = Convert.ToInt32(dr["QtyAwal"]),
+                    QtyAdjust = Convert.ToInt32(dr["QtyAdjust"]),
+                    QtyAkhir = Convert.ToInt32(dr["QtyAkhir"]),
+                    HppAdjust = Convert.ToDouble(dr["Hpp"])
+                };
+                listDetilAdj.Add(dtlAdj);
+
+                noUrut++;
+            }
+            var stokAdj = new StokAdjustmentModel
+            {
+                StokAdjustmentID = kodeTrs,
+                TglTrs = tglTrs,
+                JamTrs = jamTrs,
+                Keterangan = keterangan,
+                TglVoid = "3000-01-01",
+                JamVoid = "00:00:00",
+                UserrID = "",
+                UserrIDVoid = "",
+                ListBrg = listDetilAdj
+            };
+            var result = _stokAdjustmentBL.Save(stokAdj);
+            if (result != null)
+                LastIDLabel.Text = result.StokAdjustmentID;
+        }
     }
 }

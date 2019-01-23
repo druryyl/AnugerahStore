@@ -35,15 +35,16 @@ namespace AnugerahBackend.StokBarang.Dal
             var sSql = @"
                 INSERT INTO
                     StokAdjustment2 (
-                        StokAdjustmentID, NoUrut, BrgID,
-                        QtyAwal, QtyAkhir, QtyAdjust, HppAdjust)
+                        StokAdjustmentID, StokAdjustmentID2, NoUrut, BrgID,
+                        QtyAwal, QtyAdjust, QtyAkhir, HppAdjust)
                 VALUES (
-                        @StokAdjustmentID, @NoUrut, @BrgID,
-                        @QtyAwal, @QtyAkhir, @QtyAdjust, @HppAdjust) ";
+                        @StokAdjustmentID, @StokAdjustmentID2, @NoUrut, @BrgID,
+                        @QtyAwal, @QtyAdjust, @QtyAkhir, @HppAdjust) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
                 cmd.AddParam("@StokAdjustmentID", stokAdjustment2.StokAdjustmentID);
+                cmd.AddParam("@StokAdjustmentID2", stokAdjustment2.StokAdjustmentID2);
                 cmd.AddParam("@NoUrut", stokAdjustment2.NoUrut);
                 cmd.AddParam("@BrgID", stokAdjustment2.BrgID);
                 cmd.AddParam("@QtyAwal", stokAdjustment2.QtyAwal);

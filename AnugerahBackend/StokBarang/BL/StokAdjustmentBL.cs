@@ -81,6 +81,7 @@ namespace AnugerahBackend.StokBarang.BL
                 foreach (var item in stokAdjustment.ListBrg)
                 {
                     item.StokAdjustmentID = trsID;
+                    item.StokAdjustmentID2 = string.Format("{0}-{1}", trsID, item.NoUrut.ToString().PadLeft(3, '0'));
                     _stokAdjustment2Dal.Insert(item);
                 }
                 trans.Complete();
@@ -122,11 +123,6 @@ namespace AnugerahBackend.StokBarang.BL
             if (stokAdjustment == null)
             {
                 throw new ArgumentNullException(nameof(stokAdjustment));
-            }
-
-            if (stokAdjustment.StokAdjustmentID.Trim() == "")
-            {
-                throw new ArgumentException("StokAdjustmentID empty");
             }
 
             //  validasi tgl dan jam
