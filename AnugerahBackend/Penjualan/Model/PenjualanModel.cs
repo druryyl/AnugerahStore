@@ -13,8 +13,8 @@ namespace AnugerahBackend.Penjualan.Model
         public string JamPenjualan { get; set; }
         public string UserrID { get; set; }
 
-        public string CustomerName { get; set; }
         public string CustomerID { get; set; }
+        public string BuyerName { get; set; }
         public string Alamat { get; set; }
         public string NoTelp { get; set; }
 

@@ -80,6 +80,7 @@
     <Build Include="StokBarang\JenisMutasi.sql" />
     <Build Include="StokBarang\StokIn.sql" />
     <Build Include="StokBarang\StokInOut.sql" />
+    <Build Include="Penjualan\Customer.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AnugerahDevelopment.publish.xml" />

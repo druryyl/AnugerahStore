@@ -39,7 +39,7 @@ namespace AnugerahBackend.Penjualan.Dal
                         CustomerID, Alamat, NoTelp, NilaiTotal, NilaiDiskonLain,
                         NilaiBiayaLain, NilaiGrandTotal)
                 VALUES (
-                        @PenjualanID, @TglPenjualan, @JamPenjualan, @UserrID, @CustomerName,
+                        @PenjualanID, @TglPenjualan, @JamPenjualan, @UserrID, @BuyerName,
                         @CustomerID, @Alamat, @NoTelp, @NilaiTotal, @NilaiDiskonLain,
                         @NilaiBiayaLain, @NilaiGrandTotal) ";
             using (var conn = new SqlConnection(_connString))
@@ -49,7 +49,7 @@ namespace AnugerahBackend.Penjualan.Dal
                 cmd.AddParam("@TglPenjualan", penjualan.TglPenjualan); 
                 cmd.AddParam("@JamPenjualan", penjualan.JamPenjualan);
                 cmd.AddParam("@UserrID", penjualan.UserrID);
-                cmd.AddParam("@CustomerName", penjualan.CustomerName);
+                cmd.AddParam("@BuyerName", penjualan.BuyerName);
                 cmd.AddParam("@CustomerID", penjualan.CustomerID);
                 cmd.AddParam("@Alamat", penjualan.Alamat);
                 cmd.AddParam("@NoTelp", penjualan.NoTelp);
@@ -71,7 +71,7 @@ namespace AnugerahBackend.Penjualan.Dal
                     TglPenjualan = @TglPenjualan, 
                     JamPenjualan = @JamPenjualan, 
                     UserrID = @UserrID, 
-                    CustomerName = @CustomerName,
+                    BuyerName = @BuyerName,
                     CustomerID = @CustomerID, 
                     Alamat = @Alamat, 
                     NoTelp = @NoTelp, 
@@ -88,7 +88,7 @@ namespace AnugerahBackend.Penjualan.Dal
                 cmd.AddParam("@TglPenjualan", penjualan.TglPenjualan);
                 cmd.AddParam("@JamPenjualan", penjualan.JamPenjualan);
                 cmd.AddParam("@UserrID", penjualan.UserrID);
-                cmd.AddParam("@CustomerName", penjualan.CustomerName);
+                cmd.AddParam("@BuyerName", penjualan.BuyerName);
                 cmd.AddParam("@CustomerID", penjualan.CustomerID);
                 cmd.AddParam("@Alamat", penjualan.Alamat);
                 cmd.AddParam("@NoTelp", penjualan.NoTelp);
@@ -146,7 +146,7 @@ namespace AnugerahBackend.Penjualan.Dal
                             JamPenjualan = dr["JamPenjualan"].ToString(),
                             UserrID = dr["UserrID"].ToString(),
 
-                            CustomerName = dr["CustomerName"].ToString(),
+                            BuyerName = dr["CustomerName"].ToString(),
                             CustomerID = dr["CustomerID"].ToString(),
                             Alamat = dr["Alamat"].ToString(),
                             NoTelp = dr["NoTelp"].ToString(),
@@ -195,7 +195,7 @@ namespace AnugerahBackend.Penjualan.Dal
                                 JamPenjualan = dr["JamPenjualan"].ToString(),
                                 UserrID = dr["UserrID"].ToString(),
 
-                                CustomerName = dr["CustomerName"].ToString(),
+                                BuyerName = dr["BuyerName"].ToString(),
                                 CustomerID = dr["CustomerID"].ToString(),
                                 Alamat = dr["Alamat"].ToString(),
                                 NoTelp = dr["NoTelp"].ToString(),
@@ -219,7 +219,7 @@ namespace AnugerahBackend.Penjualan.Dal
             List<PenjualanSearchModel> result = null;
             var sSql = @"
                 SELECT
-                    PenjualanID, TglPenjualan, CustomerName,
+                    PenjualanID, TglPenjualan, BuyerName,
                     NilaiGrandTotal    
                 FROM
                     Penjualan
@@ -242,7 +242,7 @@ namespace AnugerahBackend.Penjualan.Dal
                             {
                                 PenjualanID = dr["PenjualanID"].ToString(),
                                 TglJual = dr["TglPenjualan"].ToString(),
-                                CustomerName = dr["CustomerName"].ToString(),
+                                CustomerName = dr["BuyerName"].ToString(),
                                 NilaiGrandTotal = Convert.ToDouble(dr["NilaiGrandTotal"])
                             };
                             result.Add(item);
