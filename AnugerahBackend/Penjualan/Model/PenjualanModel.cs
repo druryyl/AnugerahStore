@@ -18,13 +18,13 @@ namespace AnugerahBackend.Penjualan.Model
         public string Alamat { get; set; }
         public string NoTelp { get; set; }
 
-        public double NilaiTotal { get; set; }
-        public double NilaiDiskonLain { get; set; }
-        public double NilaiBiayaLain { get; set; }
-        public double NilaiGrandTotal { get; set; }
+        public decimal NilaiTotal { get; set; }
+        public decimal NilaiDiskonLain { get; set; }
+        public decimal NilaiBiayaLain { get; set; }
+        public decimal NilaiGrandTotal { get; set; }
 
-        public double NilaiBayar { get; set; }
-        public double NilaiKembali { get; set; }
+        public decimal NilaiBayar { get; set; }
+        public decimal NilaiKembali { get; set; }
         public IEnumerable<Penjualan2Model> ListBrg { get; set; }
     }
 

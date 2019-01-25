@@ -153,13 +153,13 @@ namespace AnugerahBackend.Penjualan.Dal
                             Alamat = dr["Alamat"].ToString(),
                             NoTelp = dr["NoTelp"].ToString(),
 
-                            NilaiTotal = Convert.ToDouble(dr["NilaiTotal"]),
-                            NilaiDiskonLain = Convert.ToDouble(dr["NilaiDiskonLain"]),
-                            NilaiBiayaLain = Convert.ToDouble(dr["NilaiBiayaLain"]),
-                            NilaiGrandTotal = Convert.ToDouble(dr["NilaiGrandTotal"]),
+                            NilaiTotal = Convert.ToDecimal(dr["NilaiTotal"]),
+                            NilaiDiskonLain = Convert.ToDecimal(dr["NilaiDiskonLain"]),
+                            NilaiBiayaLain = Convert.ToDecimal(dr["NilaiBiayaLain"]),
+                            NilaiGrandTotal = Convert.ToDecimal(dr["NilaiGrandTotal"]),
 
-                            NilaiBayar = Convert.ToDouble(dr["NilaiBayar"]),
-                            NilaiKembali = Convert.ToDouble(dr["NilaiKembali"])
+                            NilaiBayar = Convert.ToDecimal(dr["NilaiBayar"]),
+                            NilaiKembali = Convert.ToDecimal(dr["NilaiKembali"])
                         };
 
                     }
@@ -204,13 +204,13 @@ namespace AnugerahBackend.Penjualan.Dal
                                 Alamat = dr["Alamat"].ToString(),
                                 NoTelp = dr["NoTelp"].ToString(),
 
-                                NilaiTotal = Convert.ToDouble(dr["NilaiTotal"]),
-                                NilaiDiskonLain = Convert.ToDouble(dr["NilaiDiskonLain"]),
-                                NilaiBiayaLain = Convert.ToDouble(dr["NilaiBiayaLain"]),
-                                NilaiGrandTotal = Convert.ToDouble(dr["NilaiGrandTotal"]),
+                                NilaiTotal = Convert.ToDecimal(dr["NilaiTotal"]),
+                                NilaiDiskonLain = Convert.ToDecimal(dr["NilaiDiskonLain"]),
+                                NilaiBiayaLain = Convert.ToDecimal(dr["NilaiBiayaLain"]),
+                                NilaiGrandTotal = Convert.ToDecimal(dr["NilaiGrandTotal"]),
 
-                                NilaiBayar = Convert.ToDouble(dr["NilaiBayar"]),
-                                NilaiKembali = Convert.ToDouble(dr["NilaiKembali"])
+                                NilaiBayar = Convert.ToDecimal(dr["NilaiBayar"]),
+                                NilaiKembali = Convert.ToDecimal(dr["NilaiKembali"])
                             };
                             result.Add(item);
                         }

@@ -37,17 +37,10 @@
             this.entryDataTabPage = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.KembaliTextBox = new System.Windows.Forms.TextBox();
-            this.BayarTextBox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.TotalTextBox = new System.Windows.Forms.TextBox();
-            this.GrandTotalTextBox = new System.Windows.Forms.TextBox();
-            this.DiskonTextBox = new System.Windows.Forms.TextBox();
-            this.BiayaLainTextBox = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.CatatanTextBox = new System.Windows.Forms.TextBox();
             this.CatatanLabel = new System.Windows.Forms.Label();
@@ -67,6 +60,15 @@
             this.NewButton = new System.Windows.Forms.Button();
             this.BuyerNameLabel = new System.Windows.Forms.Label();
             this.BrgGrid = new System.Windows.Forms.DataGridView();
+            this.PenjualanBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.PenjualanDataSet = new System.Data.DataSet();
+            this.DetilPenjualanTable = new System.Data.DataTable();
+            this.dataColumn1 = new System.Data.DataColumn();
+            this.dataColumn2 = new System.Data.DataColumn();
+            this.dataColumn3 = new System.Data.DataColumn();
+            this.dataColumn4 = new System.Data.DataColumn();
+            this.dataColumn5 = new System.Data.DataColumn();
+            this.dataColumn6 = new System.Data.DataColumn();
             this.ExitButton = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
@@ -77,15 +79,6 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.listDataGrid = new System.Windows.Forms.DataGridView();
             this.JamTrsTimer = new System.Windows.Forms.Timer(this.components);
-            this.PenjualanBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.PenjualanDataSet = new System.Data.DataSet();
-            this.DetilPenjualanTable = new System.Data.DataTable();
-            this.dataColumn1 = new System.Data.DataColumn();
-            this.dataColumn2 = new System.Data.DataColumn();
-            this.dataColumn3 = new System.Data.DataColumn();
-            this.dataColumn4 = new System.Data.DataColumn();
-            this.dataColumn5 = new System.Data.DataColumn();
-            this.dataColumn6 = new System.Data.DataColumn();
             this.BrgIDCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BrgGridButtonCol = new System.Windows.Forms.DataGridViewButtonColumn();
             this.BrgNameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -93,16 +86,29 @@
             this.HargaCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DiskonCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SubTotalCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalNumText = new System.Windows.Forms.NumericUpDown();
+            this.DiskonNumText = new System.Windows.Forms.NumericUpDown();
+            this.BiayaLainNumText = new System.Windows.Forms.NumericUpDown();
+            this.GrandTotalNumText = new System.Windows.Forms.NumericUpDown();
+            this.BayarButton = new System.Windows.Forms.Button();
+            this.BayarNumText = new System.Windows.Forms.NumericUpDown();
+            this.KembaliNumText = new System.Windows.Forms.NumericUpDown();
             this.mainTabControl.SuspendLayout();
             this.entryDataTabPage.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BrgGrid)).BeginInit();
-            this.listDataTabPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.listDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PenjualanBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PenjualanDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DetilPenjualanTable)).BeginInit();
+            this.listDataTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.listDataGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TotalNumText)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DiskonNumText)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BiayaLainNumText)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GrandTotalNumText)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BayarNumText)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KembaliNumText)).BeginInit();
             this.SuspendLayout();
             // 
             // mainTabControl
@@ -138,18 +144,18 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.LemonChiffon;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.KembaliNumText);
+            this.panel2.Controls.Add(this.BayarNumText);
+            this.panel2.Controls.Add(this.BayarButton);
+            this.panel2.Controls.Add(this.GrandTotalNumText);
+            this.panel2.Controls.Add(this.BiayaLainNumText);
+            this.panel2.Controls.Add(this.DiskonNumText);
+            this.panel2.Controls.Add(this.TotalNumText);
             this.panel2.Controls.Add(this.label9);
-            this.panel2.Controls.Add(this.label8);
-            this.panel2.Controls.Add(this.KembaliTextBox);
-            this.panel2.Controls.Add(this.BayarTextBox);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.TotalTextBox);
-            this.panel2.Controls.Add(this.GrandTotalTextBox);
-            this.panel2.Controls.Add(this.DiskonTextBox);
-            this.panel2.Controls.Add(this.BiayaLainTextBox);
             this.panel2.Location = new System.Drawing.Point(6, 407);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(959, 111);
@@ -164,39 +170,6 @@
             this.label9.Size = new System.Drawing.Size(53, 13);
             this.label9.TabIndex = 29;
             this.label9.Text = "Kembali";
-            // 
-            // label8
-            // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(785, 54);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(41, 13);
-            this.label8.TabIndex = 28;
-            this.label8.Text = "Bayar";
-            // 
-            // KembaliTextBox
-            // 
-            this.KembaliTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.KembaliTextBox.BackColor = System.Drawing.Color.Beige;
-            this.KembaliTextBox.Location = new System.Drawing.Point(832, 78);
-            this.KembaliTextBox.Name = "KembaliTextBox";
-            this.KembaliTextBox.ReadOnly = true;
-            this.KembaliTextBox.Size = new System.Drawing.Size(113, 21);
-            this.KembaliTextBox.TabIndex = 27;
-            this.KembaliTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // BayarTextBox
-            // 
-            this.BayarTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BayarTextBox.BackColor = System.Drawing.SystemColors.Window;
-            this.BayarTextBox.Location = new System.Drawing.Point(832, 51);
-            this.BayarTextBox.Name = "BayarTextBox";
-            this.BayarTextBox.ReadOnly = true;
-            this.BayarTextBox.Size = new System.Drawing.Size(113, 21);
-            this.BayarTextBox.TabIndex = 26;
-            this.BayarTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.BayarTextBox.TextChanged += new System.EventHandler(this.BayarTextBox_TextChanged);
             // 
             // label7
             // 
@@ -237,50 +210,6 @@
             this.label3.Size = new System.Drawing.Size(34, 13);
             this.label3.TabIndex = 22;
             this.label3.Text = "Total";
-            // 
-            // TotalTextBox
-            // 
-            this.TotalTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.TotalTextBox.BackColor = System.Drawing.Color.Beige;
-            this.TotalTextBox.Location = new System.Drawing.Point(476, 24);
-            this.TotalTextBox.Name = "TotalTextBox";
-            this.TotalTextBox.ReadOnly = true;
-            this.TotalTextBox.Size = new System.Drawing.Size(113, 21);
-            this.TotalTextBox.TabIndex = 14;
-            this.TotalTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // GrandTotalTextBox
-            // 
-            this.GrandTotalTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.GrandTotalTextBox.BackColor = System.Drawing.Color.Beige;
-            this.GrandTotalTextBox.Location = new System.Drawing.Point(832, 24);
-            this.GrandTotalTextBox.Name = "GrandTotalTextBox";
-            this.GrandTotalTextBox.ReadOnly = true;
-            this.GrandTotalTextBox.Size = new System.Drawing.Size(113, 21);
-            this.GrandTotalTextBox.TabIndex = 17;
-            this.GrandTotalTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // DiskonTextBox
-            // 
-            this.DiskonTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.DiskonTextBox.BackColor = System.Drawing.SystemColors.Window;
-            this.DiskonTextBox.Location = new System.Drawing.Point(595, 24);
-            this.DiskonTextBox.Name = "DiskonTextBox";
-            this.DiskonTextBox.ReadOnly = true;
-            this.DiskonTextBox.Size = new System.Drawing.Size(113, 21);
-            this.DiskonTextBox.TabIndex = 15;
-            this.DiskonTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // BiayaLainTextBox
-            // 
-            this.BiayaLainTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BiayaLainTextBox.BackColor = System.Drawing.SystemColors.Window;
-            this.BiayaLainTextBox.Location = new System.Drawing.Point(713, 24);
-            this.BiayaLainTextBox.Name = "BiayaLainTextBox";
-            this.BiayaLainTextBox.ReadOnly = true;
-            this.BiayaLainTextBox.Size = new System.Drawing.Size(113, 21);
-            this.BiayaLainTextBox.TabIndex = 16;
-            this.BiayaLainTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // panel1
             // 
@@ -408,6 +337,7 @@
             this.NoTrsTextBox.Size = new System.Drawing.Size(114, 21);
             this.NoTrsTextBox.TabIndex = 0;
             this.NoTrsTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NoTrsTextBox_KeyDown);
+            this.NoTrsTextBox.Validated += new System.EventHandler(this.NoTrsTextBox_Validated);
             // 
             // label1
             // 
@@ -487,6 +417,57 @@
             this.BrgGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BrgGrid_CellContentClick);
             this.BrgGrid.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.BrgGrid_CellValidated);
             this.BrgGrid.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.BrgGrid_CellValidating);
+            // 
+            // PenjualanBindingSource
+            // 
+            this.PenjualanBindingSource.AllowNew = true;
+            this.PenjualanBindingSource.DataMember = "DetilPenjualanTable";
+            this.PenjualanBindingSource.DataSource = this.PenjualanDataSet;
+            // 
+            // PenjualanDataSet
+            // 
+            this.PenjualanDataSet.DataSetName = "NewDataSet";
+            this.PenjualanDataSet.Tables.AddRange(new System.Data.DataTable[] {
+            this.DetilPenjualanTable});
+            // 
+            // DetilPenjualanTable
+            // 
+            this.DetilPenjualanTable.Columns.AddRange(new System.Data.DataColumn[] {
+            this.dataColumn1,
+            this.dataColumn2,
+            this.dataColumn3,
+            this.dataColumn4,
+            this.dataColumn5,
+            this.dataColumn6});
+            this.DetilPenjualanTable.TableName = "DetilPenjualanTable";
+            // 
+            // dataColumn1
+            // 
+            this.dataColumn1.ColumnName = "BrgID";
+            // 
+            // dataColumn2
+            // 
+            this.dataColumn2.ColumnName = "BrgName";
+            // 
+            // dataColumn3
+            // 
+            this.dataColumn3.ColumnName = "Qty";
+            this.dataColumn3.DataType = typeof(int);
+            // 
+            // dataColumn4
+            // 
+            this.dataColumn4.ColumnName = "Harga";
+            this.dataColumn4.DataType = typeof(double);
+            // 
+            // dataColumn5
+            // 
+            this.dataColumn5.ColumnName = "Diskon";
+            this.dataColumn5.DataType = typeof(double);
+            // 
+            // dataColumn6
+            // 
+            this.dataColumn6.ColumnName = "SubTotal";
+            this.dataColumn6.DataType = typeof(double);
             // 
             // ExitButton
             // 
@@ -587,57 +568,6 @@
             this.JamTrsTimer.Interval = 1000;
             this.JamTrsTimer.Tick += new System.EventHandler(this.JamTrsTimer_Tick);
             // 
-            // PenjualanBindingSource
-            // 
-            this.PenjualanBindingSource.AllowNew = true;
-            this.PenjualanBindingSource.DataMember = "DetilPenjualanTable";
-            this.PenjualanBindingSource.DataSource = this.PenjualanDataSet;
-            // 
-            // PenjualanDataSet
-            // 
-            this.PenjualanDataSet.DataSetName = "NewDataSet";
-            this.PenjualanDataSet.Tables.AddRange(new System.Data.DataTable[] {
-            this.DetilPenjualanTable});
-            // 
-            // DetilPenjualanTable
-            // 
-            this.DetilPenjualanTable.Columns.AddRange(new System.Data.DataColumn[] {
-            this.dataColumn1,
-            this.dataColumn2,
-            this.dataColumn3,
-            this.dataColumn4,
-            this.dataColumn5,
-            this.dataColumn6});
-            this.DetilPenjualanTable.TableName = "DetilPenjualanTable";
-            // 
-            // dataColumn1
-            // 
-            this.dataColumn1.ColumnName = "BrgID";
-            // 
-            // dataColumn2
-            // 
-            this.dataColumn2.ColumnName = "BrgName";
-            // 
-            // dataColumn3
-            // 
-            this.dataColumn3.ColumnName = "Qty";
-            this.dataColumn3.DataType = typeof(int);
-            // 
-            // dataColumn4
-            // 
-            this.dataColumn4.ColumnName = "Harga";
-            this.dataColumn4.DataType = typeof(double);
-            // 
-            // dataColumn5
-            // 
-            this.dataColumn5.ColumnName = "Diskon";
-            this.dataColumn5.DataType = typeof(double);
-            // 
-            // dataColumn6
-            // 
-            this.dataColumn6.ColumnName = "SubTotal";
-            this.dataColumn6.DataType = typeof(double);
-            // 
             // BrgIDCol
             // 
             this.BrgIDCol.DataPropertyName = "BrgID";
@@ -673,31 +603,182 @@
             // 
             this.HargaCol.DataPropertyName = "Harga";
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.Format = "N2";
+            dataGridViewCellStyle6.Format = "N0";
             dataGridViewCellStyle6.NullValue = "0";
             this.HargaCol.DefaultCellStyle = dataGridViewCellStyle6;
             this.HargaCol.HeaderText = "Harga";
             this.HargaCol.Name = "HargaCol";
+            this.HargaCol.ReadOnly = true;
             // 
             // DiskonCol
             // 
             this.DiskonCol.DataPropertyName = "Diskon";
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle7.Format = "N2";
+            dataGridViewCellStyle7.Format = "N0";
             dataGridViewCellStyle7.NullValue = "0";
             this.DiskonCol.DefaultCellStyle = dataGridViewCellStyle7;
             this.DiskonCol.HeaderText = "Diskon";
             this.DiskonCol.Name = "DiskonCol";
+            this.DiskonCol.ReadOnly = true;
             // 
             // SubTotalCol
             // 
             this.SubTotalCol.DataPropertyName = "SubTotal";
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle8.Format = "N2";
+            dataGridViewCellStyle8.Format = "N0";
             dataGridViewCellStyle8.NullValue = "0";
             this.SubTotalCol.DefaultCellStyle = dataGridViewCellStyle8;
             this.SubTotalCol.HeaderText = "SubTotal";
             this.SubTotalCol.Name = "SubTotalCol";
+            this.SubTotalCol.ReadOnly = true;
+            // 
+            // TotalNumText
+            // 
+            this.TotalNumText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.TotalNumText.Enabled = false;
+            this.TotalNumText.InterceptArrowKeys = false;
+            this.TotalNumText.Location = new System.Drawing.Point(476, 25);
+            this.TotalNumText.Maximum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            0});
+            this.TotalNumText.Minimum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            -2147483648});
+            this.TotalNumText.Name = "TotalNumText";
+            this.TotalNumText.ReadOnly = true;
+            this.TotalNumText.Size = new System.Drawing.Size(113, 21);
+            this.TotalNumText.TabIndex = 30;
+            this.TotalNumText.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.TotalNumText.ThousandsSeparator = true;
+            // 
+            // DiskonNumText
+            // 
+            this.DiskonNumText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.DiskonNumText.InterceptArrowKeys = false;
+            this.DiskonNumText.Location = new System.Drawing.Point(595, 25);
+            this.DiskonNumText.Maximum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            0});
+            this.DiskonNumText.Minimum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            -2147483648});
+            this.DiskonNumText.Name = "DiskonNumText";
+            this.DiskonNumText.Size = new System.Drawing.Size(113, 21);
+            this.DiskonNumText.TabIndex = 31;
+            this.DiskonNumText.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.DiskonNumText.ThousandsSeparator = true;
+            this.DiskonNumText.ValueChanged += new System.EventHandler(this.DiskonNumText_ValueChanged);
+            this.DiskonNumText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DiskonNumText_KeyDown);
+            // 
+            // BiayaLainNumText
+            // 
+            this.BiayaLainNumText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BiayaLainNumText.InterceptArrowKeys = false;
+            this.BiayaLainNumText.Location = new System.Drawing.Point(713, 25);
+            this.BiayaLainNumText.Maximum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            0});
+            this.BiayaLainNumText.Minimum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            -2147483648});
+            this.BiayaLainNumText.Name = "BiayaLainNumText";
+            this.BiayaLainNumText.Size = new System.Drawing.Size(113, 21);
+            this.BiayaLainNumText.TabIndex = 32;
+            this.BiayaLainNumText.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.BiayaLainNumText.ThousandsSeparator = true;
+            this.BiayaLainNumText.ValueChanged += new System.EventHandler(this.BiayaLainNumText_ValueChanged);
+            this.BiayaLainNumText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BiayaLainNumText_KeyDown);
+            // 
+            // GrandTotalNumText
+            // 
+            this.GrandTotalNumText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.GrandTotalNumText.Enabled = false;
+            this.GrandTotalNumText.InterceptArrowKeys = false;
+            this.GrandTotalNumText.Location = new System.Drawing.Point(831, 24);
+            this.GrandTotalNumText.Maximum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            0});
+            this.GrandTotalNumText.Minimum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            -2147483648});
+            this.GrandTotalNumText.Name = "GrandTotalNumText";
+            this.GrandTotalNumText.ReadOnly = true;
+            this.GrandTotalNumText.Size = new System.Drawing.Size(113, 21);
+            this.GrandTotalNumText.TabIndex = 33;
+            this.GrandTotalNumText.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.GrandTotalNumText.ThousandsSeparator = true;
+            // 
+            // BayarButton
+            // 
+            this.BayarButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BayarButton.Location = new System.Drawing.Point(713, 52);
+            this.BayarButton.Name = "BayarButton";
+            this.BayarButton.Size = new System.Drawing.Size(113, 23);
+            this.BayarButton.TabIndex = 34;
+            this.BayarButton.Text = "&Bayar";
+            this.BayarButton.UseVisualStyleBackColor = true;
+            // 
+            // BayarNumText
+            // 
+            this.BayarNumText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BayarNumText.Enabled = false;
+            this.BayarNumText.InterceptArrowKeys = false;
+            this.BayarNumText.Location = new System.Drawing.Point(831, 52);
+            this.BayarNumText.Maximum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            0});
+            this.BayarNumText.Minimum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            -2147483648});
+            this.BayarNumText.Name = "BayarNumText";
+            this.BayarNumText.ReadOnly = true;
+            this.BayarNumText.Size = new System.Drawing.Size(113, 21);
+            this.BayarNumText.TabIndex = 35;
+            this.BayarNumText.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.BayarNumText.ThousandsSeparator = true;
+            // 
+            // KembaliNumText
+            // 
+            this.KembaliNumText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.KembaliNumText.Enabled = false;
+            this.KembaliNumText.InterceptArrowKeys = false;
+            this.KembaliNumText.Location = new System.Drawing.Point(831, 79);
+            this.KembaliNumText.Maximum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            0});
+            this.KembaliNumText.Minimum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            -2147483648});
+            this.KembaliNumText.Name = "KembaliNumText";
+            this.KembaliNumText.ReadOnly = true;
+            this.KembaliNumText.Size = new System.Drawing.Size(113, 21);
+            this.KembaliNumText.TabIndex = 36;
+            this.KembaliNumText.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.KembaliNumText.ThousandsSeparator = true;
             // 
             // PenjualanForm
             // 
@@ -716,11 +797,17 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BrgGrid)).EndInit();
-            this.listDataTabPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.listDataGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PenjualanBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PenjualanDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DetilPenjualanTable)).EndInit();
+            this.listDataTabPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.listDataGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TotalNumText)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DiskonNumText)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BiayaLainNumText)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GrandTotalNumText)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BayarNumText)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KembaliNumText)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -768,14 +855,7 @@
         private System.Windows.Forms.TextBox NoTelpTextBox;
         private System.Windows.Forms.TextBox AlamatTextBox;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox TotalTextBox;
-        private System.Windows.Forms.TextBox GrandTotalTextBox;
-        private System.Windows.Forms.TextBox DiskonTextBox;
-        private System.Windows.Forms.TextBox BiayaLainTextBox;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox KembaliTextBox;
-        private System.Windows.Forms.TextBox BayarTextBox;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
@@ -787,5 +867,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn HargaCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn DiskonCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn SubTotalCol;
+        private System.Windows.Forms.NumericUpDown TotalNumText;
+        private System.Windows.Forms.NumericUpDown KembaliNumText;
+        private System.Windows.Forms.NumericUpDown BayarNumText;
+        private System.Windows.Forms.Button BayarButton;
+        private System.Windows.Forms.NumericUpDown GrandTotalNumText;
+        private System.Windows.Forms.NumericUpDown BiayaLainNumText;
+        private System.Windows.Forms.NumericUpDown DiskonNumText;
     }
 }

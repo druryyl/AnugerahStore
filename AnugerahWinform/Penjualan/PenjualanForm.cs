@@ -27,6 +27,7 @@ namespace AnugerahWinform.Penjualan
         public PenjualanForm()
         {
             InitializeComponent();
+
             _penjualanBL = new PenjualanBL();
             _brgBL = new BrgBL();
             _stokBL = new StokBL();
@@ -70,6 +71,7 @@ namespace AnugerahWinform.Penjualan
             {
                 SearchBrg(e.RowIndex);
                 ShowDataBrgGrid(e.RowIndex);
+                ShowHargaBrg(e.RowIndex);
             }
         }
         private void BrgGrid_CellValidated(object sender, DataGridViewCellEventArgs e)
@@ -81,6 +83,7 @@ namespace AnugerahWinform.Penjualan
             if (e.ColumnIndex == 3)
             {
                 ShowHargaBrg(e.RowIndex);
+                ShowHargaBrg(e.RowIndex);
             }
         }
         private void BrgGrid_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
@@ -88,6 +91,7 @@ namespace AnugerahWinform.Penjualan
             if (e.ColumnIndex == 0)
             {
                 ShowDataBrgGrid(e.RowIndex);
+                ShowHargaBrg(e.RowIndex);
             }
 
         }
@@ -118,14 +122,21 @@ namespace AnugerahWinform.Penjualan
             DetilPenjualanTable.Rows[rowIndex]["Harga"] = harga;
             DetilPenjualanTable.Rows[rowIndex]["Diskon"] = diskon;
             DetilPenjualanTable.Rows[rowIndex]["SubTotal"] = (harga - diskon) * qty;
-
-            double nilaiTotal = 0;
-            foreach(DataRow row in DetilPenjualanTable.Rows)
-            {
-                nilaiTotal += Convert.ToDouble(row["SubTotal"]);
-            }
-            TotalTextBox.Text = nilaiTotal.ToString();
+            ReCalcTotal();
         }
+
+        private void ReCalcTotal()
+        {
+            decimal nilaiTotal = 0;
+            foreach (DataRow row in DetilPenjualanTable.Rows)
+            {
+                nilaiTotal += Convert.ToDecimal(row["SubTotal"]);
+            }
+            TotalNumText.Value = nilaiTotal;
+            GrandTotalNumText.Value = nilaiTotal - DiskonNumText.Value + BiayaLainNumText.Value;
+            KembaliNumText.Value = GrandTotalNumText.Value - BayarNumText.Value;
+        }
+
         private void SearchBrg(int rowIndex)
         {
             var searchForm = new SearchingForm<BrgSearchResultModel>(_brgBL, false);
@@ -193,12 +204,12 @@ namespace AnugerahWinform.Penjualan
             var noTelpon = NoTelpTextBox.Text;
             var catatan = CatatanTextBox.Text;
 
-            var total = Convert.ToDouble(TotalTextBox.Text);
-            var diskon = Convert.ToDouble(DiskonTextBox.Text);
-            var biayaLain = Convert.ToDouble(BiayaLainTextBox.Text);
-            var grandTotal = Convert.ToDouble(GrandTotalTextBox.Text);
-            var bayar = Convert.ToDouble(BayarTextBox.Text);
-            var kembali = Convert.ToDouble(KembaliTextBox.Text);
+            var total = TotalNumText.Value;
+            var diskon = DiskonNumText.Value;
+            var biayaLain = BiayaLainNumText.Value ;
+            var grandTotal = GrandTotalNumText.Value;
+            var bayar = BayarNumText.Value;
+            var kembali = KembaliNumText.Value;
 
             var dtlTrs = new List<Penjualan2Model>();
             var noUrut = 0;
@@ -300,12 +311,12 @@ namespace AnugerahWinform.Penjualan
             AlamatTextBox.Text = penjualan.Alamat;
             NoTelpTextBox.Text = penjualan.NoTelp;
 
-            TotalTextBox.Text = penjualan.NilaiTotal.ToString();
-            DiskonTextBox.Text = penjualan.NilaiDiskonLain.ToString();
-            BiayaLainTextBox.Text = penjualan.NilaiBiayaLain.ToString();
-            GrandTotalTextBox.Text = penjualan.NilaiGrandTotal.ToString();
-            BayarTextBox.Text = penjualan.NilaiBayar.ToString();
-            KembaliTextBox.Text = penjualan.NilaiKembali.ToString();
+            TotalNumText.Value= penjualan.NilaiTotal;
+            DiskonNumText.Value = penjualan.NilaiDiskonLain;
+            BiayaLainNumText.Value = penjualan.NilaiBiayaLain;
+            GrandTotalNumText.Value = penjualan.NilaiGrandTotal;
+            BayarNumText.Value = penjualan.NilaiBayar;
+            KembaliNumText.Value = penjualan.NilaiKembali;
 
             DetilPenjualanTable.Rows.Clear();
             foreach (var item in penjualan.ListBrg)
@@ -325,6 +336,33 @@ namespace AnugerahWinform.Penjualan
         private void BayarTextBox_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void DiskonTextBox_Validated(object sender, EventArgs e)
+        {
+            //DiskonTextBox.Text = 
+        }
+
+        private void DiskonNumText_ValueChanged(object sender, EventArgs e)
+        {
+            ReCalcTotal();
+        }
+
+        private void BiayaLainNumText_ValueChanged(object sender, EventArgs e)
+        {
+            ReCalcTotal();
+        }
+
+        private void DiskonNumText_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+                BiayaLainNumText.Focus();
+        }
+
+        private void BiayaLainNumText_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                BayarButton.Focus();
         }
     }
 }
