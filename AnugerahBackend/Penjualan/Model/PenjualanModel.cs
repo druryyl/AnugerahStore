@@ -17,6 +17,7 @@ namespace AnugerahBackend.Penjualan.Model
         public string BuyerName { get; set; }
         public string Alamat { get; set; }
         public string NoTelp { get; set; }
+        public string Catatan { get; set; }
 
         public decimal NilaiTotal { get; set; }
         public decimal NilaiDiskonLain { get; set; }

@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.entryDataTabPage = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -417,6 +417,7 @@
             this.BrgGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BrgGrid_CellContentClick);
             this.BrgGrid.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.BrgGrid_CellValidated);
             this.BrgGrid.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.BrgGrid_CellValidating);
+            this.BrgGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BrgGrid_KeyDown);
             // 
             // PenjualanBindingSource
             // 
@@ -592,20 +593,20 @@
             // QtyCol
             // 
             this.QtyCol.DataPropertyName = "Qty";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "N0";
-            dataGridViewCellStyle5.NullValue = "0";
-            this.QtyCol.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle9.Format = "N0";
+            dataGridViewCellStyle9.NullValue = "0";
+            this.QtyCol.DefaultCellStyle = dataGridViewCellStyle9;
             this.QtyCol.HeaderText = "Qty";
             this.QtyCol.Name = "QtyCol";
             // 
             // HargaCol
             // 
             this.HargaCol.DataPropertyName = "Harga";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.Format = "N0";
-            dataGridViewCellStyle6.NullValue = "0";
-            this.HargaCol.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle10.Format = "N0";
+            dataGridViewCellStyle10.NullValue = "0";
+            this.HargaCol.DefaultCellStyle = dataGridViewCellStyle10;
             this.HargaCol.HeaderText = "Harga";
             this.HargaCol.Name = "HargaCol";
             this.HargaCol.ReadOnly = true;
@@ -613,10 +614,10 @@
             // DiskonCol
             // 
             this.DiskonCol.DataPropertyName = "Diskon";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle7.Format = "N0";
-            dataGridViewCellStyle7.NullValue = "0";
-            this.DiskonCol.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle11.Format = "N0";
+            dataGridViewCellStyle11.NullValue = "0";
+            this.DiskonCol.DefaultCellStyle = dataGridViewCellStyle11;
             this.DiskonCol.HeaderText = "Diskon";
             this.DiskonCol.Name = "DiskonCol";
             this.DiskonCol.ReadOnly = true;
@@ -624,10 +625,10 @@
             // SubTotalCol
             // 
             this.SubTotalCol.DataPropertyName = "SubTotal";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle8.Format = "N0";
-            dataGridViewCellStyle8.NullValue = "0";
-            this.SubTotalCol.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle12.Format = "N0";
+            dataGridViewCellStyle12.NullValue = "0";
+            this.SubTotalCol.DefaultCellStyle = dataGridViewCellStyle12;
             this.SubTotalCol.HeaderText = "SubTotal";
             this.SubTotalCol.Name = "SubTotalCol";
             this.SubTotalCol.ReadOnly = true;

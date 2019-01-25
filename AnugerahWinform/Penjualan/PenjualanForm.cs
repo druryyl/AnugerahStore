@@ -93,9 +93,7 @@ namespace AnugerahWinform.Penjualan
                 ShowDataBrgGrid(e.RowIndex);
                 ShowHargaBrg(e.RowIndex);
             }
-
         }
-
 
         private void ShowHargaBrg(int rowIndex)
         {
@@ -187,7 +185,6 @@ namespace AnugerahWinform.Penjualan
         {
             SaveTransaksi();
             ClearForm();
-            AddRow();
         }
 
         private void SaveTransaksi()
@@ -244,6 +241,7 @@ namespace AnugerahWinform.Penjualan
                 BuyerName = buyerName,
                 Alamat = alamat,
                 NoTelp = noTelpon,
+                Catatan = catatan,
                 
                 NilaiTotal = total,
                 NilaiDiskonLain = diskon,
@@ -273,9 +271,20 @@ namespace AnugerahWinform.Penjualan
         {
             NoTrsTextBox.Clear();
             TanggalDateTime.Value = DateTime.Now;
+            CustomerComboBox.SelectedItem = null;
             BuyerNameTextBox.Clear();
+            AlamatTextBox.Clear();
+            NoTelpTextBox.Clear();
+            CatatanTextBox.Clear();
             DetilPenjualanTable.Rows.Clear();
+
+            DiskonNumText.Value = 0;
+            BiayaLainNumText.Value = 0;
+
+            ReCalcTotal();
             JamTrsTimer.Enabled = true;
+            DetilPenjualanTable.Rows.Clear();
+            AddRow();
         }
 
         private void NoTrsTextBox_KeyDown(object sender, KeyEventArgs e)
@@ -310,13 +319,14 @@ namespace AnugerahWinform.Penjualan
             BuyerNameTextBox.Text = penjualan.BuyerName;
             AlamatTextBox.Text = penjualan.Alamat;
             NoTelpTextBox.Text = penjualan.NoTelp;
+            CatatanTextBox.Text = penjualan.Catatan;
 
-            TotalNumText.Value= penjualan.NilaiTotal;
+            //TotalNumText.Value = penjualan.NilaiTotal;
             DiskonNumText.Value = penjualan.NilaiDiskonLain;
             BiayaLainNumText.Value = penjualan.NilaiBiayaLain;
-            GrandTotalNumText.Value = penjualan.NilaiGrandTotal;
-            BayarNumText.Value = penjualan.NilaiBayar;
-            KembaliNumText.Value = penjualan.NilaiKembali;
+            //GrandTotalNumText.Value = penjualan.NilaiGrandTotal;
+            //BayarNumText.Value = penjualan.NilaiBayar;
+            //KembaliNumText.Value = penjualan.NilaiKembali;
 
             DetilPenjualanTable.Rows.Clear();
             foreach (var item in penjualan.ListBrg)
@@ -331,6 +341,7 @@ namespace AnugerahWinform.Penjualan
                     );
             }
             AddRow();
+            ReCalcTotal();
         }
 
         private void BayarTextBox_TextChanged(object sender, EventArgs e)
@@ -363,6 +374,17 @@ namespace AnugerahWinform.Penjualan
         {
             if (e.KeyCode == Keys.Enter)
                 BayarButton.Focus();
+        }
+
+        private void BrgGrid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Delete)
+            {
+                var row = BrgGrid.CurrentRow.Index;
+                if (row != BrgGrid.Rows.Count - 1)
+                    BrgGrid.Rows.RemoveAt(row);
+                ReCalcTotal();
+            }
         }
     }
 }

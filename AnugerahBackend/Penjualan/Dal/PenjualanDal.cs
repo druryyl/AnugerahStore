@@ -36,12 +36,14 @@ namespace AnugerahBackend.Penjualan.Dal
                 INSERT INTO
                     Penjualan(
                         PenjualanID, TglPenjualan, JamPenjualan, BuyerName,
-                        CustomerID, Alamat, NoTelp, NilaiTotal, NilaiDiskonLain,
-                        NilaiBiayaLain, NilaiGrandTotal, NilaiBayar, NilaiKembali)
+                        CustomerID, Alamat, NoTelp, Catatan,
+                        NilaiTotal, NilaiDiskonLain, NilaiBiayaLain, 
+                        NilaiGrandTotal, NilaiBayar, NilaiKembali)
                 VALUES (
                         @PenjualanID, @TglPenjualan, @JamPenjualan, @BuyerName,
-                        @CustomerID, @Alamat, @NoTelp, @NilaiTotal, @NilaiDiskonLain,
-                        @NilaiBiayaLain, @NilaiGrandTotal, @NilaiBayar, @NilaiKembali) ";
+                        @CustomerID, @Alamat, @NoTelp, @Catatan,
+                        @NilaiTotal, @NilaiDiskonLain, @NilaiBiayaLain, 
+                        @NilaiGrandTotal, @NilaiBayar, @NilaiKembali) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
@@ -52,6 +54,7 @@ namespace AnugerahBackend.Penjualan.Dal
                 cmd.AddParam("@CustomerID", penjualan.CustomerID);
                 cmd.AddParam("@Alamat", penjualan.Alamat);
                 cmd.AddParam("@NoTelp", penjualan.NoTelp);
+                cmd.AddParam("@Catatan", penjualan.Catatan);
                 cmd.AddParam("@NilaiTotal", penjualan.NilaiTotal); 
                 cmd.AddParam("@NilaiDiskonLain", penjualan.NilaiDiskonLain);
                 cmd.AddParam("@NilaiBiayaLain", penjualan.NilaiBiayaLain);
@@ -75,6 +78,7 @@ namespace AnugerahBackend.Penjualan.Dal
                     CustomerID = @CustomerID, 
                     Alamat = @Alamat, 
                     NoTelp = @NoTelp, 
+                    Catatan = @Catatan,
                     NilaiTotal = @NilaiTotal, 
                     NilaiDiskonLain = @NilaiDiskonLain,
                     NilaiBiayaLain = @NilaiBiayaLain, 
@@ -93,6 +97,7 @@ namespace AnugerahBackend.Penjualan.Dal
                 cmd.AddParam("@CustomerID", penjualan.CustomerID);
                 cmd.AddParam("@Alamat", penjualan.Alamat);
                 cmd.AddParam("@NoTelp", penjualan.NoTelp);
+                cmd.AddParam("@Catatan", penjualan.Catatan);
                 cmd.AddParam("@NilaiTotal", penjualan.NilaiTotal);
                 cmd.AddParam("@NilaiDiskonLain", penjualan.NilaiDiskonLain);
                 cmd.AddParam("@NilaiBiayaLain", penjualan.NilaiBiayaLain);
@@ -126,7 +131,8 @@ namespace AnugerahBackend.Penjualan.Dal
             var sSql = @"
                 SELECT
                     PenjualanID, TglPenjualan, JamPenjualan, BuyerName,
-                    CustomerID, Alamat, NoTelp, NilaiTotal, NilaiDiskonLain,
+                    CustomerID, Alamat, NoTelp, Catatan,
+                    NilaiTotal, NilaiDiskonLain,
                     NilaiBiayaLain, NilaiGrandTotal, NilaiBayar, NilaiKembali
                 FROM
                     Penjualan
@@ -152,6 +158,7 @@ namespace AnugerahBackend.Penjualan.Dal
                             CustomerID = dr["CustomerID"].ToString(),
                             Alamat = dr["Alamat"].ToString(),
                             NoTelp = dr["NoTelp"].ToString(),
+                            Catatan = dr["Catatan"].ToString(),
 
                             NilaiTotal = Convert.ToDecimal(dr["NilaiTotal"]),
                             NilaiDiskonLain = Convert.ToDecimal(dr["NilaiDiskonLain"]),

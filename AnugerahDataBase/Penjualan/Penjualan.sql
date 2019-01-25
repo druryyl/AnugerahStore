@@ -9,6 +9,8 @@
 	BuyerName VARCHAR(30) NOT NULl CONSTRAINT DF_Penjualan_BuyerName DEFAULT(''),
 	Alamat VARCHAR(128) NOT NULL CONSTRAINT DF_Penjualan_Alamat DEFAULT(''),
 	NoTelp VARCHAR(30) NOT NULL CONSTRAINT DF_Penjualan_NoTelp DEFAULT(''),
+	Catatan VARCHAR(255) NOT NULL CONSTRAINT DF_Penjualan_Catatan DEFAULT(''),
+
 	NilaiTotal DECIMAL(18,0) NOT NULL CONSTRAINT DF_Penjualan_NilaiTotal DEFAULT(0),
 	NilaiDiskonLain DECIMAL (18,0) NOT NULL CONSTRAINT DF_Penjualan_NilaiDiskonLAin DEFAULT(0),
 	NilaiBiayaLain DECIMAL(18,0) NOT NULL CONSTRAINT DF_Penjualan_NilaiBiayaLain DEFAULT(0),

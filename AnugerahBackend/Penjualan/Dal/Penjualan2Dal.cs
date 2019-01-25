@@ -56,7 +56,7 @@ namespace AnugerahBackend.Penjualan.Dal
                 DELETE
                     Penjualan2 
                 WHERE
-                    PenjualanID = @PenjualanID) ";
+                    PenjualanID = @PenjualanID ";
 
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
