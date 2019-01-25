@@ -87,7 +87,7 @@ namespace AnugerahWinform.Penjualan
 
         private void SearchBrg(int rowIndex)
         {
-            var searchForm = new SearchingForm<BrgSearchResultModel>(_brgBL, true);
+            var searchForm = new SearchingForm<BrgSearchResultModel>(_brgBL, false);
             var resultDialog = searchForm.ShowDialog();
             if (resultDialog == DialogResult.OK)
             {
@@ -123,7 +123,7 @@ namespace AnugerahWinform.Penjualan
 
             //  tampilkan di grid
             DetilPenjualanTable.Rows[rowIndex]["BrgName"] = brgName;
-            DetilPenjualanTable.Rows[rowIndex]["QtyAwal"] = qtyAwal;
+            DetilPenjualanTable.Rows[rowIndex]["Harga"] = qtyAwal;
         }
         private void AddRow()
         {
@@ -147,7 +147,19 @@ namespace AnugerahWinform.Penjualan
             var kodeTrs = NoTrsTextBox.Text;
             var tglTrs = TanggalDateTime.Value.ToString("dd-MM-yyyy");
             var jamTrs = JamTextBox.Text;
-            var keterangan = BuyerNameTextBox.Text;
+            var customerID = CustomerComboBox.SelectedValue.ToString() ?? "";
+            var buyerName = BuyerNameTextBox.Text;
+            var alamat = AlamatTextBox.Text;
+            var noTelpon = NoTelpTextBox.Text;
+            var catatan = CatatanTextBox.Text;
+
+            var total = Convert.ToDouble(TotalTextBox.Text);
+            var diskon = Convert.ToDouble(DiskonTextBox.Text);
+            var biayaLain = Convert.ToDouble(BiayaLainTextBox.Text);
+            var grandTotal = Convert.ToDouble(GrandTotalTextBox.Text);
+            var bayar = Convert.ToDouble(BayarTextBox.Text);
+            var kembali = Convert.ToDouble(KembaliTextBox.Text);
+
             var dtlTrs = new List<Penjualan2Model>();
             var noUrut = 0;
             List<Penjualan2Model> listDetilAdj = null;
@@ -163,10 +175,10 @@ namespace AnugerahWinform.Penjualan
                     NoUrut = noUrut,
                     BrgID = dr["BrgID"].ToString(),
                     BrgName = "",
-                    //QtyAwal = Convert.ToInt32(dr["QtyAwal"]),
-                    //QtyAdjust = Convert.ToInt32(dr["QtyAdjust"]),
-                    //QtyAkhir = Convert.ToInt32(dr["QtyAkhir"]),
-                    //HppAdjust = Convert.ToDouble(dr["Hpp"])
+                    Qty = Convert.ToInt32(dr["QtyCol"]),
+                    Harga = Convert.ToDouble(dr["Harga"]),
+                    Diskon = Convert.ToDouble(dr["Disok"]),
+                    SubTotal = Convert.ToDouble(dr["SubTotal"])
                 };
                 listDetilAdj.Add(dtlAdj);
 
@@ -177,7 +189,17 @@ namespace AnugerahWinform.Penjualan
                 PenjualanID = kodeTrs,
                 TglPenjualan = tglTrs,
                 JamPenjualan = jamTrs,
-
+                CustomerID = customerID,
+                BuyerName = buyerName,
+                Alamat = alamat,
+                NoTelp = noTelpon,
+                
+                NilaiTotal = total,
+                NilaiDiskonLain = diskon,
+                NilaiBiayaLain = biayaLain,
+                NilaiGrandTotal = grandTotal,
+                NilaiBayar = bayar,
+                NilaiKembali = kembali,
                 
                 ListBrg = listDetilAdj
             };
@@ -223,28 +245,39 @@ namespace AnugerahWinform.Penjualan
         {
             JamTrsTimer.Enabled = false;
             var id = NoTrsTextBox.Text;
-            var stokAdj = _penjualanBL.GetData(id);
+            var penjualan = _penjualanBL.GetData(id);
 
-            if (stokAdj == null)
+            if (penjualan == null)
             {
                 ClearForm();
                 return;
             }
 
-            TanggalDateTime.Value = stokAdj.TglPenjualan.ToDate();
-            JamTextBox.Text = stokAdj.JamPenjualan;
-            //KeteranganTextBox.Text = stokAdj.Keterangan;
+            TanggalDateTime.Value = penjualan.TglPenjualan.ToDate();
+            JamTextBox.Text = penjualan.JamPenjualan;
+            CustomerComboBox.SelectedValue = penjualan.CustomerID;
+            BuyerNameTextBox.Text = penjualan.BuyerName;
+            AlamatTextBox.Text = penjualan.Alamat;
+            NoTelpTextBox.Text = penjualan.NoTelp;
+
+            TotalTextBox.Text = penjualan.NilaiTotal.ToString();
+            DiskonTextBox.Text = penjualan.NilaiDiskonLain.ToString();
+            BiayaLainTextBox.Text = penjualan.NilaiBiayaLain.ToString();
+            GrandTotalTextBox.Text = penjualan.NilaiGrandTotal.ToString();
+            BayarTextBox.Text = penjualan.NilaiBayar.ToString();
+            KembaliTextBox.Text = penjualan.NilaiKembali.ToString();
+
             DetilPenjualanTable.Rows.Clear();
-            foreach (var item in stokAdj.ListBrg)
+            foreach (var item in penjualan.ListBrg)
             {
-                //DetilAdjTable.Rows.Add(
-                //    item.BrgID,
-                //    item.BrgName,
-                //    item.QtyAwal,
-                //    item.QtyAdjust,
-                //    item.QtyAkhir,
-                //    item.HppAdjust
-                //    );
+                DetilPenjualanTable.Rows.Add(
+                    item.BrgID,
+                    item.BrgName,
+                    item.Qty,
+                    item.Harga,
+                    item.Diskon,
+                    item.SubTotal
+                    );
             }
             AddRow();
         }

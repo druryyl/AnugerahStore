@@ -60,7 +60,7 @@ namespace AnugerahWinform.StokBarang
 
         private void SearchBrg(int rowIndex)
         {
-            var searchForm = new SearchingForm<BrgSearchResultModel>(_brgBL, true);
+            var searchForm = new SearchingForm<BrgSearchResultModel>(_brgBL, false);
             var resultDialog = searchForm.ShowDialog();
             if (resultDialog == DialogResult.OK)
             {
