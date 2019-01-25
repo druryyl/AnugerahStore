@@ -29,14 +29,36 @@ namespace AnugerahWinform.Penjualan
             _penjualanBL = new PenjualanBL();
             _brgBL = new BrgBL();
             _stokBL = new StokBL();
+            _customerBL = new CustomerBL();
 
         }
 
         private void PenjualanForm_Load(object sender, EventArgs e)
         {
             AddRow();
+            LoadCustomerComboBox();
         }
 
+        private void LoadCustomerComboBox()
+        {
+            //  kosongkan combobox
+            CustomerComboBox.DataSource = null;
+            CustomerComboBox.Items.Clear();
+
+            //  ambil data
+            var listCustomer = _customerBL.ListData();
+
+            //  exit jika kosong
+            if (listCustomer == null)
+                return;
+
+            listCustomer = listCustomer.OrderBy(x => x.CustomerName).ToList();
+            CustomerComboBox.DataSource = listCustomer;
+            CustomerComboBox.DisplayMember = "CustomerName";
+            CustomerComboBox.ValueMember = "CustomerID";
+
+            CustomerComboBox.SelectedItem = null;
+        }
         private void BrgGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;
@@ -50,8 +72,8 @@ namespace AnugerahWinform.Penjualan
         }
         private void BrgGrid_CellValidated(object sender, DataGridViewCellEventArgs e)
         {
-            var brgName = DetilAdjTable.Rows[e.RowIndex]["BrgName"].ToString();
-            if ((brgName.Trim() != "") && (e.RowIndex == DetilAdjTable.Rows.Count - 1))
+            var brgName = DetilPenjualanTable.Rows[e.RowIndex]["BrgName"].ToString();
+            if ((brgName.Trim() != "") && (e.RowIndex == DetilPenjualanTable.Rows.Count - 1))
                 AddRow();
 
         }
@@ -70,7 +92,7 @@ namespace AnugerahWinform.Penjualan
             if (resultDialog == DialogResult.OK)
             {
                 var result = searchForm.SelectedDataKey;
-                DetilAdjTable.Rows[rowIndex]["BrgID"] = result;
+                DetilPenjualanTable.Rows[rowIndex]["BrgID"] = result;
             }
         }
 
@@ -88,7 +110,7 @@ namespace AnugerahWinform.Penjualan
         private void ShowDataBrgGrid(int rowIndex)
         {
             //  get key (KodeBrg)
-            string kodeBrg = (string)DetilAdjTable.Rows[rowIndex]["BrgID"];
+            string kodeBrg = (string)DetilPenjualanTable.Rows[rowIndex]["BrgID"];
 
             //  get nama barang
             var brgName = "";
@@ -100,12 +122,12 @@ namespace AnugerahWinform.Penjualan
             long qtyAwal = _stokBL.GetStok(kodeBrg);
 
             //  tampilkan di grid
-            DetilAdjTable.Rows[rowIndex]["BrgName"] = brgName;
-            DetilAdjTable.Rows[rowIndex]["QtyAwal"] = qtyAwal;
+            DetilPenjualanTable.Rows[rowIndex]["BrgName"] = brgName;
+            DetilPenjualanTable.Rows[rowIndex]["QtyAwal"] = qtyAwal;
         }
         private void AddRow()
         {
-            DetilAdjTable.Rows.Add("", "", 0, 0, 0, 0);
+            DetilPenjualanTable.Rows.Add("", "", 0, 0, 0, 0);
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
@@ -129,7 +151,7 @@ namespace AnugerahWinform.Penjualan
             var dtlTrs = new List<Penjualan2Model>();
             var noUrut = 0;
             List<Penjualan2Model> listDetilAdj = null;
-            foreach (DataRow dr in DetilAdjTable.Rows)
+            foreach (DataRow dr in DetilPenjualanTable.Rows)
             {
                 if (listDetilAdj == null)
                     listDetilAdj = new List<Penjualan2Model>();
@@ -179,7 +201,7 @@ namespace AnugerahWinform.Penjualan
             NoTrsTextBox.Clear();
             TanggalDateTime.Value = DateTime.Now;
             BuyerNameTextBox.Clear();
-            DetilAdjTable.Rows.Clear();
+            DetilPenjualanTable.Rows.Clear();
             JamTrsTimer.Enabled = true;
         }
 
@@ -212,7 +234,7 @@ namespace AnugerahWinform.Penjualan
             TanggalDateTime.Value = stokAdj.TglPenjualan.ToDate();
             JamTextBox.Text = stokAdj.JamPenjualan;
             //KeteranganTextBox.Text = stokAdj.Keterangan;
-            DetilAdjTable.Rows.Clear();
+            DetilPenjualanTable.Rows.Clear();
             foreach (var item in stokAdj.ListBrg)
             {
                 //DetilAdjTable.Rows.Add(

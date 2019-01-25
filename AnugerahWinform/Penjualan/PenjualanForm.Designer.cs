@@ -29,9 +29,34 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.entryDataTabPage = new System.Windows.Forms.TabPage();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.CatatanLabel = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.AlamatLabel = new System.Windows.Forms.Label();
+            this.NoTelpTextBox = new System.Windows.Forms.TextBox();
+            this.AlamatTextBox = new System.Windows.Forms.TextBox();
+            this.CustomerComboBox = new System.Windows.Forms.ComboBox();
+            this.CustomerIDLabel = new System.Windows.Forms.Label();
             this.LastIDLabel = new System.Windows.Forms.Label();
             this.BuyerNameTextBox = new System.Windows.Forms.TextBox();
             this.NoTrsTextBox = new System.Windows.Forms.TextBox();
@@ -42,7 +67,6 @@
             this.NewButton = new System.Windows.Forms.Button();
             this.BuyerNameLabel = new System.Windows.Forms.Label();
             this.BrgGrid = new System.Windows.Forms.DataGridView();
-            this.BrgGridButtonCol = new System.Windows.Forms.DataGridViewButtonColumn();
             this.ExitButton = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
@@ -53,46 +77,32 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.listDataGrid = new System.Windows.Forms.DataGridView();
             this.JamTrsTimer = new System.Windows.Forms.Timer(this.components);
-            this.StokAdjBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.StokAdjDataSet = new System.Data.DataSet();
-            this.DetilAdjTable = new System.Data.DataTable();
+            this.PenjualanBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.PenjualanDataSet = new System.Data.DataSet();
+            this.DetilPenjualanTable = new System.Data.DataTable();
             this.dataColumn1 = new System.Data.DataColumn();
             this.dataColumn2 = new System.Data.DataColumn();
             this.dataColumn3 = new System.Data.DataColumn();
             this.dataColumn4 = new System.Data.DataColumn();
             this.dataColumn5 = new System.Data.DataColumn();
             this.dataColumn6 = new System.Data.DataColumn();
-            this.CustomerIDLabel = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.AlamatTextBox = new System.Windows.Forms.TextBox();
-            this.NoTelpTextBox = new System.Windows.Forms.TextBox();
-            this.AlamatLabel = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.CatatanLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.BrgIDCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BrgGridButtonCol = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.BrgNameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QtyCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HargaCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DiskonCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubTotalCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mainTabControl.SuspendLayout();
             this.entryDataTabPage.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BrgGrid)).BeginInit();
             this.listDataTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.listDataGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.StokAdjBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.StokAdjDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DetilAdjTable)).BeginInit();
-            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PenjualanBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PenjualanDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DetilPenjualanTable)).BeginInit();
             this.SuspendLayout();
             // 
             // mainTabControl
@@ -122,6 +132,137 @@
             this.entryDataTabPage.TabIndex = 0;
             this.entryDataTabPage.Text = "Entry Data";
             // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.BackColor = System.Drawing.Color.LemonChiffon;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.label9);
+            this.panel2.Controls.Add(this.label8);
+            this.panel2.Controls.Add(this.textBox7);
+            this.panel2.Controls.Add(this.textBox6);
+            this.panel2.Controls.Add(this.label7);
+            this.panel2.Controls.Add(this.label6);
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.textBox2);
+            this.panel2.Controls.Add(this.textBox5);
+            this.panel2.Controls.Add(this.textBox3);
+            this.panel2.Controls.Add(this.textBox4);
+            this.panel2.Location = new System.Drawing.Point(6, 407);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(959, 111);
+            this.panel2.TabIndex = 18;
+            // 
+            // label9
+            // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(773, 81);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(53, 13);
+            this.label9.TabIndex = 29;
+            this.label9.Text = "Kembali";
+            // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(785, 54);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(41, 13);
+            this.label8.TabIndex = 28;
+            this.label8.Text = "Bayar";
+            // 
+            // textBox7
+            // 
+            this.textBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox7.Location = new System.Drawing.Point(832, 78);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(113, 21);
+            this.textBox7.TabIndex = 27;
+            // 
+            // textBox6
+            // 
+            this.textBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox6.Location = new System.Drawing.Point(832, 51);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(113, 21);
+            this.textBox6.TabIndex = 26;
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(829, 8);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(73, 13);
+            this.label7.TabIndex = 25;
+            this.label7.Text = "Grand Total";
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(710, 8);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(66, 13);
+            this.label6.TabIndex = 24;
+            this.label6.Text = "Biaya Lain";
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(592, 8);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(73, 13);
+            this.label5.TabIndex = 23;
+            this.label5.Text = "Diskon Lain";
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(473, 8);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(34, 13);
+            this.label3.TabIndex = 22;
+            this.label3.Text = "Total";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox2.Location = new System.Drawing.Point(476, 24);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(113, 21);
+            this.textBox2.TabIndex = 14;
+            // 
+            // textBox5
+            // 
+            this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox5.Location = new System.Drawing.Point(832, 24);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(113, 21);
+            this.textBox5.TabIndex = 17;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox3.Location = new System.Drawing.Point(595, 24);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(113, 21);
+            this.textBox3.TabIndex = 15;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox4.Location = new System.Drawing.Point(713, 24);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(113, 21);
+            this.textBox4.TabIndex = 16;
+            // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -134,7 +275,7 @@
             this.panel1.Controls.Add(this.AlamatLabel);
             this.panel1.Controls.Add(this.NoTelpTextBox);
             this.panel1.Controls.Add(this.AlamatTextBox);
-            this.panel1.Controls.Add(this.comboBox1);
+            this.panel1.Controls.Add(this.CustomerComboBox);
             this.panel1.Controls.Add(this.CustomerIDLabel);
             this.panel1.Controls.Add(this.LastIDLabel);
             this.panel1.Controls.Add(this.BuyerNameTextBox);
@@ -149,6 +290,80 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(959, 147);
             this.panel1.TabIndex = 13;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.Location = new System.Drawing.Point(631, 69);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(313, 60);
+            this.textBox1.TabIndex = 22;
+            // 
+            // CatatanLabel
+            // 
+            this.CatatanLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CatatanLabel.AutoSize = true;
+            this.CatatanLabel.Location = new System.Drawing.Point(573, 69);
+            this.CatatanLabel.Name = "CatatanLabel";
+            this.CatatanLabel.Size = new System.Drawing.Size(52, 13);
+            this.CatatanLabel.TabIndex = 21;
+            this.CatatanLabel.Text = "Catatan";
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(566, 45);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(59, 13);
+            this.label4.TabIndex = 20;
+            this.label4.Text = "NoTelpon";
+            // 
+            // AlamatLabel
+            // 
+            this.AlamatLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.AlamatLabel.AutoSize = true;
+            this.AlamatLabel.Location = new System.Drawing.Point(578, 18);
+            this.AlamatLabel.Name = "AlamatLabel";
+            this.AlamatLabel.Size = new System.Drawing.Size(47, 13);
+            this.AlamatLabel.TabIndex = 19;
+            this.AlamatLabel.Text = "Alamat";
+            // 
+            // NoTelpTextBox
+            // 
+            this.NoTelpTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.NoTelpTextBox.Location = new System.Drawing.Point(631, 42);
+            this.NoTelpTextBox.Name = "NoTelpTextBox";
+            this.NoTelpTextBox.Size = new System.Drawing.Size(313, 21);
+            this.NoTelpTextBox.TabIndex = 18;
+            // 
+            // AlamatTextBox
+            // 
+            this.AlamatTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.AlamatTextBox.Location = new System.Drawing.Point(631, 15);
+            this.AlamatTextBox.Name = "AlamatTextBox";
+            this.AlamatTextBox.Size = new System.Drawing.Size(313, 21);
+            this.AlamatTextBox.TabIndex = 17;
+            // 
+            // CustomerComboBox
+            // 
+            this.CustomerComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.CustomerComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.CustomerComboBox.FormattingEnabled = true;
+            this.CustomerComboBox.Location = new System.Drawing.Point(148, 69);
+            this.CustomerComboBox.Name = "CustomerComboBox";
+            this.CustomerComboBox.Size = new System.Drawing.Size(313, 21);
+            this.CustomerComboBox.TabIndex = 16;
+            // 
+            // CustomerIDLabel
+            // 
+            this.CustomerIDLabel.AutoSize = true;
+            this.CustomerIDLabel.Location = new System.Drawing.Point(61, 72);
+            this.CustomerIDLabel.Name = "CustomerIDLabel";
+            this.CustomerIDLabel.Size = new System.Drawing.Size(81, 13);
+            this.CustomerIDLabel.TabIndex = 15;
+            this.CustomerIDLabel.Text = "Customer ID";
             // 
             // LastIDLabel
             // 
@@ -233,21 +448,21 @@
             this.BrgGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.BrgGrid.AutoGenerateColumns = false;
             this.BrgGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.BrgGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.BrgGridButtonCol});
+            this.BrgIDCol,
+            this.BrgGridButtonCol,
+            this.BrgNameCol,
+            this.QtyCol,
+            this.HargaCol,
+            this.DiskonCol,
+            this.SubTotalCol});
+            this.BrgGrid.DataSource = this.PenjualanBindingSource;
             this.BrgGrid.Location = new System.Drawing.Point(6, 159);
             this.BrgGrid.Name = "BrgGrid";
             this.BrgGrid.Size = new System.Drawing.Size(959, 242);
             this.BrgGrid.TabIndex = 10;
-            // 
-            // BrgGridButtonCol
-            // 
-            this.BrgGridButtonCol.HeaderText = "...";
-            this.BrgGridButtonCol.Name = "BrgGridButtonCol";
-            this.BrgGridButtonCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.BrgGridButtonCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.BrgGridButtonCol.Width = 25;
             // 
             // ExitButton
             // 
@@ -345,28 +560,28 @@
             this.JamTrsTimer.Enabled = true;
             this.JamTrsTimer.Interval = 1000;
             // 
-            // StokAdjBindingSource
+            // PenjualanBindingSource
             // 
-            this.StokAdjBindingSource.AllowNew = true;
-            this.StokAdjBindingSource.DataMember = "DetilAdjTable";
-            this.StokAdjBindingSource.DataSource = this.StokAdjDataSet;
+            this.PenjualanBindingSource.AllowNew = true;
+            this.PenjualanBindingSource.DataMember = "DetilPenjualanTable";
+            this.PenjualanBindingSource.DataSource = this.PenjualanDataSet;
             // 
-            // StokAdjDataSet
+            // PenjualanDataSet
             // 
-            this.StokAdjDataSet.DataSetName = "NewDataSet";
-            this.StokAdjDataSet.Tables.AddRange(new System.Data.DataTable[] {
-            this.DetilAdjTable});
+            this.PenjualanDataSet.DataSetName = "NewDataSet";
+            this.PenjualanDataSet.Tables.AddRange(new System.Data.DataTable[] {
+            this.DetilPenjualanTable});
             // 
-            // DetilAdjTable
+            // DetilPenjualanTable
             // 
-            this.DetilAdjTable.Columns.AddRange(new System.Data.DataColumn[] {
+            this.DetilPenjualanTable.Columns.AddRange(new System.Data.DataColumn[] {
             this.dataColumn1,
             this.dataColumn2,
             this.dataColumn3,
             this.dataColumn4,
             this.dataColumn5,
             this.dataColumn6});
-            this.DetilAdjTable.TableName = "DetilAdjTable";
+            this.DetilPenjualanTable.TableName = "DetilPenjualanTable";
             // 
             // dataColumn1
             // 
@@ -378,226 +593,84 @@
             // 
             // dataColumn3
             // 
-            this.dataColumn3.ColumnName = "QtyAwal";
+            this.dataColumn3.ColumnName = "Qty";
             this.dataColumn3.DataType = typeof(int);
             // 
             // dataColumn4
             // 
-            this.dataColumn4.ColumnName = "QtyAdjust";
-            this.dataColumn4.DataType = typeof(long);
+            this.dataColumn4.ColumnName = "Harga";
+            this.dataColumn4.DataType = typeof(double);
             // 
             // dataColumn5
             // 
-            this.dataColumn5.ColumnName = "QtyAkhir";
-            this.dataColumn5.DataType = typeof(int);
+            this.dataColumn5.ColumnName = "Diskon";
+            this.dataColumn5.DataType = typeof(double);
             // 
             // dataColumn6
             // 
-            this.dataColumn6.ColumnName = "Hpp";
+            this.dataColumn6.ColumnName = "SubTotal";
             this.dataColumn6.DataType = typeof(double);
             // 
-            // CustomerIDLabel
+            // BrgIDCol
             // 
-            this.CustomerIDLabel.AutoSize = true;
-            this.CustomerIDLabel.Location = new System.Drawing.Point(61, 72);
-            this.CustomerIDLabel.Name = "CustomerIDLabel";
-            this.CustomerIDLabel.Size = new System.Drawing.Size(81, 13);
-            this.CustomerIDLabel.TabIndex = 15;
-            this.CustomerIDLabel.Text = "Customer ID";
+            this.BrgIDCol.DataPropertyName = "BrgID";
+            this.BrgIDCol.HeaderText = "BrgID";
+            this.BrgIDCol.Name = "BrgIDCol";
             // 
-            // comboBox1
+            // BrgGridButtonCol
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(148, 69);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(238, 21);
-            this.comboBox1.TabIndex = 16;
+            this.BrgGridButtonCol.HeaderText = "...";
+            this.BrgGridButtonCol.Name = "BrgGridButtonCol";
+            this.BrgGridButtonCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.BrgGridButtonCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.BrgGridButtonCol.Width = 25;
             // 
-            // AlamatTextBox
+            // BrgNameCol
             // 
-            this.AlamatTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.AlamatTextBox.Location = new System.Drawing.Point(631, 15);
-            this.AlamatTextBox.Name = "AlamatTextBox";
-            this.AlamatTextBox.Size = new System.Drawing.Size(313, 21);
-            this.AlamatTextBox.TabIndex = 17;
+            this.BrgNameCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.BrgNameCol.DataPropertyName = "BrgName";
+            this.BrgNameCol.HeaderText = "BrgName";
+            this.BrgNameCol.Name = "BrgNameCol";
             // 
-            // NoTelpTextBox
+            // QtyCol
             // 
-            this.NoTelpTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.NoTelpTextBox.Location = new System.Drawing.Point(631, 42);
-            this.NoTelpTextBox.Name = "NoTelpTextBox";
-            this.NoTelpTextBox.Size = new System.Drawing.Size(313, 21);
-            this.NoTelpTextBox.TabIndex = 18;
+            this.QtyCol.DataPropertyName = "Qty";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.Format = "N0";
+            dataGridViewCellStyle1.NullValue = "0";
+            this.QtyCol.DefaultCellStyle = dataGridViewCellStyle1;
+            this.QtyCol.HeaderText = "Qty";
+            this.QtyCol.Name = "QtyCol";
             // 
-            // AlamatLabel
+            // HargaCol
             // 
-            this.AlamatLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.AlamatLabel.AutoSize = true;
-            this.AlamatLabel.Location = new System.Drawing.Point(578, 18);
-            this.AlamatLabel.Name = "AlamatLabel";
-            this.AlamatLabel.Size = new System.Drawing.Size(47, 13);
-            this.AlamatLabel.TabIndex = 19;
-            this.AlamatLabel.Text = "Alamat";
+            this.HargaCol.DataPropertyName = "Harga";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "N2";
+            dataGridViewCellStyle2.NullValue = "0";
+            this.HargaCol.DefaultCellStyle = dataGridViewCellStyle2;
+            this.HargaCol.HeaderText = "Harga";
+            this.HargaCol.Name = "HargaCol";
             // 
-            // label4
+            // DiskonCol
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(566, 45);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 13);
-            this.label4.TabIndex = 20;
-            this.label4.Text = "NoTelpon";
+            this.DiskonCol.DataPropertyName = "Diskon";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "N2";
+            dataGridViewCellStyle3.NullValue = "0";
+            this.DiskonCol.DefaultCellStyle = dataGridViewCellStyle3;
+            this.DiskonCol.HeaderText = "Diskon";
+            this.DiskonCol.Name = "DiskonCol";
             // 
-            // CatatanLabel
+            // SubTotalCol
             // 
-            this.CatatanLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.CatatanLabel.AutoSize = true;
-            this.CatatanLabel.Location = new System.Drawing.Point(573, 69);
-            this.CatatanLabel.Name = "CatatanLabel";
-            this.CatatanLabel.Size = new System.Drawing.Size(52, 13);
-            this.CatatanLabel.TabIndex = 21;
-            this.CatatanLabel.Text = "Catatan";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(631, 69);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(313, 60);
-            this.textBox1.TabIndex = 22;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.Location = new System.Drawing.Point(476, 24);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(113, 21);
-            this.textBox2.TabIndex = 14;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox3.Location = new System.Drawing.Point(595, 24);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(113, 21);
-            this.textBox3.TabIndex = 15;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox4.Location = new System.Drawing.Point(713, 24);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(113, 21);
-            this.textBox4.TabIndex = 16;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox5.Location = new System.Drawing.Point(832, 24);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(113, 21);
-            this.textBox5.TabIndex = 17;
-            // 
-            // panel2
-            // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.BackColor = System.Drawing.Color.LemonChiffon;
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.label9);
-            this.panel2.Controls.Add(this.label8);
-            this.panel2.Controls.Add(this.textBox7);
-            this.panel2.Controls.Add(this.textBox6);
-            this.panel2.Controls.Add(this.label7);
-            this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.textBox2);
-            this.panel2.Controls.Add(this.textBox5);
-            this.panel2.Controls.Add(this.textBox3);
-            this.panel2.Controls.Add(this.textBox4);
-            this.panel2.Location = new System.Drawing.Point(6, 407);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(959, 111);
-            this.panel2.TabIndex = 18;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(473, 8);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(34, 13);
-            this.label3.TabIndex = 22;
-            this.label3.Text = "Total";
-            // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(592, 8);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(73, 13);
-            this.label5.TabIndex = 23;
-            this.label5.Text = "Diskon Lain";
-            // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(710, 8);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(66, 13);
-            this.label6.TabIndex = 24;
-            this.label6.Text = "Biaya Lain";
-            // 
-            // label7
-            // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(829, 8);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(73, 13);
-            this.label7.TabIndex = 25;
-            this.label7.Text = "Grand Total";
-            // 
-            // textBox6
-            // 
-            this.textBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox6.Location = new System.Drawing.Point(832, 51);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(113, 21);
-            this.textBox6.TabIndex = 26;
-            // 
-            // textBox7
-            // 
-            this.textBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox7.Location = new System.Drawing.Point(832, 78);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(113, 21);
-            this.textBox7.TabIndex = 27;
-            // 
-            // label8
-            // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(785, 54);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(41, 13);
-            this.label8.TabIndex = 28;
-            this.label8.Text = "Bayar";
-            // 
-            // label9
-            // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(773, 81);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(53, 13);
-            this.label9.TabIndex = 29;
-            this.label9.Text = "Kembali";
+            this.SubTotalCol.DataPropertyName = "SubTotal";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "N2";
+            dataGridViewCellStyle4.NullValue = "0";
+            this.SubTotalCol.DefaultCellStyle = dataGridViewCellStyle4;
+            this.SubTotalCol.HeaderText = "SubTotal";
+            this.SubTotalCol.Name = "SubTotalCol";
             // 
             // PenjualanForm
             // 
@@ -608,18 +681,19 @@
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "PenjualanForm";
             this.Text = "PenjualanForm";
+            this.Load += new System.EventHandler(this.PenjualanForm_Load);
             this.mainTabControl.ResumeLayout(false);
             this.entryDataTabPage.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BrgGrid)).EndInit();
             this.listDataTabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.listDataGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.StokAdjBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.StokAdjDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DetilAdjTable)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PenjualanBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PenjualanDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DetilPenjualanTable)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -639,7 +713,6 @@
         private System.Windows.Forms.Button NewButton;
         private System.Windows.Forms.Label BuyerNameLabel;
         private System.Windows.Forms.DataGridView BrgGrid;
-        private System.Windows.Forms.DataGridViewButtonColumn BrgGridButtonCol;
         private System.Windows.Forms.Button ExitButton;
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.Button saveButton;
@@ -650,16 +723,16 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DataGridView listDataGrid;
         private System.Windows.Forms.Timer JamTrsTimer;
-        private System.Windows.Forms.BindingSource StokAdjBindingSource;
-        private System.Data.DataSet StokAdjDataSet;
-        private System.Data.DataTable DetilAdjTable;
+        private System.Windows.Forms.BindingSource PenjualanBindingSource;
+        private System.Data.DataSet PenjualanDataSet;
+        private System.Data.DataTable DetilPenjualanTable;
         private System.Data.DataColumn dataColumn1;
         private System.Data.DataColumn dataColumn2;
         private System.Data.DataColumn dataColumn3;
         private System.Data.DataColumn dataColumn4;
         private System.Data.DataColumn dataColumn5;
         private System.Data.DataColumn dataColumn6;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox CustomerComboBox;
         private System.Windows.Forms.Label CustomerIDLabel;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label CatatanLabel;
@@ -680,5 +753,12 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BrgIDCol;
+        private System.Windows.Forms.DataGridViewButtonColumn BrgGridButtonCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BrgNameCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QtyCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HargaCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DiskonCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SubTotalCol;
     }
 }

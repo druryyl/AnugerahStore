@@ -138,7 +138,7 @@ namespace AnugerahBackend.Penjualan.Dal
             List<CustomerModel> result = null;
             var sSql = @"
                 SELECT
-                    aa.CustomerName, aa.Alamat1, 
+                    aa.CustomerID, aa.CustomerName, aa.Alamat1, 
                     aa.Alamat2, aa.NoTelp, aa.ContactPerson
                 FROM
                     Customer aa ";

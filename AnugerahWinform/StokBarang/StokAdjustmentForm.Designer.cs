@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.entryDataTabPage = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -97,6 +97,7 @@
             // 
             // entryDataTabPage
             // 
+            this.entryDataTabPage.BackColor = System.Drawing.Color.Salmon;
             this.entryDataTabPage.Controls.Add(this.panel1);
             this.entryDataTabPage.Controls.Add(this.BrgGrid);
             this.entryDataTabPage.Controls.Add(this.ExitButton);
@@ -113,6 +114,7 @@
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BackColor = System.Drawing.Color.MistyRose;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.LastIDLabel);
             this.panel1.Controls.Add(this.KeteranganTextBox);
@@ -148,7 +150,7 @@
             // 
             // NoTrsTextBox
             // 
-            this.NoTrsTextBox.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.NoTrsTextBox.BackColor = System.Drawing.Color.LavenderBlush;
             this.NoTrsTextBox.Location = new System.Drawing.Point(148, 15);
             this.NoTrsTextBox.Name = "NoTrsTextBox";
             this.NoTrsTextBox.Size = new System.Drawing.Size(114, 21);
@@ -239,8 +241,8 @@
             // brgIDDataGridViewTextBoxColumn
             // 
             this.brgIDDataGridViewTextBoxColumn.DataPropertyName = "BrgID";
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.brgIDDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle36.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.brgIDDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle36;
             this.brgIDDataGridViewTextBoxColumn.HeaderText = "BrgID";
             this.brgIDDataGridViewTextBoxColumn.Name = "brgIDDataGridViewTextBoxColumn";
             this.brgIDDataGridViewTextBoxColumn.ReadOnly = true;
@@ -264,10 +266,10 @@
             // qtyAwalDataGridViewTextBoxColumn
             // 
             this.qtyAwalDataGridViewTextBoxColumn.DataPropertyName = "QtyAwal";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle7.Format = "N0";
-            dataGridViewCellStyle7.NullValue = "0";
-            this.qtyAwalDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle37.Format = "N0";
+            dataGridViewCellStyle37.NullValue = "0";
+            this.qtyAwalDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle37;
             this.qtyAwalDataGridViewTextBoxColumn.HeaderText = "QtyAwal";
             this.qtyAwalDataGridViewTextBoxColumn.Name = "qtyAwalDataGridViewTextBoxColumn";
             this.qtyAwalDataGridViewTextBoxColumn.ReadOnly = true;
@@ -275,20 +277,20 @@
             // qtyAdjustDataGridViewTextBoxColumn
             // 
             this.qtyAdjustDataGridViewTextBoxColumn.DataPropertyName = "QtyAdjust";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle8.Format = "N0";
-            dataGridViewCellStyle8.NullValue = "0";
-            this.qtyAdjustDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle38.Format = "N0";
+            dataGridViewCellStyle38.NullValue = "0";
+            this.qtyAdjustDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle38;
             this.qtyAdjustDataGridViewTextBoxColumn.HeaderText = "QtyAdjust";
             this.qtyAdjustDataGridViewTextBoxColumn.Name = "qtyAdjustDataGridViewTextBoxColumn";
             // 
             // qtyAkhirDataGridViewTextBoxColumn
             // 
             this.qtyAkhirDataGridViewTextBoxColumn.DataPropertyName = "QtyAkhir";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle9.Format = "N0";
-            dataGridViewCellStyle9.NullValue = "0";
-            this.qtyAkhirDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle39.Format = "N0";
+            dataGridViewCellStyle39.NullValue = "0";
+            this.qtyAkhirDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle39;
             this.qtyAkhirDataGridViewTextBoxColumn.HeaderText = "QtyAkhir";
             this.qtyAkhirDataGridViewTextBoxColumn.Name = "qtyAkhirDataGridViewTextBoxColumn";
             this.qtyAkhirDataGridViewTextBoxColumn.ReadOnly = true;
@@ -296,10 +298,10 @@
             // hppDataGridViewTextBoxColumn
             // 
             this.hppDataGridViewTextBoxColumn.DataPropertyName = "Hpp";
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle10.Format = "N0";
-            dataGridViewCellStyle10.NullValue = "0";
-            this.hppDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle40.Format = "N0";
+            dataGridViewCellStyle40.NullValue = "0";
+            this.hppDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle40;
             this.hppDataGridViewTextBoxColumn.HeaderText = "Hpp";
             this.hppDataGridViewTextBoxColumn.Name = "hppDataGridViewTextBoxColumn";
             // 
