@@ -87,7 +87,7 @@
             this.ribbon1.Tabs.Add(this.ribbonTab3);
             this.ribbon1.TabsMargin = new System.Windows.Forms.Padding(12, 2, 20, 0);
             this.ribbon1.Text = "ribbon1";
-            this.ribbon1.ThemeColor = System.Windows.Forms.RibbonTheme.Blue_2010;
+            this.ribbon1.ThemeColor = System.Windows.Forms.RibbonTheme.Black;
             // 
             // ribbonTab1
             // 
@@ -338,7 +338,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::AnugerahWinform.Properties.Resources.background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(1109, 731);
             this.Controls.Add(this.ribbon1);

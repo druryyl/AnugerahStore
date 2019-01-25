@@ -14,7 +14,10 @@
 	NilaiBiayaLain DECIMAL(18,0) NOT NULL CONSTRAINT DF_Penjualan_NilaiBiayaLain DEFAULT(0),
 	NilaiGrandTotal DECIMAL(18,0) NOT NULL CONSTRAINT DF_Penjualan_NilaiGrandTotal DEFAULT(0),
 
-	CONSTRAINT PK_Penjualan_PenjualanID PRIMARY KEY CLUSTERED (PenjualanID)
+	NilaiBayar DECIMAL(18,0) NOT NULL CONSTRAINT DF_Penjualan_NilaiBayar DEFAULT(0),
+	NilaiKembali DECIMAL(18,0) NOT NULL CONSTRAINT DF_Penjualan_NilaiKembali DEFAULT(0)
+
+    CONSTRAINT PK_Penjualan_PenjualanID PRIMARY KEY CLUSTERED (PenjualanID)
 )
 GO
 

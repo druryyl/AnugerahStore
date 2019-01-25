@@ -37,11 +37,11 @@ namespace AnugerahBackend.Penjualan.Dal
                     Penjualan(
                         PenjualanID, TglPenjualan, JamPenjualan, UserrID, CustomerName,
                         CustomerID, Alamat, NoTelp, NilaiTotal, NilaiDiskonLain,
-                        NilaiBiayaLain, NilaiGrandTotal)
+                        NilaiBiayaLain, NilaiGrandTotal, NilaiBayar, NilaiKembali)
                 VALUES (
                         @PenjualanID, @TglPenjualan, @JamPenjualan, @UserrID, @BuyerName,
                         @CustomerID, @Alamat, @NoTelp, @NilaiTotal, @NilaiDiskonLain,
-                        @NilaiBiayaLain, @NilaiGrandTotal) ";
+                        @NilaiBiayaLain, @NilaiGrandTotal, @NilaiBayar, @NilaiKembali) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
@@ -57,6 +57,8 @@ namespace AnugerahBackend.Penjualan.Dal
                 cmd.AddParam("@NilaiDiskonLain", penjualan.NilaiDiskonLain);
                 cmd.AddParam("@NilaiBiayaLain", penjualan.NilaiBiayaLain);
                 cmd.AddParam("@NilaiGrandTotal", penjualan.NilaiGrandTotal);
+                cmd.AddParam("@NilaiBayar", penjualan.NilaiBayar);
+                cmd.AddParam("@NilaiKembali", penjualan.NilaiKembali);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -78,7 +80,9 @@ namespace AnugerahBackend.Penjualan.Dal
                     NilaiTotal = @NilaiTotal, 
                     NilaiDiskonLain = @NilaiDiskonLain,
                     NilaiBiayaLain = @NilaiBiayaLain, 
-                    NilaiGrandTotal = @NilaiGrandTotal
+                    NilaiGrandTotal = @NilaiGrandTotal,
+                    NilaiBayar = @NilaiBayar,
+                    NilaiKembali = @NilaiKembali
                 WHERE
                     PenjualanID = @PenjualanID ";
             using (var conn = new SqlConnection(_connString))
@@ -96,6 +100,8 @@ namespace AnugerahBackend.Penjualan.Dal
                 cmd.AddParam("@NilaiDiskonLain", penjualan.NilaiDiskonLain);
                 cmd.AddParam("@NilaiBiayaLain", penjualan.NilaiBiayaLain);
                 cmd.AddParam("@NilaiGrandTotal", penjualan.NilaiGrandTotal);
+                cmd.AddParam("@NilaiBayar", penjualan.NilaiBayar);
+                cmd.AddParam("@NilaiKembali", penjualan.NilaiKembali);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -124,7 +130,7 @@ namespace AnugerahBackend.Penjualan.Dal
                 SELECT
                     PenjualanID, TglPenjualan, JamPenjualan, UserrID, CustomerName,
                     CustomerID, Alamat, NoTelp, NilaiTotal, NilaiDiskonLain,
-                    NilaiBiayaLain, NilaiGrandTotal    
+                    NilaiBiayaLain, NilaiGrandTotal, NilaiBayar, NilaiKembali
                 FROM
                     Penjualan
                 WHERE
@@ -154,7 +160,10 @@ namespace AnugerahBackend.Penjualan.Dal
                             NilaiTotal = Convert.ToDouble(dr["NilaiTotal"]),
                             NilaiDiskonLain = Convert.ToDouble(dr["NilaiDiskonLain"]),
                             NilaiBiayaLain = Convert.ToDouble(dr["NilaiBiayaLain"]),
-                            NilaiGrandTotal = Convert.ToDouble(dr["NilaiGrandTotal"])
+                            NilaiGrandTotal = Convert.ToDouble(dr["NilaiGrandTotal"]),
+
+                            NilaiBayar = Convert.ToDouble(dr["NilaiBayar"]),
+                            NilaiKembali = Convert.ToDouble(dr["NilaiKembali"])
                         };
 
                     }
@@ -170,7 +179,7 @@ namespace AnugerahBackend.Penjualan.Dal
                 SELECT
                     PenjualanID, TglPenjualan, JamPenjualan, UserrID, CustomerName,
                     CustomerID, Alamat, NoTelp, NilaiTotal, NilaiDiskonLain,
-                    NilaiBiayaLain, NilaiGrandTotal    
+                    NilaiBiayaLain, NilaiGrandTotal, NilaiBayar, NilaiKembali
                 FROM
                     Penjualan
                 WHERE
@@ -203,7 +212,10 @@ namespace AnugerahBackend.Penjualan.Dal
                                 NilaiTotal = Convert.ToDouble(dr["NilaiTotal"]),
                                 NilaiDiskonLain = Convert.ToDouble(dr["NilaiDiskonLain"]),
                                 NilaiBiayaLain = Convert.ToDouble(dr["NilaiBiayaLain"]),
-                                NilaiGrandTotal = Convert.ToDouble(dr["NilaiGrandTotal"])
+                                NilaiGrandTotal = Convert.ToDouble(dr["NilaiGrandTotal"]),
+
+                                NilaiBayar = Convert.ToDouble(dr["NilaiBayar"]),
+                                NilaiKembali = Convert.ToDouble(dr["NilaiKembali"])
                             };
                             result.Add(item);
                         }

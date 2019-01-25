@@ -23,6 +23,8 @@ namespace AnugerahBackend.Penjualan.Model
         public double NilaiBiayaLain { get; set; }
         public double NilaiGrandTotal { get; set; }
 
+        public double NilaiBayar { get; set; }
+        public double NilaiKembali { get; set; }
         public IEnumerable<Penjualan2Model> ListBrg { get; set; }
     }
 

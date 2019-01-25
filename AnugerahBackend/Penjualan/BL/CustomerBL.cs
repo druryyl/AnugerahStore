@@ -25,9 +25,15 @@ namespace AnugerahBackend.Penjualan.BL
         {
             _customerDal = new CustomerDal();
         }
+
+        public CustomerBL(ICustomerDal injCustomerDal)
+        {
+            _customerDal = injCustomerDal;
+        }
+
         public void Save(CustomerModel customer)
         {
-            throw new NotImplementedException();
+            //  validate
         }
 
         public void Delete(string id)

@@ -21,6 +21,7 @@ namespace AnugerahWinform.Penjualan
         private IBrgBL _brgBL;
         private IStokBL _stokBL;
         private IPenjualanBL _penjualanBL;
+        private ICustomerBL _customerBL;
 
         public PenjualanForm()
         {
@@ -30,10 +31,12 @@ namespace AnugerahWinform.Penjualan
             _stokBL = new StokBL();
 
         }
+
         private void PenjualanForm_Load(object sender, EventArgs e)
         {
             AddRow();
         }
+
         private void BrgGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;
@@ -122,7 +125,7 @@ namespace AnugerahWinform.Penjualan
             var kodeTrs = NoTrsTextBox.Text;
             var tglTrs = TanggalDateTime.Value.ToString("dd-MM-yyyy");
             var jamTrs = JamTextBox.Text;
-            var keterangan = KeteranganTextBox.Text;
+            var keterangan = BuyerNameTextBox.Text;
             var dtlTrs = new List<Penjualan2Model>();
             var noUrut = 0;
             List<Penjualan2Model> listDetilAdj = null;
@@ -175,7 +178,7 @@ namespace AnugerahWinform.Penjualan
         {
             NoTrsTextBox.Clear();
             TanggalDateTime.Value = DateTime.Now;
-            KeteranganTextBox.Clear();
+            BuyerNameTextBox.Clear();
             DetilAdjTable.Rows.Clear();
             JamTrsTimer.Enabled = true;
         }
