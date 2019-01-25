@@ -35,20 +35,19 @@ namespace AnugerahBackend.Penjualan.Dal
             var sSql = @"
                 INSERT INTO
                     Penjualan(
-                        PenjualanID, TglPenjualan, JamPenjualan, UserrID, CustomerName,
+                        PenjualanID, TglPenjualan, JamPenjualan, BuyerName,
                         CustomerID, Alamat, NoTelp, NilaiTotal, NilaiDiskonLain,
                         NilaiBiayaLain, NilaiGrandTotal, NilaiBayar, NilaiKembali)
                 VALUES (
-                        @PenjualanID, @TglPenjualan, @JamPenjualan, @UserrID, @BuyerName,
+                        @PenjualanID, @TglPenjualan, @JamPenjualan, @BuyerName,
                         @CustomerID, @Alamat, @NoTelp, @NilaiTotal, @NilaiDiskonLain,
                         @NilaiBiayaLain, @NilaiGrandTotal, @NilaiBayar, @NilaiKembali) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
                 cmd.AddParam("@PenjualanID", penjualan.PenjualanID); 
-                cmd.AddParam("@TglPenjualan", penjualan.TglPenjualan); 
+                cmd.AddParam("@TglPenjualan", penjualan.TglPenjualan.ToTglYMD()); 
                 cmd.AddParam("@JamPenjualan", penjualan.JamPenjualan);
-                cmd.AddParam("@UserrID", penjualan.UserrID);
                 cmd.AddParam("@BuyerName", penjualan.BuyerName);
                 cmd.AddParam("@CustomerID", penjualan.CustomerID);
                 cmd.AddParam("@Alamat", penjualan.Alamat);
@@ -72,7 +71,6 @@ namespace AnugerahBackend.Penjualan.Dal
                 SET
                     TglPenjualan = @TglPenjualan, 
                     JamPenjualan = @JamPenjualan, 
-                    UserrID = @UserrID, 
                     BuyerName = @BuyerName,
                     CustomerID = @CustomerID, 
                     Alamat = @Alamat, 
@@ -89,9 +87,8 @@ namespace AnugerahBackend.Penjualan.Dal
             using (var cmd = new SqlCommand(sSql, conn))
             {
                 cmd.AddParam("@PenjualanID", penjualan.PenjualanID);
-                cmd.AddParam("@TglPenjualan", penjualan.TglPenjualan);
+                cmd.AddParam("@TglPenjualan", penjualan.TglPenjualan.ToTglYMD());
                 cmd.AddParam("@JamPenjualan", penjualan.JamPenjualan);
-                cmd.AddParam("@UserrID", penjualan.UserrID);
                 cmd.AddParam("@BuyerName", penjualan.BuyerName);
                 cmd.AddParam("@CustomerID", penjualan.CustomerID);
                 cmd.AddParam("@Alamat", penjualan.Alamat);
@@ -128,7 +125,7 @@ namespace AnugerahBackend.Penjualan.Dal
             PenjualanModel result = null;
             var sSql = @"
                 SELECT
-                    PenjualanID, TglPenjualan, JamPenjualan, UserrID, CustomerName,
+                    PenjualanID, TglPenjualan, JamPenjualan, BuyerName,
                     CustomerID, Alamat, NoTelp, NilaiTotal, NilaiDiskonLain,
                     NilaiBiayaLain, NilaiGrandTotal, NilaiBayar, NilaiKembali
                 FROM
@@ -150,9 +147,8 @@ namespace AnugerahBackend.Penjualan.Dal
                             PenjualanID = dr["PenjualanID"].ToString(),
                             TglPenjualan = dr["TglPenjualan"].ToString(),
                             JamPenjualan = dr["JamPenjualan"].ToString(),
-                            UserrID = dr["UserrID"].ToString(),
 
-                            BuyerName = dr["CustomerName"].ToString(),
+                            BuyerName = dr["BuyerName"].ToString(),
                             CustomerID = dr["CustomerID"].ToString(),
                             Alamat = dr["Alamat"].ToString(),
                             NoTelp = dr["NoTelp"].ToString(),
@@ -177,7 +173,7 @@ namespace AnugerahBackend.Penjualan.Dal
             List<PenjualanModel> result = null;
             var sSql = @"
                 SELECT
-                    PenjualanID, TglPenjualan, JamPenjualan, UserrID, CustomerName,
+                    PenjualanID, TglPenjualan, JamPenjualan, BuyerName,
                     CustomerID, Alamat, NoTelp, NilaiTotal, NilaiDiskonLain,
                     NilaiBiayaLain, NilaiGrandTotal, NilaiBayar, NilaiKembali
                 FROM
@@ -202,7 +198,6 @@ namespace AnugerahBackend.Penjualan.Dal
                                 PenjualanID = dr["PenjualanID"].ToString(),
                                 TglPenjualan = dr["TglPenjualan"].ToString(),
                                 JamPenjualan = dr["JamPenjualan"].ToString(),
-                                UserrID = dr["UserrID"].ToString(),
 
                                 BuyerName = dr["BuyerName"].ToString(),
                                 CustomerID = dr["CustomerID"].ToString(),

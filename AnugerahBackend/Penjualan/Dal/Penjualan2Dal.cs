@@ -41,7 +41,7 @@ namespace AnugerahBackend.Penjualan.Dal
                 cmd.AddParam("@PenjualanID2", penjualan2.PenjualanID2);
                 cmd.AddParam("@NoUrut", penjualan2.NoUrut);
                 cmd.AddParam("@BrgID", penjualan2.BrgID);
-                cmd.AddParam("@Qty", penjualan2.BrgID);
+                cmd.AddParam("@Qty", penjualan2.Qty);
                 cmd.AddParam("@Harga", penjualan2.Harga);
                 cmd.AddParam("@Diskon", penjualan2.Diskon);
                 cmd.AddParam("@SubTotal", penjualan2.SubTotal);

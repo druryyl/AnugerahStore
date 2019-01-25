@@ -4,7 +4,7 @@
 	TglPenjualan VARCHAR(10) NOT NULL CONSTRAINT DF_Penjualan_TgPenjualan DEFAULT('3000-01-01'),
 	JamPenjualan VARCHAR(8) NOT NULL CONSTRAINT DF_Penjualan_JamPenjualan DEFAULT('00:00:00'),
 	UserrID VARCHAR(50) NOT NULL CONSTRAINT DF_Penjualan_UserrID DEFAULT(''),
-	CustomerID VARCHAR(5) NOT NULL CONSTRAINT DF_Penjualan_CustomerID DEFAULT(''),
+	CustomerID VARCHAR(6) NOT NULL CONSTRAINT DF_Penjualan_CustomerID DEFAULT(''),
 
 	BuyerName VARCHAR(30) NOT NULl CONSTRAINT DF_Penjualan_BuyerName DEFAULT(''),
 	Alamat VARCHAR(128) NOT NULL CONSTRAINT DF_Penjualan_Alamat DEFAULT(''),

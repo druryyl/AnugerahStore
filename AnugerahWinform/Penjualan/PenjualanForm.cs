@@ -147,7 +147,10 @@ namespace AnugerahWinform.Penjualan
             var kodeTrs = NoTrsTextBox.Text;
             var tglTrs = TanggalDateTime.Value.ToString("dd-MM-yyyy");
             var jamTrs = JamTextBox.Text;
-            var customerID = CustomerComboBox.SelectedValue.ToString() ?? "";
+            var customerID = "";
+            if(CustomerComboBox.SelectedValue != null)
+                customerID = CustomerComboBox.SelectedValue.ToString();
+
             var buyerName = BuyerNameTextBox.Text;
             var alamat = AlamatTextBox.Text;
             var noTelpon = NoTelpTextBox.Text;
@@ -175,9 +178,9 @@ namespace AnugerahWinform.Penjualan
                     NoUrut = noUrut,
                     BrgID = dr["BrgID"].ToString(),
                     BrgName = "",
-                    Qty = Convert.ToInt32(dr["QtyCol"]),
+                    Qty = Convert.ToInt32(dr["Qty"]),
                     Harga = Convert.ToDouble(dr["Harga"]),
-                    Diskon = Convert.ToDouble(dr["Disok"]),
+                    Diskon = Convert.ToDouble(dr["Diskon"]),
                     SubTotal = Convert.ToDouble(dr["SubTotal"])
                 };
                 listDetilAdj.Add(dtlAdj);
