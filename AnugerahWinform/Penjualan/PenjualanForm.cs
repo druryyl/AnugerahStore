@@ -22,6 +22,7 @@ namespace AnugerahWinform.Penjualan
         private IStokBL _stokBL;
         private IPenjualanBL _penjualanBL;
         private ICustomerBL _customerBL;
+        private IBrgPriceBL _brgPriceBL;
 
         public PenjualanForm()
         {
@@ -30,6 +31,7 @@ namespace AnugerahWinform.Penjualan
             _brgBL = new BrgBL();
             _stokBL = new StokBL();
             _customerBL = new CustomerBL();
+            _brgPriceBL = new BrgPriceBL();
 
         }
 
@@ -76,6 +78,10 @@ namespace AnugerahWinform.Penjualan
             if ((brgName.Trim() != "") && (e.RowIndex == DetilPenjualanTable.Rows.Count - 1))
                 AddRow();
 
+            if (e.ColumnIndex == 3)
+            {
+                ShowHargaBrg(e.RowIndex);
+            }
         }
         private void BrgGrid_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
@@ -83,8 +89,43 @@ namespace AnugerahWinform.Penjualan
             {
                 ShowDataBrgGrid(e.RowIndex);
             }
+
         }
 
+
+        private void ShowHargaBrg(int rowIndex)
+        {
+            //  get key (KodeBrg)
+            string kodeBrg = (string)DetilPenjualanTable.Rows[rowIndex]["BrgID"];
+            //  get qty
+            var qty = Convert.ToInt32(DetilPenjualanTable.Rows[rowIndex]["Qty"]);
+            if (qty <= 0) qty = 1;
+            //  get harga
+            var listHarga = _brgPriceBL.ListData(kodeBrg);
+            double harga = 0;
+            double diskon = 0;
+            if (listHarga != null)
+            {
+                var dataHarga = listHarga
+                    .Where(x => x.Qty <= qty)
+                    .OrderByDescending(x => x.Qty)
+                    .FirstOrDefault();
+
+                harga = dataHarga.Harga;
+                diskon = dataHarga.Diskon;
+            }
+
+            DetilPenjualanTable.Rows[rowIndex]["Harga"] = harga;
+            DetilPenjualanTable.Rows[rowIndex]["Diskon"] = diskon;
+            DetilPenjualanTable.Rows[rowIndex]["SubTotal"] = (harga - diskon) * qty;
+
+            double nilaiTotal = 0;
+            foreach(DataRow row in DetilPenjualanTable.Rows)
+            {
+                nilaiTotal += Convert.ToDouble(row["SubTotal"]);
+            }
+            TotalTextBox.Text = nilaiTotal.ToString();
+        }
         private void SearchBrg(int rowIndex)
         {
             var searchForm = new SearchingForm<BrgSearchResultModel>(_brgBL, false);
@@ -118,12 +159,8 @@ namespace AnugerahWinform.Penjualan
             if (brg != null)
                 brgName = brg.BrgName;
 
-            //  get stok
-            long qtyAwal = _stokBL.GetStok(kodeBrg);
-
             //  tampilkan di grid
             DetilPenjualanTable.Rows[rowIndex]["BrgName"] = brgName;
-            DetilPenjualanTable.Rows[rowIndex]["Harga"] = qtyAwal;
         }
         private void AddRow()
         {
@@ -283,6 +320,11 @@ namespace AnugerahWinform.Penjualan
                     );
             }
             AddRow();
+        }
+
+        private void BayarTextBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

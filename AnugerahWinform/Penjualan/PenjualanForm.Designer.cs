@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.entryDataTabPage = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -178,18 +178,25 @@
             // KembaliTextBox
             // 
             this.KembaliTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.KembaliTextBox.BackColor = System.Drawing.Color.Beige;
             this.KembaliTextBox.Location = new System.Drawing.Point(832, 78);
             this.KembaliTextBox.Name = "KembaliTextBox";
+            this.KembaliTextBox.ReadOnly = true;
             this.KembaliTextBox.Size = new System.Drawing.Size(113, 21);
             this.KembaliTextBox.TabIndex = 27;
+            this.KembaliTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // BayarTextBox
             // 
             this.BayarTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BayarTextBox.BackColor = System.Drawing.SystemColors.Window;
             this.BayarTextBox.Location = new System.Drawing.Point(832, 51);
             this.BayarTextBox.Name = "BayarTextBox";
+            this.BayarTextBox.ReadOnly = true;
             this.BayarTextBox.Size = new System.Drawing.Size(113, 21);
             this.BayarTextBox.TabIndex = 26;
+            this.BayarTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.BayarTextBox.TextChanged += new System.EventHandler(this.BayarTextBox_TextChanged);
             // 
             // label7
             // 
@@ -234,34 +241,46 @@
             // TotalTextBox
             // 
             this.TotalTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.TotalTextBox.BackColor = System.Drawing.Color.Beige;
             this.TotalTextBox.Location = new System.Drawing.Point(476, 24);
             this.TotalTextBox.Name = "TotalTextBox";
+            this.TotalTextBox.ReadOnly = true;
             this.TotalTextBox.Size = new System.Drawing.Size(113, 21);
             this.TotalTextBox.TabIndex = 14;
+            this.TotalTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // GrandTotalTextBox
             // 
             this.GrandTotalTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.GrandTotalTextBox.BackColor = System.Drawing.Color.Beige;
             this.GrandTotalTextBox.Location = new System.Drawing.Point(832, 24);
             this.GrandTotalTextBox.Name = "GrandTotalTextBox";
+            this.GrandTotalTextBox.ReadOnly = true;
             this.GrandTotalTextBox.Size = new System.Drawing.Size(113, 21);
             this.GrandTotalTextBox.TabIndex = 17;
+            this.GrandTotalTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // DiskonTextBox
             // 
             this.DiskonTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.DiskonTextBox.BackColor = System.Drawing.SystemColors.Window;
             this.DiskonTextBox.Location = new System.Drawing.Point(595, 24);
             this.DiskonTextBox.Name = "DiskonTextBox";
+            this.DiskonTextBox.ReadOnly = true;
             this.DiskonTextBox.Size = new System.Drawing.Size(113, 21);
             this.DiskonTextBox.TabIndex = 15;
+            this.DiskonTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // BiayaLainTextBox
             // 
             this.BiayaLainTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BiayaLainTextBox.BackColor = System.Drawing.SystemColors.Window;
             this.BiayaLainTextBox.Location = new System.Drawing.Point(713, 24);
             this.BiayaLainTextBox.Name = "BiayaLainTextBox";
+            this.BiayaLainTextBox.ReadOnly = true;
             this.BiayaLainTextBox.Size = new System.Drawing.Size(113, 21);
             this.BiayaLainTextBox.TabIndex = 16;
+            this.BiayaLainTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // panel1
             // 
@@ -643,40 +662,40 @@
             // QtyCol
             // 
             this.QtyCol.DataPropertyName = "Qty";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.Format = "N0";
-            dataGridViewCellStyle1.NullValue = "0";
-            this.QtyCol.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Format = "N0";
+            dataGridViewCellStyle5.NullValue = "0";
+            this.QtyCol.DefaultCellStyle = dataGridViewCellStyle5;
             this.QtyCol.HeaderText = "Qty";
             this.QtyCol.Name = "QtyCol";
             // 
             // HargaCol
             // 
             this.HargaCol.DataPropertyName = "Harga";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "N2";
-            dataGridViewCellStyle2.NullValue = "0";
-            this.HargaCol.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.Format = "N2";
+            dataGridViewCellStyle6.NullValue = "0";
+            this.HargaCol.DefaultCellStyle = dataGridViewCellStyle6;
             this.HargaCol.HeaderText = "Harga";
             this.HargaCol.Name = "HargaCol";
             // 
             // DiskonCol
             // 
             this.DiskonCol.DataPropertyName = "Diskon";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "N2";
-            dataGridViewCellStyle3.NullValue = "0";
-            this.DiskonCol.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle7.Format = "N2";
+            dataGridViewCellStyle7.NullValue = "0";
+            this.DiskonCol.DefaultCellStyle = dataGridViewCellStyle7;
             this.DiskonCol.HeaderText = "Diskon";
             this.DiskonCol.Name = "DiskonCol";
             // 
             // SubTotalCol
             // 
             this.SubTotalCol.DataPropertyName = "SubTotal";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Format = "N2";
-            dataGridViewCellStyle4.NullValue = "0";
-            this.SubTotalCol.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle8.Format = "N2";
+            dataGridViewCellStyle8.NullValue = "0";
+            this.SubTotalCol.DefaultCellStyle = dataGridViewCellStyle8;
             this.SubTotalCol.HeaderText = "SubTotal";
             this.SubTotalCol.Name = "SubTotalCol";
             // 
