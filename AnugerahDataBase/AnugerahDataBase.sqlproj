@@ -61,6 +61,7 @@
     <Folder Include="StokBarang" />
     <Folder Include="Penjualan" />
     <Folder Include="Queries" />
+    <Folder Include="OtherScript" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Support\Userr.sql" />
@@ -81,10 +82,13 @@
     <Build Include="StokBarang\StokIn.sql" />
     <Build Include="StokBarang\StokInOut.sql" />
     <Build Include="Penjualan\Customer.sql" />
+    <Build Include="Penjualan\PenjualanBayar.sql" />
+    <Build Include="Penjualan\JenisBayar.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AnugerahDevelopment.publish.xml" />
     <None Include="AnugerahTest.publish.xml" />
+    <None Include="OtherScript\JenisBayarContent.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="AnugerahDataBase.refactorlog" />

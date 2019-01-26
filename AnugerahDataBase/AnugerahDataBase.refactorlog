@@ -21,4 +21,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="[IX_Brg_SubJenisBrgID_MerkID_ColorID]" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="224654f6-af5f-438b-bd62-d526281a5be4" ChangeDateTime="01/26/2019 07:18:57">
+    <Property Name="ElementName" Value="[dbo].[PenjualanBayar].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PenjualanBayar]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PenjualanID" />
+  </Operation>
 </Operations>

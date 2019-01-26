@@ -52,11 +52,15 @@
     <Compile Include="Penjualan\BL\PenjualanBL.cs" />
     <Compile Include="Penjualan\Dal\BrgPriceDal.cs" />
     <Compile Include="Penjualan\Dal\CustomerDal.cs" />
+    <Compile Include="Penjualan\Dal\JenisBayarDal.cs" />
     <Compile Include="Penjualan\Dal\Penjualan2Dal.cs" />
+    <Compile Include="Penjualan\Dal\PenjualanBayarDal.cs" />
     <Compile Include="Penjualan\Dal\PenjualanDal.cs" />
     <Compile Include="Penjualan\Model\BrgPriceModel.cs" />
     <Compile Include="Penjualan\Model\CustomerModel.cs" />
+    <Compile Include="Penjualan\Model\JenisBayarModel.cs" />
     <Compile Include="Penjualan\Model\Penjualan2Model.cs" />
+    <Compile Include="Penjualan\Model\PenjualanBayarModel.cs" />
     <Compile Include="Penjualan\Model\PenjualanModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StokBarang\BL\BrgBL.cs" />

@@ -27,6 +27,8 @@ namespace AnugerahBackend.Penjualan.Model
         public decimal NilaiBayar { get; set; }
         public decimal NilaiKembali { get; set; }
         public IEnumerable<Penjualan2Model> ListBrg { get; set; }
+        public IEnumerable<PenjualanBayarModel> ListBayar { get; set; }
+
     }
 
     public class PenjualanSearchModel
