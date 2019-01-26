@@ -10,6 +10,7 @@ namespace AnugerahBackend.Penjualan.Model
     {
         public string PenjualanID { get; set; }
         public string PenjualanID2 { get; set; }
+        public int NoUrut { get; internal set; }
         public string JenisBayarID { get; set; }
         public string JenisBayarName { get; set; }
         public decimal NilaiBayar { get; set; }

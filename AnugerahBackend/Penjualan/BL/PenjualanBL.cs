@@ -32,6 +32,7 @@ namespace AnugerahBackend.Penjualan.BL
     {
         private IPenjualanDal _penjualanDal;
         private IPenjualan2Dal _penjualan2Dal;
+        private IPenjualanBayarDal _penjualanBayarDal;
         private IParameterNoBL _paramNoBL;
         private IBrgBL _brgBL;
         private IJenisBayarDal _jenisBayarDal;
@@ -40,6 +41,7 @@ namespace AnugerahBackend.Penjualan.BL
         {
             _penjualanDal = new PenjualanDal();
             _penjualan2Dal = new Penjualan2Dal();
+            _penjualanBayarDal = new PenjualanBayarDal();
             _paramNoBL = new ParameterNoBL();
             _brgBL = new BrgBL();
             _jenisBayarDal = new JenisBayarDal();
@@ -69,6 +71,7 @@ namespace AnugerahBackend.Penjualan.BL
                 if (penjualan.PenjualanID.Trim() != "")
                 {
                     _penjualan2Dal.Delete(penjualan.PenjualanID);
+                    _penjualanBayarDal.Delete(penjualan.PenjualanID);
                     _penjualanDal.Delete(penjualan.PenjualanID);
                     trsID = penjualan.PenjualanID;
                 }
@@ -91,7 +94,12 @@ namespace AnugerahBackend.Penjualan.BL
                 }
 
                 //  save detil bayar
-                //  todo: sampe sini simpan detil bayar
+                foreach(var item in penjualan.ListBayar)
+                {
+                    item.PenjualanID = trsID;
+                    item.PenjualanID2 = string.Format("{0}-{1}", trsID, item.NoUrut.ToString().PadLeft(3, '0'));
+                    _penjualanBayarDal.Insert(item);
+                }
                 trans.Complete();
             }
             return result;
@@ -113,9 +121,13 @@ namespace AnugerahBackend.Penjualan.BL
             var header = _penjualanDal.GetData(id);
             if (header != null)
             {
-                var detil = _penjualan2Dal.ListData(id);
-                if (detil != null)
-                    header.ListBrg = detil;
+                var detilBrg = _penjualan2Dal.ListData(id);
+                if (detilBrg != null)
+                    header.ListBrg = detilBrg;
+
+                var detilBayar = _penjualanBayarDal.ListData(id);
+                if (detilBayar != null)
+                    header.ListBayar = detilBayar;
             }
             return header;
         }
