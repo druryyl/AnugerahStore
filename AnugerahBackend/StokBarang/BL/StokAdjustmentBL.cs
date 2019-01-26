@@ -100,9 +100,9 @@ namespace AnugerahBackend.StokBarang.BL
             {
                 if (item.QtyAdjust > 0)
                     _stokBL.AddStok(item.BrgID, item.QtyAdjust, item.HppAdjust, stokAdjustment.TglTrs, stokAdjustment.JamTrs,
-                        stokAdjustment.StokAdjustmentID, stokAdjustment.StokAdjustmentID, "ADJ_PLUS");
+                        stokAdjustment.StokAdjustmentID, stokAdjustment.StokAdjustmentID, "AJPLS");
                 else
-                    _stokBL.RemoveStok(new BrgModel { BrgID = item.BrgID }, item.QtyAdjust, 0, "ADJ_MIN", stokAdjustment.StokAdjustmentID);
+                    _stokBL.RemoveStok(new BrgModel { BrgID = item.BrgID }, item.QtyAdjust, 0, "AJMIN", stokAdjustment.StokAdjustmentID);
             }
         }
         private void ReserveStok(string stokAdjID)
