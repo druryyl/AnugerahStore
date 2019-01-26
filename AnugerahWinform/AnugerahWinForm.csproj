@@ -56,6 +56,7 @@
       <HintPath>..\..\..\..\Project.Aktif\Web7\Helper\HelperLib\bin\Release\Ics.Helper.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
@@ -97,6 +98,7 @@
     <Compile Include="Penjualan\PricingForm.Designer.cs">
       <DependentUpon>PricingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PrintDoc\NotaJualPrintDoc.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StokBarang\StokAdjustmentForm.cs">

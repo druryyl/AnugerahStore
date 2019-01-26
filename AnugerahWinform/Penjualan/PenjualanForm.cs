@@ -2,6 +2,7 @@
 using AnugerahBackend.Penjualan.Model;
 using AnugerahBackend.StokBarang.BL;
 using AnugerahBackend.StokBarang.Model;
+using AnugerahWinform.PrintDoc;
 using AnugerahWinform.Support;
 using Ics.Helper.StringDateTime;
 using System;
@@ -255,6 +256,12 @@ namespace AnugerahWinform.Penjualan
             var result = _penjualanBL.Save(penjualan);
             if (result != null)
                 LastIDLabel.Text = result.PenjualanID;
+
+            if(MessageBox.Show("Cetak Nota ?","Penjualan", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                var printDoc = new NotaJualPrintDoc(result);
+                printDoc.Print();
+            }
         }
 
         private void JamTrsTimer_Tick(object sender, EventArgs e)

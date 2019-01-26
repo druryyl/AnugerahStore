@@ -144,6 +144,8 @@ namespace AnugerahBackend.Penjualan.BL
                 var brg = _brgBL.GetData(item.BrgID);
                 if (brg == null)
                     throw new ArgumentException("Invalid BrgID ");
+                else
+                    item.BrgName = brg.BrgName;
                 //  re-calc qty akhir
                 item.SubTotal = (item.Harga - item.Diskon) * item.Qty;
             }
