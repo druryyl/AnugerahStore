@@ -63,7 +63,7 @@ namespace AnugerahBackend.StokBarang.BL
             _brgBL = injBrgBL;
             _jenisMutasiBL = injJenisMutasiBL;
             _paramNoBL = injParamNoBL;
-        } 
+        }
         #endregion
 
         public void AddStok(string brgID, long qty, double hpp,

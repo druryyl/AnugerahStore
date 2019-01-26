@@ -33,6 +33,7 @@ namespace AnugerahBackend.StokBarang.BL
         private IStokAdjustment2Dal _stokAdjustment2Dal;
         private IParameterNoBL _paramNoBL;
         private IBrgBL _brgBL;
+        private IStokBL _stokBL;
 
         public StokAdjustmentBL()
         {
@@ -40,6 +41,7 @@ namespace AnugerahBackend.StokBarang.BL
             _stokAdjustment2Dal = new StokAdjustment2Dal();
             _paramNoBL = new ParameterNoBL();
             _brgBL = new BrgBL();
+            _stokBL = new StokBL();
         }
 
         public StokAdjustmentBL(IStokAdjustmentDal injStokAdjustmentDal,
@@ -64,6 +66,7 @@ namespace AnugerahBackend.StokBarang.BL
                 //  edit: delete data lama
                 if (stokAdjustment.StokAdjustmentID.Trim() != "")
                 {
+                    //  kembalikan stok lama
                     _stokAdjustment2Dal.Delete(stokAdjustment.StokAdjustmentID);
                     _stokAdjustmentDal.Delete(stokAdjustment.StokAdjustmentID);
                     trsID = stokAdjustment.StokAdjustmentID;
@@ -85,9 +88,30 @@ namespace AnugerahBackend.StokBarang.BL
                     item.StokAdjustmentID2 = string.Format("{0}-{1}", trsID, item.NoUrut.ToString().PadLeft(3, '0'));
                     _stokAdjustment2Dal.Insert(item);
                 }
+                GenerateStok(stokAdjustment);
                 trans.Complete();
             }
             return result;
+        }
+
+        private void GenerateStok(StokAdjustmentModel stokAdjustment)
+        {
+            foreach(var item in stokAdjustment.ListBrg)
+            {
+                if (item.QtyAdjust > 0)
+                    _stokBL.AddStok(item.BrgID, item.QtyAdjust, item.HppAdjust, stokAdjustment.TglTrs, stokAdjustment.JamTrs,
+                        stokAdjustment.StokAdjustmentID, stokAdjustment.StokAdjustmentID, "ADJ_PLUS");
+                else
+                    _stokBL.RemoveStok(new BrgModel { BrgID = item.BrgID }, item.QtyAdjust, 0, "ADJ_MIN", stokAdjustment.StokAdjustmentID);
+            }
+        }
+        private void ReserveStok(string stokAdjID)
+        {
+            //var stokAdj = GetData(stokAdjID);
+            //foreach(var item in stokAdj.ListBrg)
+            //{
+            //    //  ambil barang
+            //}
         }
 
         public void Void(string id)
