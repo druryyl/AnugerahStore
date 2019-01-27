@@ -30,6 +30,14 @@ namespace AnugerahWinform.Support
                 splitContainer1.SplitterDistance -= Tgl1DatePicker.Height + 5;
                 splitContainer1.FixedPanel = FixedPanel.Panel1;
             }
+
+            IEnumerable<T> listData;
+            listData = _searchBL.Search();
+            ListDataGrid.DataSource = listData;
+            foreach (DataGridViewColumn col in ListDataGrid.Columns)
+            {
+                col.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            }
         }
 
         private void KeywordTextBox_KeyDown(object sender, KeyEventArgs e)
@@ -38,7 +46,12 @@ namespace AnugerahWinform.Support
             {
                 IEnumerable<T> listData;
                 if (!_isFilterTgl)
-                    listData = _searchBL.Search(KeywordTextBox.Text);
+                {
+                    if(KeywordTextBox.Text != "")
+                        listData = _searchBL.Search(KeywordTextBox.Text);
+                    else
+                        listData = _searchBL.Search();
+                }
                 else
                     listData = _searchBL.Search(KeywordTextBox.Text,
                         Tgl1DatePicker.Value.ToString("dd-MM-yyyy"),

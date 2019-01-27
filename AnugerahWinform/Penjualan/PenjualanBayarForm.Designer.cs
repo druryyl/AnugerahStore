@@ -29,8 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.BayarGrid = new System.Windows.Forms.DataGridView();
+            this.jenisBayarIDColDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ButtonCol = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.jenisBayarNameColDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nilaiBayarColDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.catatanColDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PenjualanBayarBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.PenjualanBayarDataSet = new System.Data.DataSet();
             this.DetilBayarTable = new System.Data.DataTable();
@@ -40,11 +45,6 @@
             this.dataColumn3 = new System.Data.DataColumn();
             this.OKButton = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
-            this.jenisBayarIDColDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ButtonCol = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.jenisBayarNameColDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nilaiBayarColDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.catatanColDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.BayarGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PenjualanBayarBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PenjualanBayarDataSet)).BeginInit();
@@ -70,6 +70,43 @@
             this.BayarGrid.Name = "BayarGrid";
             this.BayarGrid.Size = new System.Drawing.Size(659, 280);
             this.BayarGrid.TabIndex = 0;
+            this.BayarGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BayarGrid_CellContentClick);
+            // 
+            // jenisBayarIDColDataGridViewTextBoxColumn
+            // 
+            this.jenisBayarIDColDataGridViewTextBoxColumn.DataPropertyName = "JenisBayarIDCol";
+            this.jenisBayarIDColDataGridViewTextBoxColumn.HeaderText = "Kode";
+            this.jenisBayarIDColDataGridViewTextBoxColumn.Name = "jenisBayarIDColDataGridViewTextBoxColumn";
+            this.jenisBayarIDColDataGridViewTextBoxColumn.Width = 50;
+            // 
+            // ButtonCol
+            // 
+            this.ButtonCol.HeaderText = "...";
+            this.ButtonCol.Name = "ButtonCol";
+            this.ButtonCol.Width = 25;
+            // 
+            // jenisBayarNameColDataGridViewTextBoxColumn
+            // 
+            this.jenisBayarNameColDataGridViewTextBoxColumn.DataPropertyName = "JenisBayarNameCol";
+            this.jenisBayarNameColDataGridViewTextBoxColumn.HeaderText = "Jenis Bayar";
+            this.jenisBayarNameColDataGridViewTextBoxColumn.Name = "jenisBayarNameColDataGridViewTextBoxColumn";
+            // 
+            // nilaiBayarColDataGridViewTextBoxColumn
+            // 
+            this.nilaiBayarColDataGridViewTextBoxColumn.DataPropertyName = "NilaiBayarCol";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.Format = "N0";
+            dataGridViewCellStyle1.NullValue = "0";
+            this.nilaiBayarColDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.nilaiBayarColDataGridViewTextBoxColumn.HeaderText = "Nilai Bayar";
+            this.nilaiBayarColDataGridViewTextBoxColumn.Name = "nilaiBayarColDataGridViewTextBoxColumn";
+            // 
+            // catatanColDataGridViewTextBoxColumn
+            // 
+            this.catatanColDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.catatanColDataGridViewTextBoxColumn.DataPropertyName = "CatatanCol";
+            this.catatanColDataGridViewTextBoxColumn.HeaderText = "Catatan";
+            this.catatanColDataGridViewTextBoxColumn.Name = "catatanColDataGridViewTextBoxColumn";
             // 
             // PenjualanBayarBindingSource
             // 
@@ -131,42 +168,6 @@
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = true;
             // 
-            // jenisBayarIDColDataGridViewTextBoxColumn
-            // 
-            this.jenisBayarIDColDataGridViewTextBoxColumn.DataPropertyName = "JenisBayarIDCol";
-            this.jenisBayarIDColDataGridViewTextBoxColumn.HeaderText = "Kode";
-            this.jenisBayarIDColDataGridViewTextBoxColumn.Name = "jenisBayarIDColDataGridViewTextBoxColumn";
-            this.jenisBayarIDColDataGridViewTextBoxColumn.Width = 50;
-            // 
-            // ButtonCol
-            // 
-            this.ButtonCol.HeaderText = "...";
-            this.ButtonCol.Name = "ButtonCol";
-            this.ButtonCol.Width = 25;
-            // 
-            // jenisBayarNameColDataGridViewTextBoxColumn
-            // 
-            this.jenisBayarNameColDataGridViewTextBoxColumn.DataPropertyName = "JenisBayarNameCol";
-            this.jenisBayarNameColDataGridViewTextBoxColumn.HeaderText = "Jenis Bayar";
-            this.jenisBayarNameColDataGridViewTextBoxColumn.Name = "jenisBayarNameColDataGridViewTextBoxColumn";
-            // 
-            // nilaiBayarColDataGridViewTextBoxColumn
-            // 
-            this.nilaiBayarColDataGridViewTextBoxColumn.DataPropertyName = "NilaiBayarCol";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "N0";
-            dataGridViewCellStyle5.NullValue = "0";
-            this.nilaiBayarColDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
-            this.nilaiBayarColDataGridViewTextBoxColumn.HeaderText = "Nilai Bayar";
-            this.nilaiBayarColDataGridViewTextBoxColumn.Name = "nilaiBayarColDataGridViewTextBoxColumn";
-            // 
-            // catatanColDataGridViewTextBoxColumn
-            // 
-            this.catatanColDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.catatanColDataGridViewTextBoxColumn.DataPropertyName = "CatatanCol";
-            this.catatanColDataGridViewTextBoxColumn.HeaderText = "Catatan";
-            this.catatanColDataGridViewTextBoxColumn.Name = "catatanColDataGridViewTextBoxColumn";
-            // 
             // PenjualanBayarForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -180,7 +181,6 @@
             this.Name = "PenjualanBayarForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PenjualanBayarForm";
-            this.Load += new System.EventHandler(this.PenjualanBayarForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.BayarGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PenjualanBayarBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PenjualanBayarDataSet)).EndInit();

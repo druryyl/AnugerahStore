@@ -405,13 +405,7 @@ namespace AnugerahWinform.Penjualan
 
         private void BayarButton_Click(object sender, EventArgs e)
         {
-            var listBayar = _penjualanBayarDal.ListData(NoTrsTextBox.Text, true);
-
-            if (listBayar == null)
-            {
-                MessageBox.Show("JenisBayarTable kosong");
-                return;
-            }
+            var listBayar = _penjualanBayarDal.ListData(NoTrsTextBox.Text, false);
 
             using (var penjualanBayarForm = new PenjualanBayarForm(listBayar))
             {

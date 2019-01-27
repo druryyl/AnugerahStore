@@ -181,5 +181,10 @@ namespace AnugerahBackend.StokBarang.BL
             var result = _stokAdjustmentDal.Search(keyword, tgl1, tgl2);
             return result;
         }
+
+        public IEnumerable<StokAdjustmentSearchModel> Search()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

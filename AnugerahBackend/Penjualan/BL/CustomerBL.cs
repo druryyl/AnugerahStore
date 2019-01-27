@@ -60,5 +60,10 @@ namespace AnugerahBackend.Penjualan.BL
         {
             throw new NotImplementedException();
         }
+
+        public IEnumerable<CustomerSearchModel> Search()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

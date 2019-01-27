@@ -268,5 +268,10 @@ namespace AnugerahBackend.StokBarang.BL
         {
             throw new NotImplementedException();
         }
+
+        public IEnumerable<StokSearchModel> Search()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

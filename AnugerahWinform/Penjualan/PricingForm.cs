@@ -17,9 +17,6 @@ namespace AnugerahWinform.Penjualan
     public partial class PricingForm : Form
     {
         private IBrgBL _brgBL;
-        private IJenisBrgBL _jenisBrgBL;
-        private ISubJenisBrgBL _subJenisBrgBL;
-        private IMerkBL _merkBL;
         private IColorBL _colorBL;
         private IBrgPriceBL _brgPriceBL;
 

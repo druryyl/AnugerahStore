@@ -196,5 +196,10 @@ namespace AnugerahBackend.Penjualan.BL
             var result = _penjualanDal.Search(keyword, tgl1, tgl2);
             return result;
         }
+
+        public IEnumerable<PenjualanSearchModel> Search()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

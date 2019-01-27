@@ -1,4 +1,5 @@
 ﻿using AnugerahBackend.Penjualan.Model;
+using AnugerahBackend.Support;
 using Ics.Helper.Extensions;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 namespace AnugerahBackend.Penjualan.Dal
 {
 
-    public interface IJenisBayarDal
+    public interface IJenisBayarDal : ISearchData<JenisBayarModel>
     {
         void Insert(JenisBayarModel jenisBayar);
 
@@ -47,7 +48,7 @@ namespace AnugerahBackend.Penjualan.Dal
             {
                 cmd.AddParam("@JenisBayarID", jenisBayar.JenisBayarID);
                 cmd.AddParam("@JenisBayarName", jenisBayar.JenisBayarName);
-                cmd.AddParam("@IsMesinEdc", jenisBayar.IsMesinEdc);
+                cmd.AddParam("@IsMesinEdc", jenisBayar.KasTransferEdc);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -68,7 +69,7 @@ namespace AnugerahBackend.Penjualan.Dal
             {
                 cmd.AddParam("@JenisBayarID", jenisBayar.JenisBayarID);
                 cmd.AddParam("@JenisBayarName", jenisBayar.JenisBayarName);
-                cmd.AddParam("@IsMesinEdc", jenisBayar.IsMesinEdc);
+                cmd.AddParam("@IsMesinEdc", jenisBayar.KasTransferEdc);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -94,7 +95,7 @@ namespace AnugerahBackend.Penjualan.Dal
             var sSql = @"
                 SELECT
                     aa.JenisBayarName,
-                    aa.IsMesinEdc
+                    aa.KasTransferEdc
                 FROM
                     JenisBayar aa
                 WHERE
@@ -113,7 +114,7 @@ namespace AnugerahBackend.Penjualan.Dal
                         {
                             JenisBayarID = id,
                             JenisBayarName = dr["JenisBayarName"].ToString(),
-                            IsMesinEdc = Convert.ToBoolean(dr["IsMesinEdc"])
+                            KasTransferEdc = dr["KasTransferEdc"].ToString()
                         };
                     }
                 }
@@ -126,7 +127,7 @@ namespace AnugerahBackend.Penjualan.Dal
             List<JenisBayarModel> result = null;
             var sSql = @"
                 SELECT
-                    aa.JenisBayarID, aa.JenisBayarName, aa.IsMesinEdc
+                    aa.JenisBayarID, aa.JenisBayarName, aa.KasTransferEdc
                 FROM
                     JenisBayar aa ";
             using (var conn = new SqlConnection(_connString))
@@ -144,7 +145,7 @@ namespace AnugerahBackend.Penjualan.Dal
                             {
                                 JenisBayarID = dr["JenisBayarID"].ToString(),
                                 JenisBayarName = dr["JenisBayarName"].ToString(),
-                                IsMesinEdc = Convert.ToBoolean(dr["IsMesinEdc"])
+                                KasTransferEdc = dr["KasTransferEdc"].ToString()
                             };
                             result.Add(item);
                         }
@@ -152,6 +153,52 @@ namespace AnugerahBackend.Penjualan.Dal
                 }
             }
             return result;
+        }
+
+        public IEnumerable<JenisBayarModel> Search(string keyword)
+        {
+            List<JenisBayarModel> result = null;
+            var sSql = @"
+                SELECT
+                    aa.JenisBayarID, aa.JenisBayarName, aa.KasTransferEdc
+                FROM
+                    JenisBayar aa 
+                WHERE
+                    JenisBayarName LIKE @JenisBayarName ";
+            using (var conn = new SqlConnection(_connString))
+            using (var cmd = new SqlCommand(sSql, conn))
+            {
+                cmd.AddParam("@JenisBayarName", string.Format("%{0}%", keyword));
+                conn.Open();
+                using (var dr = cmd.ExecuteReader())
+                {
+                    if (dr.HasRows)
+                    {
+                        result = new List<JenisBayarModel>();
+                        while (dr.Read())
+                        {
+                            var item = new JenisBayarModel
+                            {
+                                JenisBayarID = dr["JenisBayarID"].ToString(),
+                                JenisBayarName = dr["JenisBayarName"].ToString(),
+                                KasTransferEdc = dr["KasTransferEdc"].ToString()
+                            };
+                            result.Add(item);
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+
+        public IEnumerable<JenisBayarModel> Search(string keyword, string tgl1, string tgl2)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<JenisBayarModel> Search()
+        {
+            return ListData();
         }
     }
 }

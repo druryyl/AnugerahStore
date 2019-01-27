@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.entryDataTabPage = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -93,6 +93,8 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.listDataGrid = new System.Windows.Forms.DataGridView();
             this.JamTrsTimer = new System.Windows.Forms.Timer(this.components);
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label8 = new System.Windows.Forms.Label();
             this.mainTabControl.SuspendLayout();
             this.entryDataTabPage.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -109,6 +111,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.DetilPenjualanTable)).BeginInit();
             this.listDataTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.listDataGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // mainTabControl
@@ -144,6 +147,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.LemonChiffon;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.label8);
+            this.panel2.Controls.Add(this.numericUpDown1);
             this.panel2.Controls.Add(this.KembaliNumText);
             this.panel2.Controls.Add(this.BayarNumText);
             this.panel2.Controls.Add(this.BayarButton);
@@ -156,17 +161,17 @@
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label3);
-            this.panel2.Location = new System.Drawing.Point(6, 407);
+            this.panel2.Location = new System.Drawing.Point(6, 378);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(959, 111);
+            this.panel2.Size = new System.Drawing.Size(959, 140);
             this.panel2.TabIndex = 18;
             // 
             // KembaliNumText
             // 
-            this.KembaliNumText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.KembaliNumText.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.KembaliNumText.Enabled = false;
             this.KembaliNumText.InterceptArrowKeys = false;
-            this.KembaliNumText.Location = new System.Drawing.Point(831, 79);
+            this.KembaliNumText.Location = new System.Drawing.Point(831, 102);
             this.KembaliNumText.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -186,10 +191,10 @@
             // 
             // BayarNumText
             // 
-            this.BayarNumText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BayarNumText.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.BayarNumText.Enabled = false;
             this.BayarNumText.InterceptArrowKeys = false;
-            this.BayarNumText.Location = new System.Drawing.Point(831, 52);
+            this.BayarNumText.Location = new System.Drawing.Point(831, 48);
             this.BayarNumText.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -209,21 +214,21 @@
             // 
             // BayarButton
             // 
-            this.BayarButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BayarButton.Location = new System.Drawing.Point(713, 52);
+            this.BayarButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.BayarButton.Location = new System.Drawing.Point(713, 48);
             this.BayarButton.Name = "BayarButton";
             this.BayarButton.Size = new System.Drawing.Size(113, 23);
             this.BayarButton.TabIndex = 34;
-            this.BayarButton.Text = "&Bayar";
+            this.BayarButton.Text = "&Bayar Non Cash";
             this.BayarButton.UseVisualStyleBackColor = true;
             this.BayarButton.Click += new System.EventHandler(this.BayarButton_Click);
             // 
             // GrandTotalNumText
             // 
-            this.GrandTotalNumText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.GrandTotalNumText.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.GrandTotalNumText.Enabled = false;
             this.GrandTotalNumText.InterceptArrowKeys = false;
-            this.GrandTotalNumText.Location = new System.Drawing.Point(831, 24);
+            this.GrandTotalNumText.Location = new System.Drawing.Point(831, 20);
             this.GrandTotalNumText.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -243,9 +248,9 @@
             // 
             // BiayaLainNumText
             // 
-            this.BiayaLainNumText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BiayaLainNumText.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.BiayaLainNumText.InterceptArrowKeys = false;
-            this.BiayaLainNumText.Location = new System.Drawing.Point(713, 25);
+            this.BiayaLainNumText.Location = new System.Drawing.Point(713, 21);
             this.BiayaLainNumText.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -266,9 +271,9 @@
             // 
             // DiskonNumText
             // 
-            this.DiskonNumText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.DiskonNumText.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.DiskonNumText.InterceptArrowKeys = false;
-            this.DiskonNumText.Location = new System.Drawing.Point(595, 25);
+            this.DiskonNumText.Location = new System.Drawing.Point(595, 21);
             this.DiskonNumText.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -289,10 +294,10 @@
             // 
             // TotalNumText
             // 
-            this.TotalNumText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.TotalNumText.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.TotalNumText.Enabled = false;
             this.TotalNumText.InterceptArrowKeys = false;
-            this.TotalNumText.Location = new System.Drawing.Point(476, 25);
+            this.TotalNumText.Location = new System.Drawing.Point(476, 21);
             this.TotalNumText.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -312,9 +317,9 @@
             // 
             // label9
             // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(773, 81);
+            this.label9.Location = new System.Drawing.Point(773, 104);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(53, 13);
             this.label9.TabIndex = 29;
@@ -322,9 +327,9 @@
             // 
             // label7
             // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(829, 8);
+            this.label7.Location = new System.Drawing.Point(829, 4);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(73, 13);
             this.label7.TabIndex = 25;
@@ -332,9 +337,9 @@
             // 
             // label6
             // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(710, 8);
+            this.label6.Location = new System.Drawing.Point(710, 4);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(66, 13);
             this.label6.TabIndex = 24;
@@ -342,9 +347,9 @@
             // 
             // label5
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(592, 8);
+            this.label5.Location = new System.Drawing.Point(592, 4);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(73, 13);
             this.label5.TabIndex = 23;
@@ -352,9 +357,9 @@
             // 
             // label3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(473, 8);
+            this.label3.Location = new System.Drawing.Point(473, 5);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(34, 13);
             this.label3.TabIndex = 22;
@@ -385,7 +390,7 @@
             this.panel1.Controls.Add(this.BuyerNameLabel);
             this.panel1.Location = new System.Drawing.Point(6, 6);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(959, 147);
+            this.panel1.Size = new System.Drawing.Size(959, 136);
             this.panel1.TabIndex = 13;
             // 
             // CatatanTextBox
@@ -394,7 +399,7 @@
             this.CatatanTextBox.Location = new System.Drawing.Point(631, 69);
             this.CatatanTextBox.Multiline = true;
             this.CatatanTextBox.Name = "CatatanTextBox";
-            this.CatatanTextBox.Size = new System.Drawing.Size(313, 60);
+            this.CatatanTextBox.Size = new System.Drawing.Size(313, 48);
             this.CatatanTextBox.TabIndex = 22;
             // 
             // CatatanLabel
@@ -559,9 +564,9 @@
             this.DiskonCol,
             this.SubTotalCol});
             this.BrgGrid.DataSource = this.PenjualanBindingSource;
-            this.BrgGrid.Location = new System.Drawing.Point(6, 159);
+            this.BrgGrid.Location = new System.Drawing.Point(6, 148);
             this.BrgGrid.Name = "BrgGrid";
-            this.BrgGrid.Size = new System.Drawing.Size(959, 242);
+            this.BrgGrid.Size = new System.Drawing.Size(959, 224);
             this.BrgGrid.TabIndex = 10;
             this.BrgGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BrgGrid_CellContentClick);
             this.BrgGrid.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.BrgGrid_CellValidated);
@@ -592,20 +597,20 @@
             // QtyCol
             // 
             this.QtyCol.DataPropertyName = "Qty";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.Format = "N0";
-            dataGridViewCellStyle1.NullValue = "0";
-            this.QtyCol.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle9.Format = "N0";
+            dataGridViewCellStyle9.NullValue = "0";
+            this.QtyCol.DefaultCellStyle = dataGridViewCellStyle9;
             this.QtyCol.HeaderText = "Qty";
             this.QtyCol.Name = "QtyCol";
             // 
             // HargaCol
             // 
             this.HargaCol.DataPropertyName = "Harga";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "N0";
-            dataGridViewCellStyle2.NullValue = "0";
-            this.HargaCol.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle10.Format = "N0";
+            dataGridViewCellStyle10.NullValue = "0";
+            this.HargaCol.DefaultCellStyle = dataGridViewCellStyle10;
             this.HargaCol.HeaderText = "Harga";
             this.HargaCol.Name = "HargaCol";
             this.HargaCol.ReadOnly = true;
@@ -613,10 +618,10 @@
             // DiskonCol
             // 
             this.DiskonCol.DataPropertyName = "Diskon";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "N0";
-            dataGridViewCellStyle3.NullValue = "0";
-            this.DiskonCol.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle11.Format = "N0";
+            dataGridViewCellStyle11.NullValue = "0";
+            this.DiskonCol.DefaultCellStyle = dataGridViewCellStyle11;
             this.DiskonCol.HeaderText = "Diskon";
             this.DiskonCol.Name = "DiskonCol";
             this.DiskonCol.ReadOnly = true;
@@ -624,10 +629,10 @@
             // SubTotalCol
             // 
             this.SubTotalCol.DataPropertyName = "SubTotal";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Format = "N0";
-            dataGridViewCellStyle4.NullValue = "0";
-            this.SubTotalCol.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle12.Format = "N0";
+            dataGridViewCellStyle12.NullValue = "0";
+            this.SubTotalCol.DefaultCellStyle = dataGridViewCellStyle12;
             this.SubTotalCol.HeaderText = "SubTotal";
             this.SubTotalCol.Name = "SubTotalCol";
             this.SubTotalCol.ReadOnly = true;
@@ -782,6 +787,39 @@
             this.JamTrsTimer.Interval = 1000;
             this.JamTrsTimer.Tick += new System.EventHandler(this.JamTrsTimer_Tick);
             // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.numericUpDown1.Enabled = false;
+            this.numericUpDown1.InterceptArrowKeys = false;
+            this.numericUpDown1.Location = new System.Drawing.Point(831, 75);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.ReadOnly = true;
+            this.numericUpDown1.Size = new System.Drawing.Size(113, 21);
+            this.numericUpDown1.TabIndex = 37;
+            this.numericUpDown1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numericUpDown1.ThousandsSeparator = true;
+            // 
+            // label8
+            // 
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(752, 77);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(74, 13);
+            this.label8.TabIndex = 38;
+            this.label8.Text = "Bayar Cash";
+            // 
             // PenjualanForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -810,6 +848,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.DetilPenjualanTable)).EndInit();
             this.listDataTabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.listDataGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -876,5 +915,7 @@
         private System.Windows.Forms.NumericUpDown GrandTotalNumText;
         private System.Windows.Forms.NumericUpDown BiayaLainNumText;
         private System.Windows.Forms.NumericUpDown DiskonNumText;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
     }
 }

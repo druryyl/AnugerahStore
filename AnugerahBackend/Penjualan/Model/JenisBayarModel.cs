@@ -10,6 +10,6 @@ namespace AnugerahBackend.Penjualan.Model
     {
         public string JenisBayarID { get; set; }
         public string JenisBayarName { get; set; }
-        public bool IsMesinEdc { get; set; }
+        public string KasTransferEdc { get; set; }
     }
 }
