@@ -233,12 +233,14 @@ namespace AnugerahBackend.StokBarang.BL
 
         public IEnumerable<BrgSearchResultModel> Search(string keyword, string tgl1, string tgl2)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            return null;
         }
 
         public IEnumerable<BrgSearchResultModel> Search()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            return null;
         }
     }
 }

@@ -15,10 +15,10 @@ namespace AnugerahWinform.Penjualan
 {
     public partial class PenjualanBayarForm : Form
     {
-        public IEnumerable<PenjualanBayarModel> ListBayar;
+        public List<PenjualanBayarModel> ListBayar;
         private IJenisBayarDal _jenisBayarDal;
 
-        public PenjualanBayarForm(IEnumerable<PenjualanBayarModel> listBayar)
+        public PenjualanBayarForm(List<PenjualanBayarModel> listBayar)
         {
             InitializeComponent();
 

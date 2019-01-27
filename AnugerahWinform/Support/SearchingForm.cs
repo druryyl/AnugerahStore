@@ -16,6 +16,7 @@ namespace AnugerahWinform.Support
         ISearchData<T> _searchBL;
         public string SelectedDataKey;
         private bool _isFilterTgl;
+
         public SearchingForm(ISearchData<T> _injSearchBL, bool isShowTgl)
         {
             InitializeComponent();
@@ -33,6 +34,8 @@ namespace AnugerahWinform.Support
 
             IEnumerable<T> listData;
             listData = _searchBL.Search();
+            if (listData == null) return;
+
             ListDataGrid.DataSource = listData;
             foreach (DataGridViewColumn col in ListDataGrid.Columns)
             {

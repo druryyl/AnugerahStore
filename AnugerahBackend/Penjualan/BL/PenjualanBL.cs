@@ -97,7 +97,7 @@ namespace AnugerahBackend.Penjualan.BL
                 foreach(var item in penjualan.ListBayar)
                 {
                     item.PenjualanID = trsID;
-                    item.PenjualanID2 = string.Format("{0}-{1}", trsID, item.NoUrut.ToString().PadLeft(3, '0'));
+                    item.PenjualanID2 = string.Format("{0}-{1}", trsID, item.NoUrut.ToString().PadLeft(2, '0'));
                     _penjualanBayarDal.Insert(item);
                 }
                 trans.Complete();
@@ -168,6 +168,7 @@ namespace AnugerahBackend.Penjualan.BL
             }
 
             //  validasi pembayaran
+            var noUrut = 0;
             foreach(var item in penjualan.ListBayar)
             {
                 var jenisBayar = _jenisBayarDal.GetData(item.JenisBayarID);
@@ -175,6 +176,8 @@ namespace AnugerahBackend.Penjualan.BL
                     throw new ArgumentException("Invalid JenisBayarID");
                 else
                     item.JenisBayarName = jenisBayar.JenisBayarName;
+                item.NoUrut = noUrut;
+                noUrut++;
             }
 
             //  jumlah pembayaran tidak boleh kurang dari total
@@ -199,7 +202,7 @@ namespace AnugerahBackend.Penjualan.BL
 
         public IEnumerable<PenjualanSearchModel> Search()
         {
-            throw new NotImplementedException();
+            return null;
         }
     }
 }

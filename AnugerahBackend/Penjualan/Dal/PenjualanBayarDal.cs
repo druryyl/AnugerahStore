@@ -34,8 +34,8 @@ namespace AnugerahBackend.Penjualan.Dal
                         PenjualanID, PenjualanID2, NoUrut,
                         JenisBayarID, NilaiBayar, Catatan )
                  VALUES (
-                        @PenjualanID, @PenjualanID2, @JenisBayarID, 
-                        @NilaiBayar, @Catatan) ";
+                        @PenjualanID, @PenjualanID2, @NoUrut,
+                        @JenisBayarID, @NilaiBayar, @Catatan) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {

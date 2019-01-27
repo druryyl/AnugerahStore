@@ -27,7 +27,7 @@ namespace AnugerahWinform.Penjualan
         private ICustomerBL _customerBL;
         private IBrgPriceBL _brgPriceBL;
 
-        IEnumerable<PenjualanBayarModel> _listPenjualanBayar;
+        private List<PenjualanBayarModel> _listBayarNonCash;
 
         public PenjualanForm()
         {
@@ -47,7 +47,141 @@ namespace AnugerahWinform.Penjualan
             AddRow();
             LoadCustomerComboBox();
         }
+        private void NoTrsTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+            {
+                SearchKodeTrs();
+                TanggalDateTime.Focus();
+            }
+        }
+        private void NoTrsTextBox_Validated(object sender, EventArgs e)
+        {
+            ShowData();
+        }
+        private void NewButton_Click(object sender, EventArgs e)
+        {
+            ClearForm();
+        }
 
+        private void BrgGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                e.RowIndex >= 0)
+            {
+                SearchBrg(e.RowIndex);
+                ShowDataBrgGrid(e.RowIndex);
+                ShowHargaBrg(e.RowIndex);
+            }
+        }
+        private void BrgGrid_CellValidated(object sender, DataGridViewCellEventArgs e)
+        {
+            var brgName = DetilPenjualanTable.Rows[e.RowIndex]["BrgName"].ToString();
+            if ((brgName.Trim() != "") && (e.RowIndex == DetilPenjualanTable.Rows.Count - 1))
+                AddRow();
+
+            if (e.ColumnIndex == 3)
+            {
+                ShowHargaBrg(e.RowIndex);
+                ShowHargaBrg(e.RowIndex);
+            }
+        }
+        private void BrgGrid_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (e.ColumnIndex == 0)
+            {
+                ShowDataBrgGrid(e.RowIndex);
+                ShowHargaBrg(e.RowIndex);
+            }
+        }
+        private void BrgGrid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                var row = BrgGrid.CurrentRow.Index;
+                if (row != BrgGrid.Rows.Count - 1)
+                    BrgGrid.Rows.RemoveAt(row);
+                ReCalcTotal();
+            }
+        }
+
+        private void DiskonNumText_ValueChanged(object sender, EventArgs e)
+        {
+            ReCalcTotal();
+        }
+        private void BiayaLainNumText_ValueChanged(object sender, EventArgs e)
+        {
+            ReCalcTotal();
+        }
+        private void DiskonNumText_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                BiayaLainNumText.Focus();
+        }
+        private void BayarNonCashNumText_ValueChanged(object sender, EventArgs e)
+        {
+            ReCalcTotal();
+        }
+        private void BiayaLainNumText_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                BayarButton.Focus();
+        }
+        private void JamTrsTimer_Tick(object sender, EventArgs e)
+        {
+            JamTextBox.Text = DateTime.Now.ToString("HH:mm:ss");
+        }
+
+        private void BayarButton_Click(object sender, EventArgs e)
+        {
+            var listBayar = _penjualanBayarDal.ListData(NoTrsTextBox.Text, false).ToList();
+
+            using (var penjualanBayarForm = new PenjualanBayarForm(listBayar))
+            {
+                var result = penjualanBayarForm.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    _listBayarNonCash = penjualanBayarForm.ListBayar;
+                }
+            }
+            BayarCashNumText.Value = _listBayarNonCash.Sum(x => x.NilaiBayar);
+        }
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            SaveTransaksi();
+            ClearForm();
+        }
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void ClearForm()
+        {
+            NoTrsTextBox.Clear();
+            TanggalDateTime.Value = DateTime.Now;
+            CustomerComboBox.SelectedItem = null;
+            BuyerNameTextBox.Clear();
+            AlamatTextBox.Clear();
+            NoTelpTextBox.Clear();
+            CatatanTextBox.Clear();
+            DetilPenjualanTable.Rows.Clear();
+
+            DiskonNumText.Value = 0;
+            BiayaLainNumText.Value = 0;
+            BayarCashNumText.Value = 0;
+            BayarNonCashNumText.Value = 0;
+            KembaliNumText.Value = 0;
+
+            ReCalcTotal();
+            JamTrsTimer.Enabled = true;
+            DetilPenjualanTable.Rows.Clear();
+            _listBayarNonCash = null;
+
+            AddRow();
+        }
         private void LoadCustomerComboBox()
         {
             //  kosongkan combobox
@@ -68,42 +202,91 @@ namespace AnugerahWinform.Penjualan
 
             CustomerComboBox.SelectedItem = null;
         }
-
-        private void BrgGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void SearchKodeTrs()
         {
-            var senderGrid = (DataGridView)sender;
-
-            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
-                e.RowIndex >= 0)
+            var searchForm = new SearchingForm<PenjualanSearchModel>(_penjualanBL, true);
+            var resultDialog = searchForm.ShowDialog();
+            if (resultDialog == DialogResult.OK)
             {
-                SearchBrg(e.RowIndex);
-                ShowDataBrgGrid(e.RowIndex);
-                ShowHargaBrg(e.RowIndex);
+                var result = searchForm.SelectedDataKey;
+                NoTrsTextBox.Text = result;
             }
         }
-
-        private void BrgGrid_CellValidated(object sender, DataGridViewCellEventArgs e)
+        private void ShowData()
         {
-            var brgName = DetilPenjualanTable.Rows[e.RowIndex]["BrgName"].ToString();
-            if ((brgName.Trim() != "") && (e.RowIndex == DetilPenjualanTable.Rows.Count - 1))
-                AddRow();
+            JamTrsTimer.Enabled = false;
+            var id = NoTrsTextBox.Text;
+            var penjualan = _penjualanBL.GetData(id);
 
-            if (e.ColumnIndex == 3)
+            if (penjualan == null)
             {
-                ShowHargaBrg(e.RowIndex);
-                ShowHargaBrg(e.RowIndex);
+                ClearForm();
+                return;
             }
+
+            TanggalDateTime.Value = penjualan.TglPenjualan.ToDate();
+            JamTextBox.Text = penjualan.JamPenjualan;
+            CustomerComboBox.SelectedValue = penjualan.CustomerID;
+            BuyerNameTextBox.Text = penjualan.BuyerName;
+            AlamatTextBox.Text = penjualan.Alamat;
+            NoTelpTextBox.Text = penjualan.NoTelp;
+            CatatanTextBox.Text = penjualan.Catatan;
+
+            DiskonNumText.Value = penjualan.NilaiDiskonLain;
+            BiayaLainNumText.Value = penjualan.NilaiBiayaLain;
+
+            DetilPenjualanTable.Rows.Clear();
+            foreach (var item in penjualan.ListBrg)
+            {
+                DetilPenjualanTable.Rows.Add(
+                    item.BrgID,
+                    item.BrgName,
+                    item.Qty,
+                    item.Harga,
+                    item.Diskon,
+                    item.SubTotal
+                    );
+            }
+            AddRow();
+
+
+            if (penjualan.ListBayar!= null)
+            {
+                foreach (var item in penjualan.ListBayar.Where(x => x.JenisBayarID != "KAS"))
+                {
+                    if (_listBayarNonCash == null)
+                        _listBayarNonCash = new List<PenjualanBayarModel>();
+
+                    _listBayarNonCash.Add(new PenjualanBayarModel
+                    {
+                        JenisBayarID = item.JenisBayarID,
+                        NilaiBayar = item.NilaiBayar,
+                        Catatan = item.Catatan
+                    });
+                }
+
+                if (penjualan.ListBayar.Where(x => x.JenisBayarID == "KAS").Any())
+                    BayarCashNumText.Value = penjualan.ListBayar
+                        .Where(x => x.JenisBayarID == "KAS")
+                        .Sum(x => x.NilaiBayar);
+            }
+            ReCalcTotal();
         }
 
-        private void BrgGrid_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        private void AddRow()
         {
-            if (e.ColumnIndex == 0)
+            DetilPenjualanTable.Rows.Add("", "", 0, 0, 0, 0);
+        }
+        private void SearchBrg(int rowIndex)
+        {
+            var searchForm = new SearchingForm<BrgSearchResultModel>(_brgBL, false);
+            var resultDialog = searchForm.ShowDialog();
+            if (resultDialog == DialogResult.OK)
             {
-                ShowDataBrgGrid(e.RowIndex);
-                ShowHargaBrg(e.RowIndex);
+                var result = searchForm.SelectedDataKey;
+                DetilPenjualanTable.Rows[rowIndex]["BrgID"] = result;
             }
         }
-
         private void ShowHargaBrg(int rowIndex)
         {
             //  get key (KodeBrg)
@@ -131,41 +314,6 @@ namespace AnugerahWinform.Penjualan
             DetilPenjualanTable.Rows[rowIndex]["SubTotal"] = (harga - diskon) * qty;
             ReCalcTotal();
         }
-
-        private void ReCalcTotal()
-        {
-            decimal nilaiTotal = 0;
-            foreach (DataRow row in DetilPenjualanTable.Rows)
-            {
-                nilaiTotal += Convert.ToDecimal(row["SubTotal"]);
-            }
-            TotalNumText.Value = nilaiTotal;
-            GrandTotalNumText.Value = nilaiTotal - DiskonNumText.Value + BiayaLainNumText.Value;
-            KembaliNumText.Value = GrandTotalNumText.Value - BayarNumText.Value;
-        }
-
-        private void SearchBrg(int rowIndex)
-        {
-            var searchForm = new SearchingForm<BrgSearchResultModel>(_brgBL, false);
-            var resultDialog = searchForm.ShowDialog();
-            if (resultDialog == DialogResult.OK)
-            {
-                var result = searchForm.SelectedDataKey;
-                DetilPenjualanTable.Rows[rowIndex]["BrgID"] = result;
-            }
-        }
-
-        private void SearchKodeTrs()
-        {
-            var searchForm = new SearchingForm<PenjualanSearchModel>(_penjualanBL, true);
-            var resultDialog = searchForm.ShowDialog();
-            if (resultDialog == DialogResult.OK)
-            {
-                var result = searchForm.SelectedDataKey;
-                NoTrsTextBox.Text = result;
-            }
-        }
-
         private void ShowDataBrgGrid(int rowIndex)
         {
             //  get key (KodeBrg)
@@ -181,50 +329,47 @@ namespace AnugerahWinform.Penjualan
             DetilPenjualanTable.Rows[rowIndex]["BrgName"] = brgName;
         }
 
-        private void AddRow()
+        private void ReCalcTotal()
         {
-            DetilPenjualanTable.Rows.Add("", "", 0, 0, 0, 0);
+            decimal nilaiTotal = 0;
+            foreach (DataRow row in DetilPenjualanTable.Rows)
+            {
+                nilaiTotal += Convert.ToDecimal(row["SubTotal"]);
+            }
+            TotalNumText.Value = nilaiTotal;
+            GrandTotalNumText.Value = nilaiTotal - DiskonNumText.Value + BiayaLainNumText.Value;
+            KembaliNumText.Value = BayarCashNumText.Value - GrandTotalNumText.Value - BayarNonCashNumText.Value;
         }
-
-        private void ExitButton_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void SaveButton_Click(object sender, EventArgs e)
-        {
-            SaveTransaksi();
-            ClearForm();
-        }
-
         private void SaveTransaksi()
         {
+            //  pindah textbox ke variable utk proses simpan
             var kodeTrs = NoTrsTextBox.Text;
             var tglTrs = TanggalDateTime.Value.ToString("dd-MM-yyyy");
             var jamTrs = JamTextBox.Text;
             var customerID = "";
             if(CustomerComboBox.SelectedValue != null)
                 customerID = CustomerComboBox.SelectedValue.ToString();
-
+            //
             var buyerName = BuyerNameTextBox.Text;
             var alamat = AlamatTextBox.Text;
             var noTelpon = NoTelpTextBox.Text;
             var catatan = CatatanTextBox.Text;
-
+            //
             var total = TotalNumText.Value;
             var diskon = DiskonNumText.Value;
             var biayaLain = BiayaLainNumText.Value ;
             var grandTotal = GrandTotalNumText.Value;
-            var bayar = BayarNumText.Value;
+            var bayarCash = BayarCashNumText.Value;
             var kembali = KembaliNumText.Value;
 
+            //--ambil data grid barang
             var dtlTrs = new List<Penjualan2Model>();
             var noUrut = 0;
-            List<Penjualan2Model> listDetilAdj = null;
+            List<Penjualan2Model> listDetilBrg = null;
             foreach (DataRow dr in DetilPenjualanTable.Rows)
             {
-                if (listDetilAdj == null)
-                    listDetilAdj = new List<Penjualan2Model>();
+                if (listDetilBrg == null)
+                    listDetilBrg = new List<Penjualan2Model>();
 
                 if (dr["BrgID"].ToString().Trim() == "") continue;
 
@@ -238,10 +383,40 @@ namespace AnugerahWinform.Penjualan
                     Diskon = Convert.ToDouble(dr["Diskon"]),
                     SubTotal = Convert.ToDouble(dr["SubTotal"])
                 };
-                listDetilAdj.Add(dtlAdj);
-
+                listDetilBrg.Add(dtlAdj);
                 noUrut++;
             }
+
+            //  siapkan object tampung pembayaran
+            List<PenjualanBayarModel> listDetilBayar = null;
+            //  ambil data bayar cash
+            if (bayarCash != 0)
+            {
+                var itemBayarCash = new PenjualanBayarModel
+                {
+                    JenisBayarID = "KAS",
+                    NilaiBayar = bayarCash,
+                    Catatan = ""
+                };
+                listDetilBayar = new List<PenjualanBayarModel>();
+                listDetilBayar.Add(itemBayarCash);
+            }
+            //  ambil data bayar non cash
+            if (_listBayarNonCash != null)
+            {
+                foreach(var item in _listBayarNonCash)
+                {
+                    var itemNonCash = new PenjualanBayarModel
+                    {
+                        JenisBayarID = item.JenisBayarID,
+                        NilaiBayar = item.NilaiBayar,
+                        Catatan = item.Catatan
+                    };
+                    if (listDetilBayar == null) listDetilBayar = new List<PenjualanBayarModel>();
+                    listDetilBayar.Add(itemNonCash);
+                }
+            }
+
             var penjualan = new PenjualanModel
             {
                 PenjualanID = kodeTrs,
@@ -257,12 +432,15 @@ namespace AnugerahWinform.Penjualan
                 NilaiDiskonLain = diskon,
                 NilaiBiayaLain = biayaLain,
                 NilaiGrandTotal = grandTotal,
-                NilaiBayar = bayar,
+                NilaiBayar = bayarCash,
                 NilaiKembali = kembali,
                 
-                ListBrg = listDetilAdj
+                ListBrg = listDetilBrg,
+                ListBayar = listDetilBayar
             };
+
             var result = _penjualanBL.Save(penjualan);
+
             if (result != null)
                 LastIDLabel.Text = result.PenjualanID;
 
@@ -273,148 +451,9 @@ namespace AnugerahWinform.Penjualan
             }
         }
 
-        private void JamTrsTimer_Tick(object sender, EventArgs e)
-        {
-            JamTextBox.Text = DateTime.Now.ToString("HH:mm:ss");
-        }
-
-        private void NewButton_Click(object sender, EventArgs e)
-        {
-            ClearForm();
-        }
-
-        private void ClearForm()
-        {
-            NoTrsTextBox.Clear();
-            TanggalDateTime.Value = DateTime.Now;
-            CustomerComboBox.SelectedItem = null;
-            BuyerNameTextBox.Clear();
-            AlamatTextBox.Clear();
-            NoTelpTextBox.Clear();
-            CatatanTextBox.Clear();
-            DetilPenjualanTable.Rows.Clear();
-
-            DiskonNumText.Value = 0;
-            BiayaLainNumText.Value = 0;
-
-            ReCalcTotal();
-            JamTrsTimer.Enabled = true;
-            DetilPenjualanTable.Rows.Clear();
-            AddRow();
-        }
-
-        private void NoTrsTextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.F1)
-            {
-                SearchKodeTrs();
-                TanggalDateTime.Focus();
-            }
-        }
-
-        private void NoTrsTextBox_Validated(object sender, EventArgs e)
-        {
-            ShowData();
-        }
-
-        private void ShowData()
-        {
-            JamTrsTimer.Enabled = false;
-            var id = NoTrsTextBox.Text;
-            var penjualan = _penjualanBL.GetData(id);
-
-            if (penjualan == null)
-            {
-                ClearForm();
-                return;
-            }
-
-            TanggalDateTime.Value = penjualan.TglPenjualan.ToDate();
-            JamTextBox.Text = penjualan.JamPenjualan;
-            CustomerComboBox.SelectedValue = penjualan.CustomerID;
-            BuyerNameTextBox.Text = penjualan.BuyerName;
-            AlamatTextBox.Text = penjualan.Alamat;
-            NoTelpTextBox.Text = penjualan.NoTelp;
-            CatatanTextBox.Text = penjualan.Catatan;
-
-            //TotalNumText.Value = penjualan.NilaiTotal;
-            DiskonNumText.Value = penjualan.NilaiDiskonLain;
-            BiayaLainNumText.Value = penjualan.NilaiBiayaLain;
-            //GrandTotalNumText.Value = penjualan.NilaiGrandTotal;
-            //BayarNumText.Value = penjualan.NilaiBayar;
-            //KembaliNumText.Value = penjualan.NilaiKembali;
-
-            DetilPenjualanTable.Rows.Clear();
-            foreach (var item in penjualan.ListBrg)
-            {
-                DetilPenjualanTable.Rows.Add(
-                    item.BrgID,
-                    item.BrgName,
-                    item.Qty,
-                    item.Harga,
-                    item.Diskon,
-                    item.SubTotal
-                    );
-            }
-            AddRow();
-            ReCalcTotal();
-        }
-
-        private void BayarTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void DiskonTextBox_Validated(object sender, EventArgs e)
-        {
-            //DiskonTextBox.Text = 
-        }
-
-        private void DiskonNumText_ValueChanged(object sender, EventArgs e)
+        private void BayarCashNumText_ValueChanged(object sender, EventArgs e)
         {
             ReCalcTotal();
-        }
-
-        private void BiayaLainNumText_ValueChanged(object sender, EventArgs e)
-        {
-            ReCalcTotal();
-        }
-
-        private void DiskonNumText_KeyDown(object sender, KeyEventArgs e)
-        {
-            if(e.KeyCode == Keys.Enter)
-                BiayaLainNumText.Focus();
-        }
-
-        private void BiayaLainNumText_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-                BayarButton.Focus();
-        }
-
-        private void BrgGrid_KeyDown(object sender, KeyEventArgs e)
-        {
-            if(e.KeyCode == Keys.Delete)
-            {
-                var row = BrgGrid.CurrentRow.Index;
-                if (row != BrgGrid.Rows.Count - 1)
-                    BrgGrid.Rows.RemoveAt(row);
-                ReCalcTotal();
-            }
-        }
-
-        private void BayarButton_Click(object sender, EventArgs e)
-        {
-            var listBayar = _penjualanBayarDal.ListData(NoTrsTextBox.Text, false);
-
-            using (var penjualanBayarForm = new PenjualanBayarForm(listBayar))
-            {
-                var result = penjualanBayarForm.ShowDialog();
-                if(result == DialogResult.OK)
-                {
-                    _listPenjualanBayar = penjualanBayarForm.ListBayar;
-                }
-            }
         }
     }
 }
