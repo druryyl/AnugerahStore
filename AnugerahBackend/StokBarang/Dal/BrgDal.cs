@@ -428,8 +428,6 @@ namespace AnugerahBackend.StokBarang.Dal
                 }
             }
             return result;
-
-            return result;
         }
 
         public IEnumerable<BrgSearchResultModel> Search(string keyword)

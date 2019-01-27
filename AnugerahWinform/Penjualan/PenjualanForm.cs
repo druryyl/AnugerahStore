@@ -1,4 +1,5 @@
 ﻿using AnugerahBackend.Penjualan.BL;
+using AnugerahBackend.Penjualan.Dal;
 using AnugerahBackend.Penjualan.Model;
 using AnugerahBackend.StokBarang.BL;
 using AnugerahBackend.StokBarang.Model;
@@ -22,8 +23,11 @@ namespace AnugerahWinform.Penjualan
         private IBrgBL _brgBL;
         private IStokBL _stokBL;
         private IPenjualanBL _penjualanBL;
+        private IPenjualanBayarDal _penjualanBayarDal;
         private ICustomerBL _customerBL;
         private IBrgPriceBL _brgPriceBL;
+
+        IEnumerable<PenjualanBayarModel> _listPenjualanBayar;
 
         public PenjualanForm()
         {
@@ -34,6 +38,7 @@ namespace AnugerahWinform.Penjualan
             _stokBL = new StokBL();
             _customerBL = new CustomerBL();
             _brgPriceBL = new BrgPriceBL();
+            _penjualanBayarDal = new PenjualanBayarDal();
 
         }
 
@@ -63,6 +68,7 @@ namespace AnugerahWinform.Penjualan
 
             CustomerComboBox.SelectedItem = null;
         }
+
         private void BrgGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;
@@ -75,6 +81,7 @@ namespace AnugerahWinform.Penjualan
                 ShowHargaBrg(e.RowIndex);
             }
         }
+
         private void BrgGrid_CellValidated(object sender, DataGridViewCellEventArgs e)
         {
             var brgName = DetilPenjualanTable.Rows[e.RowIndex]["BrgName"].ToString();
@@ -87,6 +94,7 @@ namespace AnugerahWinform.Penjualan
                 ShowHargaBrg(e.RowIndex);
             }
         }
+
         private void BrgGrid_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
             if (e.ColumnIndex == 0)
@@ -172,6 +180,7 @@ namespace AnugerahWinform.Penjualan
             //  tampilkan di grid
             DetilPenjualanTable.Rows[rowIndex]["BrgName"] = brgName;
         }
+
         private void AddRow()
         {
             DetilPenjualanTable.Rows.Add("", "", 0, 0, 0, 0);
@@ -391,6 +400,26 @@ namespace AnugerahWinform.Penjualan
                 if (row != BrgGrid.Rows.Count - 1)
                     BrgGrid.Rows.RemoveAt(row);
                 ReCalcTotal();
+            }
+        }
+
+        private void BayarButton_Click(object sender, EventArgs e)
+        {
+            var listBayar = _penjualanBayarDal.ListData(NoTrsTextBox.Text, true);
+
+            if (listBayar == null)
+            {
+                MessageBox.Show("JenisBayarTable kosong");
+                return;
+            }
+
+            using (var penjualanBayarForm = new PenjualanBayarForm(listBayar))
+            {
+                var result = penjualanBayarForm.ShowDialog();
+                if(result == DialogResult.OK)
+                {
+                    _listPenjualanBayar = penjualanBayarForm.ListBayar;
+                }
             }
         }
     }
