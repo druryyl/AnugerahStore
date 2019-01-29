@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.Tgl2DatePicker = new System.Windows.Forms.DateTimePicker();
+            this.Tgl1DatePicker = new System.Windows.Forms.DateTimePicker();
             this.KeywordTextBox = new System.Windows.Forms.TextBox();
             this.ListDataGrid = new System.Windows.Forms.DataGridView();
-            this.Tgl1DatePicker = new System.Windows.Forms.DateTimePicker();
-            this.Tgl2DatePicker = new System.Windows.Forms.DateTimePicker();
+            this.SearchButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -52,6 +53,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.SearchButton);
             this.splitContainer1.Panel1.Controls.Add(this.Tgl2DatePicker);
             this.splitContainer1.Panel1.Controls.Add(this.Tgl1DatePicker);
             this.splitContainer1.Panel1.Controls.Add(this.KeywordTextBox);
@@ -62,6 +64,24 @@
             this.splitContainer1.Size = new System.Drawing.Size(455, 492);
             this.splitContainer1.SplitterDistance = 58;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // Tgl2DatePicker
+            // 
+            this.Tgl2DatePicker.CustomFormat = "dd-MMM-yyyy";
+            this.Tgl2DatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.Tgl2DatePicker.Location = new System.Drawing.Point(121, 30);
+            this.Tgl2DatePicker.Name = "Tgl2DatePicker";
+            this.Tgl2DatePicker.Size = new System.Drawing.Size(112, 21);
+            this.Tgl2DatePicker.TabIndex = 2;
+            // 
+            // Tgl1DatePicker
+            // 
+            this.Tgl1DatePicker.CustomFormat = "dd-MMM-yyyy";
+            this.Tgl1DatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.Tgl1DatePicker.Location = new System.Drawing.Point(3, 30);
+            this.Tgl1DatePicker.Name = "Tgl1DatePicker";
+            this.Tgl1DatePicker.Size = new System.Drawing.Size(112, 21);
+            this.Tgl1DatePicker.TabIndex = 1;
             // 
             // KeywordTextBox
             // 
@@ -76,8 +96,8 @@
             // 
             // ListDataGrid
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.ListDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.ListDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.ListDataGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.ListDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ListDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -87,23 +107,15 @@
             this.ListDataGrid.TabIndex = 0;
             this.ListDataGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListDataGrid_CellDoubleClick);
             // 
-            // Tgl1DatePicker
+            // SearchButton
             // 
-            this.Tgl1DatePicker.CustomFormat = "dd-MMM-yyyy";
-            this.Tgl1DatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.Tgl1DatePicker.Location = new System.Drawing.Point(3, 30);
-            this.Tgl1DatePicker.Name = "Tgl1DatePicker";
-            this.Tgl1DatePicker.Size = new System.Drawing.Size(112, 21);
-            this.Tgl1DatePicker.TabIndex = 1;
-            // 
-            // Tgl2DatePicker
-            // 
-            this.Tgl2DatePicker.CustomFormat = "dd-MMM-yyyy";
-            this.Tgl2DatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.Tgl2DatePicker.Location = new System.Drawing.Point(121, 30);
-            this.Tgl2DatePicker.Name = "Tgl2DatePicker";
-            this.Tgl2DatePicker.Size = new System.Drawing.Size(112, 21);
-            this.Tgl2DatePicker.TabIndex = 2;
+            this.SearchButton.Location = new System.Drawing.Point(239, 30);
+            this.SearchButton.Name = "SearchButton";
+            this.SearchButton.Size = new System.Drawing.Size(75, 23);
+            this.SearchButton.TabIndex = 3;
+            this.SearchButton.Text = "Search";
+            this.SearchButton.UseVisualStyleBackColor = true;
+            this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
             // 
             // SearchingForm
             // 
@@ -136,5 +148,6 @@
         private System.Windows.Forms.DataGridView ListDataGrid;
         private System.Windows.Forms.DateTimePicker Tgl2DatePicker;
         private System.Windows.Forms.DateTimePicker Tgl1DatePicker;
+        private System.Windows.Forms.Button SearchButton;
     }
 }

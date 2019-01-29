@@ -47,24 +47,28 @@ namespace AnugerahWinform.Support
         {
             if(e.KeyCode == Keys.Enter)
             {
-                IEnumerable<T> listData;
-                if (!_isFilterTgl)
-                {
-                    if(KeywordTextBox.Text != "")
-                        listData = _searchBL.Search(KeywordTextBox.Text);
-                    else
-                        listData = _searchBL.Search();
-                }
-                else
-                    listData = _searchBL.Search(KeywordTextBox.Text,
-                        Tgl1DatePicker.Value.ToString("dd-MM-yyyy"),
-                        Tgl2DatePicker.Value.ToString("dd-MM-yyyy"));
+            }
+        }
 
-                ListDataGrid.DataSource = listData;
-                foreach(DataGridViewColumn col in ListDataGrid.Columns)
-                {
-                    col.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                }
+        private void Search()
+        {
+            IEnumerable<T> listData;
+            if (!_isFilterTgl)
+            {
+                if (KeywordTextBox.Text != "")
+                    listData = _searchBL.Search(KeywordTextBox.Text);
+                else
+                    listData = _searchBL.Search();
+            }
+            else
+                listData = _searchBL.Search(KeywordTextBox.Text,
+                    Tgl1DatePicker.Value.ToString("dd-MM-yyyy"),
+                    Tgl2DatePicker.Value.ToString("dd-MM-yyyy"));
+
+            ListDataGrid.DataSource = listData;
+            foreach (DataGridViewColumn col in ListDataGrid.Columns)
+            {
+                col.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             }
         }
 
@@ -85,6 +89,11 @@ namespace AnugerahWinform.Support
         {
             if (e.CloseReason == CloseReason.UserClosing)
                 DialogResult = DialogResult.Cancel;
+        }
+
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+            Search();
         }
     }
 }

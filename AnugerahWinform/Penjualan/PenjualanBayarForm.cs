@@ -76,6 +76,7 @@ namespace AnugerahWinform.Penjualan
                 {
                     NoUrut = i,
                     JenisBayarID = dr["JenisBayarIDCol"].ToString(),
+                    JenisBayarName = dr["JenisBayarNameCol"].ToString(),
                     NilaiBayar = Convert.ToDecimal(dr["NilaiBayarCol"]),
                     Catatan = dr["CatatanCol"].ToString()
                 });
@@ -105,6 +106,18 @@ namespace AnugerahWinform.Penjualan
             var jenisBayarName = DetilBayarTable.Rows[rowIndex]["JenisBayarNameCol"].ToString();
             if ((jenisBayarName.Trim() != "") && (rowIndex == DetilBayarTable.Rows.Count - 1))
                 DetilBayarTable.Rows.Add("", "", 0, "");
+        }
+
+        private void BayarGrid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode== Keys.Delete)
+            {
+                var rowIndex = BayarGrid.CurrentRow.Index;
+
+                //  baris terakhir ga boleh dihapus (untuk data baru)
+                if(rowIndex != BayarGrid.Rows.Count-1)
+                    DetilBayarTable.Rows.RemoveAt(rowIndex);
+            }
         }
     }
 }

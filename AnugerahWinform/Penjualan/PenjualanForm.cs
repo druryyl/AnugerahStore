@@ -136,17 +136,18 @@ namespace AnugerahWinform.Penjualan
 
         private void BayarButton_Click(object sender, EventArgs e)
         {
-            var listBayar = _penjualanBayarDal.ListData(NoTrsTextBox.Text, false).ToList();
-
-            using (var penjualanBayarForm = new PenjualanBayarForm(listBayar))
+            using (var penjualanBayarForm = new PenjualanBayarForm(_listBayarNonCash))
             {
                 var result = penjualanBayarForm.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    _listBayarNonCash = penjualanBayarForm.ListBayar;
+                    if(penjualanBayarForm.ListBayar != null)
+                        _listBayarNonCash = penjualanBayarForm.ListBayar
+                            .Where(x => x.NilaiBayar != 0)
+                            .ToList();
                 }
             }
-            BayarCashNumText.Value = _listBayarNonCash.Sum(x => x.NilaiBayar);
+            BayarNonCashNumText.Value = _listBayarNonCash.Sum(x => x.NilaiBayar);
         }
         private void SaveButton_Click(object sender, EventArgs e)
         {
@@ -260,15 +261,19 @@ namespace AnugerahWinform.Penjualan
                     _listBayarNonCash.Add(new PenjualanBayarModel
                     {
                         JenisBayarID = item.JenisBayarID,
+                        JenisBayarName = item.JenisBayarName,
                         NilaiBayar = item.NilaiBayar,
                         Catatan = item.Catatan
                     });
                 }
 
                 if (penjualan.ListBayar.Where(x => x.JenisBayarID == "KAS").Any())
+                {
                     BayarCashNumText.Value = penjualan.ListBayar
                         .Where(x => x.JenisBayarID == "KAS")
+                        .Where(x => x.NilaiBayar > 0)
                         .Sum(x => x.NilaiBayar);
+                }
             }
             ReCalcTotal();
         }
@@ -337,8 +342,15 @@ namespace AnugerahWinform.Penjualan
                 nilaiTotal += Convert.ToDecimal(row["SubTotal"]);
             }
             TotalNumText.Value = nilaiTotal;
+
+            decimal totBayarNonCash = 0;
+            if(_listBayarNonCash!= null)
+                foreach(var item in _listBayarNonCash)
+                    totBayarNonCash += item.NilaiBayar;
+            BayarNonCashNumText.Value = totBayarNonCash;
+
             GrandTotalNumText.Value = nilaiTotal - DiskonNumText.Value + BiayaLainNumText.Value;
-            KembaliNumText.Value = BayarCashNumText.Value - GrandTotalNumText.Value - BayarNonCashNumText.Value;
+            KembaliNumText.Value = BayarCashNumText.Value - GrandTotalNumText.Value + BayarNonCashNumText.Value;
         }
         private void SaveTransaksi()
         {
@@ -398,8 +410,15 @@ namespace AnugerahWinform.Penjualan
                     NilaiBayar = bayarCash,
                     Catatan = ""
                 };
+                var itemKembali = new PenjualanBayarModel
+                {
+                    JenisBayarID = "KAS",
+                    NilaiBayar = -kembali,
+                    Catatan = ""
+                };
                 listDetilBayar = new List<PenjualanBayarModel>();
                 listDetilBayar.Add(itemBayarCash);
+                listDetilBayar.Add(itemKembali);
             }
             //  ambil data bayar non cash
             if (_listBayarNonCash != null)

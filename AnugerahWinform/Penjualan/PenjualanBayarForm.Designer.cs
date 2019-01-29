@@ -71,6 +71,7 @@
             this.BayarGrid.Size = new System.Drawing.Size(659, 280);
             this.BayarGrid.TabIndex = 0;
             this.BayarGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BayarGrid_CellContentClick);
+            this.BayarGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BayarGrid_KeyDown);
             // 
             // jenisBayarIDColDataGridViewTextBoxColumn
             // 

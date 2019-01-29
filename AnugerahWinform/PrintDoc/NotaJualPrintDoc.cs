@@ -16,7 +16,7 @@ namespace AnugerahWinform.PrintDoc
     {
         PenjualanModel _penjualan;
 
-        private Font _courierNew10Font;
+        private Font _font;
         private StreamReader reader;
         private string _fileName;
         private string _printerName;
@@ -34,7 +34,7 @@ namespace AnugerahWinform.PrintDoc
 
             //  print textfile
             reader = new StreamReader(_fileName);
-            _courierNew10Font = new Font("Courier New", 8);
+            _font = new Font("Source Code Pro", 10);
             PrintDocument pd = new PrintDocument();
             pd.PrintPage += new PrintPageEventHandler(PrintTextFileHandler);
             pd.PrinterSettings.PrinterName = _printerName;
@@ -90,6 +90,7 @@ namespace AnugerahWinform.PrintDoc
             var nilaiDiskn = "Diskon Lain: " + _penjualan.NilaiDiskonLain.ToString("N0").PadLeft(11,' ');
             var nilaiBiaya = "Biaya Lain : " + _penjualan.NilaiBiayaLain.ToString("N0").PadLeft(11,' ');
             var nilaiGrand = "Grand Total: " + _penjualan.NilaiGrandTotal.ToString("N0").PadLeft(11,' ');
+            sw.WriteLine("                                                                --------------------------");
             sw.WriteLine(nilaiTotal.PadLeft(88));
             sw.WriteLine(nilaiDiskn.PadLeft(88));
             sw.WriteLine(nilaiBiaya.PadLeft(88));
@@ -118,16 +119,16 @@ namespace AnugerahWinform.PrintDoc
             string line = null;
 
             //Calculate the lines per page on the basis of the height of the page and the height of the font  
-            linesPerPage = ppeArgs.MarginBounds.Height / _courierNew10Font.GetHeight(g);
+            linesPerPage = ppeArgs.MarginBounds.Height / _font.GetHeight(g);
 
             //Now read lines one by one, using StreamReader  
             while (count < linesPerPage && ((line = reader.ReadLine()) != null))
             {
                 //Calculate the starting position  
-                yPos = topMargin + (count * _courierNew10Font.GetHeight(g));
+                yPos = topMargin + (count * _font.GetHeight(g));
 
                 //Draw text  
-                g.DrawString(line, _courierNew10Font, Brushes.Black, leftMargin, yPos, new StringFormat());
+                g.DrawString(line, _font, Brushes.Black, leftMargin, yPos, new StringFormat());
 
                 //Move to next line  
                 count++;
