@@ -72,11 +72,6 @@ namespace AnugerahWinform.Support
             }
         }
 
-        private void KeywordTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void ListDataGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             var dataGrid = (DataGridView)sender;
@@ -94,6 +89,26 @@ namespace AnugerahWinform.Support
         private void SearchButton_Click(object sender, EventArgs e)
         {
             Search();
+        }
+
+        private void SearchingForm_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            if((e.KeyCode == Keys.Up)||(e.KeyCode==Keys.Down))
+            {
+                ListDataGrid.Focus();
+            }
+        }
+
+        private void ListDataGrid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (ListDataGrid.CurrentRow == null) return;
+
+                SelectedDataKey = ListDataGrid.CurrentRow.Cells[0].Value.ToString();
+                DialogResult = DialogResult.OK;
+            }
         }
     }
 }

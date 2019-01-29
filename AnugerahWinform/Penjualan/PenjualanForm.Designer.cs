@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.entryDataTabPage = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -197,6 +197,7 @@
             this.BayarCashNumText.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.BayarCashNumText.ThousandsSeparator = true;
             this.BayarCashNumText.ValueChanged += new System.EventHandler(this.BayarCashNumText_ValueChanged);
+            this.BayarCashNumText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BayarCashNumText_KeyDown);
             // 
             // KembaliNumText
             // 
@@ -630,20 +631,20 @@
             // QtyCol
             // 
             this.QtyCol.DataPropertyName = "Qty";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "N0";
-            dataGridViewCellStyle5.NullValue = "0";
-            this.QtyCol.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.Format = "N0";
+            dataGridViewCellStyle1.NullValue = "0";
+            this.QtyCol.DefaultCellStyle = dataGridViewCellStyle1;
             this.QtyCol.HeaderText = "Qty";
             this.QtyCol.Name = "QtyCol";
             // 
             // HargaCol
             // 
             this.HargaCol.DataPropertyName = "Harga";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.Format = "N0";
-            dataGridViewCellStyle6.NullValue = "0";
-            this.HargaCol.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "N0";
+            dataGridViewCellStyle2.NullValue = "0";
+            this.HargaCol.DefaultCellStyle = dataGridViewCellStyle2;
             this.HargaCol.HeaderText = "Harga";
             this.HargaCol.Name = "HargaCol";
             this.HargaCol.ReadOnly = true;
@@ -651,10 +652,10 @@
             // DiskonCol
             // 
             this.DiskonCol.DataPropertyName = "Diskon";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle7.Format = "N0";
-            dataGridViewCellStyle7.NullValue = "0";
-            this.DiskonCol.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "N0";
+            dataGridViewCellStyle3.NullValue = "0";
+            this.DiskonCol.DefaultCellStyle = dataGridViewCellStyle3;
             this.DiskonCol.HeaderText = "Diskon";
             this.DiskonCol.Name = "DiskonCol";
             this.DiskonCol.ReadOnly = true;
@@ -662,10 +663,10 @@
             // SubTotalCol
             // 
             this.SubTotalCol.DataPropertyName = "SubTotal";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle8.Format = "N0";
-            dataGridViewCellStyle8.NullValue = "0";
-            this.SubTotalCol.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "N0";
+            dataGridViewCellStyle4.NullValue = "0";
+            this.SubTotalCol.DefaultCellStyle = dataGridViewCellStyle4;
             this.SubTotalCol.HeaderText = "SubTotal";
             this.SubTotalCol.Name = "SubTotalCol";
             this.SubTotalCol.ReadOnly = true;

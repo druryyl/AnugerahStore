@@ -474,5 +474,13 @@ namespace AnugerahWinform.Penjualan
         {
             ReCalcTotal();
         }
+
+        private void BayarCashNumText_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.F1)
+            {
+                BayarCashNumText.Value = GrandTotalNumText.Value - BayarNonCashNumText.Value;
+            }
+        }
     }
 }
