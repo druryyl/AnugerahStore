@@ -62,6 +62,7 @@
     <Folder Include="Penjualan" />
     <Folder Include="Queries" />
     <Folder Include="OtherScript" />
+    <Folder Include="Keuangan" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Support\Userr.sql" />
@@ -84,6 +85,11 @@
     <Build Include="Penjualan\Customer.sql" />
     <Build Include="Penjualan\PenjualanBayar.sql" />
     <Build Include="Penjualan\JenisBayar.sql" />
+    <Build Include="Keuangan\BukuKas.sql" />
+    <Build Include="Keuangan\BukuPiutang.sql" />
+    <Build Include="Keuangan\BukuPiutangLunas.sql" />
+    <Build Include="Keuangan\BukuHutang.sql" />
+    <Build Include="Keuangan\BukuHutangLunas.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AnugerahDevelopment.publish.xml" />

@@ -1,0 +1,12 @@
+﻿CREATE TABLE [dbo].[BukuHutang]
+(
+	BukuHutangID VARCHAR(10) NOT NULL CONSTRAINT DF_BukuHutang_BukuHutangID DEFAULT(''),
+	TglHutang VARCHAR(10) NOT NULL CONSTRAINT DF_BukuHutang_TglHutang DEFAULT(''),
+	JamHutang VARCHAR(8) NOT NULL CONSTRAINT DF_BukuHutang_JamHutang DEFAULT(''),
+	PihakKetiga VARCHAR(10) NOT NULL CONSTRAINT DF_BukuHutang_PihakKetiga DEFAULT(''),
+	NilaiHutang DECIMAL(18,0) NOT NULL CONSTRAINT DF_BukuHutang_NilaiHutang DEFAULT(0),
+	SisaTagihan DECIMAL(18,0) NOT NULL CONSTRAINT DF_BukuHutang_SisaHutang DEFAULT(0),
+	Keterangan VARCHAR(50) NOT NULL CONSTRAINT DF_BukuHutang_Keterangan DEFAULT(0),
+
+	CONSTRAINT PK_BukuHutang_BukuHutangID PRIMARY KEY CLUSTERED (BukuHutangID)
+)
