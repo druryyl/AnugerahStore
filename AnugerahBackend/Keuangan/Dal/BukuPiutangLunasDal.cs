@@ -64,7 +64,7 @@ namespace AnugerahBackend.Keuangan.Dal
                     NilaiLunas = @NilaiLunas, 
                     BukuKasID = @BukuKasID 
                 WHERE
-                    BukuPiutangLunasID = @BukuPiutangLunasID ) ";
+                    BukuPiutangLunasID = @BukuPiutangLunasID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
@@ -85,7 +85,7 @@ namespace AnugerahBackend.Keuangan.Dal
                 DELETE
                     BukuPiutangLunas 
                 WHERE
-                    BukuPiutangLunasID = @BukuPiutangLunasID ) ";
+                    BukuPiutangLunasID = @BukuPiutangLunasID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
@@ -150,6 +150,7 @@ namespace AnugerahBackend.Keuangan.Dal
                 using (var dr = cmd.ExecuteReader())
                 {
                     if (!dr.HasRows) return result;
+                    result = new List<BukuPiutangLunasModel>();
                     while (dr.Read())
                     {
                         var item = new BukuPiutangLunasModel

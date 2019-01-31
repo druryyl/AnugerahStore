@@ -83,6 +83,7 @@
     <Compile Include="Keuangan\BukuHutangDalTest.cs" />
     <Compile Include="Keuangan\BukuKasTestDalTest.cs" />
     <Compile Include="Keuangan\BukuPiutangDalTest.cs" />
+    <Compile Include="Keuangan\BukuPiutangLunasDalTest.cs" />
     <Compile Include="Keuangan\JenisTrsKasirDalTest.cs" />
     <Compile Include="Keuangan\PihakKetigaDalTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
