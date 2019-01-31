@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Keuangan\Dal\BukuHutangDal.cs" />
     <Compile Include="Keuangan\Dal\BukuKasDal.cs" />
     <Compile Include="Keuangan\Dal\BukuPiutangDal.cs" />
     <Compile Include="Keuangan\Dal\JenisTrsKasirDal.cs" />

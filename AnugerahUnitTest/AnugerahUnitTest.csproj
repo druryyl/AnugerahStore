@@ -80,6 +80,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Keuangan\BukuHutangDalTest.cs" />
     <Compile Include="Keuangan\BukuKasTestDalTest.cs" />
     <Compile Include="Keuangan\BukuPiutangDalTest.cs" />
     <Compile Include="Keuangan\JenisTrsKasirDalTest.cs" />
