@@ -90,6 +90,7 @@
     <Build Include="Keuangan\BukuPiutangLunas.sql" />
     <Build Include="Keuangan\BukuHutang.sql" />
     <Build Include="Keuangan\BukuHutangLunas.sql" />
+    <Build Include="Keuangan\JenisTrsKasir.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AnugerahDevelopment.publish.xml" />
