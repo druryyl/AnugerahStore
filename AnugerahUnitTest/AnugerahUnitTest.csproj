@@ -80,7 +80,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Keuangan\BukuKasTestDalTest.cs" />
+    <Compile Include="Keuangan\BukuPiutangDalTest.cs" />
     <Compile Include="Keuangan\JenisTrsKasirDalTest.cs" />
+    <Compile Include="Keuangan\PihakKetigaDalTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StokBarang\BL\ColorBLTest.cs" />
     <Compile Include="StokBarang\BL\SubJenisBrgBLTest.cs" />

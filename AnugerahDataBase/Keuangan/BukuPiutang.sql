@@ -1,12 +1,14 @@
 ﻿CREATE TABLE [dbo].[BukuPiutang]
 (
 	BukuPiutangID VARCHAR(10) NOT NULL CONSTRAINT DF_BukuPiutang_BukuPiutangID DEFAULT(''),
-	TglPiutang VARCHAR(10) NOT NULL CONSTRAINT DF_BukuPiutang_TglPiutang DEFAULT(''),
-	JamPiutang VARCHAR(8) NOT NULL CONSTRAINT DF_BukuPiutang_JamPiutang DEFAULT(''),
-	PihakKetiga VARCHAR(10) NOT NULL CONSTRAINT DF_BukuPiutang_PihakKetiga DEFAULT(''),
+	TglBuku VARCHAR(10) NOT NULL CONSTRAINT DF_BukuPiutang_TglPiutang DEFAULT(''),
+	JamBuku VARCHAR(8) NOT NULL CONSTRAINT DF_BukuPiutang_JamPiutang DEFAULT(''),
+	UserrID VARCHAR(50) NOT NULL CONSTRAINT DF_BukuPiutang_UserrID DEFAULT(''),
+	PihakKetigaID VARCHAR(10) NOT NULL CONSTRAINT DF_BukuPiutang_PihakKetigaID DEFAULT(''),
 	NilaiPiutang DECIMAL(18,0) NOT NULL CONSTRAINT DF_BukuPiutang_NilaiPiutang DEFAULT(0),
-	SisaTagihan DECIMAL(18,0) NOT NULL CONSTRAINT DF_BukuPiutang_SisaPiutang DEFAULT(0),
+	NilaiSisa DECIMAL(18,0) NOT NULL CONSTRAINT DF_BukuPiutang_NilaiSisa DEFAULT(0),
 	Keterangan VARCHAR(50) NOT NULL CONSTRAINT DF_BukuPiutang_Keterangan DEFAULT(0),
+	BukuKasID VARCHAR(10) NOT NULL CONSTRAINT DF_BukuPiutang_BukuKasID DEFAULT(''),
 
 	CONSTRAINT PK_BukuPiutang_BukuPiutangID PRIMARY KEY CLUSTERED (BukuPiutangID)
 )

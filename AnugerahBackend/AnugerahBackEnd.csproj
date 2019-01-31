@@ -47,8 +47,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Keuangan\Dal\BukuKasDal.cs" />
+    <Compile Include="Keuangan\Dal\BukuPiutangDal.cs" />
     <Compile Include="Keuangan\Dal\JenisTrsKasirDal.cs" />
+    <Compile Include="Keuangan\Dal\PihakKetigaDal.cs" />
+    <Compile Include="Keuangan\Model\BukuKasModel.cs" />
+    <Compile Include="Keuangan\Model\BukuPiutangModel.cs" />
     <Compile Include="Keuangan\Model\JenisTrsKasirModel.cs" />
+    <Compile Include="Keuangan\Model\PihakKetigaModel.cs" />
     <Compile Include="Penjualan\BL\BrgPriceBL.cs" />
     <Compile Include="Penjualan\BL\CustomerBL.cs" />
     <Compile Include="Penjualan\BL\PenjualanBL.cs" />
