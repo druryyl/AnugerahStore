@@ -41,6 +41,7 @@ namespace AnugerahUnitTest.Keuangan
                 UserrID = "B2",
                 NilaiKasMasuk = 21000,
                 NilaiKasKeluar = 1000,
+                JenisTrsKasirID = "F2",
                 ReffID = "C2",
                 Keterangan = "D2",
                 PihakKetigaID = "E2"
@@ -109,7 +110,8 @@ namespace AnugerahUnitTest.Keuangan
                 //  assert
                 actual.Should().BeEquivalentTo(expected,
                     config => config
-                        .Excluding(x => x.PihakKetigaName));
+                        .Excluding(x => x.PihakKetigaName)
+                        .Excluding(x => x.JenisTrsKasirName));
             }
         }
 
@@ -136,7 +138,8 @@ namespace AnugerahUnitTest.Keuangan
                 //  assert
                 actual.Should().BeEquivalentTo(expected,
                     config => config
-                        .Excluding(x => x.PihakKetigaName));
+                        .Excluding(x => x.PihakKetigaName)
+                        .Excluding(x => x.JenisTrsKasirName));
             }
         }
 

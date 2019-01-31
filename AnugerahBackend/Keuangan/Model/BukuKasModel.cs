@@ -15,9 +15,24 @@ namespace AnugerahBackend.Keuangan.Model
 
         public decimal NilaiKasMasuk { get; set; }
         public decimal NilaiKasKeluar { get; set; }
-        public string ReffID { get; set; }
+
         public string Keterangan { get; set; }
+
+        public string ReffID { get; set; }
+        public string JenisTrsKasirID { get; set; }
+        public string JenisTrsKasirName { get; set; }
+
+
         public string PihakKetigaID { get; set; }
         public string PihakKetigaName { get; set; }
+    }
+
+    public class BukuKasSearchModel
+    {
+        public string BukuKasID { get; set; }
+        public string TglBuku { get; set; }
+        public string PihakKetigaName { get; set; }
+        public decimal Nilai { get; set; }
+        public string Keterangan { get; set; }
     }
 }

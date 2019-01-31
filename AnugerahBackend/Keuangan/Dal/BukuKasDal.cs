@@ -35,11 +35,11 @@ namespace AnugerahBackend.Keuangan.Dal
                 INSERT INTO
                     BukuKas (
                         BukuKasID, TglBuku, JamBuku, UserrID,
-                        NilaiKasMasuk, NilaiKasKeluar, 
+                        NilaiKasMasuk, NilaiKasKeluar, JenisTrsKasirID,
                         ReffID, Keterangan, PihakKetigaID)
                 VALUES (
                         @BukuKasID, @TglBuku, @JamBuku, @UserrID,
-                        @NilaiKasMasuk, @NilaiKasKeluar, 
+                        @NilaiKasMasuk, @NilaiKasKeluar, @JenisTrsKasirID,
                         @ReffID, @Keterangan, @PihakKetigaID) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
@@ -48,8 +48,11 @@ namespace AnugerahBackend.Keuangan.Dal
                 cmd.AddParam("@TglBuku", bukuKas.TglBuku.ToTglYMD());
                 cmd.AddParam("@JamBuku", bukuKas.JamBuku);
                 cmd.AddParam("@UserrID", bukuKas.UserrID);
+
                 cmd.AddParam("@NilaiKasMasuk", bukuKas.NilaiKasMasuk);
                 cmd.AddParam("@NilaiKasKeluar", bukuKas.NilaiKasKeluar);
+                cmd.AddParam("@JenisTrsKasirID", bukuKas.JenisTrsKasirID);
+
                 cmd.AddParam("@ReffID", bukuKas.ReffID);
                 cmd.AddParam("@Keterangan", bukuKas.Keterangan);
                 cmd.AddParam("@PihakKetigaID", bukuKas.PihakKetigaID);
@@ -69,6 +72,7 @@ namespace AnugerahBackend.Keuangan.Dal
                     UserrID = @UserrID,
                     NilaiKasMasuk = @NilaiKasMasuk, 
                     NilaiKasKeluar = @NilaiKasKeluar, 
+                    JenisTrsKasirID = @JenisTrsKasirID,
                     ReffID = @ReffID, 
                     Keterangan = @Keterangan,
                     PihakKetigaID = @PihakKetigaID
@@ -83,6 +87,7 @@ namespace AnugerahBackend.Keuangan.Dal
                 cmd.AddParam("@UserrID", bukuKas.UserrID);
                 cmd.AddParam("@NilaiKasMasuk", bukuKas.NilaiKasMasuk);
                 cmd.AddParam("@NilaiKasKeluar", bukuKas.NilaiKasKeluar);
+                cmd.AddParam("@JenisTrsKasirID", bukuKas.JenisTrsKasirID);
                 cmd.AddParam("@ReffID", bukuKas.ReffID);
                 cmd.AddParam("@Keterangan", bukuKas.Keterangan);
                 cmd.AddParam("@PihakKetigaID", bukuKas.PihakKetigaID);
@@ -114,12 +119,15 @@ namespace AnugerahBackend.Keuangan.Dal
                 SELECT
                     aa.BukuKasID, aa.TglBuku, aa.JamBuku,
                     aa.UserrID, aa.NilaiKasMasuk, aa.NilaiKasKeluar,
+                    aa.JenisTrsKasirID,
                     aa.ReffID, aa.Keterangan, aa.PihakKetigaID,
-                    ISNULL(bb.PihakKetigaName,'')PihakKetigaName
+                    ISNULL(bb.PihakKetigaName,'')PihakKetigaName,
+                    ISNULL(cc.JenisTrsKasirName, '') JenisTrsKasirName
 
                 FROM    
                     BukuKas aa
                     LEFT JOIN PihakKetiga bb ON aa.PihakKetigaID = bb.PihakKetigaID
+                    LEFT JOIN JenisTrsKasir cc ON aa.JenisTrsKasirID = cc.JenisTrsKasirID
                 WHERE
                     aa.BukuKasID = @BukuKasID ";
             using (var conn = new SqlConnection(_connString))
@@ -138,9 +146,13 @@ namespace AnugerahBackend.Keuangan.Dal
                         TglBuku = dr["TglBuku"].ToString().ToTglDMY(),
                         JamBuku = dr["JamBuku"].ToString(),
                         UserrID = dr["USerrID"].ToString(),
+
                         NilaiKasMasuk = Convert.ToDecimal(dr["NilaiKasMasuk"]),
                         NilaiKasKeluar = Convert.ToDecimal(dr["NilaiKasKeluar"]),
+                        JenisTrsKasirID = dr["JenisTrsKasirID"].ToString(),
+                        JenisTrsKasirName = dr["JenisTrsKasirName"].ToString(),
                         ReffID = dr["ReffID"].ToString(),
+
                         Keterangan = dr["Keterangan"].ToString(),
                         PihakKetigaID = dr["PihakKetigaID"].ToString(),
                         PihakKetigaName = dr["PihakKetigaName"].ToString()
@@ -157,12 +169,15 @@ namespace AnugerahBackend.Keuangan.Dal
                 SELECT
                     aa.BukuKasID, aa.TglBuku, aa.JamBuku,
                     aa.UserrID, aa.NilaiKasMasuk, aa.NilaiKasKeluar,
+                    aa.JenisTrsKasirID,
                     aa.ReffID, aa.Keterangan, aa.PihakKetigaID,
-                    ISNULL(bb.PihakKetigaName,'')PihakKetigaName
+                    ISNULL(bb.PihakKetigaName,'')PihakKetigaName,
+                    ISNULL(cc.JenisTrsKasirName, '') JenisTrsKasirName
 
                 FROM    
                     BukuKas aa
                     LEFT JOIN PihakKetiga bb ON aa.PihakKetigaID = bb.PihakKetigaID
+                    LEFT JOIN JenisTrsKasir cc ON aa.JenisTrsKasirID = cc.JenisTrsKasirID
                 WHERE
                     TglBuku BETWEEN @Tgl1 AND @Tgl2 ";
 
@@ -185,8 +200,12 @@ namespace AnugerahBackend.Keuangan.Dal
                             TglBuku = dr["TglBuku"].ToString().ToTglDMY(),
                             JamBuku = dr["JamBuku"].ToString(),
                             UserrID = dr["USerrID"].ToString(),
+
                             NilaiKasMasuk = Convert.ToDecimal(dr["NilaiKasMasuk"]),
                             NilaiKasKeluar = Convert.ToDecimal(dr["NilaiKasKeluar"]),
+                            JenisTrsKasirID = dr["JenisTrsKasirID"].ToString(),
+                            JenisTrsKasirName = dr["JenisTrsKasirName"].ToString(),
+
                             ReffID = dr["ReffID"].ToString(),
                             Keterangan = dr["Keterangan"].ToString(),
                             PihakKetigaID = dr["PihakKetigaID"].ToString(),
