@@ -51,6 +51,7 @@
     <Compile Include="Keuangan\Dal\BukuPiutangDal.cs" />
     <Compile Include="Keuangan\Dal\JenisTrsKasirDal.cs" />
     <Compile Include="Keuangan\Dal\PihakKetigaDal.cs" />
+    <Compile Include="Keuangan\Model\BukuHutangModel.cs" />
     <Compile Include="Keuangan\Model\BukuKasModel.cs" />
     <Compile Include="Keuangan\Model\BukuPiutangModel.cs" />
     <Compile Include="Keuangan\Model\JenisTrsKasirModel.cs" />
