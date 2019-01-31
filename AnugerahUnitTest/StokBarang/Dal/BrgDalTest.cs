@@ -39,7 +39,8 @@ namespace AnugerahUnitTest.StokBarang.Dal
                 Keterangan = "C1",
                 SubJenisBrgID = "D1",
                 MerkID = "E1",
-                ColorID = "F1"
+                ColorID = "F1",
+                Kemasan = "G1",
             };
             return result;
         }
@@ -53,7 +54,8 @@ namespace AnugerahUnitTest.StokBarang.Dal
                 Keterangan = "C2",
                 SubJenisBrgID = "D2",
                 MerkID = "E2",
-                ColorID = "F2"
+                ColorID = "F2",
+                Kemasan = "G2"
             };
             return result;
         }
@@ -121,7 +123,11 @@ namespace AnugerahUnitTest.StokBarang.Dal
                     config => config
                         .Excluding(x => x.SubJenisBrgName)
                         .Excluding(x => x.ColorName)
-                        .Excluding(x => x.MerkName));
+                        .Excluding(x => x.MerkName)
+                        .Excluding(x => x.CreateTimestamp)
+                        .Excluding(x => x.UpdateTimestamp)
+                        .Excluding(x => x.JenisBrgID)
+                        .Excluding(x => x.JenisBrgName));
             }
         }
 
@@ -148,7 +154,11 @@ namespace AnugerahUnitTest.StokBarang.Dal
                     config => config
                         .Excluding(x => x.SubJenisBrgName)
                         .Excluding(x => x.ColorName)
-                        .Excluding(x => x.MerkName));
+                        .Excluding(x => x.MerkName)
+                        .Excluding(x => x.CreateTimestamp)
+                        .Excluding(x => x.UpdateTimestamp)
+                        .Excluding(x => x.JenisBrgID)
+                        .Excluding(x => x.JenisBrgName));
             }
         }
     }

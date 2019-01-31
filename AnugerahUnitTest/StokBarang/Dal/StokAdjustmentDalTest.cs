@@ -44,6 +44,7 @@ namespace AnugerahUnitTest.StokBarang.Dal
                 UserrIDVoid = "C1",
                 Keterangan = "D1",
                 ListBrg = null,
+                
             };
             return result;
         }

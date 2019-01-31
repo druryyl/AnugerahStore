@@ -75,9 +75,10 @@ namespace AnugerahBackend.StokBarang.Dal
             List<StokAdjustment2Model> result = null;
             var sSql = @"
                 SELECT
-                    aa.StokAdjustmentID, aa.NoUrut, aa.BrgID,
-                    aa.QtyAwal, aa.QtyAdjust, aa.QtyAkhir,
-                    aa.HppAdjust,
+                    aa.StokAdjustmentID, aa.StokAdjustmentID2, 
+                    aa.NoUrut,  aa.BrgID, 
+                    aa.QtyAwal, aa.QtyAdjust, 
+                    aa.QtyAkhir, aa.HppAdjust,
                     ISNULL(bb.BrgName, '') BrgName
                 FROM
                     StokAdjustment2 aa 
@@ -99,6 +100,7 @@ namespace AnugerahBackend.StokBarang.Dal
                             var item = new StokAdjustment2Model
                             {
                                 StokAdjustmentID = dr["StokAdjustmentID"].ToString(),
+                                StokAdjustmentID2 = dr["StokAdjustmentID2"].ToString(),
                                 NoUrut = Convert.ToInt16(dr["NoUrut"]),
                                 BrgID = dr["BrgID"].ToString(),
                                 BrgName = dr["BrgName"].ToString(),

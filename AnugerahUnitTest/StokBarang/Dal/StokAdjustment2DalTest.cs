@@ -33,6 +33,7 @@ namespace AnugerahUnitTest.StokBarang.Dal
             var result = new StokAdjustment2Model
             {
                 StokAdjustmentID = "A1",
+                StokAdjustmentID2 = "A11",
                 NoUrut = 1,
                 BrgID = "B1",
                 BrgName = "",
@@ -43,6 +44,24 @@ namespace AnugerahUnitTest.StokBarang.Dal
             };
             return result;
         }
+
+        StokAdjustment2Model StokAdjustment22DataFactory()
+        {
+            var result = new StokAdjustment2Model
+            {
+                StokAdjustmentID = "A1",
+                StokAdjustmentID2 = "A12",
+                NoUrut = 2,
+                BrgID = "B2",
+                BrgName = "",
+                QtyAwal = 11,
+                QtyAdjust = -3,
+                QtyAkhir = 9,
+                HppAdjust = 11000
+            };
+            return result;
+        }
+
 
         [Fact]
         public void InsertTest()
@@ -83,9 +102,10 @@ namespace AnugerahUnitTest.StokBarang.Dal
             {
                 //  arrange
                 var expected1 = StokAdjustment2DataFactory();
+                //var expected2 = StokAdjustment22DataFactory();
                 var expected2 = expected1.CloneObject();
-                expected2.NoUrut = 2;
-                expected2.BrgID = "C2";
+                expected2.BrgID = "B2";
+                expected2.StokAdjustmentID2 = "C2";
                 _stokAdjustment2Dal.Insert(expected1);
                 _stokAdjustment2Dal.Insert(expected2);
                 var expected = new List<StokAdjustment2Model>

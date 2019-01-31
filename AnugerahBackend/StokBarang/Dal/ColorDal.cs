@@ -43,7 +43,7 @@ namespace AnugerahBackend.StokBarang.Dal
                         IsWhiteForeColor)
                 VALUES (
                         @ColorID, @RedValue, 
-                        @GreenValue, @BlueValue
+                        @GreenValue, @BlueValue,
                         @IsWhiteForeColor) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
