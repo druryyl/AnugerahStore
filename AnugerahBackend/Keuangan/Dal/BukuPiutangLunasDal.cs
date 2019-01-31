@@ -151,6 +151,7 @@ namespace AnugerahBackend.Keuangan.Dal
                 {
                     if (!dr.HasRows) return result;
                     result = new List<BukuPiutangLunasModel>();
+
                     while (dr.Read())
                     {
                         var item = new BukuPiutangLunasModel
