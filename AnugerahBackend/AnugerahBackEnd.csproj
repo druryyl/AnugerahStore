@@ -50,6 +50,7 @@
     <Compile Include="Keuangan\Dal\BukuHutangDal.cs" />
     <Compile Include="Keuangan\Dal\BukuKasDal.cs" />
     <Compile Include="Keuangan\Dal\BukuPiutangDal.cs" />
+    <Compile Include="Keuangan\Dal\BukuPiutangLunasDal.cs" />
     <Compile Include="Keuangan\Dal\JenisTrsKasirDal.cs" />
     <Compile Include="Keuangan\Dal\PihakKetigaDal.cs" />
     <Compile Include="Keuangan\Model\BukuHutangModel.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Keuangan\Model\BukuPiutangModel.cs" />
     <Compile Include="Keuangan\Model\JenisTrsKasirModel.cs" />
     <Compile Include="Keuangan\Model\PihakKetigaModel.cs" />
+    <Compile Include="Keuangan\Model\BukuPiutangLunasModel.cs" />
     <Compile Include="Penjualan\BL\BrgPriceBL.cs" />
     <Compile Include="Penjualan\BL\CustomerBL.cs" />
     <Compile Include="Penjualan\BL\PenjualanBL.cs" />
