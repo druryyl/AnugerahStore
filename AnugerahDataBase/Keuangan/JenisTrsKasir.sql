@@ -6,3 +6,11 @@
 
 	CONSTRAINT PK_JenisTrskasir_JenisTrsKasieID PRIMARY KEY CLUSTERED (JenisTrsKasirID)
 )
+
+--JenisTrskasir :
+--	1. JUL : Penjualan
+--	2. BIY : Biaya
+--  3. PTG : Piutang
+--  4. PTL : Piutang Lunas
+--  5. HTG : Hutang
+--  6. HTL : Hutang Lunas

@@ -26,12 +26,18 @@ namespace AnugerahBackend.Keuangan.BL
         private IJenisTrsKasirDal _jenisTrsKasirDal;
         private IParameterNoBL _paramNoBL;
 
+        private IBukuPiutangBL _bukuPiutangBL;
+        private IBukuHutangBL _bukuHutangBL;
+
         public BukuKasBL()
         {
             _bukuKasDal = new BukuKasDal();
             _pihakKetigaDal = new PihakKetigaDal();
             _jenisTrsKasirDal = new JenisTrsKasirDal();
             _paramNoBL = new ParameterNoBL();
+
+            _bukuPiutangBL = new BukuPiutangBL();
+            _bukuHutangBL = new BukuHutangBL();
         }
 
     public BukuKasModel Save(BukuKasModel bukuKas)
@@ -103,6 +109,15 @@ namespace AnugerahBackend.Keuangan.BL
                 _bukuKasDal.Update(bukuKas);
             }
             #endregion
+
+            switch (bukuKas.JenisTrsKasirID)
+            {
+                case "PTL":
+                    _bukuPiutangBL.GenPiutang(bukuKas);
+                    break;
+                default:
+                    break;
+            }
 
             return bukuKas;
         }

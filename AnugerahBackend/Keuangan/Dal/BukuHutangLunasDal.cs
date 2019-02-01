@@ -11,116 +11,116 @@ using System.Threading.Tasks;
 
 namespace AnugerahBackend.Keuangan.Dal
 {
-    public interface IBukuPiutangLunasDal
+    public interface IBukuHutangLunasDal
     {
-        void Insert(BukuPiutangLunasModel bukuPiutangLunas);
-        void Update(BukuPiutangLunasModel bukuPiutangLunas);
-        void Delete(string bukuPiutangLunasID);
-        BukuPiutangLunasModel GetData(string bukuPiutangLunasID);
-        IEnumerable<BukuPiutangLunasModel> ListData(string bukuPiutangID);
-        IEnumerable<BukuPiutangLunasModel> ListData(BukuKasModel bukuKas);
+        void Insert(BukuHutangLunasModel bukuHutangLunas);
+        void Update(BukuHutangLunasModel bukuHutangLunas);
+        void Delete(string bukuHutangLunasID);
+        BukuHutangLunasModel GetData(string bukuHutangLunasID);
+        IEnumerable<BukuHutangLunasModel> ListData(string bukuHutangID);
+        IEnumerable<BukuHutangLunasModel> ListData(BukuKasModel bukuKas);
     }
-    public class BukuPiutangLunasDal : IBukuPiutangLunasDal
+    public class BukuHutangLunasDal : IBukuHutangLunasDal
     {
         private string _connString;
 
-        public BukuPiutangLunasDal()
+        public BukuHutangLunasDal()
         {
             _connString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
         }
 
-        public void Insert(BukuPiutangLunasModel bukuPiutangLunas)
+        public void Insert(BukuHutangLunasModel bukuHutangLunas)
         {
             var sSql = @"
                 INSERT INTO
-                    BukuPiutangLunas (
-                        BukuPiutangLunasID, BukuPiutangID, TglLunas,
+                    BukuHutangLunas (
+                        BukuHutangLunasID, BukuHutangID, TglLunas,
                         JamLunas, NilaiLunas, BukuKasID )
                 VALUES (
-                        @BukuPiutangLunasID, @BukuPiutangID, @TglLunas,
+                        @BukuHutangLunasID, @BukuHutangID, @TglLunas,
                         @JamLunas, @NilaiLunas, @BukuKasID ) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@BukuPiutangLunasID", bukuPiutangLunas.BukuPiutangLunasID);
-                cmd.AddParam("@BukuPiutangID", bukuPiutangLunas.BukuPiutangID);
-                cmd.AddParam("@TglLunas", bukuPiutangLunas.TglLunas.ToTglYMD());
-                cmd.AddParam("@JamLunas", bukuPiutangLunas.JamLunas);
-                cmd.AddParam("@NilaiLunas", bukuPiutangLunas.NilaiLunas);
-                cmd.AddParam("@BukuKasID", bukuPiutangLunas.BukuKasID);
+                cmd.AddParam("@BukuHutangLunasID", bukuHutangLunas.BukuHutangLunasID);
+                cmd.AddParam("@BukuHutangID", bukuHutangLunas.BukuHutangID);
+                cmd.AddParam("@TglLunas", bukuHutangLunas.TglLunas.ToTglYMD());
+                cmd.AddParam("@JamLunas", bukuHutangLunas.JamLunas);
+                cmd.AddParam("@NilaiLunas", bukuHutangLunas.NilaiLunas);
+                cmd.AddParam("@BukuKasID", bukuHutangLunas.BukuKasID);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
         }
 
-        public void Update(BukuPiutangLunasModel bukuPiutangLunas)
+        public void Update(BukuHutangLunasModel bukuHutangLunas)
         {
             var sSql = @"
                 UPDATE
-                    BukuPiutangLunas 
+                    BukuHutangLunas 
                 SET 
-                    BukuPiutangID = @BukuPiutangID, 
+                    BukuHutangID = @BukuHutangID, 
                     TglLunas = @TglLunas,
                     JamLunas = @JamLunas, 
                     NilaiLunas = @NilaiLunas, 
                     BukuKasID = @BukuKasID 
                 WHERE
-                    BukuPiutangLunasID = @BukuPiutangLunasID ";
+                    BukuHutangLunasID = @BukuHutangLunasID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@BukuPiutangLunasID", bukuPiutangLunas.BukuPiutangLunasID);
-                cmd.AddParam("@BukuPiutangID", bukuPiutangLunas.BukuPiutangID);
-                cmd.AddParam("@TglLunas", bukuPiutangLunas.TglLunas.ToTglYMD());
-                cmd.AddParam("@JamLunas", bukuPiutangLunas.JamLunas);
-                cmd.AddParam("@NilaiLunas", bukuPiutangLunas.NilaiLunas);
-                cmd.AddParam("@BukuKasID", bukuPiutangLunas.BukuKasID);
+                cmd.AddParam("@BukuHutangLunasID", bukuHutangLunas.BukuHutangLunasID);
+                cmd.AddParam("@BukuHutangID", bukuHutangLunas.BukuHutangID);
+                cmd.AddParam("@TglLunas", bukuHutangLunas.TglLunas.ToTglYMD());
+                cmd.AddParam("@JamLunas", bukuHutangLunas.JamLunas);
+                cmd.AddParam("@NilaiLunas", bukuHutangLunas.NilaiLunas);
+                cmd.AddParam("@BukuKasID", bukuHutangLunas.BukuKasID);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
         }
 
-        public void Delete(string bukuPiutangLunasID)
+        public void Delete(string bukuHutangLunasID)
         {
             var sSql = @"
                 DELETE
-                    BukuPiutangLunas 
+                    BukuHutangLunas 
                 WHERE
-                    BukuPiutangLunasID = @BukuPiutangLunasID ";
+                    BukuHutangLunasID = @BukuHutangLunasID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@BukuPiutangLunasID", bukuPiutangLunasID);
+                cmd.AddParam("@BukuHutangLunasID", bukuHutangLunasID);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
         }
 
-        public BukuPiutangLunasModel GetData(string bukuPiutangLunasID)
+        public BukuHutangLunasModel GetData(string bukuHutangLunasID)
         {
-            BukuPiutangLunasModel result = null;
+            BukuHutangLunasModel result = null;
             var sSql = @"
                 SELECT
-                    BukuPiutangLunasID, BukuPiutangID, TglLunas,
+                    BukuHutangLunasID, BukuHutangID, TglLunas,
                     JamLunas, NilaiLunas, BukuKasID                 
                 FROM
-                    BukuPiutangLunas
+                    BukuHutangLunas
                 WHERE
-                    BukuPiutangLunasID = @BukuPiutangLunasID ";
+                    BukuHutangLunasID = @BukuHutangLunasID ";
 
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@BukuPiutangLunasID", bukuPiutangLunasID);
+                cmd.AddParam("@BukuHutangLunasID", bukuHutangLunasID);
                 conn.Open();
                 using (var dr = cmd.ExecuteReader())
                 {
                     if (!dr.HasRows) return result;
                     dr.Read();
-                    result = new BukuPiutangLunasModel
+                    result = new BukuHutangLunasModel
                     {
-                        BukuPiutangLunasID = bukuPiutangLunasID,
-                        BukuPiutangID = dr["BukuPiutangID"].ToString(),
+                        BukuHutangLunasID = bukuHutangLunasID,
+                        BukuHutangID = dr["BukuHutangID"].ToString(),
                         TglLunas = dr["TglLunas"].ToString().ToTglDMY(),
                         JamLunas = dr["JamLunas"].ToString(),
                         NilaiLunas = Convert.ToDecimal(dr["NilaiLunas"]),
@@ -131,34 +131,34 @@ namespace AnugerahBackend.Keuangan.Dal
             return result;
         }
 
-        public IEnumerable<BukuPiutangLunasModel> ListData(string bukuPiutangID)
+        public IEnumerable<BukuHutangLunasModel> ListData(string bukuHutangID)
         {
-            List<BukuPiutangLunasModel> result = null;
+            List<BukuHutangLunasModel> result = null;
             var sSql = @"
                 SELECT
-                    BukuPiutangLunasID, BukuPiutangID, TglLunas,
+                    BukuHutangLunasID, BukuHutangID, TglLunas,
                     JamLunas, NilaiLunas, BukuKasID                 
                 FROM
-                    BukuPiutangLunas
+                    BukuHutangLunas
                 WHERE
-                    BukuPiutangID = @BukuPiutangID ";
+                    BukuHutangID = @BukuHutangID ";
 
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@BukuPiutangID", bukuPiutangID);
+                cmd.AddParam("@BukuHutangID", bukuHutangID);
                 conn.Open();
                 using (var dr = cmd.ExecuteReader())
                 {
                     if (!dr.HasRows) return result;
-                    result = new List<BukuPiutangLunasModel>();
+                    result = new List<BukuHutangLunasModel>();
 
                     while (dr.Read())
                     {
-                        var item = new BukuPiutangLunasModel
+                        var item = new BukuHutangLunasModel
                         {
-                            BukuPiutangLunasID = dr["BukuPiutangLunasID"].ToString(),
-                            BukuPiutangID = dr["BukuPiutangID"].ToString(),
+                            BukuHutangLunasID = dr["BukuHutangLunasID"].ToString(),
+                            BukuHutangID = dr["BukuHutangID"].ToString(),
                             TglLunas = dr["TglLunas"].ToString().ToTglDMY(),
                             JamLunas = dr["JamLunas"].ToString(),
                             NilaiLunas = Convert.ToDecimal(dr["NilaiLunas"]),
@@ -171,15 +171,15 @@ namespace AnugerahBackend.Keuangan.Dal
             return result;
         }
 
-        public IEnumerable<BukuPiutangLunasModel> ListData(BukuKasModel bukuKas)
+        public IEnumerable<BukuHutangLunasModel> ListData(BukuKasModel bukuKas)
         {
-            List<BukuPiutangLunasModel> result = null;
+            List<BukuHutangLunasModel> result = null;
             var sSql = @"
                 SELECT
-                    BukuPiutangLunasID, BukuPiutangID, TglLunas,
+                    BukuHutangLunasID, BukuHutangID, TglLunas,
                     JamLunas, NilaiLunas, BukuKasID                 
                 FROM
-                    BukuPiutangLunas
+                    BukuHutangLunas
                 WHERE
                     BukuKasID = @BukuKasID ";
 
@@ -191,14 +191,14 @@ namespace AnugerahBackend.Keuangan.Dal
                 using (var dr = cmd.ExecuteReader())
                 {
                     if (!dr.HasRows) return result;
-                    result = new List<BukuPiutangLunasModel>();
+                    result = new List<BukuHutangLunasModel>();
 
                     while (dr.Read())
                     {
-                        var item = new BukuPiutangLunasModel
+                        var item = new BukuHutangLunasModel
                         {
-                            BukuPiutangLunasID = dr["BukuPiutangLunasID"].ToString(),
-                            BukuPiutangID = dr["BukuPiutangID"].ToString(),
+                            BukuHutangLunasID = dr["BukuHutangLunasID"].ToString(),
+                            BukuHutangID = dr["BukuHutangID"].ToString(),
                             TglLunas = dr["TglLunas"].ToString().ToTglDMY(),
                             JamLunas = dr["JamLunas"].ToString(),
                             NilaiLunas = Convert.ToDecimal(dr["NilaiLunas"]),

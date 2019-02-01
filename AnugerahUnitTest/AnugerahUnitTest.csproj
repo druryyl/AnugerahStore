@@ -82,6 +82,7 @@
   <ItemGroup>
     <Compile Include="Keuangan\BukuHutangDalTest.cs" />
     <Compile Include="Keuangan\BukuKasTestDalTest.cs" />
+    <Compile Include="Keuangan\BukuPiutangBLTest.cs" />
     <Compile Include="Keuangan\BukuPiutangDalTest.cs" />
     <Compile Include="Keuangan\BukuPiutangLunasDalTest.cs" />
     <Compile Include="Keuangan\JenisTrsKasirDalTest.cs" />

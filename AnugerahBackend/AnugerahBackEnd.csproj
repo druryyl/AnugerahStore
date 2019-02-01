@@ -47,13 +47,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Keuangan\BL\BukuHutangBL.cs" />
     <Compile Include="Keuangan\BL\BukuKasBL.cs" />
+    <Compile Include="Keuangan\BL\BukuPiutangBL.cs" />
     <Compile Include="Keuangan\Dal\BukuHutangDal.cs" />
+    <Compile Include="Keuangan\Dal\BukuHutangLunasDal.cs" />
     <Compile Include="Keuangan\Dal\BukuKasDal.cs" />
     <Compile Include="Keuangan\Dal\BukuPiutangDal.cs" />
     <Compile Include="Keuangan\Dal\BukuPiutangLunasDal.cs" />
     <Compile Include="Keuangan\Dal\JenisTrsKasirDal.cs" />
     <Compile Include="Keuangan\Dal\PihakKetigaDal.cs" />
+    <Compile Include="Keuangan\Model\BukuHutangLunasModel.cs" />
     <Compile Include="Keuangan\Model\BukuHutangModel.cs" />
     <Compile Include="Keuangan\Model\BukuKasModel.cs" />
     <Compile Include="Keuangan\Model\BukuPiutangModel.cs" />

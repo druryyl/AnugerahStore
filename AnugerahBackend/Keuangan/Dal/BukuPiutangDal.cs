@@ -17,6 +17,7 @@ namespace AnugerahBackend.Keuangan.Dal
         void Update(BukuPiutangModel bukuPiutang);
         void Delete(string bukuPiutangID);
         BukuPiutangModel GetData(string bukuPiutangID);
+        BukuPiutangModel GetData(BukuKasModel bukuKas);
         IEnumerable<BukuPiutangModel> ListData(string tgl1, string tgl2);
 
     }

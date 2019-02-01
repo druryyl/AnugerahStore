@@ -21,4 +21,13 @@ namespace AnugerahBackend.Keuangan.Model
         public string Keterangan { get; set; }
         public string BukuKasID { get; set; }
     }
+
+    public class BukuHutangSearchModel
+    {
+        public string BukuPiutangID { get; set; }
+        public string TglBuku { get; set; }
+        public string PihakKetigaName { get; set; }
+        public string NilaiSisa { get; set; }
+    }
+
 }
