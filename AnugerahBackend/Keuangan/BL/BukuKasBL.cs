@@ -112,8 +112,11 @@ namespace AnugerahBackend.Keuangan.BL
 
             switch (bukuKas.JenisTrsKasirID)
             {
+                case "PTG":
+                    _bukuPiutangBL.GenBukuPiutang(bukuKas);
+                    break;
                 case "PTL":
-                    _bukuPiutangBL.GenPiutang(bukuKas);
+                    _bukuPiutangBL.GenBukuPiutangLunas(bukuKas);
                     break;
                 default:
                     break;

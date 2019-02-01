@@ -12,8 +12,10 @@ namespace AnugerahBackend.Keuangan.BL
 {
     public interface IBukuPiutangBL : ISearchData<BukuPiutangSearchModel>
     {
-        void GenPiutang(BukuKasModel bukuKas);
-        void GenPiutangLunas(BukuKasModel bukuKas);
+        BukuPiutangModel GetData(string bukuPiutangID);
+        BukuPiutangModel GenBukuPiutang(BukuKasModel bukuKas);
+        BukuPiutangModel GenBukuPiutangLunas(BukuKasModel bukuKas);
+
     }
 
     public class BukuPiutangBL : IBukuPiutangBL
@@ -43,6 +45,113 @@ namespace AnugerahBackend.Keuangan.BL
             _paramNoBL = injParamNoBL;
         }
 
+
+        private string GetBukuPiutangID(BukuKasModel bukuKas)
+        {
+            string result = null;
+            var listPiutangDetil = _bukuPiutangLunasDal.ListData(bukuKas);
+            if (listPiutangDetil != null)
+                result = listPiutangDetil.First().BukuPiutangID;
+            return result;
+        }
+        private string GenNewBukuPiutangID()
+        {
+            var prefix = "PT" + DateTime.Now.ToString("yyMM");
+            var result = _paramNoBL.GenNewID(prefix, 10);
+            return result;
+        }
+
+        private BukuPiutangModel CreateBukuPiutang(BukuKasModel bukuKas)
+        {
+            BukuPiutangModel result = null;
+
+            //  piutang, nilai kas harus minus
+            if (bukuKas.NilaiKasMasuk - bukuKas.NilaiKasKeluar >= 0)
+                throw new ArgumentException("Generate Piutang harus Kas Keluar");
+
+            //  bentuk object bukuPiutang utuh atas bukuKas ini;
+            //  
+            //  cari bukuPiutangID-nya
+            var bukuPiutangID = GetBukuPiutangID(bukuKas);
+            //  jika ngga ada, bikin id baru (berarti data baru)
+            if (bukuPiutangID == null)
+                bukuPiutangID = GenNewBukuPiutangID();
+
+            //  ambil data bukuPiutang berdasarkan piutangID-nya
+            result = GetData(bukuPiutangID);
+            if (result == null) result = new BukuPiutangModel();
+            //
+            //  update header-nya dengan data baru
+            result.TglBuku = bukuKas.TglBuku;
+            result.JamBuku = bukuKas.JamBuku;
+            result.UserrID = bukuKas.UserrID;
+            result.PihakKetigaID = bukuKas.PihakKetigaID;
+            result.NilaiPiutang = bukuKas.NilaiKasKeluar - bukuKas.NilaiKasMasuk;
+            result.NilaiSisa = bukuKas.NilaiKasKeluar - bukuKas.NilaiKasMasuk;
+            result.Keterangan = bukuKas.Keterangan;
+            result.BukuKasID = bukuKas.BukuKasID;
+            //
+            //  bikin list detil baru
+            var newListDetil = new List<BukuPiutangLunasModel>();
+            var noUrut = 0;
+            var item = new BukuPiutangLunasModel
+            {
+                BukuPiutangLunasID = bukuPiutangID + "-" + noUrut.ToString().PadLeft(2,'0'),
+                BukuPiutangID = bukuPiutangID,
+                TglLunas = bukuKas.TglBuku,
+                JamLunas = bukuKas.JamBuku,
+                NilaiLunas = bukuKas.NilaiKasKeluar - bukuKas.NilaiKasMasuk,
+                BukuKasID = bukuKas.BukuKasID
+            };
+            newListDetil.Add(item);
+            //
+            //  tambahkan dari item2 listDetil yang lama
+            //  kecuali yang bukuKasID yang "ini"
+            if(result.ListLunas != null)
+                foreach(var item2 in result.ListLunas.Where(x => x.BukuKasID !=bukuKas.BukuKasID))
+                {
+                    noUrut++;
+                    item2.BukuPiutangLunasID = bukuPiutangID + "-" + noUrut.ToString().PadLeft(2, '0');
+                    item2.BukuPiutangID = bukuPiutangID;
+                    newListDetil.Add(item);
+                }
+            //  tempelkan ke object buku piutang yag baru
+            result.ListLunas = newListDetil;
+            //
+            //  Proses Save
+            return result;
+        }
+
+        private BukuPiutangModel Save(BukuPiutangModel bukuPiutang)
+        {
+            //  validasi nilai sisa piutang
+            bukuPiutang.NilaiSisa = bukuPiutang.NilaiPiutang - bukuPiutang.ListLunas.Sum(x => x.NilaiLunas);
+
+            //  update bukuPiutangID di detil harus sama dengan header semuana
+            foreach (var item in bukuPiutang.ListLunas)
+                item.BukuPiutangID = bukuPiutang.BukuPiutangID;
+
+            //  update bukuPiutangLunas ID
+            var noUrut = 0;
+            foreach(var item in bukuPiutang.ListLunas.OrderBy(x=>x.TglLunas).OrderBy(x => x.JamLunas))
+            {
+                var noBukuPiutangLunasID = string.Format("{0}-{1}",
+                    bukuPiutang.BukuPiutangID, noUrut.ToString().PadLeft(2, '0')); 
+                noUrut++;
+            }
+
+            //  - hapus data lama
+            _bukuPiutangDal.Delete(bukuPiutang.BukuPiutangID);
+            _bukuPiutangLunasDal.Delete(bukuPiutang.BukuPiutangID);
+            //
+            //  insert data baru
+            _bukuPiutangDal.Insert(bukuPiutang);
+            foreach (var item in bukuPiutang.ListLunas)
+                _bukuPiutangLunasDal.Insert(item);
+
+            return bukuPiutang;
+        }
+
         public BukuPiutangModel GetData(string bukuPiutangID)
         {
             BukuPiutangModel result = null;
@@ -53,112 +162,42 @@ namespace AnugerahBackend.Keuangan.BL
             return result;
         }
 
-        private string GetBukuPiutangID(BukuKasModel bukuKas)
+        public BukuPiutangModel GenBukuPiutang(BukuKasModel bukuKas)
         {
-            string result = null;
-            var listPiutangDetil = _bukuPiutangLunasDal.ListData(bukuKas);
-            if (listPiutangDetil != null)
-                result = listPiutangDetil.First().BukuPiutangID;
+            var bukuPiutang = CreateBukuPiutang(bukuKas);
+            var result = Save(bukuPiutang);
             return result;
         }
 
-        public void GenPiutang(BukuKasModel bukuKas)
+        public BukuPiutangModel GenBukuPiutangLunas(BukuKasModel bukuKas)
         {
-            //  piutang, nilai kas harus minus
-            if (bukuKas.NilaiKasMasuk - bukuKas.NilaiKasKeluar >= 0)
-                throw new ArgumentException("Generate Piutang harus Kas Keluar");
-
-            //  cari bukuPiutangID-nya
+            //  ambil data piutang lunas lama
+            BukuPiutangModel bukuPiutangLama = null;
             var bukuPiutangID = GetBukuPiutangID(bukuKas);
-            if(bukuPiutangID == null)
-                bukuPiutangID = GenNewBukuPiutangID();
-
-            //  ambil data bukuPiutang
-            var bukuPiutang = GetData(bukuPiutangID);
-            if(bukuPiutang == null)
+            if (bukuPiutangID != null)
             {
-                bukuPiutang = new BukuPiutangModel
-                {
-                    BukuPiutangID = bukuPiutangID,
-                    TglBuku = bukuKas.TglBuku,
-                    JamBuku = bukuKas.JamBuku,
-                    UserrID = bukuKas.UserrID,
-                    PihakKetigaID = bukuKas.PihakKetigaID,
-                    NilaiPiutang = bukuKas.NilaiKasKeluar - bukuKas.NilaiKasMasuk,
-                    NilaiSisa = bukuKas.NilaiKasKeluar - bukuKas.NilaiKasMasuk,
-                    Keterangan = bukuKas.Keterangan,
-                    BukuKasID = bukuKas.BukuKasID,
-                };
-
-                var bukuPiutangDetil = new BukuPiutangLunasModel
-                {
-                    BukuPiutangLunasID = kodePiutang + "-01",
-                    BukuPiutangID = kodePiutang,
-                    TglLunas = bukuKas.TglBuku,
-                    JamLunas = bukuKas.JamBuku,
-                    NilaiLunas = bukuKas.NilaiKasKeluar - bukuKas.NilaiKasMasuk
-                };
+                bukuPiutangLama = GetData(bukuPiutangID);
+                bukuPiutangLama.NilaiSisa = 
+                    bukuPiutangLama.ListLunas
+                    .Where(x => x.BukuKasID != bukuKas.BukuKasID)
+                    .Sum(x => x.NilaiLunas);
             }
-
-
-            //  hapus semua pencatatan piutang lunas (detil) atas bukuKas ini
-            var listPiutangLunas = _bukuPiutangLunasDal.ListData(bukuKas);
-            if (listPiutangLunas != null)
-                foreach (var item in listPiutangLunas)
-                    _bukuPiutangLunasDal.Delete(item.BukuPiutangLunasID);
-
-            //  hapus semua pencatatan hutang lunas (detil) atas bukuKas ini
-            var listHutangLunas = _bukuHutangLunasDal.ListData(bukuKas);
-            if (listHutangLunas != null)
-                foreach (var item in listHutangLunas)
-                    _bukuHutangLunasDal.Delete(item.BukuHutangLunasID);
-
-            //  cari kodePiutang (kasus save ulang)
-            var kodePiutang = "";
-            if (listPiutangLunas != null)
-                kodePiutang = listPiutangLunas.First().BukuPiutangID;
-            else
-                kodePiutang = GenNewBukuPiutangID();
-
-            //  insert header
-            var bukuPiutang = new BukuPiutangModel
-            {
-                BukuPiutangID = kodePiutang,
-                TglBuku = bukuKas.TglBuku,
-                JamBuku = bukuKas.JamBuku,
-                UserrID = bukuKas.UserrID,
-                PihakKetigaID = bukuKas.PihakKetigaID,
-                NilaiPiutang = bukuKas.NilaiKasKeluar - bukuKas.NilaiKasMasuk,
-                NilaiSisa = bukuKas.NilaiKasKeluar - bukuKas.NilaiKasMasuk,
-                Keterangan = bukuKas.Keterangan,
-                BukuKasID = bukuKas.BukuKasID,
-            };
-            _bukuPiutangDal.Delete(kodePiutang);
-            _bukuPiutangDal.Insert(bukuPiutang);
             
-            //  insert detil
-            var bukuPiutangDetil = new BukuPiutangLunasModel
+            //  ambil data piutang yang baru
+            var bukuPiutangBaru = GetData(bukuKas.ReffID);
+            var piutangLunas = new BukuPiutangLunasModel
             {
-                BukuPiutangLunasID = kodePiutang + "-01",
-                BukuPiutangID = kodePiutang,
                 TglLunas = bukuKas.TglBuku,
                 JamLunas = bukuKas.JamBuku,
-                NilaiLunas = bukuKas.NilaiKasKeluar - bukuKas.NilaiKasMasuk
+                NilaiLunas = bukuKas.NilaiKasKeluar - bukuKas.NilaiKasMasuk,
+                BukuKasID = bukuKas.BukuKasID
             };
-        }
+            bukuPiutangBaru.ListLunas.ToList().Add(piutangLunas);
 
-        private string GenNewBukuPiutangID()
-        {
-            var prefix = "PT" + DateTime.Now.ToString("yyMM");
-            var result = _paramNoBL.GenNewID(prefix, 10);
+            var result = Save(bukuPiutangLama);
+            result = Save(bukuPiutangBaru);
             return result;
         }
-
-        public void GenPiutangLunas(BukuKasModel bukuKas)
-        {
-            throw new NotImplementedException();
-        }
-
 
         #region SEARCH
         public IEnumerable<BukuPiutangSearchModel> Search()
@@ -175,6 +214,7 @@ namespace AnugerahBackend.Keuangan.BL
         {
             throw new NotImplementedException();
         }
+
         #endregion
     }
 }

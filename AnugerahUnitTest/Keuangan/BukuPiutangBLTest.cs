@@ -25,12 +25,12 @@ namespace AnugerahUnitTest.Keuangan
     {
         private IBukuPiutangBL _bukuPiutangBL;
         private Mock<IBukuPiutangDal> _bukuPiutangDal;
-        private Mock<IBukuPiutangLunasDal> _bukuPiutangLunasDal;
+        //private Mock<IBukuPiutangLunasDal> _bukuPiutangLunasDal;
 
         public BukuPiutangBLTest()
         {
             _bukuPiutangDal = new Mock<IBukuPiutangDal>();
-            _bukuPiutangBL = new BukuPiutangBL(_bukuPiutangDal.Object);
+            //_bukuPiutangBL = new BukuPiutangBL(_bukuPiutangDal.Object);
         }
 
         public void GenPiutang_Standard_Berhasil()

@@ -14,6 +14,10 @@ namespace AnugerahBackend.Keuangan.BL
     }
     public class BukuHutangBL : IBukuHutangBL
     {
+        public void Generate(BukuKasModel bukuKas)
+        {
+            throw new NotImplementedException();
+        }
         #region SEARCH
         public IEnumerable<BukuHutangSearchModel> Search()
         {
