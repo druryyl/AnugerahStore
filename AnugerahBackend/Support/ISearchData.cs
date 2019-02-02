@@ -12,4 +12,13 @@ namespace AnugerahBackend.Support
         IEnumerable<T> Search(string keyword);
         IEnumerable<T> Search(string keyword, string tgl1, string tgl2);
     }
+
+    public interface ISearchStaticFilterData<T>
+    {
+        IEnumerable<T> SearchStaticFilter(string staticFilter);
+        IEnumerable<T> SearchStaticFilter(string staticFilter, string keyword);
+        IEnumerable<T> SearchStaticFilter(string staticFilter, string keyword, string tgl1, string tgl2);
+    }
+
+
 }

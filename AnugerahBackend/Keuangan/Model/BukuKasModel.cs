@@ -13,8 +13,7 @@ namespace AnugerahBackend.Keuangan.Model
         public string JamBuku { get; set; }
         public string UserrID { get; set; }
 
-        public decimal NilaiKasMasuk { get; set; }
-        public decimal NilaiKasKeluar { get; set; }
+        public decimal NilaiKas { get; set; }
 
         public string Keterangan { get; set; }
 
@@ -32,7 +31,7 @@ namespace AnugerahBackend.Keuangan.Model
         public string BukuKasID { get; set; }
         public string TglBuku { get; set; }
         public string PihakKetigaName { get; set; }
-        public decimal Nilai { get; set; }
+        public string Nilai { get; set; }
         public string Keterangan { get; set; }
     }
 }

@@ -61,7 +61,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.ListDataGrid);
-            this.splitContainer1.Size = new System.Drawing.Size(523, 492);
+            this.splitContainer1.Size = new System.Drawing.Size(393, 492);
             this.splitContainer1.SplitterDistance = 58;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -99,7 +99,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.KeywordTextBox.Location = new System.Drawing.Point(3, 3);
             this.KeywordTextBox.Name = "KeywordTextBox";
-            this.KeywordTextBox.Size = new System.Drawing.Size(517, 21);
+            this.KeywordTextBox.Size = new System.Drawing.Size(387, 21);
             this.KeywordTextBox.TabIndex = 0;
             this.KeywordTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeywordTextBox_KeyDown);
             // 
@@ -113,7 +113,7 @@
             this.ListDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ListDataGrid.Location = new System.Drawing.Point(0, 0);
             this.ListDataGrid.Name = "ListDataGrid";
-            this.ListDataGrid.Size = new System.Drawing.Size(521, 428);
+            this.ListDataGrid.Size = new System.Drawing.Size(391, 428);
             this.ListDataGrid.TabIndex = 0;
             this.ListDataGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListDataGrid_CellDoubleClick);
             this.ListDataGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ListDataGrid_KeyDown);
@@ -122,7 +122,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(523, 492);
+            this.ClientSize = new System.Drawing.Size(393, 492);
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.KeyPreview = true;

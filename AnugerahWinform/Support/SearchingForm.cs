@@ -16,13 +16,26 @@ namespace AnugerahWinform.Support
         ISearchData<T> _searchBL;
         public string SelectedDataKey;
         private bool _isFilterTgl;
+        private string _staticFilter;
 
         public SearchingForm(ISearchData<T> _injSearchBL, bool isShowTgl)
         {
             InitializeComponent();
+            InnerContructor(_injSearchBL, isShowTgl, "");
+        }
+
+        public SearchingForm(ISearchData<T> _injSearchBL, bool isShowTgl, string staticFilter)
+        {
+            InitializeComponent();
+            InnerContructor(_injSearchBL, isShowTgl, staticFilter);
+        }
+
+        private void InnerContructor(ISearchData<T> _injSearchBL, bool isShowTgl, string staticFilter)
+        {
             _searchBL = _injSearchBL;
             _isFilterTgl = isShowTgl;
-            
+            _staticFilter = staticFilter;
+
             if (!isShowTgl)
             {
                 Tgl1DatePicker.Visible = false;
@@ -33,14 +46,29 @@ namespace AnugerahWinform.Support
             }
 
             IEnumerable<T> listData;
-            listData = _searchBL.Search();
+            if (staticFilter.Trim() == "")
+                listData = _searchBL.Search();
+            else
+                listData = _searchBL.SearchStaticFilter(_staticFilter);
+
             if (listData == null) return;
 
             ListDataGrid.DataSource = listData;
+            int allColWidth = 0;
             foreach (DataGridViewColumn col in ListDataGrid.Columns)
             {
                 col.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                allColWidth += col.Width;
             }
+            var maxWidth = 900;
+            var minWidth = 300;
+            var margin = 65;
+            if (allColWidth <= maxWidth)
+                this.Width = allColWidth + margin;
+
+            if (allColWidth <= minWidth)
+                this.Width = minWidth + margin;
+
         }
 
         private void KeywordTextBox_KeyDown(object sender, KeyEventArgs e)

@@ -2,6 +2,7 @@
 using AnugerahBackend.Keuangan.Model;
 using AnugerahBackend.Support;
 using AnugerahBackend.Support.BL;
+using Ics.Helper.Database;
 using Ics.Helper.StringDateTime;
 using System;
 using System.Collections.Generic;
@@ -83,8 +84,7 @@ namespace AnugerahBackend.Keuangan.BL
 
             //  jumlahkan kasMasuk dan kasKeluar untuk menentukan 
             //  untuk menentukan 
-            var totalNilaiKas = bukuKas.NilaiKasMasuk - bukuKas.NilaiKasKeluar;
-            if (totalNilaiKas > 0)
+            if (bukuKas.NilaiKas > 0)
                 if (jenisTrsKasir.IsKasKeluar)
                 {
                     var errMsg = string.Format("Invalid NilaiKas vs JenisTrsKasir");
@@ -94,34 +94,37 @@ namespace AnugerahBackend.Keuangan.BL
 
             #region PROSES-SAVE
             //  generate id
-            var isNew = false;
-            if (bukuKas.BukuKasID.Trim() == "")
+            using (var trans = TransHelper.NewScope())
             {
-                bukuKas.BukuKasID = this.GenNewID();
-                isNew = true;
-            }
-            if (isNew)
-            {
-                _bukuKasDal.Insert(bukuKas);
-            }
-            else
-            {
-                _bukuKasDal.Update(bukuKas);
-            }
-            #endregion
+                var isNew = false;
+                if (bukuKas.BukuKasID.Trim() == "")
+                {
+                    bukuKas.BukuKasID = this.GenNewID();
+                    isNew = true;
+                }
+                if (isNew)
+                {
+                    _bukuKasDal.Insert(bukuKas);
+                }
+                else
+                {
+                    _bukuKasDal.Update(bukuKas);
+                }
+                #endregion
 
-            switch (bukuKas.JenisTrsKasirID)
-            {
-                case "PTG":
-                    _bukuPiutangBL.GenBukuPiutang(bukuKas);
-                    break;
-                case "PTL":
-                    _bukuPiutangBL.GenBukuPiutangLunas(bukuKas);
-                    break;
-                default:
-                    break;
+                switch (bukuKas.JenisTrsKasirID)
+                {
+                    case "PTG":
+                        _bukuPiutangBL.GenBukuPiutang(bukuKas);
+                        break;
+                    case "PTL":
+                        _bukuPiutangBL.GenBukuPiutangLunas(bukuKas);
+                        break;
+                    default:
+                        break;
+                }
+                trans.Complete();
             }
-
             return bukuKas;
         }
 
@@ -164,7 +167,7 @@ namespace AnugerahBackend.Keuangan.BL
                     BukuKasID = item.BukuKasID,
                     TglBuku = item.TglBuku,
                     PihakKetigaName = item.PihakKetigaName,
-                    Nilai = item.NilaiKasMasuk - item.NilaiKasKeluar,
+                    Nilai = item.NilaiKas.ToString("N0").PadLeft(12, ' '),
                     Keterangan = item.Keterangan
                 });
             }
@@ -190,7 +193,7 @@ namespace AnugerahBackend.Keuangan.BL
                     BukuKasID = item.BukuKasID,
                     TglBuku = item.TglBuku,
                     PihakKetigaName = item.PihakKetigaName,
-                    Nilai = item.NilaiKasMasuk - item.NilaiKasKeluar,
+                    Nilai = item.NilaiKas.ToString("N0").PadLeft(12, ' '),
                     Keterangan = item.Keterangan
                 });
             }

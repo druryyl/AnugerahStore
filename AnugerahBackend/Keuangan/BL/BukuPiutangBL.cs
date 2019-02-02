@@ -66,7 +66,7 @@ namespace AnugerahBackend.Keuangan.BL
             BukuPiutangModel result = null;
 
             //  piutang, nilai kas harus minus
-            if (bukuKas.NilaiKasMasuk - bukuKas.NilaiKasKeluar >= 0)
+            if (bukuKas.NilaiKas >= 0)
                 throw new ArgumentException("Generate Piutang harus Kas Keluar");
 
             //  bentuk object bukuPiutang utuh atas bukuKas ini;
@@ -82,12 +82,13 @@ namespace AnugerahBackend.Keuangan.BL
             if (result == null) result = new BukuPiutangModel();
             //
             //  update header-nya dengan data baru
+            result.BukuPiutangID = bukuPiutangID;
             result.TglBuku = bukuKas.TglBuku;
             result.JamBuku = bukuKas.JamBuku;
             result.UserrID = bukuKas.UserrID;
             result.PihakKetigaID = bukuKas.PihakKetigaID;
-            result.NilaiPiutang = bukuKas.NilaiKasKeluar - bukuKas.NilaiKasMasuk;
-            result.NilaiSisa = bukuKas.NilaiKasKeluar - bukuKas.NilaiKasMasuk;
+            result.NilaiPiutang = bukuKas.NilaiKas;
+            result.NilaiSisa = bukuKas.NilaiKas;
             result.Keterangan = bukuKas.Keterangan;
             result.BukuKasID = bukuKas.BukuKasID;
             //
@@ -100,7 +101,7 @@ namespace AnugerahBackend.Keuangan.BL
                 BukuPiutangID = bukuPiutangID,
                 TglLunas = bukuKas.TglBuku,
                 JamLunas = bukuKas.JamBuku,
-                NilaiLunas = bukuKas.NilaiKasKeluar - bukuKas.NilaiKasMasuk,
+                NilaiLunas = bukuKas.NilaiKas,
                 BukuKasID = bukuKas.BukuKasID
             };
             newListDetil.Add(item);
@@ -136,7 +137,8 @@ namespace AnugerahBackend.Keuangan.BL
             foreach(var item in bukuPiutang.ListLunas.OrderBy(x=>x.TglLunas).OrderBy(x => x.JamLunas))
             {
                 var noBukuPiutangLunasID = string.Format("{0}-{1}",
-                    bukuPiutang.BukuPiutangID, noUrut.ToString().PadLeft(2, '0')); 
+                    bukuPiutang.BukuPiutangID, noUrut.ToString().PadLeft(2, '0'));
+                item.BukuPiutangLunasID = noBukuPiutangLunasID;
                 noUrut++;
             }
 
@@ -189,7 +191,7 @@ namespace AnugerahBackend.Keuangan.BL
             {
                 TglLunas = bukuKas.TglBuku,
                 JamLunas = bukuKas.JamBuku,
-                NilaiLunas = bukuKas.NilaiKasKeluar - bukuKas.NilaiKasMasuk,
+                NilaiLunas = bukuKas.NilaiKas,
                 BukuKasID = bukuKas.BukuKasID
             };
             bukuPiutangBaru.ListLunas.ToList().Add(piutangLunas);

@@ -164,6 +164,7 @@
             this.SearchBukuKasButton.TabIndex = 1;
             this.SearchBukuKasButton.Text = "...";
             this.SearchBukuKasButton.UseVisualStyleBackColor = true;
+            this.SearchBukuKasButton.Click += new System.EventHandler(this.SearchBukuKasButton_Click);
             // 
             // SearchPihakKetigaButton
             // 
@@ -263,6 +264,7 @@
             this.BukuKasIDTextBox.Name = "BukuKasIDTextBox";
             this.BukuKasIDTextBox.Size = new System.Drawing.Size(114, 21);
             this.BukuKasIDTextBox.TabIndex = 0;
+            this.BukuKasIDTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BukuKasIDTextBox_KeyDown);
             // 
             // label5
             // 
@@ -282,6 +284,7 @@
             this.JenisTrsCombo.Name = "JenisTrsCombo";
             this.JenisTrsCombo.Size = new System.Drawing.Size(150, 21);
             this.JenisTrsCombo.TabIndex = 5;
+            this.JenisTrsCombo.SelectedValueChanged += new System.EventHandler(this.JenisTrsCombo_SelectedValueChanged);
             // 
             // label4
             // 
@@ -322,6 +325,11 @@
             0,
             0,
             0});
+            this.NilaiText.Minimum = new decimal(new int[] {
+            99999999,
+            0,
+            0,
+            -2147483648});
             this.NilaiText.Name = "NilaiText";
             this.NilaiText.Size = new System.Drawing.Size(120, 21);
             this.NilaiText.TabIndex = 13;

@@ -35,11 +35,11 @@ namespace AnugerahBackend.Keuangan.Dal
                 INSERT INTO
                     BukuKas (
                         BukuKasID, TglBuku, JamBuku, UserrID,
-                        NilaiKasMasuk, NilaiKasKeluar, JenisTrsKasirID,
+                        NilaiKas, JenisTrsKasirID,
                         ReffID, Keterangan, PihakKetigaID)
                 VALUES (
                         @BukuKasID, @TglBuku, @JamBuku, @UserrID,
-                        @NilaiKasMasuk, @NilaiKasKeluar, @JenisTrsKasirID,
+                        @NilaiKas, @JenisTrsKasirID,
                         @ReffID, @Keterangan, @PihakKetigaID) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
@@ -49,8 +49,7 @@ namespace AnugerahBackend.Keuangan.Dal
                 cmd.AddParam("@JamBuku", bukuKas.JamBuku);
                 cmd.AddParam("@UserrID", bukuKas.UserrID);
 
-                cmd.AddParam("@NilaiKasMasuk", bukuKas.NilaiKasMasuk);
-                cmd.AddParam("@NilaiKasKeluar", bukuKas.NilaiKasKeluar);
+                cmd.AddParam("@NilaiKas", bukuKas.NilaiKas);
                 cmd.AddParam("@JenisTrsKasirID", bukuKas.JenisTrsKasirID);
 
                 cmd.AddParam("@ReffID", bukuKas.ReffID);
@@ -70,8 +69,7 @@ namespace AnugerahBackend.Keuangan.Dal
                     TglBuku = @TglBuku, 
                     JamBuku = @JamBuku, 
                     UserrID = @UserrID,
-                    NilaiKasMasuk = @NilaiKasMasuk, 
-                    NilaiKasKeluar = @NilaiKasKeluar, 
+                    NilaiKas = @NilaiKas, 
                     JenisTrsKasirID = @JenisTrsKasirID,
                     ReffID = @ReffID, 
                     Keterangan = @Keterangan,
@@ -85,8 +83,7 @@ namespace AnugerahBackend.Keuangan.Dal
                 cmd.AddParam("@TglBuku", bukuKas.TglBuku.ToTglYMD());
                 cmd.AddParam("@JamBuku", bukuKas.JamBuku);
                 cmd.AddParam("@UserrID", bukuKas.UserrID);
-                cmd.AddParam("@NilaiKasMasuk", bukuKas.NilaiKasMasuk);
-                cmd.AddParam("@NilaiKasKeluar", bukuKas.NilaiKasKeluar);
+                cmd.AddParam("@NilaiKas", bukuKas.NilaiKas);
                 cmd.AddParam("@JenisTrsKasirID", bukuKas.JenisTrsKasirID);
                 cmd.AddParam("@ReffID", bukuKas.ReffID);
                 cmd.AddParam("@Keterangan", bukuKas.Keterangan);
@@ -118,7 +115,7 @@ namespace AnugerahBackend.Keuangan.Dal
             var sSql = @"
                 SELECT
                     aa.BukuKasID, aa.TglBuku, aa.JamBuku,
-                    aa.UserrID, aa.NilaiKasMasuk, aa.NilaiKasKeluar,
+                    aa.UserrID, aa.NilaiKas, 
                     aa.JenisTrsKasirID,
                     aa.ReffID, aa.Keterangan, aa.PihakKetigaID,
                     ISNULL(bb.PihakKetigaName,'')PihakKetigaName,
@@ -147,8 +144,7 @@ namespace AnugerahBackend.Keuangan.Dal
                         JamBuku = dr["JamBuku"].ToString(),
                         UserrID = dr["USerrID"].ToString(),
 
-                        NilaiKasMasuk = Convert.ToDecimal(dr["NilaiKasMasuk"]),
-                        NilaiKasKeluar = Convert.ToDecimal(dr["NilaiKasKeluar"]),
+                        NilaiKas = Convert.ToDecimal(dr["NilaiKas"]),
                         JenisTrsKasirID = dr["JenisTrsKasirID"].ToString(),
                         JenisTrsKasirName = dr["JenisTrsKasirName"].ToString(),
                         ReffID = dr["ReffID"].ToString(),
@@ -168,7 +164,7 @@ namespace AnugerahBackend.Keuangan.Dal
             var sSql = @"
                 SELECT
                     aa.BukuKasID, aa.TglBuku, aa.JamBuku,
-                    aa.UserrID, aa.NilaiKasMasuk, aa.NilaiKasKeluar,
+                    aa.UserrID, aa.NilaiKas, 
                     aa.JenisTrsKasirID,
                     aa.ReffID, aa.Keterangan, aa.PihakKetigaID,
                     ISNULL(bb.PihakKetigaName,'')PihakKetigaName,
@@ -201,8 +197,7 @@ namespace AnugerahBackend.Keuangan.Dal
                             JamBuku = dr["JamBuku"].ToString(),
                             UserrID = dr["USerrID"].ToString(),
 
-                            NilaiKasMasuk = Convert.ToDecimal(dr["NilaiKasMasuk"]),
-                            NilaiKasKeluar = Convert.ToDecimal(dr["NilaiKasKeluar"]),
+                            NilaiKas = Convert.ToDecimal(dr["NilaiKas"]),
                             JenisTrsKasirID = dr["JenisTrsKasirID"].ToString(),
                             JenisTrsKasirName = dr["JenisTrsKasirName"].ToString(),
 
