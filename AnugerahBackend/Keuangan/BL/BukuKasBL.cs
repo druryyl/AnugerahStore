@@ -151,17 +151,50 @@ namespace AnugerahBackend.Keuangan.BL
         #region SEARCH
         public IEnumerable<BukuKasSearchModel> Search()
         {
-            throw new NotImplementedException();
+            var date1 = DateTime.Now.ToString("dd-MM-yyyy");
+
+            var listAll = _bukuKasDal.ListData(date1, date1);
+            if (listAll == null) return null;
+
+            var result = new List<BukuKasSearchModel>();
+            foreach (var item in listAll)
+            {
+                result.Add(new BukuKasSearchModel
+                {
+                    BukuKasID = item.BukuKasID,
+                    TglBuku = item.TglBuku,
+                    PihakKetigaName = item.PihakKetigaName,
+                    Nilai = item.NilaiKasMasuk - item.NilaiKasKeluar,
+                    Keterangan = item.Keterangan
+                });
+            }
+            return result;
         }
 
         public IEnumerable<BukuKasSearchModel> Search(string keyword)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public IEnumerable<BukuKasSearchModel> Search(string keyword, string tgl1, string tgl2)
         {
-            throw new NotImplementedException();
+            var listAll = _bukuKasDal.ListData(tgl1, tgl2);
+            if (listAll == null) return null;
+
+            var result = new List<BukuKasSearchModel>();
+            foreach (var item in listAll.Where(
+                x => x.PihakKetigaName.ToLower().Contains(keyword.ToLower())))
+            {
+                result.Add(new BukuKasSearchModel
+                {
+                    BukuKasID = item.BukuKasID,
+                    TglBuku = item.TglBuku,
+                    PihakKetigaName = item.PihakKetigaName,
+                    Nilai = item.NilaiKasMasuk - item.NilaiKasKeluar,
+                    Keterangan = item.Keterangan
+                });
+            }
+            return result;
         }
         #endregion
     }

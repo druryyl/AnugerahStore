@@ -50,6 +50,7 @@
     <Compile Include="Keuangan\BL\BukuHutangBL.cs" />
     <Compile Include="Keuangan\BL\BukuKasBL.cs" />
     <Compile Include="Keuangan\BL\BukuPiutangBL.cs" />
+    <Compile Include="Keuangan\BL\PihakKetigaBL.cs" />
     <Compile Include="Keuangan\Dal\BukuHutangDal.cs" />
     <Compile Include="Keuangan\Dal\BukuHutangLunasDal.cs" />
     <Compile Include="Keuangan\Dal\BukuKasDal.cs" />

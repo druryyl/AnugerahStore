@@ -92,6 +92,7 @@
     <Build Include="Keuangan\BukuHutangLunas.sql" />
     <Build Include="Keuangan\JenisTrsKasir.sql" />
     <Build Include="Keuangan\PihakKetiga.sql" />
+    <Build Include="OtherScript\JenisTrsKasir.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AnugerahDevelopment.publish.xml" />

@@ -47,6 +47,7 @@ namespace AnugerahWinform.Support
         {
             if(e.KeyCode == Keys.Enter)
             {
+                Search();
             }
         }
 

@@ -74,6 +74,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Keuangan\KasirForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Keuangan\KasirForm.Designer.cs">
+      <DependentUpon>KasirForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainMenuForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,6 +173,9 @@
     <Compile Include="Support\SearchingForm.Designer.cs">
       <DependentUpon>SearchingForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Keuangan\KasirForm.resx">
+      <DependentUpon>KasirForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainMenuForm.resx">
       <DependentUpon>MainMenuForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -260,5 +269,6 @@
   <ItemGroup>
     <None Include="Resources\background.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

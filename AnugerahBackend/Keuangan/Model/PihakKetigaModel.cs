@@ -12,4 +12,6 @@ namespace AnugerahBackend.Keuangan.Model
         public string PihakKetigaID { get; set; }
         public string PihakKetigaName { get; set; }
     }
+
+
 }

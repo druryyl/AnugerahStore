@@ -8,7 +8,7 @@
 )
 
 --JenisTrskasir :
---	1. JUL : Penjualan
+--	1. PJL : Penjualan
 --	2. BIY : Biaya
 --  3. PTG : Piutang
 --  4. PTL : Piutang Lunas

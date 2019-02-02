@@ -62,6 +62,7 @@
             this.ribbonSeparator4 = new System.Windows.Forms.RibbonSeparator();
             this.ribbonButton7 = new System.Windows.Forms.RibbonButton();
             this.ribbonTab3 = new System.Windows.Forms.RibbonTab();
+            this.KasirButton = new System.Windows.Forms.RibbonButton();
             this.SuspendLayout();
             // 
             // ribbon1
@@ -136,6 +137,7 @@
             this.SalesRibbonPanel.Items.Add(this.PreOrderButton);
             this.SalesRibbonPanel.Items.Add(this.ribbonSeparator1);
             this.SalesRibbonPanel.Items.Add(this.PricingButton);
+            this.SalesRibbonPanel.Items.Add(this.KasirButton);
             this.SalesRibbonPanel.Name = "SalesRibbonPanel";
             this.SalesRibbonPanel.Text = "Sales";
             // 
@@ -334,6 +336,15 @@
             this.ribbonTab3.Name = "ribbonTab3";
             this.ribbonTab3.Text = "Report";
             // 
+            // KasirButton
+            // 
+            this.KasirButton.Image = ((System.Drawing.Image)(resources.GetObject("KasirButton.Image")));
+            this.KasirButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("KasirButton.LargeImage")));
+            this.KasirButton.Name = "KasirButton";
+            this.KasirButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("KasirButton.SmallImage")));
+            this.KasirButton.Text = "Kasir";
+            this.KasirButton.Click += new System.EventHandler(this.KasirButton_Click);
+            // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -388,6 +399,7 @@
         private System.Windows.Forms.RibbonButton MerkButton;
         private System.Windows.Forms.RibbonButton ColorButton;
         private System.Windows.Forms.RibbonSeparator ribbonSeparator6;
+        private System.Windows.Forms.RibbonButton KasirButton;
     }
 }
 

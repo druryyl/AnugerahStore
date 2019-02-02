@@ -1,4 +1,5 @@
-﻿using AnugerahWinform.Penjualan;
+﻿using AnugerahWinform.Keuangan;
+using AnugerahWinform.Penjualan;
 using AnugerahWinform.StokBarang;
 using System;
 using System.Collections.Generic;
@@ -94,6 +95,16 @@ namespace AnugerahWinform
         private void Adjustment_Click(object sender, EventArgs e)
         {
             var form = new StokAdjustmentForm
+            {
+                MdiParent = this,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            form.Show();
+        }
+
+        private void KasirButton_Click(object sender, EventArgs e)
+        {
+            var form = new KasirForm
             {
                 MdiParent = this,
                 StartPosition = FormStartPosition.CenterScreen

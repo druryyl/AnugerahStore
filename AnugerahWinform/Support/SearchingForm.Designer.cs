@@ -107,6 +107,7 @@
             // 
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.ListDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.ListDataGrid.BackgroundColor = System.Drawing.Color.Turquoise;
             this.ListDataGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.ListDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ListDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;

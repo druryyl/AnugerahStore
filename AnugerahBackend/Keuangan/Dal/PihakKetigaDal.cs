@@ -22,6 +22,7 @@ namespace AnugerahBackend.Keuangan.Dal
         PihakKetigaModel GetData(string id);
 
         IEnumerable<PihakKetigaModel> ListData();
+        IEnumerable<PihakKetigaModel> Search(string keyword);
     }
 
 
@@ -127,6 +128,41 @@ namespace AnugerahBackend.Keuangan.Dal
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
+                conn.Open();
+                using (var dr = cmd.ExecuteReader())
+                {
+                    if (dr.HasRows)
+                    {
+                        result = new List<PihakKetigaModel>();
+                        while (dr.Read())
+                        {
+                            var item = new PihakKetigaModel
+                            {
+                                PihakKetigaID = dr["PihakKetigaID"].ToString(),
+                                PihakKetigaName = dr["PihakKetigaName"].ToString()
+                            };
+                            result.Add(item);
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+
+        public IEnumerable<PihakKetigaModel> Search(string keyword)
+        {
+            List<PihakKetigaModel> result = null;
+            var sSql = @"
+                SELECT
+                    aa.PihakKetigaID, aa.PihakKetigaName
+                FROM
+                    PihakKetiga aa 
+                WHERE
+                    PihakKetigaName LIKE @PihakKetigaName ";
+            using (var conn = new SqlConnection(_connString))
+            using (var cmd = new SqlCommand(sSql, conn))
+            {
+                cmd.AddParam("@PihakKetigaName", string.Format("%{0}%", keyword));
                 conn.Open();
                 using (var dr = cmd.ExecuteReader())
                 {
