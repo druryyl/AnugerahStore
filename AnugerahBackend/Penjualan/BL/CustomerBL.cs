@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AnugerahBackend.Penjualan.BL
 {
-    public interface ICustomerBL : ISearchData<CustomerSearchModel>
+    public interface ICustomerBL : ISearch<CustomerSearchModel>
     {
         void Save(CustomerModel customer);
         void Delete(string id);

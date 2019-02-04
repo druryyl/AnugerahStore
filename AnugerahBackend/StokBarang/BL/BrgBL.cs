@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace AnugerahBackend.StokBarang.BL
 {
 
-    public interface IBrgBL : ISearchData<BrgSearchResultModel>
+    public interface IBrgBL : ISearch<BrgSearchResultModel>
     {
         BrgModel Save(BrgModel brg);
 
@@ -224,6 +224,8 @@ namespace AnugerahBackend.StokBarang.BL
         {
             return _brgDal.ListData(jenisID, subID, merkID, colorID);
         }
+
+
 
         public IEnumerable<BrgSearchResultModel> Search(string keyword)
         {

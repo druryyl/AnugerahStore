@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AnugerahBackend.Keuangan.BL
 {
-    public interface IBukuHutangBL : ISearchData<BukuHutangSearchModel>
+    public interface IBukuHutangBL : ISearch<BukuHutangSearchModel>
     {
         void Generate(BukuKasModel bukuKas);
     }

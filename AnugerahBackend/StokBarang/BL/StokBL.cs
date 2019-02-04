@@ -13,7 +13,7 @@ using Ics.Helper.Database;
 
 namespace AnugerahBackend.StokBarang.BL
 {
-    public interface IStokBL : ISearchData<StokSearchModel>
+    public interface IStokBL : ISearch<StokSearchModel>
     {
         void AddStok(string brgID, long qty, double hpp, 
             string tgl, string jam, string trsMasukID, 

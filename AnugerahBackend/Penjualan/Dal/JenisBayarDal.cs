@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace AnugerahBackend.Penjualan.Dal
 {
 
-    public interface IJenisBayarDal : ISearchData<JenisBayarModel>
+    public interface IJenisBayarDal : ISearch<JenisBayarModel>
     {
         void Insert(JenisBayarModel jenisBayar);
 

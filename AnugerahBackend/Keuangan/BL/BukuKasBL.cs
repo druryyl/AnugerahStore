@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace AnugerahBackend.Keuangan.BL
 {
-    public interface IBukuKasBL : ISearchData<BukuKasSearchModel>
+    public interface IBukuKasBL : ISearch<BukuKasSearchModel>
     {
         BukuKasModel Save(BukuKasModel bukuKas);
         void Delete(string bukuKasID);
@@ -152,11 +152,18 @@ namespace AnugerahBackend.Keuangan.BL
         }
 
         #region SEARCH
+        public string SearchKeyword { get; set; }
+        public DateTime SearchDate1 { get; set; }
+        public DateTime SearchDate2 { get; set; }
+        public string SearchStaticFilter { get; set; }
         public IEnumerable<BukuKasSearchModel> Search()
         {
-            var date1 = DateTime.Now.ToString("dd-MM-yyyy");
+            SearchDate1 = DateTime.Now;
+            SearchDate2 = DateTime.Now;
 
-            var listAll = _bukuKasDal.ListData(date1, date1);
+            var listAll = _bukuKasDal.ListData(
+                SearchDate1.ToString("dd-MM-yyyy"),
+                SearchDate2.ToString("dd-MM-yyyy"));
             if (listAll == null) return null;
 
             var result = new List<BukuKasSearchModel>();
@@ -171,12 +178,17 @@ namespace AnugerahBackend.Keuangan.BL
                     Keterangan = item.Keterangan
                 });
             }
-            return result;
-        }
 
-        public IEnumerable<BukuKasSearchModel> Search(string keyword)
-        {
-            return null;
+            if (SearchKeyword != null)
+            {
+                SearchKeyword = SearchKeyword.ToLower();
+                result = result.Where(x => x
+                    .PihakKetigaName.ToLower()
+                    .Contains(SearchKeyword))
+                    .ToList();
+            }
+
+            return result;
         }
 
         public IEnumerable<BukuKasSearchModel> Search(string keyword, string tgl1, string tgl2)

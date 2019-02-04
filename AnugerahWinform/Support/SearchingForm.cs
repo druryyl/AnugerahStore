@@ -13,30 +13,20 @@ namespace AnugerahWinform.Support
 {
     public partial class SearchingForm<T> : Form
     {
-        ISearchData<T> _searchBL;
+        private ISearch<T> _searchBL;
+
         public string SelectedDataKey;
-        private bool _isFilterTgl;
-        private string _staticFilter;
 
-        public SearchingForm(ISearchData<T> _injSearchBL, bool isShowTgl)
+        public SearchingForm(ISearch<T> _injSearchBL)
         {
             InitializeComponent();
-            InnerContructor(_injSearchBL, isShowTgl, "");
-        }
-
-        public SearchingForm(ISearchData<T> _injSearchBL, bool isShowTgl, string staticFilter)
-        {
-            InitializeComponent();
-            InnerContructor(_injSearchBL, isShowTgl, staticFilter);
-        }
-
-        private void InnerContructor(ISearchData<T> _injSearchBL, bool isShowTgl, string staticFilter)
-        {
             _searchBL = _injSearchBL;
-            _isFilterTgl = isShowTgl;
-            _staticFilter = staticFilter;
+        }
 
-            if (!isShowTgl)
+        private void InnerContructor()
+        {
+
+            if(_searchBL.SearchDate1 == DateTime.MinValue)
             {
                 Tgl1DatePicker.Visible = false;
                 Tgl2DatePicker.Visible = false;
@@ -45,11 +35,7 @@ namespace AnugerahWinform.Support
                 splitContainer1.FixedPanel = FixedPanel.Panel1;
             }
 
-            IEnumerable<T> listData;
-            if (staticFilter.Trim() == "")
-                listData = _searchBL.Search();
-            else
-                listData = _searchBL.SearchStaticFilter(_staticFilter);
+            IEnumerable<T> listData = _searchBL.Search();
 
             if (listData == null) return;
 
@@ -81,24 +67,22 @@ namespace AnugerahWinform.Support
 
         private void Search()
         {
-            IEnumerable<T> listData;
-            if (!_isFilterTgl)
+            if(_searchBL.SearchDate1 != DateTime.MinValue)
             {
-                if (KeywordTextBox.Text != "")
-                    listData = _searchBL.Search(KeywordTextBox.Text);
-                else
-                    listData = _searchBL.Search();
+                _searchBL.SearchDate1 = Tgl1DatePicker.Value;
+                _searchBL.SearchDate2 = Tgl2DatePicker.Value;
             }
-            else
-                listData = _searchBL.Search(KeywordTextBox.Text,
-                    Tgl1DatePicker.Value.ToString("dd-MM-yyyy"),
-                    Tgl2DatePicker.Value.ToString("dd-MM-yyyy"));
+             
+            _searchBL.SearchKeyword = KeywordTextBox.Text;
+            IEnumerable<T> listData = _searchBL.Search();
 
             ListDataGrid.DataSource = listData;
-            foreach (DataGridViewColumn col in ListDataGrid.Columns)
-            {
-                col.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            }
+
+            if (listData!=null)
+                foreach (DataGridViewColumn col in ListDataGrid.Columns)
+                {
+                    col.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                }
         }
 
         private void ListDataGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

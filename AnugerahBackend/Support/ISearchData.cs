@@ -6,19 +6,14 @@ using System.Threading.Tasks;
 
 namespace AnugerahBackend.Support
 {
-    public interface ISearchData<T>
+
+    public interface ISearch<T>
     {
         IEnumerable<T> Search();
-        IEnumerable<T> Search(string keyword);
-        IEnumerable<T> Search(string keyword, string tgl1, string tgl2);
+        string SearchKeyword { get; set; }
+        DateTime SearchDate1 { get; set; }
+        DateTime SearchDate2 { get; set; }
+        string SearchStaticFilter { get; set; }
     }
-
-    public interface ISearchStaticFilterData<T>
-    {
-        IEnumerable<T> SearchStaticFilter(string staticFilter);
-        IEnumerable<T> SearchStaticFilter(string staticFilter, string keyword);
-        IEnumerable<T> SearchStaticFilter(string staticFilter, string keyword, string tgl1, string tgl2);
-    }
-
 
 }

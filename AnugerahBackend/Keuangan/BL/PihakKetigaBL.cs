@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AnugerahBackend.Keuangan.BL
 {
-    public interface IPihakKetigaBL : ISearchData<PihakKetigaModel>
+    public interface IPihakKetigaBL : ISearch<PihakKetigaModel>
     {
         PihakKetigaModel Save(PihakKetigaModel pihakKetiga);
         void Delete(string pihakKetigaID);

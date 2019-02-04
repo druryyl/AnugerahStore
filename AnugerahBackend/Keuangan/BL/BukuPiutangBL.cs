@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AnugerahBackend.Keuangan.BL
 {
-    public interface IBukuPiutangBL : ISearchData<BukuPiutangSearchModel>
+    public interface IBukuPiutangBL : ISearch<BukuPiutangSearchModel>
     {
         BukuPiutangModel GetData(string bukuPiutangID);
         BukuPiutangModel GenBukuPiutang(BukuKasModel bukuKas);
@@ -202,17 +202,12 @@ namespace AnugerahBackend.Keuangan.BL
         }
 
         #region SEARCH
+        public string SearchKeyword { get; set; }
+        public DateTime SearchDate1 { get; set; }
+        public DateTime SearchDate2 { get; set; }
+        public string SearchStaticFilter { get; set; }
+
         public IEnumerable<BukuPiutangSearchModel> Search()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<BukuPiutangSearchModel> Search(string keyword)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<BukuPiutangSearchModel> Search(string keyword, string tgl1, string tgl2)
         {
             throw new NotImplementedException();
         }

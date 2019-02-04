@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace AnugerahBackend.StokBarang.BL
 {
 
-    public interface IStokAdjustmentBL : ISearchData<StokAdjustmentSearchModel>
+    public interface IStokAdjustmentBL : ISearch<StokAdjustmentSearchModel>
     {
         StokAdjustmentModel Save(StokAdjustmentModel stokAdjustment);
 
