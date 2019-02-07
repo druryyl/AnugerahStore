@@ -18,6 +18,7 @@ namespace AnugerahBackend.Keuangan.Dal
         void Delete(string bukuPiutangID);
         BukuPiutangModel GetData(string bukuPiutangID);
         IEnumerable<BukuPiutangModel> ListData(string tgl1, string tgl2);
+        IEnumerable<BukuPiutangModel> ListData(string pihakKetigaID);
 
     }
     public class BukuPiutangDal : IBukuPiutangDal
@@ -200,5 +201,56 @@ namespace AnugerahBackend.Keuangan.Dal
             }
             return result;
         }
+
+        public IEnumerable<BukuPiutangModel> ListData(string pihakKetigaID)
+        {
+            List<BukuPiutangModel> result = null;
+            var sSql = @"
+                SELECT
+                    aa.BukuPiutangID, aa.TglBuku, aa.JamBuku, aa.UserrID,
+                    aa.PihakKetigaID, aa.NilaiPiutang, aa.NilaiSisa,
+                    aa.Keterangan, aa.BukuKasID,
+                    ISNULL(bb.PihakKetigaName, '') PihakKetigaName
+                FROM    
+                    BukuPiutang aa
+                    LEFT JOIN PihakKetiga bb ON aa.PihakKetigaID = bb.PihakKetigaID
+                WHERE
+                    aa.PihakKetigaID = @PihakKetigaID 
+                    AND aa.NilaiSisa <> 0 ";
+
+            using (var conn = new SqlConnection(_connString))
+            using (var cmd = new SqlCommand(sSql, conn))
+            {
+                cmd.AddParam("@PihakKetigaID", pihakKetigaID);
+                conn.Open();
+
+                using (var dr = cmd.ExecuteReader())
+                {
+                    if (!dr.HasRows) return null;
+                    result = new List<BukuPiutangModel>();
+                    while (dr.Read())
+                    {
+                        var item = new BukuPiutangModel
+                        {
+                            BukuPiutangID = dr["BukuPiutangID"].ToString(),
+                            TglBuku = dr["TglBuku"].ToString().ToTglDMY(),
+                            JamBuku = dr["JamBuku"].ToString(),
+                            UserrID = dr["USerrID"].ToString(),
+
+                            PihakKetigaID = dr["PihakKetigaID"].ToString(),
+                            PihakKetigaName = dr["PihakKetigaName"].ToString(),
+
+                            NilaiPiutang = Convert.ToDecimal(dr["NilaiPiutang"]),
+                            NilaiSisa = Convert.ToDecimal(dr["NilaiSisa"]),
+                            Keterangan = dr["Keterangan"].ToString(),
+                            BukuKasID = dr["BukuKasID"].ToString()
+                        };
+                        result.Add(item);
+                    }
+                }
+            }
+            return result;
+        }
+
     }
 }

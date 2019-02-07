@@ -80,17 +80,17 @@ namespace AnugerahBackend.Keuangan.Dal
             }
         }
 
-        public void Delete(string bukuPiutangLunasID)
+        public void Delete(string bukuPiutangID)
         {
             var sSql = @"
                 DELETE
                     BukuPiutangLunas 
                 WHERE
-                    BukuPiutangLunasID = @BukuPiutangLunasID ";
+                    BukuPiutangID = @BukuPiutangID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@BukuPiutangLunasID", bukuPiutangLunasID);
+                cmd.AddParam("@BukuPiutangID", bukuPiutangID);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }

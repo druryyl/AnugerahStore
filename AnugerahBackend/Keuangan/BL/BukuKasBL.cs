@@ -40,7 +40,12 @@ namespace AnugerahBackend.Keuangan.BL
 
             _bukuPiutangBL = new BukuPiutangBL();
             _bukuHutangBL = new BukuHutangBL();
-            SearchFilter = new SearchFilter();
+            SearchFilter = new SearchFilter
+            {
+                IsDate = true,
+                Date1 = DateTime.Now,
+                Date2 = DateTime.Now
+            };
         }
 
         public BukuKasModel Save(BukuKasModel bukuKas)

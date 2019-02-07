@@ -2,6 +2,7 @@
 using AnugerahBackend.Keuangan.Model;
 using AnugerahBackend.Support;
 using AnugerahBackend.Support.BL;
+using Ics.Helper.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -127,7 +128,7 @@ namespace AnugerahBackend.Keuangan.BL
         private BukuPiutangModel Save(BukuPiutangModel bukuPiutang)
         {
             //  validasi nilai sisa piutang
-            bukuPiutang.NilaiSisa = bukuPiutang.NilaiPiutang - bukuPiutang.ListLunas.Sum(x => x.NilaiLunas);
+            bukuPiutang.NilaiSisa = bukuPiutang.ListLunas.Sum(x => x.NilaiLunas);
 
             //  update bukuPiutangID di detil harus sama dengan header semuana
             foreach (var item in bukuPiutang.ListLunas)
@@ -180,10 +181,16 @@ namespace AnugerahBackend.Keuangan.BL
             if (bukuPiutangID != null)
             {
                 bukuPiutangLama = GetData(bukuPiutangID);
-                bukuPiutangLama.NilaiSisa = 
-                    bukuPiutangLama.ListLunas
-                    .Where(x => x.BukuKasID != bukuKas.BukuKasID)
-                    .Sum(x => x.NilaiLunas);
+                var listLunasLama = bukuPiutangLama.ListLunas.ToList();
+                for(int i = 0; i <= listLunasLama.Count - 1; i++)
+                {
+                    if(listLunasLama[i].BukuKasID == bukuKas.BukuKasID)
+                    {
+                        listLunasLama.RemoveAt(i);
+                        break;
+                    }
+                }
+                bukuPiutangLama.ListLunas = listLunasLama;
             }
             
             //  ambil data piutang yang baru
@@ -195,9 +202,28 @@ namespace AnugerahBackend.Keuangan.BL
                 NilaiLunas = bukuKas.NilaiKas,
                 BukuKasID = bukuKas.BukuKasID
             };
-            bukuPiutangBaru.ListLunas.ToList().Add(piutangLunas);
+            var listLunas = bukuPiutangBaru.ListLunas.ToList();
+            //  hapus detil lunas lama yang bukukas-nya sama
+            if (listLunas != null)
+            {
+                for (int i = 0; i <= listLunas.Count - 1; i++)
+                {
+                    if (listLunas[i].BukuKasID == bukuKas.BukuKasID)
+                    {
+                        listLunas.RemoveAt(i);
+                        break;
+                    }
+                }
+            }
+            //bukuPiutangBaru.ListLunas = listLunas;
+            listLunas.Add(piutangLunas);
+            bukuPiutangBaru.ListLunas = listLunas;
 
-            var result = Save(bukuPiutangLama);
+            BukuPiutangModel result = null;
+            //  simpan update data lama
+            if (bukuPiutangLama!=null)
+                result = Save(bukuPiutangLama);
+            //  simpan data baru
             result = Save(bukuPiutangBaru);
             return result;
         }
@@ -207,7 +233,18 @@ namespace AnugerahBackend.Keuangan.BL
 
         public IEnumerable<BukuPiutangSearchModel> Search()
         {
-            throw new NotImplementedException();
+            var listData = _bukuPiutangDal.ListData(SearchFilter.StaticKeyword);
+            if (listData == null) return null;
+
+            var result = listData.Select(x => (BukuPiutangSearchModel)x);
+
+            if (SearchFilter.UserKeyword != null)
+                return
+                    from c in result
+                    where c.Keterangan.ContainMultiWord(SearchFilter.UserKeyword)
+                    select c;
+
+            return result;
         }
 
         #endregion

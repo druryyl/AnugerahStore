@@ -125,31 +125,31 @@ namespace AnugerahWinform.Keuangan
                     ReffIDText.Clear();
                     ReffNotesText.Clear();
                     ReffIDText.Enabled = false;
-                    ReffNotesText.Enabled = false;
+                    SearchReffIDButton.Enabled = false;
                     break;
 
                 case "PTG":
                     ReffIDText.Clear();
                     ReffNotesText.Clear();
                     ReffIDText.Enabled = false;
-                    ReffNotesText.Enabled = false;
+                    SearchReffIDButton.Enabled = false;
                     break;
 
                 case "PTL":
                     ReffIDText.Enabled = true;
-                    ReffNotesText.Enabled = true;
+                    SearchReffIDButton.Enabled = true;
                     break;
 
                 case "HTG":
                     ReffIDText.Clear();
                     ReffNotesText.Clear();
                     ReffIDText.Enabled = false;
-                    ReffNotesText.Enabled = false;
+                    SearchReffIDButton.Enabled = false;
                     break;
 
                 case "HTL":
                     ReffIDText.Enabled = true;
-                    ReffNotesText.Enabled = true;
+                    SearchReffIDButton.Enabled = true;
                     break;
 
                 default:
@@ -209,14 +209,29 @@ namespace AnugerahWinform.Keuangan
         private void SearchBukuPiutang()
         {
             var pihakKetiga = PihakKetigaText.Text;
+            _bukuPiutangBL.SearchFilter.StaticKeyword = pihakKetiga;
             var searchForm = new SearchingForm<BukuPiutangSearchModel>(_bukuPiutangBL);
             var resultDialog = searchForm.ShowDialog();
             if (resultDialog == DialogResult.OK)
             {
                 var result = searchForm.SelectedDataKey;
-                PihakKetigaText.Text = result;
+                ReffIDText.Text = result;
             }
-
+        }
+        private void ValidasiBukuPiutang()
+        {
+            var bukuPiutangID = ReffIDText.Text;
+            var bukuPiutang = _bukuPiutangBL.GetData(bukuPiutangID);
+            if (bukuPiutang == null) ReffNotesText.Clear();
+            else 
+            {
+                var nilaiPiutang = bukuPiutang.NilaiPiutang.ToString("N0").PadLeft(12, ' ');
+                var nilaiSisa = bukuPiutang.NilaiSisa.ToString("N0").PadLeft(12, ' ');
+                var piutang = "Piutang  " + nilaiPiutang;
+                var sisa = "Sisa     " + nilaiSisa;
+                ReffNotesText.Text = string.Format("{0} \n {1} \n {2}",
+                    bukuPiutang.Keterangan, piutang,sisa);
+            }
         }
 
         private void SaveTransaksi()
@@ -238,6 +253,10 @@ namespace AnugerahWinform.Keuangan
             _bukuKasBL.Save(bukuKas);
         }
 
-
+        private void SearchReffIDButton_Click(object sender, EventArgs e)
+        {
+            SearchBukuPiutang();
+            ValidasiBukuPiutang();
+        }
     }
 }

@@ -32,8 +32,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.ReffNotesText = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
+            this.ReffNotesText = new System.Windows.Forms.RichTextBox();
+            this.SearchReffIDButton = new System.Windows.Forms.Button();
             this.SearchBukuKasButton = new System.Windows.Forms.Button();
             this.SearchPihakKetigaButton = new System.Windows.Forms.Button();
             this.PihakKetigaNameText = new System.Windows.Forms.TextBox();
@@ -110,7 +110,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.MistyRose;
             this.panel1.Controls.Add(this.ReffNotesText);
-            this.panel1.Controls.Add(this.button4);
+            this.panel1.Controls.Add(this.SearchReffIDButton);
             this.panel1.Controls.Add(this.SearchBukuKasButton);
             this.panel1.Controls.Add(this.SearchPihakKetigaButton);
             this.panel1.Controls.Add(this.PihakKetigaNameText);
@@ -137,23 +137,24 @@
             // 
             // ReffNotesText
             // 
-            this.ReffNotesText.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.ReffNotesText.Location = new System.Drawing.Point(235, 209);
-            this.ReffNotesText.Multiline = true;
+            this.ReffNotesText.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ReffNotesText.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ReffNotesText.Location = new System.Drawing.Point(236, 208);
             this.ReffNotesText.Name = "ReffNotesText";
-            this.ReffNotesText.ReadOnly = true;
-            this.ReffNotesText.Size = new System.Drawing.Size(313, 42);
-            this.ReffNotesText.TabIndex = 11;
+            this.ReffNotesText.Size = new System.Drawing.Size(312, 56);
+            this.ReffNotesText.TabIndex = 26;
+            this.ReffNotesText.Text = "";
             // 
-            // button4
+            // SearchReffIDButton
             // 
-            this.button4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button4.Location = new System.Drawing.Point(357, 180);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(28, 23);
-            this.button4.TabIndex = 10;
-            this.button4.Text = "...";
-            this.button4.UseVisualStyleBackColor = true;
+            this.SearchReffIDButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.SearchReffIDButton.Location = new System.Drawing.Point(357, 180);
+            this.SearchReffIDButton.Name = "SearchReffIDButton";
+            this.SearchReffIDButton.Size = new System.Drawing.Size(28, 23);
+            this.SearchReffIDButton.TabIndex = 10;
+            this.SearchReffIDButton.Text = "...";
+            this.SearchReffIDButton.UseVisualStyleBackColor = true;
+            this.SearchReffIDButton.Click += new System.EventHandler(this.SearchReffIDButton_Click);
             // 
             // SearchBukuKasButton
             // 
@@ -230,7 +231,7 @@
             // 
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(196, 339);
+            this.label7.Location = new System.Drawing.Point(196, 352);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(31, 13);
             this.label7.TabIndex = 25;
@@ -250,7 +251,7 @@
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(156, 260);
+            this.label6.Location = new System.Drawing.Point(156, 273);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(73, 13);
             this.label6.TabIndex = 24;
@@ -319,7 +320,7 @@
             // NilaiText
             // 
             this.NilaiText.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.NilaiText.Location = new System.Drawing.Point(236, 337);
+            this.NilaiText.Location = new System.Drawing.Point(236, 350);
             this.NilaiText.Maximum = new decimal(new int[] {
             99999999,
             0,
@@ -348,7 +349,7 @@
             // KeteranganText
             // 
             this.KeteranganText.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.KeteranganText.Location = new System.Drawing.Point(235, 257);
+            this.KeteranganText.Location = new System.Drawing.Point(235, 270);
             this.KeteranganText.Multiline = true;
             this.KeteranganText.Name = "KeteranganText";
             this.KeteranganText.Size = new System.Drawing.Size(313, 74);
@@ -520,7 +521,7 @@
         private System.Data.DataColumn dataColumn9;
         private System.Windows.Forms.Button SearchPihakKetigaButton;
         private System.Windows.Forms.Button SearchBukuKasButton;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.TextBox ReffNotesText;
+        private System.Windows.Forms.Button SearchReffIDButton;
+        private System.Windows.Forms.RichTextBox ReffNotesText;
     }
 }
