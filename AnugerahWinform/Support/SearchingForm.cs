@@ -21,10 +21,14 @@ namespace AnugerahWinform.Support
         {
             InitializeComponent();
             _searchBL = _injSearchBL;
+            InnerContructor();
+            //Search();
         }
 
         private void InnerContructor()
         {
+            if (_searchBL.SearchFilter == null)
+                _searchBL.SearchFilter = new SearchFilter();
 
             if(!_searchBL.SearchFilter.IsDate )
             {
@@ -39,7 +43,7 @@ namespace AnugerahWinform.Support
 
             if (listData == null) return;
 
-            ListDataGrid.DataSource = listData;
+            ListDataGrid.DataSource = listData.ToList();
             int allColWidth = 0;
             foreach (DataGridViewColumn col in ListDataGrid.Columns)
             {
@@ -83,7 +87,7 @@ namespace AnugerahWinform.Support
             IEnumerable<T> listData = _searchBL.Search();
 
             //  set result to grid
-            ListDataGrid.DataSource = listData;
+            ListDataGrid.DataSource = listData.ToList();
 
             //  format grid
             if (listData!=null)

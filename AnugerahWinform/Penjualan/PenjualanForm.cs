@@ -147,6 +147,9 @@ namespace AnugerahWinform.Penjualan
                             .ToList();
                 }
             }
+
+            if (_listBayarNonCash == null) return;
+
             BayarNonCashNumText.Value = _listBayarNonCash.Sum(x => x.NilaiBayar);
         }
         private void SaveButton_Click(object sender, EventArgs e)

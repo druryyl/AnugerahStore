@@ -46,7 +46,12 @@ namespace AnugerahBackend.Penjualan.BL
             _paramNoBL = new ParameterNoBL();
             _brgBL = new BrgBL();
             _jenisBayarDal = new JenisBayarDal();
-            SearchFilter = new SearchFilter();
+            SearchFilter = new SearchFilter
+            {
+                IsDate = true,
+                Date1 = DateTime.Now,
+                Date2 = DateTime.Now
+            };
 
         }
 
