@@ -35,7 +35,17 @@ namespace AnugerahBackend.Penjualan.Model
     {
         public string PenjualanID { get; set; }
         public string TglJual { get; set; }
-        public string CustomerName { get; set; }
-        public double NilaiGrandTotal { get; set; }
+        public string BuyerName { get; set; }
+        public decimal NilaiGrandTotal { get; set; }
+        public static explicit operator PenjualanSearchModel(PenjualanModel penjualan)
+        {
+            return new PenjualanSearchModel
+            {
+                PenjualanID = penjualan.PenjualanID,
+                BuyerName = penjualan.BuyerName,
+                TglJual = penjualan.TglPenjualan,
+                NilaiGrandTotal = penjualan.NilaiGrandTotal
+            };
+        }
     }
 }

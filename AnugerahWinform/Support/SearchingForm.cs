@@ -26,7 +26,7 @@ namespace AnugerahWinform.Support
         private void InnerContructor()
         {
 
-            if(_searchBL.SearchDate1 == DateTime.MinValue)
+            if(!_searchBL.SearchFilter.IsDate )
             {
                 Tgl1DatePicker.Visible = false;
                 Tgl2DatePicker.Visible = false;
@@ -67,17 +67,25 @@ namespace AnugerahWinform.Support
 
         private void Search()
         {
-            if(_searchBL.SearchDate1 != DateTime.MinValue)
+            //  set date
+            if(_searchBL.SearchFilter.IsDate)
             {
-                _searchBL.SearchDate1 = Tgl1DatePicker.Value;
-                _searchBL.SearchDate2 = Tgl2DatePicker.Value;
+                _searchBL.SearchFilter.Date1= Tgl1DatePicker.Value;
+                _searchBL.SearchFilter.Date2 = Tgl2DatePicker.Value;
             }
-             
-            _searchBL.SearchKeyword = KeywordTextBox.Text;
+            //  set keyword
+            if(KeywordTextBox.Text.Trim() == "")
+                _searchBL.SearchFilter.UserKeyword = null;
+            else
+                _searchBL.SearchFilter.UserKeyword = KeywordTextBox.Text.Trim();
+
+            //  searh
             IEnumerable<T> listData = _searchBL.Search();
 
+            //  set result to grid
             ListDataGrid.DataSource = listData;
 
+            //  format grid
             if (listData!=null)
                 foreach (DataGridViewColumn col in ListDataGrid.Columns)
                 {

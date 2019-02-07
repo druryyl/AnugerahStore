@@ -3,6 +3,7 @@ using AnugerahBackend.Keuangan.Model;
 using AnugerahBackend.Support;
 using AnugerahBackend.Support.BL;
 using Ics.Helper.Database;
+using Ics.Helper.Extensions;
 using Ics.Helper.StringDateTime;
 using System;
 using System.Collections.Generic;
@@ -39,9 +40,10 @@ namespace AnugerahBackend.Keuangan.BL
 
             _bukuPiutangBL = new BukuPiutangBL();
             _bukuHutangBL = new BukuHutangBL();
+            SearchFilter = new SearchFilter();
         }
 
-    public BukuKasModel Save(BukuKasModel bukuKas)
+        public BukuKasModel Save(BukuKasModel bukuKas)
         {
             #region VALIDASI-DATA
             //  validasi null
@@ -152,63 +154,23 @@ namespace AnugerahBackend.Keuangan.BL
         }
 
         #region SEARCH
-        public string SearchKeyword { get; set; }
-        public DateTime SearchDate1 { get; set; }
-        public DateTime SearchDate2 { get; set; }
-        public string SearchStaticFilter { get; set; }
+        public SearchFilter SearchFilter { get; set; }
+
         public IEnumerable<BukuKasSearchModel> Search()
         {
-            SearchDate1 = DateTime.Now;
-            SearchDate2 = DateTime.Now;
-
-            var listAll = _bukuKasDal.ListData(
-                SearchDate1.ToString("dd-MM-yyyy"),
-                SearchDate2.ToString("dd-MM-yyyy"));
+            //  ambil data
+            var listAll = _bukuKasDal.ListData(SearchFilter.TglDMY1, SearchFilter.TglDMY2);
             if (listAll == null) return null;
 
-            var result = new List<BukuKasSearchModel>();
-            foreach (var item in listAll)
-            {
-                result.Add(new BukuKasSearchModel
-                {
-                    BukuKasID = item.BukuKasID,
-                    TglBuku = item.TglBuku,
-                    PihakKetigaName = item.PihakKetigaName,
-                    Nilai = item.NilaiKas.ToString("N0").PadLeft(12, ' '),
-                    Keterangan = item.Keterangan
-                });
-            }
+            //  convert ke SearchModel
+            var result = listAll.Select(x => (BukuKasSearchModel)x);
 
-            if (SearchKeyword != null)
-            {
-                SearchKeyword = SearchKeyword.ToLower();
-                result = result.Where(x => x
-                    .PihakKetigaName.ToLower()
-                    .Contains(SearchKeyword))
-                    .ToList();
-            }
+            if (SearchFilter.UserKeyword != null)
+                return
+                    from c in result
+                    where c.PihakKetigaName.ContainMultiWord(SearchFilter.UserKeyword)
+                    select c;
 
-            return result;
-        }
-
-        public IEnumerable<BukuKasSearchModel> Search(string keyword, string tgl1, string tgl2)
-        {
-            var listAll = _bukuKasDal.ListData(tgl1, tgl2);
-            if (listAll == null) return null;
-
-            var result = new List<BukuKasSearchModel>();
-            foreach (var item in listAll.Where(
-                x => x.PihakKetigaName.ToLower().Contains(keyword.ToLower())))
-            {
-                result.Add(new BukuKasSearchModel
-                {
-                    BukuKasID = item.BukuKasID,
-                    TglBuku = item.TglBuku,
-                    PihakKetigaName = item.PihakKetigaName,
-                    Nilai = item.NilaiKas.ToString("N0").PadLeft(12, ' '),
-                    Keterangan = item.Keterangan
-                });
-            }
             return result;
         }
         #endregion

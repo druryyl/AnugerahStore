@@ -1,4 +1,5 @@
-﻿using AnugerahBackend.Penjualan.Dal;
+﻿using AnugerahBackend.Penjualan.BL;
+using AnugerahBackend.Penjualan.Dal;
 using AnugerahBackend.Penjualan.Model;
 using AnugerahWinform.Support;
 using System;
@@ -16,13 +17,13 @@ namespace AnugerahWinform.Penjualan
     public partial class PenjualanBayarForm : Form
     {
         public List<PenjualanBayarModel> ListBayar;
-        private IJenisBayarDal _jenisBayarDal;
+        private IJenisBayarBL _jenisBayarBL;
 
         public PenjualanBayarForm(List<PenjualanBayarModel> listBayar)
         {
             InitializeComponent();
 
-            _jenisBayarDal = new JenisBayarDal();
+            _jenisBayarBL = new JenisBayarBL();
             ListBayar = listBayar;
 
             ShowListBayar();
@@ -87,7 +88,7 @@ namespace AnugerahWinform.Penjualan
 
         private void SearchJenisBayar(int rowIndex)
         {
-            var searchForm = new SearchingForm<JenisBayarModel>(_jenisBayarDal, false);
+            var searchForm = new SearchingForm<JenisBayarModel>(_jenisBayarBL);
             var resultDialog = searchForm.ShowDialog();
             if (resultDialog == DialogResult.OK)
             {
@@ -99,7 +100,7 @@ namespace AnugerahWinform.Penjualan
         private void ShowJenisBayar(int rowIndex)
         {
             var id = DetilBayarTable.Rows[rowIndex]["JenisBayarIDCol"].ToString();
-            var jenisBayar = _jenisBayarDal.GetData(id);
+            var jenisBayar = _jenisBayarBL.GetData(id);
             if (jenisBayar == null) return;
             DetilBayarTable.Rows[rowIndex]["JenisBayarNameCol"] = jenisBayar.JenisBayarName;
 

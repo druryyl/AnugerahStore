@@ -30,5 +30,16 @@ namespace AnugerahBackend.Keuangan.Model
         public string TglBuku { get; set; }
         public string PihakKetigaName { get; set; }
         public string NilaiSisa { get; set; }
+        public static explicit operator BukuPiutangSearchModel(BukuPiutangModel bukuPiutang)
+        {
+            return new BukuPiutangSearchModel
+            {
+                BukuPiutangID = bukuPiutang.BukuPiutangID,
+                TglBuku = bukuPiutang.TglBuku,
+                PihakKetigaName = bukuPiutang.PihakKetigaName,
+                NilaiSisa = bukuPiutang.NilaiSisa.ToString("N0").PadLeft(12, ' '),
+            };
+
+        }
     }
 }

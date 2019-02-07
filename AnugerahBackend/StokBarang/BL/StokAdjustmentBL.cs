@@ -3,6 +3,7 @@ using AnugerahBackend.StokBarang.Model;
 using AnugerahBackend.Support;
 using AnugerahBackend.Support.BL;
 using Ics.Helper.Database;
+using Ics.Helper.Extensions;
 using Ics.Helper.StringDateTime;
 using System;
 using System.Collections.Generic;
@@ -171,20 +172,22 @@ namespace AnugerahBackend.StokBarang.BL
             return result;
         }
 
-        public IEnumerable<StokAdjustmentSearchModel> Search(string keyword)
-        {
-            throw new NotImplementedException(); 
-        }
-
-        public IEnumerable<StokAdjustmentSearchModel> Search(string keyword, string tgl1, string tgl2)
-        {
-            var result = _stokAdjustmentDal.Search(keyword, tgl1, tgl2);
-            return result;
-        }
-
+        public SearchFilter SearchFilter { get; set; }  
         public IEnumerable<StokAdjustmentSearchModel> Search()
         {
-            throw new NotImplementedException();
+            var listData = _stokAdjustmentDal.ListData(SearchFilter.TglDMY1, SearchFilter.TglDMY2);
+
+            if (listData == null) return null;
+
+            var result = listData.Select(x => (StokAdjustmentSearchModel)x);
+
+            if (SearchFilter.UserKeyword != "")
+                return
+                    from c in result
+                    where c.Keterangan.ContainMultiWord(SearchFilter.UserKeyword)
+                    select c;
+
+            return result;
         }
     }
 }

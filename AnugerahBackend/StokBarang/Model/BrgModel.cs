@@ -85,5 +85,14 @@ namespace AnugerahBackend.StokBarang.Model
     {
         public string BrgID { get; set; }
         public string BrgName { get; set; }
+
+        public static explicit operator BrgSearchResultModel(BrgModel barang)
+        {
+            return new BrgSearchResultModel
+            {
+                BrgID = barang.BrgID,
+                BrgName = barang.BrgName
+            };
+        }
     }
 }

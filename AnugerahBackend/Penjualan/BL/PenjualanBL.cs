@@ -5,6 +5,7 @@ using AnugerahBackend.StokBarang.Model;
 using AnugerahBackend.Support;
 using AnugerahBackend.Support.BL;
 using Ics.Helper.Database;
+using Ics.Helper.Extensions;
 using Ics.Helper.StringDateTime;
 using System;
 using System.Collections.Generic;
@@ -45,6 +46,8 @@ namespace AnugerahBackend.Penjualan.BL
             _paramNoBL = new ParameterNoBL();
             _brgBL = new BrgBL();
             _jenisBayarDal = new JenisBayarDal();
+            SearchFilter = new SearchFilter();
+
         }
 
         public PenjualanBL(IPenjualanDal injPenjualanDal, IPenjualan2Dal injPenjualan2Dal,
@@ -188,21 +191,25 @@ namespace AnugerahBackend.Penjualan.BL
             penjualan.NilaiKembali = penjualan.NilaiGrandTotal - totalBayar;
             return result;
         }
-
-        public IEnumerable<PenjualanSearchModel> Search(string keyword)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<PenjualanSearchModel> Search(string keyword, string tgl1, string tgl2)
-        {
-            var result = _penjualanDal.Search(keyword, tgl1, tgl2);
-            return result;
-        }
+        
+        public SearchFilter SearchFilter { get; set; }
 
         public IEnumerable<PenjualanSearchModel> Search()
         {
-            return null;
+            var listData = _penjualanDal.ListData(SearchFilter.TglDMY1, SearchFilter.TglDMY2);
+            if (listData == null) return null;
+
+            //  convert ke SearchModel
+            var result = listData.Select(x => (PenjualanSearchModel)x);
+
+            //  filter
+            if (SearchFilter.UserKeyword != null)
+                return
+                    from c in result
+                    where c.BuyerName.ContainMultiWord(SearchFilter.UserKeyword)
+                    select c;
+
+            return result;
         }
     }
 }

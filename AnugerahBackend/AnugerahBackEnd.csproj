@@ -31,8 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ics.Helper">
-      <HintPath>D:\project.aktif\Web7\Helper\HelperLib\bin\Release\Ics.Helper.dll</HintPath>
+    <Reference Include="Ics.Helper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Project.Aktif\Web7\Helper\HelperLib\bin\Release\Ics.Helper.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -67,6 +68,7 @@
     <Compile Include="Keuangan\Model\BukuPiutangLunasModel.cs" />
     <Compile Include="Penjualan\BL\BrgPriceBL.cs" />
     <Compile Include="Penjualan\BL\CustomerBL.cs" />
+    <Compile Include="Penjualan\BL\JenisBayarBL.cs" />
     <Compile Include="Penjualan\BL\PenjualanBL.cs" />
     <Compile Include="Penjualan\Dal\BrgPriceDal.cs" />
     <Compile Include="Penjualan\Dal\CustomerDal.cs" />

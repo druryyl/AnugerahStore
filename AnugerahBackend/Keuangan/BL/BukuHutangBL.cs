@@ -18,21 +18,15 @@ namespace AnugerahBackend.Keuangan.BL
         {
             throw new NotImplementedException();
         }
+
+
+
         #region SEARCH
+        public SearchFilter SearchFilter {get; set; }
         public IEnumerable<BukuHutangSearchModel> Search()
         {
             throw new NotImplementedException();
         }
-
-        public IEnumerable<BukuHutangSearchModel> Search(string keyword)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<BukuHutangSearchModel> Search(string keyword, string tgl1, string tgl2)
-        {
-            throw new NotImplementedException();
-        } 
         #endregion
     }
 }

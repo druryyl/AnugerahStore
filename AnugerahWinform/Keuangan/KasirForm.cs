@@ -158,7 +158,7 @@ namespace AnugerahWinform.Keuangan
         }
         private void SearchBukuKas()
         {
-            var searchForm = new SearchingForm<BukuKasSearchModel>(_bukuKasBL, true);
+            var searchForm = new SearchingForm<BukuKasSearchModel>(_bukuKasBL);
             var resultDialog = searchForm.ShowDialog();
             if (resultDialog == DialogResult.OK)
             {
@@ -189,7 +189,7 @@ namespace AnugerahWinform.Keuangan
 
         private void SearchPihakKetiga()
         {
-            var searchForm = new SearchingForm<PihakKetigaModel>(_pihakKetigaBL, false);
+            var searchForm = new SearchingForm<PihakKetigaModel>(_pihakKetigaBL);
             var resultDialog = searchForm.ShowDialog();
             if (resultDialog == DialogResult.OK)
             {
@@ -209,7 +209,7 @@ namespace AnugerahWinform.Keuangan
         private void SearchBukuPiutang()
         {
             var pihakKetiga = PihakKetigaText.Text;
-            var searchForm = new SearchingForm<BukuPiutangSearchModel>(_bukuPiutangBL, false);
+            var searchForm = new SearchingForm<BukuPiutangSearchModel>(_bukuPiutangBL);
             var resultDialog = searchForm.ShowDialog();
             if (resultDialog == DialogResult.OK)
             {

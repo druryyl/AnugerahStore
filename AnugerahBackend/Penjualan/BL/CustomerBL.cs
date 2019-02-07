@@ -1,6 +1,7 @@
 ﻿using AnugerahBackend.Penjualan.Dal;
 using AnugerahBackend.Penjualan.Model;
 using AnugerahBackend.Support;
+using Ics.Helper.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,19 +52,25 @@ namespace AnugerahBackend.Penjualan.BL
             return _customerDal.ListData();
         }
 
-        public IEnumerable<CustomerSearchModel> Search(string keyword)
-        {
-            return _customerDal.Search(keyword);
-        }
-
-        public IEnumerable<CustomerSearchModel> Search(string keyword, string tgl1, string tgl2)
-        {
-            throw new NotImplementedException();
-        }
+        public SearchFilter SearchFilter { get; set; }
 
         public IEnumerable<CustomerSearchModel> Search()
         {
-            throw new NotImplementedException();
+            //  ambil data
+            var listData = _customerDal.ListData();
+            if (listData == null) return null;
+
+            //  convert to search model
+            var result = listData.Select(x => (CustomerSearchModel)x);
+
+            //  filter user keyword
+            if (SearchFilter.UserKeyword != null)
+                return
+                    from c in result
+                    where c.CustomerName.ContainMultiWord(SearchFilter.UserKeyword)
+                    select c;
+
+            return result;
         }
     }
 }

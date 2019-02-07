@@ -18,9 +18,8 @@ namespace AnugerahBackend.Penjualan.Dal
         void Delete(string penjualanID);
         PenjualanModel GetData(string penjualanID);
         IEnumerable<PenjualanModel> ListData(string tgl1, string tgl2);
-        IEnumerable<PenjualanSearchModel> Search(string keyword,
-            string tgl1, string tgl2);
     }
+
     public class PenjualanDal : IPenjualanDal
     {
         private string _connString;
@@ -226,46 +225,5 @@ namespace AnugerahBackend.Penjualan.Dal
             }
             return result;
         }
-
-        public IEnumerable<PenjualanSearchModel> Search(string keyword, 
-            string tgl1, string tgl2)
-        {
-            List<PenjualanSearchModel> result = null;
-            var sSql = @"
-                SELECT
-                    PenjualanID, TglPenjualan, BuyerName,
-                    NilaiGrandTotal    
-                FROM
-                    Penjualan
-                WHERE
-                    TglPenjualan BETWEEN @Tgl1 AND @Tgl2 ";
-            using (var conn = new SqlConnection(_connString))
-            using (var cmd = new SqlCommand(sSql, conn))
-            {
-                cmd.AddParam("@Tgl1", tgl1.ToTglYMD());
-                cmd.AddParam("@Tgl2", tgl2.ToTglYMD());
-                conn.Open();
-                using (var dr = cmd.ExecuteReader())
-                {
-                    if (dr.HasRows)
-                    {
-                        result = new List<PenjualanSearchModel>();
-                        while (dr.Read())
-                        {
-                            var item = new PenjualanSearchModel
-                            {
-                                PenjualanID = dr["PenjualanID"].ToString(),
-                                TglJual = dr["TglPenjualan"].ToString(),
-                                CustomerName = dr["BuyerName"].ToString(),
-                                NilaiGrandTotal = Convert.ToDouble(dr["NilaiGrandTotal"])
-                            };
-                            result.Add(item);
-                        }
-                    }
-                }
-            }
-            return result;
-        }
-
     }
 }

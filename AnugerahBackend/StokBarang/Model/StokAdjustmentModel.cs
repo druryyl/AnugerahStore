@@ -26,5 +26,15 @@ namespace AnugerahBackend.StokBarang.Model
         public string TglTrs { get; set; }
         public string JamTrs { get; set; }
         public string Keterangan { get; set; }
+        public static explicit operator StokAdjustmentSearchModel(StokAdjustmentModel model)
+        {
+            return new StokAdjustmentSearchModel
+            {
+                StokAdjustmentID = model.StokAdjustmentID,
+                TglTrs = model.TglTrs,
+                JamTrs = model.JamTrs,
+                Keterangan = model.Keterangan
+            };
+        }
     }
 }

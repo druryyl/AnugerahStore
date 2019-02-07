@@ -32,6 +32,7 @@ namespace AnugerahBackend.Keuangan.BL
             _bukuPiutangLunasDal = new BukuPiutangLunasDal();
             _bukuHutangLunasDal = new BukuHutangLunasDal();
             _paramNoBL = new ParameterNoBL();
+            SearchFilter = new SearchFilter();
         }
 
         public BukuPiutangBL(IBukuPiutangDal injBukuPiutangDal,
@@ -202,10 +203,7 @@ namespace AnugerahBackend.Keuangan.BL
         }
 
         #region SEARCH
-        public string SearchKeyword { get; set; }
-        public DateTime SearchDate1 { get; set; }
-        public DateTime SearchDate2 { get; set; }
-        public string SearchStaticFilter { get; set; }
+        public SearchFilter SearchFilter { get; set; }
 
         public IEnumerable<BukuPiutangSearchModel> Search()
         {

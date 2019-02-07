@@ -9,11 +9,28 @@ namespace AnugerahBackend.Support
 
     public interface ISearch<T>
     {
+        SearchFilter SearchFilter { get; set; }
         IEnumerable<T> Search();
-        string SearchKeyword { get; set; }
-        DateTime SearchDate1 { get; set; }
-        DateTime SearchDate2 { get; set; }
-        string SearchStaticFilter { get; set; }
     }
 
+    public class SearchFilter
+    {
+        public string UserKeyword { get; set; }
+        public bool IsDate { get; set; }
+        public DateTime Date1 { get; set; }
+        public DateTime Date2 { get; set; }
+        public string StaticKeyword { get; set; }
+
+        public string TglDMY1 { get => Date1.ToString("dd-MM-yyyy"); }
+        public string TglDMY2 { get => Date2.ToString("dd-MM-yyyy"); }
+
+        public SearchFilter()
+        {
+            UserKeyword = null;
+            IsDate = false;
+            Date1 = DateTime.MinValue;
+            Date2 = DateTime.MinValue;
+            StaticKeyword = null;
+        }
+    }
 }

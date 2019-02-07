@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace AnugerahBackend.Penjualan.Dal
 {
 
-    public interface IJenisBayarDal : ISearch<JenisBayarModel>
+    public interface IJenisBayarDal
     {
         void Insert(JenisBayarModel jenisBayar);
 
@@ -153,52 +153,6 @@ namespace AnugerahBackend.Penjualan.Dal
                 }
             }
             return result;
-        }
-
-        public IEnumerable<JenisBayarModel> Search(string keyword)
-        {
-            List<JenisBayarModel> result = null;
-            var sSql = @"
-                SELECT
-                    aa.JenisBayarID, aa.JenisBayarName, aa.KasTransferEdc
-                FROM
-                    JenisBayar aa 
-                WHERE
-                    JenisBayarName LIKE @JenisBayarName ";
-            using (var conn = new SqlConnection(_connString))
-            using (var cmd = new SqlCommand(sSql, conn))
-            {
-                cmd.AddParam("@JenisBayarName", string.Format("%{0}%", keyword));
-                conn.Open();
-                using (var dr = cmd.ExecuteReader())
-                {
-                    if (dr.HasRows)
-                    {
-                        result = new List<JenisBayarModel>();
-                        while (dr.Read())
-                        {
-                            var item = new JenisBayarModel
-                            {
-                                JenisBayarID = dr["JenisBayarID"].ToString(),
-                                JenisBayarName = dr["JenisBayarName"].ToString(),
-                                KasTransferEdc = dr["KasTransferEdc"].ToString()
-                            };
-                            result.Add(item);
-                        }
-                    }
-                }
-            }
-            return result;
-        }
-
-        public IEnumerable<JenisBayarModel> Search(string keyword, string tgl1, string tgl2)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<JenisBayarModel> Search()
-        {
-            return ListData();
         }
     }
 }

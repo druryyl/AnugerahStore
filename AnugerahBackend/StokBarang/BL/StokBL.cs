@@ -15,8 +15,8 @@ namespace AnugerahBackend.StokBarang.BL
 {
     public interface IStokBL : ISearch<StokSearchModel>
     {
-        void AddStok(string brgID, long qty, double hpp, 
-            string tgl, string jam, string trsMasukID, 
+        void AddStok(string brgID, long qty, double hpp,
+            string tgl, string jam, string trsMasukID,
             string trsDOID, string jenisMutasiID);
 
         void RemoveStok(string stokControlID, long qty, double hargaJual,
@@ -114,7 +114,7 @@ namespace AnugerahBackend.StokBarang.BL
             var prefixStokInOut = stokInID + ".";
             var stokInOutID = _paramNoBL.GenNewID(prefixStokInOut, 16);
             //  contoh StokControlID = DO.1901.00021-B5431
-            var stokControlID = string.Format("{0}-{1}",trsDOID,brgID);
+            var stokControlID = string.Format("{0}-{1}", trsDOID, brgID);
             #endregion
 
             #region PROSES-INSERT-DATA
@@ -214,7 +214,7 @@ namespace AnugerahBackend.StokBarang.BL
 
             #region INSERT-STOK-IN-OUT
             var qtyRemoveSisa = qty;
-            foreach(var item in listStokIn)
+            foreach (var item in listStokIn)
             {
                 //  tentukan qty remove stok per StokIn
                 long qtyRemove = 0;
@@ -259,19 +259,13 @@ namespace AnugerahBackend.StokBarang.BL
             throw new NotImplementedException();
         }
 
-        public IEnumerable<StokSearchModel> Search(string keyword)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<StokSearchModel> Search(string keyword, string tgl1, string tgl2)
-        {
-            throw new NotImplementedException();
-        }
-
+        #region SEARCH
+        public SearchFilter SearchFilter { get; set; }
         public IEnumerable<StokSearchModel> Search()
         {
             throw new NotImplementedException();
         }
+
+        #endregion    }
     }
 }

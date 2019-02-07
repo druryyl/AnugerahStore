@@ -60,7 +60,7 @@ namespace AnugerahWinform.StokBarang
 
         private void SearchBrg(int rowIndex)
         {
-            var searchForm = new SearchingForm<BrgSearchResultModel>(_brgBL, false);
+            var searchForm = new SearchingForm<BrgSearchResultModel>(_brgBL);
             var resultDialog = searchForm.ShowDialog();
             if (resultDialog == DialogResult.OK)
             {
@@ -71,7 +71,7 @@ namespace AnugerahWinform.StokBarang
 
         private void SearchKodeTrs()
         {
-            var searchForm = new SearchingForm<StokAdjustmentSearchModel>(_stokAdjustmentBL,true);
+            var searchForm = new SearchingForm<StokAdjustmentSearchModel>(_stokAdjustmentBL);
             var resultDialog = searchForm.ShowDialog();
             if (resultDialog == DialogResult.OK)
             {

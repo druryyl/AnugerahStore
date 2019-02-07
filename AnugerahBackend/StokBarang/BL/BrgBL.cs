@@ -3,6 +3,7 @@ using AnugerahBackend.StokBarang.Model;
 using AnugerahBackend.Support;
 using AnugerahBackend.Support.BL;
 using Ics.Helper.Database;
+using Ics.Helper.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -225,24 +226,25 @@ namespace AnugerahBackend.StokBarang.BL
             return _brgDal.ListData(jenisID, subID, merkID, colorID);
         }
 
-
-
-        public IEnumerable<BrgSearchResultModel> Search(string keyword)
-        {
-            var result = _brgDal.Search(keyword);
-            return result;
-        }
-
-        public IEnumerable<BrgSearchResultModel> Search(string keyword, string tgl1, string tgl2)
-        {
-            //throw new NotImplementedException();
-            return null;
-        }
+        public SearchFilter SearchFilter { get; set; }
 
         public IEnumerable<BrgSearchResultModel> Search()
         {
-            //throw new NotImplementedException();
-            return null;
+            //  ambil data
+            var listAll = _brgDal.ListData();
+            if (listAll == null) return null;
+
+            //  convert
+            var result = listAll.Select(x => (BrgSearchResultModel)x);
+
+            //  filter
+            if (SearchFilter.UserKeyword != null)
+                return
+                    from c in result
+                    where c.BrgName.ContainMultiWord(SearchFilter.UserKeyword)
+                    select c;
+
+            return result;
         }
     }
 }

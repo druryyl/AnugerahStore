@@ -1,6 +1,7 @@
 ﻿using AnugerahBackend.Keuangan.Dal;
 using AnugerahBackend.Keuangan.Model;
 using AnugerahBackend.Support;
+using Ics.Helper.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace AnugerahBackend.Keuangan.BL
         public PihakKetigaBL()
         {
             _pihakKetigaDal = new PihakKetigaDal();
+            SearchFilter = new SearchFilter();
         }
 
         public PihakKetigaModel Save(PihakKetigaModel pihakKetiga)
@@ -46,19 +48,23 @@ namespace AnugerahBackend.Keuangan.BL
             throw new NotImplementedException();
         }
 
+        #region SEARCH
+        public SearchFilter SearchFilter { get; set; }
+
         public IEnumerable<PihakKetigaModel> Search()
         {
-            return _pihakKetigaDal.ListData();
-        }
+            //  ambil data
+            var result = _pihakKetigaDal.ListData();
+            if (result == null) return null;
 
-        public IEnumerable<PihakKetigaModel> Search(string keyword)
-        {
-            return _pihakKetigaDal.Search(keyword);
-        }
+            if (SearchFilter.UserKeyword != null)
+                return
+                    from c in result
+                    where c.PihakKetigaName.ContainMultiWord(SearchFilter.UserKeyword)
+                    select c;
 
-        public IEnumerable<PihakKetigaModel> Search(string keyword, string tgl1, string tgl2)
-        {
-            throw new NotImplementedException();
-        }
+            return result;
+        } 
+        #endregion
     }
 }

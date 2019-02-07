@@ -205,7 +205,7 @@ namespace AnugerahWinform.Penjualan
         }
         private void SearchKodeTrs()
         {
-            var searchForm = new SearchingForm<PenjualanSearchModel>(_penjualanBL, true);
+            var searchForm = new SearchingForm<PenjualanSearchModel>(_penjualanBL);
             var resultDialog = searchForm.ShowDialog();
             if (resultDialog == DialogResult.OK)
             {
@@ -284,7 +284,7 @@ namespace AnugerahWinform.Penjualan
         }
         private void SearchBrg(int rowIndex)
         {
-            var searchForm = new SearchingForm<BrgSearchResultModel>(_brgBL, false);
+            var searchForm = new SearchingForm<BrgSearchResultModel>(_brgBL);
             var resultDialog = searchForm.ShowDialog();
             if (resultDialog == DialogResult.OK)
             {
@@ -416,9 +416,11 @@ namespace AnugerahWinform.Penjualan
                     NilaiBayar = -kembali,
                     Catatan = ""
                 };
-                listDetilBayar = new List<PenjualanBayarModel>();
-                listDetilBayar.Add(itemBayarCash);
-                listDetilBayar.Add(itemKembali);
+                listDetilBayar = new List<PenjualanBayarModel>
+                {
+                    itemBayarCash,
+                    itemKembali
+                };
             }
             //  ambil data bayar non cash
             if (_listBayarNonCash != null)
