@@ -108,6 +108,7 @@ namespace AnugerahBackend.Penjualan.BL
                     item.PenjualanID2 = string.Format("{0}-{1}", trsID, item.NoUrut.ToString().PadLeft(2, '0'));
                     _penjualanBayarDal.Insert(item);
                 }
+
                 trans.Complete();
             }
             return result;

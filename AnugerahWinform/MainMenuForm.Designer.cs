@@ -37,11 +37,12 @@
             this.ReturButton = new System.Windows.Forms.RibbonButton();
             this.SalesRibbonPanel = new System.Windows.Forms.RibbonPanel();
             this.SellingButton = new System.Windows.Forms.RibbonButton();
-            this.PreOrderButton = new System.Windows.Forms.RibbonButton();
+            this.LaporanPenjualanButton = new System.Windows.Forms.RibbonButton();
             this.ribbonSeparator1 = new System.Windows.Forms.RibbonSeparator();
             this.PricingButton = new System.Windows.Forms.RibbonButton();
+            this.KasirButton = new System.Windows.Forms.RibbonButton();
             this.StockManagementRibbonPanel = new System.Windows.Forms.RibbonPanel();
-            this.StockOpnameButton = new System.Windows.Forms.RibbonButton();
+            this.LaporanKasirButton = new System.Windows.Forms.RibbonButton();
             this.Adjustment = new System.Windows.Forms.RibbonButton();
             this.BarangPanel = new System.Windows.Forms.RibbonPanel();
             this.BarangButton = new System.Windows.Forms.RibbonButton();
@@ -62,7 +63,6 @@
             this.ribbonSeparator4 = new System.Windows.Forms.RibbonSeparator();
             this.ribbonButton7 = new System.Windows.Forms.RibbonButton();
             this.ribbonTab3 = new System.Windows.Forms.RibbonTab();
-            this.KasirButton = new System.Windows.Forms.RibbonButton();
             this.SuspendLayout();
             // 
             // ribbon1
@@ -134,7 +134,7 @@
             // SalesRibbonPanel
             // 
             this.SalesRibbonPanel.Items.Add(this.SellingButton);
-            this.SalesRibbonPanel.Items.Add(this.PreOrderButton);
+            this.SalesRibbonPanel.Items.Add(this.LaporanPenjualanButton);
             this.SalesRibbonPanel.Items.Add(this.ribbonSeparator1);
             this.SalesRibbonPanel.Items.Add(this.PricingButton);
             this.SalesRibbonPanel.Items.Add(this.KasirButton);
@@ -150,13 +150,14 @@
             this.SellingButton.Text = "Selling";
             this.SellingButton.Click += new System.EventHandler(this.SellingButton_Click);
             // 
-            // PreOrderButton
+            // LaporanPenjualanButton
             // 
-            this.PreOrderButton.Image = ((System.Drawing.Image)(resources.GetObject("PreOrderButton.Image")));
-            this.PreOrderButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("PreOrderButton.LargeImage")));
-            this.PreOrderButton.Name = "PreOrderButton";
-            this.PreOrderButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("PreOrderButton.SmallImage")));
-            this.PreOrderButton.Text = "Pre-Order";
+            this.LaporanPenjualanButton.Image = ((System.Drawing.Image)(resources.GetObject("LaporanPenjualanButton.Image")));
+            this.LaporanPenjualanButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("LaporanPenjualanButton.LargeImage")));
+            this.LaporanPenjualanButton.Name = "LaporanPenjualanButton";
+            this.LaporanPenjualanButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("LaporanPenjualanButton.SmallImage")));
+            this.LaporanPenjualanButton.Text = "Lap.Penjualan";
+            this.LaporanPenjualanButton.Click += new System.EventHandler(this.LaporanPenjualanButton_Click);
             // 
             // ribbonSeparator1
             // 
@@ -171,20 +172,30 @@
             this.PricingButton.Text = "Pricing";
             this.PricingButton.Click += new System.EventHandler(this.PricingButton_Click);
             // 
+            // KasirButton
+            // 
+            this.KasirButton.Image = ((System.Drawing.Image)(resources.GetObject("KasirButton.Image")));
+            this.KasirButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("KasirButton.LargeImage")));
+            this.KasirButton.Name = "KasirButton";
+            this.KasirButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("KasirButton.SmallImage")));
+            this.KasirButton.Text = "Kasir";
+            this.KasirButton.Click += new System.EventHandler(this.KasirButton_Click);
+            // 
             // StockManagementRibbonPanel
             // 
-            this.StockManagementRibbonPanel.Items.Add(this.StockOpnameButton);
+            this.StockManagementRibbonPanel.Items.Add(this.LaporanKasirButton);
             this.StockManagementRibbonPanel.Items.Add(this.Adjustment);
             this.StockManagementRibbonPanel.Name = "StockManagementRibbonPanel";
             this.StockManagementRibbonPanel.Text = "Stock";
             // 
-            // StockOpnameButton
+            // LaporanKasirButton
             // 
-            this.StockOpnameButton.Image = ((System.Drawing.Image)(resources.GetObject("StockOpnameButton.Image")));
-            this.StockOpnameButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("StockOpnameButton.LargeImage")));
-            this.StockOpnameButton.Name = "StockOpnameButton";
-            this.StockOpnameButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("StockOpnameButton.SmallImage")));
-            this.StockOpnameButton.Text = "Posting";
+            this.LaporanKasirButton.Image = ((System.Drawing.Image)(resources.GetObject("LaporanKasirButton.Image")));
+            this.LaporanKasirButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("LaporanKasirButton.LargeImage")));
+            this.LaporanKasirButton.Name = "LaporanKasirButton";
+            this.LaporanKasirButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("LaporanKasirButton.SmallImage")));
+            this.LaporanKasirButton.Text = "Lap.Kasir";
+            this.LaporanKasirButton.Click += new System.EventHandler(this.LaporanKasirButton_Click);
             // 
             // Adjustment
             // 
@@ -336,15 +347,6 @@
             this.ribbonTab3.Name = "ribbonTab3";
             this.ribbonTab3.Text = "Report";
             // 
-            // KasirButton
-            // 
-            this.KasirButton.Image = ((System.Drawing.Image)(resources.GetObject("KasirButton.Image")));
-            this.KasirButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("KasirButton.LargeImage")));
-            this.KasirButton.Name = "KasirButton";
-            this.KasirButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("KasirButton.SmallImage")));
-            this.KasirButton.Text = "Kasir";
-            this.KasirButton.Click += new System.EventHandler(this.KasirButton_Click);
-            // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -376,9 +378,9 @@
         private System.Windows.Forms.RibbonButton ReturButton;
         private System.Windows.Forms.RibbonPanel SalesRibbonPanel;
         private System.Windows.Forms.RibbonButton SellingButton;
-        private System.Windows.Forms.RibbonButton PreOrderButton;
+        private System.Windows.Forms.RibbonButton LaporanPenjualanButton;
         private System.Windows.Forms.RibbonPanel StockManagementRibbonPanel;
-        private System.Windows.Forms.RibbonButton StockOpnameButton;
+        private System.Windows.Forms.RibbonButton LaporanKasirButton;
         private System.Windows.Forms.RibbonSeparator ribbonSeparator1;
         private System.Windows.Forms.RibbonButton PricingButton;
         private System.Windows.Forms.RibbonPanel BrgButton;
