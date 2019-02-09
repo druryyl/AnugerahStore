@@ -86,6 +86,12 @@
     <Compile Include="Keuangan\LaporanKasirForm.Designer.cs">
       <DependentUpon>LaporanKasirForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Keuangan\LaporanPiutangForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Keuangan\LaporanPiutangForm.Designer.cs">
+      <DependentUpon>LaporanPiutangForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainMenuForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -190,6 +196,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Keuangan\LaporanKasirForm.resx">
       <DependentUpon>LaporanKasirForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Keuangan\LaporanPiutangForm.resx">
+      <DependentUpon>LaporanPiutangForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainMenuForm.resx">
       <DependentUpon>MainMenuForm.cs</DependentUpon>
