@@ -50,11 +50,15 @@ namespace AnugerahBackend.Accounting.Dal
         public void Update(BiayaModel model)
         {
             var sSql = @"
-                INSERT INTO
-                    Biaya (
-                        BiayaID, Tgl, Jam, Keterangan, NilaiBiaya)
-                VALUES (
-                        @BiayaID, @Tgl, @Jam, @Keterangan, @NilaiBiaya) ";
+                UPDATE
+                    Biaya 
+                SET 
+                    Tgl = @Tgl, 
+                    Jam = @Jam, 
+                    Keterangan = @Keterangan, 
+                    NilaiBiaya = @NilaiBiaya 
+                WHERE
+                    BiayaID = @BiayaID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {

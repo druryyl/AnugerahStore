@@ -8,6 +8,7 @@ using AnugerahBackend.Accounting.Model;
 using FluentAssertions;
 using Ics.Helper.Database;
 using Ics.Helper.Extensions;
+using Xunit;
 
 namespace AnugerahUnitTest.Accounting.Dal
 {
@@ -42,6 +43,7 @@ namespace AnugerahUnitTest.Accounting.Dal
             return result;
         }
 
+        [Fact]
         public void InsertTest()
         {
             using (var trans = TransHelper.NewScope())
@@ -56,7 +58,7 @@ namespace AnugerahUnitTest.Accounting.Dal
                 //  assert
             }
         }
-
+        [Fact]
         public void UpdateTest()
         {
             using (var trans = TransHelper.NewScope())
@@ -72,6 +74,7 @@ namespace AnugerahUnitTest.Accounting.Dal
             }
         }
 
+        [Fact]
         public void DeletetTest()
         {
             using (var trans = TransHelper.NewScope())
@@ -87,6 +90,7 @@ namespace AnugerahUnitTest.Accounting.Dal
             }
         }
 
+        [Fact]
         public void GetDataTest()
         {
             using (var trans = TransHelper.NewScope())
@@ -103,6 +107,7 @@ namespace AnugerahUnitTest.Accounting.Dal
             }
         }
 
+        [Fact]
         public void ListDataTest()
         {
             using (var trans = TransHelper.NewScope())
@@ -123,7 +128,7 @@ namespace AnugerahUnitTest.Accounting.Dal
                 var actual = _biayaDal.ListData(expected1.Tgl, expected1.Tgl);
 
                 //  assert
-                actual.Should().BeEquivalentTo(expected1);
+                actual.Should().BeEquivalentTo(expected);
             }
         }
     }
