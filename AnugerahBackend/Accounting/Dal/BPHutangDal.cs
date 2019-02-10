@@ -63,7 +63,7 @@ namespace AnugerahBackend.Accounting.Dal
                     NilaiHutang = @NilaiHutang, 
                     NilaiLunas = @NilaiLunas 
                 WHERE
-                    BPHutangID = = @BPHutangID  ";
+                    BPHutangID = @BPHutangID  ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
@@ -85,7 +85,7 @@ namespace AnugerahBackend.Accounting.Dal
                 DELETE
                     BPHutang 
                 WHERE
-                    BPHutangID = = @BPHutangID  ";
+                    BPHutangID = @BPHutangID  ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
@@ -104,7 +104,7 @@ namespace AnugerahBackend.Accounting.Dal
                     aa.Keterangan, aa.NilaiHutang, aa.NilaiLunas,
                     ISNULL(bb.PihakKeduaName, ' ') PihakKeduaName 
                 FROM    
-                    BPHutangID aa
+                    BPHutang aa
                     LEFT JOIN PihakKedua bb ON aa.PihakKeduaID = bb.PihakKeduaID 
                 WHERE
                     aa.BPHutangID = @BPHutangID ";

@@ -62,6 +62,7 @@
     <Compile Include="Accounting\Model\LunasKasBonDetilModel.cs" />
     <Compile Include="Accounting\Model\LunasKasBonModel.cs" />
     <Compile Include="Accounting\Model\OrderJualModel.cs" />
+    <Compile Include="Accounting\Model\PihakKeduaModel.cs" />
     <Compile Include="Keuangan\BL\BukuHutangBL.cs" />
     <Compile Include="Keuangan\BL\BukuKasBL.cs" />
     <Compile Include="Keuangan\BL\BukuPiutangBL.cs" />
