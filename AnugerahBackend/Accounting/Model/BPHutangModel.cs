@@ -14,7 +14,7 @@ namespace AnugerahBackend.Accounting.Model
         public string PihakKeduaID { get; set; }
         public string PihakKeduaName { get; set; }
         public string Keterangan { get; set; }
-        public string NilaiHutang { get; set; }
-        public string NilaiLunas { get; set; }
+        public decimal NilaiHutang { get; set; }
+        public decimal NilaiLunas { get; set; }
     }
 }
