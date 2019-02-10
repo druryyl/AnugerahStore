@@ -120,7 +120,7 @@ namespace AnugerahBackend.Accounting.Dal
                     result = new BPHutangModel
                     {
                         BPHutangID = dr["BPHutangID"].ToString(),
-                        Tgl = dr["Tgl"].ToString(),
+                        Tgl = dr["Tgl"].ToString().ToTglDMY(),
                         Jam = dr["Jam"].ToString(), 
                         PihakKeduaID = dr["PihakKeduaID"].ToString(),
                         Keterangan = dr["Keterangan"].ToString(), 
@@ -141,7 +141,7 @@ namespace AnugerahBackend.Accounting.Dal
                     aa.Keterangan, aa.NilaiHutang, aa.NilaiLunas,
                     ISNULL(bb.PihakKeduaName, ' ') PihakKeduaName 
                 FROM    
-                    BPHutangID aa
+                    BPHutang aa
                     LEFT JOIN PihakKedua bb ON aa.PihakKeduaID = bb.PihakKeduaID 
                 WHERE
                     aa.Tgl BETWEEN @Tgl1 AND @Tgl2  ";
@@ -160,7 +160,7 @@ namespace AnugerahBackend.Accounting.Dal
                         var item = new BPHutangModel
                         {
                             BPHutangID = dr["BPHutangID"].ToString(),
-                            Tgl = dr["Tgl"].ToString(),
+                            Tgl = dr["Tgl"].ToString().ToTglDMY(),
                             Jam = dr["Jam"].ToString(),
                             PihakKeduaID = dr["PihakKeduaID"].ToString(),
                             Keterangan = dr["Keterangan"].ToString(),
