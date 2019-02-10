@@ -63,6 +63,7 @@
     <Folder Include="Queries" />
     <Folder Include="OtherScript" />
     <Folder Include="Keuangan" />
+    <Folder Include="Accounting" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Support\Userr.sql" />
@@ -93,6 +94,16 @@
     <Build Include="Keuangan\JenisTrsKasir.sql" />
     <Build Include="Keuangan\PihakKetiga.sql" />
     <Build Include="OtherScript\JenisTrsKasir.sql" />
+    <Build Include="Accounting\BPKas.sql" />
+    <Build Include="Accounting\BPKasDetil.sql" />
+    <Build Include="Accounting\BPPiutang.sql" />
+    <Build Include="Accounting\BPPiutangDetil.sql" />
+    <Build Include="Accounting\BPHutang.sql" />
+    <Build Include="Accounting\BPHutangDetil.sql" />
+    <Build Include="Accounting\Biaya.sql" />
+    <Build Include="Accounting\KasBon.sql" />
+    <Build Include="Accounting\LunasKasBon.sql" />
+    <Build Include="Accounting\LunasKasBonDetil.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AnugerahDevelopment.publish.xml" />

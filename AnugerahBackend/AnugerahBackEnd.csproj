@@ -48,6 +48,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accounting\Dal\BiayaDal.cs" />
+    <Compile Include="Accounting\Model\BiayaModel.cs" />
+    <Compile Include="Accounting\Model\BPHutangDetilModel.cs" />
+    <Compile Include="Accounting\Model\BPHutangModel.cs" />
+    <Compile Include="Accounting\Model\BPKasDetilModel.cs" />
+    <Compile Include="Accounting\Model\BPKasModel.cs" />
+    <Compile Include="Accounting\Model\BPPiutangDetilModel.cs" />
+    <Compile Include="Accounting\Model\BPPiutangModel.cs" />
+    <Compile Include="Accounting\Model\KasBonModel.cs" />
+    <Compile Include="Accounting\Model\LunasKasBonDetilModel.cs" />
+    <Compile Include="Accounting\Model\LunasKasBonModel.cs" />
+    <Compile Include="Accounting\Model\OrderJualModel.cs" />
     <Compile Include="Keuangan\BL\BukuHutangBL.cs" />
     <Compile Include="Keuangan\BL\BukuKasBL.cs" />
     <Compile Include="Keuangan\BL\BukuPiutangBL.cs" />
@@ -59,13 +71,17 @@
     <Compile Include="Keuangan\Dal\BukuPiutangLunasDal.cs" />
     <Compile Include="Keuangan\Dal\JenisTrsKasirDal.cs" />
     <Compile Include="Keuangan\Dal\PihakKetigaDal.cs" />
+    <Compile Include="Keuangan\Model\BiayaModel.cs" />
     <Compile Include="Keuangan\Model\BukuHutangLunasModel.cs" />
     <Compile Include="Keuangan\Model\BukuHutangModel.cs" />
     <Compile Include="Keuangan\Model\BukuKasModel.cs" />
     <Compile Include="Keuangan\Model\BukuPiutangModel.cs" />
     <Compile Include="Keuangan\Model\JenisTrsKasirModel.cs" />
+    <Compile Include="Keuangan\Model\KasBonModel.cs" />
+    <Compile Include="Keuangan\Model\LunasKasBonModel.cs" />
     <Compile Include="Keuangan\Model\PihakKetigaModel.cs" />
     <Compile Include="Keuangan\Model\BukuPiutangLunasModel.cs" />
+    <Compile Include="LocalHelper\CommonInterface.cs" />
     <Compile Include="Penjualan\BL\BrgPriceBL.cs" />
     <Compile Include="Penjualan\BL\CustomerBL.cs" />
     <Compile Include="Penjualan\BL\JenisBayarBL.cs" />
@@ -122,6 +138,8 @@
     <Compile Include="Support\Dal\UserrDal.cs" />
     <Compile Include="Support\Model\UserrModel.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Accounting\BL\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
