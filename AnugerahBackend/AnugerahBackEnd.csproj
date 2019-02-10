@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Accounting\Dal\BiayaDal.cs" />
+    <Compile Include="Accounting\Dal\BPHutangDetilDal.cs" />
     <Compile Include="Accounting\Model\BiayaModel.cs" />
     <Compile Include="Accounting\Model\BPHutangDetilModel.cs" />
     <Compile Include="Accounting\Model\BPHutangModel.cs" />

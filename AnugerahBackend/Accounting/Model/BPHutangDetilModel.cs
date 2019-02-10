@@ -15,6 +15,6 @@ namespace AnugerahBackend.Accounting.Model
         public string Jam { get; set; }
         public string Keterangan { get; set; }
         public decimal NilaiHutang { get; set; }
-        public decimal NilaiLunas { get; set;S }
+        public decimal NilaiLunas { get; set; }
     }
 }

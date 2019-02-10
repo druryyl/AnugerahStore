@@ -13,6 +13,6 @@ namespace AnugerahBackend.Keuangan.Model
         public string Jam { get; set; }
         public string KaryawanID { get; set; }
         public string Keperluan { get; set; }
-        public string Nilai { get;set }
+        public string Nilai { get; set; }
     }
 }
