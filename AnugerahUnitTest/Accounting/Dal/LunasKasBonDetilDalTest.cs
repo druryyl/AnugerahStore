@@ -12,32 +12,29 @@ using Xunit;
 
 namespace AnugerahUnitTest.Accounting.Dal
 {
-    public interface IBPHutangDetilDalTest
+    public interface ILunasKasBonDetilDalTest
     {
         void InsertTest();
         void DeleteTest();
         void ListDataTest();
     }
 
-    public class BPHutangDetilDalTest : IBPHutangDetilDalTest
+    public class LunasKasBonDetilDalTest : ILunasKasBonDetilDalTest
     {
-        private IBPHutangDetilDal _bpHutangDetilDal;
-        public BPHutangDetilDalTest()
+        private ILunasKasBonDetilDal _bpPiutangDetilDal;
+        public LunasKasBonDetilDalTest()
         {
-            _bpHutangDetilDal = new BPHutangDetilDal();
+            _bpPiutangDetilDal = new LunasKasBonDetilDal();
         }
 
-        private BPHutangDetilModel BPHutangDetilDataFactory()
+        private LunasKasBonDetilModel LunasKasBonDetilDataFactory()
         {
-            var result = new BPHutangDetilModel
+            var result = new LunasKasBonDetilModel
             {
-                BPHutangID = "A1",
-                BPHutangDetilID = "B1",
-                ReffID = "C1",
-                Tgl = "11-02-2019",
-                Jam = "03:21:00",
-                Keterangan = "D1",
-                NilaiHutang = 51000,
+                LunasKasBonID = "A1",
+                LunasKasBonDetilID = "B1",
+                JenisLunasID = "D1",
+                JenisLunasName = "",
                 NilaiLunas = 41000
             };
             return result;
@@ -49,10 +46,10 @@ namespace AnugerahUnitTest.Accounting.Dal
             using (var trans = TransHelper.NewScope())
             {
                 //  arrange
-                var expected = BPHutangDetilDataFactory();
+                var expected = LunasKasBonDetilDataFactory();
 
                 //  act
-                _bpHutangDetilDal.Insert(expected);
+                _bpPiutangDetilDal.Insert(expected);
 
                 //  assert
 
@@ -65,11 +62,11 @@ namespace AnugerahUnitTest.Accounting.Dal
             using (var trans = TransHelper.NewScope())
             {
                 //  arrange
-                var expected = BPHutangDetilDataFactory();
-                _bpHutangDetilDal.Insert(expected);
+                var expected = LunasKasBonDetilDataFactory();
+                _bpPiutangDetilDal.Insert(expected);
 
                 //  act
-                _bpHutangDetilDal.Delete("A1");
+                _bpPiutangDetilDal.Delete("A1");
 
                 //  assert
             }
@@ -81,18 +78,18 @@ namespace AnugerahUnitTest.Accounting.Dal
             using (var trans = TransHelper.NewScope())
             {
                 //  arrange
-                var expected1 = BPHutangDetilDataFactory();
-                _bpHutangDetilDal.Insert(expected1);
+                var expected1 = LunasKasBonDetilDataFactory();
+                _bpPiutangDetilDal.Insert(expected1);
                 var expected2 = expected1.CloneObject();
-                expected2.BPHutangDetilID = "B2";
-                _bpHutangDetilDal.Insert(expected2);
-                var expected = new List<BPHutangDetilModel>
+                expected2.LunasKasBonDetilID = "B2";
+                _bpPiutangDetilDal.Insert(expected2);
+                var expected = new List<LunasKasBonDetilModel>
                 {
                     expected1, expected2
                 };
 
                 //  act
-                var actual = _bpHutangDetilDal.ListData("A1");
+                var actual = _bpPiutangDetilDal.ListData("A1");
 
                 //  assert
                 actual.Should().BeEquivalentTo(expected);

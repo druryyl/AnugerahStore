@@ -51,6 +51,13 @@
     <Compile Include="Accounting\Dal\BiayaDal.cs" />
     <Compile Include="Accounting\Dal\BPHutangDal.cs" />
     <Compile Include="Accounting\Dal\BPHutangDetilDal.cs" />
+    <Compile Include="Accounting\Dal\BPKasDal.cs" />
+    <Compile Include="Accounting\Dal\BPKasDetilDal.cs" />
+    <Compile Include="Accounting\Dal\BPPiutangDal.cs" />
+    <Compile Include="Accounting\Dal\BPPiutangDetilDal.cs" />
+    <Compile Include="Accounting\Dal\KasBonDal.cs" />
+    <Compile Include="Accounting\Dal\LunasKasBonDal.cs" />
+    <Compile Include="Accounting\Dal\LunasKasBonDetilDal.cs" />
     <Compile Include="Accounting\Model\BiayaModel.cs" />
     <Compile Include="Accounting\Model\BPHutangDetilModel.cs" />
     <Compile Include="Accounting\Model\BPHutangModel.cs" />

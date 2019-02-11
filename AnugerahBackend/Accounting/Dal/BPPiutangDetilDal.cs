@@ -12,42 +12,42 @@ using Ics.Helper.StringDateTime;
 
 namespace AnugerahBackend.Accounting.Dal
 {
-    public interface IBPHutangDetilDal : IDetilTrsDal<BPHutangDetilModel>
+    public interface IBPPiutangDetilDal : IDetilTrsDal<BPPiutangDetilModel>
     {
 
     }
 
-    public class BPHutangDetilDal : IBPHutangDetilDal
+    public class BPPiutangDetilDal : IBPPiutangDetilDal
     {
         private string _connString;
 
-        public BPHutangDetilDal()
+        public BPPiutangDetilDal()
         {
             _connString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
         }
 
-        public void Insert(BPHutangDetilModel model)
+        public void Insert(BPPiutangDetilModel model)
         {
             var sSql = @"
                 INSERT INTO
-                    BPHutangDetil (
-                        BPHutangID, BPHutangDetilID, ReffID, 
+                    BPPiutangDetil (
+                        BPPiutangID, BPPiutangDetilID, ReffID, 
                         Tgl, Jam, Keterangan, 
-                        NilaiHutang, NilaiLunas)
+                        NilaiPiutang, NilaiLunas)
                 VALUES (
-                        @BPHutangID, @BPHutangDetilID, @ReffID, 
+                        @BPPiutangID, @BPPiutangDetilID, @ReffID, 
                         @Tgl, @Jam, @Keterangan, 
-                        @NilaiHutang, @NilaiLunas) ";
+                        @NilaiPiutang, @NilaiLunas) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@BPHutangID", model.BPHutangID);
-                cmd.AddParam("@BPHutangDetilID", model.BPHutangDetilID);
+                cmd.AddParam("@BPPiutangID", model.BPPiutangID);
+                cmd.AddParam("@BPPiutangDetilID", model.BPPiutangDetilID);
                 cmd.AddParam("@ReffID", model.ReffID);
                 cmd.AddParam("@Tgl", model.Tgl.ToTglYMD());
                 cmd.AddParam("@Jam", model.Jam);
                 cmd.AddParam("@Keterangan", model.Keterangan);
-                cmd.AddParam("@NilaiHutang", model.NilaiHutang);
+                cmd.AddParam("@NilaiPiutang", model.NilaiPiutang);
                 cmd.AddParam("@NilaiLunas", model.NilaiLunas);
 
                 conn.Open();
@@ -59,50 +59,50 @@ namespace AnugerahBackend.Accounting.Dal
         {
             var sSql = @"
                 DELETE
-                    BPHutangDetil
+                    BPPiutangDetil
                 WHERE
-                    BPHutangID = @BPHutangID ";
+                    BPPiutangID = @BPPiutangID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@BPHutangID", id);
+                cmd.AddParam("@BPPiutangID", id);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
         }
 
-        public IEnumerable<BPHutangDetilModel> ListData(string id)
+        public IEnumerable<BPPiutangDetilModel> ListData(string id)
         {
-            List<BPHutangDetilModel> result = null;
+            List<BPPiutangDetilModel> result = null;
             var sSql = @"
                 SELECT
-                    BPHutangID, BPHutangDetilID, ReffID, 
+                    BPPiutangID, BPPiutangDetilID, ReffID, 
                     Tgl, Jam, Keterangan, 
-                    NilaiHutang, NilaiLunas
+                    NilaiPiutang, NilaiLunas
                 FROM
-                    BPHutangDetil
+                    BPPiutangDetil
                 WHERE
-                    BPHutangID = @BPHutangID ";
+                    BPPiutangID = @BPPiutangID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@BPHutangID", id);
+                cmd.AddParam("@BPPiutangID", id);
                 conn.Open();
                 using (var dr = cmd.ExecuteReader())
                 {
-                    if(!dr.HasRows) return null;
-                    result = new List<BPHutangDetilModel>();
+                    if (!dr.HasRows) return null;
+                    result = new List<BPPiutangDetilModel>();
                     while (dr.Read())
                     {
-                        var item = new BPHutangDetilModel
+                        var item = new BPPiutangDetilModel
                         {
-                            BPHutangID = dr["BPHutangID"].ToString(),
-                            BPHutangDetilID = dr["BPHutangDetilID"].ToString(),
+                            BPPiutangID = dr["BPPiutangID"].ToString(),
+                            BPPiutangDetilID = dr["BPPiutangDetilID"].ToString(),
                             ReffID = dr["ReffID"].ToString(),
                             Tgl = dr["Tgl"].ToString().ToTglDMY(),
                             Jam = dr["Jam"].ToString(),
                             Keterangan = dr["Keterangan"].ToString(),
-                            NilaiHutang = Convert.ToDecimal(dr["NilaiHutang"]),
+                            NilaiPiutang = Convert.ToDecimal(dr["NilaiPiutang"]),
                             NilaiLunas = Convert.ToDecimal(dr["NilaiLunas"]),
                         };
                         result.Add(item);

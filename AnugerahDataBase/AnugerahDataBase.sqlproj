@@ -105,6 +105,8 @@
     <Build Include="Accounting\LunasKasBon.sql" />
     <Build Include="Accounting\LunasKasBonDetil.sql" />
     <Build Include="Accounting\PihakKedua.sql" />
+    <Build Include="Accounting\JenisKas.sql" />
+    <Build Include="Accounting\JenisLunas.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AnugerahDevelopment.publish.xml" />
