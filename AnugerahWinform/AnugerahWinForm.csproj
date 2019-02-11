@@ -74,6 +74,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accounting\BiayaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\BiayaForm.Designer.cs">
+      <DependentUpon>BiayaForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Keuangan\KasirForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -191,6 +197,9 @@
     <Compile Include="Support\SearchingForm.Designer.cs">
       <DependentUpon>SearchingForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Accounting\BiayaForm.resx">
+      <DependentUpon>BiayaForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Keuangan\KasirForm.resx">
       <DependentUpon>KasirForm.cs</DependentUpon>
     </EmbeddedResource>
