@@ -82,6 +82,7 @@
   <ItemGroup>
     <Compile Include="Accounting\Dal\BiayaDalTest.cs" />
     <Compile Include="Accounting\Dal\BPHutangDalTest.cs" />
+    <Compile Include="Accounting\Dal\BPHutangDetilDalTest.cs" />
     <Compile Include="Keuangan\BukuHutangDalTest.cs" />
     <Compile Include="Keuangan\BukuKasTestDalTest.cs" />
     <Compile Include="Keuangan\BukuPiutangBLTest.cs" />
