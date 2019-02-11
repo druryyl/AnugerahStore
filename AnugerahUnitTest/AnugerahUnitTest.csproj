@@ -87,6 +87,8 @@
     <Compile Include="Accounting\Dal\BPHutangDetilDalTest.cs" />
     <Compile Include="Accounting\Dal\BPPiutangDalTest.cs" />
     <Compile Include="Accounting\Dal\BPPiutangDetilDalTest.cs" />
+    <Compile Include="Accounting\Dal\JenisKasDalTest.cs" />
+    <Compile Include="Accounting\Dal\JenisLunasDalTest.cs" />
     <Compile Include="Accounting\Dal\KasBonDalTest.cs" />
     <Compile Include="Accounting\Dal\LunasKasBonDalTest.cs" />
     <Compile Include="Accounting\Dal\LunasKasBonDetilDalTest.cs" />
