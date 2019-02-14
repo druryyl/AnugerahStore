@@ -32,23 +32,23 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.BiayaIDText = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.JamText = new System.Windows.Forms.TextBox();
+            this.KeteranganText = new System.Windows.Forms.TextBox();
+            this.NilIText = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.JenisBiayaCombo = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.TglText = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.NewButton = new System.Windows.Forms.Button();
+            this.SaveButton = new System.Windows.Forms.Button();
+            this.ExitButton = new System.Windows.Forms.Button();
             this.MainTab.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NilIText)).BeginInit();
             this.SuspendLayout();
             // 
             // MainTab
@@ -59,31 +59,31 @@
             this.MainTab.Location = new System.Drawing.Point(0, 0);
             this.MainTab.Name = "MainTab";
             this.MainTab.SelectedIndex = 0;
-            this.MainTab.Size = new System.Drawing.Size(316, 425);
+            this.MainTab.Size = new System.Drawing.Size(316, 448);
             this.MainTab.TabIndex = 0;
             // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.Bisque;
-            this.tabPage1.Controls.Add(this.button3);
-            this.tabPage1.Controls.Add(this.button2);
-            this.tabPage1.Controls.Add(this.button1);
+            this.tabPage1.Controls.Add(this.ExitButton);
+            this.tabPage1.Controls.Add(this.SaveButton);
+            this.tabPage1.Controls.Add(this.NewButton);
             this.tabPage1.Controls.Add(this.label6);
-            this.tabPage1.Controls.Add(this.dateTimePicker1);
+            this.tabPage1.Controls.Add(this.TglText);
             this.tabPage1.Controls.Add(this.label5);
-            this.tabPage1.Controls.Add(this.comboBox1);
+            this.tabPage1.Controls.Add(this.JenisBiayaCombo);
             this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Controls.Add(this.numericUpDown1);
-            this.tabPage1.Controls.Add(this.textBox4);
-            this.tabPage1.Controls.Add(this.textBox3);
+            this.tabPage1.Controls.Add(this.NilIText);
+            this.tabPage1.Controls.Add(this.KeteranganText);
+            this.tabPage1.Controls.Add(this.JamText);
             this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Controls.Add(this.textBox1);
+            this.tabPage1.Controls.Add(this.BiayaIDText);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(308, 399);
+            this.tabPage1.Size = new System.Drawing.Size(308, 422);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Input Transaksi";
             // 
@@ -92,7 +92,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(356, 399);
+            this.tabPage2.Size = new System.Drawing.Size(308, 399);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Informasi";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -106,14 +106,14 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Biaya-ID";
             // 
-            // textBox1
+            // BiayaIDText
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.BiayaIDText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(6, 33);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(296, 21);
-            this.textBox1.TabIndex = 1;
+            this.BiayaIDText.Location = new System.Drawing.Point(6, 33);
+            this.BiayaIDText.Name = "BiayaIDText";
+            this.BiayaIDText.Size = new System.Drawing.Size(296, 21);
+            this.BiayaIDText.TabIndex = 1;
             // 
             // label2
             // 
@@ -124,34 +124,34 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Tanggal";
             // 
-            // textBox3
+            // JamText
             // 
-            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox3.Location = new System.Drawing.Point(193, 73);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(107, 21);
-            this.textBox3.TabIndex = 5;
+            this.JamText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.JamText.Location = new System.Drawing.Point(193, 73);
+            this.JamText.Name = "JamText";
+            this.JamText.Size = new System.Drawing.Size(107, 21);
+            this.JamText.TabIndex = 5;
             // 
-            // textBox4
+            // KeteranganText
             // 
-            this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.KeteranganText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox4.Location = new System.Drawing.Point(6, 113);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(294, 141);
-            this.textBox4.TabIndex = 7;
+            this.KeteranganText.Location = new System.Drawing.Point(6, 113);
+            this.KeteranganText.Multiline = true;
+            this.KeteranganText.Name = "KeteranganText";
+            this.KeteranganText.Size = new System.Drawing.Size(294, 164);
+            this.KeteranganText.TabIndex = 7;
             // 
-            // numericUpDown1
+            // NilIText
             // 
-            this.numericUpDown1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.NilIText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDown1.Location = new System.Drawing.Point(6, 313);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(291, 21);
-            this.numericUpDown1.TabIndex = 11;
-            this.numericUpDown1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.NilIText.Location = new System.Drawing.Point(6, 336);
+            this.NilIText.Name = "NilIText";
+            this.NilIText.Size = new System.Drawing.Size(291, 21);
+            this.NilIText.TabIndex = 11;
+            this.NilIText.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label3
             // 
@@ -166,40 +166,40 @@
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(8, 297);
+            this.label4.Location = new System.Drawing.Point(8, 320);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(31, 13);
             this.label4.TabIndex = 10;
             this.label4.Text = "Nilai";
             // 
-            // comboBox1
+            // JenisBiayaCombo
             // 
-            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.JenisBiayaCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(6, 273);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(291, 21);
-            this.comboBox1.TabIndex = 9;
+            this.JenisBiayaCombo.FormattingEnabled = true;
+            this.JenisBiayaCombo.Location = new System.Drawing.Point(6, 296);
+            this.JenisBiayaCombo.Name = "JenisBiayaCombo";
+            this.JenisBiayaCombo.Size = new System.Drawing.Size(291, 21);
+            this.JenisBiayaCombo.TabIndex = 9;
             // 
             // label5
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(5, 257);
+            this.label5.Location = new System.Drawing.Point(5, 280);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(71, 13);
             this.label5.TabIndex = 8;
             this.label5.Text = "Jenis Biaya";
             // 
-            // dateTimePicker1
+            // TglText
             // 
-            this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.TglText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(6, 73);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(181, 21);
-            this.dateTimePicker1.TabIndex = 3;
+            this.TglText.Location = new System.Drawing.Point(6, 73);
+            this.TglText.Name = "TglText";
+            this.TglText.Size = new System.Drawing.Size(181, 21);
+            this.TglText.TabIndex = 3;
             // 
             // label6
             // 
@@ -211,50 +211,50 @@
             this.label6.TabIndex = 4;
             this.label6.Text = "Jam";
             // 
-            // button1
+            // NewButton
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Location = new System.Drawing.Point(6, 365);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(98, 23);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "New";
-            this.button1.UseVisualStyleBackColor = true;
+            this.NewButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.NewButton.Location = new System.Drawing.Point(6, 388);
+            this.NewButton.Name = "NewButton";
+            this.NewButton.Size = new System.Drawing.Size(98, 23);
+            this.NewButton.TabIndex = 12;
+            this.NewButton.Text = "New";
+            this.NewButton.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // SaveButton
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.SaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(110, 365);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(88, 23);
-            this.button2.TabIndex = 13;
-            this.button2.Text = "Save";
-            this.button2.UseVisualStyleBackColor = true;
+            this.SaveButton.Location = new System.Drawing.Point(110, 388);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(88, 23);
+            this.SaveButton.TabIndex = 13;
+            this.SaveButton.Text = "Save";
+            this.SaveButton.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // ExitButton
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(204, 365);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(93, 23);
-            this.button3.TabIndex = 14;
-            this.button3.Text = "Save";
-            this.button3.UseVisualStyleBackColor = true;
+            this.ExitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ExitButton.Location = new System.Drawing.Point(204, 388);
+            this.ExitButton.Name = "ExitButton";
+            this.ExitButton.Size = new System.Drawing.Size(93, 23);
+            this.ExitButton.TabIndex = 14;
+            this.ExitButton.Text = "Exit";
+            this.ExitButton.UseVisualStyleBackColor = true;
             // 
             // BiayaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(316, 425);
+            this.ClientSize = new System.Drawing.Size(316, 448);
             this.Controls.Add(this.MainTab);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "BiayaForm";
-            this.Text = "BiayaForm";
+            this.Text = "Input Biaya";
             this.MainTab.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NilIText)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -263,21 +263,21 @@
 
         private System.Windows.Forms.TabControl MainTab;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox JamText;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox BiayaIDText;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button ExitButton;
+        private System.Windows.Forms.Button SaveButton;
+        private System.Windows.Forms.Button NewButton;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker TglText;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox JenisBiayaCombo;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.NumericUpDown NilIText;
+        private System.Windows.Forms.TextBox KeteranganText;
     }
 }
