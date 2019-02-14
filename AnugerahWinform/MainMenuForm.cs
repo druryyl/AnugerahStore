@@ -142,5 +142,15 @@ namespace AnugerahWinform
             };
             form.Show();
         }
+
+        private void KasBonButton_Click(object sender, EventArgs e)
+        {
+            var form = new KasBonForm
+            {
+                MdiParent = this,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            form.Show();
+        }
     }
 }

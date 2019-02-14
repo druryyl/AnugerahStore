@@ -31,9 +31,11 @@ namespace AnugerahBackend.Accounting.Dal
             var sSql = @"
                 INSERT INTO
                     KasBon (
-                        KasBonID, Tgl, Jam, Keterangan, PihakKeduaID, NilaiKasBon)
+                        KasBonID, Tgl, Jam, Keterangan, 
+                        PihakKeduaID, JenisKasID, NilaiKasBon)
                 VALUES (
-                        @KasBonID, @Tgl, @Jam, @Keterangan, @PihakKeduaID, @NilaiKasBon) ";
+                        @KasBonID, @Tgl, @Jam, @Keterangan, 
+                        @PihakKeduaID, @JenisKasID, @NilaiKasBon) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
@@ -42,6 +44,7 @@ namespace AnugerahBackend.Accounting.Dal
                 cmd.AddParam("@Jam", model.Jam);
                 cmd.AddParam("@Keterangan", model.Keterangan);
                 cmd.AddParam("@PihakKeduaID", model.PihakKeduaID);
+                cmd.AddParam("@JenisKasID", model.JenisKasID);
                 cmd.AddParam("@NilaiKasBon", model.NilaiKasBon);
                 conn.Open();
                 cmd.ExecuteNonQuery();
@@ -58,6 +61,7 @@ namespace AnugerahBackend.Accounting.Dal
                     Jam = @Jam, 
                     Keterangan = @Keterangan, 
                     PihakKeduaID = @PihakKeduaID,
+                    JenisKasID = @JenisKasID,
                     NilaiKasBon = @NilaiKasBon 
                 WHERE
                     KasBonID = @KasBonID ";
@@ -69,6 +73,7 @@ namespace AnugerahBackend.Accounting.Dal
                 cmd.AddParam("@Jam", model.Jam);
                 cmd.AddParam("@Keterangan", model.Keterangan);
                 cmd.AddParam("@PihakKeduaID", model.PihakKeduaID);
+                cmd.AddParam("@JenisKasID", model.JenisKasID);
                 cmd.AddParam("@NilaiKasBon", model.NilaiKasBon);
                 conn.Open();
                 cmd.ExecuteNonQuery();
@@ -97,11 +102,13 @@ namespace AnugerahBackend.Accounting.Dal
             var sSql = @"
                 SELECT
                     aa.KasBonID, aa.Tgl, aa.Jam, aa.Keterangan, 
-                    aa.PihakKeduaID, aa.NilaiKasBon,
-                    ISNULL(bb.PihakKeduaName, '') PihakKeduaName
+                    aa.PihakKeduaID, aa.JenisKasID, aa.NilaiKasBon,
+                    ISNULL(bb.PihakKeduaName, '') PihakKeduaName,
+                    ISNULL(cc.JenisKasName, '') JenisKasName
                 FROM
                     KasBon aa
                     LEFT JOIN PihakKedua bb ON aa.PihakKeduaID = bb.PihakKeduaID
+                    LEFT JOIN JenisKas cc ON aa.JenisKasID = cc.JenisKasID
                 WHERE
                     KasBonID = @KasBonID ";
 
@@ -122,6 +129,8 @@ namespace AnugerahBackend.Accounting.Dal
                         Keterangan = dr["Keterangan"].ToString(),
                         PihakKeduaID = dr["PihakKeduaID"].ToString(),
                         PihakKeduaName = dr["PihakKeduaName"].ToString(),
+                        JenisKasID = dr["JenisKasID"].ToString(),
+                        JenisKasName = dr["JenisKasName"].ToString(),
                         NilaiKasBon = Convert.ToDecimal(dr["NilaiKasBon"])
                     };
                 }
@@ -135,11 +144,13 @@ namespace AnugerahBackend.Accounting.Dal
             var sSql = @"
                 SELECT
                     aa.KasBonID, aa.Tgl, aa.Jam, aa.Keterangan, 
-                    aa.PihakKeduaID, aa.NilaiKasBon,
-                    ISNULL(bb.PihakKeduaName, '') PihakKeduaName
+                    aa.PihakKeduaID, aa.JenisKasID, aa.NilaiKasBon,
+                    ISNULL(bb.PihakKeduaName, '') PihakKeduaName,
+                    ISNULL(cc.JenisKasID, '') JenisKasID
                 FROM
                     KasBon aa
                     LEFT JOIN PihakKedua bb ON aa.PihakKeduaID = bb.PihakKeduaID
+                    LEFT JOIN JenisKasID cc ON aa.JenisKasID = cc.JenisKasID
                 WHERE
                     Tgl BETWEEN @Tgl1 AND @Tgl2 ";
             using (var conn = new SqlConnection(_connString))
@@ -162,6 +173,8 @@ namespace AnugerahBackend.Accounting.Dal
                             Keterangan = dr["Keterangan"].ToString(),
                             PihakKeduaID = dr["PihakKeduaID"].ToString(),
                             PihakKeduaName = dr["PihakKeduaName"].ToString(),
+                            JenisKasID = dr["JenisKasID"].ToString(),
+                            JenisKasName = dr["JenisKasName"].ToString(),
                             NilaiKasBon = Convert.ToDecimal(dr["NilaiKasBon"])
                         };
                         result.Add(item);

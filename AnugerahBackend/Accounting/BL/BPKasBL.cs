@@ -12,6 +12,7 @@ namespace AnugerahBackend.Accounting.BL
     public interface IBPKasBL
     {
         void Generate(BiayaModel biaya);
+        void Generate(KasBonModel biaya);
     }
 
     public class BPKasBL : IBPKasBL
@@ -39,6 +40,18 @@ namespace AnugerahBackend.Accounting.BL
             var bpKas = (BPKasModel)biaya;
             Save(bpKas);
         }
+
+        public void Generate(KasBonModel kasBon)
+        {
+            if (kasBon == null)
+            {
+                throw new ArgumentNullException(nameof(kasBon));
+            }
+
+            var bpKas = (BPKasModel)kasBon;
+            Save(bpKas);
+        }
+
 
         private void Save(BPKasModel model)
         {

@@ -286,6 +286,7 @@
             this.KasBonButton.Name = "KasBonButton";
             this.KasBonButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("KasBonButton.SmallImage")));
             this.KasBonButton.Text = "Kas Bon";
+            this.KasBonButton.Click += new System.EventHandler(this.KasBonButton_Click);
             // 
             // LunasKasBonButton
             // 

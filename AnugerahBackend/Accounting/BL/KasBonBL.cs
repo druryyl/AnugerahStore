@@ -12,25 +12,25 @@ using Ics.Helper.Extensions;
 
 namespace AnugerahBackend.Accounting.BL
 {
-    public interface IBiayaBL : ISearch<BiayaSearchModel>
+    public interface IKasBonBL : ISearch<KasBonSearchModel>
     {
-        BiayaModel Save(BiayaModel model);
+        KasBonModel Save(KasBonModel model);
         void Delete(string id);
-        BiayaModel GetData(string id);
-        IEnumerable<BiayaModel> ListData(string tgl1, string tgl2);
+        KasBonModel GetData(string id);
+        IEnumerable<KasBonModel> ListData(string tgl1, string tgl2);
     }
-    public class BiayaBL : IBiayaBL
+    public class KasBonBL : IKasBonBL
     {
-        private IBiayaDal _biayaDal;
+        private IKasBonDal _kasBonDal;
         private IParameterNoBL _paramNoBL;
-        private IJenisBiayaBL _jenisBiayaBL;
+        private IPihakKeduaBL _jenisKasBonBL;
         private IJenisKasBL _jenisKasBL;
 
-        public BiayaBL()
+        public KasBonBL()
         {
-            _biayaDal = new BiayaDal();
+            _kasBonDal = new KasBonDal();
             _paramNoBL = new ParameterNoBL();
-            _jenisBiayaBL = new JenisBiayaBL();
+            _jenisKasBonBL = new PihakKeduaBL();
             _jenisKasBL = new JenisKasBL();
 
             SearchFilter = new SearchFilter
@@ -41,36 +41,36 @@ namespace AnugerahBackend.Accounting.BL
             };
         }
 
-        public BiayaModel Save(BiayaModel model)
+        public KasBonModel Save(KasBonModel model)
         {
             if (model == null)
                 throw new ArgumentNullException(nameof(model));
 
-            if (model.NilaiBiaya <= 0)
-                throw new ArgumentException("Nilai Biaya invalid");
+            if (model.NilaiKasBon <= 0)
+                throw new ArgumentException("Nilai KasBon invalid");
 
-            var jenisBiaya = _jenisBiayaBL.GetData(model.JenisBiayaID);
-            if (jenisBiaya == null)
-                throw new ArgumentException("JenisBiayaID invalid");
+            var jenisKasBon = _jenisKasBonBL.GetData(model.PihakKeduaID);
+            if (jenisKasBon == null)
+                throw new ArgumentException("PihakKeduaID invalid");
 
             var jenisKas = _jenisKasBL.GetData(model.JenisKasID);
             if (jenisKas == null)
                 throw new ArgumentException("JenisKasID invalid");
 
             bool isNew = false;
-            if (model.BiayaID.Trim() == "")
+            if (model.KasBonID.Trim() == "")
                 isNew = true;
 
             using (var trans = TransHelper.NewScope())
             {
                 if (isNew)
                 {
-                    model.BiayaID = GenNewID();
-                    _biayaDal.Insert(model);
+                    model.KasBonID = GenNewID();
+                    _kasBonDal.Insert(model);
                 }
                 else
                 {
-                    _biayaDal.Update(model);
+                    _kasBonDal.Update(model);
                 }
                 trans.Complete();
             }
@@ -80,41 +80,41 @@ namespace AnugerahBackend.Accounting.BL
 
         private string GenNewID()
         {
-            var prefix = "BY" + DateTime.Now.ToString("yyMM");
+            var prefix = "KB" + DateTime.Now.ToString("yyMM");
             var result = _paramNoBL.GenNewID(prefix, 10);
             return result;
         }
 
         public void Delete(string id)
         {
-            _biayaDal.Delete(id);
+            _kasBonDal.Delete(id);
         }
 
-        public BiayaModel GetData(string id)
+        public KasBonModel GetData(string id)
         {
-            return _biayaDal.GetData(id);
+            return _kasBonDal.GetData(id);
         }
 
-        public IEnumerable<BiayaModel> ListData(string tgl1, string tgl2)
+        public IEnumerable<KasBonModel> ListData(string tgl1, string tgl2)
         {
-            return _biayaDal.ListData(tgl1, tgl2);
+            return _kasBonDal.ListData(tgl1, tgl2);
         }
 
         public SearchFilter SearchFilter { get; set; }
 
-        public IEnumerable<BiayaSearchModel> Search()
+        public IEnumerable<KasBonSearchModel> Search()
         {
             //  ambil data
-            var listAll = _biayaDal.ListData(SearchFilter.TglDMY1, SearchFilter.TglDMY2);
+            var listAll = _kasBonDal.ListData(SearchFilter.TglDMY1, SearchFilter.TglDMY2);
             if (listAll == null) return null;
 
             //  convert ke SearchModel
-            var result = listAll.Select(x => (BiayaSearchModel)x);
+            var result = listAll.Select(x => (KasBonSearchModel)x);
 
             if (SearchFilter.UserKeyword != null)
                 return
                     from c in result
-                    where c.Keterangan.ContainMultiWord(SearchFilter.UserKeyword)
+                    where c.PihakKeduaName.ContainMultiWord(SearchFilter.UserKeyword)
                     select c;
 
             return result;
