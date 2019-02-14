@@ -146,11 +146,11 @@ namespace AnugerahBackend.Accounting.Dal
                     aa.KasBonID, aa.Tgl, aa.Jam, aa.Keterangan, 
                     aa.PihakKeduaID, aa.JenisKasID, aa.NilaiKasBon,
                     ISNULL(bb.PihakKeduaName, '') PihakKeduaName,
-                    ISNULL(cc.JenisKasID, '') JenisKasID
+                    ISNULL(cc.JenisKasName, '') JenisKasName
                 FROM
                     KasBon aa
                     LEFT JOIN PihakKedua bb ON aa.PihakKeduaID = bb.PihakKeduaID
-                    LEFT JOIN JenisKasID cc ON aa.JenisKasID = cc.JenisKasID
+                    LEFT JOIN JenisKas cc ON aa.JenisKasID = cc.JenisKasID
                 WHERE
                     Tgl BETWEEN @Tgl1 AND @Tgl2 ";
             using (var conn = new SqlConnection(_connString))

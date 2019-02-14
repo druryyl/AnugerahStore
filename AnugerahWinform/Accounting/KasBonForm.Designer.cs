@@ -60,6 +60,7 @@
             // JamTimer
             // 
             this.JamTimer.Enabled = true;
+            this.JamTimer.Tick += new System.EventHandler(this.JamTimer_Tick);
             // 
             // MainTab
             // 
@@ -130,6 +131,7 @@
             this.SearchButton.TabIndex = 2;
             this.SearchButton.Text = "...";
             this.SearchButton.UseVisualStyleBackColor = true;
+            this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
             // 
             // ExitButton
             // 
@@ -140,6 +142,7 @@
             this.ExitButton.TabIndex = 12;
             this.ExitButton.Text = "Exit";
             this.ExitButton.UseVisualStyleBackColor = true;
+            this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
             // SaveButton
             // 
@@ -151,6 +154,7 @@
             this.SaveButton.TabIndex = 10;
             this.SaveButton.Text = "Save";
             this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // NewButton
             // 
@@ -161,6 +165,7 @@
             this.NewButton.TabIndex = 3;
             this.NewButton.Text = "New";
             this.NewButton.UseVisualStyleBackColor = true;
+            this.NewButton.Click += new System.EventHandler(this.NewButton_Click);
             // 
             // label6
             // 
@@ -278,6 +283,9 @@
             this.BiayaIDText.ReadOnly = true;
             this.BiayaIDText.Size = new System.Drawing.Size(181, 21);
             this.BiayaIDText.TabIndex = 1;
+            this.BiayaIDText.Click += new System.EventHandler(this.KasBonIDText_Validated);
+            this.BiayaIDText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KasBonIDText_KeyDown);
+            this.BiayaIDText.Validated += new System.EventHandler(this.KasBonIDText_Validated);
             // 
             // label1
             // 

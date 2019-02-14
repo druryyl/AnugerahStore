@@ -16,5 +16,39 @@ namespace AnugerahBackend.Accounting.Model
         public string Keterangan { get; set; }
         public decimal NilaiPiutang { get; set; }
         public decimal NilaiLunas { get; set; }
+        public IEnumerable<BPPiutangDetilModel> ListLunas { get; set; }
+
+        public static explicit operator BPPiutangModel(KasBonModel model)
+        {
+            var resultHeader = new BPPiutangModel
+            {
+                BPPiutangID = model.KasBonID,
+                Tgl = model.Tgl,
+                Jam = model.Jam,
+                Keterangan = model.Keterangan,
+                PihakKeduaID = model.PihakKeduaID,
+                PihakKeduaName = model.PihakKeduaName,
+                NilaiPiutang = model.NilaiKasBon,
+                NilaiLunas = 0
+            };
+
+            var resultDetil = new BPPiutangDetilModel
+            {
+                BPPiutangID = model.KasBonID,
+                BPPiutangDetilID = model.KasBonID + '-' + "01",
+                Tgl = model.Tgl,
+                Jam = model.Jam,
+                Keterangan = model.Keterangan,
+                ReffID = model.KasBonID,
+                NilaiPiutang = model.NilaiKasBon,
+                NilaiLunas = 0
+            };
+            var listDetil = new List<BPPiutangDetilModel>
+            {
+                resultDetil
+            };
+            resultHeader.ListLunas = listDetil;
+            return resultHeader;
+        }
     }
 }

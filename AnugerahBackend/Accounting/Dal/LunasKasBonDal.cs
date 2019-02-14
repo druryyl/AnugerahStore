@@ -14,7 +14,7 @@ namespace AnugerahBackend.Accounting.Dal
 {
     public interface ILunasKasBonDal : IHeaderTrsDal<LunasKasBonModel>
     {
-
+        IEnumerable<LunasKasBonModel> ListData(string bpPiutangID);
     }
     public class LunasKasBonDal : ILunasKasBonDal
     {
@@ -147,6 +147,47 @@ namespace AnugerahBackend.Accounting.Dal
             {
                 cmd.AddParam("@Tgl1", tgl1.ToTglYMD());
                 cmd.AddParam("@Tgl2", tgl2.ToTglYMD());
+                conn.Open();
+                using (var dr = cmd.ExecuteReader())
+                {
+                    if (!dr.HasRows) return null;
+                    result = new List<LunasKasBonModel>();
+                    while (dr.Read())
+                    {
+                        var item = new LunasKasBonModel
+                        {
+                            LunasKasBonID = dr["LunasKasBonID"].ToString(),
+                            Tgl = dr["Tgl"].ToString().ToTglDMY(),
+                            Jam = dr["Jam"].ToString(),
+                            PihakKeduaID = dr["PihakKeduaID"].ToString(),
+                            PihakKeduaName = dr["PihakKeduaName"].ToString(),
+                            KasBonID = dr["KasBonID"].ToString(),
+                            NilaiTotLunas = Convert.ToDecimal(dr["NilaiTotLunas"]),
+                        };
+                        result.Add(item);
+                    }
+                }
+            }
+            return result;
+        }
+
+        public IEnumerable<LunasKasBonModel> ListData(string kasBonID)
+        {
+            List<LunasKasBonModel> result = null;
+            var sSql = @"
+                SELECT
+                    aa.LunasKasBonID, aa.Tgl, aa.Jam, aa.PihakKeduaID,
+                    aa.KasBonID, aa.NilaiTotLunas,
+                    ISNULL(bb.PihakKeduaName, '') PihakKeduaName 
+                FROM    
+                    LunasKasBon aa
+                    LEFT JOIN PihakKedua bb ON aa.PihakKeduaID = bb.PihakKeduaID 
+                WHERE
+                    aa.KasBonID BETWEEN @KasBonID  ";
+            using (var conn = new SqlConnection(_connString))
+            using (var cmd = new SqlCommand(sSql, conn))
+            {
+                cmd.AddParam("@KasBonID", kasBonID);
                 conn.Open();
                 using (var dr = cmd.ExecuteReader())
                 {

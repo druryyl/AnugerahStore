@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using AnugerahBackend.Accounting.BL;
 using AnugerahBackend.Accounting.Model;
 using AnugerahWinform.Support;
+using Ics.Helper.Database;
 using Ics.Helper.StringDateTime;
 
 namespace AnugerahWinform.Accounting
@@ -20,6 +21,7 @@ namespace AnugerahWinform.Accounting
         private IPihakKeduaBL _pihakKeduaBL;
         private IJenisKasBL _jenisKasBL;
         private IBPKasBL _bpKasBL;
+        private IBPPiutangBL _bpPiutangBL;
 
         public KasBonForm()
         {
@@ -29,6 +31,7 @@ namespace AnugerahWinform.Accounting
             _kasBonBL = new KasBonBL();
             _jenisKasBL = new JenisKasBL();
             _bpKasBL = new BPKasBL();
+            _bpPiutangBL = new BPPiutangBL();
 
             LoadPihakKeduaCombo();
             LoadJenisKasCombo();
@@ -104,9 +107,14 @@ namespace AnugerahWinform.Accounting
                 Keterangan = KeteranganText.Text,
                 NilaiKasBon = NilIText.Value
             };
-            var result = _kasBonBL.Save(kasBon);
 
-            _bpKasBL.Generate(result);
+            using (var trans = TransHelper.NewScope())
+            {
+                var result = _kasBonBL.Save(kasBon);
+                _bpKasBL.Generate(result);
+                _bpPiutangBL.GenPiutang(result);
+                trans.Complete();
+            }
         }
 
         private void ClearForm()
@@ -137,7 +145,7 @@ namespace AnugerahWinform.Accounting
             this.Close();
         }
 
-        private void BiayaIDText_KeyDown(object sender, KeyEventArgs e)
+        private void KasBonIDText_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F1)
             {
@@ -172,7 +180,7 @@ namespace AnugerahWinform.Accounting
             NilIText.Value = kasBon.NilaiKasBon;
         }
 
-        private void BiayaIDText_Validated(object sender, EventArgs e)
+        private void KasBonIDText_Validated(object sender, EventArgs e)
         {
             ShowData();
             TglText.Focus();
