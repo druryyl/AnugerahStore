@@ -49,6 +49,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Accounting\BL\BiayaBL.cs" />
+    <Compile Include="Accounting\BL\BPKasBL.cs" />
+    <Compile Include="Accounting\BL\JenisBiayaBL.cs" />
+    <Compile Include="Accounting\BL\JenisKasBL.cs" />
+    <Compile Include="Accounting\BL\PihakKeduaBL.cs" />
     <Compile Include="Accounting\Dal\BiayaDal.cs" />
     <Compile Include="Accounting\Dal\BPHutangDal.cs" />
     <Compile Include="Accounting\Dal\BPHutangDetilDal.cs" />
@@ -56,11 +60,13 @@
     <Compile Include="Accounting\Dal\BPKasDetilDal.cs" />
     <Compile Include="Accounting\Dal\BPPiutangDal.cs" />
     <Compile Include="Accounting\Dal\BPPiutangDetilDal.cs" />
+    <Compile Include="Accounting\Dal\JenisBiayaDal.cs" />
     <Compile Include="Accounting\Dal\JenisKasDal.cs" />
     <Compile Include="Accounting\Dal\JenisLunasDal.cs" />
     <Compile Include="Accounting\Dal\KasBonDal.cs" />
     <Compile Include="Accounting\Dal\LunasKasBonDal.cs" />
     <Compile Include="Accounting\Dal\LunasKasBonDetilDal.cs" />
+    <Compile Include="Accounting\Dal\PihakKeduaDal.cs" />
     <Compile Include="Accounting\Model\BiayaModel.cs" />
     <Compile Include="Accounting\Model\BPHutangDetilModel.cs" />
     <Compile Include="Accounting\Model\BPHutangModel.cs" />
@@ -68,6 +74,7 @@
     <Compile Include="Accounting\Model\BPKasModel.cs" />
     <Compile Include="Accounting\Model\BPPiutangDetilModel.cs" />
     <Compile Include="Accounting\Model\BPPiutangModel.cs" />
+    <Compile Include="Accounting\Model\JenisBiayaModel.cs" />
     <Compile Include="Accounting\Model\JenisKasModel.cs" />
     <Compile Include="Accounting\Model\JenisLunasModel.cs" />
     <Compile Include="Accounting\Model\KasBonModel.cs" />

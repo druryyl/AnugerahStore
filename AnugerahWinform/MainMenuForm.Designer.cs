@@ -261,6 +261,7 @@
             this.BiayaButton.Name = "BiayaButton";
             this.BiayaButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("BiayaButton.SmallImage")));
             this.BiayaButton.Text = "Biaya";
+            this.BiayaButton.Click += new System.EventHandler(this.BiayaButton_Click);
             // 
             // LaporanBiayaButton
             // 

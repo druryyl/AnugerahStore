@@ -107,11 +107,13 @@
     <Build Include="Accounting\PihakKedua.sql" />
     <Build Include="Accounting\JenisKas.sql" />
     <Build Include="Accounting\JenisLunas.sql" />
+    <Build Include="Accounting\JenisBiaya.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AnugerahDevelopment.publish.xml" />
     <None Include="AnugerahTest.publish.xml" />
     <None Include="OtherScript\JenisBayarContent.sql" />
+    <None Include="OtherScript\JenisBiayaDataSeed.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="AnugerahDataBase.refactorlog" />

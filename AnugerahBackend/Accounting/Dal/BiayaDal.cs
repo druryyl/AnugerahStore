@@ -31,9 +31,11 @@ namespace AnugerahBackend.Accounting.Dal
             var sSql = @"
                 INSERT INTO
                     Biaya (
-                        BiayaID, Tgl, Jam, Keterangan, NilaiBiaya)
+                        BiayaID, Tgl, Jam, Keterangan, 
+                        JenisBiayaID, JenisKas, NilaiBiaya)
                 VALUES (
-                        @BiayaID, @Tgl, @Jam, @Keterangan, @NilaiBiaya) ";
+                        @BiayaID, @Tgl, @Jam, @Keterangan, 
+                        @JenisBiayaID, @JenisKas, @NilaiBiaya) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
@@ -41,6 +43,8 @@ namespace AnugerahBackend.Accounting.Dal
                 cmd.AddParam("@Tgl", model.Tgl.ToTglYMD());
                 cmd.AddParam("@Jam", model.Jam);
                 cmd.AddParam("@Keterangan", model.Keterangan);
+                cmd.AddParam("@JenisBiayaID", model.JenisBiayaID);
+                cmd.AddParam("@JenisKasID", model.JenisKasID);
                 cmd.AddParam("@NilaiBiaya", model.NilaiBiaya);
                 conn.Open();
                 cmd.ExecuteNonQuery();
@@ -56,6 +60,8 @@ namespace AnugerahBackend.Accounting.Dal
                     Tgl = @Tgl, 
                     Jam = @Jam, 
                     Keterangan = @Keterangan, 
+                    JenisBiayaID = @JenisBiayaID, 
+                    JenisKasID = @JenisKasID, 
                     NilaiBiaya = @NilaiBiaya 
                 WHERE
                     BiayaID = @BiayaID ";
@@ -66,6 +72,8 @@ namespace AnugerahBackend.Accounting.Dal
                 cmd.AddParam("@Tgl", model.Tgl.ToTglYMD());
                 cmd.AddParam("@Jam", model.Jam);
                 cmd.AddParam("@Keterangan", model.Keterangan);
+                cmd.AddParam("@JenisBiayaID", model.JenisBiayaID);
+                cmd.AddParam("@JenisKasID", model.JenisKasID);
                 cmd.AddParam("@NilaiBiaya", model.NilaiBiaya);
                 conn.Open();
                 cmd.ExecuteNonQuery();
@@ -93,9 +101,14 @@ namespace AnugerahBackend.Accounting.Dal
             BiayaModel result = null;
             var sSql = @"
                 SELECT
-                    BiayaID, Tgl, Jam, Keterangan, NilaiBiaya
+                    aa.BiayaID, aa.Tgl, aa.Jam, aa.Keterangan, 
+                    aa.JenisBiayaID, aa.JenisKasID, aa.NilaiBiaya,
+                    ISNULL(bb.JenisBiayaName,'') JenisBiayaName,
+                    ISNULL(cc.JenisKasName, '') JenisKasName
                 FROM
-                    Biaya
+                    Biaya aa
+                    LEFT JOIN JenisBiaya bb ON aa.JenisBiayaID = bb.JenisBiayaID
+                    LEFT JOIN JenisKas cc ON aa.JenisKasID = cc.JenisKasID
                 WHERE
                     BiayaID = @BiayaID ";
             using (var conn = new SqlConnection(_connString))
@@ -113,6 +126,10 @@ namespace AnugerahBackend.Accounting.Dal
                         Tgl = dr["Tgl"].ToString().ToTglDMY(),
                         Jam = dr["Jam"].ToString(),
                         Keterangan = dr["Keterangan"].ToString(),
+                        JenisBiayaID = dr["JenisBiayaID"].ToString(),
+                        JenisBiayaName = dr["JenisBiayaName"].ToString(),
+                        JenisKasID = dr["JenisKasID"].ToString(),
+                        JenisKasName = dr["JenisKasName"].ToString(),
                         NilaiBiaya = Convert.ToDecimal(dr["NilaiBiaya"])
                     };
                 }
@@ -125,9 +142,14 @@ namespace AnugerahBackend.Accounting.Dal
             List<BiayaModel> result = null;
             var sSql = @"
                 SELECT
-                    BiayaID, Tgl, Jam, Keterangan, NilaiBiaya
+                    aa.BiayaID, aa.Tgl, aa.Jam, aa.Keterangan, 
+                    aa.JenisBiayaID, aa.JenisKasID, aa.NilaiBiaya,
+                    ISNULL(bb.JenisBiayaName, '') JenisBiayaName,
+                    ISNULL(cc.JenisKasName, '') JenisKasName
                 FROM
-                    Biaya
+                    Biaya aa
+                    LEFT JOIN JenisBiaya bb ON aa.JenisBiayaID = bb.JenisBiayaID
+                    LEFT JOIN JenisKas cc ON aa.JenisKasID = cc.JenisKasID
                 WHERE
                     Tgl BETWEEN @Tgl1 AND @Tgl2 ";
             using (var conn = new SqlConnection(_connString))
@@ -148,6 +170,10 @@ namespace AnugerahBackend.Accounting.Dal
                             Tgl = dr["Tgl"].ToString().ToTglDMY(),
                             Jam = dr["Jam"].ToString(),
                             Keterangan = dr["Keterangan"].ToString(),
+                            JenisBiayaID = dr["JenisBiayaID"].ToString(),
+                            JenisBiayaName = dr["JenisBiayaName"].ToString(),
+                            JenisKasID = dr["JenisKasID"].ToString(),
+                            JenisKasName = dr["JenisKasName"].ToString(),
                             NilaiBiaya = Convert.ToDecimal(dr["NilaiBiaya"])
                         };
                         result.Add(item);
