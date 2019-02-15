@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.MainTab = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label9 = new System.Windows.Forms.Label();
@@ -166,7 +166,6 @@
             // ListLunasGrid
             // 
             this.ListLunasGrid.AllowUserToAddRows = false;
-            this.ListLunasGrid.AllowUserToDeleteRows = false;
             this.ListLunasGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -180,9 +179,11 @@
             this.ListLunasGrid.DataSource = this.ListLunasBindingSource;
             this.ListLunasGrid.Location = new System.Drawing.Point(6, 290);
             this.ListLunasGrid.Name = "ListLunasGrid";
-            this.ListLunasGrid.ReadOnly = true;
             this.ListLunasGrid.Size = new System.Drawing.Size(454, 190);
             this.ListLunasGrid.TabIndex = 17;
+            this.ListLunasGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListLunasGrid_CellContentClick);
+            this.ListLunasGrid.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListLunasGrid_CellValidated);
+            this.ListLunasGrid.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.ListLunasGrid_CellValidating);
             // 
             // jenisLunasIDColDataGridViewTextBoxColumn
             // 
@@ -212,12 +213,11 @@
             // nilaiLunasColDataGridViewTextBoxColumn
             // 
             this.nilaiLunasColDataGridViewTextBoxColumn.DataPropertyName = "NilaiLunasCol";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "N0";
-            this.nilaiLunasColDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.Format = "N0";
+            this.nilaiLunasColDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
             this.nilaiLunasColDataGridViewTextBoxColumn.HeaderText = "Nilai Lunas";
             this.nilaiLunasColDataGridViewTextBoxColumn.Name = "nilaiLunasColDataGridViewTextBoxColumn";
-            this.nilaiLunasColDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // ListLunasBindingSource
             // 

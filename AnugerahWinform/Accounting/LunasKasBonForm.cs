@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AnugerahBackend.Accounting.BL;
+using AnugerahBackend.Accounting.Dal;
 using AnugerahBackend.Accounting.Model;
 using AnugerahWinform.Support;
 using Ics.Helper.Database;
@@ -20,6 +21,7 @@ namespace AnugerahWinform.Accounting
         private ILunasKasBonBL _lunasKasBonBL;
         private IKasBonBL _kasBonBL;
         private IBPPiutangBL _bpPiutangBL;
+        private IJenisLunasBL _jenisLunasBL;
 
         public LunasKasBonForm()
         {
@@ -27,6 +29,8 @@ namespace AnugerahWinform.Accounting
             _lunasKasBonBL = new LunasKasBonBL();
             _kasBonBL = new KasBonBL();
             _bpPiutangBL = new BPPiutangBL();
+            _jenisLunasBL = new JenisLunasBL();
+            AddRow();
         }
 
         private void UpdateJamText()
@@ -212,5 +216,59 @@ namespace AnugerahWinform.Accounting
 
             ListLunasGrid.Focus();
         }
+
+        private void ListLunasGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                e.RowIndex >= 0)
+            {
+                SearchJenisLunas(e.RowIndex);
+                ShowDataJenisLunas(e.RowIndex);
+            }
+        }
+
+        private void ListLunasGrid_CellValidated(object sender, DataGridViewCellEventArgs e)
+        {
+            var jenisLunasName = ListLunasTable.Rows[e.RowIndex]["JenisLunasNameCol"].ToString();
+            if ((jenisLunasName.Trim() != "") && (e.RowIndex == ListLunasTable.Rows.Count - 1))
+                AddRow();
+        }
+
+        private void ListLunasGrid_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (e.ColumnIndex == 0)
+            {
+                ShowDataJenisLunas(e.RowIndex);
+            }
+        }
+
+        private void SearchJenisLunas(int rowIndex)
+        {
+            var searchForm = new SearchingForm<JenisLunasModel>(_jenisLunasBL);
+            var resultDialog = searchForm.ShowDialog();
+            if (resultDialog == DialogResult.OK)
+            {
+                var result = searchForm.SelectedDataKey;
+                ListLunasTable.Rows[rowIndex]["JenisLunasIDCol"] = result;
+            }
+        }
+
+        private void ShowDataJenisLunas(int rowIndex)
+        {
+            //  get key (jenisLunasID)
+            string jenisLunasID = (string)ListLunasTable.Rows[rowIndex]["JenisLunasIDCol"];
+
+            //  get nama barang
+            var jenisLunasName = "";
+            var jenisLunas = _jenisLunasBL.GetData(jenisLunasID);
+            if (jenisLunas != null)
+                jenisLunasName = jenisLunas.JenisLunasName;
+
+            //  tampilkan di grid
+            ListLunasTable.Rows[rowIndex]["JenisLunasNameCol"] = jenisLunasName;
+        }
+
     }
 }

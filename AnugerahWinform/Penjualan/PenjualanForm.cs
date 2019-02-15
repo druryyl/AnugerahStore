@@ -85,7 +85,7 @@ namespace AnugerahWinform.Penjualan
             if (e.ColumnIndex == 3)
             {
                 ShowHargaBrg(e.RowIndex);
-                ShowHargaBrg(e.RowIndex);
+                //ShowHargaBrg(e.RowIndex);
             }
         }
         private void BrgGrid_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
