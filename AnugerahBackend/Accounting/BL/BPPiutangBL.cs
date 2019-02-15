@@ -5,11 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using AnugerahBackend.Accounting.Dal;
 using AnugerahBackend.Accounting.Model;
+using AnugerahBackend.Support;
 using Ics.Helper.Database;
+using Ics.Helper.Extensions;
 
 namespace AnugerahBackend.Accounting.BL
 {
-    public interface IBPPiutangBL
+    public interface IBPPiutangBL : ISearch<BPPiutangSearchModel>
     {
         void GenPiutang(KasBonModel kasBon);
         //void GenLunas()
@@ -28,6 +30,10 @@ namespace AnugerahBackend.Accounting.BL
             _pihakKeduaBL = new PihakKeduaBL();
             _bpPiutangDal = new BPPiutangDal();
             _bpPiutangDetilDal = new BPPiutangDetilDal();
+            SearchFilter = new SearchFilter
+            {
+                IsDate = false,
+            };
         }
 
         public void GenPiutang(KasBonModel kasBon)
@@ -68,6 +74,24 @@ namespace AnugerahBackend.Accounting.BL
 
                 trans.Complete();
             }
+        }
+
+        public SearchFilter SearchFilter { get; set; }
+
+        public IEnumerable<BPPiutangSearchModel> Search()
+        {
+            var listData = _bpPiutangDal.ListData();
+            if (listData == null) return null;
+
+            var result = listData.Select(x => (BPPiutangSearchModel)x);
+
+            if (SearchFilter.UserKeyword != null)
+                return
+                    from c in result
+                    where c.PihakKeduaName.ContainMultiWord(SearchFilter.UserKeyword)
+                    select c;
+
+            return result;
         }
     }
 

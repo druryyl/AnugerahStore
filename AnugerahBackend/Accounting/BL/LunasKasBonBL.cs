@@ -107,7 +107,6 @@ namespace AnugerahBackend.Accounting.BL
                 foreach (var item in model.ListLunas)
                     _lunasKasBonDetilDal.Insert(item);
 
-
                 //  commit changes
                 trans.Complete();
             }

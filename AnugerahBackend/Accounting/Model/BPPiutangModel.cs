@@ -51,4 +51,24 @@ namespace AnugerahBackend.Accounting.Model
             return resultHeader;
         }
     }
+
+    public class BPPiutangSearchModel
+    {
+        public string BPPiutangID { get; set; }
+        public string Tgl { get; set; }
+        public string PihakKeduaName { get; set; }
+        public string NilaiSisaPiutang { get; set; }
+
+        public static explicit operator BPPiutangSearchModel(BPPiutangModel model)
+        {
+            var result = new BPPiutangSearchModel
+            {
+                BPPiutangID = model.BPPiutangID,
+                Tgl = model.Tgl,
+                PihakKeduaName = model.PihakKeduaName,
+                NilaiSisaPiutang = (model.NilaiPiutang - model.NilaiLunas).ToString("N0").PadLeft(12,' '),
+            };
+            return result;
+        }
+    }
 }

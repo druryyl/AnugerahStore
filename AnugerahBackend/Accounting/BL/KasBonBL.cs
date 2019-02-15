@@ -35,7 +35,7 @@ namespace AnugerahBackend.Accounting.BL
 
             SearchFilter = new SearchFilter
             {
-                IsDate = true,
+                IsDate = false,
                 Date1 = DateTime.Now,
                 Date2 = DateTime.Now
             };

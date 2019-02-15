@@ -295,6 +295,7 @@
             this.LunasKasBonButton.Name = "LunasKasBonButton";
             this.LunasKasBonButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("LunasKasBonButton.SmallImage")));
             this.LunasKasBonButton.Text = "Lunas KasBon";
+            this.LunasKasBonButton.Click += new System.EventHandler(this.LunasKasBonButton_Click);
             // 
             // LapPiutangButton
             // 
