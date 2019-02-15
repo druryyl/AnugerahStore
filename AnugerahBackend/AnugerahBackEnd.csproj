@@ -54,6 +54,7 @@
     <Compile Include="Accounting\BL\JenisBiayaBL.cs" />
     <Compile Include="Accounting\BL\JenisKasBL.cs" />
     <Compile Include="Accounting\BL\KasBonBL.cs" />
+    <Compile Include="Accounting\BL\LunasKasBonBL.cs" />
     <Compile Include="Accounting\BL\PihakKeduaBL.cs" />
     <Compile Include="Accounting\Dal\BiayaDal.cs" />
     <Compile Include="Accounting\Dal\BPHutangDal.cs" />

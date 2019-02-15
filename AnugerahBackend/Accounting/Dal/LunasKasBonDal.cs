@@ -31,10 +31,12 @@ namespace AnugerahBackend.Accounting.Dal
                 INSERT INTO 
                     LunasKasBon (
                         LunasKasBonID, Tgl, Jam, 
-                        PihakKeduaID, KasBonID, NilaiTotLunas) 
+                        PihakKeduaID, KasBonID, 
+                        NilaiSisaPiutang, NilaiTotLunas) 
                 VALUES (
                         @LunasKasBonID, @Tgl, @Jam, 
-                        @PihakKeduaID, @KasBonID, @NilaiTotLunas ) ";
+                        @PihakKeduaID, @KasBonID, 
+                        @NilaiSisaPiutang, @NilaiTotLunas ) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
@@ -43,6 +45,7 @@ namespace AnugerahBackend.Accounting.Dal
                 cmd.AddParam("@Jam", model.Jam);
                 cmd.AddParam("@PihakKeduaID", model.PihakKeduaID);
                 cmd.AddParam("@KasBonID", model.KasBonID);
+                cmd.AddParam("@NilaiSisaPiutang", model.NilaiSisaPiutang);
                 cmd.AddParam("@NilaiTotLunas", model.NilaiTotLunas);
                 conn.Open();
                 cmd.ExecuteNonQuery();
@@ -59,6 +62,7 @@ namespace AnugerahBackend.Accounting.Dal
                     Jam = @Jam, 
                     PihakKeduaID = @PihakKeduaID,
                     KasBonID = @KasBonID,
+                    NilaiSisaPiutang = @NilaiSisaPiutang, 
                     NilaiTotLunas = @NilaiTotLunas 
                 WHERE
                     LunasKasBonID = @LunasKasBonID  ";
@@ -70,6 +74,7 @@ namespace AnugerahBackend.Accounting.Dal
                 cmd.AddParam("@Jam", model.Jam);
                 cmd.AddParam("@PihakKeduaID", model.PihakKeduaID);
                 cmd.AddParam("@KasBonID", model.KasBonID);
+                cmd.AddParam("@NilaiSisaPiutang", model.NilaiSisaPiutang);
                 cmd.AddParam("@NilaiTotLunas", model.NilaiTotLunas);
                 conn.Open();
                 cmd.ExecuteNonQuery();
@@ -98,7 +103,7 @@ namespace AnugerahBackend.Accounting.Dal
             var sSql = @"
                 SELECT
                     aa.LunasKasBonID, aa.Tgl, aa.Jam, aa.PihakKeduaID,
-                    aa.KasBonID, aa.NilaiTotLunas,
+                    aa.KasBonID, aa.NilaiSisaPiutang, aa.NilaiTotLunas,
                     ISNULL(bb.PihakKeduaName, '') PihakKeduaName 
                 FROM    
                     LunasKasBon aa
@@ -122,6 +127,7 @@ namespace AnugerahBackend.Accounting.Dal
                         PihakKeduaID = dr["PihakKeduaID"].ToString(),
                         PihakKeduaName = dr["PihakKeduaName"].ToString(),
                         KasBonID = dr["KasBonID"].ToString(),
+                        NilaiSisaPiutang = Convert.ToDecimal(dr["NilaiSisaPiutang"]),
                         NilaiTotLunas = Convert.ToDecimal(dr["NilaiTotLunas"]),
                     };
                 }
@@ -135,7 +141,7 @@ namespace AnugerahBackend.Accounting.Dal
             var sSql = @"
                 SELECT
                     aa.LunasKasBonID, aa.Tgl, aa.Jam, aa.PihakKeduaID,
-                    aa.KasBonID, aa.NilaiTotLunas,
+                    aa.KasBonID, aa.NilaiSisaPiutang, aa.NilaiTotLunas,
                     ISNULL(bb.PihakKeduaName, '') PihakKeduaName 
                 FROM    
                     LunasKasBon aa
@@ -203,6 +209,7 @@ namespace AnugerahBackend.Accounting.Dal
                             PihakKeduaID = dr["PihakKeduaID"].ToString(),
                             PihakKeduaName = dr["PihakKeduaName"].ToString(),
                             KasBonID = dr["KasBonID"].ToString(),
+                            NilaiSisaPiutang = Convert.ToDecimal(dr["NilaiSisaPiutang"]),
                             NilaiTotLunas = Convert.ToDecimal(dr["NilaiTotLunas"]),
                         };
                         result.Add(item);
