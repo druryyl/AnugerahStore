@@ -11,8 +11,9 @@ namespace AnugerahBackend.Accounting.BL
 {
     public interface IBPKasBL
     {
-        void Generate(BiayaModel biaya);
-        void Generate(KasBonModel biaya);
+        BPKasModel Generate(BiayaModel biaya);
+        BPKasModel Generate(KasBonModel kasBon);
+        BPKasModel Generate(LunasKasBonModel lunasKasBon, KasBonModel kasBon);
     }
 
     public class BPKasBL : IBPKasBL
@@ -30,30 +31,72 @@ namespace AnugerahBackend.Accounting.BL
             _jenisKasBL = new JenisKasBL();
         }
 
-        public void Generate(BiayaModel biaya)
+        public BPKasModel Generate(BiayaModel biaya)
         {
             if (biaya == null)
             {
                 throw new ArgumentNullException(nameof(biaya));
             }
-
             var bpKas = (BPKasModel)biaya;
-            Save(bpKas);
+            var result = Save(bpKas);
+            return result;
         }
 
-        public void Generate(KasBonModel kasBon)
+        public BPKasModel Generate(KasBonModel kasBon)
         {
             if (kasBon == null)
             {
                 throw new ArgumentNullException(nameof(kasBon));
             }
-
             var bpKas = (BPKasModel)kasBon;
-            Save(bpKas);
+            var result = Save(bpKas);
+            return result;
         }
 
+        public BPKasModel Generate(LunasKasBonModel lunasKasBon, KasBonModel kasBon)
+        {
+            if (lunasKasBon == null)
+            {
+                throw new ArgumentNullException(nameof(lunasKasBon));
+            }
 
-        private void Save(BPKasModel model)
+            if (kasBon == null)
+            {
+                throw new ArgumentNullException(nameof(kasBon));
+            }
+
+            if (lunasKasBon.KasBonID != kasBon.KasBonID)
+                throw new ArgumentException("KasBonID invalid");
+
+            //  convert lunasKasBon menjadi object kasBon
+            BPKasModel bpKas = new BPKasModel
+            {
+                BPKasID = lunasKasBon.LunasKasBonID,
+                Tgl = lunasKasBon.Tgl,
+                Jam = lunasKasBon.Jam,
+                Keterangan = "Lunas KasBon " + kasBon.Keterangan,
+                NilaiTotalKas = 0,
+            };
+            BPKasDetilModel detil = new BPKasDetilModel
+            {
+                BPKasID = bpKas.BPKasID,
+                BPKasDetilID = bpKas.BPKasID + '-' + "01",
+                JenisKasID = "K01",
+                NilaiKasMasuk = 
+                    lunasKasBon.ListLunas
+                        .Where(x => x.JenisLunasID == "KAS")
+                        .Sum(x => x.NilaiLunas)
+            };
+            bpKas.ListDetil = new List<BPKasDetilModel>
+            {
+                detil
+            };
+
+            var result = Save(bpKas);
+            return result;
+        }
+
+        private BPKasModel Save(BPKasModel model)
         {
             if (model == null)
             {
@@ -66,11 +109,13 @@ namespace AnugerahBackend.Accounting.BL
                 var jenisKas = _jenisKasBL.GetData(item.JenisKasID);
                 if (jenisKas == null)
                     throw new ArgumentException("Invalid Jenis Kas");
+                else
+                    item.JenisKasName = jenisKas.JenisKasName;
             }
 
             //  update nilai total di header
             model.NilaiTotalKas = model.ListDetil.Sum(x => x.NilaiKasMasuk);
-            model.NilaiTotalKas = -model.ListDetil.Sum(x => x.NilaiKasKeluar);
+            model.NilaiTotalKas -= model.ListDetil.Sum(x => x.NilaiKasKeluar);
 
             //  delete data lama
             using (var trans = TransHelper.NewScope())
@@ -84,6 +129,8 @@ namespace AnugerahBackend.Accounting.BL
 
                 trans.Complete();
             }
+
+            return model;
         }
     }
 }

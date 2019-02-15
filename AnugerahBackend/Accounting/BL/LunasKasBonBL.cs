@@ -57,9 +57,12 @@ namespace AnugerahBackend.Accounting.BL
             if (kasBon == null)
                 throw new ArgumentException("KasBonID invalid");
 
+            //  validate pihak kedua
             var pihakKedua = _pihakKeduaDal.GetData(model.PihakKeduaID);
             if (pihakKedua == null)
                 throw new ArgumentException("PihakKeduaID invalid");
+            else
+                model.PihakKeduaName = pihakKedua.PihakKeduaName;
 
             if (kasBon.PihakKeduaID != model.PihakKeduaID)
                 throw new ArgumentException("PihakKeduaID tidak sama dengan data KasBon");
@@ -78,6 +81,8 @@ namespace AnugerahBackend.Accounting.BL
                 var jenisLunas = _jenisLunasDal.GetData(item.JenisLunasID);
                 if (jenisLunas == null)
                     throw new ArgumentException("JenisLunasID invalid : " + item.JenisLunasID);
+                else
+                    item.JenisLunasName = jenisLunas.JenisLunasName;
 
                 if (item.NilaiLunas <= 0)
                     throw new ArgumentException("Pelunasan tidak boleh minus atau nol");
@@ -94,7 +99,7 @@ namespace AnugerahBackend.Accounting.BL
                 foreach (var item in model.ListLunas)
                 {
                     item.LunasKasBonID = model.LunasKasBonID;
-                    item.LunasKasBonDetilID = model.LunasKasBonID + '-' + noUrut.ToString().PadLeft(2, ' ');
+                    item.LunasKasBonDetilID = model.LunasKasBonID + '-' + noUrut.ToString().PadLeft(2, '0');
                     noUrut++;
                 }
 
@@ -133,7 +138,10 @@ namespace AnugerahBackend.Accounting.BL
 
         public LunasKasBonModel GetData(string id)
         {
-            return _lunasKasBonDal.GetData(id);
+            var header = _lunasKasBonDal.GetData(id);
+            var detail = _lunasKasBonDetilDal.ListData(id);
+            header.ListLunas = detail;
+            return header;
         }
 
         public IEnumerable<LunasKasBonModel> ListData(string tgl1, string tgl2)

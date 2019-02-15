@@ -13,7 +13,8 @@ namespace AnugerahBackend.Accounting.BL
 {
     public interface IBPPiutangBL : ISearch<BPPiutangSearchModel>
     {
-        void GenPiutang(KasBonModel kasBon);
+        BPPiutangModel GenPiutang(KasBonModel kasBon);
+        BPPiutangModel GenPiutang(LunasKasBonModel lunasKasBon, KasBonModel kasBon);
         BPPiutangModel GetData(string piutangID);
 
         //void GenLunas()
@@ -38,17 +39,68 @@ namespace AnugerahBackend.Accounting.BL
             };
         }
 
-        public void GenPiutang(KasBonModel kasBon)
+        public BPPiutangModel GetData(string piutangID)
+        {
+            var header = _bpPiutangDal.GetData(piutangID);
+            var detil = _bpPiutangDetilDal.ListData(piutangID);
+            header.ListLunas = detil;
+            return header;
+        }
+
+        public BPPiutangModel GenPiutang(KasBonModel kasBon)
         {
             if (kasBon == null)
             {
                 throw new ArgumentNullException(nameof(kasBon));
             }
             var bpPiutang = (BPPiutangModel)kasBon;
-            Save(bpPiutang);
+            var result = Save(bpPiutang);
+            return result;
         }
 
-        private void Save(BPPiutangModel model)
+        public BPPiutangModel GenPiutang(LunasKasBonModel lunasKasBon, KasBonModel kasBon)
+        {
+            //  ambil data piutang berdasarkan kasBon
+            var bpPiutang = GetData(kasBon.KasBonID);
+            if(bpPiutang == null)
+            {
+                var errMsg = string.Format("Piutang {0} tidak ditemukan ", kasBon.KasBonID);
+                throw new ArgumentException(errMsg);
+            }
+
+            //  hapus detil lunas yang id-nya = lunasKasBonID
+            List<BPPiutangDetilModel> newListLunas = 
+                (
+                    from c in bpPiutang.ListLunas
+                    where c.ReffID != lunasKasBon.LunasKasBonID
+                    select c
+                ).ToList();
+
+            //  tambahkan pelunasan dari lunasKasBon
+            int noUrut = newListLunas.Count + 1;
+            foreach(var item in lunasKasBon.ListLunas)
+            {
+                newListLunas.Add(new BPPiutangDetilModel
+                {
+                    BPPiutangID = bpPiutang.BPPiutangID,
+                    BPPiutangDetilID = bpPiutang.BPPiutangID + '-' + noUrut.ToString().PadLeft(2, '0'),
+                    Tgl = lunasKasBon.Tgl,
+                    Jam = lunasKasBon.Jam,
+                    ReffID = item.LunasKasBonID,
+                    Keterangan = "Pelunasan " + item.JenisLunasName,
+                    NilaiPiutang = 0,
+                    NilaiLunas = item.NilaiLunas
+                });
+                noUrut++;
+            }
+
+            bpPiutang.ListLunas = newListLunas;
+            //  simpan
+            var result = Save(bpPiutang);
+            return result;
+        }
+
+        private BPPiutangModel Save(BPPiutangModel model)
         {
             if (model == null)
             {
@@ -59,6 +111,8 @@ namespace AnugerahBackend.Accounting.BL
             var pihakKedua = _pihakKeduaBL.GetData(model.PihakKeduaID);
             if (pihakKedua == null)
                 throw new ArgumentException("PihakKeduaID invalid");
+            else
+                model.PihakKeduaName = pihakKedua.PihakKeduaName;
 
             //  update nilai total di header
             model.NilaiPiutang = model.ListLunas.Sum(x => x.NilaiPiutang);
@@ -76,6 +130,7 @@ namespace AnugerahBackend.Accounting.BL
 
                 trans.Complete();
             }
+            return model;
         }
 
         public SearchFilter SearchFilter { get; set; }
@@ -96,12 +151,6 @@ namespace AnugerahBackend.Accounting.BL
             return result;
         }
 
-        public BPPiutangModel GetData(string piutangID)
-        {
-            var header = _bpPiutangDal.GetData(piutangID);
-            var detil = _bpPiutangDetilDal.ListData(piutangID);
-            header.ListLunas = detil;
-            return header;
-        }
+
     }
 }

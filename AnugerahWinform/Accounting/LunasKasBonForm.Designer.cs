@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.MainTab = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label9 = new System.Windows.Forms.Label();
@@ -46,7 +46,7 @@
             this.dataColumn1 = new System.Data.DataColumn();
             this.dataColumn2 = new System.Data.DataColumn();
             this.dataColumn3 = new System.Data.DataColumn();
-            this.PihakKeduaText = new System.Windows.Forms.TextBox();
+            this.PihakKeduaNameText = new System.Windows.Forms.TextBox();
             this.SearchKasBonButton = new System.Windows.Forms.Button();
             this.KasBonIDText = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -68,6 +68,7 @@
             this.DeleteButton = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.JamTimer = new System.Windows.Forms.Timer(this.components);
+            this.PihakKeduaIDText = new System.Windows.Forms.TextBox();
             this.MainTab.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NilaiTotLunasText)).BeginInit();
@@ -92,11 +93,12 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.Bisque;
+            this.tabPage1.Controls.Add(this.PihakKeduaIDText);
             this.tabPage1.Controls.Add(this.label9);
             this.tabPage1.Controls.Add(this.NilaiTotLunasText);
             this.tabPage1.Controls.Add(this.label7);
             this.tabPage1.Controls.Add(this.ListLunasGrid);
-            this.tabPage1.Controls.Add(this.PihakKeduaText);
+            this.tabPage1.Controls.Add(this.PihakKeduaNameText);
             this.tabPage1.Controls.Add(this.SearchKasBonButton);
             this.tabPage1.Controls.Add(this.KasBonIDText);
             this.tabPage1.Controls.Add(this.label8);
@@ -213,9 +215,9 @@
             // nilaiLunasColDataGridViewTextBoxColumn
             // 
             this.nilaiLunasColDataGridViewTextBoxColumn.DataPropertyName = "NilaiLunasCol";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.Format = "N0";
-            this.nilaiLunasColDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "N0";
+            this.nilaiLunasColDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.nilaiLunasColDataGridViewTextBoxColumn.HeaderText = "Nilai Lunas";
             this.nilaiLunasColDataGridViewTextBoxColumn.Name = "nilaiLunasColDataGridViewTextBoxColumn";
             // 
@@ -254,15 +256,15 @@
             this.dataColumn3.ColumnName = "NilaiLunasCol";
             this.dataColumn3.DataType = typeof(decimal);
             // 
-            // PihakKeduaText
+            // PihakKeduaNameText
             // 
-            this.PihakKeduaText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.PihakKeduaNameText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.PihakKeduaText.Location = new System.Drawing.Point(6, 153);
-            this.PihakKeduaText.Name = "PihakKeduaText";
-            this.PihakKeduaText.ReadOnly = true;
-            this.PihakKeduaText.Size = new System.Drawing.Size(454, 21);
-            this.PihakKeduaText.TabIndex = 16;
+            this.PihakKeduaNameText.Location = new System.Drawing.Point(76, 153);
+            this.PihakKeduaNameText.Name = "PihakKeduaNameText";
+            this.PihakKeduaNameText.ReadOnly = true;
+            this.PihakKeduaNameText.Size = new System.Drawing.Size(384, 21);
+            this.PihakKeduaNameText.TabIndex = 16;
             // 
             // SearchKasBonButton
             // 
@@ -478,6 +480,17 @@
             // JamTimer
             // 
             this.JamTimer.Enabled = true;
+            this.JamTimer.Tick += new System.EventHandler(this.JamTimer_Tick);
+            // 
+            // PihakKeduaIDText
+            // 
+            this.PihakKeduaIDText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PihakKeduaIDText.Location = new System.Drawing.Point(6, 153);
+            this.PihakKeduaIDText.Name = "PihakKeduaIDText";
+            this.PihakKeduaIDText.ReadOnly = true;
+            this.PihakKeduaIDText.Size = new System.Drawing.Size(67, 21);
+            this.PihakKeduaIDText.TabIndex = 21;
             // 
             // LunasKasBonForm
             // 
@@ -524,7 +537,7 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Timer JamTimer;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox PihakKeduaText;
+        private System.Windows.Forms.TextBox PihakKeduaNameText;
         private System.Windows.Forms.Button SearchKasBonButton;
         private System.Windows.Forms.TextBox KasBonIDText;
         private System.Windows.Forms.Label label7;
@@ -541,5 +554,6 @@
         private System.Data.DataColumn dataColumn3;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.NumericUpDown NilaiTotLunasText;
+        private System.Windows.Forms.TextBox PihakKeduaIDText;
     }
 }
