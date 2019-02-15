@@ -35,7 +35,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.NilaiTotLunasText = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ListLunasGrid = new System.Windows.Forms.DataGridView();
             this.jenisLunasIDColDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ButtonSearchCol = new System.Windows.Forms.DataGridViewButtonColumn();
             this.jenisLunasNameColDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -71,7 +71,7 @@
             this.MainTab.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NilaiTotLunasText)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ListLunasGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ListLunasBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LunasKasBonDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ListLunasTable)).BeginInit();
@@ -95,7 +95,7 @@
             this.tabPage1.Controls.Add(this.label9);
             this.tabPage1.Controls.Add(this.NilaiTotLunasText);
             this.tabPage1.Controls.Add(this.label7);
-            this.tabPage1.Controls.Add(this.dataGridView1);
+            this.tabPage1.Controls.Add(this.ListLunasGrid);
             this.tabPage1.Controls.Add(this.PihakKeduaText);
             this.tabPage1.Controls.Add(this.SearchKasBonButton);
             this.tabPage1.Controls.Add(this.KasBonIDText);
@@ -163,26 +163,26 @@
             this.label7.TabIndex = 18;
             this.label7.Text = "Pelunasan";
             // 
-            // dataGridView1
+            // ListLunasGrid
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.ListLunasGrid.AllowUserToAddRows = false;
+            this.ListLunasGrid.AllowUserToDeleteRows = false;
+            this.ListLunasGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ListLunasGrid.AutoGenerateColumns = false;
+            this.ListLunasGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ListLunasGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.jenisLunasIDColDataGridViewTextBoxColumn,
             this.ButtonSearchCol,
             this.jenisLunasNameColDataGridViewTextBoxColumn,
             this.nilaiLunasColDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.ListLunasBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 290);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(454, 190);
-            this.dataGridView1.TabIndex = 17;
+            this.ListLunasGrid.DataSource = this.ListLunasBindingSource;
+            this.ListLunasGrid.Location = new System.Drawing.Point(6, 290);
+            this.ListLunasGrid.Name = "ListLunasGrid";
+            this.ListLunasGrid.ReadOnly = true;
+            this.ListLunasGrid.Size = new System.Drawing.Size(454, 190);
+            this.ListLunasGrid.TabIndex = 17;
             // 
             // jenisLunasIDColDataGridViewTextBoxColumn
             // 
@@ -492,7 +492,7 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NilaiTotLunasText)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ListLunasGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ListLunasBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LunasKasBonDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ListLunasTable)).EndInit();
@@ -528,7 +528,7 @@
         private System.Windows.Forms.Button SearchKasBonButton;
         private System.Windows.Forms.TextBox KasBonIDText;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView ListLunasGrid;
         private System.Data.DataSet LunasKasBonDataSet;
         private System.Windows.Forms.BindingSource ListLunasBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn jenisLunasIDColDataGridViewTextBoxColumn;

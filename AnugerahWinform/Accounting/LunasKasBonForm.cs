@@ -183,10 +183,11 @@ namespace AnugerahWinform.Accounting
 
         private void SearchKasBonButton_Click(object sender, EventArgs e)
         {
-
+            SearchBPPiutang();
+            ShowDataBPPiutang();
         }
 
-        private void SearchKasBon()
+        private void SearchBPPiutang()
         {
             var searchForm = new SearchingForm<BPPiutangSearchModel>(_bpPiutangBL);
             var resultDialog = searchForm.ShowDialog();
@@ -195,6 +196,21 @@ namespace AnugerahWinform.Accounting
                 var result = searchForm.SelectedDataKey;
                 KasBonIDText.Text = result;
             }
+        }
+
+        private void ShowDataBPPiutang()
+        {
+            var bpPiutang = _bpPiutangBL.GetData(KasBonIDText.Text);
+            if(bpPiutang == null)
+            {
+                ClearForm();
+                return;
+            }
+            PihakKeduaText.Text = bpPiutang.PihakKeduaName;
+            KeteranganText.Text = bpPiutang.Keterangan;
+            NilaiSisaPiutangText.Value = bpPiutang.NilaiPiutang - bpPiutang.NilaiLunas;
+
+            ListLunasGrid.Focus();
         }
     }
 }

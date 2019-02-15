@@ -14,6 +14,8 @@ namespace AnugerahBackend.Accounting.BL
     public interface IBPPiutangBL : ISearch<BPPiutangSearchModel>
     {
         void GenPiutang(KasBonModel kasBon);
+        BPPiutangModel GetData(string piutangID);
+
         //void GenLunas()
     }
 
@@ -92,6 +94,14 @@ namespace AnugerahBackend.Accounting.BL
                     select c;
 
             return result;
+        }
+
+        public BPPiutangModel GetData(string piutangID)
+        {
+            var header = _bpPiutangDal.GetData(piutangID);
+            var detil = _bpPiutangDetilDal.ListData(piutangID);
+            header.ListLunas = detil;
+            return header;
         }
     }
 
