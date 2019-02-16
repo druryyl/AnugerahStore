@@ -17,6 +17,7 @@ namespace AnugerahBackend.Accounting.BL
         BPKasModel Generate(KasBonModel kasBon);
         BPKasModel Generate(LunasKasBonModel lunasKasBon, KasBonModel kasBon);
         BPKasModel Generate(PenjualanModel penjualan);
+        IEnumerable<BPKasModel> ListData(string tgl1, string tgl2);
     }
 
     public class BPKasBL : IBPKasBL
@@ -180,6 +181,12 @@ namespace AnugerahBackend.Accounting.BL
             }
 
             return model;
+        }
+
+        public IEnumerable<BPKasModel> ListData(string tgl1, string tgl2)
+        {
+            var result = _bpKasDal.ListData(tgl1, tgl2);
+            return result;
         }
     }
 }

@@ -162,5 +162,15 @@ namespace AnugerahWinform
             };
             form.Show();
         }
+
+        private void LaporanBPKasButton_Click(object sender, EventArgs e)
+        {
+            var form = new BPKasInfoForm
+            {
+                MdiParent = this,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            form.Show();
+        }
     }
 }

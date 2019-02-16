@@ -62,6 +62,7 @@
     <Compile Include="Accounting\Dal\BPHutangDetilDal.cs" />
     <Compile Include="Accounting\Dal\BPKasDal.cs" />
     <Compile Include="Accounting\Dal\BPKasDetilDal.cs" />
+    <Compile Include="Accounting\Dal\BPKasInfoDal.cs" />
     <Compile Include="Accounting\Dal\BPPiutangDal.cs" />
     <Compile Include="Accounting\Dal\BPPiutangDetilDal.cs" />
     <Compile Include="Accounting\Dal\JenisBiayaDal.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Accounting\Model\BPKasModel.cs" />
     <Compile Include="Accounting\Model\BPPiutangDetilModel.cs" />
     <Compile Include="Accounting\Model\BPPiutangModel.cs" />
+    <Compile Include="Accounting\Model\BPKasInfoModel.cs" />
     <Compile Include="Accounting\Model\JenisBiayaModel.cs" />
     <Compile Include="Accounting\Model\JenisKasModel.cs" />
     <Compile Include="Accounting\Model\JenisLunasModel.cs" />

@@ -62,6 +62,8 @@
             this.ReturDepositButton = new System.Windows.Forms.RibbonButton();
             this.LapHutangButton = new System.Windows.Forms.RibbonButton();
             this.ribbonButton1 = new System.Windows.Forms.RibbonButton();
+            this.BPKasRibbon = new System.Windows.Forms.RibbonPanel();
+            this.LaporanBPKasButton = new System.Windows.Forms.RibbonButton();
             this.SuspendLayout();
             // 
             // ribbon1
@@ -245,6 +247,7 @@
             this.ribbonTab3.Panels.Add(this.ribbonPanel1);
             this.ribbonTab3.Panels.Add(this.ribbonPanel2);
             this.ribbonTab3.Panels.Add(this.ribbonPanel3);
+            this.ribbonTab3.Panels.Add(this.BPKasRibbon);
             this.ribbonTab3.Text = "Keuangan";
             // 
             // ribbonPanel1
@@ -346,6 +349,21 @@
             this.ribbonButton1.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton1.SmallImage")));
             this.ribbonButton1.Text = "ribbonButton1";
             // 
+            // BPKasRibbon
+            // 
+            this.BPKasRibbon.Items.Add(this.LaporanBPKasButton);
+            this.BPKasRibbon.Name = "BPKasRibbon";
+            this.BPKasRibbon.Text = "ribbonPanel4";
+            // 
+            // LaporanBPKasButton
+            // 
+            this.LaporanBPKasButton.Image = ((System.Drawing.Image)(resources.GetObject("LaporanBPKasButton.Image")));
+            this.LaporanBPKasButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("LaporanBPKasButton.LargeImage")));
+            this.LaporanBPKasButton.Name = "LaporanBPKasButton";
+            this.LaporanBPKasButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("LaporanBPKasButton.SmallImage")));
+            this.LaporanBPKasButton.Text = "Laporan Kas";
+            this.LaporanBPKasButton.Click += new System.EventHandler(this.LaporanBPKasButton_Click);
+            // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -399,6 +417,8 @@
         private System.Windows.Forms.RibbonButton ReturDepositButton;
         private System.Windows.Forms.RibbonButton LapHutangButton;
         private System.Windows.Forms.RibbonButton ribbonButton1;
+        private System.Windows.Forms.RibbonPanel BPKasRibbon;
+        private System.Windows.Forms.RibbonButton LaporanBPKasButton;
     }
 }
 

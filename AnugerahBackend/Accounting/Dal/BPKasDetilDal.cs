@@ -14,7 +14,6 @@ namespace AnugerahBackend.Accounting.Dal
 {
     public interface IBPKasDetilDal : IDetilTrsDal<BPKasDetilModel>
     {
-
     }
 
     public class BPKasDetilDal : IBPKasDetilDal

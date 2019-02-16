@@ -118,6 +118,37 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="LaporanBPKasButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAW5JREFUaEPtljFKxEAUhmNhpaDF3kEPIQjewEqxEZa9gHsCwUsIFoKVF7C1Uext
+        VhDttnCCIu4mts9N9r2QjM9khhl2xuX98BUhycf/p8kkEomEz+X1M8QE1jIPJwkJ1jIPJwkJ1jIPJwkJ
+        1jIPJwkJ1jIPJwkJ1jIPvfiWfnvF1ikDOKkLXU71pODj/La6jnqAGin4HFyAGn/Nr2flp9tDyFcOqxHe
+        Buzu3zhBnrpzsnMKeXIAk70zSB/H8/Kz6+nWSTmOno92QHr3AllvUJbO146x/LAqT897GeAL3VmMyFeP
+        yvLZZr9RviD6AQXvVw+QbfQhvX/9de9fDGhDBsQC1jIPvch9FRdsnTKAk7rQ5ZSjBEUfwP1dbSBP3SlH
+        ibboA3yhO+Uo8VcWOaANGRALWMs89CL3VVywdcoATupCl1OOEhR9APd3tYE8dedyHSXW5SjRzKIGFMhR
+        gsvSDIgFrGUeThISrCWRSBpJkh9a4RGnMOZezQAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="LaporanBPKasButton.LargeImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAW5JREFUaEPtljFKxEAUhmNhpaDF3kEPIQjewEqxEZa9gHsCwUsIFoKVF7C1Uext
+        VhDttnCCIu4mts9N9r2QjM9khhl2xuX98BUhycf/p8kkEomEz+X1M8QE1jIPJwkJ1jIPJwkJ1jIPJwkJ
+        1jIPJwkJ1jIPJwkJ1jIPvfiWfnvF1ikDOKkLXU71pODj/La6jnqAGin4HFyAGn/Nr2flp9tDyFcOqxHe
+        Buzu3zhBnrpzsnMKeXIAk70zSB/H8/Kz6+nWSTmOno92QHr3AllvUJbO146x/LAqT897GeAL3VmMyFeP
+        yvLZZr9RviD6AQXvVw+QbfQhvX/9de9fDGhDBsQC1jIPvch9FRdsnTKAk7rQ5ZSjBEUfwP1dbSBP3SlH
+        ibboA3yhO+Uo8VcWOaANGRALWMs89CL3VVywdcoATupCl1OOEhR9APd3tYE8dedyHSXW5SjRzKIGFMhR
+        gsvSDIgFrGUeThISrCWRSBpJkh9a4RGnMOZezQAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="LaporanBPKasButton.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAATSURBVDhPYxgFo2AUjAIwYGAAAAQQAAGnRHxjAAAAAElF
+        TkSuQmCC
+</value>
+  </data>
   <data name="PurchaseOrderButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
