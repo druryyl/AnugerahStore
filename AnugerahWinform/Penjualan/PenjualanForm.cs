@@ -1,10 +1,12 @@
-﻿using AnugerahBackend.Penjualan.BL;
+﻿using AnugerahBackend.Accounting.BL;
+using AnugerahBackend.Penjualan.BL;
 using AnugerahBackend.Penjualan.Dal;
 using AnugerahBackend.Penjualan.Model;
 using AnugerahBackend.StokBarang.BL;
 using AnugerahBackend.StokBarang.Model;
 using AnugerahWinform.PrintDoc;
 using AnugerahWinform.Support;
+using Ics.Helper.Database;
 using Ics.Helper.StringDateTime;
 using System;
 using System.Collections.Generic;
@@ -26,8 +28,10 @@ namespace AnugerahWinform.Penjualan
         private IPenjualanBayarDal _penjualanBayarDal;
         private ICustomerBL _customerBL;
         private IBrgPriceBL _brgPriceBL;
+        private IBPKasBL _bpKasBL;
+        private IJenisBayarBL _jenisBayarBL;
 
-        private List<PenjualanBayarModel> _listBayarNonCash;
+        private List<PenjualanBayarModel> _listBayarDetil;
 
         public PenjualanForm()
         {
@@ -39,6 +43,8 @@ namespace AnugerahWinform.Penjualan
             _customerBL = new CustomerBL();
             _brgPriceBL = new BrgPriceBL();
             _penjualanBayarDal = new PenjualanBayarDal();
+            _bpKasBL = new BPKasBL();
+            _jenisBayarBL = new JenisBayarBL();
 
         }
 
@@ -136,21 +142,23 @@ namespace AnugerahWinform.Penjualan
 
         private void BayarButton_Click(object sender, EventArgs e)
         {
-            using (var penjualanBayarForm = new PenjualanBayarForm(_listBayarNonCash))
+            using (var penjualanBayarForm = new PenjualanBayarForm(_listBayarDetil))
             {
                 var result = penjualanBayarForm.ShowDialog();
                 if (result == DialogResult.OK)
                 {
                     if(penjualanBayarForm.ListBayar != null)
-                        _listBayarNonCash = penjualanBayarForm.ListBayar
+                        _listBayarDetil = penjualanBayarForm.ListBayar
                             .Where(x => x.NilaiBayar != 0)
                             .ToList();
                 }
             }
 
-            if (_listBayarNonCash == null) return;
+            if (_listBayarDetil == null) return;
 
-            BayarNonCashNumText.Value = _listBayarNonCash.Sum(x => x.NilaiBayar);
+            BayarNonCashNumText.Value = _listBayarDetil.Where(x => x.JenisBayarID != "KAS").Sum(x => x.NilaiBayar);
+            BayarCashNumText.Value = _listBayarDetil.Where(x => x.JenisBayarID == "KAS").Sum(x => x.NilaiBayar);
+
         }
         private void SaveButton_Click(object sender, EventArgs e)
         {
@@ -182,7 +190,7 @@ namespace AnugerahWinform.Penjualan
             ReCalcTotal();
             JamTrsTimer.Enabled = true;
             DetilPenjualanTable.Rows.Clear();
-            _listBayarNonCash = null;
+            _listBayarDetil = null;
 
             AddRow();
         }
@@ -258,10 +266,10 @@ namespace AnugerahWinform.Penjualan
             {
                 foreach (var item in penjualan.ListBayar.Where(x => x.JenisBayarID != "KAS"))
                 {
-                    if (_listBayarNonCash == null)
-                        _listBayarNonCash = new List<PenjualanBayarModel>();
+                    if (_listBayarDetil == null)
+                        _listBayarDetil = new List<PenjualanBayarModel>();
 
-                    _listBayarNonCash.Add(new PenjualanBayarModel
+                    _listBayarDetil.Add(new PenjualanBayarModel
                     {
                         JenisBayarID = item.JenisBayarID,
                         JenisBayarName = item.JenisBayarName,
@@ -346,14 +354,18 @@ namespace AnugerahWinform.Penjualan
             }
             TotalNumText.Value = nilaiTotal;
 
-            decimal totBayarNonCash = 0;
-            if(_listBayarNonCash!= null)
-                foreach(var item in _listBayarNonCash)
-                    totBayarNonCash += item.NilaiBayar;
-            BayarNonCashNumText.Value = totBayarNonCash;
+            if (_listBayarDetil != null)
+            {
+                BayarNonCashNumText.Value = _listBayarDetil.Where(x => x.JenisBayarID != "KAS").Sum(x => x.NilaiBayar);
+                BayarCashNumText.Value = _listBayarDetil.Where(x => x.JenisBayarID == "KAS").Sum(x => x.NilaiBayar);
+            }
 
             GrandTotalNumText.Value = nilaiTotal - DiskonNumText.Value + BiayaLainNumText.Value;
-            KembaliNumText.Value = BayarCashNumText.Value - GrandTotalNumText.Value + BayarNonCashNumText.Value;
+            decimal nilaiTotBayar = BayarNonCashNumText.Value + BayarCashNumText.Value;
+            KembaliNumText.Value = nilaiTotBayar - GrandTotalNumText.Value;
+
+            if (KembaliNumText.Value < 0) KembaliNumText.Value = 0;
+
         }
         private void SaveTransaksi()
         {
@@ -413,22 +425,26 @@ namespace AnugerahWinform.Penjualan
                     NilaiBayar = bayarCash,
                     Catatan = ""
                 };
+                if (listDetilBayar == null) listDetilBayar = new List<PenjualanBayarModel>();
+                listDetilBayar.Add(itemBayarCash);
+            }
+
+            if (kembali != 0)
+            {
                 var itemKembali = new PenjualanBayarModel
                 {
                     JenisBayarID = "KAS",
                     NilaiBayar = -kembali,
                     Catatan = ""
                 };
-                listDetilBayar = new List<PenjualanBayarModel>
-                {
-                    itemBayarCash,
-                    itemKembali
-                };
+                if (listDetilBayar == null) listDetilBayar = new List<PenjualanBayarModel>();
+                listDetilBayar.Add(itemKembali);
             }
+
             //  ambil data bayar non cash
-            if (_listBayarNonCash != null)
+            if (_listBayarDetil != null)
             {
-                foreach(var item in _listBayarNonCash)
+                foreach(var item in _listBayarDetil)
                 {
                     var itemNonCash = new PenjualanBayarModel
                     {
@@ -463,7 +479,21 @@ namespace AnugerahWinform.Penjualan
                 ListBayar = listDetilBayar
             };
 
-            var result = _penjualanBL.Save(penjualan);
+            PenjualanModel result = null;
+            try
+            {
+                using (var trans = TransHelper.NewScope())
+                {
+                    result = _penjualanBL.Save(penjualan);
+                    var bpKas = _bpKasBL.Generate(penjualan);
+                    trans.Complete();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
 
             if (result != null)
                 LastIDLabel.Text = result.PenjualanID;
@@ -477,7 +507,30 @@ namespace AnugerahWinform.Penjualan
 
         private void BayarCashNumText_ValueChanged(object sender, EventArgs e)
         {
-            ReCalcTotal();
+            //  update listBayar
+            //  jika belum ada isinya
+            if (_listBayarDetil == null) _listBayarDetil = new List<PenjualanBayarModel>();
+
+            //  jika belum ada baris KAS, tambahkan
+            var jenisBayar = _jenisBayarBL.GetData("KAS");
+            if (!_listBayarDetil.Where(x => x.JenisBayarID == "KAS").Any())
+                _listBayarDetil.Add(new PenjualanBayarModel
+                {
+                    JenisBayarID = "KAS",
+                    JenisBayarName = jenisBayar.JenisBayarName,
+                });
+            //  update nilai KAS
+            foreach (var item in _listBayarDetil)
+            {
+                if (item.JenisBayarID == "KAS")
+                {
+                    item.NilaiBayar = BayarCashNumText.Value;
+                    break;
+                }
+            }
+
+            KembaliNumText.Value = _listBayarDetil.Sum(x => x.NilaiBayar) - GrandTotalNumText.Value;
+            if (KembaliNumText.Value < 0) KembaliNumText.Value = 0;
         }
 
         private void BayarCashNumText_KeyDown(object sender, KeyEventArgs e)
@@ -486,6 +539,10 @@ namespace AnugerahWinform.Penjualan
             {
                 BayarCashNumText.Value = GrandTotalNumText.Value - BayarNonCashNumText.Value;
             }
+        }
+
+        private void BayarCashNumText_Validated(object sender, EventArgs e)
+        {
         }
     }
 }

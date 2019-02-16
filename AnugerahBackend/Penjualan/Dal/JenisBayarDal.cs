@@ -40,15 +40,18 @@ namespace AnugerahBackend.Penjualan.Dal
             var sSql = @"
                 INSERT INTO
                     JenisBayar (
-                        JenisBayarID, JenisBayarName, IsMesinEdc)
+                        JenisBayarID, JenisBayarName, IsMesinEdc,
+                        JenisKasID)
                 VALUES (
-                        @JenisBayarID, @JenisBayarName, @IsMesinEdc) ";
+                        @JenisBayarID, @JenisBayarName, @IsMesinEdc,
+                        @JenisKasID) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
                 cmd.AddParam("@JenisBayarID", jenisBayar.JenisBayarID);
                 cmd.AddParam("@JenisBayarName", jenisBayar.JenisBayarName);
                 cmd.AddParam("@IsMesinEdc", jenisBayar.KasTransferEdc);
+                cmd.AddParam("@JenisKasID", jenisBayar.JenisKasID);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -61,7 +64,8 @@ namespace AnugerahBackend.Penjualan.Dal
                     JenisBayar 
                 SET
                     JenisBayarName = @JenisBayarName,
-                    IsMesinEdc = @IsMesinEdc
+                    IsMesinEdc = @IsMesinEdc,
+                    JenisKasID = @JenisKasID
                 WHERE
                     JenisBayarID = @JenisBayarID ";
             using (var conn = new SqlConnection(_connString))
@@ -70,6 +74,7 @@ namespace AnugerahBackend.Penjualan.Dal
                 cmd.AddParam("@JenisBayarID", jenisBayar.JenisBayarID);
                 cmd.AddParam("@JenisBayarName", jenisBayar.JenisBayarName);
                 cmd.AddParam("@IsMesinEdc", jenisBayar.KasTransferEdc);
+                cmd.AddParam("@JenisKasID", jenisBayar.JenisKasID);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -95,9 +100,12 @@ namespace AnugerahBackend.Penjualan.Dal
             var sSql = @"
                 SELECT
                     aa.JenisBayarName,
-                    aa.KasTransferEdc
+                    aa.KasTransferEdc,
+                    aa.JenisKasID, 
+                    ISNULL(bb.JenisKasName, '') JenisKasName    
                 FROM
                     JenisBayar aa
+                    LEFT JOIN JenisKas bb ON aa.JenisKasID = bb.JenisKasID
                 WHERE
                     aa.JenisBayarID = @JenisBayarID ";
             using (var conn = new SqlConnection(_connString))
@@ -114,7 +122,9 @@ namespace AnugerahBackend.Penjualan.Dal
                         {
                             JenisBayarID = id,
                             JenisBayarName = dr["JenisBayarName"].ToString(),
-                            KasTransferEdc = dr["KasTransferEdc"].ToString()
+                            KasTransferEdc = dr["KasTransferEdc"].ToString(),
+                            JenisKasID = dr["JenisKasID"].ToString(),
+                            JenisKasName = dr["JenisKasName"].ToString()
                         };
                     }
                 }
@@ -127,9 +137,12 @@ namespace AnugerahBackend.Penjualan.Dal
             List<JenisBayarModel> result = null;
             var sSql = @"
                 SELECT
-                    aa.JenisBayarID, aa.JenisBayarName, aa.KasTransferEdc
+                    aa.JenisBayarID, aa.JenisBayarName, aa.KasTransferEdc,
+                    aa.JenisKasID, 
+                    ISNULL(bb.JenisKasName, '') JenisKasName
                 FROM
-                    JenisBayar aa ";
+                    JenisBayar aa 
+                    LEFT JOIN JenisKas bb ON aa.JenisKasID = bb.JenisKasID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
@@ -145,7 +158,9 @@ namespace AnugerahBackend.Penjualan.Dal
                             {
                                 JenisBayarID = dr["JenisBayarID"].ToString(),
                                 JenisBayarName = dr["JenisBayarName"].ToString(),
-                                KasTransferEdc = dr["KasTransferEdc"].ToString()
+                                KasTransferEdc = dr["KasTransferEdc"].ToString(),
+                                JenisKasID = dr["JenisKasID"].ToString(),
+                                JenisKasName = dr["JenisKasName"].ToString()
                             };
                             result.Add(item);
                         }
@@ -154,5 +169,6 @@ namespace AnugerahBackend.Penjualan.Dal
             }
             return result;
         }
+
     }
 }

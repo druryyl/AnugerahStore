@@ -48,7 +48,7 @@ namespace AnugerahWinform.Penjualan
                 decimal edcBri = 0;
                 decimal trfBri = 0;
 
-                item.ListBayar = _penjualanBayarDal.ListData(item.PenjualanID, false);
+                item.ListBayar = _penjualanBayarDal.ListData(item.PenjualanID);
 
                 if (item.ListBayar == null) continue;
 

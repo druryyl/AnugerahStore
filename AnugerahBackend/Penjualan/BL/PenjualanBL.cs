@@ -134,7 +134,7 @@ namespace AnugerahBackend.Penjualan.BL
                 if (detilBrg != null)
                     header.ListBrg = detilBrg;
 
-                var detilBayar = _penjualanBayarDal.ListData(id, false);
+                var detilBayar = _penjualanBayarDal.ListData(id);
                 if (detilBayar != null)
                     header.ListBayar = detilBayar;
             }

@@ -14,7 +14,7 @@ namespace AnugerahBackend.Penjualan.Dal
     {
         void Insert(PenjualanBayarModel penjualanBayar);
         void Delete(string penjualanID);
-        IEnumerable<PenjualanBayarModel> ListData(string penjualanID, bool isFullJoinMasterJenisBayar);
+        IEnumerable<PenjualanBayarModel> ListData(string penjualanID);
     }
 
     public class PenjualanBayarDal : IPenjualanBayarDal
@@ -66,40 +66,26 @@ namespace AnugerahBackend.Penjualan.Dal
             }
         }
 
-        public IEnumerable<PenjualanBayarModel> ListData(string penjualanID, bool isFullJoinMasterJenisBayar)
+        public IEnumerable<PenjualanBayarModel> ListData(string penjualanID)
         {
             List<PenjualanBayarModel> result = null;
             string sSql = "";
 
-            if(!isFullJoinMasterJenisBayar)
-                sSql = @"
-                    SELECT
-                        aa.PenjualanID, aa.PenjualanID2, aa.NoUrut, 
-                        aa.JenisBayarID, aa.NilaiBayar, aa.Catatan,
-                        ISNULL(bb.JenisBayarName, '') JenisBayarName
-                    FROM
-                        PenjualanBayar aa
-                        LEFT JOIN JenisBayar bb ON aa.JenisBayarID = bb.JenisBayarID 
-                    WHERE
-                        aa.PenjualanID = @PenjualanID 
-                    ORDER BY 
-                        aa.NoUrut ";
-            else
-                sSql = @"
-                    SELECT
-                        ISNULL(aa.PenjualanID,'') PenjualanID, 
-                        ISNULL(aa.PenjualanID2, '') PenjualanID2, 
-                        ISNULL(bb.NoUrut, aa.NoUrut) NoUrut, 
-                        ISNULL(bb.JenisBayarID, aa.JenisBayarID) JenisBayarID,
-                        ISNULL(aa.NilaiBayar, 0) NilaiBayar,
-                        ISNULL(aa.Catatan, ' ') Catatan,
-                        ISNULL(bb.JenisBayarName, '') JenisBayarName
-                    FROM
-                        PenjualanBayar aa
-                        FULL JOIN JenisBayar bb ON aa.JenisBayarID = bb.JenisBayarID 
-                            AND aa.PenjualanID = @PenjualanID
-                    ORDER BY
-                        bb.NoUrut, aa.NoUrut ";
+            sSql = @"
+                SELECT
+                    aa.PenjualanID, aa.PenjualanID2, aa.NoUrut, 
+                    aa.JenisBayarID, aa.NilaiBayar, aa.Catatan,
+                    ISNULL(bb.JenisBayarName, '') JenisBayarName,
+                    ISNULL(bb.JenisKasID, '') JenisKasID,
+                    ISNULL(cc.JenisKasName, '') JenisKasName
+                FROM
+                    PenjualanBayar aa
+                    LEFT JOIN JenisBayar bb ON aa.JenisBayarID = bb.JenisBayarID 
+                    LEFT JOIN JenisKas cc ON bb.JenisKasID = cc.JenisKasID
+                WHERE
+                    aa.PenjualanID = @PenjualanID 
+                ORDER BY 
+                    aa.NoUrut ";
 
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
@@ -120,6 +106,8 @@ namespace AnugerahBackend.Penjualan.Dal
                             NoUrut = Convert.ToInt16(dr["NoUrut"]),
                             JenisBayarID = dr["JenisBayarID"].ToString(),
                             JenisBayarName = dr["JenisBayarName"].ToString(),
+                            JenisKasID = dr["JenisKasID"].ToString(),
+                            JenisKasName = dr["JenisKasName"].ToString(),
                             NilaiBayar = Convert.ToDecimal(dr["NilaiBayar"]),
                             Catatan = dr["Catatan"].ToString()
                         };

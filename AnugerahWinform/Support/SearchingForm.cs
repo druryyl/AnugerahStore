@@ -87,7 +87,8 @@ namespace AnugerahWinform.Support
             IEnumerable<T> listData = _searchBL.Search();
 
             //  set result to grid
-            ListDataGrid.DataSource = listData.ToList();
+            if(listData!=null)
+                ListDataGrid.DataSource = listData.ToList();
 
             //  format grid
             if (listData!=null)

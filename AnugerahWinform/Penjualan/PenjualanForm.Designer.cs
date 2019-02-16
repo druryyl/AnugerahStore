@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.entryDataTabPage = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -193,11 +193,12 @@
             -2147483648});
             this.BayarCashNumText.Name = "BayarCashNumText";
             this.BayarCashNumText.Size = new System.Drawing.Size(113, 21);
-            this.BayarCashNumText.TabIndex = 37;
+            this.BayarCashNumText.TabIndex = 17;
             this.BayarCashNumText.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.BayarCashNumText.ThousandsSeparator = true;
             this.BayarCashNumText.ValueChanged += new System.EventHandler(this.BayarCashNumText_ValueChanged);
             this.BayarCashNumText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BayarCashNumText_KeyDown);
+            this.BayarCashNumText.Validated += new System.EventHandler(this.BayarCashNumText_Validated);
             // 
             // KembaliNumText
             // 
@@ -218,7 +219,7 @@
             this.KembaliNumText.Name = "KembaliNumText";
             this.KembaliNumText.ReadOnly = true;
             this.KembaliNumText.Size = new System.Drawing.Size(113, 21);
-            this.KembaliNumText.TabIndex = 36;
+            this.KembaliNumText.TabIndex = 18;
             this.KembaliNumText.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.KembaliNumText.ThousandsSeparator = true;
             // 
@@ -241,7 +242,7 @@
             this.BayarNonCashNumText.Name = "BayarNonCashNumText";
             this.BayarNonCashNumText.ReadOnly = true;
             this.BayarNonCashNumText.Size = new System.Drawing.Size(113, 21);
-            this.BayarNonCashNumText.TabIndex = 35;
+            this.BayarNonCashNumText.TabIndex = 16;
             this.BayarNonCashNumText.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.BayarNonCashNumText.ThousandsSeparator = true;
             this.BayarNonCashNumText.ValueChanged += new System.EventHandler(this.BayarNonCashNumText_ValueChanged);
@@ -252,8 +253,8 @@
             this.BayarButton.Location = new System.Drawing.Point(713, 48);
             this.BayarButton.Name = "BayarButton";
             this.BayarButton.Size = new System.Drawing.Size(113, 23);
-            this.BayarButton.TabIndex = 34;
-            this.BayarButton.Text = "&Bayar Non Cash";
+            this.BayarButton.TabIndex = 14;
+            this.BayarButton.Text = "&Bayar Detil";
             this.BayarButton.UseVisualStyleBackColor = true;
             this.BayarButton.Click += new System.EventHandler(this.BayarButton_Click);
             // 
@@ -276,7 +277,7 @@
             this.GrandTotalNumText.Name = "GrandTotalNumText";
             this.GrandTotalNumText.ReadOnly = true;
             this.GrandTotalNumText.Size = new System.Drawing.Size(113, 21);
-            this.GrandTotalNumText.TabIndex = 33;
+            this.GrandTotalNumText.TabIndex = 13;
             this.GrandTotalNumText.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.GrandTotalNumText.ThousandsSeparator = true;
             // 
@@ -297,7 +298,7 @@
             -2147483648});
             this.BiayaLainNumText.Name = "BiayaLainNumText";
             this.BiayaLainNumText.Size = new System.Drawing.Size(113, 21);
-            this.BiayaLainNumText.TabIndex = 32;
+            this.BiayaLainNumText.TabIndex = 12;
             this.BiayaLainNumText.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.BiayaLainNumText.ThousandsSeparator = true;
             this.BiayaLainNumText.ValueChanged += new System.EventHandler(this.BiayaLainNumText_ValueChanged);
@@ -320,7 +321,7 @@
             -2147483648});
             this.DiskonNumText.Name = "DiskonNumText";
             this.DiskonNumText.Size = new System.Drawing.Size(113, 21);
-            this.DiskonNumText.TabIndex = 31;
+            this.DiskonNumText.TabIndex = 11;
             this.DiskonNumText.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.DiskonNumText.ThousandsSeparator = true;
             this.DiskonNumText.ValueChanged += new System.EventHandler(this.DiskonNumText_ValueChanged);
@@ -345,7 +346,7 @@
             this.TotalNumText.Name = "TotalNumText";
             this.TotalNumText.ReadOnly = true;
             this.TotalNumText.Size = new System.Drawing.Size(113, 21);
-            this.TotalNumText.TabIndex = 30;
+            this.TotalNumText.TabIndex = 10;
             this.TotalNumText.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.TotalNumText.ThousandsSeparator = true;
             // 
@@ -434,7 +435,7 @@
             this.CatatanTextBox.Multiline = true;
             this.CatatanTextBox.Name = "CatatanTextBox";
             this.CatatanTextBox.Size = new System.Drawing.Size(313, 48);
-            this.CatatanTextBox.TabIndex = 22;
+            this.CatatanTextBox.TabIndex = 8;
             // 
             // CatatanLabel
             // 
@@ -472,7 +473,7 @@
             this.NoTelpTextBox.Location = new System.Drawing.Point(631, 42);
             this.NoTelpTextBox.Name = "NoTelpTextBox";
             this.NoTelpTextBox.Size = new System.Drawing.Size(313, 21);
-            this.NoTelpTextBox.TabIndex = 18;
+            this.NoTelpTextBox.TabIndex = 7;
             // 
             // AlamatTextBox
             // 
@@ -480,7 +481,7 @@
             this.AlamatTextBox.Location = new System.Drawing.Point(631, 15);
             this.AlamatTextBox.Name = "AlamatTextBox";
             this.AlamatTextBox.Size = new System.Drawing.Size(313, 21);
-            this.AlamatTextBox.TabIndex = 17;
+            this.AlamatTextBox.TabIndex = 6;
             // 
             // CustomerComboBox
             // 
@@ -490,7 +491,7 @@
             this.CustomerComboBox.Location = new System.Drawing.Point(148, 69);
             this.CustomerComboBox.Name = "CustomerComboBox";
             this.CustomerComboBox.Size = new System.Drawing.Size(313, 21);
-            this.CustomerComboBox.TabIndex = 16;
+            this.CustomerComboBox.TabIndex = 4;
             // 
             // CustomerIDLabel
             // 
@@ -515,7 +516,7 @@
             this.BuyerNameTextBox.Location = new System.Drawing.Point(148, 96);
             this.BuyerNameTextBox.Name = "BuyerNameTextBox";
             this.BuyerNameTextBox.Size = new System.Drawing.Size(313, 21);
-            this.BuyerNameTextBox.TabIndex = 13;
+            this.BuyerNameTextBox.TabIndex = 5;
             // 
             // NoTrsTextBox
             // 
@@ -543,7 +544,7 @@
             this.TanggalDateTime.Location = new System.Drawing.Point(148, 42);
             this.TanggalDateTime.Name = "TanggalDateTime";
             this.TanggalDateTime.Size = new System.Drawing.Size(114, 21);
-            this.TanggalDateTime.TabIndex = 1;
+            this.TanggalDateTime.TabIndex = 2;
             // 
             // label2
             // 
@@ -560,14 +561,14 @@
             this.JamTextBox.Mask = "99:99:99";
             this.JamTextBox.Name = "JamTextBox";
             this.JamTextBox.Size = new System.Drawing.Size(73, 21);
-            this.JamTextBox.TabIndex = 8;
+            this.JamTextBox.TabIndex = 3;
             // 
             // NewButton
             // 
             this.NewButton.Location = new System.Drawing.Point(268, 13);
             this.NewButton.Name = "NewButton";
             this.NewButton.Size = new System.Drawing.Size(59, 23);
-            this.NewButton.TabIndex = 9;
+            this.NewButton.TabIndex = 1;
             this.NewButton.Text = "New";
             this.NewButton.UseVisualStyleBackColor = true;
             this.NewButton.Click += new System.EventHandler(this.NewButton_Click);
@@ -601,7 +602,7 @@
             this.BrgGrid.Location = new System.Drawing.Point(6, 148);
             this.BrgGrid.Name = "BrgGrid";
             this.BrgGrid.Size = new System.Drawing.Size(959, 224);
-            this.BrgGrid.TabIndex = 10;
+            this.BrgGrid.TabIndex = 9;
             this.BrgGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BrgGrid_CellContentClick);
             this.BrgGrid.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.BrgGrid_CellValidated);
             this.BrgGrid.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.BrgGrid_CellValidating);
@@ -631,20 +632,20 @@
             // QtyCol
             // 
             this.QtyCol.DataPropertyName = "Qty";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.Format = "N0";
-            dataGridViewCellStyle1.NullValue = "0";
-            this.QtyCol.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle9.Format = "N0";
+            dataGridViewCellStyle9.NullValue = "0";
+            this.QtyCol.DefaultCellStyle = dataGridViewCellStyle9;
             this.QtyCol.HeaderText = "Qty";
             this.QtyCol.Name = "QtyCol";
             // 
             // HargaCol
             // 
             this.HargaCol.DataPropertyName = "Harga";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "N0";
-            dataGridViewCellStyle2.NullValue = "0";
-            this.HargaCol.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle10.Format = "N0";
+            dataGridViewCellStyle10.NullValue = "0";
+            this.HargaCol.DefaultCellStyle = dataGridViewCellStyle10;
             this.HargaCol.HeaderText = "Harga";
             this.HargaCol.Name = "HargaCol";
             this.HargaCol.ReadOnly = true;
@@ -652,10 +653,10 @@
             // DiskonCol
             // 
             this.DiskonCol.DataPropertyName = "Diskon";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "N0";
-            dataGridViewCellStyle3.NullValue = "0";
-            this.DiskonCol.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle11.Format = "N0";
+            dataGridViewCellStyle11.NullValue = "0";
+            this.DiskonCol.DefaultCellStyle = dataGridViewCellStyle11;
             this.DiskonCol.HeaderText = "Diskon";
             this.DiskonCol.Name = "DiskonCol";
             this.DiskonCol.ReadOnly = true;
@@ -663,10 +664,10 @@
             // SubTotalCol
             // 
             this.SubTotalCol.DataPropertyName = "SubTotal";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Format = "N0";
-            dataGridViewCellStyle4.NullValue = "0";
-            this.SubTotalCol.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle12.Format = "N0";
+            dataGridViewCellStyle12.NullValue = "0";
+            this.SubTotalCol.DefaultCellStyle = dataGridViewCellStyle12;
             this.SubTotalCol.HeaderText = "SubTotal";
             this.SubTotalCol.Name = "SubTotalCol";
             this.SubTotalCol.ReadOnly = true;
@@ -728,7 +729,7 @@
             this.ExitButton.Location = new System.Drawing.Point(864, 524);
             this.ExitButton.Name = "ExitButton";
             this.ExitButton.Size = new System.Drawing.Size(87, 23);
-            this.ExitButton.TabIndex = 8;
+            this.ExitButton.TabIndex = 21;
             this.ExitButton.Text = "E&xit";
             this.ExitButton.UseVisualStyleBackColor = true;
             this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
@@ -739,7 +740,7 @@
             this.deleteButton.Location = new System.Drawing.Point(771, 524);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(87, 23);
-            this.deleteButton.TabIndex = 7;
+            this.deleteButton.TabIndex = 20;
             this.deleteButton.Text = "&Delete";
             this.deleteButton.UseVisualStyleBackColor = true;
             // 
@@ -749,7 +750,7 @@
             this.saveButton.Location = new System.Drawing.Point(678, 524);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(87, 23);
-            this.saveButton.TabIndex = 6;
+            this.saveButton.TabIndex = 19;
             this.saveButton.Text = "&Save";
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);

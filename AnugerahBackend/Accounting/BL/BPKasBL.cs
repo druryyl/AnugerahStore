@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using AnugerahBackend.Accounting.Dal;
 using AnugerahBackend.Accounting.Model;
+using AnugerahBackend.Penjualan.BL;
+using AnugerahBackend.Penjualan.Model;
 using Ics.Helper.Database;
 
 namespace AnugerahBackend.Accounting.BL
@@ -14,6 +16,7 @@ namespace AnugerahBackend.Accounting.BL
         BPKasModel Generate(BiayaModel biaya);
         BPKasModel Generate(KasBonModel kasBon);
         BPKasModel Generate(LunasKasBonModel lunasKasBon, KasBonModel kasBon);
+        BPKasModel Generate(PenjualanModel penjualan);
     }
 
     public class BPKasBL : IBPKasBL
@@ -22,6 +25,7 @@ namespace AnugerahBackend.Accounting.BL
         private IBPKasDetilDal _bpKasDetilDal;
         private IBiayaBL _biayaBL;
         private IJenisKasBL _jenisKasBL;
+        private IJenisBayarBL _jenisBayarBL;
 
         public BPKasBL()
         {
@@ -29,6 +33,7 @@ namespace AnugerahBackend.Accounting.BL
             _bpKasDetilDal = new BPKasDetilDal();
             _biayaBL = new BiayaBL();
             _jenisKasBL = new JenisKasBL();
+            _jenisBayarBL = new JenisBayarBL();
         }
 
         public BPKasModel Generate(BiayaModel biaya)
@@ -92,6 +97,50 @@ namespace AnugerahBackend.Accounting.BL
                 detil
             };
 
+            var result = Save(bpKas);
+            return result;
+        }
+
+        public BPKasModel Generate(PenjualanModel penjualan)
+        {
+            var bpKas = new BPKasModel
+            {
+                BPKasID = penjualan.PenjualanID,
+                Tgl = penjualan.TglPenjualan,
+                Jam = penjualan.JamPenjualan,
+                Keterangan = string.Format("Penjualan {0} a/n {1}", penjualan.PenjualanID, penjualan.BuyerName),
+                NilaiTotalKas = 0
+            };
+            var listBpKasDetil = new List<BPKasDetilModel>();
+
+            //  update jenisKasID di detil penjualan
+            foreach(var item in penjualan.ListBayar)
+            {
+                var jenisBayar = _jenisBayarBL.GetData(item.JenisBayarID);
+                var jenisKas = _jenisKasBL.GetData(jenisBayar.JenisKasID);
+                item.JenisKasID = jenisKas.JenisKasID;
+                item.JenisKasName = jenisKas.JenisKasName;
+            }
+
+            var listJenisKas = _jenisKasBL.ListData();
+            int noUrut = 1;
+            foreach(var item in listJenisKas)
+            {
+                var bpKasDetil = new BPKasDetilModel
+                {
+                    BPKasID = penjualan.PenjualanID,
+                    BPKasDetilID = penjualan.PenjualanID + '-' + noUrut.ToString().PadLeft(2, '0'),
+                    JenisKasID = item.JenisKasID,
+                    JenisKasName = item.JenisKasName,
+                    NilaiKasMasuk = penjualan.ListBayar
+                        .Where(x => x.JenisKasID == item.JenisKasID)
+                        .Sum(x => x.NilaiBayar),
+                };
+                noUrut++;
+                if (bpKasDetil.NilaiKasMasuk != 0)
+                    listBpKasDetil.Add(bpKasDetil);
+            }
+            bpKas.ListDetil = listBpKasDetil;
             var result = Save(bpKas);
             return result;
         }
