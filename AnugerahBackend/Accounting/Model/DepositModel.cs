@@ -14,6 +14,30 @@ namespace AnugerahBackend.Accounting.Model
         public string PihakKeduaID { get; set; }
         public string PihakKeduaName { get; set; }
         public string Keterangan { get; set; }
+        public string JenisBayarID { get; set; }
+        public string JenisBayarName { get; set; }
         public decimal NilaiDeposit { get; set; }
+    }
+
+    public class DepositSearchModel
+    {
+        public string DepositID { get; set; }
+        public string Tgl { get; set; }
+        public string PihakKeduaName { get; set; }
+        public string Keterangan { get; set; }
+        public string  NilaiDeposit { get; set; }
+        public static explicit operator DepositSearchModel(DepositModel model)
+        {
+            var result = new DepositSearchModel
+            {
+                DepositID = model.DepositID,
+                Tgl = model.Tgl,
+                Keterangan = model.Keterangan,
+                PihakKeduaName = model.PihakKeduaName,
+                NilaiDeposit = model.NilaiDeposit.ToString("N0").PadLeft(2,'0')
+            };
+            return result;
+        }
+
     }
 }

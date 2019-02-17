@@ -182,5 +182,15 @@ namespace AnugerahWinform
             };
             form.Show();
         }
+
+        private void DepositJualButton_Click(object sender, EventArgs e)
+        {
+            var form = new DepositForm
+            {
+                MdiParent = this,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            form.Show();
+        }
     }
 }

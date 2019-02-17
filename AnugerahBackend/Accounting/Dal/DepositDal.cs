@@ -34,10 +34,10 @@ namespace AnugerahBackend.Accounting.Dal
                 INSERT INTO
                     Deposit (
                         DepositID, Tgl, Jam, PihakKeduaID,
-                        Keterangan, NilaiDeposit) 
+                        Keterangan, JenisBayarID, NilaiDeposit) 
                 VALUES (
                         @DepositID, @Tgl, @Jam, @PihakKeduaID,
-                        @Keterangan, @NilaiDeposit) ";
+                        @Keterangan, @JenisBayarID, @NilaiDeposit) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql,conn))
             {
@@ -46,6 +46,7 @@ namespace AnugerahBackend.Accounting.Dal
                 cmd.AddParam("@Jam", model.Jam);
                 cmd.AddParam("@PihakKeduaID", model.PihakKeduaID);
                 cmd.AddParam("@Keterangan", model.Keterangan);
+                cmd.AddParam("@JenisBayarID", model.JenisBayarID);
                 cmd.AddParam("@NilaiDeposit", model.NilaiDeposit);
                 conn.Open();
                 cmd.ExecuteNonQuery();
@@ -62,9 +63,11 @@ namespace AnugerahBackend.Accounting.Dal
                     Jam = @Jam, 
                     PihakKeduaID = @PihakKeduaID,
                     Keterangan = @Keterangan, 
+                    JenisBayarID = @JenisBayarID, 
                     NilaiDeposit = @NilaiDeposit 
                 WHERE
-x                   DepositID = @DepositID ";
+                    DepositID = @DepositID ";
+
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
@@ -73,6 +76,7 @@ x                   DepositID = @DepositID ";
                 cmd.AddParam("@Jam", model.Jam);
                 cmd.AddParam("@PihakKeduaID", model.PihakKeduaID);
                 cmd.AddParam("@Keterangan", model.Keterangan);
+                cmd.AddParam("@JenisBayarID", model.JenisBayarID);
                 cmd.AddParam("@NilaiDeposit", model.NilaiDeposit);
                 conn.Open();
                 cmd.ExecuteNonQuery();
@@ -85,7 +89,7 @@ x                   DepositID = @DepositID ";
                 DELETE
                     Deposit 
                 WHERE
-x                   DepositID = @DepositID ";
+                   DepositID = @DepositID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
@@ -102,11 +106,13 @@ x                   DepositID = @DepositID ";
             var sSql = @"
                 SELECT
                     aa.DepositID, aa.Tgl, aa.Jam, aa.PihakKeduaID,
-                    aa.Keterangan, aa.NilaiDeposit,
-                    ISNULL(bb.PihakKeduaID, '') PihakKeduaID 
+                    aa.Keterangan, aa.JenisBayarID, aa.NilaiDeposit,
+                    ISNULL(bb.PihakKeduaName, '') PihakKeduaName,
+                    ISNULL(cc.JenisBayarName, '') JenisBayarName
                 FROM
                     Deposit aa
                     LEFT JOIN PihakKedua bb ON aa.PihakKeduaID = bb.PihakKeduaID 
+                    LEFT JOIN JenisBayar cc ON aa.JenisBayarID = cc.JenisBayarID
                 WHERE
                     aa.DepositID = @DepositID ";
             using (var conn = new SqlConnection(_connString))
@@ -126,6 +132,8 @@ x                   DepositID = @DepositID ";
                         PihakKeduaID = dr["PihakKeduaID"].ToString(),
                         PihakKeduaName = dr["PihakKeduaName"].ToString(),
                         Keterangan = dr["Keterangan"].ToString(),
+                        JenisBayarID = dr["JenisBayarID"].ToString(),
+                        JenisBayarName = dr["JenisBayarName"].ToString(),
                         NilaiDeposit = Convert.ToDecimal(dr["NilaiDeposit"]),
                     };
                 }
@@ -140,11 +148,13 @@ x                   DepositID = @DepositID ";
             var sSql = @"
                 SELECT
                     aa.DepositID, aa.Tgl, aa.Jam, aa.PihakKeduaID,
-                    aa.Keterangan, aa.NilaiDeposit,
-                    ISNULL(bb.PihakKeduaID, '') PihakKeduaID 
+                    aa.Keterangan, aa.JenisBayarID, aa.NilaiDeposit,
+                    ISNULL(bb.PihakKeduaname, '') PihakKeduaName,
+                    ISNULL(cc.JenisBayarName, '') JenisBayarName
                 FROM
                     Deposit aa
                     LEFT JOIN PihakKedua bb ON aa.PihakKeduaID = bb.PihakKeduaID 
+                    LEFT JOIN JenisBayar cc ON aa.JenisBayarID = cc.JenisBayarID
                 WHERE
                     aa.Tgl BETWEEN @Tgl1 AND @Tgl2 ";
             using (var conn = new SqlConnection(_connString))
@@ -167,6 +177,8 @@ x                   DepositID = @DepositID ";
                             PihakKeduaID = dr["PihakKeduaID"].ToString(),
                             PihakKeduaName = dr["PihakKeduaName"].ToString(),
                             Keterangan = dr["Keterangan"].ToString(),
+                            JenisBayarID = dr["JenisBayarID"].ToString(),
+                            JenisBayarName = dr["JenisBayarName"].ToString(),
                             NilaiDeposit = Convert.ToDecimal(dr["NilaiDeposit"]),
                         };
                         result.Add(item);

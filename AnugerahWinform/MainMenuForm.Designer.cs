@@ -325,6 +325,7 @@
             this.DepositJualButton.Name = "DepositJualButton";
             this.DepositJualButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("DepositJualButton.SmallImage")));
             this.DepositJualButton.Text = "Deposit Jual";
+            this.DepositJualButton.Click += new System.EventHandler(this.DepositJualButton_Click);
             // 
             // ReturDepositButton
             // 

@@ -87,6 +87,12 @@
     <Compile Include="Accounting\BPPiutangInfoForm.Designer.cs">
       <DependentUpon>BPPiutangInfoForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Accounting\DepositForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\DepositForm.Designer.cs">
+      <DependentUpon>DepositForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Accounting\KasBonForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -227,6 +233,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Accounting\BPPiutangInfoForm.resx">
       <DependentUpon>BPPiutangInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\DepositForm.resx">
+      <DependentUpon>DepositForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Accounting\KasBonForm.resx">
       <DependentUpon>KasBonForm.cs</DependentUpon>

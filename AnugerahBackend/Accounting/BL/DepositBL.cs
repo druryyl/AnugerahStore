@@ -5,12 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using AnugerahBackend.Accounting.Dal;
 using AnugerahBackend.Accounting.Model;
+using AnugerahBackend.Support;
 using AnugerahBackend.Support.BL;
 using Ics.Helper.Database;
+using Ics.Helper.Extensions;
 
 namespace AnugerahBackend.Accounting.BL
 {
-    public interface IDepositBL
+    public interface IDepositBL : ISearch<DepositSearchModel>
     {
         DepositModel Save(DepositModel model);
         void Delete(string id);
@@ -27,6 +29,13 @@ namespace AnugerahBackend.Accounting.BL
         {
             _depositDal = new DepositDal();
             _pihakKeduaBL = new PihakKeduaBL();
+            _paramNoBL = new ParameterNoBL();
+            SearchFilter = new SearchFilter
+            {
+                IsDate = true,
+                Date1 = DateTime.Now,
+                Date2 = DateTime.Now,
+            };
         }
 
         public DepositModel Save(DepositModel model)
@@ -89,6 +98,26 @@ namespace AnugerahBackend.Accounting.BL
         public IEnumerable<DepositModel> ListData(string tgl1, string tgl2)
         {
             return _depositDal.ListData(tgl1, tgl2);
+        }
+
+        public SearchFilter SearchFilter { get; set; }
+
+        public IEnumerable<DepositSearchModel> Search()
+        {
+            //  ambil data
+            var listAll = _depositDal.ListData(SearchFilter.TglDMY1, SearchFilter.TglDMY2);
+            if (listAll == null) return null;
+
+            //  convert ke SearchModel
+            var result = listAll.Select(x => (DepositSearchModel)x);
+
+            if (SearchFilter.UserKeyword != null)
+                return
+                    from c in result
+                    where c.PihakKeduaName.ContainMultiWord(SearchFilter.UserKeyword)
+                    select c;
+
+            return result;
         }
     }
 }
