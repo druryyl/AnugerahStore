@@ -22,7 +22,7 @@ namespace AnugerahBackend.Accounting.Model
                 BPKasID = model.BiayaID,
                 Tgl = model.Tgl,
                 Jam = model.Jam,
-                Keterangan = model.Keterangan,
+                Keterangan = "Biaya " + model.Keterangan,
                 NilaiTotalKas = -model.NilaiBiaya
             };
 
@@ -46,7 +46,7 @@ namespace AnugerahBackend.Accounting.Model
                 BPKasID = model.KasBonID,
                 Tgl = model.Tgl,
                 Jam = model.Jam,
-                Keterangan = model.Keterangan,
+                Keterangan = "KasBon " + model.Keterangan,
                 NilaiTotalKas = -model.NilaiKasBon
             };
 
@@ -57,6 +57,30 @@ namespace AnugerahBackend.Accounting.Model
                 JenisKasID = model.JenisKasID,
                 NilaiKasMasuk = 0,
                 NilaiKasKeluar = model.NilaiKasBon
+            };
+
+            result.ListDetil = new List<BPKasDetilModel> { resultDetil };
+            return result;
+        }
+
+        public static explicit operator BPKasModel(DepositModel model)
+        {
+            var result = new BPKasModel
+            {
+                BPKasID = model.DepositID,
+                Tgl = model.Tgl,
+                Jam = model.Jam,
+                Keterangan = "Deposit " + model.Keterangan,
+                NilaiTotalKas = model.NilaiDeposit
+            };
+
+            var resultDetil = new BPKasDetilModel
+            {
+                BPKasID = model.DepositID,
+                BPKasDetilID = model.DepositID + '-' + "01",
+                JenisKasID = model.JenisKasID,
+                NilaiKasMasuk = model.NilaiDeposit,
+                NilaiKasKeluar = 0
             };
 
             result.ListDetil = new List<BPKasDetilModel> { resultDetil };

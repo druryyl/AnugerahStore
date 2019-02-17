@@ -14,7 +14,7 @@ namespace AnugerahBackend.Accounting.Dal
 {
     public interface IBPHutangDal : IHeaderTrsDal<BPHutangModel>
     {
-
+        IEnumerable<BPHutangModel> ListData();
     }
     public class BPHutangDal : IBPHutangDal
     {
@@ -157,6 +157,46 @@ namespace AnugerahBackend.Accounting.Dal
                     result = new List<BPHutangModel>();
                     while(dr.Read())
                     { 
+                        var item = new BPHutangModel
+                        {
+                            BPHutangID = dr["BPHutangID"].ToString(),
+                            Tgl = dr["Tgl"].ToString().ToTglDMY(),
+                            Jam = dr["Jam"].ToString(),
+                            PihakKeduaID = dr["PihakKeduaID"].ToString(),
+                            Keterangan = dr["Keterangan"].ToString(),
+                            NilaiHutang = Convert.ToDecimal(dr["NilaiHutang"]),
+                            NilaiLunas = Convert.ToDecimal(dr["NilaiLunas"]),
+                        };
+                        result.Add(item);
+                    }
+                }
+            }
+            return result;
+        }
+
+        public IEnumerable<BPHutangModel> ListData()
+        {
+            List<BPHutangModel> result = null;
+            var sSql = @"
+                SELECT
+                    aa.BPHutangID, aa.Tgl, aa.Jam, aa.PihakKeduaID,
+                    aa.Keterangan, aa.NilaiHutang, aa.NilaiLunas,
+                    ISNULL(bb.PihakKeduaName, ' ') PihakKeduaName 
+                FROM    
+                    BPHutang aa
+                    LEFT JOIN PihakKedua bb ON aa.PihakKeduaID = bb.PihakKeduaID 
+                WHERE
+                    aa.NilaiLunas < aa.NilaiHutang ";
+            using (var conn = new SqlConnection(_connString))
+            using (var cmd = new SqlCommand(sSql, conn))
+            {
+                conn.Open();
+                using (var dr = cmd.ExecuteReader())
+                {
+                    if (!dr.HasRows) return null;
+                    result = new List<BPHutangModel>();
+                    while (dr.Read())
+                    {
                         var item = new BPHutangModel
                         {
                             BPHutangID = dr["BPHutangID"].ToString(),

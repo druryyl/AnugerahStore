@@ -108,11 +108,14 @@ namespace AnugerahBackend.Accounting.Dal
                     aa.DepositID, aa.Tgl, aa.Jam, aa.PihakKeduaID,
                     aa.Keterangan, aa.JenisBayarID, aa.NilaiDeposit,
                     ISNULL(bb.PihakKeduaName, '') PihakKeduaName,
-                    ISNULL(cc.JenisBayarName, '') JenisBayarName
+                    ISNULL(cc.JenisBayarName, '') JenisBayarName,
+                    ISNULL(cc.JenisKasID, '') JenisKasID,
+                    ISNULL(dd.JenisKasName, '') JenisKasName
                 FROM
                     Deposit aa
                     LEFT JOIN PihakKedua bb ON aa.PihakKeduaID = bb.PihakKeduaID 
                     LEFT JOIN JenisBayar cc ON aa.JenisBayarID = cc.JenisBayarID
+                    LEFT JOIN JenisKas dd ON cc.JenisKasID = dd.JenisKasID
                 WHERE
                     aa.DepositID = @DepositID ";
             using (var conn = new SqlConnection(_connString))
@@ -134,6 +137,8 @@ namespace AnugerahBackend.Accounting.Dal
                         Keterangan = dr["Keterangan"].ToString(),
                         JenisBayarID = dr["JenisBayarID"].ToString(),
                         JenisBayarName = dr["JenisBayarName"].ToString(),
+                        JenisKasID = dr["JenisKasID"].ToString(),
+                        JenisKasName = dr["JenisKasName"].ToString(),
                         NilaiDeposit = Convert.ToDecimal(dr["NilaiDeposit"]),
                     };
                 }
@@ -149,12 +154,15 @@ namespace AnugerahBackend.Accounting.Dal
                 SELECT
                     aa.DepositID, aa.Tgl, aa.Jam, aa.PihakKeduaID,
                     aa.Keterangan, aa.JenisBayarID, aa.NilaiDeposit,
-                    ISNULL(bb.PihakKeduaname, '') PihakKeduaName,
-                    ISNULL(cc.JenisBayarName, '') JenisBayarName
+                    ISNULL(bb.PihakKeduaName, '') PihakKeduaName,
+                    ISNULL(cc.JenisBayarName, '') JenisBayarName,
+                    ISNULL(cc.JenisKasID, '') JenisKasID,
+                    ISNULL(dd.JenisKasName, '') JenisKasName
                 FROM
                     Deposit aa
                     LEFT JOIN PihakKedua bb ON aa.PihakKeduaID = bb.PihakKeduaID 
                     LEFT JOIN JenisBayar cc ON aa.JenisBayarID = cc.JenisBayarID
+                    LEFT JOIN JenisKas dd ON cc.JenisKasID = dd.JenisKasID
                 WHERE
                     aa.Tgl BETWEEN @Tgl1 AND @Tgl2 ";
             using (var conn = new SqlConnection(_connString))
@@ -179,6 +187,8 @@ namespace AnugerahBackend.Accounting.Dal
                             Keterangan = dr["Keterangan"].ToString(),
                             JenisBayarID = dr["JenisBayarID"].ToString(),
                             JenisBayarName = dr["JenisBayarName"].ToString(),
+                            JenisKasID = dr["JenisKasID"].ToString(),
+                            JenisKasName = dr["JenisKasName"].ToString(),
                             NilaiDeposit = Convert.ToDecimal(dr["NilaiDeposit"]),
                         };
                         result.Add(item);

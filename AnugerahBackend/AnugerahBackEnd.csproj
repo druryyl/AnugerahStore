@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Accounting\BL\BiayaBL.cs" />
+    <Compile Include="Accounting\BL\BPHutangBL.cs" />
     <Compile Include="Accounting\BL\BPKasBL.cs" />
     <Compile Include="Accounting\BL\BPPiutangBL.cs" />
     <Compile Include="Accounting\BL\DepositBL.cs" />

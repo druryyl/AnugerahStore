@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AnugerahBackend.Accounting.Dal;
 using AnugerahBackend.Accounting.Model;
+using AnugerahBackend.Penjualan.BL;
 using AnugerahBackend.Support;
 using AnugerahBackend.Support.BL;
 using Ics.Helper.Database;
@@ -24,12 +25,15 @@ namespace AnugerahBackend.Accounting.BL
         private IDepositDal _depositDal;
         private IPihakKeduaBL _pihakKeduaBL;
         private IParameterNoBL _paramNoBL;
+        private IJenisBayarBL _jenisBayarBL;
 
         public DepositBL()
         {
             _depositDal = new DepositDal();
             _pihakKeduaBL = new PihakKeduaBL();
             _paramNoBL = new ParameterNoBL();
+            _jenisBayarBL = new JenisBayarBL();
+
             SearchFilter = new SearchFilter
             {
                 IsDate = true,
@@ -56,6 +60,18 @@ namespace AnugerahBackend.Accounting.BL
             {
                 model.PihakKeduaName = pihakKedua.PihakKeduaName;
             }
+
+            //  cek jenis bayar
+            var jenisBayar = _jenisBayarBL.GetData(model.JenisBayarID);
+            if (jenisBayar == null)
+                throw new ArgumentException("JenisBayarID Invalid ");
+            else
+            {
+                model.JenisBayarName = jenisBayar.JenisBayarName;
+                model.JenisKasID = jenisBayar.JenisKasID;
+                model.JenisKasName = jenisBayar.JenisKasName;
+            }
+
             //  cek nilai deposit
             if(model.NilaiDeposit <= 0 )
                 throw new ArgumentException("Nilai Deposit tidak boleh minus");

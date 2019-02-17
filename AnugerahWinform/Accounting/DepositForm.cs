@@ -22,7 +22,7 @@ namespace AnugerahWinform.Accounting
         private IPihakKeduaBL _pihakKeduaBL;
         private IJenisBayarBL _jenisBayarBL;
         private IBPKasBL _bpKasBL;
-        private IBPPiutangBL _bpPiutangBL;
+        private IBPHutangBL _bpHutangBL;
 
         public DepositForm()
         {
@@ -32,7 +32,7 @@ namespace AnugerahWinform.Accounting
             _depositBL = new DepositBL();
             _jenisBayarBL = new JenisBayarBL();
             _bpKasBL = new BPKasBL();
-            _bpPiutangBL = new BPPiutangBL();
+            _bpHutangBL = new BPHutangBL();
 
             LoadPihakKeduaCombo();
             LoadJenisBayarCombo();
@@ -112,8 +112,8 @@ namespace AnugerahWinform.Accounting
             using (var trans = TransHelper.NewScope())
             {
                 var result = _depositBL.Save(deposit);
-                //_bpKasBL.Generate(result);
-                //_bpPiutangBL.GenPiutang(result);
+                _bpKasBL.Generate(result);
+                _bpHutangBL.GenHutang(result);
                 trans.Complete();
             }
         }
