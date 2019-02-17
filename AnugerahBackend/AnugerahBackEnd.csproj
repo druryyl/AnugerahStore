@@ -51,6 +51,7 @@
     <Compile Include="Accounting\BL\BiayaBL.cs" />
     <Compile Include="Accounting\BL\BPKasBL.cs" />
     <Compile Include="Accounting\BL\BPPiutangBL.cs" />
+    <Compile Include="Accounting\BL\DepositBL.cs" />
     <Compile Include="Accounting\BL\JenisBiayaBL.cs" />
     <Compile Include="Accounting\BL\JenisKasBL.cs" />
     <Compile Include="Accounting\BL\JenisLunasBL.cs" />
