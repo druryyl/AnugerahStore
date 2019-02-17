@@ -108,6 +108,7 @@
     <Build Include="Accounting\JenisKas.sql" />
     <Build Include="Accounting\JenisLunas.sql" />
     <Build Include="Accounting\JenisBiaya.sql" />
+    <Build Include="Accounting\Deposit.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AnugerahDevelopment.publish.xml" />

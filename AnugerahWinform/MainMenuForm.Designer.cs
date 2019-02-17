@@ -307,6 +307,7 @@
             this.LapPiutangButton.Name = "LapPiutangButton";
             this.LapPiutangButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("LapPiutangButton.SmallImage")));
             this.LapPiutangButton.Text = "Laporan Piutang";
+            this.LapPiutangButton.Click += new System.EventHandler(this.LapPiutangButton_Click);
             // 
             // ribbonPanel3
             // 

@@ -120,7 +120,7 @@ namespace AnugerahBackend.Accounting.BL
 
         private string GenNewID()
         {
-            var prefix = "KB" + DateTime.Now.ToString("yyMM");
+            var prefix = "LK" + DateTime.Now.ToString("yyMM");
             var result = _paramNoBL.GenNewID(prefix, 10);
             return result;
         }

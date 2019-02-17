@@ -264,7 +264,7 @@ namespace AnugerahWinform.Penjualan
 
             if (penjualan.ListBayar!= null)
             {
-                foreach (var item in penjualan.ListBayar.Where(x => x.JenisBayarID != "KAS"))
+                foreach (var item in penjualan.ListBayar.Where(x => x.NilaiBayar >0))
                 {
                     if (_listBayarDetil == null)
                         _listBayarDetil = new List<PenjualanBayarModel>();
@@ -285,6 +285,7 @@ namespace AnugerahWinform.Penjualan
                         .Where(x => x.NilaiBayar > 0)
                         .Sum(x => x.NilaiBayar);
                 }
+
             }
             ReCalcTotal();
         }
@@ -416,17 +417,33 @@ namespace AnugerahWinform.Penjualan
 
             //  siapkan object tampung pembayaran
             List<PenjualanBayarModel> listDetilBayar = null;
-            //  ambil data bayar cash
-            if (bayarCash != 0)
+            ////  ambil data bayar cash
+            //if (bayarCash != 0)
+            //{
+            //    var itemBayarCash = new PenjualanBayarModel
+            //    {
+            //        JenisBayarID = "KAS",
+            //        NilaiBayar = bayarCash,
+            //        Catatan = ""
+            //    };
+            //    if (listDetilBayar == null) listDetilBayar = new List<PenjualanBayarModel>();
+            //    listDetilBayar.Add(itemBayarCash);
+            //}
+
+            //  ambil data bayar detil
+            if (_listBayarDetil != null)
             {
-                var itemBayarCash = new PenjualanBayarModel
+                foreach (var item in _listBayarDetil)
                 {
-                    JenisBayarID = "KAS",
-                    NilaiBayar = bayarCash,
-                    Catatan = ""
-                };
-                if (listDetilBayar == null) listDetilBayar = new List<PenjualanBayarModel>();
-                listDetilBayar.Add(itemBayarCash);
+                    var itemNonCash = new PenjualanBayarModel
+                    {
+                        JenisBayarID = item.JenisBayarID,
+                        NilaiBayar = item.NilaiBayar,
+                        Catatan = item.Catatan
+                    };
+                    if (listDetilBayar == null) listDetilBayar = new List<PenjualanBayarModel>();
+                    listDetilBayar.Add(itemNonCash);
+                }
             }
 
             if (kembali != 0)
@@ -441,21 +458,6 @@ namespace AnugerahWinform.Penjualan
                 listDetilBayar.Add(itemKembali);
             }
 
-            //  ambil data bayar non cash
-            if (_listBayarDetil != null)
-            {
-                foreach(var item in _listBayarDetil)
-                {
-                    var itemNonCash = new PenjualanBayarModel
-                    {
-                        JenisBayarID = item.JenisBayarID,
-                        NilaiBayar = item.NilaiBayar,
-                        Catatan = item.Catatan
-                    };
-                    if (listDetilBayar == null) listDetilBayar = new List<PenjualanBayarModel>();
-                    listDetilBayar.Add(itemNonCash);
-                }
-            }
 
             var penjualan = new PenjualanModel
             {
@@ -480,20 +482,20 @@ namespace AnugerahWinform.Penjualan
             };
 
             PenjualanModel result = null;
-            try
-            {
+            //try
+            //{
                 using (var trans = TransHelper.NewScope())
                 {
                     result = _penjualanBL.Save(penjualan);
                     var bpKas = _bpKasBL.Generate(penjualan);
                     trans.Complete();
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                return;
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //    return;
+            //}
 
             if (result != null)
                 LastIDLabel.Text = result.PenjualanID;

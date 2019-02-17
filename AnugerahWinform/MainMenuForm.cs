@@ -172,5 +172,15 @@ namespace AnugerahWinform
             };
             form.Show();
         }
+
+        private void LapPiutangButton_Click(object sender, EventArgs e)
+        {
+            var form = new BPPiutangInfoForm
+            {
+                MdiParent = this,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            form.Show();
+        }
     }
 }
