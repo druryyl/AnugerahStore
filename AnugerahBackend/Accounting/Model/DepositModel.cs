@@ -13,6 +13,7 @@ namespace AnugerahBackend.Accounting.Model
         public string Jam { get; set; }
         public string PihakKeduaID { get; set; }
         public string PihakKeduaName { get; set; }
+        public string Keterangan { get; set; }
         public decimal NilaiDeposit { get; set; }
     }
 }
