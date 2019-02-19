@@ -1,4 +1,5 @@
 ﻿using AnugerahBackend.Accounting.BL;
+using AnugerahBackend.Accounting.Model;
 using AnugerahBackend.Penjualan.BL;
 using AnugerahBackend.Penjualan.Dal;
 using AnugerahBackend.Penjualan.Model;
@@ -30,7 +31,8 @@ namespace AnugerahWinform.Penjualan
         private IBrgPriceBL _brgPriceBL;
         private IBPKasBL _bpKasBL;
         private IJenisBayarBL _jenisBayarBL;
-
+        private IBPHutangBL _bpHutangBL;
+        private IDepositBL _depositBL;
         private List<PenjualanBayarModel> _listBayarDetil;
 
         public PenjualanForm()
@@ -45,7 +47,8 @@ namespace AnugerahWinform.Penjualan
             _penjualanBayarDal = new PenjualanBayarDal();
             _bpKasBL = new BPKasBL();
             _jenisBayarBL = new JenisBayarBL();
-
+            _bpHutangBL = new BPHutangBL();
+            _depositBL = new DepositBL();
         }
 
         private void PenjualanForm_Load(object sender, EventArgs e)
@@ -243,6 +246,9 @@ namespace AnugerahWinform.Penjualan
             AlamatTextBox.Text = penjualan.Alamat;
             NoTelpTextBox.Text = penjualan.NoTelp;
             CatatanTextBox.Text = penjualan.Catatan;
+            DepositCheckBox.Checked = penjualan.IsBayarDeposit;
+            DepositIDText.Text = penjualan.DepositID;
+            ShowDeposit();
 
             DiskonNumText.Value = penjualan.NilaiDiskonLain;
             BiayaLainNumText.Value = penjualan.NilaiBiayaLain;
@@ -288,6 +294,7 @@ namespace AnugerahWinform.Penjualan
 
             }
             ReCalcTotal();
+
         }
 
         private void AddRow()
@@ -417,18 +424,6 @@ namespace AnugerahWinform.Penjualan
 
             //  siapkan object tampung pembayaran
             List<PenjualanBayarModel> listDetilBayar = null;
-            ////  ambil data bayar cash
-            //if (bayarCash != 0)
-            //{
-            //    var itemBayarCash = new PenjualanBayarModel
-            //    {
-            //        JenisBayarID = "KAS",
-            //        NilaiBayar = bayarCash,
-            //        Catatan = ""
-            //    };
-            //    if (listDetilBayar == null) listDetilBayar = new List<PenjualanBayarModel>();
-            //    listDetilBayar.Add(itemBayarCash);
-            //}
 
             //  ambil data bayar detil
             if (_listBayarDetil != null)
@@ -469,7 +464,11 @@ namespace AnugerahWinform.Penjualan
                 Alamat = alamat,
                 NoTelp = noTelpon,
                 Catatan = catatan,
-                
+
+                IsBayarDeposit = DepositCheckBox.Checked,
+                DepositID = DepositIDText.Text,
+                NilaiDeposit = NilaiDepositText.Value, 
+
                 NilaiTotal = total,
                 NilaiDiskonLain = diskon,
                 NilaiBiayaLain = biayaLain,
@@ -482,20 +481,32 @@ namespace AnugerahWinform.Penjualan
             };
 
             PenjualanModel result = null;
-            //try
-            //{
+            try
+            {
                 using (var trans = TransHelper.NewScope())
                 {
                     result = _penjualanBL.Save(penjualan);
-                    var bpKas = _bpKasBL.Generate(penjualan);
+
+                    BPKasModel bpKas = null;
+                    if(penjualan.ListBayar != null)
+                        bpKas = _bpKasBL.Generate(penjualan);
+
+                    BPHutangModel bpHutang = null;
+                    if (penjualan.IsBayarDeposit)
+                    {
+                        var deposit = _depositBL.GetData(penjualan.DepositID);
+                        bpHutang = _bpHutangBL.GenHutang(penjualan, deposit);
+                    }
+
+
                     trans.Complete();
                 }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //    return;
-            //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
 
             if (result != null)
                 LastIDLabel.Text = result.PenjualanID;
@@ -545,6 +556,49 @@ namespace AnugerahWinform.Penjualan
 
         private void BayarCashNumText_Validated(object sender, EventArgs e)
         {
+        }
+
+        private void DepositCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            var checkBox = (CheckBox)sender;
+            BayarDepositPanel.Visible = checkBox.Checked;
+        }
+
+        private void SearchDepositIDButton_Click(object sender, EventArgs e)
+        {
+            SearchDeposit();
+            ShowDeposit();
+        }
+
+        private void SearchDeposit()
+        {
+            var searchForm = new SearchingForm<BPHutangSearchModel>(_bpHutangBL);
+            var resultDialog = searchForm.ShowDialog();
+            if (resultDialog == DialogResult.OK)
+            {
+                var result = searchForm.SelectedDataKey;
+                DepositIDText.Text = result;
+            }
+        }
+
+        private void ShowDeposit()
+        {
+            var bpHutang = _bpHutangBL.GetData(DepositIDText.Text);
+            if(bpHutang == null)
+            {
+                TglDepositText.Value = DateTime.MinValue;
+                JamDepositText.Text = "00:00:00";
+                PihakKeduaNameText.Text = "";
+                NilaiDepositText.Value = 0;
+                KeteranganText.Text = "";
+                return;
+            }
+
+            TglDepositText.Text = bpHutang.Tgl;
+            JamDepositText.Text = bpHutang.Jam;
+            PihakKeduaNameText.Text = bpHutang.PihakKeduaName;
+            NilaiDepositText.Value = bpHutang.NilaiHutang - bpHutang.NilaiLunas;
+            KeteranganText.Text = bpHutang.Keterangan;
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AnugerahBackend.Accounting.Dal;
 using AnugerahBackend.Accounting.Model;
+using AnugerahBackend.Penjualan.Model;
 using AnugerahBackend.Support;
 using Ics.Helper.Database;
 using Ics.Helper.Extensions;
@@ -14,7 +15,7 @@ namespace AnugerahBackend.Accounting.BL
     public interface IBPHutangBL : ISearch<BPHutangSearchModel>
     {
         BPHutangModel GenHutang(DepositModel deposit);
-        //BPHutangModel GenHutang(LunasKasBonModel lunasKasBon, KasBonModel kasBon);
+        BPHutangModel GenHutang(PenjualanModel penjualan, DepositModel deposit);
         BPHutangModel GetData(string piutangID);
 
         //void GenLunas()
@@ -58,47 +59,42 @@ namespace AnugerahBackend.Accounting.BL
             return result;
         }
 
-        public BPHutangModel GenHutang(LunasKasBonModel lunasKasBon, KasBonModel kasBon)
+        public BPHutangModel GenHutang(PenjualanModel penjualan, DepositModel deposit)
         {
-            ////  ambil data piutang berdasarkan kasBon
-            //var bpHutang = GetData(kasBon.KasBonID);
-            //if (bpHutang == null)
-            //{
-            //    var errMsg = string.Format("Hutang {0} tidak ditemukan ", kasBon.KasBonID);
-            //    throw new ArgumentException(errMsg);
-            //}
+            //  ambil data hutang berdasarkan deposit
+            var bpHutang = GetData(deposit.DepositID);
+            if (bpHutang == null)
+            {
+                var errMsg = string.Format("Hutang {0} tidak ditemukan ", deposit.DepositID);
+                throw new ArgumentException(errMsg);
+            }
 
-            ////  hapus detil lunas yang id-nya = lunasKasBonID
-            //List<BPHutangDetilModel> newListLunas =
-            //    (
-            //        from c in bpHutang.ListLunas
-            //        where c.ReffID != lunasKasBon.LunasKasBonID
-            //        select c
-            //    ).ToList();
+            //  hapus detil lunas yang id-nya = PenjualanID
+            List<BPHutangDetilModel> newListLunas =
+                (
+                    from c in bpHutang.ListLunas
+                    where c.ReffID != penjualan.PenjualanID
+                    select c
+                ).ToList();
 
-            ////  tambahkan pelunasan dari lunasKasBon
-            //int noUrut = newListLunas.Count + 1;
-            //foreach (var item in lunasKasBon.ListLunas)
-            //{
-            //    newListLunas.Add(new BPHutangDetilModel
-            //    {
-            //        BPHutangID = bpHutang.BPHutangID,
-            //        BPHutangDetilID = bpHutang.BPHutangID + '-' + noUrut.ToString().PadLeft(2, '0'),
-            //        Tgl = lunasKasBon.Tgl,
-            //        Jam = lunasKasBon.Jam,
-            //        ReffID = item.LunasKasBonID,
-            //        Keterangan = "   Pelunasan " + item.JenisLunasName,
-            //        NilaiHutang = 0,
-            //        NilaiLunas = item.NilaiLunas
-            //    });
-            //    noUrut++;
-            //}
+            //  tambahkan pelunasan dari penjualan
+            int noUrut = newListLunas.Count + 1;
+            newListLunas.Add(new BPHutangDetilModel
+            {
+                BPHutangID = bpHutang.BPHutangID,
+                BPHutangDetilID = bpHutang.BPHutangID + '-' + noUrut.ToString().PadLeft(2, '0'),
+                Tgl = penjualan.TglPenjualan,
+                Jam = penjualan.JamPenjualan,
+                ReffID = penjualan.PenjualanID,
+                Keterangan = "   Penjualan a/n " + penjualan.BuyerName,
+                NilaiHutang = 0,
+                NilaiLunas = penjualan.NilaiGrandTotal
+            });
 
-            //bpHutang.ListLunas = newListLunas;
-            ////  simpan
-            //var result = Save(bpHutang);
-            //return result;
-            throw new NotImplementedException();
+            bpHutang.ListLunas = newListLunas;
+            //  simpan
+            var result = Save(bpHutang);
+            return result;
         }
 
         private BPHutangModel Save(BPHutangModel model)

@@ -102,13 +102,14 @@ namespace AnugerahBackend.Penjualan.BL
                 }
 
                 //  save detil bayar
-                foreach(var item in penjualan.ListBayar)
-                {
-                    item.PenjualanID = trsID;
-                    item.PenjualanID2 = string.Format("{0}-{1}", trsID, item.NoUrut.ToString().PadLeft(2, '0'));
+                if(penjualan.ListBayar != null)
+                    foreach(var item in penjualan.ListBayar)
+                    {
+                        item.PenjualanID = trsID;
+                        item.PenjualanID2 = string.Format("{0}-{1}", trsID, item.NoUrut.ToString().PadLeft(2, '0'));
 
-                    _penjualanBayarDal.Insert(item);
-                }
+                        _penjualanBayarDal.Insert(item);
+                    }
 
                 trans.Complete();
             }
@@ -179,19 +180,25 @@ namespace AnugerahBackend.Penjualan.BL
 
             //  validasi pembayaran
             var noUrut = 0;
-            foreach(var item in penjualan.ListBayar)
+            decimal totalBayar = 0;
+            if(penjualan.ListBayar != null)
             {
-                var jenisBayar = _jenisBayarDal.GetData(item.JenisBayarID);
-                if (jenisBayar == null)
-                    throw new ArgumentException("Invalid JenisBayarID");
-                else
-                    item.JenisBayarName = jenisBayar.JenisBayarName;
-                item.NoUrut = noUrut;
-                noUrut++;
+                foreach (var item in penjualan.ListBayar)
+                {
+                    var jenisBayar = _jenisBayarDal.GetData(item.JenisBayarID);
+                    if (jenisBayar == null)
+                        throw new ArgumentException("Invalid JenisBayarID");
+                    else
+                        item.JenisBayarName = jenisBayar.JenisBayarName;
+                    item.NoUrut = noUrut;
+                    noUrut++;
+                }
+                totalBayar = penjualan.ListBayar.Sum(x => x.NilaiBayar);
             }
 
             //  jumlah pembayaran tidak boleh kurang dari total
-            var totalBayar = penjualan.ListBayar.Sum(x => x.NilaiBayar);
+            totalBayar += penjualan.NilaiDeposit;
+
             if (totalBayar < penjualan.NilaiGrandTotal)
                 throw new ArgumentException("Pembayaran kurang dari Nilai Grand Total");
 

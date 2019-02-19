@@ -19,6 +19,10 @@ namespace AnugerahBackend.Penjualan.Model
         public string NoTelp { get; set; }
         public string Catatan { get; set; }
 
+        public bool IsBayarDeposit { get; set; }
+        public string DepositID { get; set; }
+        public decimal NilaiDeposit { get; set; }
+
         public decimal NilaiTotal { get; set; }
         public decimal NilaiDiskonLain { get; set; }
         public decimal NilaiBiayaLain { get; set; }
