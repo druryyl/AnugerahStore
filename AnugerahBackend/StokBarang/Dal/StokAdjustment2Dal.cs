@@ -107,7 +107,7 @@ namespace AnugerahBackend.StokBarang.Dal
                                 QtyAwal = Convert.ToInt32(dr["QtyAwal"]),
                                 QtyAdjust = Convert.ToInt32(dr["QtyAdjust"]),
                                 QtyAkhir = Convert.ToInt32(dr["QtyAkhir"]),
-                                HppAdjust = Convert.ToDouble(dr["HppAdjust"])
+                                HppAdjust = Convert.ToDecimal(dr["HppAdjust"])
                             };
                             result.Add(item);
                         }

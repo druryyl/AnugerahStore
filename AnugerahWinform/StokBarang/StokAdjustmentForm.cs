@@ -139,7 +139,7 @@ namespace AnugerahWinform.StokBarang
                     QtyAwal = Convert.ToInt32(dr["QtyAwal"]),
                     QtyAdjust = Convert.ToInt32(dr["QtyAdjust"]),
                     QtyAkhir = Convert.ToInt32(dr["QtyAkhir"]),
-                    HppAdjust = Convert.ToDouble(dr["Hpp"])
+                    HppAdjust = Convert.ToDecimal(dr["Hpp"])
                 };
                 listDetilAdj.Add(dtlAdj);
 

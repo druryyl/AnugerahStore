@@ -99,11 +99,11 @@ namespace AnugerahBackend.StokBarang.BL
         {
             foreach(var item in stokAdjustment.ListBrg)
             {
-                if (item.QtyAdjust > 0)
-                    _stokBL.AddStok(item.BrgID, item.QtyAdjust, item.HppAdjust, stokAdjustment.TglTrs, stokAdjustment.JamTrs,
-                        stokAdjustment.StokAdjustmentID, stokAdjustment.StokAdjustmentID, "AJPLS");
-                else
-                    _stokBL.RemoveStok(new BrgModel { BrgID = item.BrgID }, item.QtyAdjust, 0, "AJMIN", stokAdjustment.StokAdjustmentID);
+                //if (item.QtyAdjust > 0)
+                //    _stokBL.AddStok(item.BrgID, item.QtyAdjust, item.HppAdjust, stokAdjustment.TglTrs, stokAdjustment.JamTrs,
+                //        stokAdjustment.StokAdjustmentID, stokAdjustment.StokAdjustmentID, "AJPLS");
+                //else
+                //    _stokBL.RemoveStok(new BrgModel { BrgID = item.BrgID }, item.QtyAdjust, 0, "AJMIN", stokAdjustment.StokAdjustmentID);
             }
         }
         private void ReserveStok(string stokAdjID)

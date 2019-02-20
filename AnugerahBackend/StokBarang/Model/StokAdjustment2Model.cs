@@ -16,6 +16,6 @@ namespace AnugerahBackend.StokBarang.Model
         public long QtyAwal { get; set; }
         public long QtyAdjust { get; set; }
         public long QtyAkhir { get; set; }
-        public double HppAdjust { get; set; }
+        public decimal HppAdjust { get; set; }
     }
 }

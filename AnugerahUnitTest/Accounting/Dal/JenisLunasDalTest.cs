@@ -35,7 +35,9 @@ namespace AnugerahUnitTest.Accounting.Dal
             var result = new JenisLunasModel
             {
                 JenisLunasID = "A1",
-                JenisLunasName = "B1"
+                JenisLunasName = "B1",
+                JenisBiayaID = "C1",
+                JenisBiayaName = ""
             };
             return result;
         }
@@ -45,7 +47,9 @@ namespace AnugerahUnitTest.Accounting.Dal
             var result = new JenisLunasModel
             {
                 JenisLunasID = "A2",
-                JenisLunasName = "B2"
+                JenisLunasName = "B2",
+                JenisBiayaID = "C2",
+                JenisBiayaName = ""
             };
             return result;
         }

@@ -110,6 +110,8 @@
     <Build Include="Accounting\JenisBiaya.sql" />
     <Build Include="Accounting\Deposit.sql" />
     <Build Include="Accounting\ReturDeposit.sql" />
+    <Build Include="StokBarang\BPStok.sql" />
+    <Build Include="StokBarang\BPStokDetil.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AnugerahDevelopment.publish.xml" />

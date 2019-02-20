@@ -138,6 +138,7 @@
     <Compile Include="Penjualan\Model\PenjualanBayarModel.cs" />
     <Compile Include="Penjualan\Model\PenjualanModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StokBarang\BL\BPStokBL.cs" />
     <Compile Include="StokBarang\BL\BrgBL.cs" />
     <Compile Include="StokBarang\BL\ColorBL.cs" />
     <Compile Include="StokBarang\BL\JenisMutasiBL.cs" />
@@ -145,6 +146,8 @@
     <Compile Include="StokBarang\BL\StokBL.cs" />
     <Compile Include="StokBarang\BL\SubJenisBrgBL.cs" />
     <Compile Include="StokBarang\BL\TipeBrgBL.cs" />
+    <Compile Include="StokBarang\Dal\BPStokDal.cs" />
+    <Compile Include="StokBarang\Dal\BPStokDetilDal.cs" />
     <Compile Include="StokBarang\Dal\BrgDal.cs" />
     <Compile Include="StokBarang\Dal\ColorDal.cs" />
     <Compile Include="StokBarang\Dal\JenisMutasiDal.cs" />
@@ -154,6 +157,8 @@
     <Compile Include="StokBarang\Dal\StokInOutDal.cs" />
     <Compile Include="StokBarang\Dal\SubJenisBrgDal.cs" />
     <Compile Include="StokBarang\Dal\TipeBrgDal.cs" />
+    <Compile Include="StokBarang\Model\BPStokDetilModel.cs" />
+    <Compile Include="StokBarang\Model\BPStokModel.cs" />
     <Compile Include="StokBarang\Model\BrgModel.cs" />
     <Compile Include="StokBarang\Model\ColorModel.cs" />
     <Compile Include="StokBarang\BL\JenisBrgBL.cs" />
