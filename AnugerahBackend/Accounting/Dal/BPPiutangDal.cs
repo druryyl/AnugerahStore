@@ -102,7 +102,7 @@ namespace AnugerahBackend.Accounting.Dal
                 SELECT
                     aa.BPPiutangID, aa.Tgl, aa.Jam, aa.PihakKeduaID,
                     aa.Keterangan, aa.NilaiPiutang, aa.NilaiLunas,
-                    ISNULL(bb.PihakKeduaName, ' ') PihakKeduaName 
+                    ISNULL(bb.PihakKeduaName, '') PihakKeduaName 
                 FROM    
                     BPPiutang aa
                     LEFT JOIN PihakKedua bb ON aa.PihakKeduaID = bb.PihakKeduaID 
@@ -140,7 +140,7 @@ namespace AnugerahBackend.Accounting.Dal
                 SELECT
                     aa.BPPiutangID, aa.Tgl, aa.Jam, aa.PihakKeduaID,
                     aa.Keterangan, aa.NilaiPiutang, aa.NilaiLunas,
-                    ISNULL(bb.PihakKeduaName, ' ') PihakKeduaName 
+                    ISNULL(bb.PihakKeduaName, '') PihakKeduaName 
                 FROM    
                     BPPiutang aa
                     LEFT JOIN PihakKedua bb ON aa.PihakKeduaID = bb.PihakKeduaID 
@@ -183,7 +183,7 @@ namespace AnugerahBackend.Accounting.Dal
                 SELECT
                     aa.BPPiutangID, aa.Tgl, aa.Jam, aa.PihakKeduaID,
                     aa.Keterangan, aa.NilaiPiutang, aa.NilaiLunas,
-                    ISNULL(bb.PihakKeduaName, ' ') PihakKeduaName 
+                    ISNULL(bb.PihakKeduaName, '') PihakKeduaName 
                 FROM    
                     BPPiutang aa
                     LEFT JOIN PihakKedua bb ON aa.PihakKeduaID = bb.PihakKeduaID 

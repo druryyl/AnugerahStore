@@ -32,10 +32,10 @@ namespace AnugerahBackend.Accounting.Dal
                 INSERT INTO
                     Biaya (
                         BiayaID, Tgl, Jam, Keterangan, 
-                        JenisBiayaID, JenisKas, NilaiBiaya)
+                        JenisBiayaID, JenisKasID, NilaiBiaya)
                 VALUES (
                         @BiayaID, @Tgl, @Jam, @Keterangan, 
-                        @JenisBiayaID, @JenisKas, @NilaiBiaya) ";
+                        @JenisBiayaID, @JenisKasID, @NilaiBiaya) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {

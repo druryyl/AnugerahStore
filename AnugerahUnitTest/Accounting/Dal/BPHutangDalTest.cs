@@ -39,6 +39,7 @@ namespace AnugerahUnitTest.Accounting.Dal
                 Tgl = "11-02-2019",
                 Jam = "01:38:00",
                 PihakKeduaID = "B1",
+                PihakKeduaName = "",
                 Keterangan = "C1",
                 NilaiHutang = 300000,
                 NilaiLunas = 250000

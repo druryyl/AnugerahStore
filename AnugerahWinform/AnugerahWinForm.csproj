@@ -81,6 +81,12 @@
     <Compile Include="Accounting\BiayaForm.Designer.cs">
       <DependentUpon>BiayaForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Accounting\BPHutangInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\BPHutangInfoForm.Designer.cs">
+      <DependentUpon>BPHutangInfoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Accounting\BPPiutangInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -230,6 +236,9 @@
     </Compile>
     <EmbeddedResource Include="Accounting\BiayaForm.resx">
       <DependentUpon>BiayaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\BPHutangInfoForm.resx">
+      <DependentUpon>BPHutangInfoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Accounting\BPPiutangInfoForm.resx">
       <DependentUpon>BPPiutangInfoForm.cs</DependentUpon>

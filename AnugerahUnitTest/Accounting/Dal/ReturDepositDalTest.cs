@@ -13,7 +13,7 @@ using Xunit;
 namespace AnugerahUnitTest.Accounting.Dal
 {
 
-    public interface IBPPiutangDalTest
+    public interface IReturDepositDalTest
     {
         void InsertTest();
         void UpdateTest();
@@ -22,27 +22,27 @@ namespace AnugerahUnitTest.Accounting.Dal
         void ListDataTest();
     }
 
-    public class BPPiutangDalTest : IBPPiutangDalTest
+    public class ReturDepositDalTest : IReturDepositDalTest
     {
-        private IBPPiutangDal _bpPiutangDal;
+        private IReturDepositDal _returDepositDal;
 
-        public BPPiutangDalTest()
+        public ReturDepositDalTest()
         {
-            _bpPiutangDal = new BPPiutangDal();
+            _returDepositDal = new ReturDepositDal();
         }
 
-        private BPPiutangModel BPPiutangDataFactory()
+        private ReturDepositModel ReturDepositDataFactory()
         {
-            var result = new BPPiutangModel
+            var result = new ReturDepositModel
             {
-                BPPiutangID = "A1",
+                ReturDepositID = "A1",
                 Tgl = "11-02-2019",
                 Jam = "01:38:00",
-                PihakKeduaID = "B1",
-                PihakKeduaName = "",
-                Keterangan = "C1",
-                NilaiPiutang = 300000,
-                NilaiLunas = 250000
+                DepositID = "B1",
+                JenisKasID = "C1",
+                Catatan = "D1",
+                NilaiSisaDeposit = 2000,
+                NilaiReturDeposit = 1500
             };
             return result;
         }
@@ -53,10 +53,10 @@ namespace AnugerahUnitTest.Accounting.Dal
             using (var trans = TransHelper.NewScope())
             {
                 //  arrange
-                var expected = BPPiutangDataFactory();
+                var expected = ReturDepositDataFactory();
 
                 //  act
-                _bpPiutangDal.Insert(expected);
+                _returDepositDal.Insert(expected);
 
 
                 //  assert
@@ -68,11 +68,11 @@ namespace AnugerahUnitTest.Accounting.Dal
             using (var trans = TransHelper.NewScope())
             {
                 //  arrange
-                var expected = BPPiutangDataFactory();
-                _bpPiutangDal.Insert(expected);
+                var expected = ReturDepositDataFactory();
+                _returDepositDal.Insert(expected);
 
                 //  act
-                _bpPiutangDal.Update(expected);
+                _returDepositDal.Update(expected);
 
                 //  assert
             }
@@ -84,11 +84,11 @@ namespace AnugerahUnitTest.Accounting.Dal
             using (var trans = TransHelper.NewScope())
             {
                 //  arrange
-                var expected = BPPiutangDataFactory();
-                _bpPiutangDal.Insert(expected);
+                var expected = ReturDepositDataFactory();
+                _returDepositDal.Insert(expected);
 
                 //  act
-                _bpPiutangDal.Delete("A1");
+                _returDepositDal.Delete("A1");
 
                 //  assert
             }
@@ -100,14 +100,17 @@ namespace AnugerahUnitTest.Accounting.Dal
             using (var trans = TransHelper.NewScope())
             {
                 //  arrange
-                var expected = BPPiutangDataFactory();
-                _bpPiutangDal.Insert(expected);
+                var expected = ReturDepositDataFactory();
+                _returDepositDal.Insert(expected);
 
                 //  act
-                var actual = _bpPiutangDal.GetData("A1");
+                var actual = _returDepositDal.GetData("A1");
 
                 //  assert
-                actual.Should().BeEquivalentTo(expected);
+                actual.Should().BeEquivalentTo(expected,
+                    config => config
+                        .Excluding(x => x.PihakKeduaName)
+                        .Excluding(x => x.JenisKasName));
             }
         }
 
@@ -117,22 +120,25 @@ namespace AnugerahUnitTest.Accounting.Dal
             using (var trans = TransHelper.NewScope())
             {
                 //  arrange
-                var expected1 = BPPiutangDataFactory();
-                _bpPiutangDal.Insert(expected1);
+                var expected1 = ReturDepositDataFactory();
+                _returDepositDal.Insert(expected1);
                 var expected2 = expected1.CloneObject();
-                expected2.BPPiutangID = "A2";
-                _bpPiutangDal.Insert(expected2);
+                expected2.ReturDepositID = "A2";
+                _returDepositDal.Insert(expected2);
 
-                var expected = new List<BPPiutangModel>
+                var expected = new List<ReturDepositModel>
                 {
                     expected1, expected2
                 };
 
                 //  act
-                var actual = _bpPiutangDal.ListData(expected1.Tgl, expected1.Tgl);
+                var actual = _returDepositDal.ListData(expected1.Tgl, expected1.Tgl);
 
                 //  assert
-                actual.Should().BeEquivalentTo(expected);
+                actual.Should().BeEquivalentTo(expected,
+                    config => config
+                        .Excluding(x => x.PihakKeduaName)
+                        .Excluding(x => x.JenisKasName));
             }
         }
     }

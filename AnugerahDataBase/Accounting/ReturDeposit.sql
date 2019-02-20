@@ -1,0 +1,13 @@
+﻿CREATE TABLE [dbo].[ReturDeposit]
+(
+	ReturDepositID VARCHAR(10) NOT NULL CONSTRAINT DF_ReturDeposit_ReturDepositID DEFAULT(''),
+	Tgl VARCHAR(10) NOT NULl CONSTRAINT DF_ReturDeposit_Tgl DEFAULT('3000-01-01'),
+	Jam VARCHAR(8) NOT NULL CONSTRAINT DF_ReturDeposit_Jam DEFAULT('00:00:00'),
+	DepositID VARCHAR(10) NOT NULL CONSTRAINT  DF_ReturDeposit_DepositID DEFAULT(''),
+	JenisKasID VARCHAR(3) NOT NULL CONSTRAINT DF_ReturDeposit_JenisKasID DEFAULT(''),
+	Catatan VARCHAR(128) NOT NULL CONSTRAINT DF_ReturDeposit_Catatan DEFAULT(''),
+	NilaiSisaDeposit DECIMAL(18,0) CONSTRAINT DF_ReturDeposit_NilaiSisaDeposit DEFAULT(0),
+	NilaiReturDeposit DECIMAL(18,0) NOT NULL CONSTRAINT DF_ReturDeposit_NilaiRetur DEFAULT(0),
+
+	CONSTRAINT PK_ReturDeposit_ReturDepositID PRIMARY KEY CLUSTERED(ReturDepositID)
+)

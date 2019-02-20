@@ -40,6 +40,8 @@ namespace AnugerahUnitTest.Accounting.Dal
                 Keterangan = "B1",
                 PihakKeduaID = "C1",
                 PihakKeduaName = "",
+                JenisKasID = "D1",
+                JenisKasName = "",
                 NilaiKasBon = 300000
             };
             return result;

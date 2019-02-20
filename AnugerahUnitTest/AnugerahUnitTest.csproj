@@ -93,6 +93,7 @@
     <Compile Include="Accounting\Dal\KasBonDalTest.cs" />
     <Compile Include="Accounting\Dal\LunasKasBonDalTest.cs" />
     <Compile Include="Accounting\Dal\LunasKasBonDetilDalTest.cs" />
+    <Compile Include="Accounting\Dal\ReturDepositDalTest.cs" />
     <Compile Include="Keuangan\BukuHutangDalTest.cs" />
     <Compile Include="Keuangan\BukuKasTestDalTest.cs" />
     <Compile Include="Keuangan\BukuPiutangBLTest.cs" />

@@ -62,6 +62,7 @@
     <Compile Include="Accounting\Dal\BiayaDal.cs" />
     <Compile Include="Accounting\Dal\BPHutangDal.cs" />
     <Compile Include="Accounting\Dal\BPHutangDetilDal.cs" />
+    <Compile Include="Accounting\Dal\BPHutangInfoDal.cs" />
     <Compile Include="Accounting\Dal\BPKasDal.cs" />
     <Compile Include="Accounting\Dal\BPKasDetilDal.cs" />
     <Compile Include="Accounting\Dal\BPKasInfoDal.cs" />
@@ -76,8 +77,10 @@
     <Compile Include="Accounting\Dal\LunasKasBonDal.cs" />
     <Compile Include="Accounting\Dal\LunasKasBonDetilDal.cs" />
     <Compile Include="Accounting\Dal\PihakKeduaDal.cs" />
+    <Compile Include="Accounting\Dal\ReturDepositDal.cs" />
     <Compile Include="Accounting\Model\BiayaModel.cs" />
     <Compile Include="Accounting\Model\BPHutangDetilModel.cs" />
+    <Compile Include="Accounting\Model\BPHutangInfoModel.cs" />
     <Compile Include="Accounting\Model\BPHutangModel.cs" />
     <Compile Include="Accounting\Model\BPKasDetilModel.cs" />
     <Compile Include="Accounting\Model\BPKasModel.cs" />
@@ -94,6 +97,8 @@
     <Compile Include="Accounting\Model\LunasKasBonModel.cs" />
     <Compile Include="Accounting\Model\OrderJualModel.cs" />
     <Compile Include="Accounting\Model\PihakKeduaModel.cs" />
+    <Compile Include="Accounting\Model\ReturDepositModel.cs" />
+    <Compile Include="Accounting\BL\ReturDepositBL.cs" />
     <Compile Include="Keuangan\BL\BukuHutangBL.cs" />
     <Compile Include="Keuangan\BL\BukuKasBL.cs" />
     <Compile Include="Keuangan\BL\BukuPiutangBL.cs" />

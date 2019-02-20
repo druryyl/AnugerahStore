@@ -342,6 +342,7 @@
             this.LapHutangButton.Name = "LapHutangButton";
             this.LapHutangButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("LapHutangButton.SmallImage")));
             this.LapHutangButton.Text = "Laporan Hutang";
+            this.LapHutangButton.Click += new System.EventHandler(this.LapHutangButton_Click);
             // 
             // ribbonButton1
             // 

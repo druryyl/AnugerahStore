@@ -249,6 +249,8 @@ namespace AnugerahWinform.Penjualan
             DepositCheckBox.Checked = penjualan.IsBayarDeposit;
             DepositIDText.Text = penjualan.DepositID;
             ShowDeposit();
+            NilaiDepositText.Value= penjualan.NilaiDeposit;
+             
 
             DiskonNumText.Value = penjualan.NilaiDiskonLain;
             BiayaLainNumText.Value = penjualan.NilaiBiayaLain;

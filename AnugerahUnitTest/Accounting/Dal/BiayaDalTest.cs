@@ -38,6 +38,10 @@ namespace AnugerahUnitTest.Accounting.Dal
                 Tgl = "11-02-2019",
                 Jam = "01:38:00",
                 Keterangan = "B1",
+                JenisBiayaID = "C1",
+                JenisBiayaName = "",
+                JenisKasID = "D1",
+                JenisKasName = "",
                 NilaiBiaya = 300000
             };
             return result;

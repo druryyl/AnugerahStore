@@ -102,7 +102,7 @@ namespace AnugerahBackend.Accounting.Dal
                 SELECT
                     aa.BPHutangID, aa.Tgl, aa.Jam, aa.PihakKeduaID,
                     aa.Keterangan, aa.NilaiHutang, aa.NilaiLunas,
-                    ISNULL(bb.PihakKeduaName, ' ') PihakKeduaName 
+                    ISNULL(bb.PihakKeduaName, '') PihakKeduaName 
                 FROM    
                     BPHutang aa
                     LEFT JOIN PihakKedua bb ON aa.PihakKeduaID = bb.PihakKeduaID 
@@ -140,7 +140,7 @@ namespace AnugerahBackend.Accounting.Dal
                 SELECT
                     aa.BPHutangID, aa.Tgl, aa.Jam, aa.PihakKeduaID,
                     aa.Keterangan, aa.NilaiHutang, aa.NilaiLunas,
-                    ISNULL(bb.PihakKeduaName, ' ') PihakKeduaName 
+                    ISNULL(bb.PihakKeduaName, '') PihakKeduaName 
                 FROM    
                     BPHutang aa
                     LEFT JOIN PihakKedua bb ON aa.PihakKeduaID = bb.PihakKeduaID 
