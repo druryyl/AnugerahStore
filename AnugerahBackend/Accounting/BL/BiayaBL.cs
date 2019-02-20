@@ -14,6 +14,7 @@ namespace AnugerahBackend.Accounting.BL
 {
     public interface IBiayaBL : ISearch<BiayaSearchModel>
     {
+        BiayaModel Generate(LunasKasBonModel lunasKasBon);
         BiayaModel Save(BiayaModel model);
         void Delete(string id);
         BiayaModel GetData(string id);
@@ -25,6 +26,8 @@ namespace AnugerahBackend.Accounting.BL
         private IParameterNoBL _paramNoBL;
         private IJenisBiayaBL _jenisBiayaBL;
         private IJenisKasBL _jenisKasBL;
+        private IKasBonBL _kasBonBL;
+        private IJenisLunasBL _jenisLunasBL;
 
         public BiayaBL()
         {
@@ -32,6 +35,8 @@ namespace AnugerahBackend.Accounting.BL
             _paramNoBL = new ParameterNoBL();
             _jenisBiayaBL = new JenisBiayaBL();
             _jenisKasBL = new JenisKasBL();
+            _kasBonBL = new KasBonBL();
+            _jenisLunasBL = new JenisLunasBL();
 
             SearchFilter = new SearchFilter
             {
@@ -57,21 +62,16 @@ namespace AnugerahBackend.Accounting.BL
             if (jenisKas == null)
                 throw new ArgumentException("JenisKasID invalid");
 
-            bool isNew = false;
             if (model.BiayaID.Trim() == "")
-                isNew = true;
+                model.BiayaID = GenNewID();
 
             using (var trans = TransHelper.NewScope())
             {
-                if (isNew)
-                {
-                    model.BiayaID = GenNewID();
-                    _biayaDal.Insert(model);
-                }
-                else
-                {
-                    _biayaDal.Update(model);
-                }
+                //  hapus data lama
+                _biayaDal.Delete(model.BiayaID);
+                //  simpan data baru
+                _biayaDal.Insert(model);
+
                 trans.Complete();
             }
 
@@ -117,6 +117,41 @@ namespace AnugerahBackend.Accounting.BL
                     where c.Keterangan.ContainMultiWord(SearchFilter.UserKeyword)
                     select c;
 
+            return result;
+        }
+
+        public BiayaModel Generate(LunasKasBonModel lunasKasBon)
+        {
+            if (lunasKasBon == null)
+            {
+                throw new ArgumentNullException(nameof(lunasKasBon));
+            }
+            if(lunasKasBon.ListLunas == null)
+            {
+                throw new ArgumentNullException(nameof(lunasKasBon.ListLunas));
+            }
+            //  cek apakah ada detil ListLunas yang BIAYA
+            LunasKasBonDetilModel itemBiaya = lunasKasBon.ListLunas.Where(x => x.JenisLunasID != "KAS").FirstOrDefault();
+            if (itemBiaya == null) return null;
+
+            var kasBon = _kasBonBL.GetData(lunasKasBon.KasBonID);
+            if (kasBon == null) throw new ArgumentException("KasBon tidak ditemukasn");
+
+            var jenisLunas = _jenisLunasBL.GetData(itemBiaya.JenisLunasID);
+            if (jenisLunas == null)
+                throw new ArgumentException("Generate Biaya failed. JenisLunas invalid");
+
+            var biaya = new BiayaModel
+            {
+                BiayaID = lunasKasBon.LunasKasBonID,
+                Tgl = lunasKasBon.Tgl,
+                Jam = lunasKasBon.Jam,
+                JenisBiayaID = jenisLunas.JenisBiayaID,
+                JenisKasID = kasBon.JenisKasID,
+                Keterangan = "Lunas KasBon " + kasBon.Keterangan,
+                NilaiBiaya = itemBiaya.NilaiLunas
+            };
+            var result = Save(biaya);
             return result;
         }
     }

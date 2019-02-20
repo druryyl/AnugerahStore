@@ -23,7 +23,7 @@ namespace AnugerahWinform.Accounting
         private IBPPiutangBL _bpPiutangBL;
         private IJenisLunasBL _jenisLunasBL;
         private IBPKasBL _bpKasBL;
-
+        private IBiayaBL _biayaBL;
         public LunasKasBonForm()
         {
             InitializeComponent();
@@ -31,7 +31,8 @@ namespace AnugerahWinform.Accounting
             _kasBonBL = new KasBonBL();
             _bpPiutangBL = new BPPiutangBL();
             _jenisLunasBL = new JenisLunasBL();
-            _bpKasBL = new BPKasBL(); 
+            _bpKasBL = new BPKasBL();
+            _biayaBL = new BiayaBL();
             AddRow();
         }
         private void LunasKasBonIDText_Validated(object sender, EventArgs e)
@@ -249,6 +250,7 @@ namespace AnugerahWinform.Accounting
                 var result = _lunasKasBonBL.Save(lunasKasBon);
                 var bpKas = _bpKasBL.Generate(lunasKasBon, kasBon);
                 var bpPiutang = _bpPiutangBL.GenPiutang(lunasKasBon,kasBon);
+                var biaya = _biayaBL.Generate(lunasKasBon);
 
                 trans.Complete();
             }

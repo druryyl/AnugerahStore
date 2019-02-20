@@ -39,14 +39,15 @@ namespace AnugerahBackend.Accounting.Dal
             var sSql = @"
                 INSERT INTO
                     JenisLunas (
-                        JenisLunasID, JenisLunasName)
+                        JenisLunasID, JenisLunasName, JenisBiayaID )
                 VALUES (
-                        @JenisLunasID, @JenisLunasName) ";
+                        @JenisLunasID, @JenisLunasName, @JenisBiayaID) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
                 cmd.AddParam("@JenisLunasID", jenisLunas.JenisLunasID);
                 cmd.AddParam("@JenisLunasName", jenisLunas.JenisLunasName);
+                cmd.AddParam("@JenisBiayaID", jenisLunas.JenisBiayaID);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -58,7 +59,8 @@ namespace AnugerahBackend.Accounting.Dal
                 UPDATE
                     JenisLunas 
                 SET
-                    JenisLunasName = @JenisLunasName
+                    JenisLunasName = @JenisLunasName,
+                    JenisBiayaID = @JenisBiayaID
                 WHERE
                     JenisLunasID = @JenisLunasID ";
             using (var conn = new SqlConnection(_connString))
@@ -66,6 +68,7 @@ namespace AnugerahBackend.Accounting.Dal
             {
                 cmd.AddParam("@JenisLunasID", jenisLunas.JenisLunasID);
                 cmd.AddParam("@JenisLunasName", jenisLunas.JenisLunasName);
+                cmd.AddParam("@JenisBiayaID", jenisLunas.JenisBiayaID);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -90,9 +93,11 @@ namespace AnugerahBackend.Accounting.Dal
             JenisLunasModel result = null;
             var sSql = @"
                 SELECT
-                    aa.JenisLunasName
+                    aa.JenisLunasName, aa.JenisBiayaID,
+                    ISNULL(bb.JenisBiayaName, '') JenisBiayaName
                 FROM
                     JenisLunas aa
+                    LEFT JOIN JenisBiaya bb ON aa.JenisBiayaID = bb.JenisBiayaID
                 WHERE
                     aa.JenisLunasID = @JenisLunasID ";
             using (var conn = new SqlConnection(_connString))
@@ -108,7 +113,9 @@ namespace AnugerahBackend.Accounting.Dal
                         result = new JenisLunasModel
                         {
                             JenisLunasID = id,
-                            JenisLunasName = dr["JenisLunasName"].ToString()
+                            JenisLunasName = dr["JenisLunasName"].ToString(),
+                            JenisBiayaID = dr["JenisBiayaID"].ToString(),
+                            JenisBiayaName = dr["JenisBiayaName"].ToString()
                         };
                     }
                 }
@@ -121,9 +128,11 @@ namespace AnugerahBackend.Accounting.Dal
             List<JenisLunasModel> result = null;
             var sSql = @"
                 SELECT
-                    aa.JenisLunasID, aa.JenisLunasName
+                    aa.JenisLunasID, aa.JenisLunasName, aa.JenisBiayaID,
+                    ISNULL(bb.JenisBiayaName, '') JenisBiayaName
                 FROM
-                    JenisLunas aa ";
+                    JenisLunas aa
+                    LEFT JOIN JenisBiaya bb ON aa.JenisBiayaID = bb.JenisBiayaID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
@@ -138,7 +147,9 @@ namespace AnugerahBackend.Accounting.Dal
                             var item = new JenisLunasModel
                             {
                                 JenisLunasID = dr["JenisLunasID"].ToString(),
-                                JenisLunasName = dr["JenisLunasName"].ToString()
+                                JenisLunasName = dr["JenisLunasName"].ToString(),
+                                JenisBiayaID = dr["JenisBiayaID"].ToString(),
+                                JenisBiayaName = dr["JenisBiayaName"].ToString()
                             };
                             result.Add(item);
                         }

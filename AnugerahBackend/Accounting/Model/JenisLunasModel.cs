@@ -10,5 +10,7 @@ namespace AnugerahBackend.Accounting.Model
     {
         public string JenisLunasID { get; set; }
         public string JenisLunasName { get; set; }
+        public string JenisBiayaID { get; set; }
+        public string JenisBiayaName { get; set; }
     }
 }

@@ -27,10 +27,11 @@ namespace AnugerahBackend.Accounting.BL
     public class JenisLunasBL : IJenisLunasBL
     {
         private IJenisLunasDal _jenisLunasDal;
-
+        private IJenisBiayaBL _jenisBiayaBL;
         public JenisLunasBL()
         {
             _jenisLunasDal = new JenisLunasDal();
+            _jenisBiayaBL = new JenisBiayaBL();
             SearchFilter = new SearchFilter
             {
                 IsDate = false
@@ -93,6 +94,12 @@ namespace AnugerahBackend.Accounting.BL
             if (jenisLunas.JenisLunasName.Trim() == "")
             {
                 throw new ArgumentException("JenisLunasName empty");
+            }
+            if(jenisLunas.JenisBiayaID.Trim() != "")
+            {
+                var jenisBiaya = _jenisBiayaBL.GetData(jenisLunas.JenisBiayaID);
+                if (jenisBiaya == null)
+                    throw new ArgumentException("JenisBiayaID invalid");
             }
 
             return result;
