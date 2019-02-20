@@ -334,6 +334,7 @@
             this.ReturDepositButton.Name = "ReturDepositButton";
             this.ReturDepositButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("ReturDepositButton.SmallImage")));
             this.ReturDepositButton.Text = "Retur Deposit";
+            this.ReturDepositButton.Click += new System.EventHandler(this.ReturDepositButton_Click);
             // 
             // LapHutangButton
             // 

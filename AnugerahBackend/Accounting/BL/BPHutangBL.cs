@@ -16,6 +16,7 @@ namespace AnugerahBackend.Accounting.BL
     {
         BPHutangModel GenHutang(DepositModel deposit);
         BPHutangModel GenHutang(PenjualanModel penjualan, DepositModel deposit);
+        BPHutangModel GenHutang(ReturDepositModel returDeposit, DepositModel deposit);
         BPHutangModel GetData(string piutangID);
 
         //void GenLunas()
@@ -89,6 +90,44 @@ namespace AnugerahBackend.Accounting.BL
                 Keterangan = "   Penjualan a/n " + penjualan.BuyerName,
                 NilaiHutang = 0,
                 NilaiLunas = penjualan.NilaiGrandTotal
+            });
+
+            bpHutang.ListLunas = newListLunas;
+            //  simpan
+            var result = Save(bpHutang);
+            return result;
+        }
+
+        public BPHutangModel GenHutang(ReturDepositModel returDeposit, DepositModel deposit)
+        {
+            //  ambil data hutang berdasarkan deposit
+            var bpHutang = GetData(deposit.DepositID);
+            if (bpHutang == null)
+            {
+                var errMsg = string.Format("Hutang {0} tidak ditemukan ", deposit.DepositID);
+                throw new ArgumentException(errMsg);
+            }
+
+            //  hapus detil lunas yang id-nya = PenjualanID
+            List<BPHutangDetilModel> newListLunas =
+                (
+                    from c in bpHutang.ListLunas
+                    where c.ReffID != returDeposit.ReturDepositID
+                    select c
+                ).ToList();
+
+            //  tambahkan pelunasan dari retur deposit
+            int noUrut = newListLunas.Count + 1;
+            newListLunas.Add(new BPHutangDetilModel
+            {
+                BPHutangID = bpHutang.BPHutangID,
+                BPHutangDetilID = bpHutang.BPHutangID + '-' + noUrut.ToString().PadLeft(2, '0'),
+                Tgl = returDeposit.Tgl,
+                Jam = returDeposit.Jam,
+                ReffID = returDeposit.ReturDepositID,
+                Keterangan = "   Retur Deposit a/n " + returDeposit.PihakKeduaName,
+                NilaiHutang = 0,
+                NilaiLunas = returDeposit.NilaiReturDeposit
             });
 
             bpHutang.ListLunas = newListLunas;

@@ -117,6 +117,12 @@
     <Compile Include="Accounting\LunasKasBonForm.Designer.cs">
       <DependentUpon>LunasKasBonForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Accounting\ReturDepositForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\ReturDepositForm.Designer.cs">
+      <DependentUpon>ReturDepositForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Keuangan\KasirForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -254,6 +260,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Accounting\LunasKasBonForm.resx">
       <DependentUpon>LunasKasBonForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\ReturDepositForm.resx">
+      <DependentUpon>ReturDepositForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Keuangan\KasirForm.resx">
       <DependentUpon>KasirForm.cs</DependentUpon>

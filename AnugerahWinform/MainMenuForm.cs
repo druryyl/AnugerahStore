@@ -202,5 +202,15 @@ namespace AnugerahWinform
             };
             form.Show();
         }
+
+        private void ReturDepositButton_Click(object sender, EventArgs e)
+        {
+            var form = new ReturDepositForm
+            {
+                MdiParent = this,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            form.Show();
+        }
     }
 }
