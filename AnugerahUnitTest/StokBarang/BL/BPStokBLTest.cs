@@ -15,6 +15,9 @@ namespace AnugerahUnitTest.StokBarang.BL
         void Generate_AdjPlus_Berhasil();
         void Generate_AdjMin_SingleStokControl_Berhasil();
         void Generate_AdjMin_SingleStokControl_StokTidakCukup();
+        void Generate_AdjMin_MultiStokControl_Berhasil();
+        void Generate_AdjMin_MultiStokControl_StokTidakCukup();
+
     }
     public class BPStokBLTest : IBPStokBLTest
     {
@@ -152,7 +155,6 @@ namespace AnugerahUnitTest.StokBarang.BL
             //  act
             var actual = _bpStokBL.Generate(adj);
 
-
             //  assert
             actual.Should().BeEquivalentTo(expected);
         }
@@ -203,6 +205,16 @@ namespace AnugerahUnitTest.StokBarang.BL
 
             //  assert
             ex.Message.Should().Contain("Stok tidak cukup");
+        }
+
+        public void Generate_AdjMin_MultiStokControl_Berhasil()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Generate_AdjMin_MultiStokControl_StokTidakCukup()
+        {
+            throw new NotImplementedException();
         }
     }
 }
