@@ -18,6 +18,6 @@ namespace AnugerahBackend.StokBarang.Model
         public long QtyIn { get; set; }
         public long QtySisa { get; set; }
 
-        public IEnumerable<BPStokDetilModel> ListDetil { get; set; }
+        public List<BPStokDetilModel> ListDetil { get; set; }
     }
 }

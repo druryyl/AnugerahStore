@@ -14,7 +14,11 @@ namespace AnugerahBackend.StokBarang.Model
         public string ReffID { get; set; }
         public string Tgl { get; set; }
         public string Jam { get; set; }
-        public decimal QtyOut { get; set; }
+
+        public long QtyIn { get; set; }
+        public decimal NilaiHpp { get; set; }
+
+        public long QtyOut { get; set; }
         public decimal HargaJual { get; set; }
     }
 }

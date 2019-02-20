@@ -33,10 +33,12 @@ namespace AnugerahBackend.StokBarang.Dal
                     BPStokDetil (
                         BPStokID, BPStokDetilID, NoUrut,
                         ReffID, Tgl, Jam,
+                        QtyIn, NilaiHpp,
                         QtyOut, HargaJual)
                 VALUES (
                         @BPStokID, @BPStokDetilID, @NoUrut,
                         @ReffID, @Tgl, @Jam,
+                        @QtyIn, @NilaiHpp,
                         @QtyOut, @HargaJual) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
@@ -47,6 +49,8 @@ namespace AnugerahBackend.StokBarang.Dal
                 cmd.AddParam("@ReffID", model.ReffID);
                 cmd.AddParam("@Tgl", model.Tgl.ToTglYMD());
                 cmd.AddParam("@Jam", model.Jam);
+                cmd.AddParam("@QtyIn", model.QtyIn);
+                cmd.AddParam("NilaiHpp", model.NilaiHpp);
                 cmd.AddParam("QtyOut", model.QtyOut);
                 cmd.AddParam("@HargaJual", model.HargaJual);
                 conn.Open();
@@ -77,6 +81,7 @@ namespace AnugerahBackend.StokBarang.Dal
                 SELECT
                     BPStokID, BPStokDetilID, NoUrut, 
                     ReffID, Tgl, Jam,
+                    QtyIn, NilaiHpp,
                     QtyOut, HargaJual 
                 FROM
                     BPStokDetil
@@ -101,6 +106,8 @@ namespace AnugerahBackend.StokBarang.Dal
                             ReffID = dr["ReffID"].ToString(),
                             Tgl = dr["Tgl"].ToString().ToTglDMY(),
                             Jam = dr["Jam"].ToString(),
+                            QtyIn = Convert.ToInt64(dr["QtyIn"]),
+                            NilaiHpp = Convert.ToDecimal(dr["NilaiHpp"]),
                             QtyOut = Convert.ToInt64(dr["QtyOut"]),
                             HargaJual = Convert.ToDecimal(dr["HargaJual"])
                         };

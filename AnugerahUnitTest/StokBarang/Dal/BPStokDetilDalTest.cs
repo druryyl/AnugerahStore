@@ -38,6 +38,8 @@ namespace AnugerahUnitTest.StokBarang.Dal
                 ReffID = "C1",
                 Tgl = "20-02-2019",
                 Jam = "21:12:00",
+                QtyIn = 5,
+                NilaiHpp = 52000,
                 QtyOut = 3,
                 HargaJual = 55125,
             };
@@ -76,22 +78,26 @@ namespace AnugerahUnitTest.StokBarang.Dal
         [Fact]
         public void ListDataTest()
         {
-            //  arrange
-            var expected1 = BPStokDetilDataFactory();
-            var expected2 = expected1.CloneObject();
-            expected2.BPStokDetilID = "B2";
-            _bpStokDetilDal.Insert(expected1);
-            _bpStokDetilDal.Insert(expected2);
-            var expected = new List<BPStokDetilModel>
+            using (var trans = TransHelper.NewScope())
             {
-                expected1, expected2
-            };
+                //  arrange
+                var expected1 = BPStokDetilDataFactory();
+                var expected2 = expected1.CloneObject();
+                expected2.BPStokDetilID = "B2";
+                _bpStokDetilDal.Insert(expected1);
+                _bpStokDetilDal.Insert(expected2);
+                var expected = new List<BPStokDetilModel>
+                {
+                    expected1, expected2
+                };
 
-            //  act
-            var actual = _bpStokDetilDal.ListData("A1");
+                //  act
+                var actual = _bpStokDetilDal.ListData("A1");
 
-            //  assert
-            actual.Should().BeEquivalentTo(expected);
+                //  assert
+                actual.Should().BeEquivalentTo(expected);
+
+            }
         }
     }
 }

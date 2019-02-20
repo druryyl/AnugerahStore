@@ -153,7 +153,10 @@ namespace AnugerahBackend.StokBarang.Dal
                     BPStok aa
                     LEFT JOIN Brg bb ON aa.BrgID = bb.BrgID
                 WHERE
-                    aa.BrgID = @BrgID ";
+                    aa.BrgID = @BrgID 
+                    AND aa.QtySisa > 0 
+                ORDER BY
+                    aa.Tgl, aa.Jam ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
