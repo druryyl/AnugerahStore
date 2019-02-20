@@ -212,5 +212,15 @@ namespace AnugerahWinform
             };
             form.Show();
         }
+
+        private void LaporanBiayaButton_Click(object sender, EventArgs e)
+        {
+            var form = new BiayaInfoForm
+            {
+                MdiParent = this,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            form.Show();
+        }
     }
 }

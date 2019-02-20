@@ -273,6 +273,7 @@
             this.LaporanBiayaButton.Name = "LaporanBiayaButton";
             this.LaporanBiayaButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("LaporanBiayaButton.SmallImage")));
             this.LaporanBiayaButton.Text = "Laporan Biaya";
+            this.LaporanBiayaButton.Click += new System.EventHandler(this.LaporanBiayaButton_Click);
             // 
             // ribbonPanel2
             // 
