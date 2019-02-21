@@ -593,7 +593,8 @@ namespace AnugerahWinform.Penjualan
             var bpHutang = _bpHutangBL.GetData(DepositIDText.Text);
             if(bpHutang == null)
             {
-                TglDepositText.Value = DateTime.MinValue;
+                TglDepositText.MinDate = DateTime.MinValue;
+                TglDepositText.Value = TglDepositText.MinDate;
                 JamDepositText.Text = "00:00:00";
                 PihakKeduaNameText.Text = "";
                 NilaiDepositText.Value = 0;

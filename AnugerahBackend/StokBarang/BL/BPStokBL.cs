@@ -153,7 +153,6 @@ namespace AnugerahBackend.StokBarang.BL
                         _bpStokDetilDal.Insert(item2);
                 }
             }
-
             return result;
         }
 
@@ -228,6 +227,13 @@ namespace AnugerahBackend.StokBarang.BL
             var listBPStok = ListData(stokItem.BrgID);
             if (listBPStok == null) return null;
 
+            //  hapus detil utk 'trs ini' dulu
+            //  (kasus simpan ulang)
+            foreach(var item in listBPStok)
+            {
+                item.ListDetil = item.ListDetil.Where(x => x.ReffID != stokItem.ReffID).ToList();
+            }
+
             //  proses pengurangan stok, biar mudah di-pluskan dulu
             var qtyPengurang = stokItem.QtyOut;
 
@@ -243,7 +249,7 @@ namespace AnugerahBackend.StokBarang.BL
                 //  kurangi pengurangnya
                 qtyPengurang -= qtyOut;
 
-                var noUrut = item.ListDetil.Count() + 1;
+                // var noUrut = item.ListDetil.Count() + 1;
 
                 //  jika hargajual = 0,
                 //  maka ambil harga beli-nya
@@ -254,8 +260,8 @@ namespace AnugerahBackend.StokBarang.BL
                 var bpStokDetil = new BPStokDetilModel
                 {
                     BPStokID = item.BPStokID,
-                    BPStokDetilID = item.BPStokID + '-' + noUrut.ToString().PadLeft(3,'0'),
-                    NoUrut = noUrut,
+                    //BPStokDetilID = item.BPStokID + '-' + noUrut.ToString().PadLeft(3,'0'),
+                    //NoUrut = noUrut,
                     ReffID = stokItem.ReffID,
                     Tgl = stokItem.Tgl,
                     Jam = stokItem.Jam,
@@ -271,9 +277,22 @@ namespace AnugerahBackend.StokBarang.BL
                 if (result == null) result = new List<BPStokModel>();
                 result.Add(item);
 
+                //  generate ulang nomor urut-nya
+                int noUrut = 1;
+                foreach (var item2 in item.ListDetil.OrderBy(x => x.Tgl + x.Jam))
+                {
+                    item2.NoUrut = noUrut;
+                    item2.BPStokDetilID = item.BPStokID + '-' + noUrut.ToString().PadLeft(3, '0');
+                    noUrut++;
+                }
+
                 //  update header
                 _bpStokDal.Update(item);
-                _bpStokDetilDal.Insert(bpStokDetil);
+                //  delete detil
+                _bpStokDetilDal.Delete(item.BPStokID);
+                //  insert baru
+                foreach(var item2 in item.ListDetil)
+                    _bpStokDetilDal.Insert(item2);
 
                 if (qtyPengurang == 0) break;
             }

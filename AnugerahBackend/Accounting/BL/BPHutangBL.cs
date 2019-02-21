@@ -44,6 +44,8 @@ namespace AnugerahBackend.Accounting.BL
         public BPHutangModel GetData(string piutangID)
         {
             var header = _bpHutangDal.GetData(piutangID);
+            if (header == null) return null;
+
             var detil = _bpHutangDetilDal.ListData(piutangID);
             header.ListLunas = detil;
             return header;
