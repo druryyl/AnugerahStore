@@ -148,6 +148,7 @@
     <Compile Include="StokBarang\BL\TipeBrgBL.cs" />
     <Compile Include="StokBarang\Dal\BPStokDal.cs" />
     <Compile Include="StokBarang\Dal\BPStokDetilDal.cs" />
+    <Compile Include="StokBarang\Dal\BPStokInfoDal.cs" />
     <Compile Include="StokBarang\Dal\BrgDal.cs" />
     <Compile Include="StokBarang\Dal\ColorDal.cs" />
     <Compile Include="StokBarang\Dal\JenisMutasiDal.cs" />
@@ -158,6 +159,7 @@
     <Compile Include="StokBarang\Dal\SubJenisBrgDal.cs" />
     <Compile Include="StokBarang\Dal\TipeBrgDal.cs" />
     <Compile Include="StokBarang\Model\BPStokDetilModel.cs" />
+    <Compile Include="StokBarang\Model\BPStokInfoDetilModel.cs" />
     <Compile Include="StokBarang\Model\BPStokModel.cs" />
     <Compile Include="StokBarang\Model\BrgModel.cs" />
     <Compile Include="StokBarang\Model\ColorModel.cs" />

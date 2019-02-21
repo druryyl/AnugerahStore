@@ -64,6 +64,7 @@
             this.ribbonButton1 = new System.Windows.Forms.RibbonButton();
             this.BPKasRibbon = new System.Windows.Forms.RibbonPanel();
             this.LaporanBPKasButton = new System.Windows.Forms.RibbonButton();
+            this.BukuStokDetilInfoButton = new System.Windows.Forms.RibbonButton();
             this.SuspendLayout();
             // 
             // ribbon1
@@ -165,6 +166,7 @@
             // StockManagementRibbonPanel
             // 
             this.StockManagementRibbonPanel.Items.Add(this.Adjustment);
+            this.StockManagementRibbonPanel.Items.Add(this.BukuStokDetilInfoButton);
             this.StockManagementRibbonPanel.Name = "StockManagementRibbonPanel";
             this.StockManagementRibbonPanel.Text = "Stock";
             // 
@@ -369,6 +371,15 @@
             this.LaporanBPKasButton.Text = "Laporan Kas";
             this.LaporanBPKasButton.Click += new System.EventHandler(this.LaporanBPKasButton_Click);
             // 
+            // BukuStokDetilInfoButton
+            // 
+            this.BukuStokDetilInfoButton.Image = ((System.Drawing.Image)(resources.GetObject("BukuStokDetilInfoButton.Image")));
+            this.BukuStokDetilInfoButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("BukuStokDetilInfoButton.LargeImage")));
+            this.BukuStokDetilInfoButton.Name = "BukuStokDetilInfoButton";
+            this.BukuStokDetilInfoButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("BukuStokDetilInfoButton.SmallImage")));
+            this.BukuStokDetilInfoButton.Text = "Info Stok";
+            this.BukuStokDetilInfoButton.Click += new System.EventHandler(this.BukuStokDetilInfoButton_Click);
+            // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -424,6 +435,7 @@
         private System.Windows.Forms.RibbonButton ribbonButton1;
         private System.Windows.Forms.RibbonPanel BPKasRibbon;
         private System.Windows.Forms.RibbonButton LaporanBPKasButton;
+        private System.Windows.Forms.RibbonButton BukuStokDetilInfoButton;
     }
 }
 

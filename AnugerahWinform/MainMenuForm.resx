@@ -366,6 +366,37 @@
         wwAADsMBx2+oZAAAABNJREFUOE9jGAWjYBSMAjBgYAAABBAAAadEfGMAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="BukuStokDetilInfoButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAWdJREFUaEPtmLFNg1EQg7MZMzAhLQswAg0jMAEwAC00tmTJPuldkeQi3Se5efI5
+        n/4yl2VZlmUh7x/ff48Q6DqpPDHQdVJ5YqDrpDLz9Px20yQHBrpOKjPpR66Z5MBA10nliYGuk8oTA10n
+        lScGuo6WXl4/R0XdoOtoKY3cM+oGXUdLPPz6+bVU792c7NBD3aDraImH1Wh67+Zkhx7qBl1HSzysRtN7
+        Nyc79FA36Dpa4mE1mt67Odmhh7pB19ESD6vR9N7NyQ491A26jpZ4OCXqBl1HSzysvkp67+Zkhx7qBl1H
+        SzysRtN7Nyc79FA36Dpa4mE1mt67Odmhh7pB19ESD6vR9N7NyQ491A26jpZ4WI2m925OduihbtB1tMTD
+        KVE36DpaSiP3jLpB19HS5EDXSeWJga6TyhMDXSeVr5n0b0QVvYOuo6VbJIlW0TvoOlqaHOg6qTwx0HVS
+        eWKguyzLsiyPzuXyD8RlTuCnKNepAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="BukuStokDetilInfoButton.LargeImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAWdJREFUaEPtmLFNg1EQg7MZMzAhLQswAg0jMAEwAC00tmTJPuldkeQi3Se5efI5
+        n/4yl2VZlmUh7x/ff48Q6DqpPDHQdVJ5YqDrpDLz9Px20yQHBrpOKjPpR66Z5MBA10nliYGuk8oTA10n
+        lScGuo6WXl4/R0XdoOtoKY3cM+oGXUdLPPz6+bVU792c7NBD3aDraImH1Wh67+Zkhx7qBl1HSzysRtN7
+        Nyc79FA36Dpa4mE1mt67Odmhh7pB19ESD6vR9N7NyQ491A26jpZ4OCXqBl1HSzysvkp67+Zkhx7qBl1H
+        SzysRtN7Nyc79FA36Dpa4mE1mt67Odmhh7pB19ESD6vR9N7NyQ491A26jpZ4WI2m925OduihbtB1tMTD
+        KVE36DpaSiP3jLpB19HS5EDXSeWJga6TyhMDXSeVr5n0b0QVvYOuo6VbJIlW0TvoOlqaHOg6qTwx0HVS
+        eWKguyzLsiyPzuXyD8RlTuCnKNepAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="BukuStokDetilInfoButton.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAATSURBVDhPYxgFo2AUjAIwYGAAAAQQAAGnRHxjAAAAAElF
+        TkSuQmCC
+</value>
+  </data>
   <data name="BarangButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
