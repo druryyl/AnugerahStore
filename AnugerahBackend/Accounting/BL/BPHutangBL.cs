@@ -91,7 +91,8 @@ namespace AnugerahBackend.Accounting.BL
                 ReffID = penjualan.PenjualanID,
                 Keterangan = "   Penjualan a/n " + penjualan.BuyerName,
                 NilaiHutang = 0,
-                NilaiLunas = penjualan.NilaiGrandTotal
+                NilaiLunas = penjualan.NilaiGrandTotal > penjualan.NilaiDeposit ?
+                    penjualan.NilaiDeposit : penjualan.NilaiGrandTotal,
             });
 
             bpHutang.ListLunas = newListLunas;
@@ -152,10 +153,15 @@ namespace AnugerahBackend.Accounting.BL
             else
                 model.PihakKeduaName = pihakKedua.PihakKeduaName;
 
+            
             //  update nilai total di header
             model.NilaiHutang = model.ListLunas.Sum(x => x.NilaiHutang);
             model.NilaiLunas = model.ListLunas.Sum(x => x.NilaiLunas);
 
+            //  nilai pelunasan tidak boleh lebih dari hutang
+            if (model.NilaiLunas > model.NilaiHutang)
+                throw new ArgumentException("Nilai Pelunasan melebihi hutang");
+            
             //  delete data lama
             using (var trans = TransHelper.NewScope())
             {

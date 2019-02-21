@@ -60,6 +60,7 @@
             this.dataColumn12 = new System.Data.DataColumn();
             this.dataColumn14 = new System.Data.DataColumn();
             this.dataColumn15 = new System.Data.DataColumn();
+            this.dataColumn13 = new System.Data.DataColumn();
             this.SaldoTable = new System.Data.DataTable();
             this.dataColumn10 = new System.Data.DataColumn();
             this.dataColumn9 = new System.Data.DataColumn();
@@ -71,12 +72,11 @@
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.SaldoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataColumn13 = new System.Data.DataColumn();
+            this.brgIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BrgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bPStokIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.noUrutDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tglDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.brgIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BrgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.reffIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.qtyInDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.qtyOutDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -168,11 +168,11 @@
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.brgIDDataGridViewTextBoxColumn,
+            this.BrgName,
             this.bPStokIDDataGridViewTextBoxColumn,
             this.noUrutDataGridViewTextBoxColumn,
             this.tglDataGridViewTextBoxColumn,
-            this.brgIDDataGridViewTextBoxColumn,
-            this.BrgName,
             this.reffIDDataGridViewTextBoxColumn,
             this.qtyInDataGridViewTextBoxColumn,
             this.qtyOutDataGridViewTextBoxColumn,
@@ -271,6 +271,10 @@
             this.dataColumn15.ColumnName = "PendapatanJual";
             this.dataColumn15.DataType = typeof(decimal);
             // 
+            // dataColumn13
+            // 
+            this.dataColumn13.ColumnName = "BrgName";
+            // 
             // SaldoTable
             // 
             this.SaldoTable.Columns.AddRange(new System.Data.DataColumn[] {
@@ -356,33 +360,6 @@
             this.SaldoBindingSource.DataMember = "SaldoTable";
             this.SaldoBindingSource.DataSource = this.BPStokInfoDataSet;
             // 
-            // dataColumn13
-            // 
-            this.dataColumn13.ColumnName = "BrgName";
-            // 
-            // bPStokIDDataGridViewTextBoxColumn
-            // 
-            this.bPStokIDDataGridViewTextBoxColumn.DataPropertyName = "BPStokID";
-            this.bPStokIDDataGridViewTextBoxColumn.HeaderText = "BPStokID";
-            this.bPStokIDDataGridViewTextBoxColumn.Name = "bPStokIDDataGridViewTextBoxColumn";
-            this.bPStokIDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // noUrutDataGridViewTextBoxColumn
-            // 
-            this.noUrutDataGridViewTextBoxColumn.DataPropertyName = "NoUrut";
-            this.noUrutDataGridViewTextBoxColumn.HeaderText = "NoUrut";
-            this.noUrutDataGridViewTextBoxColumn.Name = "noUrutDataGridViewTextBoxColumn";
-            this.noUrutDataGridViewTextBoxColumn.ReadOnly = true;
-            this.noUrutDataGridViewTextBoxColumn.Width = 40;
-            // 
-            // tglDataGridViewTextBoxColumn
-            // 
-            this.tglDataGridViewTextBoxColumn.DataPropertyName = "Tgl";
-            this.tglDataGridViewTextBoxColumn.HeaderText = "Tgl";
-            this.tglDataGridViewTextBoxColumn.Name = "tglDataGridViewTextBoxColumn";
-            this.tglDataGridViewTextBoxColumn.ReadOnly = true;
-            this.tglDataGridViewTextBoxColumn.Width = 80;
-            // 
             // brgIDDataGridViewTextBoxColumn
             // 
             this.brgIDDataGridViewTextBoxColumn.DataPropertyName = "BrgID";
@@ -398,6 +375,29 @@
             this.BrgName.HeaderText = "BrgName";
             this.BrgName.Name = "BrgName";
             this.BrgName.ReadOnly = true;
+            // 
+            // bPStokIDDataGridViewTextBoxColumn
+            // 
+            this.bPStokIDDataGridViewTextBoxColumn.DataPropertyName = "BPStokID";
+            this.bPStokIDDataGridViewTextBoxColumn.HeaderText = "Stok Control";
+            this.bPStokIDDataGridViewTextBoxColumn.Name = "bPStokIDDataGridViewTextBoxColumn";
+            this.bPStokIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // noUrutDataGridViewTextBoxColumn
+            // 
+            this.noUrutDataGridViewTextBoxColumn.DataPropertyName = "NoUrut";
+            this.noUrutDataGridViewTextBoxColumn.HeaderText = "No";
+            this.noUrutDataGridViewTextBoxColumn.Name = "noUrutDataGridViewTextBoxColumn";
+            this.noUrutDataGridViewTextBoxColumn.ReadOnly = true;
+            this.noUrutDataGridViewTextBoxColumn.Width = 40;
+            // 
+            // tglDataGridViewTextBoxColumn
+            // 
+            this.tglDataGridViewTextBoxColumn.DataPropertyName = "Tgl";
+            this.tglDataGridViewTextBoxColumn.HeaderText = "Tgl";
+            this.tglDataGridViewTextBoxColumn.Name = "tglDataGridViewTextBoxColumn";
+            this.tglDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tglDataGridViewTextBoxColumn.Width = 80;
             // 
             // reffIDDataGridViewTextBoxColumn
             // 
@@ -527,11 +527,11 @@
         private System.Data.DataColumn dataColumn14;
         private System.Data.DataColumn dataColumn15;
         private System.Data.DataColumn dataColumn13;
+        private System.Windows.Forms.DataGridViewTextBoxColumn brgIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BrgName;
         private System.Windows.Forms.DataGridViewTextBoxColumn bPStokIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn noUrutDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tglDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn brgIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BrgName;
         private System.Windows.Forms.DataGridViewTextBoxColumn reffIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn qtyInDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn qtyOutDataGridViewTextBoxColumn;

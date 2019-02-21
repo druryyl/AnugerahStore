@@ -374,6 +374,9 @@ namespace AnugerahWinform.Penjualan
 
             GrandTotalNumText.Value = nilaiTotal - DiskonNumText.Value + BiayaLainNumText.Value;
             decimal nilaiTotBayar = BayarNonCashNumText.Value + BayarCashNumText.Value;
+            if (DepositCheckBox.Checked)
+                nilaiTotBayar += NilaiDepositText.Value;
+
             KembaliNumText.Value = nilaiTotBayar - GrandTotalNumText.Value;
 
             if (KembaliNumText.Value < 0) KembaliNumText.Value = 0;
@@ -548,8 +551,11 @@ namespace AnugerahWinform.Penjualan
                     break;
                 }
             }
-
-            KembaliNumText.Value = _listBayarDetil.Sum(x => x.NilaiBayar) - GrandTotalNumText.Value;
+            var totBayar = _listBayarDetil.Sum(x => x.NilaiBayar);
+            if (DepositCheckBox.Checked)
+                totBayar += NilaiDepositText.Value;
+                
+            KembaliNumText.Value = totBayar - GrandTotalNumText.Value;
             if (KembaliNumText.Value < 0) KembaliNumText.Value = 0;
         }
 
