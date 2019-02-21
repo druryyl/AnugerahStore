@@ -34,6 +34,7 @@ namespace AnugerahWinform.Penjualan
         private IBPHutangBL _bpHutangBL;
         private IDepositBL _depositBL;
         private List<PenjualanBayarModel> _listBayarDetil;
+        private IBPStokBL _bpStokBL;
 
         public PenjualanForm()
         {
@@ -49,6 +50,7 @@ namespace AnugerahWinform.Penjualan
             _jenisBayarBL = new JenisBayarBL();
             _bpHutangBL = new BPHutangBL();
             _depositBL = new DepositBL();
+            _bpStokBL = new BPStokBL();
         }
 
         private void PenjualanForm_Load(object sender, EventArgs e)
@@ -416,9 +418,9 @@ namespace AnugerahWinform.Penjualan
                     BrgID = dr["BrgID"].ToString(),
                     BrgName = "",
                     Qty = Convert.ToInt32(dr["Qty"]),
-                    Harga = Convert.ToDouble(dr["Harga"]),
-                    Diskon = Convert.ToDouble(dr["Diskon"]),
-                    SubTotal = Convert.ToDouble(dr["SubTotal"])
+                    Harga = Convert.ToDecimal(dr["Harga"]),
+                    Diskon = Convert.ToDecimal(dr["Diskon"]),
+                    SubTotal = Convert.ToDecimal(dr["SubTotal"])
                 };
                 listDetilBrg.Add(dtlAdj);
                 noUrut++;
@@ -483,32 +485,34 @@ namespace AnugerahWinform.Penjualan
             };
 
             PenjualanModel result = null;
-            try
-            {
+            //try
+            //{
                 using (var trans = TransHelper.NewScope())
                 {
+                    //  save penjualan
                     result = _penjualanBL.Save(penjualan);
-
+                    //  generate kas
                     BPKasModel bpKas = null;
                     if(penjualan.ListBayar != null)
                         bpKas = _bpKasBL.Generate(penjualan);
-
+                    //  generate hutang lunas (kalo ada deposit)
                     BPHutangModel bpHutang = null;
                     if (penjualan.IsBayarDeposit)
                     {
                         var deposit = _depositBL.GetData(penjualan.DepositID);
                         bpHutang = _bpHutangBL.GenHutang(penjualan, deposit);
                     }
-
+                    //  generate stok
+                    var bpStok = _bpStokBL.Generate(result);
 
                     trans.Complete();
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                return;
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //    return;
+            //}
 
             if (result != null)
                 LastIDLabel.Text = result.PenjualanID;
@@ -533,6 +537,7 @@ namespace AnugerahWinform.Penjualan
                 {
                     JenisBayarID = "KAS",
                     JenisBayarName = jenisBayar.JenisBayarName,
+                    Catatan = "",
                 });
             //  update nilai KAS
             foreach (var item in _listBayarDetil)

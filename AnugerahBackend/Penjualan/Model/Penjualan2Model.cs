@@ -14,8 +14,8 @@ namespace AnugerahBackend.Penjualan.Model
         public string BrgID { get; set; }
         public string BrgName { get; set; }
         public int Qty { get; set; }
-        public double Harga { get; set; }
-        public double Diskon { get; set; }
-        public double SubTotal { get; set; }
+        public decimal Harga { get; set; }
+        public decimal Diskon { get; set; }
+        public decimal SubTotal { get; set; }
     }
 }

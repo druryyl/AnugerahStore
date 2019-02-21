@@ -101,9 +101,9 @@ namespace AnugerahBackend.Penjualan.Dal
                                 BrgID = dr["BrgID"].ToString(),
                                 BrgName = dr["BrgName"].ToString(),
                                 Qty = Convert.ToInt32(dr["Qty"]),
-                                Harga = Convert.ToDouble(dr["Harga"]),
-                                Diskon = Convert.ToDouble(dr["Diskon"]),
-                                SubTotal = Convert.ToDouble(dr["SubTotal"])
+                                Harga = Convert.ToDecimal(dr["Harga"]),
+                                Diskon = Convert.ToDecimal(dr["Diskon"]),
+                                SubTotal = Convert.ToDecimal(dr["SubTotal"])
                             };
                             result.Add(item);
                         }

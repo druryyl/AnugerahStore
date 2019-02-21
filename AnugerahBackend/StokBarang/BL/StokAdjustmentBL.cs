@@ -43,6 +43,13 @@ namespace AnugerahBackend.StokBarang.BL
             _paramNoBL = new ParameterNoBL();
             _brgBL = new BrgBL();
             _stokBL = new StokBL();
+            SearchFilter = new SearchFilter
+            {
+                IsDate = true,
+                Date1 = DateTime.Now,
+                Date2 = DateTime.Now,
+                UserKeyword = ""
+            };
         }
 
         public StokAdjustmentBL(IStokAdjustmentDal injStokAdjustmentDal,
@@ -81,31 +88,24 @@ namespace AnugerahBackend.StokBarang.BL
 
                 //  save header
                 stokAdjustment.StokAdjustmentID = trsID;
+
+                //  delete data lama
+                _stokAdjustment2Dal.Delete(trsID);
+                _stokAdjustmentDal.Delete(trsID);
+
+                //  insert data baru
                 _stokAdjustmentDal.Insert(stokAdjustment);
-                //  save detil
                 foreach (var item in stokAdjustment.ListBrg)
                 {
                     item.StokAdjustmentID = trsID;
                     item.StokAdjustmentID2 = string.Format("{0}-{1}", trsID, item.NoUrut.ToString().PadLeft(3, '0'));
                     _stokAdjustment2Dal.Insert(item);
                 }
-                GenerateStok(stokAdjustment);
                 trans.Complete();
             }
             return result;
         }
 
-        private void GenerateStok(StokAdjustmentModel stokAdjustment)
-        {
-            foreach(var item in stokAdjustment.ListBrg)
-            {
-                //if (item.QtyAdjust > 0)
-                //    _stokBL.AddStok(item.BrgID, item.QtyAdjust, item.HppAdjust, stokAdjustment.TglTrs, stokAdjustment.JamTrs,
-                //        stokAdjustment.StokAdjustmentID, stokAdjustment.StokAdjustmentID, "AJPLS");
-                //else
-                //    _stokBL.RemoveStok(new BrgModel { BrgID = item.BrgID }, item.QtyAdjust, 0, "AJMIN", stokAdjustment.StokAdjustmentID);
-            }
-        }
         private void ReserveStok(string stokAdjID)
         {
             //var stokAdj = GetData(stokAdjID);

@@ -172,6 +172,7 @@
     <Compile Include="StokBarang\Model\StokAdjustmentModel.cs" />
     <Compile Include="StokBarang\Model\StokInOutModel.cs" />
     <Compile Include="StokBarang\Model\StokInModel.cs" />
+    <Compile Include="StokBarang\Model\StokItem.cs" />
     <Compile Include="StokBarang\Model\SubJenisBrgModel.cs" />
     <Compile Include="StokBarang\Model\TipeBrgModel.cs" />
     <Compile Include="Support\BL\ParameterNoBL.cs" />

@@ -1,6 +1,7 @@
 ﻿using AnugerahBackend.StokBarang.BL;
 using AnugerahBackend.StokBarang.Model;
 using AnugerahWinform.Support;
+using Ics.Helper.Database;
 using Ics.Helper.StringDateTime;
 using System;
 using System.Collections.Generic;
@@ -19,13 +20,14 @@ namespace AnugerahWinform.StokBarang
         private IBrgBL _brgBL;
         private IStokBL _stokBL;
         private IStokAdjustmentBL _stokAdjustmentBL;
-
+        private IBPStokBL _bpStokBL;
         public StokAdjustmentForm()
         {
             InitializeComponent();
             _stokAdjustmentBL = new StokAdjustmentBL();
             _brgBL = new BrgBL();
             _stokBL = new StokBL();
+            _bpStokBL = new BPStokBL();
 
         }
         private void StokAdjustmentForm_Load(object sender, EventArgs e)
@@ -157,7 +159,14 @@ namespace AnugerahWinform.StokBarang
                 UserrIDVoid = "",
                 ListBrg = listDetilAdj
             };
-            var result = _stokAdjustmentBL.Save(stokAdj);
+
+            StokAdjustmentModel result = null;
+            using (var trans = TransHelper.NewScope())
+            {
+                result = _stokAdjustmentBL.Save(stokAdj);
+                var resultGenStok = _bpStokBL.Generate(result);
+                trans.Complete();
+            }
             if (result != null)
                 LastIDLabel.Text = result.StokAdjustmentID;
         }

@@ -116,10 +116,11 @@ namespace AnugerahUnitTest.StokBarang.BL
         [Fact]
         public void Generate_AdjMin_SingleStokControl_Berhasil()
         {
+            #region ARRANGE
             //  arrange
             var adj = StokAdjustmentHeaderDataFactory();
             var adjDetil = StokAdjustmentDetilDataFactory();
-            adj.ListBrg = new List<StokAdjustment2Model> { adjDetil};
+            adj.ListBrg = new List<StokAdjustment2Model> { adjDetil };
             adjDetil.QtyAdjust = -3;
             //  bp stok
             var existingBPStok = BPStokHeaderDataFactory();
@@ -151,6 +152,7 @@ namespace AnugerahUnitTest.StokBarang.BL
                 .Returns(new List<BPStokModel> { BPStokHeaderDataFactory() });
             _bpStokDetilDal.Setup(x => x.ListData("A1B1"))
                 .Returns(new List<BPStokDetilModel> { BPStokDetilDataFactory() });
+            #endregion
 
             //  act
             var actual = _bpStokBL.Generate(adj);
@@ -162,6 +164,7 @@ namespace AnugerahUnitTest.StokBarang.BL
         [Fact]
         public void Generate_AdjMin_SingleStokControl_StokTidakCukup()
         {
+            #region ARRANGE
             //  arrange
             var adj = StokAdjustmentHeaderDataFactory();
             var adjDetil = StokAdjustmentDetilDataFactory();
@@ -196,25 +199,109 @@ namespace AnugerahUnitTest.StokBarang.BL
             _bpStokDal.Setup(x => x.ListData("B1"))
                 .Returns(new List<BPStokModel> { BPStokHeaderDataFactory() });
             _bpStokDetilDal.Setup(x => x.ListData("A1B1"))
-                .Returns(new List<BPStokDetilModel> { BPStokDetilDataFactory() });
+                .Returns(new List<BPStokDetilModel> { BPStokDetilDataFactory() }); 
+            #endregion
 
             //  act
             var ex = Assert.Throws<ArgumentException>(
                 () => _bpStokBL.Generate(adj));
 
-
             //  assert
             ex.Message.Should().Contain("Stok tidak cukup");
         }
 
+        [Fact]
         public void Generate_AdjMin_MultiStokControl_Berhasil()
         {
-            throw new NotImplementedException();
+            #region ARRANGE
+            //  arrange
+            var adj = StokAdjustmentHeaderDataFactory();
+            var adjDetil = StokAdjustmentDetilDataFactory();
+            adj.ListBrg = new List<StokAdjustment2Model> { adjDetil };
+            adjDetil.QtyAdjust = -7;
+
+            //  bp stok
+            var existingBPStok1 = BPStokHeaderDataFactory();
+            existingBPStok1.ListDetil = new List<BPStokDetilModel>{BPStokDetilDataFactory()};
+            var existingBPStok2 = existingBPStok1.CloneObject();
+
+            //  expected
+            var expected1 = existingBPStok1.CloneObject();
+            expected1.QtySisa = 0;
+            expected1.ListDetil.Add( new BPStokDetilModel
+            {
+                BPStokID = "A1B1",
+                BPStokDetilID = "A1B1-002",
+                NoUrut = 2,
+                ReffID = "A1",
+                Tgl = "20-02-2019",
+                Jam = "21:39:00",
+                QtyIn = 0,
+                NilaiHpp = 0,
+                QtyOut = 5,
+                HargaJual = 2000,
+            });
+            //
+            var expected2 = existingBPStok1.CloneObject();
+            expected2.QtySisa = 3;
+            expected2.ListDetil.Add(new BPStokDetilModel
+            {
+                BPStokID = "A1B1",
+                BPStokDetilID = "A1B1-002",
+                NoUrut = 2,
+                ReffID = "A1",
+                Tgl = "20-02-2019",
+                Jam = "21:39:00",
+                QtyIn = 0,
+                NilaiHpp = 0,
+                QtyOut = 2,
+                HargaJual = 2000,
+            });
+            //
+            var expected = new List<BPStokModel>{expected1, expected2};
+
+            //  setup mocking
+            _bpStokDal.Setup(x => x.ListData("B1"))
+                .Returns(new List<BPStokModel> { BPStokHeaderDataFactory(), BPStokHeaderDataFactory() });
+            _bpStokDetilDal.Setup(x => x.ListData("A1B1"))
+                .Returns(new List<BPStokDetilModel> { BPStokDetilDataFactory() });
+            #endregion
+
+            //  act
+            var actual = _bpStokBL.Generate(adj);
+
+            //  assert
+            actual.Should().BeEquivalentTo(expected);
         }
 
+        [Fact]
         public void Generate_AdjMin_MultiStokControl_StokTidakCukup()
         {
-            throw new NotImplementedException();
+            #region ARRANGE
+            //  arrange
+            var adj = StokAdjustmentHeaderDataFactory();
+            var adjDetil = StokAdjustmentDetilDataFactory();
+            adj.ListBrg = new List<StokAdjustment2Model> { adjDetil };
+            adjDetil.QtyAdjust = -12;
+
+            //  bp stok
+            var existingBPStok1 = BPStokHeaderDataFactory();
+            existingBPStok1.ListDetil = new List<BPStokDetilModel> { BPStokDetilDataFactory() };
+            var existingBPStok2 = existingBPStok1.CloneObject();
+
+            //  setup mocking
+            _bpStokDal.Setup(x => x.ListData("B1"))
+                .Returns(new List<BPStokModel> { BPStokHeaderDataFactory(), BPStokHeaderDataFactory() });
+            _bpStokDetilDal.Setup(x => x.ListData("A1B1"))
+                .Returns(new List<BPStokDetilModel> { BPStokDetilDataFactory() });
+            #endregion
+
+            //  act
+            var ex = Assert.Throws<ArgumentException>(
+                () => _bpStokBL.Generate(adj));
+
+            //  assert
+            ex.Message.Should().Contain("Stok tidak cukup");
         }
     }
 }
