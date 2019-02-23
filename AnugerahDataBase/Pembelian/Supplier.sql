@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[Supplier]
+(
+	SupplierID VARCHAR(5) NOT NULL CONSTRAINT DF_Supplier_SupplierID DEFAULT(''),
+	SupplierName VARCHAR(30) NOT NULL CONSTRAINT DF_Supplier_SupplierName DEFAULT(''),
+	Alamat VARCHAR(128) NOT NULL CONSTRAINT DF_Supplier_Alamat DEFAULT(''),
+	NoTelp VARCHAR(20) NOT NULL CONSTRAINT DF_Supplier_NoTelp DEFAULT(''),
+
+	CONSTRAINT PK_Supplier_SupplierID PRIMARY KEY CLUSTERED(SupplierID)
+)

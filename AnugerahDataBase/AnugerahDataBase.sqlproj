@@ -64,6 +64,7 @@
     <Folder Include="OtherScript" />
     <Folder Include="Keuangan" />
     <Folder Include="Accounting" />
+    <Folder Include="Pembelian" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Support\Userr.sql" />
@@ -112,6 +113,12 @@
     <Build Include="Accounting\ReturDeposit.sql" />
     <Build Include="StokBarang\BPStok.sql" />
     <Build Include="StokBarang\BPStokDetil.sql" />
+    <Build Include="Pembelian\Purchase.sql" />
+    <Build Include="Pembelian\PurchaseDetil.sql" />
+    <Build Include="Pembelian\Supplier.sql" />
+    <Build Include="Pembelian\Receipt.sql" />
+    <Build Include="Pembelian\ReceiptDetil.sql" />
+    <Build Include="Pembelian\BPBeli.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AnugerahDevelopment.publish.xml" />

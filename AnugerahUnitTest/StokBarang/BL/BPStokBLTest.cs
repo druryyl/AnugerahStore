@@ -120,6 +120,7 @@ namespace AnugerahUnitTest.StokBarang.BL
             //  arrange
             var adj = StokAdjustmentHeaderDataFactory();
             var adjDetil = StokAdjustmentDetilDataFactory();
+            adj.StokAdjustmentID = "A2";
             adj.ListBrg = new List<StokAdjustment2Model> { adjDetil };
             adjDetil.QtyAdjust = -3;
             //  bp stok
@@ -136,7 +137,7 @@ namespace AnugerahUnitTest.StokBarang.BL
                 BPStokID = "A1B1",
                 BPStokDetilID = "A1B1-002",
                 NoUrut = 2,
-                ReffID = "A1",
+                ReffID = "A2",
                 Tgl = "20-02-2019",
                 Jam = "21:39:00",
                 QtyIn = 0,
@@ -167,6 +168,7 @@ namespace AnugerahUnitTest.StokBarang.BL
             #region ARRANGE
             //  arrange
             var adj = StokAdjustmentHeaderDataFactory();
+            adj.StokAdjustmentID = "A2";
             var adjDetil = StokAdjustmentDetilDataFactory();
             adj.ListBrg = new List<StokAdjustment2Model> { adjDetil };
             adjDetil.QtyAdjust = -6;
@@ -184,7 +186,7 @@ namespace AnugerahUnitTest.StokBarang.BL
                 BPStokID = "A1B1",
                 BPStokDetilID = "A1B1-002",
                 NoUrut = 2,
-                ReffID = "A1",
+                ReffID = "A2",
                 Tgl = "20-02-2019",
                 Jam = "21:39:00",
                 QtyIn = 0,
@@ -216,6 +218,7 @@ namespace AnugerahUnitTest.StokBarang.BL
             #region ARRANGE
             //  arrange
             var adj = StokAdjustmentHeaderDataFactory();
+            adj.StokAdjustmentID = "A2";
             var adjDetil = StokAdjustmentDetilDataFactory();
             adj.ListBrg = new List<StokAdjustment2Model> { adjDetil };
             adjDetil.QtyAdjust = -7;
@@ -233,7 +236,7 @@ namespace AnugerahUnitTest.StokBarang.BL
                 BPStokID = "A1B1",
                 BPStokDetilID = "A1B1-002",
                 NoUrut = 2,
-                ReffID = "A1",
+                ReffID = "A2",
                 Tgl = "20-02-2019",
                 Jam = "21:39:00",
                 QtyIn = 0,
@@ -249,7 +252,7 @@ namespace AnugerahUnitTest.StokBarang.BL
                 BPStokID = "A1B1",
                 BPStokDetilID = "A1B1-002",
                 NoUrut = 2,
-                ReffID = "A1",
+                ReffID = "A2",
                 Tgl = "20-02-2019",
                 Jam = "21:39:00",
                 QtyIn = 0,
@@ -280,6 +283,7 @@ namespace AnugerahUnitTest.StokBarang.BL
             #region ARRANGE
             //  arrange
             var adj = StokAdjustmentHeaderDataFactory();
+            adj.StokAdjustmentID = "A2";
             var adjDetil = StokAdjustmentDetilDataFactory();
             adj.ListBrg = new List<StokAdjustment2Model> { adjDetil };
             adjDetil.QtyAdjust = -12;
