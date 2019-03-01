@@ -1,5 +1,6 @@
 ﻿using AnugerahWinform.Accounting;
 using AnugerahWinform.Keuangan;
+using AnugerahWinform.Pembelian;
 using AnugerahWinform.Penjualan;
 using AnugerahWinform.StokBarang;
 using System;
@@ -225,8 +226,17 @@ namespace AnugerahWinform
 
         private void BukuStokDetilInfoButton_Click(object sender, EventArgs e)
         {
-            
             var form = new BukuStokInfoForm
+            {
+                MdiParent = this,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            form.Show();
+        }
+
+        private void PurchaseOrderButton_Click(object sender, EventArgs e)
+        {
+            var form = new PurchaseForm
             {
                 MdiParent = this,
                 StartPosition = FormStartPosition.CenterScreen

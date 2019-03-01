@@ -122,6 +122,7 @@
     <Compile Include="Keuangan\Model\BukuPiutangLunasModel.cs" />
     <Compile Include="LocalHelper\CommonInterface.cs" />
     <Compile Include="Pembelian\BL\PurchaseBL.cs" />
+    <Compile Include="Pembelian\BL\SupplierBL.cs" />
     <Compile Include="Pembelian\Dal\PurchasDetilDal.cs" />
     <Compile Include="Pembelian\Dal\PurchaseDal.cs" />
     <Compile Include="Pembelian\Dal\SupplierDal.cs" />

@@ -12,7 +12,7 @@ using Ics.Helper.StringDateTime;
 
 namespace AnugerahBackend.Pembelian.BL
 {
-    public interface IPuchaseBL
+    public interface IPurchaseBL
     {
         PurchaseModel Save(PurchaseModel model);
         void Delete(string id);
@@ -28,7 +28,7 @@ namespace AnugerahBackend.Pembelian.BL
         public IParameterNoBL ParamNoBL { get; set; }
     }
 
-    public class PurchaseBL : IPuchaseBL
+    public class PurchaseBL : IPurchaseBL
     {
         private readonly PurchaseBLDependencyContainer _dep;
 

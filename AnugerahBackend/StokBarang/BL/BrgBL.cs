@@ -20,7 +20,6 @@ namespace AnugerahBackend.StokBarang.BL
         void Delete(string id);
 
         BrgModel GetData(string id);
-
         IEnumerable<BrgModel> ListData();
         IEnumerable<BrgModel> ListData(string jenisID, string subID, string merkID, string colorID);
         IEnumerable<BrgModel> ListData(SubJenisBrgModel subJenisBrg);

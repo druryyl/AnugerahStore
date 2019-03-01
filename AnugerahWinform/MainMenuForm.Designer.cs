@@ -41,6 +41,7 @@
             this.PricingButton = new System.Windows.Forms.RibbonButton();
             this.StockManagementRibbonPanel = new System.Windows.Forms.RibbonPanel();
             this.Adjustment = new System.Windows.Forms.RibbonButton();
+            this.BukuStokDetilInfoButton = new System.Windows.Forms.RibbonButton();
             this.BarangPanel = new System.Windows.Forms.RibbonPanel();
             this.BarangButton = new System.Windows.Forms.RibbonButton();
             this.ribbonSeparator5 = new System.Windows.Forms.RibbonSeparator();
@@ -64,7 +65,6 @@
             this.ribbonButton1 = new System.Windows.Forms.RibbonButton();
             this.BPKasRibbon = new System.Windows.Forms.RibbonPanel();
             this.LaporanBPKasButton = new System.Windows.Forms.RibbonButton();
-            this.BukuStokDetilInfoButton = new System.Windows.Forms.RibbonButton();
             this.SuspendLayout();
             // 
             // ribbon1
@@ -114,6 +114,7 @@
             this.PurchaseOrderButton.Name = "PurchaseOrderButton";
             this.PurchaseOrderButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("PurchaseOrderButton.SmallImage")));
             this.PurchaseOrderButton.Text = "Purchase Order";
+            this.PurchaseOrderButton.Click += new System.EventHandler(this.PurchaseOrderButton_Click);
             // 
             // DeliveryButton
             // 
@@ -178,6 +179,15 @@
             this.Adjustment.SmallImage = ((System.Drawing.Image)(resources.GetObject("Adjustment.SmallImage")));
             this.Adjustment.Text = "Adjustment";
             this.Adjustment.Click += new System.EventHandler(this.Adjustment_Click);
+            // 
+            // BukuStokDetilInfoButton
+            // 
+            this.BukuStokDetilInfoButton.Image = ((System.Drawing.Image)(resources.GetObject("BukuStokDetilInfoButton.Image")));
+            this.BukuStokDetilInfoButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("BukuStokDetilInfoButton.LargeImage")));
+            this.BukuStokDetilInfoButton.Name = "BukuStokDetilInfoButton";
+            this.BukuStokDetilInfoButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("BukuStokDetilInfoButton.SmallImage")));
+            this.BukuStokDetilInfoButton.Text = "Info Stok";
+            this.BukuStokDetilInfoButton.Click += new System.EventHandler(this.BukuStokDetilInfoButton_Click);
             // 
             // BarangPanel
             // 
@@ -370,15 +380,6 @@
             this.LaporanBPKasButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("LaporanBPKasButton.SmallImage")));
             this.LaporanBPKasButton.Text = "Laporan Kas";
             this.LaporanBPKasButton.Click += new System.EventHandler(this.LaporanBPKasButton_Click);
-            // 
-            // BukuStokDetilInfoButton
-            // 
-            this.BukuStokDetilInfoButton.Image = ((System.Drawing.Image)(resources.GetObject("BukuStokDetilInfoButton.Image")));
-            this.BukuStokDetilInfoButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("BukuStokDetilInfoButton.LargeImage")));
-            this.BukuStokDetilInfoButton.Name = "BukuStokDetilInfoButton";
-            this.BukuStokDetilInfoButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("BukuStokDetilInfoButton.SmallImage")));
-            this.BukuStokDetilInfoButton.Text = "Info Stok";
-            this.BukuStokDetilInfoButton.Click += new System.EventHandler(this.BukuStokDetilInfoButton_Click);
             // 
             // MainMenuForm
             // 
