@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.entryDataTabPage = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -196,6 +196,7 @@
             this.BiayaLainNumText.TabIndex = 13;
             this.BiayaLainNumText.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.BiayaLainNumText.ThousandsSeparator = true;
+            this.BiayaLainNumText.ValueChanged += new System.EventHandler(this.BiayaLainNumText_ValueChanged);
             // 
             // DiskonNumText
             // 
@@ -217,6 +218,7 @@
             this.DiskonNumText.TabIndex = 12;
             this.DiskonNumText.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.DiskonNumText.ThousandsSeparator = true;
+            this.DiskonNumText.ValueChanged += new System.EventHandler(this.DiskonNumText_ValueChanged);
             // 
             // TotalNumText
             // 
@@ -416,6 +418,7 @@
             this.PurchaseIDText.Name = "PurchaseIDText";
             this.PurchaseIDText.Size = new System.Drawing.Size(114, 21);
             this.PurchaseIDText.TabIndex = 0;
+            this.PurchaseIDText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PurchaseIDText_KeyDown);
             // 
             // label1
             // 
@@ -486,7 +489,6 @@
             this.BrgGrid.TabIndex = 10;
             this.BrgGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BrgGrid_CellContentClick);
             this.BrgGrid.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.BrgGrid_CellValidated);
-            this.BrgGrid.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.BrgGrid_CellValidating);
             this.BrgGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BrgGrid_KeyDown);
             // 
             // brgIDDataGridViewTextBoxColumn
@@ -514,9 +516,9 @@
             // qtyDataGridViewTextBoxColumn
             // 
             this.qtyDataGridViewTextBoxColumn.DataPropertyName = "Qty";
-            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle26.Format = "N0";
-            this.qtyDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle11.Format = "N0";
+            this.qtyDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle11;
             this.qtyDataGridViewTextBoxColumn.HeaderText = "Qty";
             this.qtyDataGridViewTextBoxColumn.Name = "qtyDataGridViewTextBoxColumn";
             this.qtyDataGridViewTextBoxColumn.Width = 70;
@@ -524,36 +526,36 @@
             // hargaDataGridViewTextBoxColumn
             // 
             this.hargaDataGridViewTextBoxColumn.DataPropertyName = "Harga";
-            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle27.Format = "N0";
-            this.hargaDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle12.Format = "N0";
+            this.hargaDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle12;
             this.hargaDataGridViewTextBoxColumn.HeaderText = "Harga";
             this.hargaDataGridViewTextBoxColumn.Name = "hargaDataGridViewTextBoxColumn";
             // 
             // diskonDataGridViewTextBoxColumn
             // 
             this.diskonDataGridViewTextBoxColumn.DataPropertyName = "Diskon";
-            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle28.Format = "N0";
-            this.diskonDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle13.Format = "N0";
+            this.diskonDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle13;
             this.diskonDataGridViewTextBoxColumn.HeaderText = "Diskon";
             this.diskonDataGridViewTextBoxColumn.Name = "diskonDataGridViewTextBoxColumn";
             // 
             // taxRupiahDataGridViewTextBoxColumn
             // 
             this.taxRupiahDataGridViewTextBoxColumn.DataPropertyName = "TaxRupiah";
-            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle29.Format = "N0";
-            this.taxRupiahDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle14.Format = "N0";
+            this.taxRupiahDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle14;
             this.taxRupiahDataGridViewTextBoxColumn.HeaderText = "Tax (Rp)";
             this.taxRupiahDataGridViewTextBoxColumn.Name = "taxRupiahDataGridViewTextBoxColumn";
             // 
             // subTotalDataGridViewTextBoxColumn
             // 
             this.subTotalDataGridViewTextBoxColumn.DataPropertyName = "SubTotal";
-            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle30.Format = "N0";
-            this.subTotalDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle15.Format = "N0";
+            this.subTotalDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle15;
             this.subTotalDataGridViewTextBoxColumn.HeaderText = "Sub Total";
             this.subTotalDataGridViewTextBoxColumn.Name = "subTotalDataGridViewTextBoxColumn";
             // 

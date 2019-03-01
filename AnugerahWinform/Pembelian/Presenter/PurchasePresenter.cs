@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AnugerahBackend.Pembelian.BL;
 using AnugerahBackend.Pembelian.Model;
+using AnugerahBackend.StokBarang.BL;
+using AnugerahBackend.StokBarang.Model;
 using AnugerahWinform.Pembelian.View;
 using AnugerahWinform.Support;
 
@@ -16,12 +18,14 @@ namespace AnugerahWinform.Pembelian.Presenter
         private IPurchaseView _view;
         private IPurchaseBL _purchaseBL;
         private ISupplierBL _supplierBL;
+        private IBrgBL _brgBL;
 
         public PurchasePresenter(IPurchaseView view)
         {
             _view = view;
             _purchaseBL = new PurchaseBL();
             _supplierBL = new SupplierBL();
+            _brgBL = new BrgBL();
         }
         public PurchasePresenter(IPurchaseView view, IPurchaseBL bl, ISupplierBL supplierBL)
         {
@@ -46,6 +50,7 @@ namespace AnugerahWinform.Pembelian.Presenter
                 GrandTotal = _view.GrandTotal,
                 ListBrg = _view.ListBrg
             };
+            purchase.ListBrg = purchase.ListBrg.Where(x => x.BrgID != "").ToList();
             _purchaseBL.Save(purchase);
         }
 
@@ -64,54 +69,19 @@ namespace AnugerahWinform.Pembelian.Presenter
             _view.DiskonLain = 0;
             _view.BiayaLain = 0;
             _view.GrandTotal = 0;
-            AddItemBrg(new PurchaseDetilModel
+            _view.ListBrg = new List<PurchaseDetilModel>
             {
-                BrgID = "", BrgName = "",
-                Qty = 0, Harga = 0, Diskon = 0,
-                TaxRupiah = 0, SubTotal = 0
-            });
-        }
-
-        public void AddItemBrg(PurchaseDetilModel model)
-        {
-            if(_view.ListBrg == null)
-            {
-                model.NoUrut = 1;
-                _view.ListBrg = new List<PurchaseDetilModel> { model};
-            }
-            else
-            {
-                int noUrut = _view.ListBrg.Max(x => x.NoUrut);
-                noUrut++;
-                model.NoUrut = noUrut;
-                _view.ListBrg.Add(model);
-            }
-        }
-
-        public void RemoveItemBrg(int rowIndex)
-        {
-            var item = _view.ListBrg.First(x => x.NoUrut == rowIndex);
-            if (item == null) return;
-            _view.ListBrg.Remove(item);
-        }
-        public void UpdateList(int rowIndex, PurchaseDetilModel model)
-        {
-            var item = _view.ListBrg.First(x => x.NoUrut == rowIndex);
-            if (item == null) return;
-            item.BrgID = model.BrgID;
-            item.BrgName = model.BrgName;
-            item.Qty = model.Qty;
-            item.Harga = model.Harga;
-            item.Diskon = model.Diskon;
-            item.TaxRupiah = model.TaxRupiah;
-            item.SubTotal = model.SubTotal;
-        }
-
-        public void RecalcList(int rowIndex)
-        {
-            var item = _view.ListBrg.First(x => x.NoUrut == rowIndex);
-            if (item == null) return;
-            item.SubTotal = item.Qty * (item.Harga - item.Diskon + item.TaxRupiah);
+                new PurchaseDetilModel
+                {
+                    BrgID = "",
+                    BrgName = "",
+                    Qty = 0,
+                    Harga = 0,
+                    Diskon = 0,
+                    TaxRupiah = 0,
+                    SubTotal = 0
+                }
+            };
         }
 
         public string PilihSupplier()
@@ -133,6 +103,76 @@ namespace AnugerahWinform.Pembelian.Presenter
             }
 
             return result;
+        }
+
+        public PurchaseDetilModel PilihBrg(PurchaseDetilModel pd)
+        {
+            var searchForm = new SearchingForm<BrgSearchResultModel>(_brgBL);
+            var resultDialog = searchForm.ShowDialog();
+            if (resultDialog == DialogResult.OK)
+            {
+                var brgID = searchForm.SelectedDataKey;
+                var brg = _brgBL.GetData(brgID);
+                if (brg == null) return pd;
+
+                if (pd == null) pd = new PurchaseDetilModel();
+
+                pd.BrgID = brgID;
+                pd.BrgName = brg.BrgName;
+            }
+            return pd;
+        }
+
+        public PurchaseDetilModel Calculate(PurchaseDetilModel pd)
+        {
+            pd.SubTotal = pd.Qty * (pd.Harga - pd.Diskon + pd.TaxRupiah);
+            return pd;
+        }
+
+        public PurchaseDetilModel ValidateBrg(PurchaseDetilModel pd)
+        {
+            var brg = _brgBL.GetData(pd.BrgID);
+            if (brg == null) return null;
+            pd.BrgName = brg.BrgName;
+            return pd;
+        }
+
+        public void CalculateTotal()
+        {
+            _view.Total = _view.ListBrg.Sum(x => x.SubTotal);
+            _view.GrandTotal = _view.Total + _view.BiayaLain - _view.DiskonLain;
+        }
+
+        public void PilihPurchase()
+        {
+            var searchForm = new SearchingForm<PurchaseSearchResultModel>(_purchaseBL);
+            var resultDialog = searchForm.ShowDialog();
+            if (resultDialog == DialogResult.OK)
+            {
+                var purchaseID = searchForm.SelectedDataKey;
+                var purchase = _purchaseBL.GetData(purchaseID);
+                if (purchase == null) return;
+                _view.PurchaseID = purchase.PurchaseID;
+                _view.Tgl = purchase.Tgl;
+                _view.Jam = purchase.Jam;
+                _view.SupplierID = purchase.SupplierID;
+                _view.SupplierName = purchase.SupplierName;
+                _view.Catatan = purchase.Keterangan;
+                var tempList = purchase.ListBrg.ToList();
+                tempList.Add(new PurchaseDetilModel());
+
+                _view.ListBrg = tempList;
+
+                _view.BiayaLain = purchase.BiayaLain;
+                _view.DiskonLain = purchase.Diskon;
+
+                CalculateTotal();
+
+                var supplier = _supplierBL.GetData(purchase.SupplierID);
+                if (supplier == null) return;
+                _view.Alamat = supplier.Alamat;
+                _view.NoTelp = supplier.NoTelp;
+            }
         }
     }
 }

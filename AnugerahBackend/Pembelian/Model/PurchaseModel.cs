@@ -20,4 +20,24 @@ namespace AnugerahBackend.Pembelian.Model
         public decimal GrandTotal { get; set; }
         public IEnumerable<PurchaseDetilModel> ListBrg { get; set; }
     }
+
+    public class PurchaseSearchResultModel
+    {
+        public string PurchaseID { get; set; }
+        public string Tgl { get; set; }
+        public string SupplierName { get; set; }
+        public string GrandTotal { get; set; }
+
+        public static explicit operator PurchaseSearchResultModel(PurchaseModel model)
+        {
+            var result = new PurchaseSearchResultModel
+            {
+                PurchaseID = model.PurchaseID,
+                Tgl = model.Tgl,
+                SupplierName = model.SupplierName,
+                GrandTotal = model.GrandTotal.ToString("N0").PadLeft(13, ' ')
+            };
+            return result;
+        }
+    }
 }

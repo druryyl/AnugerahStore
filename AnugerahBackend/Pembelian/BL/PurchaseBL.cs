@@ -6,19 +6,22 @@ using System.Threading.Tasks;
 using AnugerahBackend.Pembelian.Dal;
 using AnugerahBackend.Pembelian.Model;
 using AnugerahBackend.StokBarang.Dal;
+using AnugerahBackend.Support;
 using AnugerahBackend.Support.BL;
 using Ics.Helper.Database;
+using Ics.Helper.Extensions;
 using Ics.Helper.StringDateTime;
 
 namespace AnugerahBackend.Pembelian.BL
 {
-    public interface IPurchaseBL
+    public interface IPurchaseBL : ISearch<PurchaseSearchResultModel>
     {
         PurchaseModel Save(PurchaseModel model);
         void Delete(string id);
         PurchaseModel GetData(string id);
         IEnumerable<PurchaseModel> ListData(string tgl1, string tgl2);
     }
+
     public class PurchaseBLDependencyContainer
     {
         public IPurchaseDal PurchaseDal { get; set; }
@@ -41,6 +44,12 @@ namespace AnugerahBackend.Pembelian.BL
                 BrgDal = new BrgDal(),
                 SupplierDal = new SupplierDal(),
                 ParamNoBL = new ParameterNoBL(),
+            };
+            SearchFilter = new SearchFilter
+            {
+                IsDate = true,
+                Date1 = DateTime.Now,
+                Date2 = DateTime.Now
             };
         }
 
@@ -151,6 +160,26 @@ namespace AnugerahBackend.Pembelian.BL
         public IEnumerable<PurchaseModel> ListData(string tgl1, string tgl2)
         {
             var result = _dep.PurchaseDal.ListData(tgl1, tgl2);
+            return result;
+        }
+
+        public SearchFilter SearchFilter { get; set; }
+
+        public IEnumerable<PurchaseSearchResultModel> Search()
+        {
+            var listData = _dep.PurchaseDal.ListData(SearchFilter.TglDMY1, SearchFilter.TglDMY2);
+            if (listData == null) return null;
+
+            //  convert ke SearchModel
+            var result = listData.Select(x => (PurchaseSearchResultModel)x);
+
+            //  filter
+            if (SearchFilter.UserKeyword != null)
+                return
+                    from c in result
+                    where c.SupplierName.ContainMultiWord(SearchFilter.UserKeyword)
+                    select c;
+
             return result;
         }
     }

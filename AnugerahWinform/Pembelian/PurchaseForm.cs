@@ -19,14 +19,12 @@ namespace AnugerahWinform.Pembelian
         private ISupplierBL _supplierBL;
         private IBrgBL _brgBL;
         private PurchasePresenter presenter;
-        private List<PurchaseDetilModel> _listBrg;
 
         public PurchaseForm()
         {
             InitializeComponent();
             _supplierBL = new SupplierBL();
             _brgBL = new BrgBL();
-            _listBrg = new List<PurchaseDetilModel>();
             presenter = new PurchasePresenter(this);
         }
 
@@ -101,41 +99,39 @@ namespace AnugerahWinform.Pembelian
         private List<PurchaseDetilModel> GetListBrg()
         {
             List<PurchaseDetilModel> result = null;
-            int noUrut = 1;
-            foreach (DataRow dr in PurchaseDetilTable.Rows)
+            for(int i = 0; i<= PurchaseDetilTable.Rows.Count - 1; i++)
             {
                 if (result == null) result = new List<PurchaseDetilModel>();
-                result.Add(new PurchaseDetilModel
-                {
-                    BrgID = dr["BrgID"].ToString(),
-                    BrgName = dr["BrgName"].ToString(),
-                    NoUrut = noUrut,
-                    Harga = Convert.ToDecimal(dr["Harga"]),
-                    Diskon = Convert.ToDecimal(dr["Diskon"]),
-                    TaxRupiah = Convert.ToDecimal(dr["TaxRupiah"]),
-                    Qty = Convert.ToInt64(dr["Qty"]),
-                    SubTotal = Convert.ToDecimal(dr["SubTotal"])
-                });
+                var item = DataRowToModel(i);
+                result.Add(item);
             }
             return result;
         }
         private void SetListBrg(IEnumerable<PurchaseDetilModel> listBrg)
         {
+            if (listBrg == null) return;
+
             PurchaseDetilTable.Rows.Clear();
             foreach (var item in listBrg)
             {
-                PurchaseDetilTable.Rows.Add(
-                    item.BrgID, item.BrgID,
-                    item.Qty, item.Harga, item.Diskon,
-                    item.TaxRupiah, item.SubTotal);
+                PurchaseDetilTable.Rows.Add("", "", 0, 0, 0, 0, 0);
+                ModelToDataRow(PurchaseDetilTable.Rows.Count - 1, item);
             }
-        } 
+        }
         #endregion
-
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            presenter.Save();
+            try
+            {
+                presenter.Save();
+            }
+            catch (ArgumentException ex )
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+            presenter.New();
         }
         private void NewButton_Click(object sender, EventArgs e)
         {
@@ -146,77 +142,74 @@ namespace AnugerahWinform.Pembelian
             SupplierIDText.Text = presenter.PilihSupplier();
         }
 
-        private void SearchBrg(int rowIndex)
+        private PurchaseDetilModel DataRowToModel(int  rowIndex)
         {
-            
-            var searchForm = new SearchingForm<BrgSearchResultModel>(_brgBL);
-            var resultDialog = searchForm.ShowDialog();
-            if (resultDialog == DialogResult.OK)
+            DataRow dr = PurchaseDetilTable.Rows[rowIndex];
+            var result = new PurchaseDetilModel
             {
-                var result = searchForm.SelectedDataKey;
-                PurchaseDetilTable.Rows[rowIndex]["BrgID"] = result;
-            }
+                NoUrut = rowIndex,
+                BrgID = dr["BrgID"].ToString(),
+                BrgName = dr["BrgName"].ToString(),
+                Qty = Convert.ToInt64(dr["Qty"]),
+                Harga = Convert.ToDecimal(dr["Harga"]),
+                Diskon = Convert.ToDecimal(dr["Diskon"]),
+                TaxRupiah = Convert.ToDecimal(dr["TaxRupiah"]),
+                SubTotal = Convert.ToDecimal(dr["SubTotal"])
+            };
+            return result;
         }
-        private void ShowDataBrgGrid(int rowIndex)
+        private void ModelToDataRow(int rowIndex, PurchaseDetilModel purchaseDetil)
         {
-
-            //  get key (KodeBrg)
-            string kodeBrg = (string)PurchaseDetilTable.Rows[rowIndex]["BrgID"];
-
-            //  get nama barang
-            var brgName = "";
-            var brg = _brgBL.GetData(kodeBrg);
-            if (brg != null)
-                brgName = brg.BrgName;
-
-            //  tampilkan di grid
-            var dr = PurchaseDetilTable.Rows[rowIndex];
-            dr["BrgName"] = brgName;
-            dr["SubTotal"] = 
-                Convert.ToDecimal(dr["Qty"]) 
-                - Convert.ToDecimal(dr["Diskon"])
-                + Convert.ToDecimal(dr["TaxRupiah"]);
-
-            PurchaseDetilTable.Rows[rowIndex]["BrgName"] = brgName;
-            //PurchaseDetilTable.Rows[rowIndex]["SubTotal"] = x
-
+            if (purchaseDetil == null) return;
+            DataRow dr = PurchaseDetilTable.Rows[rowIndex];
+            dr["BrgID"] = purchaseDetil.BrgID;
+            dr["BrgName"] = purchaseDetil.BrgName;
+            dr["Qty"] = purchaseDetil.Qty;
+            dr["Harga"] = purchaseDetil.Harga;
+            dr["Diskon"] = purchaseDetil.Diskon;
+            dr["TaxRupiah"] = purchaseDetil.TaxRupiah;
+            dr["SubTotal"] = purchaseDetil.SubTotal;
         }
 
         private void BrgGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            var senderGrid = (DataGridView)sender;
-
-            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+            var grid = (DataGridView)sender;
+            if (grid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
                 e.RowIndex >= 0)
             {
-                SearchBrg(e.RowIndex);
-                ShowDataBrgGrid(e.RowIndex);
+                var purchaseDetil = DataRowToModel(e.RowIndex);
+                purchaseDetil = presenter.PilihBrg(purchaseDetil);
+                ModelToDataRow(e.RowIndex, purchaseDetil);
             }
         }
+
         private void BrgGrid_CellValidated(object sender, DataGridViewCellEventArgs e)
         {
-            //var brgName = PurchaseDetilTable.Rows[e.RowIndex]["BrgName"].ToString();
-            //if ((brgName.Trim() != "") && (e.RowIndex == PurchaseDetilTable.Rows.Count - 1))
-            //    AddRow();
-        }
-        private void BrgGrid_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
-        {
-            PurchasePresenter presenter = new PurchasePresenter(this);
             switch (e.ColumnIndex)
             {
                 case 0:
-                    //var brg = _brgBL.GetData(ListBrg.ElementAt(e.RowIndex).BrgID);
-                    //if (brg == null) return;
-                    //ListBrg.ElementAt(e.RowIndex).BrgName = brg.BrgName;
+                    var purchaseDetil = DataRowToModel(e.RowIndex);
+                    purchaseDetil = presenter.ValidateBrg(purchaseDetil);
+                    if (purchaseDetil == null) return;
+                    ModelToDataRow(e.RowIndex, purchaseDetil);
                     break;
 
-                case 3: case 4: case 5: case 6: case 7:
-                    ShowDataBrgGrid(e.RowIndex);
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                    purchaseDetil = DataRowToModel(e.RowIndex);
+                    purchaseDetil = presenter.Calculate(purchaseDetil);
+                    ModelToDataRow(e.RowIndex, purchaseDetil);
+                    presenter.CalculateTotal();
                     break;
             }
 
-        }
+            if ((e.RowIndex == PurchaseDetilTable.Rows.Count - 1) &&
+                (PurchaseDetilTable.Rows[e.RowIndex]["BrgName"].ToString().Trim() != ""))
+                PurchaseDetilTable.Rows.Add("", "", 0, 0, 0, 0, 0);
 
+        }
         private void BrgGrid_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Delete)
@@ -237,6 +230,22 @@ namespace AnugerahWinform.Pembelian
         private void ExitButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void DiskonNumText_ValueChanged(object sender, EventArgs e)
+        {
+            presenter.CalculateTotal();
+        }
+
+        private void BiayaLainNumText_ValueChanged(object sender, EventArgs e)
+        {
+            presenter.CalculateTotal();
+        }
+
+        private void PurchaseIDText_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+                presenter.PilihPurchase();
         }
     }
 }

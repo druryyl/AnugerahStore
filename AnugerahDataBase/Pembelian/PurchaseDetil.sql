@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[PurchaseDetil]
 (
 	PurchaseID VARCHAR(10) NOT NULL CONSTRAINT DF_PurchaseDetil_PurchaseID DEFAULT(''),
-	PurchaseDetilID VARCHAR(13) NOT NULL CONSTRAINT DF_PurchaseDetil_PurchaseDetilID DEFAULT(''),
+	PurchaseDetilID VARCHAR(14) NOT NULL CONSTRAINT DF_PurchaseDetil_PurchaseDetilID DEFAULT(''),
 	NoUrut DECIMAL(18,0) NOT NULL CONSTRAINT DF_Purchase_NoUrut DEFAULT(0),
 	BrgID VARCHAR(5) NOT NULL CONSTRAINT DF_PurchaseDetil_BrgID DEFAULT(''),
 	Qty DECIMAL(18,0) NOT NULL CONSTRAINT DF_PurchaseDetil_Qty DEFAULT(0),
