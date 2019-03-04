@@ -141,7 +141,10 @@ namespace AnugerahWinform.Pembelian.Presenter
 
         public void CalculateTotal()
         {
-            _view.Total = _view.ListBrg.Sum(x => x.SubTotal);
+            if (_view.ListBrg == null)
+                _view.Total = 0;
+            else
+                _view.Total = _view.ListBrg.Sum(x => x.SubTotal);
             _view.GrandTotal = _view.Total + _view.BiayaLain - _view.DiskonLain;
         }
 

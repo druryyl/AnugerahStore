@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[ReceiptDetil]
 (
 	ReceiptID VARCHAR(10) NOT NULL CONSTRAINT DF_ReceiptDetil_ReceiptID DEFAULT(''),
-	ReceiptDetilID VARCHAR(13) NOT NULL CONSTRAINT DF_ReceiptDetil_ReceiptDetilID DEFAULT(''),
+	ReceiptDetilID VARCHAR(14) NOT NULL CONSTRAINT DF_ReceiptDetil_ReceiptDetilID DEFAULT(''),
 	NoUrut DECIMAL(18,0) NOT NULL CONSTRAINT DF_ReceiptDetil_NoUrut DEFAULT(0),
 	BrgID VARCHAR(5) NOT NULL CONSTRAINT DF_ReceiptDetil_BrgID DEFAULT(''),
 

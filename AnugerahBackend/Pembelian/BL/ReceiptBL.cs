@@ -146,7 +146,7 @@ namespace AnugerahBackend.Pembelian.BL
 
         private string GenNewID()
         {
-            var prefix = "PC" + DateTime.Now.ToString("yyMM");
+            var prefix = "RC" + DateTime.Now.ToString("yyMM");
             var result = _dep.ParamNoBL.GenNewID(prefix, 10);
             return result;
         }
