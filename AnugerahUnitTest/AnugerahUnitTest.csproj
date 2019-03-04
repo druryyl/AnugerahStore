@@ -103,6 +103,8 @@
     <Compile Include="Keuangan\PihakKetigaDalTest.cs" />
     <Compile Include="Pembelian\PurchaseDalTest.cs" />
     <Compile Include="Pembelian\PurchaseDetilDalTest.cs" />
+    <Compile Include="Pembelian\ReceiptDalTest.cs" />
+    <Compile Include="Pembelian\ReceiptDetilDalTest.cs" />
     <Compile Include="Pembelian\SupplierDalTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StokBarang\BL\BPStokBLTest.cs" />

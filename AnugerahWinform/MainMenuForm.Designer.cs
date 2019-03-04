@@ -123,6 +123,7 @@
             this.DeliveryButton.Name = "DeliveryButton";
             this.DeliveryButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("DeliveryButton.SmallImage")));
             this.DeliveryButton.Text = "Delivery Order";
+            this.DeliveryButton.Click += new System.EventHandler(this.DeliveryButton_Click);
             // 
             // SalesRibbonPanel
             // 

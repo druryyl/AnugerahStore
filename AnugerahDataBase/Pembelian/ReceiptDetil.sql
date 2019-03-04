@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[MaterialReceiptDetil]
+﻿CREATE TABLE [dbo].[ReceiptDetil]
 (
 	ReceiptID VARCHAR(10) NOT NULL CONSTRAINT DF_ReceiptDetil_ReceiptID DEFAULT(''),
 	ReceiptDetilID VARCHAR(13) NOT NULL CONSTRAINT DF_ReceiptDetil_ReceiptDetilID DEFAULT(''),

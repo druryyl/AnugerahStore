@@ -74,7 +74,7 @@ namespace AnugerahBackend.Pembelian.Dal
                     BiayaLain = @BiayaLain, 
                     GrandTotal = @GrandTotal
                 WHERE
-                    ReceiptID = @ReceiptID) ";
+                    ReceiptID = @ReceiptID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
@@ -115,10 +115,10 @@ namespace AnugerahBackend.Pembelian.Dal
 
             var sSql = @"
                 SELECT
-                    ReceiptID, Tgl, Jam, PurchaseID,
-                    SupplierID, Keterangan, TotalHarga, 
-                    Diskon, BiayaLain, GrandTotal,
-                    ISNULL(bb.SupplierName, '')
+                    aa.ReceiptID, aa.Tgl, aa.Jam, aa.PurchaseID,
+                    aa.SupplierID, aa.Keterangan, aa.TotalHarga, 
+                    aa.Diskon, aa.BiayaLain, aa.GrandTotal,
+                    ISNULL(bb.SupplierName, '') SupplierName
                 FROM
                     Receipt aa
                     LEFT JOIN Supplier bb oN aa.SupplierID = bb.SupplierID
@@ -136,7 +136,7 @@ namespace AnugerahBackend.Pembelian.Dal
                     result = new ReceiptModel()
                     {
                         ReceiptID = dr["ReceiptID"].ToString(),
-                        Tgl = dr["Tgl"].ToString(),
+                        Tgl = dr["Tgl"].ToString().ToTglDMY(),
                         Jam = dr["Jam"].ToString(),
                         PurchaseID = dr["PurchaseID"].ToString(),
                         SupplierID = dr["SupplierID"].ToString(),
@@ -158,10 +158,10 @@ namespace AnugerahBackend.Pembelian.Dal
 
             var sSql = @"
                 SELECT
-                    ReceiptID, Tgl, Jam, PurchaseID,
-                    SupplierID, Keterangan, TotalHarga, 
-                    Diskon, BiayaLain, GrandTotal,
-                    ISNULL(bb.SupplierName, '')
+                    aa.ReceiptID, aa.Tgl, aa.Jam, aa.PurchaseID,
+                    aa.SupplierID, aa.Keterangan, aa.TotalHarga, 
+                    aa.Diskon, aa.BiayaLain, aa.GrandTotal,
+                    ISNULL(bb.SupplierName, '') SupplierName
                 FROM
                     Receipt aa
                     LEFT JOIN Supplier bb oN aa.SupplierID = bb.SupplierID
@@ -182,7 +182,7 @@ namespace AnugerahBackend.Pembelian.Dal
                         var item = new ReceiptModel()
                         {
                             ReceiptID = dr["ReceiptID"].ToString(),
-                            Tgl = dr["Tgl"].ToString(),
+                            Tgl = dr["Tgl"].ToString().ToTglDMY(),
                             Jam = dr["Jam"].ToString(),
                             PurchaseID = dr["PurchaseID"].ToString(),
                             SupplierID = dr["SupplierID"].ToString(),

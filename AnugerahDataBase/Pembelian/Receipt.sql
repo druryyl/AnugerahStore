@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[MaterialReceipt]
+﻿CREATE TABLE [dbo].[Receipt]
 (
 	ReceiptID VARCHAR(10) NOT NULL CONSTRAINT DF_Receipt_ReceiptID DEFAULT(''),
 	Tgl VARCHAR(10) NOT NULL CONSTRAINT DF_Receipt_Tgl DEFAULT('3000-01-01'),

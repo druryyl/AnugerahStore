@@ -122,13 +122,16 @@
     <Compile Include="Keuangan\Model\BukuPiutangLunasModel.cs" />
     <Compile Include="LocalHelper\CommonInterface.cs" />
     <Compile Include="Pembelian\BL\PurchaseBL.cs" />
+    <Compile Include="Pembelian\BL\ReceiptBL.cs" />
     <Compile Include="Pembelian\BL\SupplierBL.cs" />
     <Compile Include="Pembelian\Dal\PurchasDetilDal.cs" />
     <Compile Include="Pembelian\Dal\PurchaseDal.cs" />
     <Compile Include="Pembelian\Dal\ReceiptDal.cs" />
+    <Compile Include="Pembelian\Dal\ReceiptDetilDal.cs" />
     <Compile Include="Pembelian\Dal\SupplierDal.cs" />
     <Compile Include="Pembelian\Model\PurchaseDetilModel.cs" />
     <Compile Include="Pembelian\Model\PurchaseModel.cs" />
+    <Compile Include="Pembelian\Model\ReceiptDetilModel.cs" />
     <Compile Include="Pembelian\Model\ReceiptModel.cs" />
     <Compile Include="Pembelian\Model\SupplierModel.cs" />
     <Compile Include="Penjualan\BL\BrgPriceBL.cs" />
