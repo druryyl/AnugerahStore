@@ -21,6 +21,7 @@ namespace AnugerahWinform.Pembelian.Presenter
         private ISupplierBL _supplierBL;
         private IBrgBL _brgBL;
         private IBPPurchaseBL _bpPurchaseBL;
+        private IBPStokBL _bpStokBL;
 
         public ReceiptPresenter(IReceiptView view)
         {
@@ -29,6 +30,7 @@ namespace AnugerahWinform.Pembelian.Presenter
             _supplierBL = new SupplierBL();
             _brgBL = new BrgBL();
             _bpPurchaseBL = new BPPurchaseBL();
+            _bpStokBL = new BPStokBL();
         }
         public ReceiptPresenter(IReceiptView view, IReceiptBL bl, ISupplierBL supplierBL)
         {
@@ -60,6 +62,7 @@ namespace AnugerahWinform.Pembelian.Presenter
             {
                 var result = _receiptBL.Save(receipt);
                 var result1 = _bpPurchaseBL.Generate(result);
+                var result2 = _bpStokBL.Generate(result);
                 trans.Complete();
             }
         }
@@ -169,6 +172,7 @@ namespace AnugerahWinform.Pembelian.Presenter
                 _view.ReceiptID = receipt.ReceiptID;
                 _view.Tgl = receipt.Tgl;
                 _view.Jam = receipt.Jam;
+                _view.PurchaseID = receipt.PurchaseID;
                 _view.SupplierID = receipt.SupplierID;
                 _view.SupplierName = receipt.SupplierName;
                 _view.Catatan = receipt.Keterangan;

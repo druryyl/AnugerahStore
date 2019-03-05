@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AnugerahBackend.Pembelian.Model;
 using AnugerahBackend.Penjualan.Model;
 using AnugerahBackend.StokBarang.Dal;
 using AnugerahBackend.StokBarang.Model;
@@ -13,9 +14,7 @@ namespace AnugerahBackend.StokBarang.BL
     {
         IEnumerable<BPStokModel> Generate(StokAdjustmentModel adjustment);
         IEnumerable<BPStokModel> Generate(PenjualanModel penjualan);
-
-        //  --generate dari DO (belum dibuat)
-        //IEnumerable<BPStokModel> Generate()
+        IEnumerable<BPStokModel> Generate(ReceiptModel receipt);
     }
 
     public class BPStokBL : IBPStokBL
@@ -153,6 +152,56 @@ namespace AnugerahBackend.StokBarang.BL
                         _bpStokDetilDal.Insert(item2);
                 }
             }
+            return result;
+        }
+
+        public IEnumerable<BPStokModel> Generate(ReceiptModel receipt)
+        {
+            if (receipt == null)
+                throw new ArgumentNullException(nameof(receipt));
+            if (receipt.ListBrg == null)
+                throw new ArgumentNullException(nameof(receipt.ListBrg));
+
+            List<BPStokModel> result = null;
+
+            // generate yang plus dulu
+            foreach (var item in receipt.ListBrg.Where(x => x.Qty > 0))
+            {
+                var stokItem = new StokItem
+                {
+                    ReffID = receipt.ReceiptID,
+                    Tgl = receipt.Tgl,
+                    Jam = receipt.Jam,
+                    BrgID = item.BrgID,
+                    BrgName = item.BrgName,
+                    QtyIn = item.Qty,
+                    NilaiHpp = item.Harga - item.Diskon - item.TaxRupiah,
+                    QtyOut = 0,
+                    HargaJual = 0,
+                };
+                var genResult = AddStok(stokItem);
+                if (result == null) result = new List<BPStokModel>();
+                result.Add(genResult);
+            }
+
+            if (result != null)
+            {
+                //  delete data lama
+                foreach (var item in result)
+                {
+                    _bpStokDal.Delete(item.BPStokID);
+                    _bpStokDetilDal.Delete(item.BPStokID);
+                }
+
+                //  insert data baru
+                foreach (var item in result)
+                {
+                    _bpStokDal.Insert(item);
+                    foreach (var item2 in item.ListDetil)
+                        _bpStokDetilDal.Insert(item2);
+                }
+            }
+
             return result;
         }
 
