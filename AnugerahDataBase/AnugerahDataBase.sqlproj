@@ -120,6 +120,8 @@
     <Build Include="Pembelian\ReceiptDetil.sql" />
     <Build Include="Pembelian\BPPurchase.sql" />
     <Build Include="Pembelian\BPurchaseReceipt.sql" />
+    <Build Include="Penjualan\ReturJual.sql" />
+    <Build Include="Penjualan\ReturJualDetil.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AnugerahDevelopment.publish.xml" />

@@ -162,7 +162,7 @@ namespace AnugerahBackend.Penjualan.Dal
                         result = new PenjualanModel
                         {
                             PenjualanID = dr["PenjualanID"].ToString(),
-                            TglPenjualan = dr["TglPenjualan"].ToString(),
+                            TglPenjualan = dr["TglPenjualan"].ToString().ToTglDMY(),
                             JamPenjualan = dr["JamPenjualan"].ToString(),
 
                             BuyerName = dr["BuyerName"].ToString(),

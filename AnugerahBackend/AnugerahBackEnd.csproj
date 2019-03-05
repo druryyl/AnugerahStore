@@ -149,12 +149,16 @@
     <Compile Include="Penjualan\Dal\Penjualan2Dal.cs" />
     <Compile Include="Penjualan\Dal\PenjualanBayarDal.cs" />
     <Compile Include="Penjualan\Dal\PenjualanDal.cs" />
+    <Compile Include="Penjualan\Dal\ReturJualDal.cs" />
+    <Compile Include="Penjualan\Dal\ReturJualDetilDal.cs" />
     <Compile Include="Penjualan\Model\BrgPriceModel.cs" />
     <Compile Include="Penjualan\Model\CustomerModel.cs" />
     <Compile Include="Penjualan\Model\JenisBayarModel.cs" />
     <Compile Include="Penjualan\Model\Penjualan2Model.cs" />
     <Compile Include="Penjualan\Model\PenjualanBayarModel.cs" />
     <Compile Include="Penjualan\Model\PenjualanModel.cs" />
+    <Compile Include="Penjualan\Model\ReturJualDetilModel.cs" />
+    <Compile Include="Penjualan\Model\ReturJualModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StokBarang\BL\BPStokBL.cs" />
     <Compile Include="StokBarang\BL\BrgBL.cs" />

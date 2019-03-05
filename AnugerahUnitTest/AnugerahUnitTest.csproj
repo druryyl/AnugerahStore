@@ -108,6 +108,7 @@
     <Compile Include="Pembelian\ReceiptDalTest.cs" />
     <Compile Include="Pembelian\ReceiptDetilDalTest.cs" />
     <Compile Include="Pembelian\SupplierDalTest.cs" />
+    <Compile Include="Penjualan\Dal\ReturJualDalTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StokBarang\BL\BPStokBLTest.cs" />
     <Compile Include="StokBarang\BL\ColorBLTest.cs" />
@@ -145,7 +146,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Accounting\BL\" />
-    <Folder Include="Penjualan\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
