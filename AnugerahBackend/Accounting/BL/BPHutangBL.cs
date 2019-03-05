@@ -194,7 +194,5 @@ namespace AnugerahBackend.Accounting.BL
 
             return result;
         }
-
-
     }
 }

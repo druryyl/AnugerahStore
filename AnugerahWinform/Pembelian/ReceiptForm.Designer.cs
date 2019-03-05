@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.entryDataTabPage = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -46,6 +46,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.SearchPurchaseButton = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.PurchaseIDText = new System.Windows.Forms.TextBox();
             this.SearchSupplierButton = new System.Windows.Forms.Button();
             this.SupplierNameText = new System.Windows.Forms.TextBox();
             this.CatatanTextBox = new System.Windows.Forms.TextBox();
@@ -64,15 +67,14 @@
             this.JamTextBox = new System.Windows.Forms.MaskedTextBox();
             this.NewButton = new System.Windows.Forms.Button();
             this.BrgGrid = new System.Windows.Forms.DataGridView();
-            this.ExitButton = new System.Windows.Forms.Button();
-            this.deleteButton = new System.Windows.Forms.Button();
-            this.SaveButton = new System.Windows.Forms.Button();
-            this.listDataTabPage = new System.Windows.Forms.TabPage();
-            this.showListButton = new System.Windows.Forms.Button();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.listDataGrid = new System.Windows.Forms.DataGridView();
+            this.brgIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BrgGridButtonCol = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.brgNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hargaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.diskonDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.taxRupiahDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.subTotalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ReceiptDetilBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ReceiptDataSet = new System.Data.DataSet();
             this.ReceiptDetilTable = new System.Data.DataTable();
@@ -83,17 +85,15 @@
             this.dataColumn5 = new System.Data.DataColumn();
             this.dataColumn7 = new System.Data.DataColumn();
             this.dataColumn6 = new System.Data.DataColumn();
-            this.SearchPurchaseButton = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
-            this.PurchaseIDText = new System.Windows.Forms.TextBox();
-            this.brgIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BrgGridButtonCol = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.brgNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.qtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hargaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.diskonDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.taxRupiahDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.subTotalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ExitButton = new System.Windows.Forms.Button();
+            this.deleteButton = new System.Windows.Forms.Button();
+            this.SaveButton = new System.Windows.Forms.Button();
+            this.listDataTabPage = new System.Windows.Forms.TabPage();
+            this.showListButton = new System.Windows.Forms.Button();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.listDataGrid = new System.Windows.Forms.DataGridView();
             this.mainTabControl.SuspendLayout();
             this.entryDataTabPage.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -103,11 +103,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.TotalNumText)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BrgGrid)).BeginInit();
-            this.listDataTabPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.listDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ReceiptDetilBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ReceiptDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ReceiptDetilTable)).BeginInit();
+            this.listDataTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.listDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // mainTabControl
@@ -317,6 +317,32 @@
             this.panel1.Size = new System.Drawing.Size(885, 136);
             this.panel1.TabIndex = 13;
             // 
+            // SearchPurchaseButton
+            // 
+            this.SearchPurchaseButton.Location = new System.Drawing.Point(264, 67);
+            this.SearchPurchaseButton.Name = "SearchPurchaseButton";
+            this.SearchPurchaseButton.Size = new System.Drawing.Size(32, 23);
+            this.SearchPurchaseButton.TabIndex = 5;
+            this.SearchPurchaseButton.Text = "...";
+            this.SearchPurchaseButton.UseVisualStyleBackColor = true;
+            this.SearchPurchaseButton.Click += new System.EventHandler(this.SearchPurchaseButton_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(65, 72);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(77, 13);
+            this.label8.TabIndex = 24;
+            this.label8.Text = "Purchase ID";
+            // 
+            // PurchaseIDText
+            // 
+            this.PurchaseIDText.Location = new System.Drawing.Point(148, 69);
+            this.PurchaseIDText.Name = "PurchaseIDText";
+            this.PurchaseIDText.Size = new System.Drawing.Size(114, 21);
+            this.PurchaseIDText.TabIndex = 4;
+            // 
             // SearchSupplierButton
             // 
             this.SearchSupplierButton.Location = new System.Drawing.Point(217, 95);
@@ -497,6 +523,130 @@
             this.BrgGrid.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.BrgGrid_CellValidated);
             this.BrgGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BrgGrid_KeyDown);
             // 
+            // brgIDDataGridViewTextBoxColumn
+            // 
+            this.brgIDDataGridViewTextBoxColumn.DataPropertyName = "BrgID";
+            this.brgIDDataGridViewTextBoxColumn.HeaderText = "BrgID";
+            this.brgIDDataGridViewTextBoxColumn.Name = "brgIDDataGridViewTextBoxColumn";
+            this.brgIDDataGridViewTextBoxColumn.Width = 80;
+            // 
+            // BrgGridButtonCol
+            // 
+            this.BrgGridButtonCol.HeaderText = "...";
+            this.BrgGridButtonCol.Name = "BrgGridButtonCol";
+            this.BrgGridButtonCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.BrgGridButtonCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.BrgGridButtonCol.Width = 25;
+            // 
+            // brgNameDataGridViewTextBoxColumn
+            // 
+            this.brgNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.brgNameDataGridViewTextBoxColumn.DataPropertyName = "BrgName";
+            this.brgNameDataGridViewTextBoxColumn.HeaderText = "BrgName";
+            this.brgNameDataGridViewTextBoxColumn.Name = "brgNameDataGridViewTextBoxColumn";
+            // 
+            // qtyDataGridViewTextBoxColumn
+            // 
+            this.qtyDataGridViewTextBoxColumn.DataPropertyName = "Qty";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.Format = "N0";
+            this.qtyDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.qtyDataGridViewTextBoxColumn.HeaderText = "Qty";
+            this.qtyDataGridViewTextBoxColumn.Name = "qtyDataGridViewTextBoxColumn";
+            this.qtyDataGridViewTextBoxColumn.Width = 70;
+            // 
+            // hargaDataGridViewTextBoxColumn
+            // 
+            this.hargaDataGridViewTextBoxColumn.DataPropertyName = "Harga";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "N0";
+            this.hargaDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.hargaDataGridViewTextBoxColumn.HeaderText = "Harga";
+            this.hargaDataGridViewTextBoxColumn.Name = "hargaDataGridViewTextBoxColumn";
+            // 
+            // diskonDataGridViewTextBoxColumn
+            // 
+            this.diskonDataGridViewTextBoxColumn.DataPropertyName = "Diskon";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "N0";
+            this.diskonDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.diskonDataGridViewTextBoxColumn.HeaderText = "Diskon";
+            this.diskonDataGridViewTextBoxColumn.Name = "diskonDataGridViewTextBoxColumn";
+            // 
+            // taxRupiahDataGridViewTextBoxColumn
+            // 
+            this.taxRupiahDataGridViewTextBoxColumn.DataPropertyName = "TaxRupiah";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "N0";
+            this.taxRupiahDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            this.taxRupiahDataGridViewTextBoxColumn.HeaderText = "TaxRupiah";
+            this.taxRupiahDataGridViewTextBoxColumn.Name = "taxRupiahDataGridViewTextBoxColumn";
+            // 
+            // subTotalDataGridViewTextBoxColumn
+            // 
+            this.subTotalDataGridViewTextBoxColumn.DataPropertyName = "SubTotal";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Format = "N0";
+            this.subTotalDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            this.subTotalDataGridViewTextBoxColumn.HeaderText = "SubTotal";
+            this.subTotalDataGridViewTextBoxColumn.Name = "subTotalDataGridViewTextBoxColumn";
+            // 
+            // ReceiptDetilBindingSource
+            // 
+            this.ReceiptDetilBindingSource.DataMember = "ReceiptDetilTable";
+            this.ReceiptDetilBindingSource.DataSource = this.ReceiptDataSet;
+            // 
+            // ReceiptDataSet
+            // 
+            this.ReceiptDataSet.DataSetName = "NewDataSet";
+            this.ReceiptDataSet.Tables.AddRange(new System.Data.DataTable[] {
+            this.ReceiptDetilTable});
+            // 
+            // ReceiptDetilTable
+            // 
+            this.ReceiptDetilTable.Columns.AddRange(new System.Data.DataColumn[] {
+            this.dataColumn1,
+            this.dataColumn2,
+            this.dataColumn3,
+            this.dataColumn4,
+            this.dataColumn5,
+            this.dataColumn7,
+            this.dataColumn6});
+            this.ReceiptDetilTable.TableName = "ReceiptDetilTable";
+            // 
+            // dataColumn1
+            // 
+            this.dataColumn1.ColumnName = "BrgID";
+            // 
+            // dataColumn2
+            // 
+            this.dataColumn2.ColumnName = "BrgName";
+            // 
+            // dataColumn3
+            // 
+            this.dataColumn3.ColumnName = "Qty";
+            this.dataColumn3.DataType = typeof(long);
+            // 
+            // dataColumn4
+            // 
+            this.dataColumn4.ColumnName = "Harga";
+            this.dataColumn4.DataType = typeof(decimal);
+            // 
+            // dataColumn5
+            // 
+            this.dataColumn5.ColumnName = "Diskon";
+            this.dataColumn5.DataType = typeof(decimal);
+            // 
+            // dataColumn7
+            // 
+            this.dataColumn7.ColumnName = "TaxRupiah";
+            this.dataColumn7.DataType = typeof(decimal);
+            // 
+            // dataColumn6
+            // 
+            this.dataColumn6.ColumnName = "SubTotal";
+            this.dataColumn6.DataType = typeof(decimal);
+            // 
             // ExitButton
             // 
             this.ExitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -590,155 +740,6 @@
             this.listDataGrid.Size = new System.Drawing.Size(945, 475);
             this.listDataGrid.TabIndex = 11;
             // 
-            // ReceiptDetilBindingSource
-            // 
-            this.ReceiptDetilBindingSource.DataMember = "ReceiptDetilTable";
-            this.ReceiptDetilBindingSource.DataSource = this.ReceiptDataSet;
-            // 
-            // ReceiptDataSet
-            // 
-            this.ReceiptDataSet.DataSetName = "NewDataSet";
-            this.ReceiptDataSet.Tables.AddRange(new System.Data.DataTable[] {
-            this.ReceiptDetilTable});
-            // 
-            // ReceiptDetilTable
-            // 
-            this.ReceiptDetilTable.Columns.AddRange(new System.Data.DataColumn[] {
-            this.dataColumn1,
-            this.dataColumn2,
-            this.dataColumn3,
-            this.dataColumn4,
-            this.dataColumn5,
-            this.dataColumn7,
-            this.dataColumn6});
-            this.ReceiptDetilTable.TableName = "ReceiptDetilTable";
-            // 
-            // dataColumn1
-            // 
-            this.dataColumn1.ColumnName = "BrgID";
-            // 
-            // dataColumn2
-            // 
-            this.dataColumn2.ColumnName = "BrgName";
-            // 
-            // dataColumn3
-            // 
-            this.dataColumn3.ColumnName = "Qty";
-            this.dataColumn3.DataType = typeof(long);
-            // 
-            // dataColumn4
-            // 
-            this.dataColumn4.ColumnName = "Harga";
-            this.dataColumn4.DataType = typeof(decimal);
-            // 
-            // dataColumn5
-            // 
-            this.dataColumn5.ColumnName = "Diskon";
-            this.dataColumn5.DataType = typeof(decimal);
-            // 
-            // dataColumn7
-            // 
-            this.dataColumn7.ColumnName = "TaxRupiah";
-            this.dataColumn7.DataType = typeof(decimal);
-            // 
-            // dataColumn6
-            // 
-            this.dataColumn6.ColumnName = "SubTotal";
-            this.dataColumn6.DataType = typeof(decimal);
-            // 
-            // SearchPurchaseButton
-            // 
-            this.SearchPurchaseButton.Location = new System.Drawing.Point(264, 67);
-            this.SearchPurchaseButton.Name = "SearchPurchaseButton";
-            this.SearchPurchaseButton.Size = new System.Drawing.Size(32, 23);
-            this.SearchPurchaseButton.TabIndex = 5;
-            this.SearchPurchaseButton.Text = "...";
-            this.SearchPurchaseButton.UseVisualStyleBackColor = true;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(65, 72);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(77, 13);
-            this.label8.TabIndex = 24;
-            this.label8.Text = "Purchase ID";
-            // 
-            // PurchaseIDText
-            // 
-            this.PurchaseIDText.Location = new System.Drawing.Point(148, 69);
-            this.PurchaseIDText.Name = "PurchaseIDText";
-            this.PurchaseIDText.Size = new System.Drawing.Size(114, 21);
-            this.PurchaseIDText.TabIndex = 4;
-            // 
-            // brgIDDataGridViewTextBoxColumn
-            // 
-            this.brgIDDataGridViewTextBoxColumn.DataPropertyName = "BrgID";
-            this.brgIDDataGridViewTextBoxColumn.HeaderText = "BrgID";
-            this.brgIDDataGridViewTextBoxColumn.Name = "brgIDDataGridViewTextBoxColumn";
-            this.brgIDDataGridViewTextBoxColumn.Width = 80;
-            // 
-            // BrgGridButtonCol
-            // 
-            this.BrgGridButtonCol.HeaderText = "...";
-            this.BrgGridButtonCol.Name = "BrgGridButtonCol";
-            this.BrgGridButtonCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.BrgGridButtonCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.BrgGridButtonCol.Width = 25;
-            // 
-            // brgNameDataGridViewTextBoxColumn
-            // 
-            this.brgNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.brgNameDataGridViewTextBoxColumn.DataPropertyName = "BrgName";
-            this.brgNameDataGridViewTextBoxColumn.HeaderText = "BrgName";
-            this.brgNameDataGridViewTextBoxColumn.Name = "brgNameDataGridViewTextBoxColumn";
-            // 
-            // qtyDataGridViewTextBoxColumn
-            // 
-            this.qtyDataGridViewTextBoxColumn.DataPropertyName = "Qty";
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle11.Format = "N0";
-            this.qtyDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle11;
-            this.qtyDataGridViewTextBoxColumn.HeaderText = "Qty";
-            this.qtyDataGridViewTextBoxColumn.Name = "qtyDataGridViewTextBoxColumn";
-            this.qtyDataGridViewTextBoxColumn.Width = 70;
-            // 
-            // hargaDataGridViewTextBoxColumn
-            // 
-            this.hargaDataGridViewTextBoxColumn.DataPropertyName = "Harga";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle12.Format = "N0";
-            this.hargaDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle12;
-            this.hargaDataGridViewTextBoxColumn.HeaderText = "Harga";
-            this.hargaDataGridViewTextBoxColumn.Name = "hargaDataGridViewTextBoxColumn";
-            // 
-            // diskonDataGridViewTextBoxColumn
-            // 
-            this.diskonDataGridViewTextBoxColumn.DataPropertyName = "Diskon";
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle13.Format = "N0";
-            this.diskonDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle13;
-            this.diskonDataGridViewTextBoxColumn.HeaderText = "Diskon";
-            this.diskonDataGridViewTextBoxColumn.Name = "diskonDataGridViewTextBoxColumn";
-            // 
-            // taxRupiahDataGridViewTextBoxColumn
-            // 
-            this.taxRupiahDataGridViewTextBoxColumn.DataPropertyName = "TaxRupiah";
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle14.Format = "N0";
-            this.taxRupiahDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle14;
-            this.taxRupiahDataGridViewTextBoxColumn.HeaderText = "TaxRupiah";
-            this.taxRupiahDataGridViewTextBoxColumn.Name = "taxRupiahDataGridViewTextBoxColumn";
-            // 
-            // subTotalDataGridViewTextBoxColumn
-            // 
-            this.subTotalDataGridViewTextBoxColumn.DataPropertyName = "SubTotal";
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle15.Format = "N0";
-            this.subTotalDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle15;
-            this.subTotalDataGridViewTextBoxColumn.HeaderText = "SubTotal";
-            this.subTotalDataGridViewTextBoxColumn.Name = "subTotalDataGridViewTextBoxColumn";
-            // 
             // ReceiptForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -760,11 +761,11 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BrgGrid)).EndInit();
-            this.listDataTabPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.listDataGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ReceiptDetilBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ReceiptDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ReceiptDetilTable)).EndInit();
+            this.listDataTabPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.listDataGrid)).EndInit();
             this.ResumeLayout(false);
 
         }

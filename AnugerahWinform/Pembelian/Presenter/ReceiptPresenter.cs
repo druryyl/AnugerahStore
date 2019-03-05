@@ -10,6 +10,7 @@ using AnugerahBackend.StokBarang.BL;
 using AnugerahBackend.StokBarang.Model;
 using AnugerahWinform.Pembelian.View;
 using AnugerahWinform.Support;
+using Ics.Helper.Database;
 
 namespace AnugerahWinform.Pembelian.Presenter
 {
@@ -19,6 +20,7 @@ namespace AnugerahWinform.Pembelian.Presenter
         private IReceiptBL _receiptBL;
         private ISupplierBL _supplierBL;
         private IBrgBL _brgBL;
+        private IBPPurchaseBL _bpPurchaseBL;
 
         public ReceiptPresenter(IReceiptView view)
         {
@@ -26,6 +28,7 @@ namespace AnugerahWinform.Pembelian.Presenter
             _receiptBL = new ReceiptBL();
             _supplierBL = new SupplierBL();
             _brgBL = new BrgBL();
+            _bpPurchaseBL = new BPPurchaseBL();
         }
         public ReceiptPresenter(IReceiptView view, IReceiptBL bl, ISupplierBL supplierBL)
         {
@@ -52,7 +55,13 @@ namespace AnugerahWinform.Pembelian.Presenter
                 ListBrg = _view.ListBrg
             };
             receipt.ListBrg = receipt.ListBrg.Where(x => x.BrgID != "").ToList();
-            _receiptBL.Save(receipt);
+
+            using (var trans = TransHelper.NewScope())
+            {
+                var result = _receiptBL.Save(receipt);
+                var result1 = _bpPurchaseBL.Generate(result);
+                trans.Complete();
+            }
         }
 
         public void New()
@@ -174,6 +183,38 @@ namespace AnugerahWinform.Pembelian.Presenter
                 CalculateTotal();
 
                 var supplier = _supplierBL.GetData(receipt.SupplierID);
+                if (supplier == null) return;
+                _view.Alamat = supplier.Alamat;
+                _view.NoTelp = supplier.NoTelp;
+            }
+        }
+
+        public void PilihPurchase()
+        {
+            var searchForm = new SearchingForm<BPPurchaseSearchModel>(_bpPurchaseBL);
+            var resultDialog = searchForm.ShowDialog();
+            if (resultDialog == DialogResult.OK)
+            {
+                var bpPurchaseID = searchForm.SelectedDataKey;
+                var bpPurchase = _bpPurchaseBL.GetData(bpPurchaseID);
+                if (bpPurchase == null) return;
+                _view.PurchaseID = bpPurchase.BPPurchaseID;
+                _view.SupplierID = bpPurchase.SupplierID;
+                _view.SupplierName = bpPurchase.SupplierName;
+                _view.Catatan = bpPurchase.Keterangan;
+
+                //  ubah list BPSearch menjadi ReceiptDetilModel
+                List<ReceiptDetilModel> tempList = _bpPurchaseBL.ListDetil(bpPurchase.BPPurchaseID);
+                tempList.Add(new ReceiptDetilModel());
+
+                _view.ListBrg = tempList;
+
+                _view.BiayaLain = bpPurchase.BiayaLain;
+                _view.DiskonLain = bpPurchase.Diskon;
+
+                CalculateTotal();
+
+                var supplier = _supplierBL.GetData(bpPurchase.SupplierID);
                 if (supplier == null) return;
                 _view.Alamat = supplier.Alamat;
                 _view.NoTelp = supplier.NoTelp;

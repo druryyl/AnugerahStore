@@ -252,5 +252,10 @@ namespace AnugerahWinform.Pembelian
             if (e.KeyCode == Keys.F1)
                 presenter.PilihReceipt();
         }
+
+        private void SearchPurchaseButton_Click(object sender, EventArgs e)
+        {
+            presenter.PilihPurchase();
+        }
     }
 }

@@ -18,6 +18,7 @@ namespace AnugerahBackend.Pembelian.Dal
         void Delete(string id);
         BPPurchaseModel GetData(string id);
         IEnumerable<BPPurchaseModel> ListData(string tgl1, string tgl2);
+        IEnumerable<BPPurchaseModel> ListData();
     }
 
     public class BPPurchaseDal : IBPPurchaseDal
@@ -180,6 +181,50 @@ namespace AnugerahBackend.Pembelian.Dal
 
                     while(dr.Read())
                     { 
+                        var item = new BPPurchaseModel
+                        {
+                            BPPurchaseID = dr["BPPurchaseID"].ToString(),
+                            Tgl = dr["Tgl"].ToString().ToTglDMY(),
+                            Jam = dr["Jam"].ToString(),
+                            SupplierID = dr["SupplierID"].ToString(),
+                            Keterangan = dr["Keterangan"].ToString(),
+                            TotHargaPurchase = Convert.ToDecimal(dr["TotHargaPurchase"]),
+                            TotHargaReceipt = Convert.ToDecimal(dr["TotHargaReceipt"]),
+                            Diskon = Convert.ToDecimal(dr["Diskon"]),
+                            BiayaLain = Convert.ToDecimal(dr["BiayaLain"]),
+                            GrandTotal = Convert.ToDecimal(dr["GrandTotal"])
+                        };
+                        result.Add(item);
+                    }
+                }
+            }
+            return result;
+        }
+
+        public IEnumerable<BPPurchaseModel> ListData()
+        {
+            List<BPPurchaseModel> result = null;
+
+            var sSql = @"
+                SELECT
+                    BPPurchaseID, Tgl, Jam, SupplierID, Keterangan, 
+                    TotHargaPurchase, TotHargaReceipt, Diskon, 
+                    BiayaLain, GrandTotal
+                FROM
+                    BPPurchase 
+                WHERE
+                    TotHargaReceipt <> TotHargaPurchase ";
+            using (var conn = new SqlConnection(_connString))
+            using (var cmd = new SqlCommand(sSql, conn))
+            {
+                conn.Open();
+                using (var dr = cmd.ExecuteReader())
+                {
+                    if (!dr.HasRows) return null;
+                    result = new List<BPPurchaseModel>();
+
+                    while (dr.Read())
+                    {
                         var item = new BPPurchaseModel
                         {
                             BPPurchaseID = dr["BPPurchaseID"].ToString(),

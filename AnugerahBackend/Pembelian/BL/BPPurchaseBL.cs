@@ -8,6 +8,7 @@ using AnugerahBackend.Pembelian.Model;
 using AnugerahBackend.StokBarang.Dal;
 using AnugerahBackend.Support;
 using Ics.Helper.Database;
+using Ics.Helper.Extensions;
 
 namespace AnugerahBackend.Pembelian.BL
 {
@@ -16,6 +17,7 @@ namespace AnugerahBackend.Pembelian.BL
         BPPurchaseModel Generate(PurchaseModel purchase);
         BPPurchaseModel Generate(ReceiptModel receipt);
         BPPurchaseModel GetData(string purchaseID);
+        List<ReceiptDetilModel> ListDetil(string bPPurchaseID);
     }
     public class BPPurchaseBL : IBPPurchaseBL
     {
@@ -55,7 +57,9 @@ namespace AnugerahBackend.Pembelian.BL
             newPurchase.BiayaLain = purchase.BiayaLain;
 
             //  detil; hilangkan detil Purchase-nya
-            newPurchase.ListBrg = newPurchase.ListBrg.Where(x => x.BPReceiptID.Trim() != "").ToList();
+            if(newPurchase.ListBrg != null)
+                newPurchase.ListBrg = newPurchase.ListBrg.Where(x => x.BPReceiptID.Trim() != "").ToList();
+
             //  tambahkan detil purchase baru;
             foreach(var item in purchase.ListBrg)
             {
@@ -73,6 +77,10 @@ namespace AnugerahBackend.Pembelian.BL
                     Diskon = item.Diskon,
                     Tax = item.TaxRupiah,
                 };
+
+                if (newPurchase.ListBrg == null)
+                    newPurchase.ListBrg = new List<BPPurchaseReceiptModel>();
+
                 newPurchase.ListBrg.Add(newItem);
             }
             var result = Save(newPurchase);
@@ -110,7 +118,7 @@ namespace AnugerahBackend.Pembelian.BL
             //  hilangka receipt ini dari purchase (jika ada / kasus edit)
             //  sebelum ditambahkan kembali
             bpPurchaseBaru.ListBrg = bpPurchaseBaru.ListBrg
-                .Where(x => x.BPReceiptID == receipt.ReceiptID).ToList();
+                .Where(x => x.BPReceiptID != receipt.ReceiptID).ToList();
 
             //  tambahkan detil baru
             foreach(var item in receipt.ListBrg)
@@ -135,10 +143,13 @@ namespace AnugerahBackend.Pembelian.BL
 
             //  simpan data
             BPPurchaseModel result = null;
+            BPPurchaseModel resultLama = null;
             using (var trans = TransHelper.NewScope())
             {
-                var resultLama = Save(bpPurchaseLama);
-                resultLama = Save(bpPurchaseBaru);
+                if(bpPurchaseLama != null)
+                    resultLama = Save(bpPurchaseLama);
+
+                result = Save(bpPurchaseBaru);
                 trans.Complete();
             }
             return result;
@@ -155,7 +166,19 @@ namespace AnugerahBackend.Pembelian.BL
 
         public IEnumerable<BPPurchaseSearchModel> Search()
         {
-            throw new NotImplementedException();
+            var listData = _bpPurchaseDal.ListData();
+            if (listData == null) return null;
+
+            var result = listData.Select(x => (BPPurchaseSearchModel)x);
+
+            if (SearchFilter.UserKeyword != null)
+                return
+                    from c in result
+                    where c.SupplierName.ContainMultiWord(SearchFilter.UserKeyword)
+                    select c;
+
+            return result;
+
         }
 
         private BPPurchaseModel Save(BPPurchaseModel model)
@@ -229,5 +252,45 @@ namespace AnugerahBackend.Pembelian.BL
             return model;
         }
 
+        public List<ReceiptDetilModel> ListDetil(string bpPurchaseID)
+        {
+            //  list all data di bpPurchaseReceipt
+            var listDetil = _bpPurchaseReceiptDal.ListData(bpPurchaseID);
+            if (listDetil == null) return null;
+
+            //  ambil purchase-nya aja, lalu copykan ke result;
+            var listPurchase = listDetil.Where(x => x.BPReceiptID.Trim() == "");
+            if (listPurchase == null) return null;
+
+            var result = new List<ReceiptDetilModel>();
+            foreach(var item in listPurchase)
+            {
+                //  ambil nama barang
+                string brgName = "";
+                var brg = _brgDal.GetData(item.BrgID);
+                if (brg != null)
+                    brgName = brg.BrgName;
+
+                //  hitung qty sisa
+                var qty = item.QtyPurchase;
+                qty -= listDetil.Where(x => x.BrgID == item.BrgID)
+                            .Sum(x => x.QtyReceipt);
+
+                //  tambahkan item / baris baru
+                var receiptDetil = new ReceiptDetilModel
+                {
+                    BrgID = item.BrgID,
+                    BrgName = brgName,
+                    Qty = qty,
+                    Harga = item.Harga,
+                    Diskon = item.Diskon,
+                    TaxRupiah = item.Tax,
+                    SubTotal = item.SubTotal
+                };
+                result.Add(receiptDetil);
+            }
+
+            return result;
+        }
     }
 }
