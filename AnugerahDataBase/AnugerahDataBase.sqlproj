@@ -118,7 +118,8 @@
     <Build Include="Pembelian\Supplier.sql" />
     <Build Include="Pembelian\Receipt.sql" />
     <Build Include="Pembelian\ReceiptDetil.sql" />
-    <Build Include="Pembelian\BPBeli.sql" />
+    <Build Include="Pembelian\BPPurchase.sql" />
+    <Build Include="Pembelian\BPurchaseReceipt.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AnugerahDevelopment.publish.xml" />

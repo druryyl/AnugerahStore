@@ -28,4 +28,18 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="PenjualanID" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="addc7b12-a38c-44ce-873f-75df73e48703" ChangeDateTime="03/04/2019 18:13:15">
+    <Property Name="ElementName" Value="[dbo].[BPBeli].[PurchaseOrderID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[BPBeli]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PurchaseID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="8d004e9e-c7ed-4d33-8793-9d03c4a7a18a" ChangeDateTime="03/05/2019 01:32:28">
+    <Property Name="ElementName" Value="[dbo].[BPBeli].[TotalHargaReceipt]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[BPBeli]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SumTotalHarga" />
+  </Operation>
 </Operations>

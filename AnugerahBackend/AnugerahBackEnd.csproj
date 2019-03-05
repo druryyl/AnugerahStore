@@ -124,11 +124,15 @@
     <Compile Include="Pembelian\BL\PurchaseBL.cs" />
     <Compile Include="Pembelian\BL\ReceiptBL.cs" />
     <Compile Include="Pembelian\BL\SupplierBL.cs" />
+    <Compile Include="Pembelian\Dal\BPPurchaseDal.cs" />
+    <Compile Include="Pembelian\Dal\BPPurchaseReceiptDal.cs" />
     <Compile Include="Pembelian\Dal\PurchasDetilDal.cs" />
     <Compile Include="Pembelian\Dal\PurchaseDal.cs" />
     <Compile Include="Pembelian\Dal\ReceiptDal.cs" />
     <Compile Include="Pembelian\Dal\ReceiptDetilDal.cs" />
     <Compile Include="Pembelian\Dal\SupplierDal.cs" />
+    <Compile Include="Pembelian\Model\BPPurchaseModel.cs" />
+    <Compile Include="Pembelian\Model\BPPurchaseReceiptModel.cs" />
     <Compile Include="Pembelian\Model\PurchaseDetilModel.cs" />
     <Compile Include="Pembelian\Model\PurchaseModel.cs" />
     <Compile Include="Pembelian\Model\ReceiptDetilModel.cs" />
