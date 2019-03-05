@@ -16,6 +16,9 @@ namespace AnugerahBackend.Pembelian.Dal
         void Insert(BPPurchaseReceiptModel model);
         void Delete(string bpPurchaseID);
         IEnumerable<BPPurchaseReceiptModel> ListData(string bpPurchaseID);
+        //  mencari purchase atas penerimaan ini
+        IEnumerable<BPPurchaseReceiptModel> ListData(ReceiptModel receipt);
+
     }
 
     public class BPPurchaseReceiptDal : IBPPurchaseReceiptDal
@@ -33,20 +36,21 @@ namespace AnugerahBackend.Pembelian.Dal
                 INSERT INTO
                     BPPurchaseReceipt (
                         BPPurchaseID, BPReceiptID, BPDetilID,
-                        Tgl, Jam, Keterangan, BrgID,
+                        NoUrut, Tgl, Jam, Keterangan, BrgID,
                         QtyPurchase, QtyReceipt, Harga, Diskon, 
                         Tax, SubTotal)
                 VALUES (
-                        aa.BPPurchaseID, aa.BPReceiptID, aa.BPDetilID,
-                        aa.Tgl, aa.Jam, aa.Keterangan, aa.BrgID,
-                        aa.QtyPurchase, aa.QtyReceipt, aa.Harga, aa.Diskon, 
-                        aa.Tax, aa.SubTotal) ";
+                        @BPPurchaseID, @BPReceiptID, @BPDetilID,
+                        @NoUrut, @Tgl, @Jam, @Keterangan, @BrgID,
+                        @QtyPurchase, @QtyReceipt, @Harga, @Diskon, 
+                        @Tax, @SubTotal) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
                 cmd.AddParam("@BPPurchaseID", model.BPPurchaseID);
                 cmd.AddParam("@BPReceiptID", model.BPReceiptID);
-                cmd.AddParam("@BPDetilID", model.BPPurchaseID);
+                cmd.AddParam("@BPDetilID", model.BPDetilID);
+                cmd.AddParam("@NoUrut", model.NoUrut);
                 cmd.AddParam("@Tgl", model.Tgl.ToTglYMD());
                 cmd.AddParam("@Jam", model.Jam);
                 cmd.AddParam("@Keterangan", model.Keterangan);
@@ -65,7 +69,7 @@ namespace AnugerahBackend.Pembelian.Dal
         public void Delete(string bpPurchaseID)
         {
             var sSql = @"
-                UPDATE
+                DELETE
                     BPPurchaseReceipt 
                 WHERE
                     BPPurchaseID = @BPPurchaseID ";
@@ -85,7 +89,7 @@ namespace AnugerahBackend.Pembelian.Dal
             var sSql = @"
                 SELECT
                     BPPurchaseID, BPReceiptID, BPDetilID,
-                    Tgl, Jam, Keterangan, BrgID,
+                    NoUrut, Tgl, Jam, Keterangan, BrgID,
                     QtyPurchase, QtyReceipt, Harga, Diskon, 
                     Tax, SubTotal
                 FROM
@@ -109,6 +113,57 @@ namespace AnugerahBackend.Pembelian.Dal
                             BPPurchaseID = dr["BPPurchaseID"].ToString(),
                             BPReceiptID = dr["BPReceiptID"].ToString(),
                             BPDetilID = dr["BPDetilID"].ToString(),
+                            NoUrut = Convert.ToInt16(dr["NoUrut"]),
+                            Tgl = dr["Tgl"].ToString().ToTglDMY(),
+                            Jam = dr["Jam"].ToString(),
+                            Keterangan = dr["Keterangan"].ToString(),
+                            BrgID = dr["BrgID"].ToString(),
+                            QtyPurchase = Convert.ToInt32(dr["QtyPurchase"]),
+                            QtyReceipt = Convert.ToInt32(dr["QtyReceipt"]),
+                            Harga = Convert.ToDecimal(dr["Harga"]),
+                            Diskon = Convert.ToDecimal(dr["Diskon"]),
+                            Tax = Convert.ToDecimal(dr["Tax"]),
+                            SubTotal = Convert.ToDecimal(dr["SubTotal"])
+                        };
+                        result.Add(item);
+                    }
+                }
+            }
+            return result;
+        }
+
+        public IEnumerable<BPPurchaseReceiptModel> ListData(ReceiptModel receipt)
+        {
+            List<BPPurchaseReceiptModel> result = null;
+
+            var sSql = @"
+                SELECT
+                    BPPurchaseID, BPReceiptID, BPDetilID,
+                    NoUrut, Tgl, Jam, Keterangan, BrgID,
+                    QtyPurchase, QtyReceipt, Harga, Diskon, 
+                    Tax, SubTotal
+                FROM
+                    BPPurchaseReceipt
+                 WHERE
+                    BPReceiptID = @BPReceiptID ";
+            using (var conn = new SqlConnection(_connString))
+            using (var cmd = new SqlCommand(sSql, conn))
+            {
+                cmd.AddParam("@BPReceiptID", receipt.ReceiptID);
+                conn.Open();
+                using (var dr = cmd.ExecuteReader())
+                {
+                    if (!dr.HasRows) return null;
+                    result = new List<BPPurchaseReceiptModel>();
+
+                    while (dr.Read())
+                    {
+                        var item = new BPPurchaseReceiptModel
+                        {
+                            BPPurchaseID = dr["BPPurchaseID"].ToString(),
+                            BPReceiptID = dr["BPReceiptID"].ToString(),
+                            BPDetilID = dr["BPDetilID"].ToString(),
+                            NoUrut = Convert.ToInt16(dr["NoUrut"]),
                             Tgl = dr["Tgl"].ToString().ToTglDMY(),
                             Jam = dr["Jam"].ToString(),
                             Keterangan = dr["Keterangan"].ToString(),

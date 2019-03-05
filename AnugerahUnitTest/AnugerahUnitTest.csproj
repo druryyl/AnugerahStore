@@ -101,6 +101,8 @@
     <Compile Include="Keuangan\BukuPiutangLunasDalTest.cs" />
     <Compile Include="Keuangan\JenisTrsKasirDalTest.cs" />
     <Compile Include="Keuangan\PihakKetigaDalTest.cs" />
+    <Compile Include="Pembelian\BPPurchaseDalTest.cs" />
+    <Compile Include="Pembelian\BPPurchaseReceiptDalTest.cs" />
     <Compile Include="Pembelian\PurchaseDalTest.cs" />
     <Compile Include="Pembelian\PurchaseDetilDalTest.cs" />
     <Compile Include="Pembelian\ReceiptDalTest.cs" />

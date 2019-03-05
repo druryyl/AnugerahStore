@@ -10,6 +10,7 @@ using AnugerahBackend.StokBarang.BL;
 using AnugerahBackend.StokBarang.Model;
 using AnugerahWinform.Pembelian.View;
 using AnugerahWinform.Support;
+using Ics.Helper.Database;
 
 namespace AnugerahWinform.Pembelian.Presenter
 {
@@ -19,6 +20,7 @@ namespace AnugerahWinform.Pembelian.Presenter
         private IPurchaseBL _purchaseBL;
         private ISupplierBL _supplierBL;
         private IBrgBL _brgBL;
+        private IBPPurchaseBL _bpPurchaseBL;
 
         public PurchasePresenter(IPurchaseView view)
         {
@@ -26,6 +28,7 @@ namespace AnugerahWinform.Pembelian.Presenter
             _purchaseBL = new PurchaseBL();
             _supplierBL = new SupplierBL();
             _brgBL = new BrgBL();
+            _bpPurchaseBL = new BPPurchaseBL();
         }
         public PurchasePresenter(IPurchaseView view, IPurchaseBL bl, ISupplierBL supplierBL)
         {
@@ -51,7 +54,13 @@ namespace AnugerahWinform.Pembelian.Presenter
                 ListBrg = _view.ListBrg
             };
             purchase.ListBrg = purchase.ListBrg.Where(x => x.BrgID != "").ToList();
-            _purchaseBL.Save(purchase);
+
+            using (var trans = TransHelper.NewScope())
+            {
+                var result = _purchaseBL.Save(purchase);
+                var result2 = _bpPurchaseBL.Generate(result);
+                trans.Complete();
+            }
         }
 
         public void New()

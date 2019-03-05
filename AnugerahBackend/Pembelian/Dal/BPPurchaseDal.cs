@@ -48,6 +48,7 @@ namespace AnugerahBackend.Pembelian.Dal
                 cmd.AddParam("@Tgl", model.Tgl.ToTglYMD());
                 cmd.AddParam("@Jam", model.Jam);
                 cmd.AddParam("@SupplierID", model.SupplierID);
+                cmd.AddParam("@Keterangan", model.Keterangan);
                 cmd.AddParam("@TotHargaPurchase", model.TotHargaPurchase);
                 cmd.AddParam("@TotHargaReceipt", model.TotHargaReceipt);
                 cmd.AddParam("@Diskon", model.Diskon);
@@ -83,6 +84,7 @@ namespace AnugerahBackend.Pembelian.Dal
                 cmd.AddParam("@Tgl", model.Tgl.ToTglYMD());
                 cmd.AddParam("@Jam", model.Jam);
                 cmd.AddParam("@SupplierID", model.SupplierID);
+                cmd.AddParam("@Keterangan", model.Keterangan);
                 cmd.AddParam("@TotHargaPurchase", model.TotHargaPurchase);
                 cmd.AddParam("@TotHargaReceipt", model.TotHargaReceipt);
                 cmd.AddParam("@Diskon", model.Diskon);
@@ -96,7 +98,7 @@ namespace AnugerahBackend.Pembelian.Dal
         public void Delete(string id)
         {
             var sSql = @"
-                UPDATE
+                DELETE
                     BPPurchase 
                 WHERE
                     BPPurchaseID = @BPPurchaseID ";
@@ -115,11 +117,13 @@ namespace AnugerahBackend.Pembelian.Dal
 
             var sSql = @"
                 SELECT
-                    BPPurchaseID, Tgl, Jam, SupplierID, Keterangan, 
-                    TotHargaPurchase, TotHargaReceipt, Diskon, 
-                    BiayaLain, GrandTotal
+                    aa.BPPurchaseID, aa.Tgl, aa.Jam, aa.SupplierID, aa.Keterangan, 
+                    aa.TotHargaPurchase, aa.TotHargaReceipt, aa.Diskon, 
+                    aa.BiayaLain, aa.GrandTotal,
+                    ISNULL(bb.SupplierName, '') SupplierName
                 FROM
-                    BPPurchase 
+                    BPPurchase aa
+                    LEFT JOIN Supplier bb ON aa.SupplierID = bb.SupplierID
                 WHERE
                     BPPurchaseID = @BPPurchaseID ";
             using (var conn = new SqlConnection(_connString))

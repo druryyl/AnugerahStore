@@ -11,6 +11,7 @@ namespace AnugerahBackend.Pembelian.Model
         public string BPPurchaseID { get; set; }
         public string BPReceiptID { get; set; }
         public string BPDetilID { get; set; }
+        public int NoUrut { get; set; }
         public string Tgl { get; set; }
         public string Jam { get; set; }
         public string Keterangan { get; set; }
