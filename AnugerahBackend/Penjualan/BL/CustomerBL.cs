@@ -1,6 +1,8 @@
 ﻿using AnugerahBackend.Penjualan.Dal;
 using AnugerahBackend.Penjualan.Model;
 using AnugerahBackend.Support;
+using AnugerahBackend.Support.BL;
+using Ics.Helper.Database;
 using Ics.Helper.Extensions;
 using System;
 using System.Collections.Generic;
@@ -12,7 +14,7 @@ namespace AnugerahBackend.Penjualan.BL
 {
     public interface ICustomerBL : ISearch<CustomerSearchModel>
     {
-        void Save(CustomerModel customer);
+        CustomerModel Save(CustomerModel customer);
         void Delete(string id);
         CustomerModel GetData(string id);
         IEnumerable<CustomerModel> ListData();
@@ -21,10 +23,16 @@ namespace AnugerahBackend.Penjualan.BL
     public class CustomerBL : ICustomerBL
     {
         private ICustomerDal _customerDal;
+        private IParameterNoBL _paramNoBL;
 
         public CustomerBL()
         {
             _customerDal = new CustomerDal();
+            _paramNoBL = new ParameterNoBL();
+            SearchFilter = new SearchFilter
+            {
+                IsDate = false
+            };
         }
 
         public CustomerBL(ICustomerDal injCustomerDal)
@@ -32,11 +40,36 @@ namespace AnugerahBackend.Penjualan.BL
             _customerDal = injCustomerDal;
         }
 
-        public void Save(CustomerModel customer)
+        public CustomerModel Save(CustomerModel customer)
         {
-            //  validate
+            if (customer == null)
+            {
+                throw new ArgumentNullException(nameof(customer));
+            }
+            //  validate nama
+            if (customer.CustomerName.Trim() == "")
+                throw new ArgumentException("CustomerName kosong");
+
+            using (var trans = TransHelper.NewScope())
+            {
+                if (customer.CustomerID.Trim() == "")
+                    customer.CustomerID = GenNewID();
+                _customerDal.Delete(customer.CustomerID);
+                _customerDal.Insert(customer);
+
+                trans.Complete();
+            }
+
+            return customer;
         }
 
+        private string GenNewID()
+        {
+            var prefix = "C";
+            var result = _paramNoBL.GenNewID(prefix, 5);
+            return result;
+
+        }
         public void Delete(string id)
         {
             throw new NotImplementedException();

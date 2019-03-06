@@ -253,5 +253,45 @@ namespace AnugerahWinform
             };
             form.Show();
         }
+
+        private void SupplierButton_Click(object sender, EventArgs e)
+        {
+            var form = new SupplierForm
+            {
+                MdiParent = this,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            form.Show();
+        }
+
+        private void LaporanPurchaseButton_Click(object sender, EventArgs e)
+        {
+            var form = new PurchaseInfoForm
+            {
+                MdiParent = this,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            form.Show();
+        }
+
+        private void LaporanTerimaBrgButton_Click(object sender, EventArgs e)
+        {
+            var form = new ReceiptInfoForm
+            {
+                MdiParent = this,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            form.Show();
+        }
+
+        private void CustomerButton_Click(object sender, EventArgs e)
+        {
+            var form = new CustomerForm
+            {
+                MdiParent = this,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            form.Show();
+        }
     }
 }

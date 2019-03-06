@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using AnugerahBackend.Pembelian.Dal;
 using AnugerahBackend.Pembelian.Model;
 using AnugerahBackend.Support;
+using AnugerahBackend.Support.BL;
+using Ics.Helper.Database;
 using Ics.Helper.Extensions;
 
 namespace AnugerahBackend.Pembelian.BL
@@ -14,32 +16,61 @@ namespace AnugerahBackend.Pembelian.BL
     {
         SupplierModel Save(SupplierModel model);
         void Delete(string supplierID);
-        void ListData();
+        IEnumerable<SupplierModel> ListData();
         SupplierModel GetData(string id);
     }
 
     public class SupplierBL : ISupplierBL
     {
-        ISupplierDal _supplierDal;
+        private ISupplierDal _supplierDal;
+        private IParameterNoBL _paramNoBL;
 
         public SupplierBL()
         {
             _supplierDal = new SupplierDal();
+            _paramNoBL = new ParameterNoBL();
         }
 
         public SupplierModel Save(SupplierModel model)
         {
-            throw new NotImplementedException();
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
+            //  validasi nama
+            if (model.SupplierName.Trim() == "")
+                throw new ArgumentException("SupplierName kosong");
+
+            //  simpan
+            using (var trans = TransHelper.NewScope())
+            {
+                if (model.SupplierID.Trim() == "")
+                    model.SupplierID = GenNewID();
+
+                _supplierDal.Delete(model.SupplierID);
+                _supplierDal.Insert(model);
+                trans.Complete();
+            }
+            return model;
         }
+
+        private string GenNewID()
+        {
+            var prefix = "S";
+            var result = _paramNoBL.GenNewID(prefix, 5);
+            return result;
+        }
+
 
         public void Delete(string supplierID)
         {
             throw new NotImplementedException();
         }
 
-        public void ListData()
+        public IEnumerable<SupplierModel> ListData()
         {
-            throw new NotImplementedException();
+            return _supplierDal.ListData();
         }
 
         public SearchFilter SearchFilter { get; set; }
