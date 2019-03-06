@@ -34,7 +34,7 @@ namespace AnugerahWinform.PrintDoc
 
             //  print textfile
             reader = new StreamReader(_fileName);
-            _font = new Font("Source Code Pro", 10);
+            _font = new Font("Courier New", 9);
             PrintDocument pd = new PrintDocument();
             pd.PrintPage += new PrintPageEventHandler(PrintTextFileHandler);
             pd.PrinterSettings.PrinterName = _printerName;
@@ -81,8 +81,8 @@ namespace AnugerahWinform.PrintDoc
                 lineCounter++;
             }
 
-            if(lineCounter<12)
-                for(int i = lineCounter; i<=12; i++)
+            if(lineCounter < 8)
+                for(int i = lineCounter; i<=8; i++)
                     sw.WriteLine("  |                                           |     |           |           |             ");
             sw.WriteLine("------------------------------------------------------------------------------------------");
             //               "123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 12345678 0"
