@@ -46,6 +46,7 @@
             this.StockManagementRibbonPanel = new System.Windows.Forms.RibbonPanel();
             this.Adjustment = new System.Windows.Forms.RibbonButton();
             this.BukuStokDetilInfoButton = new System.Windows.Forms.RibbonButton();
+            this.StokInfoButton = new System.Windows.Forms.RibbonButton();
             this.BarangPanel = new System.Windows.Forms.RibbonPanel();
             this.BarangButton = new System.Windows.Forms.RibbonButton();
             this.ribbonSeparator5 = new System.Windows.Forms.RibbonSeparator();
@@ -69,7 +70,7 @@
             this.ribbonButton1 = new System.Windows.Forms.RibbonButton();
             this.BPKasRibbon = new System.Windows.Forms.RibbonPanel();
             this.LaporanBPKasButton = new System.Windows.Forms.RibbonButton();
-            this.StokInfoButton = new System.Windows.Forms.RibbonButton();
+            this.PegawaiButton = new System.Windows.Forms.RibbonButton();
             this.SuspendLayout();
             // 
             // ribbon1
@@ -236,6 +237,14 @@
             this.BukuStokDetilInfoButton.Text = "Buku Stok";
             this.BukuStokDetilInfoButton.Click += new System.EventHandler(this.BukuStokDetilInfoButton_Click);
             // 
+            // StokInfoButton
+            // 
+            this.StokInfoButton.Image = ((System.Drawing.Image)(resources.GetObject("StokInfoButton.Image")));
+            this.StokInfoButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("StokInfoButton.LargeImage")));
+            this.StokInfoButton.Name = "StokInfoButton";
+            this.StokInfoButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("StokInfoButton.SmallImage")));
+            this.StokInfoButton.Text = "Info Stok";
+            // 
             // BarangPanel
             // 
             this.BarangPanel.Items.Add(this.BarangButton);
@@ -339,6 +348,7 @@
             this.ribbonPanel2.Items.Add(this.KasBonButton);
             this.ribbonPanel2.Items.Add(this.LunasKasBonButton);
             this.ribbonPanel2.Items.Add(this.LapPiutangButton);
+            this.ribbonPanel2.Items.Add(this.PegawaiButton);
             this.ribbonPanel2.Name = "ribbonPanel2";
             this.ribbonPanel2.Text = "Piutang";
             // 
@@ -428,13 +438,14 @@
             this.LaporanBPKasButton.Text = "Laporan Kas";
             this.LaporanBPKasButton.Click += new System.EventHandler(this.LaporanBPKasButton_Click);
             // 
-            // StokInfoButton
+            // PegawaiButton
             // 
-            this.StokInfoButton.Image = ((System.Drawing.Image)(resources.GetObject("StokInfoButton.Image")));
-            this.StokInfoButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("StokInfoButton.LargeImage")));
-            this.StokInfoButton.Name = "StokInfoButton";
-            this.StokInfoButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("StokInfoButton.SmallImage")));
-            this.StokInfoButton.Text = "Info Stok";
+            this.PegawaiButton.Image = ((System.Drawing.Image)(resources.GetObject("PegawaiButton.Image")));
+            this.PegawaiButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("PegawaiButton.LargeImage")));
+            this.PegawaiButton.Name = "PegawaiButton";
+            this.PegawaiButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("PegawaiButton.SmallImage")));
+            this.PegawaiButton.Text = "Pegawai";
+            this.PegawaiButton.Click += new System.EventHandler(this.PegawaiButton_Click);
             // 
             // MainMenuForm
             // 
@@ -497,6 +508,7 @@
         private System.Windows.Forms.RibbonButton LaporanTerimaBrgButton;
         private System.Windows.Forms.RibbonButton CustomerButton;
         private System.Windows.Forms.RibbonButton StokInfoButton;
+        private System.Windows.Forms.RibbonButton PegawaiButton;
     }
 }
 

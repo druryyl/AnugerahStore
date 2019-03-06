@@ -293,5 +293,15 @@ namespace AnugerahWinform
             };
             form.Show();
         }
+
+        private void PegawaiButton_Click(object sender, EventArgs e)
+        {
+            var form = new PegawaiForm
+            {
+                MdiParent = this,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            form.Show();
+        }
     }
 }

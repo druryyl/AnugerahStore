@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AnugerahBackend.Accounting.Dal;
+using AnugerahBackend.Accounting.Model;
 using AnugerahBackend.Pembelian.Dal;
 using AnugerahBackend.Pembelian.Model;
 using AnugerahBackend.Support;
@@ -24,11 +26,13 @@ namespace AnugerahBackend.Pembelian.BL
     {
         private ISupplierDal _supplierDal;
         private IParameterNoBL _paramNoBL;
+        private IPihakKeduaDal _pihakKeduaDal;
 
         public SupplierBL()
         {
             _supplierDal = new SupplierDal();
             _paramNoBL = new ParameterNoBL();
+            _pihakKeduaDal = new PihakKeduaDal();
         }
 
         public SupplierModel Save(SupplierModel model)
@@ -50,6 +54,16 @@ namespace AnugerahBackend.Pembelian.BL
 
                 _supplierDal.Delete(model.SupplierID);
                 _supplierDal.Insert(model);
+
+                //  update pihak kedua
+                _pihakKeduaDal.Delete(model.SupplierID);
+                var pihakKedua = new PihakKeduaModel
+                {
+                    PihakKeduaID = model.SupplierID,
+                    PihakKeduaName = model.SupplierName
+                };
+                _pihakKeduaDal.Insert(pihakKedua);
+
                 trans.Complete();
             }
             return model;

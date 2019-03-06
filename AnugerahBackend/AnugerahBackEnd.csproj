@@ -58,6 +58,7 @@
     <Compile Include="Accounting\BL\JenisLunasBL.cs" />
     <Compile Include="Accounting\BL\KasBonBL.cs" />
     <Compile Include="Accounting\BL\LunasKasBonBL.cs" />
+    <Compile Include="Accounting\BL\PegawaiBL.cs" />
     <Compile Include="Accounting\BL\PihakKeduaBL.cs" />
     <Compile Include="Accounting\Dal\BiayaDal.cs" />
     <Compile Include="Accounting\Dal\BPHutangDal.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Accounting\Dal\KasBonDal.cs" />
     <Compile Include="Accounting\Dal\LunasKasBonDal.cs" />
     <Compile Include="Accounting\Dal\LunasKasBonDetilDal.cs" />
+    <Compile Include="Accounting\Dal\PegawaiDal.cs" />
     <Compile Include="Accounting\Dal\PihakKeduaDal.cs" />
     <Compile Include="Accounting\Dal\ReturDepositDal.cs" />
     <Compile Include="Accounting\Model\BiayaModel.cs" />
@@ -96,6 +98,7 @@
     <Compile Include="Accounting\Model\LunasKasBonDetilModel.cs" />
     <Compile Include="Accounting\Model\LunasKasBonModel.cs" />
     <Compile Include="Accounting\Model\OrderJualModel.cs" />
+    <Compile Include="Accounting\Model\PegawaiModel.cs" />
     <Compile Include="Accounting\Model\PihakKeduaModel.cs" />
     <Compile Include="Accounting\Model\ReturDepositModel.cs" />
     <Compile Include="Accounting\BL\ReturDepositBL.cs" />
