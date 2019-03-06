@@ -68,7 +68,6 @@
             this.DepositJualButton = new System.Windows.Forms.RibbonButton();
             this.ReturDepositButton = new System.Windows.Forms.RibbonButton();
             this.LapHutangButton = new System.Windows.Forms.RibbonButton();
-            this.ribbonButton1 = new System.Windows.Forms.RibbonButton();
             this.BPKasRibbon = new System.Windows.Forms.RibbonPanel();
             this.LaporanBPKasButton = new System.Windows.Forms.RibbonButton();
             this.SuspendLayout();
@@ -89,7 +88,7 @@
             this.ribbon1.OrbDropDown.Size = new System.Drawing.Size(527, 447);
             this.ribbon1.OrbDropDown.TabIndex = 0;
             this.ribbon1.RibbonTabFont = new System.Drawing.Font("Trebuchet MS", 9F);
-            this.ribbon1.Size = new System.Drawing.Size(1109, 136);
+            this.ribbon1.Size = new System.Drawing.Size(1109, 140);
             this.ribbon1.TabIndex = 5;
             this.ribbon1.Tabs.Add(this.ribbonTab1);
             this.ribbon1.Tabs.Add(this.ribbonTab3);
@@ -394,7 +393,6 @@
             this.ribbonPanel3.Items.Add(this.DepositJualButton);
             this.ribbonPanel3.Items.Add(this.ReturDepositButton);
             this.ribbonPanel3.Items.Add(this.LapHutangButton);
-            this.ribbonPanel3.Items.Add(this.ribbonButton1);
             this.ribbonPanel3.Name = "ribbonPanel3";
             this.ribbonPanel3.Text = "Hutang";
             // 
@@ -425,14 +423,6 @@
             this.LapHutangButton.Text = "Laporan Hutang";
             this.LapHutangButton.Click += new System.EventHandler(this.LapHutangButton_Click);
             // 
-            // ribbonButton1
-            // 
-            this.ribbonButton1.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton1.Image")));
-            this.ribbonButton1.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton1.LargeImage")));
-            this.ribbonButton1.Name = "ribbonButton1";
-            this.ribbonButton1.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton1.SmallImage")));
-            this.ribbonButton1.Text = "ribbonButton1";
-            // 
             // BPKasRibbon
             // 
             this.BPKasRibbon.Items.Add(this.LaporanBPKasButton);
@@ -452,6 +442,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::AnugerahWinform.Properties.Resources.background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(1109, 731);
             this.Controls.Add(this.ribbon1);
@@ -500,7 +491,6 @@
         private System.Windows.Forms.RibbonButton DepositJualButton;
         private System.Windows.Forms.RibbonButton ReturDepositButton;
         private System.Windows.Forms.RibbonButton LapHutangButton;
-        private System.Windows.Forms.RibbonButton ribbonButton1;
         private System.Windows.Forms.RibbonPanel BPKasRibbon;
         private System.Windows.Forms.RibbonButton LaporanBPKasButton;
         private System.Windows.Forms.RibbonButton BukuStokDetilInfoButton;
