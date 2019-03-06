@@ -180,6 +180,7 @@
     <Compile Include="StokBarang\Dal\StokAdjustment2Dal.cs" />
     <Compile Include="StokBarang\Dal\StokAdjustmentDal.cs" />
     <Compile Include="StokBarang\Dal\StokInDal.cs" />
+    <Compile Include="StokBarang\Dal\StokInfoDal.cs" />
     <Compile Include="StokBarang\Dal\StokInOutDal.cs" />
     <Compile Include="StokBarang\Dal\SubJenisBrgDal.cs" />
     <Compile Include="StokBarang\Dal\TipeBrgDal.cs" />
@@ -197,6 +198,7 @@
     <Compile Include="StokBarang\Model\MerkModel.cs" />
     <Compile Include="StokBarang\Model\StokAdjustment2Model.cs" />
     <Compile Include="StokBarang\Model\StokAdjustmentModel.cs" />
+    <Compile Include="StokBarang\Model\StokInfoModel.cs" />
     <Compile Include="StokBarang\Model\StokInOutModel.cs" />
     <Compile Include="StokBarang\Model\StokInModel.cs" />
     <Compile Include="StokBarang\Model\StokItem.cs" />

@@ -63,6 +63,7 @@
             this.KasBonButton = new System.Windows.Forms.RibbonButton();
             this.LunasKasBonButton = new System.Windows.Forms.RibbonButton();
             this.LapPiutangButton = new System.Windows.Forms.RibbonButton();
+            this.PegawaiButton = new System.Windows.Forms.RibbonButton();
             this.ribbonPanel3 = new System.Windows.Forms.RibbonPanel();
             this.DepositJualButton = new System.Windows.Forms.RibbonButton();
             this.ReturDepositButton = new System.Windows.Forms.RibbonButton();
@@ -70,7 +71,6 @@
             this.ribbonButton1 = new System.Windows.Forms.RibbonButton();
             this.BPKasRibbon = new System.Windows.Forms.RibbonPanel();
             this.LaporanBPKasButton = new System.Windows.Forms.RibbonButton();
-            this.PegawaiButton = new System.Windows.Forms.RibbonButton();
             this.SuspendLayout();
             // 
             // ribbon1
@@ -244,6 +244,7 @@
             this.StokInfoButton.Name = "StokInfoButton";
             this.StokInfoButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("StokInfoButton.SmallImage")));
             this.StokInfoButton.Text = "Info Stok";
+            this.StokInfoButton.Click += new System.EventHandler(this.StokInfoButton_Click);
             // 
             // BarangPanel
             // 
@@ -379,6 +380,15 @@
             this.LapPiutangButton.Text = "Laporan Piutang";
             this.LapPiutangButton.Click += new System.EventHandler(this.LapPiutangButton_Click);
             // 
+            // PegawaiButton
+            // 
+            this.PegawaiButton.Image = ((System.Drawing.Image)(resources.GetObject("PegawaiButton.Image")));
+            this.PegawaiButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("PegawaiButton.LargeImage")));
+            this.PegawaiButton.Name = "PegawaiButton";
+            this.PegawaiButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("PegawaiButton.SmallImage")));
+            this.PegawaiButton.Text = "Pegawai";
+            this.PegawaiButton.Click += new System.EventHandler(this.PegawaiButton_Click);
+            // 
             // ribbonPanel3
             // 
             this.ribbonPanel3.Items.Add(this.DepositJualButton);
@@ -437,15 +447,6 @@
             this.LaporanBPKasButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("LaporanBPKasButton.SmallImage")));
             this.LaporanBPKasButton.Text = "Laporan Kas";
             this.LaporanBPKasButton.Click += new System.EventHandler(this.LaporanBPKasButton_Click);
-            // 
-            // PegawaiButton
-            // 
-            this.PegawaiButton.Image = ((System.Drawing.Image)(resources.GetObject("PegawaiButton.Image")));
-            this.PegawaiButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("PegawaiButton.LargeImage")));
-            this.PegawaiButton.Name = "PegawaiButton";
-            this.PegawaiButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("PegawaiButton.SmallImage")));
-            this.PegawaiButton.Text = "Pegawai";
-            this.PegawaiButton.Click += new System.EventHandler(this.PegawaiButton_Click);
             // 
             // MainMenuForm
             // 
