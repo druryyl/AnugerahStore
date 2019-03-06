@@ -2,6 +2,7 @@
 using AnugerahBackend.Penjualan.Model;
 using AnugerahBackend.StokBarang.BL;
 using AnugerahBackend.StokBarang.Model;
+using Ics.Helper.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -83,7 +84,6 @@ namespace AnugerahWinform.Penjualan
         private void JenisTreeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
             ShowGridBrg(e);
-
         }
 
         private void ShowGridBrg(TreeViewEventArgs e)
@@ -141,13 +141,19 @@ namespace AnugerahWinform.Penjualan
             //  query data
             var listBrg = _brgBL.ListData(jenisID, subID, merkID, colorID);
 
-            if (listBrg == null)
+            FillGrid(listBrg);
+        }
+
+        private void FillGrid(IEnumerable<BrgModel> listData)
+        {
+            BrgGrid.Rows.Clear();
+
+            if (listData == null)
                 return;
 
-            BrgGrid.Rows.Clear();
             PrgBar.Value = 0;
-            PrgBar.Maximum = listBrg.Count();
-            foreach (var item in listBrg.OrderBy(x => x.BrgName))
+            PrgBar.Maximum = listData.Count();
+            foreach (var item in listData.OrderBy(x => x.BrgName))
             {
                 PrgBar.Value++;
                 object[] rowData = {item.BrgID, item.BrgName, item.JenisBrgName,
@@ -165,12 +171,6 @@ namespace AnugerahWinform.Penjualan
                 }
             }
             PrgBar.Value = 0;
-
-        }
-
-        private void FillGridBrg(IEnumerable<BrgModel> listBrg)
-        {
-
         }
 
         private void LoadJenisBrgTreeView_Click(object sender, EventArgs e)
@@ -236,6 +236,24 @@ namespace AnugerahWinform.Penjualan
         private void CopyButton_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                BrgGrid.Rows.Clear();
+                if (textBox1.Text == "") return;
+
+                var listData = _brgBL.ListData(); 
+                var keyword = textBox1.Text;
+                var result =
+                    from c in listData
+                    where c.BrgName.ContainMultiWord(keyword)
+                    select c;
+
+                FillGrid(result);
+            }
         }
     }
 }
