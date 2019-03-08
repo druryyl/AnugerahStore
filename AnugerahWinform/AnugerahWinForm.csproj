@@ -304,12 +304,14 @@
     <Compile Include="StokBarang\TipeBrgListForm.Designer.cs">
       <DependentUpon>TipeBrgListForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Support\Presenter\LoginPresenter.cs" />
     <Compile Include="Support\SearchingForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Support\SearchingForm.Designer.cs">
       <DependentUpon>SearchingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Support\View\LoginView.cs" />
     <EmbeddedResource Include="Accounting\BiayaForm.resx">
       <DependentUpon>BiayaForm.cs</DependentUpon>
     </EmbeddedResource>
