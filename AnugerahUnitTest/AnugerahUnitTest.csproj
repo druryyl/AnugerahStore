@@ -42,7 +42,7 @@
       <HintPath>..\packages\FluentAssertions.5.5.1\lib\net45\FluentAssertions.dll</HintPath>
     </Reference>
     <Reference Include="Ics.Helper">
-      <HintPath>D:\project.aktif\Web7\Helper\HelperLib\bin\Release\Ics.Helper.dll</HintPath>
+      <HintPath>..\..\Helper\HelperLib\bin\Release\Ics.Helper.dll</HintPath>
     </Reference>
     <Reference Include="Moq, Version=4.10.0.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <HintPath>..\packages\Moq.4.10.0\lib\net45\Moq.dll</HintPath>
