@@ -3,6 +3,7 @@ using AnugerahBackend.Support.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,6 +21,8 @@ namespace AnugerahBackend.Support.BL
         IEnumerable<UserrModel> ListData();
 
         UserrModel TryValidate(UserrModel userr);
+
+        bool IsValidPassword(UserrModel userr, string pass);
     }
 
 
@@ -90,7 +93,44 @@ namespace AnugerahBackend.Support.BL
                 throw new ArgumentException("UserrName empty");
             }
 
+            userr.Password = HashFunctions.GetHashString(userr.Password);
             return result;
+        }
+
+        private string Encrypt(string stringData)
+        {
+            var result = "";
+
+
+            return result;
+        }
+
+        public bool IsValidPassword(UserrModel userr, string pass)
+        {
+            var userr2 = _userrDal.GetData(userr.UserrID);
+            var hash1 = HashFunctions.GetHashString(userr2.Password);
+            var hash2 = HashFunctions.GetHashString(pass);
+            if (hash1 == hash2)
+                return true;
+            else
+                return false;
+        }
+    }
+
+    public static class HashFunctions
+    {
+        private static byte[] GetHash(string inputString)
+        {
+            HashAlgorithm algorithm = SHA256.Create();
+            return algorithm.ComputeHash(Encoding.UTF8.GetBytes(inputString));
+        }
+
+        public static string GetHashString(string inputString)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (byte b in GetHash(inputString))
+                sb.Append(b.ToString("X2"));
+            return sb.ToString();
         }
     }
 }

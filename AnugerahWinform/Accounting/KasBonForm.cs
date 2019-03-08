@@ -111,8 +111,16 @@ namespace AnugerahWinform.Accounting
             using (var trans = TransHelper.NewScope())
             {
                 var result = _kasBonBL.Save(kasBon);
-                _bpKasBL.Generate(result);
-                _bpPiutangBL.GenPiutang(result);
+                try
+                {
+                    _bpKasBL.Generate(result);
+                    _bpPiutangBL.GenPiutang(result);
+
+                }
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
                 trans.Complete();
             }
         }
@@ -191,6 +199,29 @@ namespace AnugerahWinform.Accounting
             SearchKodeTrs();
             ShowData();
             TglText.Focus();
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Hapus data ?", "KasBon", MessageBoxButtons.YesNo) == DialogResult.No)
+                return;
+            using (var trans = TransHelper.NewScope())
+            {
+                var kasBon = _kasBonBL.GetData(BiayaIDText.Text);
+                try
+                {
+                    _kasBonBL.Delete(BiayaIDText.Text);
+                    _bpPiutangBL.GenPiutangDelete(kasBon);
+
+                }
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return;
+                }
+                trans.Complete();
+            }
+            ClearForm();
         }
     }
 }

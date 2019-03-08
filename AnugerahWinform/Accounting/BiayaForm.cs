@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using AnugerahBackend.Accounting.BL;
 using AnugerahBackend.Accounting.Model;
 using AnugerahWinform.Support;
+using Ics.Helper.Database;
 using Ics.Helper.StringDateTime;
 
 namespace AnugerahWinform.Accounting
@@ -183,6 +184,21 @@ namespace AnugerahWinform.Accounting
             SearchKodeTrs();
             ShowData();
             TglText.Focus();
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Hapus data ?", "Biaya", MessageBoxButtons.OKCancel) == DialogResult.No)
+                return;
+
+            using (var trans = TransHelper.NewScope())
+            {
+                var biaya = _biayaBL.GetData(BiayaIDText.Text);
+                _biayaBL.Delete(biaya.BiayaID);
+                _bpKasBL.GenDelete(biaya);
+                trans.Complete();
+            }
+            ClearForm();
         }
     }
 }

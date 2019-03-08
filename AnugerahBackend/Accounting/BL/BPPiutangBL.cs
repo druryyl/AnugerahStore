@@ -14,6 +14,7 @@ namespace AnugerahBackend.Accounting.BL
     public interface IBPPiutangBL : ISearch<BPPiutangSearchModel>
     {
         BPPiutangModel GenPiutang(KasBonModel kasBon);
+        void GenPiutangDelete(KasBonModel kasBon);
         BPPiutangModel GenPiutang(LunasKasBonModel lunasKasBon, KasBonModel kasBon);
         BPPiutangModel GetData(string piutangID);
 
@@ -42,6 +43,8 @@ namespace AnugerahBackend.Accounting.BL
         public BPPiutangModel GetData(string piutangID)
         {
             var header = _bpPiutangDal.GetData(piutangID);
+            if (header == null)
+                return null;
             var detil = _bpPiutangDetilDal.ListData(piutangID);
             header.ListLunas = detil;
             return header;
@@ -56,6 +59,25 @@ namespace AnugerahBackend.Accounting.BL
             var bpPiutang = (BPPiutangModel)kasBon;
             var result = Save(bpPiutang);
             return result;
+        }
+
+        public void GenPiutangDelete(KasBonModel kasBon)
+        {
+            if (kasBon == null)
+            {
+                throw new ArgumentNullException(nameof(kasBon));
+            }
+
+            //  jika sudah ada pelunasan, tidak bisa di hapus
+            var bpPiutang = GetData(kasBon.KasBonID);
+            if (bpPiutang == null)
+                throw new ArgumentException("KasBon invalid");
+
+            if (bpPiutang.NilaiLunas > 0)
+                throw new ArgumentException("KasBon sudah ada pelunasan, tidak dapat di hapus");
+
+            _bpPiutangDetilDal.Delete(kasBon.KasBonID);
+            _bpPiutangDal.Delete(kasBon.KasBonID);
         }
 
         public BPPiutangModel GenPiutang(LunasKasBonModel lunasKasBon, KasBonModel kasBon)
@@ -113,6 +135,14 @@ namespace AnugerahBackend.Accounting.BL
                 throw new ArgumentException("PihakKeduaID invalid");
             else
                 model.PihakKeduaName = pihakKedua.PihakKeduaName;
+
+            //  kasus simpan ulang; pastikan belum ada pelunasan
+            var bpPiutang = GetData(model.BPPiutangID);
+            if(bpPiutang != null)
+            {
+                if (bpPiutang.NilaiLunas > 0)
+                    throw new ArgumentException("Piutang sudah ada pelunasan, tidak bisa simpan ulang");
+            }
 
             //  update nilai total di header
             model.NilaiPiutang = model.ListLunas.Sum(x => x.NilaiPiutang);

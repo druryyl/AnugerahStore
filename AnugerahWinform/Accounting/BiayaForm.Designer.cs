@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.MainTab = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.JenisKasCombo = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.SearchButton = new System.Windows.Forms.Button();
             this.ExitButton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
@@ -50,8 +52,6 @@
             this.DeleteButton = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.JamTimer = new System.Windows.Forms.Timer(this.components);
-            this.label7 = new System.Windows.Forms.Label();
-            this.JenisKasCombo = new System.Windows.Forms.ComboBox();
             this.MainTab.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NilIText)).BeginInit();
@@ -96,6 +96,26 @@
             this.tabPage1.Size = new System.Drawing.Size(308, 454);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Input Transaksi";
+            // 
+            // JenisKasCombo
+            // 
+            this.JenisKasCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.JenisKasCombo.FormattingEnabled = true;
+            this.JenisKasCombo.Location = new System.Drawing.Point(6, 333);
+            this.JenisKasCombo.Name = "JenisKasCombo";
+            this.JenisKasCombo.Size = new System.Drawing.Size(294, 21);
+            this.JenisKasCombo.TabIndex = 8;
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(8, 317);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(60, 13);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Jenis Kas";
             // 
             // SearchButton
             // 
@@ -279,13 +299,14 @@
             this.DeleteButton.TabIndex = 11;
             this.DeleteButton.Text = "Delete";
             this.DeleteButton.UseVisualStyleBackColor = true;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // tabPage2
             // 
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(308, 422);
+            this.tabPage2.Size = new System.Drawing.Size(308, 454);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Informasi";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -294,26 +315,6 @@
             // 
             this.JamTimer.Enabled = true;
             this.JamTimer.Tick += new System.EventHandler(this.JamTimer_Tick);
-            // 
-            // label7
-            // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(8, 317);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(60, 13);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Jenis Kas";
-            // 
-            // JenisKasCombo
-            // 
-            this.JenisKasCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.JenisKasCombo.FormattingEnabled = true;
-            this.JenisKasCombo.Location = new System.Drawing.Point(6, 333);
-            this.JenisKasCombo.Name = "JenisKasCombo";
-            this.JenisKasCombo.Size = new System.Drawing.Size(294, 21);
-            this.JenisKasCombo.TabIndex = 8;
             // 
             // BiayaForm
             // 

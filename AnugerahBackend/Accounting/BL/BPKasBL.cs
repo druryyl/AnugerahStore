@@ -14,6 +14,8 @@ namespace AnugerahBackend.Accounting.BL
     public interface IBPKasBL
     {
         BPKasModel Generate(BiayaModel biaya);
+        void GenDelete(BiayaModel biaya);
+
         BPKasModel Generate(KasBonModel kasBon);
         BPKasModel Generate(LunasKasBonModel lunasKasBon, KasBonModel kasBon);
         BPKasModel Generate(PenjualanModel penjualan);
@@ -50,6 +52,15 @@ namespace AnugerahBackend.Accounting.BL
             return result;
         }
 
+        public void GenDelete(BiayaModel biaya)
+        {
+            if (biaya == null)
+            {
+                throw new ArgumentNullException(nameof(biaya));
+            }
+            _bpKasDal.Delete(biaya.BiayaID);
+        }
+
         public BPKasModel Generate(KasBonModel kasBon)
         {
             if (kasBon == null)
@@ -60,7 +71,6 @@ namespace AnugerahBackend.Accounting.BL
             var result = Save(bpKas);
             return result;
         }
-
         public BPKasModel Generate(LunasKasBonModel lunasKasBon, KasBonModel kasBon)
         {
             if (lunasKasBon == null)
@@ -204,7 +214,6 @@ namespace AnugerahBackend.Accounting.BL
 
             return model;
         }
-
         public IEnumerable<BPKasModel> ListData(string tgl1, string tgl2)
         {
             var result = _bpKasDal.ListData(tgl1, tgl2);
