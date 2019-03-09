@@ -72,9 +72,11 @@
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.SaldoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataColumn16 = new System.Data.DataColumn();
             this.brgIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BrgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bPStokIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SupplierName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.noUrutDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tglDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.reffIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -171,6 +173,7 @@
             this.brgIDDataGridViewTextBoxColumn,
             this.BrgName,
             this.bPStokIDDataGridViewTextBoxColumn,
+            this.SupplierName,
             this.noUrutDataGridViewTextBoxColumn,
             this.tglDataGridViewTextBoxColumn,
             this.reffIDDataGridViewTextBoxColumn,
@@ -214,7 +217,8 @@
             this.dataColumn12,
             this.dataColumn14,
             this.dataColumn15,
-            this.dataColumn13});
+            this.dataColumn13,
+            this.dataColumn16});
             this.BukuStokInfoTable.TableName = "BukuStokInfoTable";
             // 
             // dataColumn1
@@ -360,6 +364,10 @@
             this.SaldoBindingSource.DataMember = "SaldoTable";
             this.SaldoBindingSource.DataSource = this.BPStokInfoDataSet;
             // 
+            // dataColumn16
+            // 
+            this.dataColumn16.ColumnName = "SupplierName";
+            // 
             // brgIDDataGridViewTextBoxColumn
             // 
             this.brgIDDataGridViewTextBoxColumn.DataPropertyName = "BrgID";
@@ -382,6 +390,14 @@
             this.bPStokIDDataGridViewTextBoxColumn.HeaderText = "Stok Control";
             this.bPStokIDDataGridViewTextBoxColumn.Name = "bPStokIDDataGridViewTextBoxColumn";
             this.bPStokIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // SupplierName
+            // 
+            this.SupplierName.DataPropertyName = "SupplierName";
+            this.SupplierName.HeaderText = "SupplierName";
+            this.SupplierName.Name = "SupplierName";
+            this.SupplierName.ReadOnly = true;
+            this.SupplierName.Width = 120;
             // 
             // noUrutDataGridViewTextBoxColumn
             // 
@@ -457,6 +473,7 @@
             this.NilaiPersediaan.HeaderText = "NilaiPersediaan";
             this.NilaiPersediaan.Name = "NilaiPersediaan";
             this.NilaiPersediaan.ReadOnly = true;
+            this.NilaiPersediaan.Visible = false;
             // 
             // PendapatanJual
             // 
@@ -467,6 +484,7 @@
             this.PendapatanJual.HeaderText = "PendapatanJual";
             this.PendapatanJual.Name = "PendapatanJual";
             this.PendapatanJual.ReadOnly = true;
+            this.PendapatanJual.Visible = false;
             // 
             // BukuStokInfoForm
             // 
@@ -530,6 +548,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn brgIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn BrgName;
         private System.Windows.Forms.DataGridViewTextBoxColumn bPStokIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SupplierName;
         private System.Windows.Forms.DataGridViewTextBoxColumn noUrutDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tglDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn reffIDDataGridViewTextBoxColumn;
@@ -539,5 +558,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn hargaJualDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn NilaiPersediaan;
         private System.Windows.Forms.DataGridViewTextBoxColumn PendapatanJual;
+        private System.Data.DataColumn dataColumn16;
     }
 }

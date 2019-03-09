@@ -2,6 +2,7 @@
 using AnugerahBackend.StokBarang.Dal;
 using AnugerahBackend.StokBarang.Model;
 using AnugerahBackend.Support.BL;
+using Ics.Helper.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -237,7 +238,13 @@ namespace AnugerahWinform.StokBarang
         void LoadBrgGridSearch(string brgName, ListBrgOrderEnum order, int top)
         {
             BarangGrid.Rows.Clear();
-            var listBrg = _brgBL.ListData(brgName);
+            var listBrg = _brgBL.ListData();
+
+            var result =
+                from c in listBrg
+                where c.BrgName.ContainMultiWord(brgName)
+                select c;
+
 
             if (listBrg == null)
                 return;
@@ -246,28 +253,28 @@ namespace AnugerahWinform.StokBarang
             switch (order)
             {
                 case ListBrgOrderEnum.BrgID:
-                    listBrgOrdered = listBrg.OrderBy(x => x.BrgID);
+                    listBrgOrdered = result.OrderBy(x => x.BrgID);
                     break;
                 case ListBrgOrderEnum.BrgName:
-                    listBrgOrdered = listBrg.OrderBy(x => x.BrgName);
+                    listBrgOrdered = result.OrderBy(x => x.BrgName);
                     break;
                 case ListBrgOrderEnum.SubJenis:
-                    listBrgOrdered = listBrg.OrderBy(x => x.SubJenisBrgName);
+                    listBrgOrdered = result.OrderBy(x => x.SubJenisBrgName);
                     break;
                 case ListBrgOrderEnum.Merk:
-                    listBrgOrdered = listBrg.OrderBy(x => x.MerkName);
+                    listBrgOrdered = result.OrderBy(x => x.MerkName);
                     break;
                 case ListBrgOrderEnum.Color:
-                    listBrgOrdered = listBrg.OrderBy(x => x.ColorID);
+                    listBrgOrdered = result.OrderBy(x => x.ColorID);
                     break;
                 case ListBrgOrderEnum.LastUpdate:
-                    listBrgOrdered = listBrg.OrderByDescending(x => x.UpdateTimestamp);
+                    listBrgOrdered = result.OrderByDescending(x => x.UpdateTimestamp);
                     break;
                 case ListBrgOrderEnum.Kemasan:
-                    listBrgOrdered = listBrg.OrderBy(x => x.Kemasan);
+                    listBrgOrdered = result.OrderBy(x => x.Kemasan);
                     break;
                 default:
-                    listBrgOrdered = listBrg.OrderBy(x => x.BrgID);
+                    listBrgOrdered = result.OrderBy(x => x.BrgID);
                     break;
             }
 
@@ -510,6 +517,12 @@ namespace AnugerahWinform.StokBarang
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void SearchText_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                SearchButton_Click(sender, e);
         }
     }
 }

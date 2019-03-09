@@ -36,11 +36,14 @@ namespace AnugerahBackend.StokBarang.Dal
                     bb.ReffID, bb.QtyIn, bb.NilaiHPP, bb.QtyOut, bb.HargaJual,
                     (bb.QtyIn * bb.NilaiHpp) NilaiPersediaan,
                     (bb.QtyOut * bb.HargaJual) PendapatanJual,
-                    ISNULL(cc.BrgName, '') BrgName
+                    ISNULL(cc.BrgName, '') BrgName,
+                    ISNULL(ee.SupplierName, '') SupplierName
                 FROM
                     BPStok aa
                     INNER JOIN BPStokDetil bb ON aa.BPStokID = bb.BPStokID
                     LEFT JOIN Brg cc ON aa.BrgID = cc.BrgID
+                    LEFT JOIN Receipt dd ON aa.ReffID = dd.ReceiptID
+                    LEFT JOIN Supplier ee ON dd.SupplierID = ee.SupplierID
                 WHERE
                     bb.Tgl BETWEEN @Tgl1 AND @Tgl2 ";
             using (var conn = new SqlConnection(_connString))
@@ -61,6 +64,7 @@ namespace AnugerahBackend.StokBarang.Dal
                             BPStokID = dr["BPStokID"].ToString(),
                             NoUrut = Convert.ToInt16(dr["NoUrut"].ToString()),
                             Tgl = dr["Tgl"].ToString().ToDate(),
+                            SupplierName = dr["SupplierName"].ToString(),
                             BrgID = dr["BrgID"].ToString(),
                             BrgName = dr["BrgName"].ToString(),
 

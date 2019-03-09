@@ -57,13 +57,9 @@ namespace AnugerahWinform.StokBarang
                     item.HargaJual,
                     item.NilaiPersediaan,
                     item.PendapatanJual,
-                    item.BrgName);
+                    item.BrgName,
+                    item.SupplierName);
             }
-            //var totKasMasuk = listData.Sum(x => x.NilaiKasMasuk);
-            //var totKasKeluar = listData.Sum(x => x.NilaiKasKeluar);
-
-            //SaldoTable.Rows.Clear();
-            //SaldoTable.Rows.Add(totKasMasuk, totKasKeluar, totKasMasuk - totKasKeluar);
         }
 
         private void SearchButton_Click(object sender, EventArgs e)

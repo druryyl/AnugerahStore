@@ -3,6 +3,7 @@ using AnugerahWinform.Keuangan;
 using AnugerahWinform.Pembelian;
 using AnugerahWinform.Penjualan;
 using AnugerahWinform.StokBarang;
+using AnugerahWinform.Support;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -307,6 +308,16 @@ namespace AnugerahWinform
         private void StokInfoButton_Click(object sender, EventArgs e)
         {
             var form = new StokInfoForm
+            {
+                MdiParent = this,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            form.Show();
+        }
+
+        private void ribbonButton1_Click(object sender, EventArgs e)
+        {
+            var form = new MarvelReporting
             {
                 MdiParent = this,
                 StartPosition = FormStartPosition.CenterScreen

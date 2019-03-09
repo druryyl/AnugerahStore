@@ -304,6 +304,12 @@
     <Compile Include="StokBarang\TipeBrgListForm.Designer.cs">
       <DependentUpon>TipeBrgListForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Support\MarvelReporting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Support\MarvelReporting.Designer.cs">
+      <DependentUpon>MarvelReporting.cs</DependentUpon>
+    </Compile>
     <Compile Include="Support\Presenter\LoginPresenter.cs" />
     <Compile Include="Support\SearchingForm.cs">
       <SubType>Form</SubType>
@@ -429,6 +435,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StokBarang\TipeBrgListForm.resx">
       <DependentUpon>TipeBrgListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Support\MarvelReporting.resx">
+      <DependentUpon>MarvelReporting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Support\SearchingForm.resx">
       <DependentUpon>SearchingForm.cs</DependentUpon>

@@ -162,6 +162,7 @@
             this.SearchText.Name = "SearchText";
             this.SearchText.Size = new System.Drawing.Size(597, 21);
             this.SearchText.TabIndex = 2;
+            this.SearchText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SearchText_KeyDown);
             // 
             // BarangTabControl
             // 
