@@ -26,5 +26,7 @@ namespace AnugerahWinform.Pembelian.View
         decimal DiskonLain { get; set; }
         decimal BiayaLain { get; set; }
         decimal GrandTotal { get; set; }
+
+        bool IsClosedPO { get; set; }
     }
 }

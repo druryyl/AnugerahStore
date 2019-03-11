@@ -51,7 +51,8 @@ namespace AnugerahWinform.Pembelian.Presenter
                 Diskon = _view.DiskonLain,
                 BiayaLain = _view.BiayaLain,
                 GrandTotal = _view.GrandTotal,
-                ListBrg = _view.ListBrg
+                ListBrg = _view.ListBrg,
+                IsClosed = _view.IsClosedPO
             };
             purchase.ListBrg = purchase.ListBrg.Where(x => x.BrgID != "").ToList();
 
@@ -78,6 +79,7 @@ namespace AnugerahWinform.Pembelian.Presenter
             _view.DiskonLain = 0;
             _view.BiayaLain = 0;
             _view.GrandTotal = 0;
+            _view.IsClosedPO = false;
             _view.ListBrg = new List<PurchaseDetilModel>
             {
                 new PurchaseDetilModel
@@ -171,6 +173,7 @@ namespace AnugerahWinform.Pembelian.Presenter
                 _view.SupplierID = purchase.SupplierID;
                 _view.SupplierName = purchase.SupplierName;
                 _view.Catatan = purchase.Keterangan;
+                _view.IsClosedPO = purchase.IsClosed;
                 var tempList = purchase.ListBrg.ToList();
                 tempList.Add(new PurchaseDetilModel());
 
@@ -186,6 +189,19 @@ namespace AnugerahWinform.Pembelian.Presenter
                 _view.Alamat = supplier.Alamat;
                 _view.NoTelp = supplier.NoTelp;
             }
+        }
+
+        public void ClosePO()
+        {
+            if (MessageBox.Show("Close PO?", "Purchase", MessageBoxButtons.YesNo) == DialogResult.No)
+                return;
+            var po = _purchaseBL.GetData(_view.PurchaseID);
+
+            if (po == null)
+                throw new ArgumentException("PO not found");
+
+            po.IsClosed = true;
+            _purchaseBL.Save(po);
         }
     }
 }

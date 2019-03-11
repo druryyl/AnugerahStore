@@ -1,4 +1,5 @@
-﻿using AnugerahBackend.Penjualan.Dal;
+﻿using AnugerahBackend.Accounting.BL;
+using AnugerahBackend.Penjualan.Dal;
 using AnugerahBackend.Penjualan.Model;
 using AnugerahBackend.Support;
 using AnugerahBackend.Support.BL;
@@ -24,11 +25,13 @@ namespace AnugerahBackend.Penjualan.BL
     {
         private ICustomerDal _customerDal;
         private IParameterNoBL _paramNoBL;
+        private IPihakKeduaBL _pihakKeduaBL;
 
         public CustomerBL()
         {
             _customerDal = new CustomerDal();
             _paramNoBL = new ParameterNoBL();
+            _pihakKeduaBL = new PihakKeduaBL();
             SearchFilter = new SearchFilter
             {
                 IsDate = false
@@ -46,6 +49,7 @@ namespace AnugerahBackend.Penjualan.BL
             {
                 throw new ArgumentNullException(nameof(customer));
             }
+
             //  validate nama
             if (customer.CustomerName.Trim() == "")
                 throw new ArgumentException("CustomerName kosong");
@@ -54,9 +58,10 @@ namespace AnugerahBackend.Penjualan.BL
             {
                 if (customer.CustomerID.Trim() == "")
                     customer.CustomerID = GenNewID();
+
                 _customerDal.Delete(customer.CustomerID);
                 _customerDal.Insert(customer);
-
+                _pihakKeduaBL.Save(customer);
                 trans.Complete();
             }
 
@@ -72,7 +77,12 @@ namespace AnugerahBackend.Penjualan.BL
         }
         public void Delete(string id)
         {
-            throw new NotImplementedException();
+            using (var trans = TransHelper.NewScope())
+            {
+                _customerDal.Delete(id);
+                _pihakKeduaBL.Delete(id);
+                trans.Complete();
+            }
         }
 
         public CustomerModel GetData(string id)

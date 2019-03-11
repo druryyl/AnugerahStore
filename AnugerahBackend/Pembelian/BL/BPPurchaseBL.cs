@@ -55,6 +55,7 @@ namespace AnugerahBackend.Pembelian.BL
             newPurchase.Keterangan = purchase.Keterangan;
             newPurchase.Diskon = purchase.Diskon;
             newPurchase.BiayaLain = purchase.BiayaLain;
+            newPurchase.IsClosed = purchase.IsClosed;
 
             //  detil; hilangkan detil Purchase-nya
             if(newPurchase.ListBrg != null)
@@ -233,6 +234,9 @@ namespace AnugerahBackend.Pembelian.BL
             //  update kode Purchase di Detil harus sama dengan header
             foreach (var item in model.ListBrg)
                 item.BPPurchaseID = model.BPPurchaseID;
+
+            if (model.TotHargaPurchase == model.TotHargaReceipt)
+                model.IsClosed = true;
 
             //  save
             using (var trans = TransHelper.NewScope())

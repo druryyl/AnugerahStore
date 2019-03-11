@@ -20,6 +20,7 @@ namespace AnugerahBackend.Pembelian.Model
         public decimal BiayaLain { get; set; }
         public decimal GrandTotal { get; set; }
         public List<BPPurchaseReceiptModel> ListBrg { get; set; }
+        public bool IsClosed { get; set; }
     }
     public class BPPurchaseSearchModel
     {

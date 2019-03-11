@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.entryDataTabPage = new System.Windows.Forms.TabPage();
+            this.ClosePOButton = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.GrandTotalNumText = new System.Windows.Forms.NumericUpDown();
             this.BiayaLainNumText = new System.Windows.Forms.NumericUpDown();
@@ -91,6 +92,7 @@
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.listDataGrid = new System.Windows.Forms.DataGridView();
+            this.ClosePOStatusLabel = new System.Windows.Forms.Label();
             this.mainTabControl.SuspendLayout();
             this.entryDataTabPage.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -121,6 +123,7 @@
             // entryDataTabPage
             // 
             this.entryDataTabPage.BackColor = System.Drawing.Color.Khaki;
+            this.entryDataTabPage.Controls.Add(this.ClosePOButton);
             this.entryDataTabPage.Controls.Add(this.panel2);
             this.entryDataTabPage.Controls.Add(this.panel1);
             this.entryDataTabPage.Controls.Add(this.BrgGrid);
@@ -133,6 +136,17 @@
             this.entryDataTabPage.Size = new System.Drawing.Size(897, 532);
             this.entryDataTabPage.TabIndex = 0;
             this.entryDataTabPage.Text = "Entry Data";
+            // 
+            // ClosePOButton
+            // 
+            this.ClosePOButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ClosePOButton.Location = new System.Drawing.Point(8, 503);
+            this.ClosePOButton.Name = "ClosePOButton";
+            this.ClosePOButton.Size = new System.Drawing.Size(87, 23);
+            this.ClosePOButton.TabIndex = 19;
+            this.ClosePOButton.Text = "&Close PO";
+            this.ClosePOButton.UseVisualStyleBackColor = true;
+            this.ClosePOButton.Click += new System.EventHandler(this.ClosePOBuoon_Click);
             // 
             // panel2
             // 
@@ -289,6 +303,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.LemonChiffon;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.ClosePOStatusLabel);
             this.panel1.Controls.Add(this.SearchSupplierButton);
             this.panel1.Controls.Add(this.SupplierNameText);
             this.panel1.Controls.Add(this.CatatanTextBox);
@@ -516,9 +531,9 @@
             // qtyDataGridViewTextBoxColumn
             // 
             this.qtyDataGridViewTextBoxColumn.DataPropertyName = "Qty";
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle11.Format = "N0";
-            this.qtyDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.Format = "N0";
+            this.qtyDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
             this.qtyDataGridViewTextBoxColumn.HeaderText = "Qty";
             this.qtyDataGridViewTextBoxColumn.Name = "qtyDataGridViewTextBoxColumn";
             this.qtyDataGridViewTextBoxColumn.Width = 70;
@@ -526,36 +541,36 @@
             // hargaDataGridViewTextBoxColumn
             // 
             this.hargaDataGridViewTextBoxColumn.DataPropertyName = "Harga";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle12.Format = "N0";
-            this.hargaDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "N0";
+            this.hargaDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.hargaDataGridViewTextBoxColumn.HeaderText = "Harga";
             this.hargaDataGridViewTextBoxColumn.Name = "hargaDataGridViewTextBoxColumn";
             // 
             // diskonDataGridViewTextBoxColumn
             // 
             this.diskonDataGridViewTextBoxColumn.DataPropertyName = "Diskon";
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle13.Format = "N0";
-            this.diskonDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "N0";
+            this.diskonDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.diskonDataGridViewTextBoxColumn.HeaderText = "Diskon";
             this.diskonDataGridViewTextBoxColumn.Name = "diskonDataGridViewTextBoxColumn";
             // 
             // taxRupiahDataGridViewTextBoxColumn
             // 
             this.taxRupiahDataGridViewTextBoxColumn.DataPropertyName = "TaxRupiah";
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle14.Format = "N0";
-            this.taxRupiahDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "N0";
+            this.taxRupiahDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
             this.taxRupiahDataGridViewTextBoxColumn.HeaderText = "Tax (Rp)";
             this.taxRupiahDataGridViewTextBoxColumn.Name = "taxRupiahDataGridViewTextBoxColumn";
             // 
             // subTotalDataGridViewTextBoxColumn
             // 
             this.subTotalDataGridViewTextBoxColumn.DataPropertyName = "SubTotal";
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle15.Format = "N0";
-            this.subTotalDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Format = "N0";
+            this.subTotalDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
             this.subTotalDataGridViewTextBoxColumn.HeaderText = "Sub Total";
             this.subTotalDataGridViewTextBoxColumn.Name = "subTotalDataGridViewTextBoxColumn";
             // 
@@ -708,6 +723,18 @@
             this.listDataGrid.Size = new System.Drawing.Size(945, 475);
             this.listDataGrid.TabIndex = 11;
             // 
+            // ClosePOStatusLabel
+            // 
+            this.ClosePOStatusLabel.AutoSize = true;
+            this.ClosePOStatusLabel.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClosePOStatusLabel.ForeColor = System.Drawing.Color.DarkRed;
+            this.ClosePOStatusLabel.Location = new System.Drawing.Point(145, 99);
+            this.ClosePOStatusLabel.Name = "ClosePOStatusLabel";
+            this.ClosePOStatusLabel.Size = new System.Drawing.Size(91, 18);
+            this.ClosePOStatusLabel.TabIndex = 22;
+            this.ClosePOStatusLabel.Text = "Closed PO";
+            this.ClosePOStatusLabel.Visible = false;
+            // 
             // PurchaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -797,5 +824,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn taxRupiahDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn subTotalDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource PurchaseDetilBindingSource;
+        private System.Windows.Forms.Button ClosePOButton;
+        private System.Windows.Forms.Label ClosePOStatusLabel;
     }
 }

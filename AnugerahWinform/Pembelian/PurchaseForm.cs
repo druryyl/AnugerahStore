@@ -96,6 +96,16 @@ namespace AnugerahWinform.Pembelian
             set => GrandTotalNumText.Value = value;
         }
 
+        public bool IsClosedPO
+        {
+            get => ClosePOStatusLabel.Visible;
+            set
+            {
+                ClosePOStatusLabel.Visible = value;
+                ClosePOButton.Visible = !value;
+            }
+        }
+
         private List<PurchaseDetilModel> GetListBrg()
         {
             List<PurchaseDetilModel> result = null;
@@ -246,6 +256,19 @@ namespace AnugerahWinform.Pembelian
         {
             if (e.KeyCode == Keys.F1)
                 presenter.PilihPurchase();
+        }
+
+        private void ClosePOBuoon_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                presenter.ClosePO();
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            presenter.New();
         }
     }
 }

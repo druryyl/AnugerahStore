@@ -37,11 +37,11 @@ namespace AnugerahBackend.Pembelian.Dal
                     BPPurchase (
                         BPPurchaseID, Tgl, Jam, SupplierID, Keterangan, 
                         TotHargaPurchase, TotHargaReceipt, Diskon, 
-                        BiayaLain, GrandTotal)
+                        BiayaLain, GrandTotal, IsClosed)
                 VALUES (
                         @BPPurchaseID, @Tgl, @Jam, @SupplierID, @Keterangan, 
                         @TotHargaPurchase, @TotHargaReceipt, @Diskon, 
-                        @BiayaLain, @GrandTotal) ";
+                        @BiayaLain, @GrandTotal, @IsClosed) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
@@ -55,6 +55,7 @@ namespace AnugerahBackend.Pembelian.Dal
                 cmd.AddParam("@Diskon", model.Diskon);
                 cmd.AddParam("@BiayaLain", model.BiayaLain);
                 cmd.AddParam("@GrandTotal", model.GrandTotal);
+                cmd.AddParam("@IsClosed", model.IsClosed);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -75,7 +76,8 @@ namespace AnugerahBackend.Pembelian.Dal
                     TotHargaReceipt = @TotHargaReceipt, 
                     Diskon = @Diskon, 
                     BiayaLain = @BiayaLain, 
-                    GrandTotal = @GrandTotal
+                    GrandTotal = @GrandTotal,
+                    IsClosed = @IsClosed
                 WHERE
                     BPPurchaseID = @BPPurchaseID ";
             using (var conn = new SqlConnection(_connString))
@@ -91,6 +93,7 @@ namespace AnugerahBackend.Pembelian.Dal
                 cmd.AddParam("@Diskon", model.Diskon);
                 cmd.AddParam("@BiayaLain", model.BiayaLain);
                 cmd.AddParam("@GrandTotal", model.GrandTotal);
+                cmd.AddParam("@IsClosed", model.IsClosed);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -120,7 +123,7 @@ namespace AnugerahBackend.Pembelian.Dal
                 SELECT
                     aa.BPPurchaseID, aa.Tgl, aa.Jam, aa.SupplierID, aa.Keterangan, 
                     aa.TotHargaPurchase, aa.TotHargaReceipt, aa.Diskon, 
-                    aa.BiayaLain, aa.GrandTotal,
+                    aa.BiayaLain, aa.GrandTotal, aa.IsClosed,
                     ISNULL(bb.SupplierName, '') SupplierName
                 FROM
                     BPPurchase aa
@@ -148,7 +151,8 @@ namespace AnugerahBackend.Pembelian.Dal
                         TotHargaReceipt = Convert.ToDecimal(dr["TotHargaReceipt"]),
                         Diskon = Convert.ToDecimal(dr["Diskon"]),
                         BiayaLain = Convert.ToDecimal(dr["BiayaLain"]),
-                        GrandTotal = Convert.ToDecimal(dr["GrandTotal"])
+                        GrandTotal = Convert.ToDecimal(dr["GrandTotal"]),
+                        IsClosed = Convert.ToBoolean(dr["IsClosed"])
                     };
                 }
             }
@@ -163,7 +167,7 @@ namespace AnugerahBackend.Pembelian.Dal
                 SELECT
                     BPPurchaseID, Tgl, Jam, SupplierID, Keterangan, 
                     TotHargaPurchase, TotHargaReceipt, Diskon, 
-                    BiayaLain, GrandTotal
+                    BiayaLain, GrandTotal, IsClosed,
                 FROM
                     BPPurchase 
                 WHERE
@@ -192,7 +196,8 @@ namespace AnugerahBackend.Pembelian.Dal
                             TotHargaReceipt = Convert.ToDecimal(dr["TotHargaReceipt"]),
                             Diskon = Convert.ToDecimal(dr["Diskon"]),
                             BiayaLain = Convert.ToDecimal(dr["BiayaLain"]),
-                            GrandTotal = Convert.ToDecimal(dr["GrandTotal"])
+                            GrandTotal = Convert.ToDecimal(dr["GrandTotal"]),
+                            IsClosed = Convert.ToBoolean(dr["IsClosed"])
                         };
                         result.Add(item);
                     }
@@ -207,11 +212,13 @@ namespace AnugerahBackend.Pembelian.Dal
 
             var sSql = @"
                 SELECT
-                    BPPurchaseID, Tgl, Jam, SupplierID, Keterangan, 
-                    TotHargaPurchase, TotHargaReceipt, Diskon, 
-                    BiayaLain, GrandTotal
+                    aa.BPPurchaseID, aa.Tgl, aa.Jam, aa.SupplierID, aa.Keterangan, 
+                    aa.TotHargaPurchase, aa.TotHargaReceipt, aa.Diskon, 
+                    aa.BiayaLain, aa.GrandTotal, aa.IsClosed,
+                    ISNULL(bb.SupplierName, '') SupplierName
                 FROM
-                    BPPurchase 
+                    BPPurchase aa
+                    LEFT JOIN Supplier bb ON aa.SupplierID = bb.SupplierID
                 WHERE
                     TotHargaReceipt <> TotHargaPurchase ";
             using (var conn = new SqlConnection(_connString))
@@ -231,12 +238,14 @@ namespace AnugerahBackend.Pembelian.Dal
                             Tgl = dr["Tgl"].ToString().ToTglDMY(),
                             Jam = dr["Jam"].ToString(),
                             SupplierID = dr["SupplierID"].ToString(),
+                            SupplierName = dr["SupplierName"].ToString(),
                             Keterangan = dr["Keterangan"].ToString(),
                             TotHargaPurchase = Convert.ToDecimal(dr["TotHargaPurchase"]),
                             TotHargaReceipt = Convert.ToDecimal(dr["TotHargaReceipt"]),
                             Diskon = Convert.ToDecimal(dr["Diskon"]),
                             BiayaLain = Convert.ToDecimal(dr["BiayaLain"]),
-                            GrandTotal = Convert.ToDecimal(dr["GrandTotal"])
+                            GrandTotal = Convert.ToDecimal(dr["GrandTotal"]),
+                            IsClosed = Convert.ToBoolean(dr["IsClosed"])
                         };
                         result.Add(item);
                     }

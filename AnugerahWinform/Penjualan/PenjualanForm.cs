@@ -488,8 +488,8 @@ namespace AnugerahWinform.Penjualan
             };
 
             PenjualanModel result = null;
-            //try
-            //{
+            try
+            {
                 using (var trans = TransHelper.NewScope())
                 {
                     //  save penjualan
@@ -510,12 +510,12 @@ namespace AnugerahWinform.Penjualan
 
                     trans.Complete();
                 }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //    return;
-            //}
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
 
             if (result != null)
                 LastIDLabel.Text = result.PenjualanID;

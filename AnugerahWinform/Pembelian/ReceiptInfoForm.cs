@@ -52,11 +52,33 @@ namespace AnugerahWinform.Pembelian
                     item.Tgl,
                     item.SupplierName,
                     item.Keterangan,
+                    null, null, null, null);
+                var receipt = _receiptBL.GetData(item.ReceiptID);
+                if (receipt == null) continue;
+                foreach (var item2 in receipt.ListBrg)
+                {
+                    var ket = string.Format(" - {1}x : {0}",
+                        item2.BrgName, item2.Qty.ToString("N0"));
+                    ReceiptInfoTable.Rows.Add(
+                        "", null, "", ket,
+                        null, null, null, null);
+                }
+                ReceiptInfoTable.Rows.Add(
+                    null, null, null, null,
                     item.TotalHarga,
                     item.Diskon,
                     item.BiayaLain,
-                    item.GrandTotal,
-                    item.PurchaseID);
+                    item.GrandTotal);
+            }
+            var colorToggle = false;
+            for (int i = 0; i <= dataGridView1.Rows.Count - 1; i++)
+            {
+                if (dataGridView1.Rows[i].Cells[0].Value.ToString().Trim() != "")
+                    colorToggle = !colorToggle;
+                if (colorToggle)
+                    dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.White;
+                else
+                    dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.LemonChiffon;
             }
             var totHarga = listData.Sum(x => x.TotalHarga);
             var totDiskon = listData.Sum(x => x.Diskon);

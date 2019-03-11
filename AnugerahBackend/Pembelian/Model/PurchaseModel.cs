@@ -18,6 +18,8 @@ namespace AnugerahBackend.Pembelian.Model
         public decimal Diskon { get; set; }
         public decimal BiayaLain { get; set; }
         public decimal GrandTotal { get; set; }
+
+        public bool IsClosed { get; set; }
         public IEnumerable<PurchaseDetilModel> ListBrg { get; set; }
     }
 

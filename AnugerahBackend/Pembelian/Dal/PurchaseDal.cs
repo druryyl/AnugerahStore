@@ -36,11 +36,11 @@ namespace AnugerahBackend.Pembelian.Dal
                     Purchase (
                         PurchaseID, Tgl, Jam, SupplierID,
                         Keterangan, TotalHarga, Diskon, BiayaLain,
-                        GrandTotal)
+                        GrandTotal, IsClosed)
                 VALUES (
                         @PurchaseID, @Tgl, @Jam, @SupplierID,
                         @Keterangan, @TotalHarga, @Diskon, @BiayaLain,
-                        @GrandTotal) ";
+                        @GrandTotal, @IsClosed) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
@@ -53,6 +53,7 @@ namespace AnugerahBackend.Pembelian.Dal
                 cmd.AddParam("@Diskon", model.Diskon);
                 cmd.AddParam("@BiayaLain", model.BiayaLain);
                 cmd.AddParam("@GrandTOtal", model.GrandTotal);
+                cmd.AddParam("@IsClosed", model.IsClosed);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -71,7 +72,8 @@ namespace AnugerahBackend.Pembelian.Dal
                     TotalHarga = @TotalHarga, 
                     Diskon = @Diskon, 
                     BiayaLain = @BiayaLain,
-                    GrandTotal = @GrandTotal
+                    GrandTotal = @GrandTotal,
+                    IsClosed = @IsClosed
                 WHERE
                     PurchaseID = @PurchaseID ";
             using (var conn = new SqlConnection(_connString))
@@ -86,6 +88,7 @@ namespace AnugerahBackend.Pembelian.Dal
                 cmd.AddParam("@Diskon", model.Diskon);
                 cmd.AddParam("@BiayaLain", model.BiayaLain);
                 cmd.AddParam("@GrandTOtal", model.GrandTotal);
+                cmd.AddParam("@IsClosed", model.IsClosed);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -114,8 +117,8 @@ namespace AnugerahBackend.Pembelian.Dal
                 SELECT
                     aa.PurchaseID, aa.Tgl, aa.Jam, aa.SupplierID, 
                     aa.Keterangan, aa.TotalHarga, aa.Diskon, aa.BiayaLain, 
-                    aa.GrandTotal, 
-                    ISNULL(bb.SupplierName, '') SUpplierName 
+                    aa.GrandTotal, aa.IsClosed,
+                    ISNULL(bb.SupplierName, '') SupplierName 
                 FROM
                     Purchase aa
                     LEFT JOIN Supplier bb ON aa.SupplierID = bb.SupplierID
@@ -142,7 +145,9 @@ namespace AnugerahBackend.Pembelian.Dal
                         TotalHarga = Convert.ToDecimal(dr["TotalHarga"]),
                         Diskon = Convert.ToDecimal(dr["Diskon"]),
                         BiayaLain = Convert.ToDecimal(dr["BiayaLain"]),
-                        GrandTotal = Convert.ToDecimal(dr["GrandTotal"])
+                        GrandTotal = Convert.ToDecimal(dr["GrandTotal"]),
+                        IsClosed = Convert.ToBoolean(dr["IsClosed"])
+                        
                     };
                 }
                 return result;
@@ -156,7 +161,7 @@ namespace AnugerahBackend.Pembelian.Dal
                 SELECT
                     aa.PurchaseID, aa.Tgl, aa.Jam, aa.SupplierID, 
                     aa.Keterangan, aa.TotalHarga, aa.Diskon, aa.BiayaLain, 
-                    aa.GrandTotal,
+                    aa.GrandTotal, aa.IsClosed,
                     ISNULL(bb.SupplierName, '') SUpplierName 
                 FROM
                     Purchase aa
@@ -187,7 +192,8 @@ namespace AnugerahBackend.Pembelian.Dal
                             TotalHarga = Convert.ToDecimal(dr["TotalHarga"]),
                             Diskon = Convert.ToDecimal(dr["Diskon"]),
                             BiayaLain = Convert.ToDecimal(dr["BiayaLain"]),
-                            GrandTotal = Convert.ToDecimal(dr["GrandTotal"])
+                            GrandTotal = Convert.ToDecimal(dr["GrandTotal"]),
+                            IsClosed = Convert.ToBoolean(dr["IsClosed"])
                         };
                         result.Add(item);
                     };

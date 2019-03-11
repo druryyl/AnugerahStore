@@ -20,6 +20,8 @@ namespace AnugerahBackend.Pembelian.BL
         void Delete(string id);
         PurchaseModel GetData(string id);
         IEnumerable<PurchaseModel> ListData(string tgl1, string tgl2);
+        void ClosePO(PurchaseModel model);
+        void OpenPO(PurchaseModel model);
     }
 
     public class PurchaseBLDependencyContainer
@@ -65,6 +67,9 @@ namespace AnugerahBackend.Pembelian.BL
             {
                 throw new ArgumentNullException(nameof(model));
             }
+
+            if (model.IsClosed)
+                throw new ArgumentException("PO sudah di-close, tidak bisa disimpan ulang");
 
             //  validasi supplier
             var supplier = _dep.SupplierDal.GetData(model.SupplierID);
@@ -181,6 +186,26 @@ namespace AnugerahBackend.Pembelian.BL
                     select c;
 
             return result;
+        }
+
+        public void ClosePO(PurchaseModel model)
+        {
+            var purchase = _dep.PurchaseDal.GetData(model.PurchaseID);
+            if (purchase == null)
+                throw new ArgumentException("PurchaseID invalid");
+
+            purchase.IsClosed = true;
+            _dep.PurchaseDal.Update(purchase);
+        }
+
+        public void OpenPO(PurchaseModel model)
+        {
+            var purchase = _dep.PurchaseDal.GetData(model.PurchaseID);
+            if (purchase == null)
+                throw new ArgumentException("PurchaseID invalid");
+
+            purchase.IsClosed = false;
+            _dep.PurchaseDal.Update(purchase);
         }
     }
 }
