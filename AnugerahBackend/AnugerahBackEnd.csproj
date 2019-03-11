@@ -31,9 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ics.Helper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Project.Aktif\Web7\Helper\HelperLib\bin\Release\Ics.Helper.dll</HintPath>
+    <Reference Include="Ics.Helper">
+      <HintPath>..\..\Helper\HelperLib\bin\Release\Ics.Helper.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
