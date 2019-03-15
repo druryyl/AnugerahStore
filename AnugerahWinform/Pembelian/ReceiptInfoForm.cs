@@ -12,6 +12,7 @@ using AnugerahBackend.Accounting.Model;
 using AnugerahBackend.Pembelian.BL;
 using AnugerahBackend.Pembelian.Model;
 using Ics.Helper.Extensions;
+using Ics.Helper.StringDateTime;
 
 namespace AnugerahWinform.Pembelian
 {
@@ -49,7 +50,7 @@ namespace AnugerahWinform.Pembelian
             {
                 ReceiptInfoTable.Rows.Add(
                     item.ReceiptID,
-                    item.Tgl,
+                    item.Tgl.ToDate(),
                     item.SupplierName,
                     item.Keterangan,
                     null, null, null, null);
