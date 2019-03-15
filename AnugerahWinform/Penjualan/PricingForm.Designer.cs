@@ -28,16 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             this.MainSplitContainer = new ComponentFactory.Krypton.Toolkit.KryptonSplitContainer();
             this.PrgBar = new System.Windows.Forms.ProgressBar();
             this.LoadJenisBrgTreeView = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.JenisTreeView = new ComponentFactory.Krypton.Toolkit.KryptonTreeView();
             this.BrgSplitContainer = new ComponentFactory.Krypton.Toolkit.KryptonSplitContainer();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.BrgGrid = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.BrgKodeCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BrgNamaCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,7 +57,6 @@
             this.SaveButton = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.PasteButton = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.CopyButton = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.MainSplitContainer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainSplitContainer.Panel1)).BeginInit();
             this.MainSplitContainer.Panel1.SuspendLayout();
@@ -153,6 +153,15 @@
             this.BrgSplitContainer.SplitterDistance = 372;
             this.BrgSplitContainer.TabIndex = 0;
             // 
+            // textBox1
+            // 
+            this.textBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.textBox1.Location = new System.Drawing.Point(0, 0);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(836, 21);
+            this.textBox1.TabIndex = 1;
+            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SearchBrg_KeyDown);
+            // 
             // BrgGrid
             // 
             this.BrgGrid.AllowUserToAddRows = false;
@@ -178,8 +187,8 @@
             // 
             // BrgKodeCol
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.BrgKodeCol.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.BrgKodeCol.DefaultCellStyle = dataGridViewCellStyle16;
             this.BrgKodeCol.HeaderText = "Kode";
             this.BrgKodeCol.Name = "BrgKodeCol";
             this.BrgKodeCol.ReadOnly = true;
@@ -220,9 +229,9 @@
             // 
             // BrgPriceCol
             // 
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.BrgPriceCol.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.BrgPriceCol.DefaultCellStyle = dataGridViewCellStyle17;
             this.BrgPriceCol.HeaderText = "Price";
             this.BrgPriceCol.Name = "BrgPriceCol";
             this.BrgPriceCol.ReadOnly = true;
@@ -266,31 +275,31 @@
             // 
             // PriceQtyCol
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.Format = "N0";
-            dataGridViewCellStyle3.NullValue = null;
-            this.PriceQtyCol.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.Format = "N0";
+            dataGridViewCellStyle18.NullValue = null;
+            this.PriceQtyCol.DefaultCellStyle = dataGridViewCellStyle18;
             this.PriceQtyCol.HeaderText = "Min Qty";
             this.PriceQtyCol.Name = "PriceQtyCol";
             // 
             // PriceHargaCol
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.Format = "N0";
-            dataGridViewCellStyle4.NullValue = null;
-            this.PriceHargaCol.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle19.Format = "N0";
+            dataGridViewCellStyle19.NullValue = null;
+            this.PriceHargaCol.DefaultCellStyle = dataGridViewCellStyle19;
             this.PriceHargaCol.HeaderText = "Harga";
             this.PriceHargaCol.Name = "PriceHargaCol";
             // 
             // PriceDiskonCol
             // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.Format = "N2";
-            dataGridViewCellStyle5.NullValue = null;
-            this.PriceDiskonCol.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle20.Format = "N2";
+            dataGridViewCellStyle20.NullValue = null;
+            this.PriceDiskonCol.DefaultCellStyle = dataGridViewCellStyle20;
             this.PriceDiskonCol.HeaderText = "Diskon";
             this.PriceDiskonCol.Name = "PriceDiskonCol";
             // 
@@ -303,6 +312,7 @@
             this.ExitButton.Size = new System.Drawing.Size(160, 25);
             this.ExitButton.TabIndex = 4;
             this.ExitButton.Values.Text = "Exit";
+            this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
             // DeleteButton
             // 
@@ -322,7 +332,7 @@
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(160, 25);
             this.SaveButton.TabIndex = 2;
-            this.SaveButton.Values.Text = "Save";
+            this.SaveButton.Values.Text = "&Save";
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // PasteButton
@@ -333,7 +343,8 @@
             this.PasteButton.Name = "PasteButton";
             this.PasteButton.Size = new System.Drawing.Size(160, 25);
             this.PasteButton.TabIndex = 1;
-            this.PasteButton.Values.Text = "Paste";
+            this.PasteButton.Values.Text = "&Paste";
+            this.PasteButton.Click += new System.EventHandler(this.PasteButton_Click);
             // 
             // CopyButton
             // 
@@ -343,17 +354,8 @@
             this.CopyButton.Name = "CopyButton";
             this.CopyButton.Size = new System.Drawing.Size(160, 25);
             this.CopyButton.TabIndex = 0;
-            this.CopyButton.Values.Text = "Copy";
+            this.CopyButton.Values.Text = "&Copy";
             this.CopyButton.Click += new System.EventHandler(this.CopyButton_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.textBox1.Location = new System.Drawing.Point(0, 0);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(836, 21);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
             // PricingForm
             // 

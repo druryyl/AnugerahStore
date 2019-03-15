@@ -146,6 +146,7 @@ namespace AnugerahBackend.Pembelian.Dal
                         Tgl = dr["Tgl"].ToString().ToTglDMY(),
                         Jam = dr["Jam"].ToString(),
                         SupplierID = dr["SupplierID"].ToString(),
+                        SupplierName = dr["SupplierName"].ToString(),
                         Keterangan = dr["Keterangan"].ToString(),
                         TotHargaPurchase = Convert.ToDecimal(dr["TotHargaPurchase"]),
                         TotHargaReceipt = Convert.ToDecimal(dr["TotHargaReceipt"]),

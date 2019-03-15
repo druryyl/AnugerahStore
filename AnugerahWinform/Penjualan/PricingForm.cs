@@ -24,6 +24,7 @@ namespace AnugerahWinform.Penjualan
         const string NO_ID = "x";
         const string NO_NAME_MERK = "[Tanpa Merk]";
         const string NO_NAME_COLOR = "[Tanpa Color]";
+        private List<PriceModel> PriceCopy = null;
 
         public PricingForm()
         {
@@ -169,6 +170,7 @@ namespace AnugerahWinform.Penjualan
                             BrgGrid.Rows[PrgBar.Value - 1].Cells["BrgColorCol"].Style.ForeColor = Color.White;
                     }
                 }
+                RefreshPrice(PrgBar.Value - 1);
             }
             PrgBar.Value = 0;
         }
@@ -199,12 +201,15 @@ namespace AnugerahWinform.Penjualan
                 listBrg.Add(brgPrice);
             }
             var result = _brgPriceBL.Save(brgID, listBrg);
+            BrgGrid.Refresh();
+            RefreshPrice(BrgGrid.CurrentRow.Index);
         }
 
-        private void BrgGrid_RowEnter(object sender, DataGridViewCellEventArgs e)
+
+        private void RefreshPrice(int rowIndex)
         {
             PriceGrid.Rows.Clear();
-            var currentRow = BrgGrid.Rows[e.RowIndex];
+            var currentRow = BrgGrid.Rows[rowIndex];
             if (currentRow == null) return;
 
             var brgID = currentRow.Cells["BrgKodeCol"].Value;
@@ -213,32 +218,57 @@ namespace AnugerahWinform.Penjualan
             var brgPrice = _brgPriceBL.ListData(brgID.ToString());
             if (brgPrice == null) return;
             var stringPriceFlat = "";
-            foreach(var item in brgPrice.OrderBy(x => x.Qty))
+            foreach (var item in brgPrice.OrderBy(x => x.Qty))
             {
                 object[] rowData = { item.Qty, item.Harga, item.Diskon };
                 PriceGrid.Rows.Add(rowData);
 
                 var tempString = "";
                 if (item.Qty != 1)
-                    tempString= string.Format("x{0:n0} = ", item.Qty);
+                    tempString = string.Format("x{0:n0} = ", item.Qty);
 
                 tempString += string.Format("Rp.{0:n0}", item.Harga);
 
-                if(item.Diskon != 0)
+                if (item.Diskon != 0)
                     tempString += string.Format(" - {0:n0}", item.Diskon);
 
                 stringPriceFlat += tempString;
-                stringPriceFlat += " ֍֍֍ ";
+                stringPriceFlat += " | ";
             }
             currentRow.Cells["BrgPriceCol"].Value = stringPriceFlat;
+            BrgGrid.Refresh();
+        }
+
+        private void BrgGrid_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            RefreshPrice(e.RowIndex);
+        }
+
+        private void Copy()
+        {
+            PriceCopy = new List<PriceModel>();
+            var listBrg = new List<BrgPriceModel>();
+            foreach (DataGridViewRow item in PriceGrid.Rows)
+            {
+                var qty = Convert.ToInt16(item.Cells["PriceQtyCol"].Value);
+                if (qty == 0) continue;
+
+                var brgPrice = new PriceModel
+                {
+                    Qty = qty,
+                    Harga = Convert.ToDecimal(item.Cells["PriceHargaCol"].Value),
+                    Diskon = Convert.ToDecimal(item.Cells["PriceDiskonCol"].Value)
+                };
+                PriceCopy.Add(brgPrice);
+            }
         }
 
         private void CopyButton_Click(object sender, EventArgs e)
         {
-
+            Copy();
         }
 
-        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        private void SearchBrg_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.KeyCode == Keys.Enter)
             {
@@ -254,6 +284,44 @@ namespace AnugerahWinform.Penjualan
 
                 FillGrid(result);
             }
+        }
+
+        private class PriceModel
+        {
+            public int Qty { get; set; }
+            public decimal Harga { get; set; }
+            public decimal Diskon { get; set; }
+        }
+
+        private void PasteButton_Click(object sender, EventArgs e)
+        {
+            if (PriceCopy == null) return;
+
+            var brgID = BrgGrid.CurrentRow.Cells["BrgKodeCol"].Value.ToString();
+            PriceGrid.Rows.Clear();
+
+            var listBrg = new List<BrgPriceModel>();
+            foreach (var item in PriceCopy)
+            {
+                var qty = item.Qty;
+
+                var brgPrice = new BrgPriceModel
+                {
+                    BrgID = brgID,
+                    Qty = qty,
+                    Harga = (double)item.Harga,
+                    Diskon = (double)item.Diskon
+                };
+                listBrg.Add(brgPrice);
+            }
+            var result = _brgPriceBL.Save(brgID, listBrg);
+            BrgGrid.Refresh();
+            RefreshPrice(BrgGrid.CurrentRow.Index);
+        }
+
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
