@@ -69,13 +69,6 @@
             this.dataColumn11 = new System.Data.DataColumn();
             this.dataColumn4 = new System.Data.DataColumn();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.ReceiptnfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.SearchButton = new System.Windows.Forms.Button();
-            this.SearchKeywordText = new System.Windows.Forms.TextBox();
-            this.ProsesButton = new System.Windows.Forms.Button();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.receiptIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tglDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PurchaseID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -85,6 +78,13 @@
             this.diskonDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.biayaLainDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grandTotalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReceiptnfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.SearchButton = new System.Windows.Forms.Button();
+            this.SearchKeywordText = new System.Windows.Forms.TextBox();
+            this.ProsesButton = new System.Windows.Forms.Button();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SaldoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ReceiptInfoDataSet)).BeginInit();
@@ -121,7 +121,7 @@
             dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dataGridView2.Location = new System.Drawing.Point(0, 406);
+            this.dataGridView2.Location = new System.Drawing.Point(0, 437);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.Size = new System.Drawing.Size(933, 44);
@@ -329,70 +329,8 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 52);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(933, 398);
+            this.dataGridView1.Size = new System.Drawing.Size(933, 429);
             this.dataGridView1.TabIndex = 21;
-            // 
-            // ReceiptnfoBindingSource
-            // 
-            this.ReceiptnfoBindingSource.DataMember = "ReceiptInfoTable";
-            this.ReceiptnfoBindingSource.DataSource = this.ReceiptInfoDataSet;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.Khaki;
-            this.panel1.Controls.Add(this.SearchButton);
-            this.panel1.Controls.Add(this.SearchKeywordText);
-            this.panel1.Controls.Add(this.ProsesButton);
-            this.panel1.Controls.Add(this.dateTimePicker2);
-            this.panel1.Controls.Add(this.dateTimePicker1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(933, 52);
-            this.panel1.TabIndex = 20;
-            // 
-            // SearchButton
-            // 
-            this.SearchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.SearchButton.Location = new System.Drawing.Point(851, 15);
-            this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(75, 23);
-            this.SearchButton.TabIndex = 4;
-            this.SearchButton.Text = "Search";
-            this.SearchButton.UseVisualStyleBackColor = true;
-            this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
-            // 
-            // SearchKeywordText
-            // 
-            this.SearchKeywordText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.SearchKeywordText.Location = new System.Drawing.Point(674, 17);
-            this.SearchKeywordText.Name = "SearchKeywordText";
-            this.SearchKeywordText.Size = new System.Drawing.Size(171, 21);
-            this.SearchKeywordText.TabIndex = 3;
-            // 
-            // ProsesButton
-            // 
-            this.ProsesButton.Location = new System.Drawing.Point(334, 11);
-            this.ProsesButton.Name = "ProsesButton";
-            this.ProsesButton.Size = new System.Drawing.Size(75, 23);
-            this.ProsesButton.TabIndex = 2;
-            this.ProsesButton.Text = "Proses";
-            this.ProsesButton.UseVisualStyleBackColor = true;
-            this.ProsesButton.Click += new System.EventHandler(this.ProsesButton_Click);
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(173, 12);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(155, 21);
-            this.dateTimePicker2.TabIndex = 1;
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(12, 12);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(155, 21);
-            this.dateTimePicker1.TabIndex = 0;
             // 
             // receiptIDDataGridViewTextBoxColumn
             // 
@@ -471,11 +409,73 @@
             this.grandTotalDataGridViewTextBoxColumn.Name = "grandTotalDataGridViewTextBoxColumn";
             this.grandTotalDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // ReceiptnfoBindingSource
+            // 
+            this.ReceiptnfoBindingSource.DataMember = "ReceiptInfoTable";
+            this.ReceiptnfoBindingSource.DataSource = this.ReceiptInfoDataSet;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Khaki;
+            this.panel1.Controls.Add(this.SearchButton);
+            this.panel1.Controls.Add(this.SearchKeywordText);
+            this.panel1.Controls.Add(this.ProsesButton);
+            this.panel1.Controls.Add(this.dateTimePicker2);
+            this.panel1.Controls.Add(this.dateTimePicker1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(933, 52);
+            this.panel1.TabIndex = 20;
+            // 
+            // SearchButton
+            // 
+            this.SearchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.SearchButton.Location = new System.Drawing.Point(851, 15);
+            this.SearchButton.Name = "SearchButton";
+            this.SearchButton.Size = new System.Drawing.Size(75, 23);
+            this.SearchButton.TabIndex = 4;
+            this.SearchButton.Text = "Search";
+            this.SearchButton.UseVisualStyleBackColor = true;
+            this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
+            // 
+            // SearchKeywordText
+            // 
+            this.SearchKeywordText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.SearchKeywordText.Location = new System.Drawing.Point(674, 17);
+            this.SearchKeywordText.Name = "SearchKeywordText";
+            this.SearchKeywordText.Size = new System.Drawing.Size(171, 21);
+            this.SearchKeywordText.TabIndex = 3;
+            // 
+            // ProsesButton
+            // 
+            this.ProsesButton.Location = new System.Drawing.Point(334, 11);
+            this.ProsesButton.Name = "ProsesButton";
+            this.ProsesButton.Size = new System.Drawing.Size(75, 23);
+            this.ProsesButton.TabIndex = 2;
+            this.ProsesButton.Text = "Proses";
+            this.ProsesButton.UseVisualStyleBackColor = true;
+            this.ProsesButton.Click += new System.EventHandler(this.ProsesButton_Click);
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Location = new System.Drawing.Point(173, 12);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(155, 21);
+            this.dateTimePicker2.TabIndex = 1;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(12, 12);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(155, 21);
+            this.dateTimePicker1.TabIndex = 0;
+            // 
             // ReceiptInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(933, 450);
+            this.ClientSize = new System.Drawing.Size(933, 481);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);

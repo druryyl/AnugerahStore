@@ -47,6 +47,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ClosePOStatusLabel = new System.Windows.Forms.Label();
             this.SearchSupplierButton = new System.Windows.Forms.Button();
             this.SupplierNameText = new System.Windows.Forms.TextBox();
             this.CatatanTextBox = new System.Windows.Forms.TextBox();
@@ -92,7 +93,6 @@
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.listDataGrid = new System.Windows.Forms.DataGridView();
-            this.ClosePOStatusLabel = new System.Windows.Forms.Label();
             this.mainTabControl.SuspendLayout();
             this.entryDataTabPage.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -117,7 +117,7 @@
             this.mainTabControl.Location = new System.Drawing.Point(0, 0);
             this.mainTabControl.Name = "mainTabControl";
             this.mainTabControl.SelectedIndex = 0;
-            this.mainTabControl.Size = new System.Drawing.Size(905, 558);
+            this.mainTabControl.Size = new System.Drawing.Size(905, 481);
             this.mainTabControl.TabIndex = 7;
             // 
             // entryDataTabPage
@@ -133,14 +133,14 @@
             this.entryDataTabPage.Location = new System.Drawing.Point(4, 22);
             this.entryDataTabPage.Name = "entryDataTabPage";
             this.entryDataTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.entryDataTabPage.Size = new System.Drawing.Size(897, 532);
+            this.entryDataTabPage.Size = new System.Drawing.Size(897, 455);
             this.entryDataTabPage.TabIndex = 0;
             this.entryDataTabPage.Text = "Entry Data";
             // 
             // ClosePOButton
             // 
-            this.ClosePOButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClosePOButton.Location = new System.Drawing.Point(8, 503);
+            this.ClosePOButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ClosePOButton.Location = new System.Drawing.Point(8, 426);
             this.ClosePOButton.Name = "ClosePOButton";
             this.ClosePOButton.Size = new System.Drawing.Size(87, 23);
             this.ClosePOButton.TabIndex = 19;
@@ -162,7 +162,7 @@
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label3);
-            this.panel2.Location = new System.Drawing.Point(8, 436);
+            this.panel2.Location = new System.Drawing.Point(8, 359);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(883, 61);
             this.panel2.TabIndex = 18;
@@ -325,6 +325,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(885, 136);
             this.panel1.TabIndex = 13;
+            // 
+            // ClosePOStatusLabel
+            // 
+            this.ClosePOStatusLabel.AutoSize = true;
+            this.ClosePOStatusLabel.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClosePOStatusLabel.ForeColor = System.Drawing.Color.DarkRed;
+            this.ClosePOStatusLabel.Location = new System.Drawing.Point(145, 99);
+            this.ClosePOStatusLabel.Name = "ClosePOStatusLabel";
+            this.ClosePOStatusLabel.Size = new System.Drawing.Size(91, 18);
+            this.ClosePOStatusLabel.TabIndex = 22;
+            this.ClosePOStatusLabel.Text = "Closed PO";
+            this.ClosePOStatusLabel.Visible = false;
             // 
             // SearchSupplierButton
             // 
@@ -500,7 +512,7 @@
             this.BrgGrid.DataSource = this.PurchaseDetilBindingSource;
             this.BrgGrid.Location = new System.Drawing.Point(6, 148);
             this.BrgGrid.Name = "BrgGrid";
-            this.BrgGrid.Size = new System.Drawing.Size(885, 282);
+            this.BrgGrid.Size = new System.Drawing.Size(885, 205);
             this.BrgGrid.TabIndex = 10;
             this.BrgGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BrgGrid_CellContentClick);
             this.BrgGrid.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.BrgGrid_CellValidated);
@@ -633,7 +645,7 @@
             // ExitButton
             // 
             this.ExitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ExitButton.Location = new System.Drawing.Point(790, 503);
+            this.ExitButton.Location = new System.Drawing.Point(790, 426);
             this.ExitButton.Name = "ExitButton";
             this.ExitButton.Size = new System.Drawing.Size(87, 23);
             this.ExitButton.TabIndex = 17;
@@ -644,7 +656,7 @@
             // deleteButton
             // 
             this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.deleteButton.Location = new System.Drawing.Point(697, 503);
+            this.deleteButton.Location = new System.Drawing.Point(697, 426);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(87, 23);
             this.deleteButton.TabIndex = 16;
@@ -654,7 +666,7 @@
             // SaveButton
             // 
             this.SaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.SaveButton.Location = new System.Drawing.Point(604, 503);
+            this.SaveButton.Location = new System.Drawing.Point(604, 426);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(87, 23);
             this.SaveButton.TabIndex = 15;
@@ -723,23 +735,11 @@
             this.listDataGrid.Size = new System.Drawing.Size(945, 475);
             this.listDataGrid.TabIndex = 11;
             // 
-            // ClosePOStatusLabel
-            // 
-            this.ClosePOStatusLabel.AutoSize = true;
-            this.ClosePOStatusLabel.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ClosePOStatusLabel.ForeColor = System.Drawing.Color.DarkRed;
-            this.ClosePOStatusLabel.Location = new System.Drawing.Point(145, 99);
-            this.ClosePOStatusLabel.Name = "ClosePOStatusLabel";
-            this.ClosePOStatusLabel.Size = new System.Drawing.Size(91, 18);
-            this.ClosePOStatusLabel.TabIndex = 22;
-            this.ClosePOStatusLabel.Text = "Closed PO";
-            this.ClosePOStatusLabel.Visible = false;
-            // 
             // PurchaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(905, 558);
+            this.ClientSize = new System.Drawing.Size(905, 481);
             this.Controls.Add(this.mainTabControl);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "PurchaseForm";

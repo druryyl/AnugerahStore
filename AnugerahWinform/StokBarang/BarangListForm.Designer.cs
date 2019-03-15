@@ -85,7 +85,7 @@
             this.SubJenisBrgTree.Location = new System.Drawing.Point(3, 3);
             this.SubJenisBrgTree.Name = "SubJenisBrgTree";
             this.tableLayoutPanel1.SetRowSpan(this.SubJenisBrgTree, 4);
-            this.SubJenisBrgTree.Size = new System.Drawing.Size(216, 576);
+            this.SubJenisBrgTree.Size = new System.Drawing.Size(216, 555);
             this.SubJenisBrgTree.TabIndex = 0;
             this.SubJenisBrgTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.SubJenisBrgTree_AfterSelect);
             // 
@@ -106,7 +106,7 @@
             this.BarangGrid.Location = new System.Drawing.Point(225, 53);
             this.BarangGrid.Name = "BarangGrid";
             this.BarangGrid.ReadOnly = true;
-            this.BarangGrid.Size = new System.Drawing.Size(697, 196);
+            this.BarangGrid.Size = new System.Drawing.Size(697, 175);
             this.BarangGrid.TabIndex = 34;
             this.BarangGrid.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.BarangGrid_RowLeave);
             // 
@@ -170,7 +170,7 @@
             this.BarangTabControl.Controls.Add(this.PhotoTab);
             this.BarangTabControl.Controls.Add(this.PricingTab);
             this.BarangTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BarangTabControl.Location = new System.Drawing.Point(225, 255);
+            this.BarangTabControl.Location = new System.Drawing.Point(225, 234);
             this.BarangTabControl.Name = "BarangTabControl";
             this.BarangTabControl.SelectedIndex = 0;
             this.BarangTabControl.Size = new System.Drawing.Size(697, 304);
@@ -488,7 +488,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 310F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(925, 582);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(925, 561);
             this.tableLayoutPanel1.TabIndex = 32;
             // 
             // panel2
@@ -516,7 +516,7 @@
             // PrgBar
             // 
             this.PrgBar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PrgBar.Location = new System.Drawing.Point(225, 565);
+            this.PrgBar.Location = new System.Drawing.Point(225, 544);
             this.PrgBar.Name = "PrgBar";
             this.PrgBar.Size = new System.Drawing.Size(697, 14);
             this.PrgBar.TabIndex = 35;
@@ -525,7 +525,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(925, 582);
+            this.ClientSize = new System.Drawing.Size(925, 561);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.button4);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

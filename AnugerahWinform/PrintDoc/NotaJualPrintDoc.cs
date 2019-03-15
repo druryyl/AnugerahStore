@@ -37,6 +37,8 @@ namespace AnugerahWinform.PrintDoc
             _font = new Font("Courier New", 9);
             PrintDocument pd = new PrintDocument();
             pd.PrintPage += new PrintPageEventHandler(PrintTextFileHandler);
+            Margins margins = new Margins(0, 0, 0, 0);
+            pd.DefaultPageSettings.Margins = margins;
             pd.PrinterSettings.PrinterName = _printerName;
             pd.Print();
             reader.Close();

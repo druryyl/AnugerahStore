@@ -118,7 +118,7 @@
             this.mainTabControl.Location = new System.Drawing.Point(0, 0);
             this.mainTabControl.Name = "mainTabControl";
             this.mainTabControl.SelectedIndex = 0;
-            this.mainTabControl.Size = new System.Drawing.Size(905, 558);
+            this.mainTabControl.Size = new System.Drawing.Size(905, 481);
             this.mainTabControl.TabIndex = 8;
             // 
             // entryDataTabPage
@@ -133,7 +133,7 @@
             this.entryDataTabPage.Location = new System.Drawing.Point(4, 22);
             this.entryDataTabPage.Name = "entryDataTabPage";
             this.entryDataTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.entryDataTabPage.Size = new System.Drawing.Size(897, 532);
+            this.entryDataTabPage.Size = new System.Drawing.Size(897, 455);
             this.entryDataTabPage.TabIndex = 0;
             this.entryDataTabPage.Text = "Entry Data";
             // 
@@ -151,7 +151,7 @@
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label3);
-            this.panel2.Location = new System.Drawing.Point(8, 436);
+            this.panel2.Location = new System.Drawing.Point(8, 359);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(883, 61);
             this.panel2.TabIndex = 18;
@@ -517,7 +517,7 @@
             this.BrgGrid.DataSource = this.ReceiptDetilBindingSource;
             this.BrgGrid.Location = new System.Drawing.Point(6, 148);
             this.BrgGrid.Name = "BrgGrid";
-            this.BrgGrid.Size = new System.Drawing.Size(885, 282);
+            this.BrgGrid.Size = new System.Drawing.Size(885, 205);
             this.BrgGrid.TabIndex = 12;
             this.BrgGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BrgGrid_CellContentClick);
             this.BrgGrid.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.BrgGrid_CellValidated);
@@ -650,7 +650,7 @@
             // ExitButton
             // 
             this.ExitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ExitButton.Location = new System.Drawing.Point(790, 503);
+            this.ExitButton.Location = new System.Drawing.Point(790, 426);
             this.ExitButton.Name = "ExitButton";
             this.ExitButton.Size = new System.Drawing.Size(87, 23);
             this.ExitButton.TabIndex = 19;
@@ -661,7 +661,7 @@
             // deleteButton
             // 
             this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.deleteButton.Location = new System.Drawing.Point(697, 503);
+            this.deleteButton.Location = new System.Drawing.Point(697, 426);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(87, 23);
             this.deleteButton.TabIndex = 18;
@@ -671,7 +671,7 @@
             // SaveButton
             // 
             this.SaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.SaveButton.Location = new System.Drawing.Point(604, 503);
+            this.SaveButton.Location = new System.Drawing.Point(604, 426);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(87, 23);
             this.SaveButton.TabIndex = 17;
@@ -744,7 +744,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(905, 558);
+            this.ClientSize = new System.Drawing.Size(905, 481);
             this.Controls.Add(this.mainTabControl);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "ReceiptForm";
