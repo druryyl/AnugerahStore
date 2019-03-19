@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[Produksi]
+(
+	ProduksiID VARCHAR(10) NOT NULL CONSTRAINT DF_Produksi_ProduksiID DEFAULT(''),
+	Tgl VARCHAR(10) NOT NULL CONSTRAINT DF_Produksi_Tgl DEFAULT(''),
+	Jam VARCHAR(8) NOT NULL CONSTRAINT DF_Produksi_Jam DEFAULT(''),
+	Keterangan VARCHAR(128) NOT NULL CONSTRAINT DF_Produksi_Keterangan DEFAULT('')
+
+	CONSTRAINT PK_Produksi_ProduksiID PRIMARY KEY CLUSTERED (ProduksiID)
+)

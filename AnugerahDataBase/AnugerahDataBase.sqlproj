@@ -124,6 +124,9 @@
     <Build Include="Penjualan\ReturJual.sql" />
     <Build Include="Penjualan\ReturJualDetil.sql" />
     <Build Include="Accounting\Pegawai.sql" />
+    <Build Include="StokBarang\Produksi.sql" />
+    <Build Include="StokBarang\ProduksiMaterial.sql" />
+    <Build Include="StokBarang\ProduksiHasil.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AnugerahDevelopment.publish.xml" />

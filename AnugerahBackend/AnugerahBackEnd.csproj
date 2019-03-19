@@ -166,6 +166,7 @@
     <Compile Include="StokBarang\BL\BrgBL.cs" />
     <Compile Include="StokBarang\BL\ColorBL.cs" />
     <Compile Include="StokBarang\BL\JenisMutasiBL.cs" />
+    <Compile Include="StokBarang\BL\ProduksiBL.cs" />
     <Compile Include="StokBarang\BL\StokAdjustmentBL.cs" />
     <Compile Include="StokBarang\BL\StokBL.cs" />
     <Compile Include="StokBarang\BL\SubJenisBrgBL.cs" />
@@ -176,6 +177,9 @@
     <Compile Include="StokBarang\Dal\BrgDal.cs" />
     <Compile Include="StokBarang\Dal\ColorDal.cs" />
     <Compile Include="StokBarang\Dal\JenisMutasiDal.cs" />
+    <Compile Include="StokBarang\Dal\ProduksiDal.cs" />
+    <Compile Include="StokBarang\Dal\ProduksiHasilDal.cs" />
+    <Compile Include="StokBarang\Dal\ProduksiMaterialDal.cs" />
     <Compile Include="StokBarang\Dal\StokAdjustment2Dal.cs" />
     <Compile Include="StokBarang\Dal\StokAdjustmentDal.cs" />
     <Compile Include="StokBarang\Dal\StokInDal.cs" />
@@ -195,6 +199,9 @@
     <Compile Include="StokBarang\Dal\MerkDal.cs" />
     <Compile Include="StokBarang\Model\JenisMutasiModel.cs" />
     <Compile Include="StokBarang\Model\MerkModel.cs" />
+    <Compile Include="StokBarang\Model\ProduksiHasilModel.cs" />
+    <Compile Include="StokBarang\Model\ProduksiMaterialModel.cs" />
+    <Compile Include="StokBarang\Model\ProduksiModel.cs" />
     <Compile Include="StokBarang\Model\StokAdjustment2Model.cs" />
     <Compile Include="StokBarang\Model\StokAdjustmentModel.cs" />
     <Compile Include="StokBarang\Model\StokInfoModel.cs" />

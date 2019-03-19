@@ -221,8 +221,6 @@ namespace AnugerahBackend.StokBarang.BL
             return result;
         }
 
-
-
         private BPStokModel AddStok(StokItem stokItem)
         {
             //  null check
@@ -233,6 +231,7 @@ namespace AnugerahBackend.StokBarang.BL
             {
                 BPStokID = stokItem.ReffID + stokItem.BrgID,
                 ReffID = stokItem.ReffID,
+                StokControl = stokItem.StokControl,
                 Tgl = stokItem.Tgl,
                 Jam = stokItem.Jam,
                 BrgID = stokItem.BrgID,
@@ -276,6 +275,14 @@ namespace AnugerahBackend.StokBarang.BL
             var listBPStok = ListData(stokItem.BrgID);
             if (listBPStok == null) return null;
 
+            //  jika stok control diinputkan, 
+            //  maka list barang yang sesuai stok control
+            if(stokItem.StokControl.Trim() != "")
+            {
+                listBPStok = listBPStok
+                    .Where(x => x.StokControl == stokItem.StokControl);
+            }
+
             //  hapus detil utk 'trs ini' dulu
             //  (kasus simpan ulang)
             foreach(var item in listBPStok)
@@ -309,8 +316,6 @@ namespace AnugerahBackend.StokBarang.BL
                 var bpStokDetil = new BPStokDetilModel
                 {
                     BPStokID = item.BPStokID,
-                    //BPStokDetilID = item.BPStokID + '-' + noUrut.ToString().PadLeft(3,'0'),
-                    //NoUrut = noUrut,
                     ReffID = stokItem.ReffID,
                     Tgl = stokItem.Tgl,
                     Jam = stokItem.Jam,

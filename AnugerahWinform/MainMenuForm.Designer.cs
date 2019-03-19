@@ -37,6 +37,7 @@
             this.SupplierButton = new System.Windows.Forms.RibbonButton();
             this.LaporanPurchaseButton = new System.Windows.Forms.RibbonButton();
             this.LaporanTerimaBrgButton = new System.Windows.Forms.RibbonButton();
+            this.ribbonButton2 = new System.Windows.Forms.RibbonButton();
             this.SalesRibbonPanel = new System.Windows.Forms.RibbonPanel();
             this.SellingButton = new System.Windows.Forms.RibbonButton();
             this.LaporanPenjualanButton = new System.Windows.Forms.RibbonButton();
@@ -90,7 +91,7 @@
             this.ribbon1.OrbDropDown.Size = new System.Drawing.Size(527, 447);
             this.ribbon1.OrbDropDown.TabIndex = 0;
             this.ribbon1.RibbonTabFont = new System.Drawing.Font("Trebuchet MS", 9F);
-            this.ribbon1.Size = new System.Drawing.Size(1187, 140);
+            this.ribbon1.Size = new System.Drawing.Size(1423, 140);
             this.ribbon1.TabIndex = 5;
             this.ribbon1.Tabs.Add(this.ribbonTab1);
             this.ribbon1.Tabs.Add(this.ribbonTab3);
@@ -114,6 +115,7 @@
             this.PembelianRibbonPanel.Items.Add(this.SupplierButton);
             this.PembelianRibbonPanel.Items.Add(this.LaporanPurchaseButton);
             this.PembelianRibbonPanel.Items.Add(this.LaporanTerimaBrgButton);
+            this.PembelianRibbonPanel.Items.Add(this.ribbonButton2);
             this.PembelianRibbonPanel.Name = "PembelianRibbonPanel";
             this.PembelianRibbonPanel.Text = "Pembelian";
             // 
@@ -161,6 +163,15 @@
             this.LaporanTerimaBrgButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("LaporanTerimaBrgButton.SmallImage")));
             this.LaporanTerimaBrgButton.Text = "Laporan Terima-Brg";
             this.LaporanTerimaBrgButton.Click += new System.EventHandler(this.LaporanTerimaBrgButton_Click);
+            // 
+            // ribbonButton2
+            // 
+            this.ribbonButton2.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton2.Image")));
+            this.ribbonButton2.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton2.LargeImage")));
+            this.ribbonButton2.Name = "ribbonButton2";
+            this.ribbonButton2.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton2.SmallImage")));
+            this.ribbonButton2.Text = "ribbonButton2";
+            this.ribbonButton2.Click += new System.EventHandler(this.ribbonButton2_Click_1);
             // 
             // SalesRibbonPanel
             // 
@@ -462,7 +473,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::AnugerahWinform.Properties.Resources.background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(1187, 731);
+            this.ClientSize = new System.Drawing.Size(1423, 731);
             this.Controls.Add(this.ribbon1);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IsMdiContainer = true;
@@ -520,6 +531,7 @@
         private System.Windows.Forms.RibbonButton PegawaiButton;
         private System.Windows.Forms.RibbonPanel ribbonPanel4;
         private System.Windows.Forms.RibbonButton ribbonButton1;
+        private System.Windows.Forms.RibbonButton ribbonButton2;
     }
 }
 

@@ -34,16 +34,19 @@ namespace AnugerahBackend.StokBarang.Dal
             var sSql = @"
                 INSERT INTO
                     BPStok (
-                        BPStokID, ReffID, Tgl, Jam, BrgID,
+                        BPStokID, ReffID, StokControl,
+                        Tgl, Jam, BrgID,
                         NilaiHpp, QtyIn, QtySisa )
                 VALUES (
-                        @BPStokID, @ReffID, @Tgl, @Jam, @BrgID,
+                        @BPStokID, @ReffID, @StokControl,
+                        @Tgl, @Jam, @BrgID,
                         @NilaiHpp, @QtyIn, @QtySisa ) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
                 cmd.AddParam("@BPStokID", model.BPStokID);
                 cmd.AddParam("@ReffID", model.ReffID);
+                cmd.AddParam("@StokControl", model.StokControl);
                 cmd.AddParam("@Tgl", model.Tgl.ToTglYMD());
                 cmd.AddParam("@Jam", model.Jam);
                 cmd.AddParam("@BrgID", model.BrgID);
@@ -63,6 +66,7 @@ namespace AnugerahBackend.StokBarang.Dal
                 SET
                     ReffID = @ReffID, 
                     Tgl = @Tgl, 
+                    StokControl = @StokControl,
                     Jam = @Jam, 
                     BrgID = @BrgID,
                     NilaiHpp = @NilaiHpp, 
@@ -75,6 +79,7 @@ namespace AnugerahBackend.StokBarang.Dal
             {
                 cmd.AddParam("@BPStokID", model.BPStokID);
                 cmd.AddParam("@ReffID", model.ReffID);
+                cmd.AddParam("@StokControl", model.StokControl);
                 cmd.AddParam("@Tgl", model.Tgl.ToTglYMD());
                 cmd.AddParam("@Jam", model.Jam);
                 cmd.AddParam("@BrgID", model.BrgID);
@@ -107,7 +112,8 @@ namespace AnugerahBackend.StokBarang.Dal
             BPStokModel result = null;
             var sSql = @"
                 SELECT
-                    aa.BPStokID, aa.ReffID, aa.Tgl, aa.Jam, aa.BrgID,
+                    aa.BPStokID, aa.ReffID, aa.StokControl,
+                    aa.Tgl, aa.Jam, aa.BrgID,
                     aa.NilaiHpp, aa.QtyIn, aa.QtySisa,
                     ISNULL(bb.BrgName, '') BrgName
                 FROM
@@ -128,6 +134,7 @@ namespace AnugerahBackend.StokBarang.Dal
                     {
                         BPStokID = bpStokID,
                         ReffID = dr["ReffID"].ToString(),
+                        StokControl = dr["StokControl"].ToString(),
                         Tgl = dr["Tgl"].ToString().ToTglDMY(),
                         Jam = dr["Jam"].ToString(),
                         BrgID = dr["BrgID"].ToString(),
@@ -146,7 +153,8 @@ namespace AnugerahBackend.StokBarang.Dal
             List<BPStokModel> result = null;
             var sSql = @"
                 SELECT
-                    aa.BPStokID, aa.ReffID, aa.Tgl, aa.Jam, aa.BrgID,
+                    aa.BPStokID, aa.ReffID, aa.StokControl,
+                    aa.Tgl, aa.Jam, aa.BrgID,
                     aa.NilaiHpp, aa.QtyIn, aa.QtySisa,
                     ISNULL(bb.BrgName, '') BrgName
                 FROM
@@ -172,6 +180,7 @@ namespace AnugerahBackend.StokBarang.Dal
                         {
                             BPStokID = dr["BPStokID"].ToString(),
                             ReffID = dr["ReffID"].ToString(),
+                            StokControl = dr["StokControl"].ToString(),
                             Tgl = dr["Tgl"].ToString().ToTglDMY(),
                             Jam = dr["Jam"].ToString(),
                             BrgID = dr["BrgID"].ToString(),

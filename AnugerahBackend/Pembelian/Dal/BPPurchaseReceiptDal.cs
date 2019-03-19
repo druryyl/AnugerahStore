@@ -18,7 +18,7 @@ namespace AnugerahBackend.Pembelian.Dal
         IEnumerable<BPPurchaseReceiptModel> ListData(string bpPurchaseID);
         //  mencari purchase atas penerimaan ini
         IEnumerable<BPPurchaseReceiptModel> ListData(ReceiptModel receipt);
-
+        IEnumerable<BPPurchaseReceiptModel> ListData(string tgl1, string tgl2);
     }
 
     public class BPPurchaseReceiptDal : IBPPurchaseReceiptDal
@@ -181,5 +181,59 @@ namespace AnugerahBackend.Pembelian.Dal
             }
             return result;
         }
+
+        public IEnumerable<BPPurchaseReceiptModel> ListData(string tgl1, string tgl2)
+        {
+            List<BPPurchaseReceiptModel> result = null;
+
+            var sSql = @"
+                SELECT
+                    aa.BPPurchaseID, aa.BPReceiptID, aa.BPDetilID,
+                    aa.NoUrut, aa.Tgl, aa.Jam, aa.Keterangan, aa.BrgID,
+                    aa.QtyPurchase, aa.QtyReceipt, aa.Harga, aa.Diskon, 
+                    aa.Tax, aa.SubTotal
+                FROM
+                    BPPurchaseReceipt aa
+                WHERE
+                    aa.Tgl BETWEEN @Tgl1 AND @Tgl2 
+                ORDER BY
+                    BPPurchaseID, Tgl, Jam ";
+            using (var conn = new SqlConnection(_connString))
+            using (var cmd = new SqlCommand(sSql, conn))
+            {
+                cmd.AddParam("@Tgl1", tgl1.ToTglYMD());
+                cmd.AddParam("@Tgl2", tgl2.ToTglYMD());
+                conn.Open();
+                using (var dr = cmd.ExecuteReader())
+                {
+                    if (!dr.HasRows) return null;
+                    result = new List<BPPurchaseReceiptModel>();
+
+                    while (dr.Read())
+                    {
+                        var item = new BPPurchaseReceiptModel
+                        {
+                            BPPurchaseID = dr["BPPurchaseID"].ToString(),
+                            BPReceiptID = dr["BPReceiptID"].ToString(),
+                            BPDetilID = dr["BPDetilID"].ToString(),
+                            NoUrut = Convert.ToInt16(dr["NoUrut"]),
+                            Tgl = dr["Tgl"].ToString().ToTglDMY(),
+                            Jam = dr["Jam"].ToString(),
+                            Keterangan = dr["Keterangan"].ToString(),
+                            BrgID = dr["BrgID"].ToString(),
+                            QtyPurchase = Convert.ToInt32(dr["QtyPurchase"]),
+                            QtyReceipt = Convert.ToInt32(dr["QtyReceipt"]),
+                            Harga = Convert.ToDecimal(dr["Harga"]),
+                            Diskon = Convert.ToDecimal(dr["Diskon"]),
+                            Tax = Convert.ToDecimal(dr["Tax"]),
+                            SubTotal = Convert.ToDecimal(dr["SubTotal"])
+                        };
+                        result.Add(item);
+                    }
+                }
+            }
+            return result;
+        }
+
     }
 }

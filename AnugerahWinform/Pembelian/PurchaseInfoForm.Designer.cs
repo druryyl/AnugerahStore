@@ -310,7 +310,7 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.Transparent;
             this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;

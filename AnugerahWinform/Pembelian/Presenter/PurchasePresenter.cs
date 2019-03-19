@@ -200,6 +200,9 @@ namespace AnugerahWinform.Pembelian.Presenter
             if (po == null)
                 throw new ArgumentException("PO not found");
 
+            var bpPurchase = _bpPurchaseBL.GetData(_view.PurchaseID);
+
+            _bpPurchaseBL.ClosePO(bpPurchase);
             _purchaseBL.ClosePO(po);
         }
     }
