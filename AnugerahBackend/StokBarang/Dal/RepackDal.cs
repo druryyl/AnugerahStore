@@ -209,5 +209,5 @@ namespace AnugerahBackend.StokBarang.Dal
             }
             return result;
         }
-    }w
+    }
 }

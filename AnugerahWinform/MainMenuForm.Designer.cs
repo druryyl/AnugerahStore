@@ -46,6 +46,7 @@
             this.CustomerButton = new System.Windows.Forms.RibbonButton();
             this.StockManagementRibbonPanel = new System.Windows.Forms.RibbonPanel();
             this.Adjustment = new System.Windows.Forms.RibbonButton();
+            this.RepackButton = new System.Windows.Forms.RibbonButton();
             this.BukuStokDetilInfoButton = new System.Windows.Forms.RibbonButton();
             this.StokInfoButton = new System.Windows.Forms.RibbonButton();
             this.BarangPanel = new System.Windows.Forms.RibbonPanel();
@@ -73,7 +74,6 @@
             this.LaporanBPKasButton = new System.Windows.Forms.RibbonButton();
             this.ribbonPanel4 = new System.Windows.Forms.RibbonPanel();
             this.ribbonButton1 = new System.Windows.Forms.RibbonButton();
-            this.Produksi = new System.Windows.Forms.RibbonButton();
             this.SuspendLayout();
             // 
             // ribbon1
@@ -92,7 +92,7 @@
             this.ribbon1.OrbDropDown.Size = new System.Drawing.Size(527, 447);
             this.ribbon1.OrbDropDown.TabIndex = 0;
             this.ribbon1.RibbonTabFont = new System.Drawing.Font("Trebuchet MS", 9F);
-            this.ribbon1.Size = new System.Drawing.Size(1423, 140);
+            this.ribbon1.Size = new System.Drawing.Size(1370, 140);
             this.ribbon1.TabIndex = 5;
             this.ribbon1.Tabs.Add(this.ribbonTab1);
             this.ribbon1.Tabs.Add(this.ribbonTab3);
@@ -227,7 +227,7 @@
             // StockManagementRibbonPanel
             // 
             this.StockManagementRibbonPanel.Items.Add(this.Adjustment);
-            this.StockManagementRibbonPanel.Items.Add(this.Produksi);
+            this.StockManagementRibbonPanel.Items.Add(this.RepackButton);
             this.StockManagementRibbonPanel.Items.Add(this.BukuStokDetilInfoButton);
             this.StockManagementRibbonPanel.Items.Add(this.StokInfoButton);
             this.StockManagementRibbonPanel.Name = "StockManagementRibbonPanel";
@@ -241,6 +241,15 @@
             this.Adjustment.SmallImage = ((System.Drawing.Image)(resources.GetObject("Adjustment.SmallImage")));
             this.Adjustment.Text = "Adjustment";
             this.Adjustment.Click += new System.EventHandler(this.Adjustment_Click);
+            // 
+            // RepackButton
+            // 
+            this.RepackButton.Image = ((System.Drawing.Image)(resources.GetObject("RepackButton.Image")));
+            this.RepackButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("RepackButton.LargeImage")));
+            this.RepackButton.Name = "RepackButton";
+            this.RepackButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("RepackButton.SmallImage")));
+            this.RepackButton.Text = "Repack";
+            this.RepackButton.Click += new System.EventHandler(this.Repack_Click);
             // 
             // BukuStokDetilInfoButton
             // 
@@ -469,22 +478,13 @@
             this.ribbonButton1.Text = "ribbonButton1";
             this.ribbonButton1.Click += new System.EventHandler(this.ribbonButton1_Click);
             // 
-            // Produksi
-            // 
-            this.Produksi.Image = ((System.Drawing.Image)(resources.GetObject("Produksi.Image")));
-            this.Produksi.LargeImage = ((System.Drawing.Image)(resources.GetObject("Produksi.LargeImage")));
-            this.Produksi.Name = "Produksi";
-            this.Produksi.SmallImage = ((System.Drawing.Image)(resources.GetObject("Produksi.SmallImage")));
-            this.Produksi.Text = "Produksi";
-            this.Produksi.Click += new System.EventHandler(this.Produksi_Click);
-            // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::AnugerahWinform.Properties.Resources.background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(1423, 731);
+            this.ClientSize = new System.Drawing.Size(1370, 731);
             this.Controls.Add(this.ribbon1);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IsMdiContainer = true;
@@ -543,7 +543,7 @@
         private System.Windows.Forms.RibbonPanel ribbonPanel4;
         private System.Windows.Forms.RibbonButton ribbonButton1;
         private System.Windows.Forms.RibbonButton ribbonButton2;
-        private System.Windows.Forms.RibbonButton Produksi;
+        private System.Windows.Forms.RibbonButton RepackButton;
     }
 }
 

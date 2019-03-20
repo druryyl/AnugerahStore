@@ -335,9 +335,9 @@ namespace AnugerahWinform
             form.Show();
         }
 
-        private void Produksi_Click(object sender, EventArgs e)
+        private void Repack_Click(object sender, EventArgs e)
         {
-            var form = new ProduksiForm
+            var form = new RepackForm
             {
                 MdiParent = this,
                 StartPosition = FormStartPosition.CenterScreen
