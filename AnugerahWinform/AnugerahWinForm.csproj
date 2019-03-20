@@ -251,6 +251,12 @@
     <Compile Include="StokBarang\ProduksiForm.Designer.cs">
       <DependentUpon>ProduksiForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="StokBarang\RepackForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StokBarang\RepackForm.Designer.cs">
+      <DependentUpon>RepackForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="StokBarang\StokAdjustmentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -422,6 +428,9 @@
     </Compile>
     <EmbeddedResource Include="StokBarang\ProduksiForm.resx">
       <DependentUpon>ProduksiForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StokBarang\RepackForm.resx">
+      <DependentUpon>RepackForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StokBarang\StokAdjustmentForm.resx">
       <DependentUpon>StokAdjustmentForm.cs</DependentUpon>
