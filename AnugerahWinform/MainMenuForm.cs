@@ -334,5 +334,15 @@ namespace AnugerahWinform
             };
             form.Show();
         }
+
+        private void Produksi_Click(object sender, EventArgs e)
+        {
+            var form = new ProduksiForm
+            {
+                MdiParent = this,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            form.Show();
+        }
     }
 }

@@ -127,6 +127,7 @@
     <Build Include="StokBarang\Produksi.sql" />
     <Build Include="StokBarang\ProduksiMaterial.sql" />
     <Build Include="StokBarang\ProduksiHasil.sql" />
+    <Build Include="StokBarang\Repack.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AnugerahDevelopment.publish.xml" />

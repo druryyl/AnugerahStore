@@ -73,6 +73,7 @@
             this.LaporanBPKasButton = new System.Windows.Forms.RibbonButton();
             this.ribbonPanel4 = new System.Windows.Forms.RibbonPanel();
             this.ribbonButton1 = new System.Windows.Forms.RibbonButton();
+            this.Produksi = new System.Windows.Forms.RibbonButton();
             this.SuspendLayout();
             // 
             // ribbon1
@@ -226,6 +227,7 @@
             // StockManagementRibbonPanel
             // 
             this.StockManagementRibbonPanel.Items.Add(this.Adjustment);
+            this.StockManagementRibbonPanel.Items.Add(this.Produksi);
             this.StockManagementRibbonPanel.Items.Add(this.BukuStokDetilInfoButton);
             this.StockManagementRibbonPanel.Items.Add(this.StokInfoButton);
             this.StockManagementRibbonPanel.Name = "StockManagementRibbonPanel";
@@ -467,6 +469,15 @@
             this.ribbonButton1.Text = "ribbonButton1";
             this.ribbonButton1.Click += new System.EventHandler(this.ribbonButton1_Click);
             // 
+            // Produksi
+            // 
+            this.Produksi.Image = ((System.Drawing.Image)(resources.GetObject("Produksi.Image")));
+            this.Produksi.LargeImage = ((System.Drawing.Image)(resources.GetObject("Produksi.LargeImage")));
+            this.Produksi.Name = "Produksi";
+            this.Produksi.SmallImage = ((System.Drawing.Image)(resources.GetObject("Produksi.SmallImage")));
+            this.Produksi.Text = "Produksi";
+            this.Produksi.Click += new System.EventHandler(this.Produksi_Click);
+            // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -532,6 +543,7 @@
         private System.Windows.Forms.RibbonPanel ribbonPanel4;
         private System.Windows.Forms.RibbonButton ribbonButton1;
         private System.Windows.Forms.RibbonButton ribbonButton2;
+        private System.Windows.Forms.RibbonButton Produksi;
     }
 }
 

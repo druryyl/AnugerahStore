@@ -239,9 +239,7 @@ namespace AnugerahWinform.Pembelian
 
         private void ExitButton_Click(object sender, EventArgs e)
         {
-            //this.Close();
-            var msg = string.Format("{0} - {1}", this.Width.ToString(), this.Height.ToString());
-            MessageBox.Show(msg);
+            this.Close();
         }
 
         private void DiskonNumText_ValueChanged(object sender, EventArgs e)
