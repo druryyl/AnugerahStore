@@ -34,11 +34,12 @@ namespace AnugerahWinform.PrintDoc
 
             //  print textfile
             reader = new StreamReader(_fileName);
-            _font = new Font("Courier New", 9);
+            _font = new Font("Courier New", 10);
             PrintDocument pd = new PrintDocument();
             pd.PrintPage += new PrintPageEventHandler(PrintTextFileHandler);
-            Margins margins = new Margins(0, 0, 0, 0);
+            Margins margins = new Margins(10, 0, 10, 0);
             pd.DefaultPageSettings.Margins = margins;
+            pd.DefaultPageSettings.PrinterResolution.Kind = PrinterResolutionKind.Low;
             pd.PrinterSettings.PrinterName = _printerName;
             pd.Print();
             reader.Close();
@@ -84,7 +85,7 @@ namespace AnugerahWinform.PrintDoc
             }
 
             if(lineCounter < 8)
-                for(int i = lineCounter; i<=8; i++)
+                for(int i = lineCounter; i<=10; i++)
                     sw.WriteLine("  |                                           |     |           |           |             ");
             sw.WriteLine("------------------------------------------------------------------------------------------");
             //               "123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 12345678 0"
@@ -92,17 +93,15 @@ namespace AnugerahWinform.PrintDoc
             var nilaiDiskn = "Diskon Lain: " + _penjualan.NilaiDiskonLain.ToString("N0").PadLeft(11,' ');
             var nilaiBiaya = "Biaya Lain : " + _penjualan.NilaiBiayaLain.ToString("N0").PadLeft(11,' ');
             var nilaiGrand = "Grand Total: " + _penjualan.NilaiGrandTotal.ToString("N0").PadLeft(11,' ');
-            sw.WriteLine("                                                                --------------------------");
+            //sw.WriteLine("                                                                --------------------------");
             sw.WriteLine(nilaiTotal.PadLeft(88));
             sw.WriteLine(nilaiDiskn.PadLeft(88));
             sw.WriteLine(nilaiBiaya.PadLeft(88));
             sw.WriteLine(nilaiGrand.PadLeft(88));
             sw.WriteLine(" ");
             sw.WriteLine("                                                                Hormat Kami,");
-            sw.WriteLine(" ");
-            sw.WriteLine(" ");
             sw.WriteLine("Terimakasih seudah berbelanja di tempat kami.");
-            sw.WriteLine("Brg yg sudah dibeli, tidak dapat dikembalikan.                  Kasir: ");
+            sw.WriteLine("Brg yg sudah dibeli, tidak dapat dikembalikan.                  Kasir: DIAS ");
 
             sw.Close();
         }
