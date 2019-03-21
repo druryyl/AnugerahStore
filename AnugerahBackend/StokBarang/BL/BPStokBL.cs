@@ -57,6 +57,7 @@ namespace AnugerahBackend.StokBarang.BL
                     NilaiHpp = item.HppAdjust,
                     QtyOut = 0,
                     HargaJual = 0,
+                    StokControl = "",
                 };
                 var genResult = AddStok(stokItem);
                 if (result == null) result = new List<BPStokModel>();
@@ -77,6 +78,7 @@ namespace AnugerahBackend.StokBarang.BL
                     NilaiHpp = 0,
                     QtyOut = item.QtyAdjust * -1,
                     HargaJual = 0,
+                    StokControl = "",
                 };
                 var genResult = RemoveStok(stokItem);
                 if (result == null) result = new List<BPStokModel>();
@@ -128,6 +130,7 @@ namespace AnugerahBackend.StokBarang.BL
                     NilaiHpp = 0,
                     QtyOut = item.Qty,
                     HargaJual = item.Harga,
+                    StokControl = "",
                 };
                 var genResult = RemoveStok(stokItem);
                 if (result == null) result = new List<BPStokModel>();
@@ -178,6 +181,7 @@ namespace AnugerahBackend.StokBarang.BL
                     NilaiHpp = item.Harga - item.Diskon - item.TaxRupiah,
                     QtyOut = 0,
                     HargaJual = 0,
+                    StokControl = "",
                 };
                 var genResult = AddStok(stokItem);
                 if (result == null) result = new List<BPStokModel>();
