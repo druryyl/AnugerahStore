@@ -171,7 +171,7 @@
             this.ribbonButton2.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton2.LargeImage")));
             this.ribbonButton2.Name = "ribbonButton2";
             this.ribbonButton2.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton2.SmallImage")));
-            this.ribbonButton2.Text = "ribbonButton2";
+            this.ribbonButton2.Text = "Outstanding Purchase";
             this.ribbonButton2.Click += new System.EventHandler(this.ribbonButton2_Click_1);
             // 
             // SalesRibbonPanel

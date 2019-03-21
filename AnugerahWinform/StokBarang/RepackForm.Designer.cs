@@ -30,38 +30,38 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.RepackIDTextBox = new System.Windows.Forms.TextBox();
             this.TanggalDateTime = new System.Windows.Forms.DateTimePicker();
             this.JamTextBox = new System.Windows.Forms.MaskedTextBox();
             this.NewButton = new System.Windows.Forms.Button();
-            this.SearchProduksiButton = new System.Windows.Forms.Button();
+            this.SearchRepackIDButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.BrgIDMaterialTextBox = new System.Windows.Forms.TextBox();
+            this.BrgMaterialSearchButton = new System.Windows.Forms.Button();
+            this.BrgNameMaterialTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.QtyMaterialTextBox = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.HppMaterialTextBox = new System.Windows.Forms.NumericUpDown();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.HppHasilTextBox = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
-            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
+            this.QtyHasilTextBox = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.BrgNameHasilTextBox = new System.Windows.Forms.TextBox();
+            this.BrgIDHasilSearchButton = new System.Windows.Forms.Button();
+            this.BrgIDHasilTextBox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.SaveButton = new System.Windows.Forms.Button();
+            this.DeleteButton = new System.Windows.Forms.Button();
+            this.ExitButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.QtyMaterialTextBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.HppMaterialTextBox)).BeginInit();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.HppHasilTextBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.QtyHasilTextBox)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -70,20 +70,20 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.LemonChiffon;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.numericUpDown2);
+            this.panel1.Controls.Add(this.HppMaterialTextBox);
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.numericUpDown1);
+            this.panel1.Controls.Add(this.QtyMaterialTextBox);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.textBox3);
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.textBox2);
+            this.panel1.Controls.Add(this.BrgNameMaterialTextBox);
+            this.panel1.Controls.Add(this.BrgMaterialSearchButton);
+            this.panel1.Controls.Add(this.BrgIDMaterialTextBox);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.TanggalDateTime);
             this.panel1.Controls.Add(this.JamTextBox);
             this.panel1.Controls.Add(this.NewButton);
-            this.panel1.Controls.Add(this.SearchProduksiButton);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.SearchRepackIDButton);
+            this.panel1.Controls.Add(this.RepackIDTextBox);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(11, 12);
             this.panel1.Name = "panel1";
@@ -100,14 +100,14 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Repack ID";
             // 
-            // textBox1
+            // RepackIDTextBox
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(11, 24);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(188, 21);
-            this.textBox1.TabIndex = 1;
+            this.RepackIDTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.RepackIDTextBox.Location = new System.Drawing.Point(11, 24);
+            this.RepackIDTextBox.Name = "RepackIDTextBox";
+            this.RepackIDTextBox.ReadOnly = true;
+            this.RepackIDTextBox.Size = new System.Drawing.Size(188, 21);
+            this.RepackIDTextBox.TabIndex = 1;
             // 
             // TanggalDateTime
             // 
@@ -138,15 +138,15 @@
             this.NewButton.Text = "New";
             this.NewButton.UseVisualStyleBackColor = true;
             // 
-            // SearchProduksiButton
+            // SearchRepackIDButton
             // 
-            this.SearchProduksiButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.SearchProduksiButton.Location = new System.Drawing.Point(201, 23);
-            this.SearchProduksiButton.Name = "SearchProduksiButton";
-            this.SearchProduksiButton.Size = new System.Drawing.Size(27, 23);
-            this.SearchProduksiButton.TabIndex = 16;
-            this.SearchProduksiButton.Text = "...";
-            this.SearchProduksiButton.UseVisualStyleBackColor = true;
+            this.SearchRepackIDButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.SearchRepackIDButton.Location = new System.Drawing.Point(201, 23);
+            this.SearchRepackIDButton.Name = "SearchRepackIDButton";
+            this.SearchRepackIDButton.Size = new System.Drawing.Size(27, 23);
+            this.SearchRepackIDButton.TabIndex = 16;
+            this.SearchRepackIDButton.Text = "...";
+            this.SearchRepackIDButton.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -168,32 +168,32 @@
             this.label3.TabIndex = 21;
             this.label3.Text = "Brg Material";
             // 
-            // textBox2
+            // BrgIDMaterialTextBox
             // 
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.Location = new System.Drawing.Point(11, 104);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(248, 21);
-            this.textBox2.TabIndex = 22;
+            this.BrgIDMaterialTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.BrgIDMaterialTextBox.Location = new System.Drawing.Point(11, 104);
+            this.BrgIDMaterialTextBox.Name = "BrgIDMaterialTextBox";
+            this.BrgIDMaterialTextBox.ReadOnly = true;
+            this.BrgIDMaterialTextBox.Size = new System.Drawing.Size(248, 21);
+            this.BrgIDMaterialTextBox.TabIndex = 22;
             // 
-            // button1
+            // BrgMaterialSearchButton
             // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.button1.Location = new System.Drawing.Point(261, 103);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(31, 23);
-            this.button1.TabIndex = 23;
-            this.button1.Text = "...";
-            this.button1.UseVisualStyleBackColor = true;
+            this.BrgMaterialSearchButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.BrgMaterialSearchButton.Location = new System.Drawing.Point(261, 103);
+            this.BrgMaterialSearchButton.Name = "BrgMaterialSearchButton";
+            this.BrgMaterialSearchButton.Size = new System.Drawing.Size(31, 23);
+            this.BrgMaterialSearchButton.TabIndex = 23;
+            this.BrgMaterialSearchButton.Text = "...";
+            this.BrgMaterialSearchButton.UseVisualStyleBackColor = true;
             // 
-            // textBox3
+            // BrgNameMaterialTextBox
             // 
-            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox3.Location = new System.Drawing.Point(11, 131);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(281, 21);
-            this.textBox3.TabIndex = 24;
+            this.BrgNameMaterialTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.BrgNameMaterialTextBox.Location = new System.Drawing.Point(11, 131);
+            this.BrgNameMaterialTextBox.Name = "BrgNameMaterialTextBox";
+            this.BrgNameMaterialTextBox.Size = new System.Drawing.Size(281, 21);
+            this.BrgNameMaterialTextBox.TabIndex = 24;
             // 
             // label4
             // 
@@ -205,19 +205,19 @@
             this.label4.TabIndex = 25;
             this.label4.Text = "Qty";
             // 
-            // numericUpDown1
+            // QtyMaterialTextBox
             // 
-            this.numericUpDown1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDown1.Location = new System.Drawing.Point(11, 171);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.QtyMaterialTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.QtyMaterialTextBox.Location = new System.Drawing.Point(11, 171);
+            this.QtyMaterialTextBox.Maximum = new decimal(new int[] {
             99999999,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(281, 21);
-            this.numericUpDown1.TabIndex = 26;
-            this.numericUpDown1.ThousandsSeparator = true;
+            this.QtyMaterialTextBox.Name = "QtyMaterialTextBox";
+            this.QtyMaterialTextBox.Size = new System.Drawing.Size(281, 21);
+            this.QtyMaterialTextBox.TabIndex = 26;
+            this.QtyMaterialTextBox.ThousandsSeparator = true;
             // 
             // label5
             // 
@@ -229,19 +229,19 @@
             this.label5.TabIndex = 27;
             this.label5.Text = "HPP";
             // 
-            // numericUpDown2
+            // HppMaterialTextBox
             // 
-            this.numericUpDown2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDown2.Location = new System.Drawing.Point(11, 211);
-            this.numericUpDown2.Maximum = new decimal(new int[] {
+            this.HppMaterialTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.HppMaterialTextBox.Location = new System.Drawing.Point(11, 211);
+            this.HppMaterialTextBox.Maximum = new decimal(new int[] {
             99999999,
             0,
             0,
             0});
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(281, 21);
-            this.numericUpDown2.TabIndex = 28;
-            this.numericUpDown2.ThousandsSeparator = true;
+            this.HppMaterialTextBox.Name = "HppMaterialTextBox";
+            this.HppMaterialTextBox.Size = new System.Drawing.Size(281, 21);
+            this.HppMaterialTextBox.TabIndex = 28;
+            this.HppMaterialTextBox.ThousandsSeparator = true;
             // 
             // panel2
             // 
@@ -249,32 +249,32 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.LemonChiffon;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.numericUpDown3);
+            this.panel2.Controls.Add(this.HppHasilTextBox);
             this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.numericUpDown4);
+            this.panel2.Controls.Add(this.QtyHasilTextBox);
             this.panel2.Controls.Add(this.label7);
-            this.panel2.Controls.Add(this.textBox4);
-            this.panel2.Controls.Add(this.button2);
-            this.panel2.Controls.Add(this.textBox5);
+            this.panel2.Controls.Add(this.BrgNameHasilTextBox);
+            this.panel2.Controls.Add(this.BrgIDHasilSearchButton);
+            this.panel2.Controls.Add(this.BrgIDHasilTextBox);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Location = new System.Drawing.Point(11, 272);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(312, 178);
             this.panel2.TabIndex = 1;
             // 
-            // numericUpDown3
+            // HppHasilTextBox
             // 
-            this.numericUpDown3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDown3.Location = new System.Drawing.Point(11, 131);
-            this.numericUpDown3.Maximum = new decimal(new int[] {
+            this.HppHasilTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.HppHasilTextBox.Location = new System.Drawing.Point(11, 131);
+            this.HppHasilTextBox.Maximum = new decimal(new int[] {
             99999999,
             0,
             0,
             0});
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(281, 21);
-            this.numericUpDown3.TabIndex = 36;
-            this.numericUpDown3.ThousandsSeparator = true;
+            this.HppHasilTextBox.Name = "HppHasilTextBox";
+            this.HppHasilTextBox.Size = new System.Drawing.Size(281, 21);
+            this.HppHasilTextBox.TabIndex = 36;
+            this.HppHasilTextBox.ThousandsSeparator = true;
             // 
             // label6
             // 
@@ -286,19 +286,19 @@
             this.label6.TabIndex = 35;
             this.label6.Text = "HPP";
             // 
-            // numericUpDown4
+            // QtyHasilTextBox
             // 
-            this.numericUpDown4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDown4.Location = new System.Drawing.Point(11, 91);
-            this.numericUpDown4.Maximum = new decimal(new int[] {
+            this.QtyHasilTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.QtyHasilTextBox.Location = new System.Drawing.Point(11, 91);
+            this.QtyHasilTextBox.Maximum = new decimal(new int[] {
             99999999,
             0,
             0,
             0});
-            this.numericUpDown4.Name = "numericUpDown4";
-            this.numericUpDown4.Size = new System.Drawing.Size(281, 21);
-            this.numericUpDown4.TabIndex = 34;
-            this.numericUpDown4.ThousandsSeparator = true;
+            this.QtyHasilTextBox.Name = "QtyHasilTextBox";
+            this.QtyHasilTextBox.Size = new System.Drawing.Size(281, 21);
+            this.QtyHasilTextBox.TabIndex = 34;
+            this.QtyHasilTextBox.ThousandsSeparator = true;
             // 
             // label7
             // 
@@ -310,32 +310,32 @@
             this.label7.TabIndex = 33;
             this.label7.Text = "Qty";
             // 
-            // textBox4
+            // BrgNameHasilTextBox
             // 
-            this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox4.Location = new System.Drawing.Point(11, 51);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(281, 21);
-            this.textBox4.TabIndex = 32;
+            this.BrgNameHasilTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.BrgNameHasilTextBox.Location = new System.Drawing.Point(11, 51);
+            this.BrgNameHasilTextBox.Name = "BrgNameHasilTextBox";
+            this.BrgNameHasilTextBox.Size = new System.Drawing.Size(281, 21);
+            this.BrgNameHasilTextBox.TabIndex = 32;
             // 
-            // button2
+            // BrgIDHasilSearchButton
             // 
-            this.button2.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.button2.Location = new System.Drawing.Point(261, 23);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(31, 23);
-            this.button2.TabIndex = 31;
-            this.button2.Text = "...";
-            this.button2.UseVisualStyleBackColor = true;
+            this.BrgIDHasilSearchButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.BrgIDHasilSearchButton.Location = new System.Drawing.Point(261, 23);
+            this.BrgIDHasilSearchButton.Name = "BrgIDHasilSearchButton";
+            this.BrgIDHasilSearchButton.Size = new System.Drawing.Size(31, 23);
+            this.BrgIDHasilSearchButton.TabIndex = 31;
+            this.BrgIDHasilSearchButton.Text = "...";
+            this.BrgIDHasilSearchButton.UseVisualStyleBackColor = true;
             // 
-            // textBox5
+            // BrgIDHasilTextBox
             // 
-            this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox5.Location = new System.Drawing.Point(11, 24);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(248, 21);
-            this.textBox5.TabIndex = 30;
+            this.BrgIDHasilTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.BrgIDHasilTextBox.Location = new System.Drawing.Point(11, 24);
+            this.BrgIDHasilTextBox.Name = "BrgIDHasilTextBox";
+            this.BrgIDHasilTextBox.ReadOnly = true;
+            this.BrgIDHasilTextBox.Size = new System.Drawing.Size(248, 21);
+            this.BrgIDHasilTextBox.TabIndex = 30;
             // 
             // label8
             // 
@@ -347,36 +347,36 @@
             this.label8.TabIndex = 29;
             this.label8.Text = "Brg Hasil";
             // 
-            // button3
+            // SaveButton
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.SaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(11, 456);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(151, 23);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Save";
-            this.button3.UseVisualStyleBackColor = true;
+            this.SaveButton.Location = new System.Drawing.Point(11, 456);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(151, 23);
+            this.SaveButton.TabIndex = 2;
+            this.SaveButton.Text = "Save";
+            this.SaveButton.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // DeleteButton
             // 
-            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.Location = new System.Drawing.Point(168, 456);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "Deletee";
-            this.button4.UseVisualStyleBackColor = true;
+            this.DeleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.DeleteButton.Location = new System.Drawing.Point(168, 456);
+            this.DeleteButton.Name = "DeleteButton";
+            this.DeleteButton.Size = new System.Drawing.Size(75, 23);
+            this.DeleteButton.TabIndex = 3;
+            this.DeleteButton.Text = "Deletee";
+            this.DeleteButton.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // ExitButton
             // 
-            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button5.Location = new System.Drawing.Point(248, 456);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "Exit";
-            this.button5.UseVisualStyleBackColor = true;
+            this.ExitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ExitButton.Location = new System.Drawing.Point(248, 456);
+            this.ExitButton.Name = "ExitButton";
+            this.ExitButton.Size = new System.Drawing.Size(75, 23);
+            this.ExitButton.TabIndex = 4;
+            this.ExitButton.Text = "Exit";
+            this.ExitButton.UseVisualStyleBackColor = true;
             // 
             // RepackForm
             // 
@@ -384,9 +384,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Khaki;
             this.ClientSize = new System.Drawing.Size(335, 491);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.ExitButton);
+            this.Controls.Add(this.DeleteButton);
+            this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -394,12 +394,12 @@
             this.Text = "Repack Form";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.QtyMaterialTextBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.HppMaterialTextBox)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.HppHasilTextBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.QtyHasilTextBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -407,32 +407,32 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox RepackIDTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker TanggalDateTime;
         private System.Windows.Forms.MaskedTextBox JamTextBox;
         private System.Windows.Forms.Button NewButton;
-        private System.Windows.Forms.Button SearchProduksiButton;
+        private System.Windows.Forms.Button SearchRepackIDButton;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox BrgNameMaterialTextBox;
+        private System.Windows.Forms.Button BrgMaterialSearchButton;
+        private System.Windows.Forms.TextBox BrgIDMaterialTextBox;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.NumericUpDown HppMaterialTextBox;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown QtyMaterialTextBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
+        private System.Windows.Forms.NumericUpDown HppHasilTextBox;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.NumericUpDown numericUpDown4;
+        private System.Windows.Forms.NumericUpDown QtyHasilTextBox;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox BrgNameHasilTextBox;
+        private System.Windows.Forms.Button BrgIDHasilSearchButton;
+        private System.Windows.Forms.TextBox BrgIDHasilTextBox;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button SaveButton;
+        private System.Windows.Forms.Button DeleteButton;
+        private System.Windows.Forms.Button ExitButton;
     }
 }
