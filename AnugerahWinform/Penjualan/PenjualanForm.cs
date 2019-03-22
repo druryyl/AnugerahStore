@@ -93,10 +93,9 @@ namespace AnugerahWinform.Penjualan
             if ((brgName.Trim() != "") && (e.RowIndex == DetilPenjualanTable.Rows.Count - 1))
                 AddRow();
 
-            if (e.ColumnIndex == 3)
+            if ((e.ColumnIndex == 3 ) || (e.ColumnIndex == 4))
             {
                 ShowHargaBrg(e.RowIndex);
-                //ShowHargaBrg(e.RowIndex);
             }
         }
         private void BrgGrid_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
@@ -319,6 +318,7 @@ namespace AnugerahWinform.Penjualan
         {
             //  get key (KodeBrg)
             string kodeBrg = (string)DetilPenjualanTable.Rows[rowIndex]["BrgID"];
+
             //  get qty
             var qty = Convert.ToInt32(DetilPenjualanTable.Rows[rowIndex]["Qty"]);
             if (qty <= 0) qty = 1;
@@ -337,6 +337,12 @@ namespace AnugerahWinform.Penjualan
                 diskon = dataHarga.Diskon;
             }
 
+
+            if (kodeBrg.ToLower().Contains("jasa"))
+            {
+                harga = Convert.ToDouble(DetilPenjualanTable.Rows[rowIndex]["Harga"]);
+                diskon = Convert.ToDouble(DetilPenjualanTable.Rows[rowIndex]["Diskon"]);
+            }
             DetilPenjualanTable.Rows[rowIndex]["Harga"] = harga;
             DetilPenjualanTable.Rows[rowIndex]["Diskon"] = diskon;
             DetilPenjualanTable.Rows[rowIndex]["SubTotal"] = (harga - diskon) * qty;
@@ -506,7 +512,20 @@ namespace AnugerahWinform.Penjualan
                         bpHutang = _bpHutangBL.GenHutang(penjualan, deposit);
                     }
                     //  generate stok
+                    //  remove item2 jasa
+                    var listBrg = new List<Penjualan2Model>();
+                    foreach(var item in result.ListBrg)
+                        if(item.BrgID.ToLower().Contains("jasa"))
+                        {
+
+                        }
+                        else
+                        {
+                            listBrg.Add(item);
+                        }
+                    result.ListBrg = listBrg;
                     var bpStok = _bpStokBL.Generate(result);
+
 
                     trans.Complete();
                 }
@@ -613,6 +632,24 @@ namespace AnugerahWinform.Penjualan
             PihakKeduaNameText.Text = bpHutang.PihakKeduaName;
             NilaiDepositText.Value = bpHutang.NilaiHutang - bpHutang.NilaiLunas;
             KeteranganText.Text = bpHutang.Keterangan;
+        }
+
+        private void BrgGrid_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            var brgName = DetilPenjualanTable.Rows[e.RowIndex]["BrgName"].ToString();
+            if ((brgName.Trim() != "") && (e.RowIndex == DetilPenjualanTable.Rows.Count - 1))
+                AddRow();
+
+            if (e.ColumnIndex == 4)
+            {
+                if (brgName.ToLower().Contains("jasa"))
+                {
+                    //  boleh diedit jika JASA
+                    e.Cancel = false;
+                }
+                else
+                    e.Cancel = true;
+            }
         }
     }
 }
