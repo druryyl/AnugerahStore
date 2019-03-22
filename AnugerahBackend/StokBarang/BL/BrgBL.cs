@@ -38,6 +38,15 @@ namespace AnugerahBackend.StokBarang.BL
         private IColorBL _colorBL;
         private IParameterNoBL _paramNoBL;
 
+        public BrgModel ItemJasaCutting()
+        {
+            return new BrgModel
+            {
+                BrgID = "JASA1",
+                BrgName = "Jasa Cutting"
+            };
+        }
+
         public BrgBL()
         {
             _brgDal = new BrgDal();
@@ -95,6 +104,9 @@ namespace AnugerahBackend.StokBarang.BL
 
         public BrgModel GetData(string id)
         {
+            if (id == ItemJasaCutting().BrgID)
+                return ItemJasaCutting();
+
             return _brgDal.GetData(id);
         }
 
@@ -234,7 +246,8 @@ namespace AnugerahBackend.StokBarang.BL
             if (listAll == null) return null;
 
             //  convert
-            var result = listAll.Select(x => (BrgSearchResultModel)x);
+            var result = listAll.Select(x => (BrgSearchResultModel)x).ToList();
+            result.Add((BrgSearchResultModel)ItemJasaCutting());
 
             //  filter
             if (SearchFilter.UserKeyword != null)
