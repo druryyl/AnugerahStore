@@ -34,6 +34,7 @@ namespace AnugerahWinform.StokBarang.Presenter
                 RepackID = _view.RepackID,
                 Tgl = _view.Tgl,
                 Jam = _view.Jam,
+                BPStokID = _view.BPStokID,
 
                 BrgIDMaterial = _view.BrgIDMaterial,
                 BrgNameMaterial = _view.BrgNameMaterial,
@@ -50,6 +51,7 @@ namespace AnugerahWinform.StokBarang.Presenter
             using (var trans = TransHelper.NewScope())
             {
                 _repackBL.Save(repack);
+                trans.Complete();
             }
         }
 
@@ -118,7 +120,7 @@ namespace AnugerahWinform.StokBarang.Presenter
             var resultDialog = searchForm.ShowDialog();
             if (resultDialog == DialogResult.OK)
             {
-                var brg = _bpStokBL.GetData(searchForm.SelectedDataKey);
+                var brg = _brgBL.GetData(searchForm.SelectedDataKey);
                 _view.BrgIDHasil = brg.BrgID;
                 _view.BrgNameHasil = brg.BrgName;
             }

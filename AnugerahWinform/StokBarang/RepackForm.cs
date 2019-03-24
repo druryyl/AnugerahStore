@@ -20,6 +20,8 @@ namespace AnugerahWinform.StokBarang
         public RepackForm()
         {
             InitializeComponent();
+            presenter = new RepackPresenter(this);
+            presenter.New();
         }
 
         public string RepackID
