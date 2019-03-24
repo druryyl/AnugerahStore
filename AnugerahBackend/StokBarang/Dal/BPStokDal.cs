@@ -18,6 +18,7 @@ namespace AnugerahBackend.StokBarang.Dal
         void Delete(string bpStokID);
         BPStokModel GetData(string bpStokID);
         IEnumerable<BPStokModel> ListData(string brgID);
+        IEnumerable<BPStokModel> ListData();
     }
 
     public class BPStokDal : IBPStokDal
@@ -169,6 +170,52 @@ namespace AnugerahBackend.StokBarang.Dal
             using (var cmd = new SqlCommand(sSql, conn))
             {
                 cmd.AddParam("@BrgID", brgID);
+                conn.Open();
+                using (var dr = cmd.ExecuteReader())
+                {
+                    if (!dr.HasRows) return null;
+                    result = new List<BPStokModel>();
+                    while (dr.Read())
+                    {
+                        var item = new BPStokModel
+                        {
+                            BPStokID = dr["BPStokID"].ToString(),
+                            ReffID = dr["ReffID"].ToString(),
+                            StokControl = dr["StokControl"].ToString(),
+                            Tgl = dr["Tgl"].ToString().ToTglDMY(),
+                            Jam = dr["Jam"].ToString(),
+                            BrgID = dr["BrgID"].ToString(),
+                            BrgName = dr["BrgName"].ToString(),
+                            NilaiHpp = Convert.ToDecimal(dr["NilaiHpp"]),
+                            QtyIn = Convert.ToInt64(dr["QtyIn"]),
+                            QtySisa = Convert.ToInt64(dr["QtySisa"])
+                        };
+                        result.Add(item);
+                    }
+                }
+            }
+            return result;
+        }
+
+        public IEnumerable<BPStokModel> ListData()
+        {
+            List<BPStokModel> result = null;
+            var sSql = @"
+                SELECT
+                    aa.BPStokID, aa.ReffID, aa.StokControl,
+                    aa.Tgl, aa.Jam, aa.BrgID,
+                    aa.NilaiHpp, aa.QtyIn, aa.QtySisa,
+                    ISNULL(bb.BrgName, '') BrgName
+                FROM
+                    BPStok aa
+                    LEFT JOIN Brg bb ON aa.BrgID = bb.BrgID
+                WHERE
+                    aa.QtySisa > 0 
+                ORDER BY
+                    aa.Tgl, aa.Jam ";
+            using (var conn = new SqlConnection(_connString))
+            using (var cmd = new SqlCommand(sSql, conn))
+            {
                 conn.Open();
                 using (var dr = cmd.ExecuteReader())
                 {

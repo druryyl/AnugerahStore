@@ -1,4 +1,5 @@
-﻿using AnugerahWinform.StokBarang.View;
+﻿using AnugerahWinform.StokBarang.Presenter;
+using AnugerahWinform.StokBarang.View;
 using Ics.Helper.StringDateTime;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,8 @@ namespace AnugerahWinform.StokBarang
 {
     public partial class RepackForm : Form, IRepackView
     {
+        private RepackPresenter presenter;
+
         public RepackForm()
         {
             InitializeComponent();
@@ -34,6 +37,12 @@ namespace AnugerahWinform.StokBarang
             get => JamTextBox.Text;
             set => JamTextBox.Text = value;
         }
+        public string BPStokID
+        {
+            get => BPStokIDTextBox.Text;
+            set => BPStokIDTextBox.Text = value;
+        }
+
         public string BrgIDMaterial
         {
             get => BrgIDMaterialTextBox.Text;
@@ -54,6 +63,7 @@ namespace AnugerahWinform.StokBarang
             get => HppMaterialTextBox.Value;
             set => HppMaterialTextBox.Value = value;
         }
+
         public string BrgIDHasil
         {
             get => BrgIDHasilTextBox.Text;
@@ -64,6 +74,11 @@ namespace AnugerahWinform.StokBarang
             get => BrgNameHasilTextBox.Text;
             set => BrgNameHasilTextBox.Text = value;
         }
+        public string SlotControl
+        {
+            get => SlotControlTextBox.Text;
+            set => SlotControlTextBox.Text = value;
+        }
         public long QtyHasil
         {
             get => Convert.ToInt64(QtyHasilTextBox.Value);
@@ -73,6 +88,31 @@ namespace AnugerahWinform.StokBarang
         {
             get => HppHasilTextBox.Value;
             set => HppHasilTextBox.Value = value;
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            presenter.Save();
+        }
+
+        private void NewButton_Click(object sender, EventArgs e)
+        {
+            presenter.New();
+        }
+
+        private void SearchRepackIDButton_Click(object sender, EventArgs e)
+        {
+            presenter.PilihRepackID();
+        }
+
+        private void BrgMaterialSearchButton_Click(object sender, EventArgs e)
+        {
+            presenter.PilihBPStokIDMaterial();
+        }
+
+        private void BrgIDHasilSearchButton_Click(object sender, EventArgs e)
+        {
+            presenter.PilihBrgIDHasil();
         }
     }
 } 

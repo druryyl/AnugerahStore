@@ -11,7 +11,7 @@ namespace AnugerahWinform.StokBarang.View
         string RepackID { get; set; }
         string Tgl { get; set; }
         string Jam { get; set; }
-        
+        string BPStokID { get; set; }        
         string BrgIDMaterial { get; set; }
         string BrgNameMaterial { get; set; }
         long QtyMaterial { get; set; }
@@ -19,6 +19,7 @@ namespace AnugerahWinform.StokBarang.View
 
         string BrgIDHasil { get; set; }
         string BrgNameHasil { get; set; }
+        string SlotControl { get; set; }
         long QtyHasil { get; set; }
         decimal HppHasil { get; set; }
     }

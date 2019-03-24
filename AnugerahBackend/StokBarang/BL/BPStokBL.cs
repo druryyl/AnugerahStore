@@ -7,14 +7,18 @@ using AnugerahBackend.Pembelian.Model;
 using AnugerahBackend.Penjualan.Model;
 using AnugerahBackend.StokBarang.Dal;
 using AnugerahBackend.StokBarang.Model;
+using AnugerahBackend.Support;
+using Ics.Helper.Extensions;
 
 namespace AnugerahBackend.StokBarang.BL
 {
-    public interface IBPStokBL
+    public interface IBPStokBL : ISearch<BPStokSearchModel>
     {
         IEnumerable<BPStokModel> Generate(StokAdjustmentModel adjustment);
         IEnumerable<BPStokModel> Generate(PenjualanModel penjualan);
         IEnumerable<BPStokModel> Generate(ReceiptModel receipt);
+        BPStokModel GetData(string BPStokID);
+        IEnumerable<BPStokModel> ListData();
     }
 
     public class BPStokBL : IBPStokBL
@@ -26,6 +30,10 @@ namespace AnugerahBackend.StokBarang.BL
         {
             _bpStokDal = new BPStokDal();
             _bpStokDetilDal = new BPStokDetilDal();
+            SearchFilter = new SearchFilter
+            {
+                IsDate = false
+            };
         }
 
         public BPStokBL(IBPStokDal bpStokDal, IBPStokDetilDal bPStokDetilDal)
@@ -366,5 +374,32 @@ namespace AnugerahBackend.StokBarang.BL
             return result;
         }
 
+        public BPStokModel GetData(string bpStokID)
+        {
+            return _bpStokDal.GetData(bpStokID);
+        }
+
+        public IEnumerable<BPStokModel> ListData()
+        {
+            return _bpStokDal.ListData();
+        }
+
+        public SearchFilter SearchFilter { get; set; }
+
+        public IEnumerable<BPStokSearchModel> Search()
+        {
+            var listData = _bpStokDal.ListData();
+            if (listData == null) return null;
+
+            var result = listData.Select(x => (BPStokSearchModel)x);
+
+            if (SearchFilter.UserKeyword != null)
+                return
+                    from c in result
+                    where c.BrgName.ContainMultiWord(SearchFilter.UserKeyword)
+                    select c;
+
+            return result;
+        }
     }
 }

@@ -33,13 +33,13 @@ namespace AnugerahBackend.StokBarang.Dal
             var sSql = @"
                 INSERT INTO
                     Repack (
-                        RepackID, Tgl, Jam, 
+                        RepackID, Tgl, Jam, BPStokID, 
                         BrgIDMaterial, QtyMaterial, HppMaterial,
-                        BrgIDHasil, QtyHasil, HppHasil)
+                        BrgIDHasil, SlotControl, QtyHasil, HppHasil)
                 VALUES (
-                        @RepackID, @Tgl, @Jam, 
+                        @RepackID, @Tgl, @Jam, @BPStokID,  
                         @BrgIDMaterial, @QtyMaterial, @HppMaterial,
-                        @BrgIDHasil, @QtyHasil, @HppHasil) ";
+                        @BrgIDHasil, @SlotControl, @QtyHasil, @HppHasil) ";
 
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
@@ -47,12 +47,17 @@ namespace AnugerahBackend.StokBarang.Dal
                 cmd.AddParam("@RepackID", model.RepackID);
                 cmd.AddParam("@Tgl", model.Tgl);
                 cmd.AddParam("@Jam", model.Jam);
+                cmd.AddParam("@BPStokID", model.BPStokID);
+
                 cmd.AddParam("BrgIDMaterial", model.BrgIDMaterial);
                 cmd.AddParam("@QtyMaterial", model.QtyMaterial);
                 cmd.AddParam("@HppMaterial", model.HppMaterial);
+
                 cmd.AddParam("BrgIDHasil", model.BrgIDHasil);
                 cmd.AddParam("@QtyHasil", model.QtyHasil);
                 cmd.AddParam("@HppHasil", model.HppHasil);
+                cmd.AddParam("@SlotControl", model.SlotControl);
+
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -66,10 +71,12 @@ namespace AnugerahBackend.StokBarang.Dal
                 SET
                     Tgl = @Tgl, 
                     Jam = @Jam, 
+                    BPStokID = @BPStokID, 
                     BrgIDMaterial = @BrgIDMaterial, 
                     QtyMaterial = @QtyMaterial, 
                     HppMaterial = @HppMaterial, 
                     BrgIDHasil = @BrgIDHasil, 
+                    SlotControl = @SlotControl,
                     QtyHasil = @QtyHasil, 
                     HppHasil = @HppHasil, 
                 WHERE
@@ -81,10 +88,12 @@ namespace AnugerahBackend.StokBarang.Dal
                 cmd.AddParam("@RepackID", model.RepackID);
                 cmd.AddParam("@Tgl", model.Tgl);
                 cmd.AddParam("@Jam", model.Jam);
+                cmd.AddParam("@BPStokID", model.BPStokID);
                 cmd.AddParam("BrgIDMaterial", model.BrgIDMaterial);
                 cmd.AddParam("@QtyMaterial", model.QtyMaterial);
                 cmd.AddParam("@HppMaterial", model.HppMaterial);
                 cmd.AddParam("BrgIDHasil", model.BrgIDHasil);
+                cmd.AddParam("SlotControl", model.SlotControl);
                 cmd.AddParam("@QtyHasil", model.QtyHasil);
                 cmd.AddParam("@HppHasil", model.HppHasil);
                 conn.Open();
@@ -115,9 +124,9 @@ namespace AnugerahBackend.StokBarang.Dal
 
             var sSql = @"
                 SELECT
-                    aa.RepackID, aa.Tgl, aa.Jam, 
+                    aa.RepackID, aa.Tgl, aa.Jam, aa.BPStokID, 
                     aa.BrgIDMaterial, aa.QtyMaterial, aa.HppMaterial,
-                    aa.BrgIDHasil, aa.QtyHasil, aa.HppHasil,
+                    aa.BrgIDHasil, aa.SlotControl, aa.QtyHasil, aa.HppHasil,
                     ISNULL(bb.BrgName, '') BrgNameMaterial,
                     ISNULL(cc.BrgName, '') BrgNameHasil
                 FROM
@@ -140,6 +149,7 @@ namespace AnugerahBackend.StokBarang.Dal
                         RepackID = dr["RepackID"].ToString(),
                         Tgl = dr["Tgl"].ToString().ToTglDMY(),
                         Jam = dr["Jam"].ToString(),
+                        BPStokID = dr["BPStokID"].ToString(),
 
                         BrgIDMaterial = dr["BrgIDMaterial"].ToString(),
                         BrgNameMaterial = dr["BrgNameMaterial"].ToString(),
@@ -148,6 +158,7 @@ namespace AnugerahBackend.StokBarang.Dal
 
                         BrgIDHasil = dr["BrgIDHasil"].ToString(),
                         BrgNameHasil = dr["BrgNameHasil"].ToString(),
+                        SlotControl = dr["SlotCOntrol"].ToString(),
                         QtyHasil = Convert.ToInt64(dr["QtyHasil"]),
                         HppHasil = Convert.ToDecimal(dr["HppHasil"])
                     };
@@ -163,9 +174,9 @@ namespace AnugerahBackend.StokBarang.Dal
             
             var sSql = @"
                 SELECT
-                    aa.RepackID, aa.Tgl, aa.Jam, 
+                    aa.RepackID, aa.Tgl, aa.Jam, aa.BPStokID, 
                     aa.BrgIDMaterial, aa.QtyMaterial, aa.HppMaterial,
-                    aa.BrgIDHasil, aa.QtyHasil, aa.HppHasil,
+                    aa.BrgIDHasil, aa.SlotControl, aa.QtyHasil, aa.HppHasil,
                     ISNULL(bb.BrgName, '') BrgNameMaterial,
                     ISNULL(cc.BrgName, '') BrgNameHasil
                 FROM
@@ -192,6 +203,7 @@ namespace AnugerahBackend.StokBarang.Dal
                             RepackID = dr["RepackID"].ToString(),
                             Tgl = dr["Tgl"].ToString().ToTglDMY(),
                             Jam = dr["Jam"].ToString(),
+                            BPStokID = dr["BPStokID"].ToString(),
 
                             BrgIDMaterial = dr["BrgIDMaterial"].ToString(),
                             BrgNameMaterial = dr["BrgNameMaterial"].ToString(),
@@ -200,6 +212,7 @@ namespace AnugerahBackend.StokBarang.Dal
 
                             BrgIDHasil = dr["BrgIDHasil"].ToString(),
                             BrgNameHasil = dr["BrgNameHasil"].ToString(),
+                            SlotControl = dr["SlotControl"].ToString(),
                             QtyHasil = Convert.ToInt64(dr["QtyHasil"]),
                             HppHasil = Convert.ToDecimal(dr["HppHasil"])
                         };

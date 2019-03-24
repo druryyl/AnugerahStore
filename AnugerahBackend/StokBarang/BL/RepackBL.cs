@@ -3,6 +3,7 @@ using AnugerahBackend.StokBarang.Model;
 using AnugerahBackend.Support;
 using AnugerahBackend.Support.BL;
 using Ics.Helper.Database;
+using Ics.Helper.Extensions;
 using Ics.Helper.StringDateTime;
 using System;
 using System.Collections.Generic;
@@ -116,6 +117,14 @@ namespace AnugerahBackend.StokBarang.BL
             var listData = dep.RepackDal.ListData(SearchFilter.TglDMY1, SearchFilter.TglDMY2);
             if (listData == null) return null;
             var result = listData.Select(x => (RepackSearchModel)x);
+
+            //  filter
+            if (SearchFilter.UserKeyword != null)
+                return
+                    from c in result
+                    where c.BrgNameHasil.ContainMultiWord(SearchFilter.UserKeyword)
+                    select c;
+
             return result;
         }
     }

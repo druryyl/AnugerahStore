@@ -21,4 +21,22 @@ namespace AnugerahBackend.StokBarang.Model
 
         public List<BPStokDetilModel> ListDetil { get; set; }
     }
+
+    public class BPStokSearchModel
+    {
+        public string BPStokID { get; set; }
+        public string BrgName { get; set; }
+        public long Qty { get; set; }
+
+        public static explicit operator BPStokSearchModel(BPStokModel model)
+        {
+            var result = new BPStokSearchModel
+            {
+                BPStokID = model.BPStokID,
+                BrgName = model.BrgName,
+                Qty = model.QtySisa,
+            };
+            return result;
+        }
+    }
 }

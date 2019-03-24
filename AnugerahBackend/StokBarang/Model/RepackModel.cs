@@ -11,6 +11,8 @@ namespace AnugerahBackend.StokBarang.Model
         public string RepackID { get; set; }
         public string Tgl { get; set; }
         public string Jam { get; set; }
+
+        public string BPStokID { get; set; }
         public string BrgIDMaterial { get; set; }
         public string BrgNameMaterial { get; set; }
         public long QtyMaterial { get; set; }
@@ -18,6 +20,7 @@ namespace AnugerahBackend.StokBarang.Model
 
         public string BrgIDHasil { get; set; }
         public string BrgNameHasil { get; set; }
+        public string SlotControl { get; set; }
         public long QtyHasil { get; set; }
         public decimal HppHasil { get; set; }
     }
