@@ -45,7 +45,7 @@ namespace AnugerahBackend.StokBarang.Dal
             using (var cmd = new SqlCommand(sSql, conn))
             {
                 cmd.AddParam("@RepackID", model.RepackID);
-                cmd.AddParam("@Tgl", model.Tgl);
+                cmd.AddParam("@Tgl", model.Tgl.ToTglYMD());
                 cmd.AddParam("@Jam", model.Jam);
                 cmd.AddParam("@BPStokID", model.BPStokID);
 
@@ -86,7 +86,7 @@ namespace AnugerahBackend.StokBarang.Dal
             using (var cmd = new SqlCommand(sSql, conn))
             {
                 cmd.AddParam("@RepackID", model.RepackID);
-                cmd.AddParam("@Tgl", model.Tgl);
+                cmd.AddParam("@Tgl", model.Tgl.ToTglYMD());
                 cmd.AddParam("@Jam", model.Jam);
                 cmd.AddParam("@BPStokID", model.BPStokID);
                 cmd.AddParam("BrgIDMaterial", model.BrgIDMaterial);
@@ -104,7 +104,7 @@ namespace AnugerahBackend.StokBarang.Dal
         public void Delete(string id)
         {
             var sSql = @"
-                UPDATE
+                DELETE
                     Repack 
                 WHERE
                     RepackID = @RepackID ";
@@ -144,6 +144,7 @@ namespace AnugerahBackend.StokBarang.Dal
                 using (var dr = cmd.ExecuteReader())
                 {
                     if (!dr.HasRows) return null;
+                    dr.Read();
                     result = new RepackModel
                     {
                         RepackID = dr["RepackID"].ToString(),
@@ -216,9 +217,9 @@ namespace AnugerahBackend.StokBarang.Dal
                             QtyHasil = Convert.ToInt64(dr["QtyHasil"]),
                             HppHasil = Convert.ToDecimal(dr["HppHasil"])
                         };
+                        result.Add(item);
                     }
                 }
-                cmd.ExecuteNonQuery();
             }
             return result;
         }

@@ -42,7 +42,9 @@ namespace AnugerahBackend.StokBarang.BL
             };
             SearchFilter = new SearchFilter
             {
-                IsDate = true
+                IsDate = true,
+                Date1 = DateTime.Now,
+                Date2 = DateTime.Now
             };
         }
 
@@ -83,6 +85,13 @@ namespace AnugerahBackend.StokBarang.BL
             {
                 if (model.RepackID.Trim() == "")
                     model.RepackID = GenNewID();
+
+                //  delete data lama
+                dep.RepackDal.Delete(model.RepackID);
+                //  simpan data baru
+                dep.RepackDal.Insert(model);
+
+                trans.Complete();
             }
 
             return model;

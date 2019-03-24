@@ -95,6 +95,7 @@ namespace AnugerahWinform.StokBarang
         private void SaveButton_Click(object sender, EventArgs e)
         {
             presenter.Save();
+            presenter.New();
         }
 
         private void NewButton_Click(object sender, EventArgs e)

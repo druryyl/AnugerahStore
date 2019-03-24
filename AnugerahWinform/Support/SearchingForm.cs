@@ -44,21 +44,7 @@ namespace AnugerahWinform.Support
             if (listData == null) return;
 
             ListDataGrid.DataSource = listData.ToList();
-            int allColWidth = 0;
-            foreach (DataGridViewColumn col in ListDataGrid.Columns)
-            {
-                col.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                allColWidth += col.Width;
-            }
-            var maxWidth = 900;
-            var minWidth = 300;
-            var margin = 65;
-            if (allColWidth <= maxWidth)
-                this.Width = allColWidth + margin;
-
-            if (allColWidth <= minWidth)
-                this.Width = minWidth + margin;
-
+            ListDataGrid.Refresh();
         }
 
         private void KeywordTextBox_KeyDown(object sender, KeyEventArgs e)
@@ -135,6 +121,33 @@ namespace AnugerahWinform.Support
                 SelectedDataKey = ListDataGrid.CurrentRow.Cells[0].Value.ToString();
                 DialogResult = DialogResult.OK;
             }
+        }
+
+        private void ListDataGrid_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            int allColWidth = 0;
+            int colIndex = 0;
+            foreach (DataGridViewColumn col in ListDataGrid.Columns)
+            {
+                //col.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                //ListDataGrid.AutoResizeColumn(colIndex);
+                allColWidth += (int)col.FillWeight;
+                colIndex++;
+            }
+            int allColWidth2 =
+                ListDataGrid.Columns.Cast<DataGridViewColumn>()
+                    .Sum(x => x.Width)
+                    + (ListDataGrid.RowHeadersVisible ? ListDataGrid.RowHeadersWidth : 0);
+
+            var maxWidth = 900;
+            var minWidth = 300;
+            var margin = 65;
+            if (allColWidth2 <= maxWidth)
+                this.Width = allColWidth2 + margin;
+
+            if (allColWidth2 <= minWidth)
+                this.Width = minWidth + margin;
+
         }
     }
 }

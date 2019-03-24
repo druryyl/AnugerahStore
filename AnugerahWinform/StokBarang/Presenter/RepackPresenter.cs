@@ -86,6 +86,7 @@ namespace AnugerahWinform.StokBarang.Presenter
                 _view.RepackID = repack.RepackID;
                 _view.Tgl = repack.Tgl;
                 _view.Jam = repack.Jam;
+                _view.BPStokID = repack.BPStokID;
 
                 _view.BrgIDMaterial = repack.BrgIDMaterial;
                 _view.BrgNameMaterial = repack.BrgNameMaterial;
