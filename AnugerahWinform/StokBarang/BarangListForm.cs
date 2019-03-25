@@ -328,8 +328,8 @@ namespace AnugerahWinform.StokBarang
 
             var color = _colorBL.GetData(ColorComboBox.SelectedValue.ToString());
 
-            ColorPanel.BackColor = Color.FromArgb(
-                color.RedValue,color.GreenValue, color.BlueValue);
+            //ColorPanel.BackColor = Color.FromArgb(
+            //    color.RedValue,color.GreenValue, color.BlueValue);
         }
 
         private void ColorPanel_MouseHover(object sender, EventArgs e)
