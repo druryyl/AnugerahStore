@@ -17,6 +17,7 @@ namespace AnugerahBackend.StokBarang.BL
         IEnumerable<BPStokModel> Generate(StokAdjustmentModel adjustment);
         IEnumerable<BPStokModel> Generate(PenjualanModel penjualan);
         IEnumerable<BPStokModel> Generate(ReceiptModel receipt);
+        BPStokModel Generate(RepackModel repack);
         BPStokModel GetData(string BPStokID);
         IEnumerable<BPStokModel> ListData();
     }
@@ -217,6 +218,19 @@ namespace AnugerahBackend.StokBarang.BL
             return result;
         }
 
+        public BPStokModel Generate(RepackModel repack)
+        {
+            BPStokModel result = null;
+            if (repack == null)
+                throw new ArgumentNullException(nameof(repack));
+
+            //  ambil data stok material
+            //var stokItem = 
+            //bpStokMaterial = RemoveStok(stok)
+
+            return result;
+        }
+
         private IEnumerable<BPStokModel> ListData(string brgID)
         {
             IEnumerable<BPStokModel> result = null;
@@ -401,5 +415,6 @@ namespace AnugerahBackend.StokBarang.BL
 
             return result;
         }
+
     }
 }
