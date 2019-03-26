@@ -89,7 +89,7 @@ namespace AnugerahBackend.StokBarang.BL
                     HargaJual = 0,
                     StokControl = "",
                 };
-                var genResult = RemoveStok(stokItem);
+                var genResult = RemoveStok(stokItem,"");
                 if (result == null) result = new List<BPStokModel>();
                 foreach(var item2 in genResult)
                     result.Add(item2);
@@ -141,7 +141,7 @@ namespace AnugerahBackend.StokBarang.BL
                     HargaJual = item.Harga,
                     StokControl = "",
                 };
-                var genResult = RemoveStok(stokItem);
+                var genResult = RemoveStok(stokItem,"");
                 if (result == null) result = new List<BPStokModel>();
                 foreach (var item2 in genResult)
                     result.Add(item2);
@@ -224,9 +224,37 @@ namespace AnugerahBackend.StokBarang.BL
             if (repack == null)
                 throw new ArgumentNullException(nameof(repack));
 
-            //  ambil data stok material
-            //var stokItem = 
-            //bpStokMaterial = RemoveStok(stok)
+            //  ambil data data material untuk dikurangi stok-nya
+            var stokMaterial = new StokItem
+            {
+                ReffID = repack.RepackID,
+                Tgl = repack.Tgl,
+                Jam = repack.Jam,
+                BrgID = repack.BrgIDMaterial,
+                BrgName = repack.BrgNameMaterial,
+                QtyIn = 0,
+                NilaiHpp = 0,
+                QtyOut = repack.QtyMaterial,
+                HargaJual = 0,
+                StokControl = "",
+            };
+            var bpStokMaterial = RemoveStok(stokMaterial, repack.BPStokID);
+
+            //  insert data hasil untuk ditambahkan stoknya
+            var stokHasil = new StokItem
+            {
+                ReffID = repack.RepackID,
+                Tgl = repack.Tgl,
+                Jam = repack.Jam,
+                BrgID = repack.BrgIDMaterial,
+                BrgName = repack.BrgNameMaterial,
+                QtyIn = 0,
+                NilaiHpp = 0,
+                QtyOut = repack.QtyMaterial,
+                HargaJual = 0,
+                StokControl = "",
+            };
+            var bpStokHasil = RemoveStok(stokHasil, repack.BPStokID);
 
             return result;
         }
@@ -289,7 +317,7 @@ namespace AnugerahBackend.StokBarang.BL
             return result;
         }
 
-        private IEnumerable<BPStokModel> RemoveStok(StokItem stokItem)
+        private IEnumerable<BPStokModel> RemoveStok(StokItem stokItem, string stokControl)
         {
             List<BPStokModel> result = null;
 
@@ -300,10 +328,16 @@ namespace AnugerahBackend.StokBarang.BL
             //  list semua buku stok barang ini yang masih ada sisa stok
             var listBPStok = ListData(stokItem.BrgID);
             if (listBPStok == null) return null;
+            //  jika pengurangan stok untuk kasus tertentu
+            //  (sudah ditetepkan stok mana yg dikurangi)
+            if (stokControl.Trim() != "")
+            {
+                listBPStok = listBPStok.Where(x => x.BPStokID == stokControl);
+            }
 
             //  jika stok control diinputkan, 
             //  maka list barang yang sesuai stok control
-            if(stokItem.StokControl.Trim() != "")
+            if (stokItem.StokControl.Trim() != "")
             {
                 listBPStok = listBPStok
                     .Where(x => x.StokControl == stokItem.StokControl);
