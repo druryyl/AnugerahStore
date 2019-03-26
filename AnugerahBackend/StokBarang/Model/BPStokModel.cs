@@ -33,7 +33,8 @@ namespace AnugerahBackend.StokBarang.Model
             var result = new BPStokSearchModel
             {
                 BPStokID = model.BPStokID,
-                BrgName = model.BrgName,
+                BrgName = string.Format("{0} {1}",
+                    model.BrgName, model.StokControl),
                 Qty = model.QtySisa,
             };
             return result;

@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.PenjualanBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.PenjualanDataSet = new System.Data.DataSet();
             this.DetilPenjualanTable = new System.Data.DataTable();
@@ -98,8 +98,11 @@
             this.ExitButton = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
+            this.dataColumn7 = new System.Data.DataColumn();
             this.BrgIDCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BrgGridButtonCol = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.BPStokID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SearchStokIDButton = new System.Windows.Forms.DataGridViewButtonColumn();
             this.BrgNameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QtyCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HargaCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -146,7 +149,8 @@
             this.dataColumn3,
             this.dataColumn4,
             this.dataColumn5,
-            this.dataColumn6});
+            this.dataColumn6,
+            this.dataColumn7});
             this.DetilPenjualanTable.TableName = "DetilPenjualanTable";
             // 
             // dataColumn1
@@ -826,6 +830,8 @@
             this.BrgGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.BrgIDCol,
             this.BrgGridButtonCol,
+            this.BPStokID,
+            this.SearchStokIDButton,
             this.BrgNameCol,
             this.QtyCol,
             this.HargaCol,
@@ -874,11 +880,16 @@
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
+            // dataColumn7
+            // 
+            this.dataColumn7.ColumnName = "BPStokID";
+            // 
             // BrgIDCol
             // 
             this.BrgIDCol.DataPropertyName = "BrgID";
             this.BrgIDCol.HeaderText = "BrgID";
             this.BrgIDCol.Name = "BrgIDCol";
+            this.BrgIDCol.Width = 60;
             // 
             // BrgGridButtonCol
             // 
@@ -887,6 +898,19 @@
             this.BrgGridButtonCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.BrgGridButtonCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.BrgGridButtonCol.Width = 25;
+            // 
+            // BPStokID
+            // 
+            this.BPStokID.DataPropertyName = "BPStokID";
+            this.BPStokID.HeaderText = "BPStokID";
+            this.BPStokID.Name = "BPStokID";
+            // 
+            // SearchStokIDButton
+            // 
+            this.SearchStokIDButton.HeaderText = "...";
+            this.SearchStokIDButton.Name = "SearchStokIDButton";
+            this.SearchStokIDButton.ReadOnly = true;
+            this.SearchStokIDButton.Width = 25;
             // 
             // BrgNameCol
             // 
@@ -898,30 +922,30 @@
             // QtyCol
             // 
             this.QtyCol.DataPropertyName = "Qty";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "N0";
-            dataGridViewCellStyle5.NullValue = "0";
-            this.QtyCol.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.Format = "N0";
+            dataGridViewCellStyle1.NullValue = "0";
+            this.QtyCol.DefaultCellStyle = dataGridViewCellStyle1;
             this.QtyCol.HeaderText = "Qty";
             this.QtyCol.Name = "QtyCol";
             // 
             // HargaCol
             // 
             this.HargaCol.DataPropertyName = "Harga";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.Format = "N0";
-            dataGridViewCellStyle6.NullValue = "0";
-            this.HargaCol.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "N0";
+            dataGridViewCellStyle2.NullValue = "0";
+            this.HargaCol.DefaultCellStyle = dataGridViewCellStyle2;
             this.HargaCol.HeaderText = "Harga";
             this.HargaCol.Name = "HargaCol";
             // 
             // DiskonCol
             // 
             this.DiskonCol.DataPropertyName = "Diskon";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle7.Format = "N0";
-            dataGridViewCellStyle7.NullValue = "0";
-            this.DiskonCol.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "N0";
+            dataGridViewCellStyle3.NullValue = "0";
+            this.DiskonCol.DefaultCellStyle = dataGridViewCellStyle3;
             this.DiskonCol.HeaderText = "Diskon";
             this.DiskonCol.Name = "DiskonCol";
             this.DiskonCol.ReadOnly = true;
@@ -929,10 +953,10 @@
             // SubTotalCol
             // 
             this.SubTotalCol.DataPropertyName = "SubTotal";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle8.Format = "N0";
-            dataGridViewCellStyle8.NullValue = "0";
-            this.SubTotalCol.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "N0";
+            dataGridViewCellStyle4.NullValue = "0";
+            this.SubTotalCol.DefaultCellStyle = dataGridViewCellStyle4;
             this.SubTotalCol.HeaderText = "SubTotal";
             this.SubTotalCol.Name = "SubTotalCol";
             this.SubTotalCol.ReadOnly = true;
@@ -1040,8 +1064,11 @@
         private System.Windows.Forms.Button ExitButton;
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.Button saveButton;
+        private System.Data.DataColumn dataColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn BrgIDCol;
         private System.Windows.Forms.DataGridViewButtonColumn BrgGridButtonCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BPStokID;
+        private System.Windows.Forms.DataGridViewButtonColumn SearchStokIDButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn BrgNameCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn QtyCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn HargaCol;

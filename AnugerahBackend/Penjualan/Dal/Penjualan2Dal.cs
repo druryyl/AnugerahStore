@@ -29,10 +29,10 @@ namespace AnugerahBackend.Penjualan.Dal
                 INSERT INTO
                     Penjualan2 (
                         PenjualanID, PenjualanID2, NoUrut, BrgID,
-                        Qty, Harga, Diskon, SubTotal)
+                        BPStokID, Qty, Harga, Diskon, SubTotal)
                 VALUES (                        
                         @PenjualanID, @PenjualanID2, @NoUrut, @BrgID,
-                        @Qty, @Harga, @Diskon, @SubTotal) ";
+                        @BPStokID, @Qty, @Harga, @Diskon, @SubTotal) ";
 
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
@@ -41,6 +41,7 @@ namespace AnugerahBackend.Penjualan.Dal
                 cmd.AddParam("@PenjualanID2", penjualan2.PenjualanID2);
                 cmd.AddParam("@NoUrut", penjualan2.NoUrut);
                 cmd.AddParam("@BrgID", penjualan2.BrgID);
+                cmd.AddParam("@BPStokID", penjualan2.BPStokID);
                 cmd.AddParam("@Qty", penjualan2.Qty);
                 cmd.AddParam("@Harga", penjualan2.Harga);
                 cmd.AddParam("@Diskon", penjualan2.Diskon);
@@ -73,7 +74,7 @@ namespace AnugerahBackend.Penjualan.Dal
             var sSql = @"
                 SELECT
                     aa.PenjualanID, aa.PenjualanID2, aa.NoUrut, aa.BrgID,
-                    aa.Qty, aa.Harga, aa.Diskon, aa.SubTotal,
+                    aa.BPStokID, aa.Qty, aa.Harga, aa.Diskon, aa.SubTotal,
                     ISNULL(bb.BrgName, '') BrgName
                 FROM
                     Penjualan2 aa
@@ -99,7 +100,9 @@ namespace AnugerahBackend.Penjualan.Dal
                                 NoUrut = Convert.ToInt16(dr["NoUrut"]),
 
                                 BrgID = dr["BrgID"].ToString(),
+                                BPStokID = dr["BPStokID"].ToString(),
                                 BrgName = dr["BrgName"].ToString(),
+
                                 Qty = Convert.ToInt32(dr["Qty"]),
                                 Harga = Convert.ToDecimal(dr["Harga"]),
                                 Diskon = Convert.ToDecimal(dr["Diskon"]),

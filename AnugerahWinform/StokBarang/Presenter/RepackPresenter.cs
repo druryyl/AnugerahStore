@@ -50,7 +50,8 @@ namespace AnugerahWinform.StokBarang.Presenter
 
             using (var trans = TransHelper.NewScope())
             {
-                _repackBL.Save(repack);
+                var result = _repackBL.Save(repack);
+                var result2 = _bpStokBL.Generate(result);
                 trans.Complete();
             }
         }
@@ -60,7 +61,7 @@ namespace AnugerahWinform.StokBarang.Presenter
             _view.RepackID = "";
             _view.Tgl = DateTime.Now.ToString("dd-MM-yyyy");
             _view.Jam = DateTime.Now.ToString("HH:mm:ss");
-
+            _view.BPStokID = "";
             _view.BrgIDMaterial = "";
             _view.BrgNameMaterial = "";
             _view.QtyMaterial = 0;
@@ -94,7 +95,7 @@ namespace AnugerahWinform.StokBarang.Presenter
                 _view.HppMaterial = repack.HppMaterial;
 
                 _view.BrgIDHasil = repack.BrgIDHasil;
-                _view.BrgNameHasil = repack.BrgNameMaterial;
+                _view.BrgNameHasil = repack.BrgNameHasil;
                 _view.QtyHasil = repack.QtyHasil;
                 _view.HppHasil = repack.HppHasil;
                 _view.SlotControl = repack.SlotControl;

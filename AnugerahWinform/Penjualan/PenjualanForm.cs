@@ -82,9 +82,17 @@ namespace AnugerahWinform.Penjualan
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
                 e.RowIndex >= 0)
             {
-                SearchBrg(e.RowIndex);
-                ShowDataBrgGrid(e.RowIndex);
-                ShowHargaBrg(e.RowIndex);
+                if(e.ColumnIndex == 1)
+                {
+                    SearchBrg(e.RowIndex);
+                    ShowDataBrgGrid(e.RowIndex);
+                    ShowHargaBrg(e.RowIndex);
+                }
+
+                if(e.ColumnIndex == 3)
+                {
+                    SearchStok(e.RowIndex);
+                }
             }
         }
         private void BrgGrid_CellValidated(object sender, DataGridViewCellEventArgs e)
@@ -93,7 +101,7 @@ namespace AnugerahWinform.Penjualan
             if ((brgName.Trim() != "") && (e.RowIndex == DetilPenjualanTable.Rows.Count - 1))
                 AddRow();
 
-            if ((e.ColumnIndex == 3 ) || (e.ColumnIndex == 4))
+            if ((e.ColumnIndex == 5 ) || (e.ColumnIndex == 6))
             {
                 ShowHargaBrg(e.RowIndex);
             }
@@ -167,7 +175,7 @@ namespace AnugerahWinform.Penjualan
         private void SaveButton_Click(object sender, EventArgs e)
         {
             SaveTransaksi();
-            ClearForm();
+
         }
         private void ExitButton_Click(object sender, EventArgs e)
         {
@@ -265,7 +273,8 @@ namespace AnugerahWinform.Penjualan
                     item.Qty,
                     item.Harga,
                     item.Diskon,
-                    item.SubTotal
+                    item.SubTotal,
+                    item.BPStokID
                     );
             }
             AddRow();
@@ -302,16 +311,32 @@ namespace AnugerahWinform.Penjualan
 
         private void AddRow()
         {
-            DetilPenjualanTable.Rows.Add("", "", 0, 0, 0, 0);
+            DetilPenjualanTable.Rows.Add("", "", 0, 0, 0, 0,"");
         }
         private void SearchBrg(int rowIndex)
         {
-            var searchForm = new SearchingForm<BrgSearchResultModel>(_brgBL);
-            var resultDialog = searchForm.ShowDialog();
-            if (resultDialog == DialogResult.OK)
+            using (var searchForm = new SearchingForm<BrgSearchResultModel>(_brgBL))
             {
-                var result = searchForm.SelectedDataKey;
-                DetilPenjualanTable.Rows[rowIndex]["BrgID"] = result;
+                var resultDialog = searchForm.ShowDialog();
+                if (resultDialog == DialogResult.OK)
+                {
+                    var result = searchForm.SelectedDataKey;
+                    DetilPenjualanTable.Rows[rowIndex]["BrgID"] = result;
+                }
+            }
+        }
+        private void SearchStok(int rowIndex)
+        {
+            var brg = DetilPenjualanTable.Rows[rowIndex]["BrgID"].ToString();
+            _bpStokBL.SearchFilter.StaticKeyword = brg;
+            using (var searchForm = new SearchingForm<BPStokSearchModel>(_bpStokBL))
+            {
+                var resultDialog = searchForm.ShowDialog();
+                if (resultDialog == DialogResult.OK)
+                {
+                    var bpStok = _bpStokBL.GetData(searchForm.SelectedDataKey);
+                    DetilPenjualanTable.Rows[rowIndex]["BPStokID"] = bpStok.BPStokID;
+                }
             }
         }
         private void ShowHargaBrg(int rowIndex)
@@ -426,6 +451,7 @@ namespace AnugerahWinform.Penjualan
                     NoUrut = noUrut,
                     BrgID = dr["BrgID"].ToString(),
                     BrgName = "",
+                    BPStokID = dr["BPStokID"].ToString(),
                     Qty = Convert.ToInt32(dr["Qty"]),
                     Harga = Convert.ToDecimal(dr["Harga"]),
                     Diskon = Convert.ToDecimal(dr["Diskon"]),
@@ -544,6 +570,7 @@ namespace AnugerahWinform.Penjualan
                 var printDoc = new NotaJualPrintDoc(result);
                 printDoc.Print();
             }
+            ClearForm();
         }
 
         private void BayarCashNumText_ValueChanged(object sender, EventArgs e)

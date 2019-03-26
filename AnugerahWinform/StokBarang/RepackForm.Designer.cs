@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.BPStokIDTextBox = new System.Windows.Forms.TextBox();
             this.HppMaterialTextBox = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.QtyMaterialTextBox = new System.Windows.Forms.NumericUpDown();
@@ -58,7 +59,6 @@
             this.SaveButton = new System.Windows.Forms.Button();
             this.DeleteButton = new System.Windows.Forms.Button();
             this.ExitButton = new System.Windows.Forms.Button();
-            this.BPStokIDTextBox = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.HppMaterialTextBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.QtyMaterialTextBox)).BeginInit();
@@ -94,6 +94,15 @@
             this.panel1.Size = new System.Drawing.Size(312, 254);
             this.panel1.TabIndex = 0;
             // 
+            // BPStokIDTextBox
+            // 
+            this.BPStokIDTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.BPStokIDTextBox.Location = new System.Drawing.Point(11, 105);
+            this.BPStokIDTextBox.Name = "BPStokIDTextBox";
+            this.BPStokIDTextBox.ReadOnly = true;
+            this.BPStokIDTextBox.Size = new System.Drawing.Size(248, 21);
+            this.BPStokIDTextBox.TabIndex = 29;
+            // 
             // HppMaterialTextBox
             // 
             this.HppMaterialTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -108,6 +117,7 @@
             this.HppMaterialTextBox.Size = new System.Drawing.Size(281, 21);
             this.HppMaterialTextBox.TabIndex = 28;
             this.HppMaterialTextBox.ThousandsSeparator = true;
+            this.HppMaterialTextBox.Visible = false;
             // 
             // label5
             // 
@@ -118,6 +128,7 @@
             this.label5.Size = new System.Drawing.Size(29, 13);
             this.label5.TabIndex = 27;
             this.label5.Text = "HPP";
+            this.label5.Visible = false;
             // 
             // QtyMaterialTextBox
             // 
@@ -304,6 +315,7 @@
             this.HppHasilTextBox.Size = new System.Drawing.Size(281, 21);
             this.HppHasilTextBox.TabIndex = 36;
             this.HppHasilTextBox.ThousandsSeparator = true;
+            this.HppHasilTextBox.Visible = false;
             // 
             // label6
             // 
@@ -314,6 +326,7 @@
             this.label6.Size = new System.Drawing.Size(29, 13);
             this.label6.TabIndex = 35;
             this.label6.Text = "HPP";
+            this.label6.Visible = false;
             // 
             // QtyHasilTextBox
             // 
@@ -409,15 +422,6 @@
             this.ExitButton.TabIndex = 4;
             this.ExitButton.Text = "Exit";
             this.ExitButton.UseVisualStyleBackColor = true;
-            // 
-            // BPStokIDTextBox
-            // 
-            this.BPStokIDTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.BPStokIDTextBox.Location = new System.Drawing.Point(11, 105);
-            this.BPStokIDTextBox.Name = "BPStokIDTextBox";
-            this.BPStokIDTextBox.ReadOnly = true;
-            this.BPStokIDTextBox.Size = new System.Drawing.Size(248, 21);
-            this.BPStokIDTextBox.TabIndex = 29;
             // 
             // RepackForm
             // 

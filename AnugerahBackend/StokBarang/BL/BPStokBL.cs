@@ -89,30 +89,11 @@ namespace AnugerahBackend.StokBarang.BL
                     HargaJual = 0,
                     StokControl = "",
                 };
-                var genResult = RemoveStok(stokItem,"");
+                var genResult = RemoveStok(stokItem);
                 if (result == null) result = new List<BPStokModel>();
                 foreach(var item2 in genResult)
                     result.Add(item2);
             }
-
-            if(result != null)
-            {
-                //  delete data lama
-                foreach(var item in result)
-                {
-                    _bpStokDal.Delete(item.BPStokID);
-                    _bpStokDetilDal.Delete(item.BPStokID);
-                }
-
-                //  insert data baru
-                foreach (var item in result)
-                {
-                    _bpStokDal.Insert(item);
-                    foreach(var item2 in item.ListDetil)
-                        _bpStokDetilDal.Insert(item2);
-                }
-            }
-
             return result;
         }
 
@@ -134,14 +115,14 @@ namespace AnugerahBackend.StokBarang.BL
                     Tgl = penjualan.TglPenjualan,
                     Jam = penjualan.JamPenjualan,
                     BrgID = item.BrgID,
+                    StokControl = item.BPStokID,
                     BrgName = item.BrgName,
                     QtyIn = 0,
                     NilaiHpp = 0,
                     QtyOut = item.Qty,
                     HargaJual = item.Harga,
-                    StokControl = "",
                 };
-                var genResult = RemoveStok(stokItem,"");
+                var genResult = RemoveStok(stokItem);
                 if (result == null) result = new List<BPStokModel>();
                 foreach (var item2 in genResult)
                     result.Add(item2);
@@ -197,24 +178,6 @@ namespace AnugerahBackend.StokBarang.BL
                 result.Add(genResult);
             }
 
-            if (result != null)
-            {
-                //  delete data lama
-                foreach (var item in result)
-                {
-                    _bpStokDal.Delete(item.BPStokID);
-                    _bpStokDetilDal.Delete(item.BPStokID);
-                }
-
-                //  insert data baru
-                foreach (var item in result)
-                {
-                    _bpStokDal.Insert(item);
-                    foreach (var item2 in item.ListDetil)
-                        _bpStokDetilDal.Insert(item2);
-                }
-            }
-
             return result;
         }
 
@@ -236,9 +199,9 @@ namespace AnugerahBackend.StokBarang.BL
                 NilaiHpp = 0,
                 QtyOut = repack.QtyMaterial,
                 HargaJual = 0,
-                StokControl = "",
+                StokControl = repack.BPStokID,
             };
-            var bpStokMaterial = RemoveStok(stokMaterial, repack.BPStokID);
+            var bpStokMaterial = RemoveStok(stokMaterial);
 
             //  insert data hasil untuk ditambahkan stoknya
             var stokHasil = new StokItem
@@ -246,15 +209,15 @@ namespace AnugerahBackend.StokBarang.BL
                 ReffID = repack.RepackID,
                 Tgl = repack.Tgl,
                 Jam = repack.Jam,
-                BrgID = repack.BrgIDMaterial,
-                BrgName = repack.BrgNameMaterial,
-                QtyIn = 0,
-                NilaiHpp = 0,
-                QtyOut = repack.QtyMaterial,
+                BrgID = repack.BrgIDHasil,
+                BrgName = repack.BrgNameHasil,
+                QtyIn = repack.QtyHasil,
+                NilaiHpp = repack.HppHasil,
+                QtyOut = 0,
                 HargaJual = 0,
-                StokControl = "",
+                StokControl = repack.SlotControl,
             };
-            var bpStokHasil = RemoveStok(stokHasil, repack.BPStokID);
+            var bpStokHasil = AddStok(stokHasil);
 
             return result;
         }
@@ -314,10 +277,19 @@ namespace AnugerahBackend.StokBarang.BL
             result.ListDetil = listDetil;
             result.QtySisa = result.QtyIn - listDetil.Sum(x => x.QtyOut);
 
+            //  hapus data lama
+            _bpStokDetilDal.Delete(result.BPStokID);
+            _bpStokDal.Delete(result.BPStokID);
+
+            //  insert data baru
+            _bpStokDal.Insert(result);
+            foreach (var item in listDetil)
+                _bpStokDetilDal.Insert(item);
+
             return result;
         }
 
-        private IEnumerable<BPStokModel> RemoveStok(StokItem stokItem, string stokControl)
+        private IEnumerable<BPStokModel> RemoveStok(StokItem stokItem)
         {
             List<BPStokModel> result = null;
 
@@ -330,18 +302,18 @@ namespace AnugerahBackend.StokBarang.BL
             if (listBPStok == null) return null;
             //  jika pengurangan stok untuk kasus tertentu
             //  (sudah ditetepkan stok mana yg dikurangi)
-            if (stokControl.Trim() != "")
-            {
-                listBPStok = listBPStok.Where(x => x.BPStokID == stokControl);
-            }
-
-            //  jika stok control diinputkan, 
-            //  maka list barang yang sesuai stok control
             if (stokItem.StokControl.Trim() != "")
             {
-                listBPStok = listBPStok
-                    .Where(x => x.StokControl == stokItem.StokControl);
+                listBPStok = listBPStok.Where(x => x.BPStokID == stokItem.StokControl);
             }
+
+            ////  jika stok control diinputkan, 
+            ////  maka list barang yang sesuai stok control
+            //if (stokItem.StokControl.Trim() != "")
+            //{
+            //    listBPStok = listBPStok
+            //        .Where(x => x.StokControl == stokItem.StokControl);
+            //}
 
             //  hapus detil utk 'trs ini' dulu
             //  (kasus simpan ulang)
@@ -439,8 +411,17 @@ namespace AnugerahBackend.StokBarang.BL
             var listData = _bpStokDal.ListData();
             if (listData == null) return null;
 
-            var result = listData.Select(x => (BPStokSearchModel)x);
+            if (SearchFilter.StaticKeyword != null)
+            {
+                listData =
+                    from c in listData
+                    where c.BrgID == SearchFilter.StaticKeyword
+                    where c.StokControl.Trim() != ""
+                    select c;
+            }
 
+
+            var result = listData.Select(x => (BPStokSearchModel)x);
             if (SearchFilter.UserKeyword != null)
                 return
                     from c in result

@@ -22,7 +22,7 @@ namespace AnugerahWinform.Support
             InitializeComponent();
             _searchBL = _injSearchBL;
             InnerContructor();
-            //Search();
+            Search();
         }
 
         private void InnerContructor()
