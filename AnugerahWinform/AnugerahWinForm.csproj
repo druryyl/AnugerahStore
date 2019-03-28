@@ -123,6 +123,12 @@
     <Compile Include="Accounting\LunasKasBonForm.Designer.cs">
       <DependentUpon>LunasKasBonForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Accounting\MutasiKasForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\MutasiKasForm.Designer.cs">
+      <DependentUpon>MutasiKasForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Accounting\PegawaiForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -363,6 +369,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Accounting\LunasKasBonForm.resx">
       <DependentUpon>LunasKasBonForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\MutasiKasForm.resx">
+      <DependentUpon>MutasiKasForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Accounting\PegawaiForm.resx">
       <DependentUpon>PegawaiForm.cs</DependentUpon>

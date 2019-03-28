@@ -42,6 +42,7 @@
             this.dataColumn4 = new System.Data.DataColumn();
             this.dataColumn5 = new System.Data.DataColumn();
             this.dataColumn6 = new System.Data.DataColumn();
+            this.dataColumn7 = new System.Data.DataColumn();
             this.JamTrsTimer = new System.Windows.Forms.Timer(this.components);
             this.listDataTabPage = new System.Windows.Forms.TabPage();
             this.showListButton = new System.Windows.Forms.Button();
@@ -98,12 +99,11 @@
             this.ExitButton = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
-            this.dataColumn7 = new System.Data.DataColumn();
             this.BrgIDCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BrgGridButtonCol = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.BrgNameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BPStokID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SearchStokIDButton = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.BrgNameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QtyCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HargaCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DiskonCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -180,6 +180,10 @@
             // 
             this.dataColumn6.ColumnName = "SubTotal";
             this.dataColumn6.DataType = typeof(double);
+            // 
+            // dataColumn7
+            // 
+            this.dataColumn7.ColumnName = "BPStokID";
             // 
             // JamTrsTimer
             // 
@@ -830,9 +834,9 @@
             this.BrgGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.BrgIDCol,
             this.BrgGridButtonCol,
+            this.BrgNameCol,
             this.BPStokID,
             this.SearchStokIDButton,
-            this.BrgNameCol,
             this.QtyCol,
             this.HargaCol,
             this.DiskonCol,
@@ -880,10 +884,6 @@
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
-            // dataColumn7
-            // 
-            this.dataColumn7.ColumnName = "BPStokID";
-            // 
             // BrgIDCol
             // 
             this.BrgIDCol.DataPropertyName = "BrgID";
@@ -899,11 +899,19 @@
             this.BrgGridButtonCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.BrgGridButtonCol.Width = 25;
             // 
+            // BrgNameCol
+            // 
+            this.BrgNameCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.BrgNameCol.DataPropertyName = "BrgName";
+            this.BrgNameCol.HeaderText = "BrgName";
+            this.BrgNameCol.Name = "BrgNameCol";
+            // 
             // BPStokID
             // 
             this.BPStokID.DataPropertyName = "BPStokID";
-            this.BPStokID.HeaderText = "BPStokID";
+            this.BPStokID.HeaderText = "Stok ID";
             this.BPStokID.Name = "BPStokID";
+            this.BPStokID.Width = 110;
             // 
             // SearchStokIDButton
             // 
@@ -911,13 +919,6 @@
             this.SearchStokIDButton.Name = "SearchStokIDButton";
             this.SearchStokIDButton.ReadOnly = true;
             this.SearchStokIDButton.Width = 25;
-            // 
-            // BrgNameCol
-            // 
-            this.BrgNameCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.BrgNameCol.DataPropertyName = "BrgName";
-            this.BrgNameCol.HeaderText = "BrgName";
-            this.BrgNameCol.Name = "BrgNameCol";
             // 
             // QtyCol
             // 
@@ -1067,9 +1068,9 @@
         private System.Data.DataColumn dataColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn BrgIDCol;
         private System.Windows.Forms.DataGridViewButtonColumn BrgGridButtonCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BrgNameCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn BPStokID;
         private System.Windows.Forms.DataGridViewButtonColumn SearchStokIDButton;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BrgNameCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn QtyCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn HargaCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn DiskonCol;

@@ -40,4 +40,12 @@ namespace AnugerahBackend.StokBarang.Model
             return result;
         }
     }
+
+    public class BPStokBrgSearchModel
+    {
+        public string BrgID { get; set; }
+        public string BrgName { get; set; }
+        public long Qty { get; set; }
+        public string BPStokID { get; set; }
+    }
 }

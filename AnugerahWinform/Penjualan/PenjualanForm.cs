@@ -89,9 +89,10 @@ namespace AnugerahWinform.Penjualan
                     ShowHargaBrg(e.RowIndex);
                 }
 
-                if(e.ColumnIndex == 3)
+                if(e.ColumnIndex == 4)
                 {
                     SearchStok(e.RowIndex);
+                    ShowDataBrgGrid(e.RowIndex);
                 }
             }
         }
@@ -277,6 +278,11 @@ namespace AnugerahWinform.Penjualan
                     item.BPStokID
                     );
             }
+
+            //  tampilkan keterangan Slot Control
+            for (var i = 0; i <= penjualan.ListBrg.Count()-1; i++)
+                ShowDataBrgGrid(i);
+
             AddRow();
 
 
@@ -383,6 +389,17 @@ namespace AnugerahWinform.Penjualan
             var brg = _brgBL.GetData(kodeBrg);
             if (brg != null)
                 brgName = brg.BrgName;
+
+            //  cari keterangan stok control
+            var bpStokID = (string)DetilPenjualanTable.Rows[rowIndex]["BPStokID"];
+            if(bpStokID.Trim() != "")
+            {
+                var stok = _bpStokBL.GetData(bpStokID);
+                if(stok != null)
+                {
+                    brgName = brgName + " " + stok.StokControl;
+                }
+            }
 
             //  tampilkan di grid
             DetilPenjualanTable.Rows[rowIndex]["BrgName"] = brgName;
