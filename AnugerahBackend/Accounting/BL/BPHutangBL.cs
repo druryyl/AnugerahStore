@@ -5,10 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using AnugerahBackend.Accounting.Dal;
 using AnugerahBackend.Accounting.Model;
+using AnugerahBackend.Penjualan.Dal;
 using AnugerahBackend.Penjualan.Model;
 using AnugerahBackend.Support;
 using Ics.Helper.Database;
 using Ics.Helper.Extensions;
+using Ics.Helper.StringDateTime;
 
 namespace AnugerahBackend.Accounting.BL
 {
@@ -17,9 +19,8 @@ namespace AnugerahBackend.Accounting.BL
         BPHutangModel GenHutang(DepositModel deposit);
         BPHutangModel GenHutang(PenjualanModel penjualan, DepositModel deposit);
         BPHutangModel GenHutang(ReturDepositModel returDeposit, DepositModel deposit);
-        BPHutangModel GetData(string piutangID);
-
-        //void GenLunas()
+        IEnumerable<BPHutangModel> GenHutang(LunasKasBonModel lunasKasBon);
+        BPHutangModel GetData(string hutangID);
     }
 
     public class BPHutangBL : IBPHutangBL
@@ -28,6 +29,8 @@ namespace AnugerahBackend.Accounting.BL
         private IPihakKeduaBL _pihakKeduaBL;
         private IBPHutangDal _bpHutangDal;
         private IBPHutangDetilDal _bpHutangDetilDal;
+        private IPenjualanDal _penjualanDal;
+        private IDepositDal _depositDal;
 
         public BPHutangBL()
         {
@@ -35,6 +38,8 @@ namespace AnugerahBackend.Accounting.BL
             _pihakKeduaBL = new PihakKeduaBL();
             _bpHutangDal = new BPHutangDal();
             _bpHutangDetilDal = new BPHutangDetilDal();
+            _depositDal = new DepositDal();
+
             SearchFilter = new SearchFilter
             {
                 IsDate = false,
@@ -139,6 +144,93 @@ namespace AnugerahBackend.Accounting.BL
             return result;
         }
 
+        //  class bantuan untuk proses generate lunas hutang dari lunas kasbon
+        private class LunasKasBonJualDepositModel
+        {
+            public string LunasKasBonID { get; set; }
+            public string PenjualanID { get; set; }
+            public string DepositID { get; set; }
+            public string Keterangan { get; set; }
+            public decimal NilaiLunas { get; set; }
+        }
+
+        public IEnumerable<BPHutangModel> GenHutang(LunasKasBonModel lunasKasBon)
+        {
+
+            //  list semua penjualan di detil lunas kas bon
+            List<LunasKasBonJualDepositModel> listLunasKasBonJualDeposit = null;
+            foreach (var item in lunasKasBon.ListLunas)
+            {
+                if (item.PenjualanID.Trim() == "") continue;
+
+                var penjualan = _penjualanDal.GetData(item.PenjualanID);
+                if (penjualan == null)
+                    throw new ArgumentException("Penjualan ID invalid");
+
+                if (listLunasKasBonJualDeposit == null)
+                    listLunasKasBonJualDeposit = new List<LunasKasBonJualDepositModel>();
+
+                listLunasKasBonJualDeposit.Add(new LunasKasBonJualDepositModel
+                {
+                    LunasKasBonID = lunasKasBon.LunasKasBonID,
+                    PenjualanID = penjualan.PenjualanID,
+                    NilaiLunas = item.NilaiLunas,
+                    Keterangan = item.JenisLunasName
+                });
+            }
+
+            //  ambil data deposti dari penjualan tsb
+            foreach(var item in listLunasKasBonJualDeposit)
+            {
+                var penjualan = _penjualanDal.GetData(item.PenjualanID);
+                if (penjualan.DepositID.Trim() == "") continue;
+
+                var deposit = _depositDal.GetData(penjualan.DepositID);
+                if (deposit == null)
+                    throw new ArgumentException("Deposit ID invalid");
+
+                item.DepositID = deposit.DepositID;
+            }
+
+            //  generate pelunasan atas deposit tsb
+            List<BPHutangModel> result = null;
+            foreach(var item in listLunasKasBonJualDeposit.Where(x => x.DepositID.Trim() != ""))
+            {
+                var bpHutang = GetData(item.DepositID);
+
+                //  hapus detil pelunasan atas id lunasKasBon ini
+                var listDetilHtg = (
+                    from c in bpHutang.ListLunas
+                    where c.ReffID != lunasKasBon.LunasKasBonID
+                    select c
+                    ).ToList();
+
+                //  tambahkan detil lunas kasbon ini
+                var detilLunas = new BPHutangDetilModel
+                {
+                    BPHutangID = bpHutang.BPHutangID,
+                    Tgl = lunasKasBon.Tgl,
+                    Jam = lunasKasBon.Jam,
+                    ReffID = lunasKasBon.LunasKasBonID,
+                    Keterangan = item.Keterangan,
+                    NilaiHutang = 0,
+                    NilaiLunas = item.NilaiLunas
+                };
+                listDetilHtg.Add(detilLunas);
+                
+                //  pindahkan listbaru ke object bpHutang
+                bpHutang.ListLunas = listDetilHtg;
+
+                //  proses simpan
+                Save(bpHutang);
+                if (result == null)
+                    result = new List<BPHutangModel>();
+                result.Add(bpHutang);
+            }
+
+            return result;
+        }
+
         private BPHutangModel Save(BPHutangModel model)
         {
             if (model == null)
@@ -161,7 +253,16 @@ namespace AnugerahBackend.Accounting.BL
             //  nilai pelunasan tidak boleh lebih dari hutang
             if (model.NilaiLunas > model.NilaiHutang)
                 throw new ArgumentException("Nilai Pelunasan melebihi hutang");
-            
+
+            //  update BPHutangID dan BPHutangDetilID di detil lunas
+            int noUrut = 0;
+            foreach(var item in model.ListLunas.OrderBy(x => x.Tgl.ToTglYMD() + x.Jam))
+            {
+                noUrut++;
+                item.BPHutangID = model.BPHutangID;
+                item.BPHutangDetilID = model.BPHutangID + '-' + noUrut.ToString().PadLeft(2, '0');
+            }
+
             //  delete data lama
             using (var trans = TransHelper.NewScope())
             {
@@ -194,5 +295,6 @@ namespace AnugerahBackend.Accounting.BL
 
             return result;
         }
+
     }
 }

@@ -13,5 +13,6 @@ namespace AnugerahBackend.Accounting.Model
         public string JenisLunasID { get; set; }
         public string JenisLunasName { get; set; }
         public decimal NilaiLunas { get; set; }
+        public string PenjualanID { get; set; }
     }
 }

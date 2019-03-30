@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using AnugerahBackend.Accounting.BL;
 using AnugerahBackend.Accounting.Dal;
 using AnugerahBackend.Accounting.Model;
+using AnugerahBackend.Penjualan.BL;
+using AnugerahBackend.Penjualan.Model;
 using AnugerahWinform.Support;
 using Ics.Helper.Database;
 using Ics.Helper.StringDateTime;
@@ -24,6 +26,9 @@ namespace AnugerahWinform.Accounting
         private IJenisLunasBL _jenisLunasBL;
         private IBPKasBL _bpKasBL;
         private IBiayaBL _biayaBL;
+        private IBPHutangBL _bpHutangBL;
+        private IPenjualanBL _penjualanBL;
+
         public LunasKasBonForm()
         {
             InitializeComponent();
@@ -33,6 +38,9 @@ namespace AnugerahWinform.Accounting
             _jenisLunasBL = new JenisLunasBL();
             _bpKasBL = new BPKasBL();
             _biayaBL = new BiayaBL();
+            _bpHutangBL = new BPHutangBL();
+            _penjualanBL = new PenjualanBL();
+
             AddRow();
         }
         private void LunasKasBonIDText_Validated(object sender, EventArgs e)
@@ -71,8 +79,17 @@ namespace AnugerahWinform.Accounting
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
                 e.RowIndex >= 0)
             {
-                SearchJenisLunas(e.RowIndex);
-                ShowDataJenisLunas(e.RowIndex);
+                if(e.ColumnIndex == 1)
+                {
+                    SearchJenisLunas(e.RowIndex);
+                    ShowDataJenisLunas(e.RowIndex);
+                }
+
+                if(e.ColumnIndex == 3)
+                {
+                    SearchPenjualan(e.RowIndex);
+                    ShowDataJenisLunas(e.RowIndex);
+                }
             }
         }
         private void ListLunasGrid_CellValidated(object sender, DataGridViewCellEventArgs e)
@@ -188,8 +205,19 @@ namespace AnugerahWinform.Accounting
 
         private void AddRow()
         {
-            ListLunasTable.Rows.Add("", "", 0);
+            ListLunasTable.Rows.Add("", "", 0,"");
         }
+        private void SearchPenjualan(int rowIndex)
+        {
+            var searchForm = new SearchingForm<PenjualanSearchModel>(_penjualanBL);
+            var resultDialog = searchForm.ShowDialog();
+            if (resultDialog == DialogResult.OK)
+            {
+                var result = searchForm.SelectedDataKey;
+                ListLunasTable.Rows[rowIndex]["PenjualanID"] = result;
+            }
+        }
+
         private void SearchJenisLunas(int rowIndex)
         {
             var searchForm = new SearchingForm<JenisLunasModel>(_jenisLunasBL);
@@ -205,14 +233,22 @@ namespace AnugerahWinform.Accounting
             //  get key (jenisLunasID)
             string jenisLunasID = (string)ListLunasTable.Rows[rowIndex]["JenisLunasIDCol"];
 
-            //  get nama barang
+            //  get nama jenis lunas
             var jenisLunasName = "";
             var jenisLunas = _jenisLunasBL.GetData(jenisLunasID);
             if (jenisLunas != null)
                 jenisLunasName = jenisLunas.JenisLunasName;
 
+            //  get key penjualan
+            string penjualanID = (string)ListLunasTable.Rows[rowIndex]["PenjualanID"];
+            //  get nama pembeli
+            var penjualan = _penjualanBL.GetData(penjualanID);
+            var ketPenjualan = "";
+            if (penjualan != null)
+                ketPenjualan = " (a/n " + penjualan.BuyerName + ")";
+
             //  tampilkan di grid
-            ListLunasTable.Rows[rowIndex]["JenisLunasNameCol"] = jenisLunasName;
+            ListLunasTable.Rows[rowIndex]["JenisLunasNameCol"] = jenisLunasName + ketPenjualan;
         }
 
         private void Save()
@@ -239,7 +275,8 @@ namespace AnugerahWinform.Accounting
                     LunasKasBonID = "",
                     LunasKasBonDetilID = "",
                     JenisLunasID = dr["JenisLunasIDCol"].ToString(),
-                    NilaiLunas = Convert.ToDecimal(dr["NilaiLunasCol"])
+                    NilaiLunas = Convert.ToDecimal(dr["NilaiLunasCol"]),
+                    PenjualanID = dr["PenjualanID"].ToString(),
                 });
             }
             lunasKasBon.ListLunas = listLunas;
@@ -251,6 +288,7 @@ namespace AnugerahWinform.Accounting
                 var bpKas = _bpKasBL.Generate(lunasKasBon, kasBon);
                 var bpPiutang = _bpPiutangBL.GenPiutang(lunasKasBon,kasBon);
                 var biaya = _biayaBL.Generate(lunasKasBon);
+                var listBPHutang = _bpHutangBL.GenHutang(lunasKasBon);
 
                 trans.Complete();
             }

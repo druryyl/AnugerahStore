@@ -32,7 +32,7 @@ namespace AnugerahBackend.Accounting.Dal
                 INSERT INTO
                     LunasKasBonDetil (
                         LunasKasBonID, LunasKasBonDetilID, 
-                        JenisLunasID, NilaiLunas)
+                        JenisLunasID, NilaiLunas, PenjualanID)
                 VALUES (
                         @LunasKasBonID, @LunasKasBonDetilID, 
                         @JenisLunasID, @NilaiLunas) ";
@@ -43,6 +43,7 @@ namespace AnugerahBackend.Accounting.Dal
                 cmd.AddParam("@LunasKasBonDetilID", model.LunasKasBonDetilID);
                 cmd.AddParam("@JenisLunasID", model.JenisLunasID);
                 cmd.AddParam("@NilaiLunas", model.NilaiLunas);
+                cmd.AddParam("@PenjualanID", model.PenjualanID);
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
@@ -71,7 +72,7 @@ namespace AnugerahBackend.Accounting.Dal
             var sSql = @"
                 SELECT
                     aa.LunasKasBonID, aa.LunasKasBonDetilID, 
-                    aa.JenisLunasID, aa.NilaiLunas, 
+                    aa.JenisLunasID, aa.NilaiLunas, aa.PenjualanID,
                     ISNULL(bb.JenisLunasName, '') JenisLunasName
                 FROM
                     LunasKasBonDetil aa
@@ -96,6 +97,7 @@ namespace AnugerahBackend.Accounting.Dal
                             JenisLunasID = dr["JenisLunasID"].ToString(),
                             JenisLunasName = dr["JenisLunasName"].ToString(),
                             NilaiLunas = Convert.ToDecimal(dr["NilaiLunas"]),
+                            PenjualanID = dr["PenjualanID"].ToString(),
                         };
                         result.Add(item);
                     }
