@@ -140,8 +140,8 @@ namespace AnugerahBackend.Accounting.BL
             var bpPiutang = GetData(model.BPPiutangID);
             if(bpPiutang != null)
             {
-                if (bpPiutang.NilaiLunas > 0)
-                    throw new ArgumentException("Piutang sudah ada pelunasan, tidak bisa simpan ulang");
+                //if (bpPiutang.NilaiLunas > 0)
+                    //throw new ArgumentException("Piutang sudah ada pelunasan, tidak bisa simpan ulang");
             }
 
             //  update nilai total di header

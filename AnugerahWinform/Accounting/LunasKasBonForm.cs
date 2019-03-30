@@ -275,7 +275,7 @@ namespace AnugerahWinform.Accounting
                     LunasKasBonID = "",
                     LunasKasBonDetilID = "",
                     JenisLunasID = dr["JenisLunasIDCol"].ToString(),
-                    Keterangan = dr["Keterangan"].ToString(),
+                    Keterangan = dr["KeteranganCol"].ToString(),
                     NilaiLunas = Convert.ToDecimal(dr["NilaiLunasCol"]),
                     PenjualanID = dr["PenjualanID"].ToString(),
                 });
