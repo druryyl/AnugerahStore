@@ -11,7 +11,7 @@ namespace AnugerahBackend.Accounting.Model
         public string LunasKasBonID { get; set; }
         public string LunasKasBonDetilID { get; set; }
         public string JenisLunasID { get; set; }
-        public string JenisLunasName { get; set; }
+        public string Keterangan { get; set; }
         public decimal NilaiLunas { get; set; }
         public string PenjualanID { get; set; }
     }

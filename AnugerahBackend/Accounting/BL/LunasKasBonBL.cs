@@ -86,8 +86,6 @@ namespace AnugerahBackend.Accounting.BL
                 var jenisLunas = _jenisLunasDal.GetData(item.JenisLunasID);
                 if (jenisLunas == null)
                     throw new ArgumentException("JenisLunasID invalid : " + item.JenisLunasID);
-                else
-                    item.JenisLunasName = jenisLunas.JenisLunasName;
 
                 if (item.NilaiLunas <= 0)
                     throw new ArgumentException("Pelunasan tidak boleh minus atau nol");

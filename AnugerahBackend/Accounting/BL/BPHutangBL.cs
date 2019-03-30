@@ -39,6 +39,7 @@ namespace AnugerahBackend.Accounting.BL
             _bpHutangDal = new BPHutangDal();
             _bpHutangDetilDal = new BPHutangDetilDal();
             _depositDal = new DepositDal();
+            _penjualanDal = new PenjualanDal();
 
             SearchFilter = new SearchFilter
             {
@@ -175,7 +176,7 @@ namespace AnugerahBackend.Accounting.BL
                     LunasKasBonID = lunasKasBon.LunasKasBonID,
                     PenjualanID = penjualan.PenjualanID,
                     NilaiLunas = item.NilaiLunas,
-                    Keterangan = item.JenisLunasName
+                    Keterangan = "   " + item.Keterangan
                 });
             }
 

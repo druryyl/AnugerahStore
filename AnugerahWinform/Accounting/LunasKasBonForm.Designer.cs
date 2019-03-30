@@ -70,7 +70,7 @@
             this.ButtonSearchCol = new System.Windows.Forms.DataGridViewButtonColumn();
             this.PenjualanID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SearchPenjualanButton = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.jenisLunasNameColDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.KeteranganCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nilaiLunasColDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MainTab.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -191,7 +191,7 @@
             this.ButtonSearchCol,
             this.PenjualanID,
             this.SearchPenjualanButton,
-            this.jenisLunasNameColDataGridViewTextBoxColumn,
+            this.KeteranganCol,
             this.nilaiLunasColDataGridViewTextBoxColumn});
             this.ListLunasGrid.DataSource = this.ListLunasBindingSource;
             this.ListLunasGrid.Location = new System.Drawing.Point(6, 290);
@@ -230,7 +230,7 @@
             // dataColumn2
             // 
             this.dataColumn2.Caption = "Nama";
-            this.dataColumn2.ColumnName = "JenisLunasNameCol";
+            this.dataColumn2.ColumnName = "KeteranganCol";
             // 
             // dataColumn3
             // 
@@ -500,13 +500,12 @@
             this.SearchPenjualanButton.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.SearchPenjualanButton.Width = 20;
             // 
-            // jenisLunasNameColDataGridViewTextBoxColumn
+            // KeteranganCol
             // 
-            this.jenisLunasNameColDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.jenisLunasNameColDataGridViewTextBoxColumn.DataPropertyName = "JenisLunasNameCol";
-            this.jenisLunasNameColDataGridViewTextBoxColumn.HeaderText = "Jenis Lunas";
-            this.jenisLunasNameColDataGridViewTextBoxColumn.Name = "jenisLunasNameColDataGridViewTextBoxColumn";
-            this.jenisLunasNameColDataGridViewTextBoxColumn.ReadOnly = true;
+            this.KeteranganCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.KeteranganCol.DataPropertyName = "KeteranganCol";
+            this.KeteranganCol.HeaderText = "Keterangan";
+            this.KeteranganCol.Name = "KeteranganCol";
             // 
             // nilaiLunasColDataGridViewTextBoxColumn
             // 
@@ -581,7 +580,7 @@
         private System.Windows.Forms.DataGridViewButtonColumn ButtonSearchCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn PenjualanID;
         private System.Windows.Forms.DataGridViewButtonColumn SearchPenjualanButton;
-        private System.Windows.Forms.DataGridViewTextBoxColumn jenisLunasNameColDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn KeteranganCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn nilaiLunasColDataGridViewTextBoxColumn;
     }
 }

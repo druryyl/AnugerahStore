@@ -94,7 +94,7 @@ namespace AnugerahWinform.Accounting
         }
         private void ListLunasGrid_CellValidated(object sender, DataGridViewCellEventArgs e)
         {
-            var jenisLunasName = ListLunasTable.Rows[e.RowIndex]["JenisLunasNameCol"].ToString();
+            var jenisLunasName = ListLunasTable.Rows[e.RowIndex]["KeteranganCol"].ToString();
             if ((jenisLunasName.Trim() != "") && (e.RowIndex == ListLunasTable.Rows.Count - 1))
                 AddRow();
         }
@@ -171,9 +171,9 @@ namespace AnugerahWinform.Accounting
             {
                 ListLunasTable.Rows.Add(
                     item.JenisLunasID,
-                    item.JenisLunasName, 
-                    item.NilaiLunas
-                    );
+                    item.Keterangan, 
+                    item.NilaiLunas,
+                    item.PenjualanID);
             }
             AddRow();
         }
@@ -248,7 +248,7 @@ namespace AnugerahWinform.Accounting
                 ketPenjualan = " (a/n " + penjualan.BuyerName + ")";
 
             //  tampilkan di grid
-            ListLunasTable.Rows[rowIndex]["JenisLunasNameCol"] = jenisLunasName + ketPenjualan;
+            ListLunasTable.Rows[rowIndex]["KeteranganCol"] = jenisLunasName + ketPenjualan;
         }
 
         private void Save()
@@ -268,13 +268,14 @@ namespace AnugerahWinform.Accounting
             foreach (DataRow dr in ListLunasTable.Rows)
             {
                 if (listLunas == null) listLunas = new List<LunasKasBonDetilModel>();
-                if (dr["JenisLunasNameCol"].ToString().Trim() == "") continue;
+                if (dr["KeteranganCol"].ToString().Trim() == "") continue;
 
                 listLunas.Add(new LunasKasBonDetilModel
                 {
                     LunasKasBonID = "",
                     LunasKasBonDetilID = "",
                     JenisLunasID = dr["JenisLunasIDCol"].ToString(),
+                    Keterangan = dr["Keterangan"].ToString(),
                     NilaiLunas = Convert.ToDecimal(dr["NilaiLunasCol"]),
                     PenjualanID = dr["PenjualanID"].ToString(),
                 });

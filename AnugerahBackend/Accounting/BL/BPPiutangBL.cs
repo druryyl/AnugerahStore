@@ -109,7 +109,7 @@ namespace AnugerahBackend.Accounting.BL
                     Tgl = lunasKasBon.Tgl,
                     Jam = lunasKasBon.Jam,
                     ReffID = item.LunasKasBonID,
-                    Keterangan = "   Pelunasan " + item.JenisLunasName,
+                    Keterangan = "   Pelunasan " + item.Keterangan,
                     NilaiPiutang = 0,
                     NilaiLunas = item.NilaiLunas
                 });
