@@ -135,6 +135,7 @@
     <Compile Include="Accounting\PegawaiForm.Designer.cs">
       <DependentUpon>PegawaiForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Accounting\Presenter\MutasiKasPresenter.cs" />
     <Compile Include="Accounting\Presenter\PegawaiPresenter.cs" />
     <Compile Include="Accounting\ReturDepositForm.cs">
       <SubType>Form</SubType>
@@ -142,6 +143,7 @@
     <Compile Include="Accounting\ReturDepositForm.Designer.cs">
       <DependentUpon>ReturDepositForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Accounting\View\MutasiKasView.cs" />
     <Compile Include="Accounting\View\PegawaiView.cs" />
     <Compile Include="Keuangan\KasirForm.cs">
       <SubType>Form</SubType>

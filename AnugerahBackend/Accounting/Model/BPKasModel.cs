@@ -110,5 +110,36 @@ namespace AnugerahBackend.Accounting.Model
             result.ListDetil = new List<BPKasDetilModel> { resultDetil };
             return result;
         }
+
+        public static explicit operator BPKasModel(MutasiKasModel model)
+        {
+            var result = new BPKasModel
+            {
+                BPKasID = model.MutasiKasID,
+                Tgl = model.Tgl,
+                Jam = model.Jam,
+                Keterangan = "[MUTASI-KAS]" + model.Keterangan,
+                NilaiTotalKas = 0
+            };
+
+            var resultDetilAsal = new BPKasDetilModel
+            {
+                BPKasID = model.MutasiKasID,
+                BPKasDetilID = model.MutasiKasID+ '-' + "01",
+                JenisKasID = model.JenisKasIDAsal,
+                NilaiKasMasuk = 0,
+                NilaiKasKeluar = model.NilaiKas
+            };
+            var resultDetilTujuan = new BPKasDetilModel
+            {
+                BPKasID = model.MutasiKasID,
+                BPKasDetilID = model.MutasiKasID + '-' + "02",
+                JenisKasID = model.JenisKasIDTujan,
+                NilaiKasMasuk = model.NilaiKas,
+                NilaiKasKeluar = 0
+            };
+            result.ListDetil = new List<BPKasDetilModel> { resultDetilAsal, resultDetilTujuan };
+            return result;
+        }
     }
 }

@@ -1,5 +1,8 @@
 ﻿using AnugerahBackend.Accounting.BL;
 using AnugerahBackend.Accounting.Model;
+using AnugerahWinform.Accounting.Presenter;
+using AnugerahWinform.Accounting.View;
+using Ics.Helper.StringDateTime;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,190 +15,110 @@ using System.Windows.Forms;
 
 namespace AnugerahWinform.Accounting
 {
-    public partial class MutasiKasForm : Form
+    public partial class MutasiKasForm : Form, IMutasiKasView
     {
-        //private IMutasiKasBL _mutasiKasBL;
-        //private IPegawaiBL _pegawaiBL;
-        //private IJenisKasBL _jenisKasBL;
-        //private IBPKasBL _bpKasBL;
+        private readonly MutasiKasPresenter _presenter;
 
-        //public MutasiKasForm()
-        //{
-        //    InitializeComponent();
+        public MutasiKasForm()
+        {
+            InitializeComponent();
+            _presenter = new MutasiKasPresenter(this);
+        }
 
-        //    _mutasiKasBL = new MutasiKasBL();
-        //    _jenisKasBL = new JenisKasBL();
-        //    _pegawaiBL = new PegawaiBL();
-        //    _bpKasBL = new BPKasBL();
+        public string MutasiKasID
+        {
+            get => MutasiKasIDTextBox.Text;
+            set => MutasiKasIDTextBox.Text = value;
+        }
+        public string Tgl
+        {
+            get => TglText.Value.ToString("dd-MM-yyyy");
+            set => TglText.Value = value.ToDate();
+        }
+        public string Jam
+        {
+            get => JamText.Text;
+            set => JamText.Text = value;
+        }
+        public string PegawaiID
+        {
+            get => KasirIDTextBox.Text;
+            set => KasirIDTextBox.Text = value;
+        }
+        public string PegawaiName
+        {
+            get => KasirNameTextBox.Text;
+            set => KasirNameTextBox.Text = value;
+        }
+        public string JenisKasIDAsal
+        {
+            get => JenisKasIDAsalTextBox.Text;
+            set => JenisKasIDAsalTextBox.Text = value;
+        }
+        public string JenisKasNameAsal
+        {
+            get => JenisKasNameAsalTextBox.Text;
+            set => JenisKasNameAsalTextBox.Text = value;
+        }
+        public string JenisKasIDTujuan
+        {
+            get => JenisKasIDTujuanTextBox.Text ;
+            set => JenisKasIDTujuanTextBox.Text = value;
+        }
+        public string JenisKasNameTujuan
+        {
+            get => JenisKasNameTujuanTextBox.Text;
+            set => JenisKasNameTujuanTextBox.Text = value;
+        }
+        public decimal NilaiKas
+        {
+            get => NilaiKasTextBox.Value;
+            set => NilaiKasTextBox.Value = value;
+        }
+        public string Keterangan
+        {
+            get => KeteranganText.Text;
+            set => KeteranganText.Text = value;
+        }
 
-        //    LoadJenisKasAsalCombo();
-        //    LoadJenisKasTujuanCombo();
-        //}
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+            _presenter.PilihMutasiKas();
+        }
 
-        //private void LoadJenisKasAsalCombo()
-        //{
-        //    //  kosongkan combobox
-        //    JenisKasAsalCombo.DataSource = null;
-        //    JenisKasAsalCombo.Items.Clear();
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            _presenter.Save();
+        }
 
-        //    //  ambil data
-        //    var listJenisKas = _jenisKasBL.ListData();
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            _presenter.Delete();
+        }
 
-        //    //  exit jika kosong
-        //    if (listJenisKas == null)
-        //        return;
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
-        //    listJenisKas = listJenisKas.OrderBy(x => x.JenisKasName).ToList();
-        //    JenisKasAsalCombo.DataSource = listJenisKas;
-        //    JenisKasAsalCombo.DisplayMember = "JenisKasName";
-        //    JenisKasAsalCombo.ValueMember = "JenisKasID";
+        private void NewButton_Click(object sender, EventArgs e)
+        {
+            _presenter.New();
+        }
 
-        //    JenisKasAsalCombo.SelectedItem = null;
-        //}
+        private void button1_Click(object sender, EventArgs e)
+        {
+            _presenter.PilihKasir();
+        }
 
-        //private void LoadJenisKasTujuanCombo()
-        //{
-        //    //  kosongkan combobox
-        //    JenisKasTujuanCombo.DataSource = null;
-        //    JenisKasTujuanCombo.Items.Clear();
+        private void button2_Click(object sender, EventArgs e)
+        {
+            _presenter.PilihJenisKasAsal();
+        }
 
-        //    //  ambil data
-        //    var listJenisKas = _jenisKasBL.ListData();
-
-        //    //  exit jika kosong
-        //    if (listJenisKas == null)
-        //        return;
-
-        //    listJenisKas = listJenisKas.OrderBy(x => x.JenisKasName).ToList();
-        //    JenisKasTujuanCombo.DataSource = listJenisKas;
-        //    JenisKasTujuanCombo.DisplayMember = "JenisKasName";
-        //    JenisKasTujuanCombo.ValueMember = "JenisKasID";
-
-        //    JenisKasTujuanCombo.SelectedItem = null;
-        //}
-
-
-        //private void UpdateJamText()
-        //{
-        //    JamText.Text = DateTime.Now.ToString("HH:mm:ss");
-        //}
-
-        //private void UpdateTglText()
-        //{
-        //    TglText.Value = DateTime.Now;
-        //}
-
-        //private void JamTimer_Tick(object sender, EventArgs e)
-        //{
-        //    UpdateJamText();
-        //}
-
-        //private void Save()
-        //{
-        //    var biaya = new MutasiKasModel
-        //    {
-        //        MutasiKasID = MutasiKasText.Text,
-        //        Tgl = TglText.Value.ToString("dd-MM-yyyy"),
-        //        Jam = JamText.Text,
-        //        JenisBiayaID = JenisBiayaCombo.SelectedValue.ToString(),
-        //        JenisKasID = JenisKasCombo.SelectedValue.ToString(),
-        //        Keterangan = KeteranganText.Text,
-        //        NilaiBiaya = NilIText.Value
-        //    };
-        //    var result = _biayaBL.Save(biaya);
-
-        //    _bpKasBL.Generate(result);
-        //}
-
-        //private void ClearForm()
-        //{
-        //    BiayaIDText.Clear();
-        //    TglText.Value = DateTime.Now;
-        //    JamText.Text = DateTime.Now.ToString("HH:mm_ss");
-        //    JenisBiayaCombo.SelectedIndex = -1;
-        //    JenisKasCombo.SelectedIndex = -1;
-        //    KeteranganText.Clear();
-        //    NilIText.Value = 0;
-        //}
-
-        //private void NewButton_Click(object sender, EventArgs e)
-        //{
-        //    ClearForm();
-        //}
-
-        //private void SaveButton_Click(object sender, EventArgs e)
-        //{
-        //    Save();
-        //    ClearForm();
-        //    TglText.Focus();
-        //}
-
-        //private void ExitButton_Click(object sender, EventArgs e)
-        //{
-        //    this.Close();
-        //}
-
-        //private void BiayaIDText_KeyDown(object sender, KeyEventArgs e)
-        //{
-        //    if (e.KeyCode == Keys.F1)
-        //    {
-        //        SearchKodeTrs();
-        //        TglText.Focus();
-        //    }
-        //}
-        //private void SearchKodeTrs()
-        //{
-        //    var searchForm = new SearchingForm<BiayaSearchModel>(_biayaBL);
-        //    var resultDialog = searchForm.ShowDialog();
-        //    if (resultDialog == DialogResult.OK)
-        //    {
-        //        var result = searchForm.SelectedDataKey;
-        //        BiayaIDText.Text = result;
-        //    }
-        //}
-        //private void ShowData()
-        //{
-        //    var biaya = _biayaBL.GetData(BiayaIDText.Text);
-        //    if (biaya == null)
-        //    {
-        //        ClearForm();
-        //        return;
-        //    }
-
-        //    TglText.Value = biaya.Tgl.ToDate();
-        //    JamText.Text = biaya.Jam;
-        //    KeteranganText.Text = biaya.Keterangan;
-        //    JenisBiayaCombo.SelectedValue = biaya.JenisBiayaID;
-        //    JenisKasCombo.SelectedValue = biaya.JenisKasID;
-        //    NilIText.Value = biaya.NilaiBiaya;
-        //}
-
-        //private void BiayaIDText_Validated(object sender, EventArgs e)
-        //{
-        //    ShowData();
-        //    TglText.Focus();
-        //}
-
-        //private void SearchButton_Click(object sender, EventArgs e)
-        //{
-        //    SearchKodeTrs();
-        //    ShowData();
-        //    TglText.Focus();
-        //}
-
-        //private void DeleteButton_Click(object sender, EventArgs e)
-        //{
-        //    if (MessageBox.Show("Hapus data ?", "Biaya", MessageBoxButtons.OKCancel) == DialogResult.No)
-        //        return;
-
-        //    using (var trans = TransHelper.NewScope())
-        //    {
-        //        var biaya = _biayaBL.GetData(BiayaIDText.Text);
-        //        _biayaBL.Delete(biaya.BiayaID);
-        //        _bpKasBL.GenDelete(biaya);
-        //        trans.Complete();
-        //    }
-        //    ClearForm();
-        //}
+        private void button3_Click(object sender, EventArgs e)
+        {
+            _presenter.PilihJenisKasTujuan();
+        }
     }
 }

@@ -21,6 +21,7 @@ namespace AnugerahBackend.Accounting.BL
         BPKasModel Generate(PenjualanModel penjualan);
         BPKasModel Generate(DepositModel deposit);
         BPKasModel Generate(ReturDepositModel returDeposit);
+        BPKasModel Generate(MutasiKasModel mutasiKas);
         IEnumerable<BPKasModel> ListData(string tgl1, string tgl2);
     }
 
@@ -220,6 +221,16 @@ namespace AnugerahBackend.Accounting.BL
             return result;
         }
 
+        public BPKasModel Generate(MutasiKasModel mutasiKas)
+        {
+            if (mutasiKas == null)
+            {
+                throw new ArgumentNullException(nameof(mutasiKas));
+            }
+            var bpKas = (BPKasModel)mutasiKas;
+            var result = Save(bpKas);
+            return result;
 
+        }
     }
 }

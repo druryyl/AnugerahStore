@@ -5,11 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using AnugerahBackend.Accounting.Dal;
 using AnugerahBackend.Accounting.Model;
+using AnugerahBackend.Support;
+using Ics.Helper.Extensions;
 
 namespace AnugerahBackend.Accounting.BL
 {
 
-    public interface IJenisKasBL
+    public interface IJenisKasBL : ISearch<JenisKasModel>
     {
         JenisKasModel Save(JenisKasModel model);
 
@@ -30,6 +32,10 @@ namespace AnugerahBackend.Accounting.BL
         public JenisKasBL()
         {
             _jenisKasDal = new JenisKasDal();
+            SearchFilter = new SearchFilter
+            {
+                IsDate = false,
+            };
         }
 
         public JenisKasBL(IJenisKasDal injJenisKasDal)
@@ -89,6 +95,26 @@ namespace AnugerahBackend.Accounting.BL
             {
                 throw new ArgumentException("JenisKasName empty");
             }
+
+            return result;
+        }
+
+        public SearchFilter SearchFilter { get; set; }
+
+        public IEnumerable<JenisKasModel> Search()
+        {
+            var listData = _jenisKasDal.ListData();
+            if (listData == null)
+                return null;
+
+            IEnumerable<JenisKasModel> result;
+            if (SearchFilter.UserKeyword != null)
+                result =
+                    from c in listData
+                    where c.JenisKasName.ContainMultiWord(SearchFilter.UserKeyword)
+                    select c;
+            else
+                result = listData;
 
             return result;
         }

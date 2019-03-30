@@ -39,12 +39,12 @@ namespace AnugerahBackend.Accounting.Dal
                         NilaiKas)
                 VALUES (
                         @MutasiKasID, @Tgl, @Jam, @PegawaiID, 
-                        @JenisKasIDAsal, @JenisKasIDTujuan, @Keterangan
+                        @JenisKasIDAsal, @JenisKasIDTujuan, @Keterangan,
                         @NilaiKas) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@MutasiKasiID", model.MutasiKasID);
+                cmd.AddParam("@MutasiKasID", model.MutasiKasID);
                 cmd.AddParam("@Tgl", model.Tgl.ToTglYMD());
                 cmd.AddParam("@Jam", model.Jam);
                 cmd.AddParam("@PegawaiID", model.PegawaiID);
@@ -75,7 +75,7 @@ namespace AnugerahBackend.Accounting.Dal
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@MutasiKasiID", model.MutasiKasID);
+                cmd.AddParam("@MutasiKasID", model.MutasiKasID);
                 cmd.AddParam("@Tgl", model.Tgl.ToTglYMD());
                 cmd.AddParam("@Jam", model.Jam);
                 cmd.AddParam("@PegawaiID", model.PegawaiID);
@@ -98,7 +98,7 @@ namespace AnugerahBackend.Accounting.Dal
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@MutasiKasiID", id);
+                cmd.AddParam("@MutasiKasID", id);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -112,24 +112,25 @@ namespace AnugerahBackend.Accounting.Dal
                     aa.MutasiKasID, aa.Tgl, aa.Jam, aa.PegawaiID, 
                     aa.JenisKasIDAsal, aa.JenisKasIDTujuan, aa.Keterangan,
                     aa.NilaiKas,
-                    ISNULL(bb.PegawaiName, '') PegawaiName
+                    ISNULL(bb.PegawaiName, '') PegawaiName,
                     ISNULL(cc.JenisKasName, '') JenisKasNameAsal,
-                    ISNULL(dd.JenisKasName, '') JenisKasNameTujuan,
+                    ISNULL(dd.JenisKasName, '') JenisKasNameTujuan
                 FROM
                     MutasiKas aa 
                     LEFT JOIN Pegawai bb ON aa.PegawaiID = bb.PegawaiID
                     LEFT JOIN JenisKas cc ON aa.JenisKasIDAsal = cc.JenisKasID
                     LEFT JOIN JenisKas dd oN aa.JenisKasIDTujuan = dd.JenisKasID
                 WHERE
-                    MutasiKasID = @MutasiKasiID ";
+                    MutasiKasID = @MutasiKasID ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
-                cmd.AddParam("@MutasiKasiID", id);
+                cmd.AddParam("@MutasiKasID", id);
                 conn.Open();
                 using (var dr = cmd.ExecuteReader())
                 {
                     if (!dr.HasRows) return null;
+                    dr.Read();
                     result = new MutasiKasModel
                     {
                         MutasiKasID = id,
@@ -137,7 +138,7 @@ namespace AnugerahBackend.Accounting.Dal
                         Jam = dr["Jam"].ToString(),
                         PegawaiID = dr["PegawaiID"].ToString(),
                         PegawaiName = dr["PegawaiName"].ToString(),
-                        JenisKasIDAsal = dr["JenisKasIDAwal"].ToString(),
+                        JenisKasIDAsal = dr["JenisKasIDAsal"].ToString(),
                         JenisKasNameAsal = dr["JenisKasNameAsal"].ToString(),
                         JenisKasIDTujan = dr["JenisKasIDTujuan"].ToString(),
                         JenisKasNameTujuan = dr["JenisKasNameTujuan"].ToString(),
@@ -157,9 +158,9 @@ namespace AnugerahBackend.Accounting.Dal
                     aa.MutasiKasID, aa.Tgl, aa.Jam, aa.PegawaiID, 
                     aa.JenisKasIDAsal, aa.JenisKasIDTujuan, aa.Keterangan, 
                     aa.NilaiKas,
-                    ISNULL(bb.PegawaiName, '') PegawaiName
+                    ISNULL(bb.PegawaiName, '') PegawaiName,
                     ISNULL(cc.JenisKasName, '') JenisKasNameAsal,
-                    ISNULL(dd.JenisKasName, '') JenisKasNameTujuan,
+                    ISNULL(dd.JenisKasName, '') JenisKasNameTujuan
                 FROM
                     MutasiKas aa 
                     LEFT JOIN Pegawai bb ON aa.PegawaiID = bb.PegawaiID
@@ -186,7 +187,7 @@ namespace AnugerahBackend.Accounting.Dal
                             Jam = dr["Jam"].ToString(),
                             PegawaiID = dr["PegawaiID"].ToString(),
                             PegawaiName = dr["PegawaiName"].ToString(),
-                            JenisKasIDAsal = dr["JenisKasIDAwal"].ToString(),
+                            JenisKasIDAsal = dr["JenisKasIDAsal"].ToString(),
                             JenisKasNameAsal = dr["JenisKasNameAsal"].ToString(),
                             JenisKasIDTujan = dr["JenisKasIDTujuan"].ToString(),
                             JenisKasNameTujuan = dr["JenisKasNameTujuan"].ToString(),

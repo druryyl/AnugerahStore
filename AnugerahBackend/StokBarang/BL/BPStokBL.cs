@@ -66,7 +66,7 @@ namespace AnugerahBackend.StokBarang.BL
                     NilaiHpp = item.HppAdjust,
                     QtyOut = 0,
                     HargaJual = 0,
-                    StokControl = "",
+                    BPStokID = "",
                 };
                 var genResult = AddStok(stokItem);
                 if (result == null) result = new List<BPStokModel>();
@@ -87,7 +87,7 @@ namespace AnugerahBackend.StokBarang.BL
                     NilaiHpp = 0,
                     QtyOut = item.QtyAdjust * -1,
                     HargaJual = 0,
-                    StokControl = "",
+                    BPStokID = "",
                 };
                 var genResult = RemoveStok(stokItem);
                 if (result == null) result = new List<BPStokModel>();
@@ -115,7 +115,7 @@ namespace AnugerahBackend.StokBarang.BL
                     Tgl = penjualan.TglPenjualan,
                     Jam = penjualan.JamPenjualan,
                     BrgID = item.BrgID,
-                    StokControl = item.BPStokID,
+                    BPStokID = item.BPStokID,
                     BrgName = item.BrgName,
                     QtyIn = 0,
                     NilaiHpp = 0,
@@ -171,7 +171,7 @@ namespace AnugerahBackend.StokBarang.BL
                     NilaiHpp = item.Harga - item.Diskon - item.TaxRupiah,
                     QtyOut = 0,
                     HargaJual = 0,
-                    StokControl = "",
+                    BPStokID = "",
                 };
                 var genResult = AddStok(stokItem);
                 if (result == null) result = new List<BPStokModel>();
@@ -199,7 +199,7 @@ namespace AnugerahBackend.StokBarang.BL
                 NilaiHpp = 0,
                 QtyOut = repack.QtyMaterial,
                 HargaJual = 0,
-                StokControl = repack.BPStokID,
+                BPStokID = repack.BPStokID,
             };
             var bpStokMaterial = RemoveStok(stokMaterial);
 
@@ -215,7 +215,7 @@ namespace AnugerahBackend.StokBarang.BL
                 NilaiHpp = repack.HppHasil,
                 QtyOut = 0,
                 HargaJual = 0,
-                StokControl = repack.SlotControl,
+                BPStokID = repack.SlotControl,
             };
             var bpStokHasil = AddStok(stokHasil);
 
@@ -248,7 +248,7 @@ namespace AnugerahBackend.StokBarang.BL
             {
                 BPStokID = stokItem.ReffID + stokItem.BrgID,
                 ReffID = stokItem.ReffID,
-                StokControl = stokItem.StokControl,
+                StokControl = stokItem.BPStokID,
                 Tgl = stokItem.Tgl,
                 Jam = stokItem.Jam,
                 BrgID = stokItem.BrgID,
@@ -302,18 +302,10 @@ namespace AnugerahBackend.StokBarang.BL
             if (listBPStok == null) return null;
             //  jika pengurangan stok untuk kasus tertentu
             //  (sudah ditetepkan stok mana yg dikurangi)
-            if (stokItem.StokControl.Trim() != "")
+            if (stokItem.BPStokID.Trim() != "")
             {
-                listBPStok = listBPStok.Where(x => x.BPStokID == stokItem.StokControl);
+                listBPStok = listBPStok.Where(x => x.BPStokID == stokItem.BPStokID);
             }
-
-            ////  jika stok control diinputkan, 
-            ////  maka list barang yang sesuai stok control
-            //if (stokItem.StokControl.Trim() != "")
-            //{
-            //    listBPStok = listBPStok
-            //        .Where(x => x.StokControl == stokItem.StokControl);
-            //}
 
             //  hapus detil utk 'trs ini' dulu
             //  (kasus simpan ulang)
