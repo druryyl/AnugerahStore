@@ -30,7 +30,16 @@
         {
             this.MainTab = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.JenisKasTujuanCombo = new System.Windows.Forms.ComboBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.JenisKasNameTujuanTextBox = new System.Windows.Forms.TextBox();
+            this.JenisKasIDTujuanTextBox = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.JenisKasNameAsalTextBox = new System.Windows.Forms.TextBox();
+            this.JenisKasIDAsalTextBox = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.KasirNameTextBox = new System.Windows.Forms.TextBox();
+            this.KasirIDTextBox = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.SearchButton = new System.Windows.Forms.Button();
             this.ExitButton = new System.Windows.Forms.Button();
@@ -39,10 +48,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.TglText = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
-            this.JenisKasAsalCombo = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.NilIText = new System.Windows.Forms.NumericUpDown();
+            this.NilaiKasTextBox = new System.Windows.Forms.NumericUpDown();
             this.KeteranganText = new System.Windows.Forms.TextBox();
             this.JamText = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -50,11 +58,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.DeleteButton = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label8 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.MainTab.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NilIText)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NilaiKasTextBox)).BeginInit();
             this.SuspendLayout();
             // 
             // MainTab
@@ -71,9 +77,16 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.Bisque;
+            this.tabPage1.Controls.Add(this.button3);
+            this.tabPage1.Controls.Add(this.JenisKasNameTujuanTextBox);
+            this.tabPage1.Controls.Add(this.JenisKasIDTujuanTextBox);
+            this.tabPage1.Controls.Add(this.button2);
+            this.tabPage1.Controls.Add(this.JenisKasNameAsalTextBox);
+            this.tabPage1.Controls.Add(this.JenisKasIDAsalTextBox);
+            this.tabPage1.Controls.Add(this.button1);
+            this.tabPage1.Controls.Add(this.KasirNameTextBox);
+            this.tabPage1.Controls.Add(this.KasirIDTextBox);
             this.tabPage1.Controls.Add(this.label8);
-            this.tabPage1.Controls.Add(this.comboBox1);
-            this.tabPage1.Controls.Add(this.JenisKasTujuanCombo);
             this.tabPage1.Controls.Add(this.label7);
             this.tabPage1.Controls.Add(this.SearchButton);
             this.tabPage1.Controls.Add(this.ExitButton);
@@ -82,10 +95,9 @@
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.TglText);
             this.tabPage1.Controls.Add(this.label5);
-            this.tabPage1.Controls.Add(this.JenisKasAsalCombo);
             this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Controls.Add(this.NilIText);
+            this.tabPage1.Controls.Add(this.NilaiKasTextBox);
             this.tabPage1.Controls.Add(this.KeteranganText);
             this.tabPage1.Controls.Add(this.JamText);
             this.tabPage1.Controls.Add(this.label2);
@@ -99,15 +111,108 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Input Transaksi";
             // 
-            // JenisKasTujuanCombo
+            // button3
             // 
-            this.JenisKasTujuanCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.Location = new System.Drawing.Point(60, 312);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(33, 23);
+            this.button3.TabIndex = 14;
+            this.button3.Text = "...";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // JenisKasNameTujuanTextBox
+            // 
+            this.JenisKasNameTujuanTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.JenisKasTujuanCombo.FormattingEnabled = true;
-            this.JenisKasTujuanCombo.Location = new System.Drawing.Point(6, 313);
-            this.JenisKasTujuanCombo.Name = "JenisKasTujuanCombo";
-            this.JenisKasTujuanCombo.Size = new System.Drawing.Size(309, 21);
-            this.JenisKasTujuanCombo.TabIndex = 8;
+            this.JenisKasNameTujuanTextBox.Location = new System.Drawing.Point(94, 313);
+            this.JenisKasNameTujuanTextBox.Name = "JenisKasNameTujuanTextBox";
+            this.JenisKasNameTujuanTextBox.ReadOnly = true;
+            this.JenisKasNameTujuanTextBox.Size = new System.Drawing.Size(221, 21);
+            this.JenisKasNameTujuanTextBox.TabIndex = 15;
+            // 
+            // JenisKasIDTujuanTextBox
+            // 
+            this.JenisKasIDTujuanTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.JenisKasIDTujuanTextBox.Location = new System.Drawing.Point(6, 313);
+            this.JenisKasIDTujuanTextBox.Name = "JenisKasIDTujuanTextBox";
+            this.JenisKasIDTujuanTextBox.ReadOnly = true;
+            this.JenisKasIDTujuanTextBox.Size = new System.Drawing.Size(53, 21);
+            this.JenisKasIDTujuanTextBox.TabIndex = 13;
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Location = new System.Drawing.Point(60, 272);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(33, 23);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "...";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // JenisKasNameAsalTextBox
+            // 
+            this.JenisKasNameAsalTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.JenisKasNameAsalTextBox.Location = new System.Drawing.Point(94, 273);
+            this.JenisKasNameAsalTextBox.Name = "JenisKasNameAsalTextBox";
+            this.JenisKasNameAsalTextBox.ReadOnly = true;
+            this.JenisKasNameAsalTextBox.Size = new System.Drawing.Size(221, 21);
+            this.JenisKasNameAsalTextBox.TabIndex = 12;
+            // 
+            // JenisKasIDAsalTextBox
+            // 
+            this.JenisKasIDAsalTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.JenisKasIDAsalTextBox.Location = new System.Drawing.Point(6, 273);
+            this.JenisKasIDAsalTextBox.Name = "JenisKasIDAsalTextBox";
+            this.JenisKasIDAsalTextBox.ReadOnly = true;
+            this.JenisKasIDAsalTextBox.Size = new System.Drawing.Size(53, 21);
+            this.JenisKasIDAsalTextBox.TabIndex = 10;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(60, 232);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(33, 23);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "...";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // KasirNameTextBox
+            // 
+            this.KasirNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.KasirNameTextBox.Location = new System.Drawing.Point(94, 233);
+            this.KasirNameTextBox.Name = "KasirNameTextBox";
+            this.KasirNameTextBox.ReadOnly = true;
+            this.KasirNameTextBox.Size = new System.Drawing.Size(221, 21);
+            this.KasirNameTextBox.TabIndex = 9;
+            // 
+            // KasirIDTextBox
+            // 
+            this.KasirIDTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.KasirIDTextBox.Location = new System.Drawing.Point(6, 233);
+            this.KasirIDTextBox.Name = "KasirIDTextBox";
+            this.KasirIDTextBox.ReadOnly = true;
+            this.KasirIDTextBox.Size = new System.Drawing.Size(53, 21);
+            this.KasirIDTextBox.TabIndex = 7;
+            // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(10, 217);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(36, 13);
+            this.label8.TabIndex = 14;
+            this.label8.Text = "Kasir";
             // 
             // label7
             // 
@@ -128,6 +233,7 @@
             this.SearchButton.TabIndex = 2;
             this.SearchButton.Text = "...";
             this.SearchButton.UseVisualStyleBackColor = true;
+            this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
             // 
             // ExitButton
             // 
@@ -135,9 +241,10 @@
             this.ExitButton.Location = new System.Drawing.Point(219, 400);
             this.ExitButton.Name = "ExitButton";
             this.ExitButton.Size = new System.Drawing.Size(96, 23);
-            this.ExitButton.TabIndex = 12;
+            this.ExitButton.TabIndex = 19;
             this.ExitButton.Text = "Exit";
             this.ExitButton.UseVisualStyleBackColor = true;
+            this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
             // SaveButton
             // 
@@ -146,9 +253,10 @@
             this.SaveButton.Location = new System.Drawing.Point(6, 400);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(113, 23);
-            this.SaveButton.TabIndex = 10;
+            this.SaveButton.TabIndex = 17;
             this.SaveButton.Text = "Save";
             this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // NewButton
             // 
@@ -159,6 +267,7 @@
             this.NewButton.TabIndex = 3;
             this.NewButton.Text = "New";
             this.NewButton.UseVisualStyleBackColor = true;
+            this.NewButton.Click += new System.EventHandler(this.NewButton_Click);
             // 
             // label6
             // 
@@ -189,16 +298,6 @@
             this.label5.TabIndex = 8;
             this.label5.Text = "Jenis Kas Asal";
             // 
-            // JenisKasAsalCombo
-            // 
-            this.JenisKasAsalCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.JenisKasAsalCombo.FormattingEnabled = true;
-            this.JenisKasAsalCombo.Location = new System.Drawing.Point(6, 273);
-            this.JenisKasAsalCombo.Name = "JenisKasAsalCombo";
-            this.JenisKasAsalCombo.Size = new System.Drawing.Size(309, 21);
-            this.JenisKasAsalCombo.TabIndex = 7;
-            // 
             // label4
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -218,26 +317,26 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "Keterangan";
             // 
-            // NilIText
+            // NilaiKasTextBox
             // 
-            this.NilIText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.NilaiKasTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.NilIText.Location = new System.Drawing.Point(6, 353);
-            this.NilIText.Maximum = new decimal(new int[] {
+            this.NilaiKasTextBox.Location = new System.Drawing.Point(6, 353);
+            this.NilaiKasTextBox.Maximum = new decimal(new int[] {
             99999999,
             0,
             0,
             0});
-            this.NilIText.Minimum = new decimal(new int[] {
+            this.NilaiKasTextBox.Minimum = new decimal(new int[] {
             99999999,
             0,
             0,
             -2147483648});
-            this.NilIText.Name = "NilIText";
-            this.NilIText.Size = new System.Drawing.Size(309, 21);
-            this.NilIText.TabIndex = 9;
-            this.NilIText.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.NilIText.ThousandsSeparator = true;
+            this.NilaiKasTextBox.Name = "NilaiKasTextBox";
+            this.NilaiKasTextBox.Size = new System.Drawing.Size(309, 21);
+            this.NilaiKasTextBox.TabIndex = 16;
+            this.NilaiKasTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.NilaiKasTextBox.ThousandsSeparator = true;
             // 
             // KeteranganText
             // 
@@ -292,39 +391,20 @@
             this.DeleteButton.Location = new System.Drawing.Point(125, 400);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(88, 23);
-            this.DeleteButton.TabIndex = 11;
+            this.DeleteButton.TabIndex = 18;
             this.DeleteButton.Text = "Delete";
             this.DeleteButton.UseVisualStyleBackColor = true;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // tabPage2
             // 
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(308, 454);
+            this.tabPage2.Size = new System.Drawing.Size(323, 434);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Informasi";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // label8
-            // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(10, 217);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(36, 13);
-            this.label8.TabIndex = 14;
-            this.label8.Text = "Kasir";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(8, 233);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(309, 21);
-            this.comboBox1.TabIndex = 13;
             // 
             // MutasiKasForm
             // 
@@ -338,7 +418,7 @@
             this.MainTab.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NilIText)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NilaiKasTextBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -347,7 +427,6 @@
 
         private System.Windows.Forms.TabControl MainTab;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.ComboBox JenisKasTujuanCombo;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button SearchButton;
         private System.Windows.Forms.Button ExitButton;
@@ -356,10 +435,9 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DateTimePicker TglText;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox JenisKasAsalCombo;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.NumericUpDown NilIText;
+        private System.Windows.Forms.NumericUpDown NilaiKasTextBox;
         private System.Windows.Forms.TextBox KeteranganText;
         private System.Windows.Forms.TextBox JamText;
         private System.Windows.Forms.Label label2;
@@ -368,6 +446,14 @@
         private System.Windows.Forms.Button DeleteButton;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox KasirNameTextBox;
+        private System.Windows.Forms.TextBox KasirIDTextBox;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox JenisKasNameTujuanTextBox;
+        private System.Windows.Forms.TextBox JenisKasIDTujuanTextBox;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox JenisKasNameAsalTextBox;
+        private System.Windows.Forms.TextBox JenisKasIDAsalTextBox;
+        private System.Windows.Forms.Button button1;
     }
 }

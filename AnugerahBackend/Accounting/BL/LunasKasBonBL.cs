@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AnugerahBackend.Accounting.Dal;
 using AnugerahBackend.Accounting.Model;
+using AnugerahBackend.Penjualan.Dal;
 using AnugerahBackend.Support;
 using AnugerahBackend.Support.BL;
 using Ics.Helper.Database;
@@ -28,6 +29,8 @@ namespace AnugerahBackend.Accounting.BL
         private IPihakKeduaDal _pihakKeduaDal;
         private IJenisLunasDal _jenisLunasDal;
         private IParameterNoBL _paramNoBL;
+        private IPenjualanDal _penjualanDal;
+        private IJenisBiayaDal _jenisBiayaDal;
 
         public LunasKasBonBL()
         {
@@ -37,6 +40,8 @@ namespace AnugerahBackend.Accounting.BL
             _pihakKeduaDal = new PihakKeduaDal();
             _jenisLunasDal = new JenisLunasDal();
             _paramNoBL = new ParameterNoBL();
+            _penjualanDal = new PenjualanDal();
+            _jenisBiayaDal = new JenisBiayaDal();
 
             SearchFilter = new SearchFilter
             {
@@ -81,11 +86,22 @@ namespace AnugerahBackend.Accounting.BL
                 var jenisLunas = _jenisLunasDal.GetData(item.JenisLunasID);
                 if (jenisLunas == null)
                     throw new ArgumentException("JenisLunasID invalid : " + item.JenisLunasID);
-                else
-                    item.JenisLunasName = jenisLunas.JenisLunasName;
 
                 if (item.NilaiLunas <= 0)
                     throw new ArgumentException("Pelunasan tidak boleh minus atau nol");
+
+                //  jika PelunasanID muncul, cek apakah NoPenjualan valid
+                if(item.PenjualanID.Trim() != "")
+                {
+                    var penjualan = _penjualanDal.GetData(item.PenjualanID);
+                    if (penjualan == null)
+                        throw new ArgumentException("Penjualan ID invalid");
+
+                    //  nomor referensi penjualan hanya boleh untuk jenis lunas biaya
+                    var jenisBiaya = _jenisBiayaDal.GetData(jenisLunas.JenisBiayaID);
+                    if (jenisBiaya == null)
+                        throw new ArgumentException("Penjualan hanya diisi jika Biaya");
+                }
             }
 
             using (var trans = TransHelper.NewScope())

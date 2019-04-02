@@ -34,7 +34,7 @@ namespace AnugerahUnitTest.Accounting.Dal
                 LunasKasBonID = "A1",
                 LunasKasBonDetilID = "B1",
                 JenisLunasID = "D1",
-                JenisLunasName = "",
+                Keterangan = "",
                 NilaiLunas = 41000
             };
             return result;

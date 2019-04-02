@@ -32,17 +32,21 @@ namespace AnugerahBackend.Accounting.Dal
                 INSERT INTO
                     LunasKasBonDetil (
                         LunasKasBonID, LunasKasBonDetilID, 
-                        JenisLunasID, NilaiLunas)
+                        JenisLunasID, Keterangan, NilaiLunas, 
+                        PenjualanID)
                 VALUES (
                         @LunasKasBonID, @LunasKasBonDetilID, 
-                        @JenisLunasID, @NilaiLunas) ";
+                        @JenisLunasID, @Keterangan, @NilaiLunas, 
+                        @PenjualanID) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
                 cmd.AddParam("@LunasKasBonID", model.LunasKasBonID);
                 cmd.AddParam("@LunasKasBonDetilID", model.LunasKasBonDetilID);
                 cmd.AddParam("@JenisLunasID", model.JenisLunasID);
+                cmd.AddParam("@Keterangan", model.Keterangan);
                 cmd.AddParam("@NilaiLunas", model.NilaiLunas);
+                cmd.AddParam("@PenjualanID", model.PenjualanID);
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
@@ -71,11 +75,10 @@ namespace AnugerahBackend.Accounting.Dal
             var sSql = @"
                 SELECT
                     aa.LunasKasBonID, aa.LunasKasBonDetilID, 
-                    aa.JenisLunasID, aa.NilaiLunas, 
-                    ISNULL(bb.JenisLunasName, '') JenisLunasName
+                    aa.JenisLunasID, aa.Keterangan, aa.NilaiLunas, 
+                    aa.PenjualanID 
                 FROM
                     LunasKasBonDetil aa
-                    LEFT JOIN JenisLunas bb ON aa.JenisLunasID = bb.JenisLunasID 
                 WHERE
                     LunasKasBonID = @LunasKasBonID ";
             using (var conn = new SqlConnection(_connString))
@@ -94,8 +97,9 @@ namespace AnugerahBackend.Accounting.Dal
                             LunasKasBonID = dr["LunasKasBonID"].ToString(),
                             LunasKasBonDetilID = dr["LunasKasBonDetilID"].ToString(),
                             JenisLunasID = dr["JenisLunasID"].ToString(),
-                            JenisLunasName = dr["JenisLunasName"].ToString(),
+                            Keterangan = dr["Keterangan"].ToString(),
                             NilaiLunas = Convert.ToDecimal(dr["NilaiLunas"]),
+                            PenjualanID = dr["PenjualanID"].ToString(),
                         };
                         result.Add(item);
                     }

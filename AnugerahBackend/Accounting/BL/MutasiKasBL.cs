@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace AnugerahBackend.Accounting.BL
 {
-    public interface IMutasiKasBL
+    public interface IMutasiKasBL : ISearch<MutasiKasSearchModel>
     {
         MutasiKasModel Save(MutasiKasModel model);
         void Delete(string id);
@@ -28,7 +28,7 @@ namespace AnugerahBackend.Accounting.BL
         public IPegawaiDal PegawaiDal { get; set; }
     }
 
-    public class MutasiKasBL : IMutasiKasBL, ISearch<MutasiKasSearchModel>
+    public class MutasiKasBL : IMutasiKasBL
     {
         private readonly MutasiKasDependency dep;
 
@@ -38,7 +38,8 @@ namespace AnugerahBackend.Accounting.BL
             {
                 MutasiKasDal = new MutasiKasDal(),
                 ParamNoBL = new ParameterNoBL(),
-                JenisKasDal = new JenisKasDal()
+                JenisKasDal = new JenisKasDal(),
+                PegawaiDal = new PegawaiDal()
             };
             SearchFilter = new SearchFilter
             {

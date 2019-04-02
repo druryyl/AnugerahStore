@@ -72,8 +72,7 @@
             this.LapHutangButton = new System.Windows.Forms.RibbonButton();
             this.BPKasRibbon = new System.Windows.Forms.RibbonPanel();
             this.LaporanBPKasButton = new System.Windows.Forms.RibbonButton();
-            this.ribbonPanel4 = new System.Windows.Forms.RibbonPanel();
-            this.ribbonButton1 = new System.Windows.Forms.RibbonButton();
+            this.MutasiKasiButton = new System.Windows.Forms.RibbonButton();
             this.SuspendLayout();
             // 
             // ribbon1
@@ -340,7 +339,6 @@
             this.ribbonTab3.Panels.Add(this.ribbonPanel2);
             this.ribbonTab3.Panels.Add(this.ribbonPanel3);
             this.ribbonTab3.Panels.Add(this.BPKasRibbon);
-            this.ribbonTab3.Panels.Add(this.ribbonPanel4);
             this.ribbonTab3.Text = "Keuangan";
             // 
             // ribbonPanel1
@@ -450,9 +448,10 @@
             // 
             // BPKasRibbon
             // 
+            this.BPKasRibbon.Items.Add(this.MutasiKasiButton);
             this.BPKasRibbon.Items.Add(this.LaporanBPKasButton);
             this.BPKasRibbon.Name = "BPKasRibbon";
-            this.BPKasRibbon.Text = "ribbonPanel4";
+            this.BPKasRibbon.Text = "Kas";
             // 
             // LaporanBPKasButton
             // 
@@ -463,20 +462,14 @@
             this.LaporanBPKasButton.Text = "Laporan Kas";
             this.LaporanBPKasButton.Click += new System.EventHandler(this.LaporanBPKasButton_Click);
             // 
-            // ribbonPanel4
+            // MutasiKasiButton
             // 
-            this.ribbonPanel4.Items.Add(this.ribbonButton1);
-            this.ribbonPanel4.Name = "ribbonPanel4";
-            this.ribbonPanel4.Text = "ribbonPanel4";
-            // 
-            // ribbonButton1
-            // 
-            this.ribbonButton1.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton1.Image")));
-            this.ribbonButton1.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton1.LargeImage")));
-            this.ribbonButton1.Name = "ribbonButton1";
-            this.ribbonButton1.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton1.SmallImage")));
-            this.ribbonButton1.Text = "ribbonButton1";
-            this.ribbonButton1.Click += new System.EventHandler(this.ribbonButton1_Click);
+            this.MutasiKasiButton.Image = ((System.Drawing.Image)(resources.GetObject("MutasiKasiButton.Image")));
+            this.MutasiKasiButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("MutasiKasiButton.LargeImage")));
+            this.MutasiKasiButton.Name = "MutasiKasiButton";
+            this.MutasiKasiButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("MutasiKasiButton.SmallImage")));
+            this.MutasiKasiButton.Text = "Mutasi Kas";
+            this.MutasiKasiButton.Click += new System.EventHandler(this.MutasiKasiButton_Click);
             // 
             // MainMenuForm
             // 
@@ -541,9 +534,9 @@
         private System.Windows.Forms.RibbonButton StokInfoButton;
         private System.Windows.Forms.RibbonButton PegawaiButton;
         private System.Windows.Forms.RibbonPanel ribbonPanel4;
-        private System.Windows.Forms.RibbonButton ribbonButton1;
         private System.Windows.Forms.RibbonButton ribbonButton2;
         private System.Windows.Forms.RibbonButton RepackButton;
+        private System.Windows.Forms.RibbonButton MutasiKasiButton;
     }
 }
 
