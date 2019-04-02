@@ -30,15 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -46,6 +39,14 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataColumn5 = new System.Data.DataColumn();
             this.ProsesButton = new System.Windows.Forms.Button();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
@@ -73,15 +74,6 @@
             this.SearchButton = new System.Windows.Forms.Button();
             this.SearchKeywordText = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TransferBri = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tanggalColDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.jamColDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.noTransaksiColDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -106,6 +98,17 @@
             this.totEdcBriColDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totTrfBriColDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totJualKasDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataColumn16 = new System.Data.DataColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TransferBri = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DepositCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.SaldoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LaporangKasirDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LaporanKasirTable)).BeginInit();
@@ -169,7 +172,8 @@
             this.dataColumn7,
             this.dataColumn8,
             this.dataColumn9,
-            this.dataColumn2});
+            this.dataColumn2,
+            this.dataColumn16});
             this.LaporanKasirTable.TableName = "LaporanKasirTable";
             // 
             // dataColumn1
@@ -312,7 +316,8 @@
             this.dataGridViewTextBoxColumn10,
             this.dataGridViewTextBoxColumn11,
             this.dataGridViewTextBoxColumn12,
-            this.TransferBri});
+            this.TransferBri,
+            this.DepositCol});
             this.dataGridView1.DataSource = this.DataKasirBinding;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 52);
@@ -320,6 +325,222 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(928, 398);
             this.dataGridView1.TabIndex = 6;
+            // 
+            // tanggalColDataGridViewTextBoxColumn
+            // 
+            this.tanggalColDataGridViewTextBoxColumn.DataPropertyName = "TanggalCol";
+            this.tanggalColDataGridViewTextBoxColumn.HeaderText = "Tanggal";
+            this.tanggalColDataGridViewTextBoxColumn.Name = "tanggalColDataGridViewTextBoxColumn";
+            // 
+            // jamColDataGridViewTextBoxColumn
+            // 
+            this.jamColDataGridViewTextBoxColumn.DataPropertyName = "JamCol";
+            this.jamColDataGridViewTextBoxColumn.HeaderText = "Jam";
+            this.jamColDataGridViewTextBoxColumn.Name = "jamColDataGridViewTextBoxColumn";
+            // 
+            // noTransaksiColDataGridViewTextBoxColumn
+            // 
+            this.noTransaksiColDataGridViewTextBoxColumn.DataPropertyName = "NoTransaksiCol";
+            this.noTransaksiColDataGridViewTextBoxColumn.HeaderText = "No.Transaksi";
+            this.noTransaksiColDataGridViewTextBoxColumn.Name = "noTransaksiColDataGridViewTextBoxColumn";
+            // 
+            // NamaCol
+            // 
+            this.NamaCol.DataPropertyName = "NamaCol";
+            this.NamaCol.HeaderText = "Nama";
+            this.NamaCol.Name = "NamaCol";
+            this.NamaCol.Width = 200;
+            // 
+            // NilaiKasCol
+            // 
+            this.NilaiKasCol.DataPropertyName = "NilaiKasCol";
+            dataGridViewCellStyle9.Format = "N0";
+            dataGridViewCellStyle9.NullValue = "0";
+            this.NilaiKasCol.DefaultCellStyle = dataGridViewCellStyle9;
+            this.NilaiKasCol.HeaderText = "Nilai Kas";
+            this.NilaiKasCol.Name = "NilaiKasCol";
+            // 
+            // NilaiEdcBca
+            // 
+            this.NilaiEdcBca.DataPropertyName = "NilaiEdcBca";
+            this.NilaiEdcBca.HeaderText = "NilaiEdcBca";
+            this.NilaiEdcBca.Name = "NilaiEdcBca";
+            // 
+            // TransferBca
+            // 
+            this.TransferBca.DataPropertyName = "TransferBca";
+            this.TransferBca.HeaderText = "TransferBca";
+            this.TransferBca.Name = "TransferBca";
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "TanggalCol";
+            this.Column1.HeaderText = "Column1";
+            this.Column1.Name = "Column1";
+            // 
+            // JamCol
+            // 
+            this.JamCol.DataPropertyName = "JamCol";
+            this.JamCol.HeaderText = "JamCol";
+            this.JamCol.Name = "JamCol";
+            // 
+            // NoTransaksiCol
+            // 
+            this.NoTransaksiCol.DataPropertyName = "NoTransaksiCol";
+            this.NoTransaksiCol.HeaderText = "NoTransaksiCol";
+            this.NoTransaksiCol.Name = "NoTransaksiCol";
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "NamaCol";
+            this.dataGridViewTextBoxColumn1.HeaderText = "NamaCol";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "NilaiKasCol";
+            this.dataGridViewTextBoxColumn2.HeaderText = "NilaiKasCol";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "NilaiEdcBca";
+            this.dataGridViewTextBoxColumn3.HeaderText = "NilaiEdcBca";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "TransferBca";
+            this.dataGridViewTextBoxColumn4.HeaderText = "TransferBca";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToDeleteRows = false;
+            this.dataGridView2.AutoGenerateColumns = false;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn13,
+            this.dataGridViewTextBoxColumn15,
+            this.dataGridViewTextBoxColumn20,
+            this.totKasColDataGridViewTextBoxColumn,
+            this.totEdcBcaColDataGridViewTextBoxColumn,
+            this.totTrfBcaColDataGridViewTextBoxColumn,
+            this.totEdcBriColDataGridViewTextBoxColumn,
+            this.totTrfBriColDataGridViewTextBoxColumn,
+            this.totJualKasDataGridViewTextBoxColumn});
+            this.dataGridView2.DataSource = this.SaldoBindingSource;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.LemonChiffon;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle18;
+            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dataGridView2.Location = new System.Drawing.Point(0, 406);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
+            this.dataGridView2.Size = new System.Drawing.Size(928, 44);
+            this.dataGridView2.TabIndex = 7;
+            // 
+            // dataGridViewTextBoxColumn13
+            // 
+            this.dataGridViewTextBoxColumn13.HeaderText = "";
+            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
+            this.dataGridViewTextBoxColumn13.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn15
+            // 
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle10.Format = "N0";
+            this.dataGridViewTextBoxColumn15.DefaultCellStyle = dataGridViewCellStyle10;
+            this.dataGridViewTextBoxColumn15.HeaderText = "";
+            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
+            this.dataGridViewTextBoxColumn15.ReadOnly = true;
+            this.dataGridViewTextBoxColumn15.Width = 90;
+            // 
+            // dataGridViewTextBoxColumn20
+            // 
+            this.dataGridViewTextBoxColumn20.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dataGridViewTextBoxColumn20.DefaultCellStyle = dataGridViewCellStyle11;
+            this.dataGridViewTextBoxColumn20.HeaderText = "";
+            this.dataGridViewTextBoxColumn20.Name = "dataGridViewTextBoxColumn20";
+            this.dataGridViewTextBoxColumn20.ReadOnly = true;
+            // 
+            // totKasColDataGridViewTextBoxColumn
+            // 
+            this.totKasColDataGridViewTextBoxColumn.DataPropertyName = "TotJualKas";
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle12.Format = "N0";
+            this.totKasColDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle12;
+            this.totKasColDataGridViewTextBoxColumn.HeaderText = "";
+            this.totKasColDataGridViewTextBoxColumn.Name = "totKasColDataGridViewTextBoxColumn";
+            this.totKasColDataGridViewTextBoxColumn.ReadOnly = true;
+            this.totKasColDataGridViewTextBoxColumn.Width = 90;
+            // 
+            // totEdcBcaColDataGridViewTextBoxColumn
+            // 
+            this.totEdcBcaColDataGridViewTextBoxColumn.DataPropertyName = "TotKasCol";
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle13.Format = "N0";
+            this.totEdcBcaColDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle13;
+            this.totEdcBcaColDataGridViewTextBoxColumn.HeaderText = "";
+            this.totEdcBcaColDataGridViewTextBoxColumn.Name = "totEdcBcaColDataGridViewTextBoxColumn";
+            this.totEdcBcaColDataGridViewTextBoxColumn.ReadOnly = true;
+            this.totEdcBcaColDataGridViewTextBoxColumn.Width = 90;
+            // 
+            // totTrfBcaColDataGridViewTextBoxColumn
+            // 
+            this.totTrfBcaColDataGridViewTextBoxColumn.DataPropertyName = "TotEdcBcaCol";
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle14.Format = "N0";
+            this.totTrfBcaColDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle14;
+            this.totTrfBcaColDataGridViewTextBoxColumn.HeaderText = "";
+            this.totTrfBcaColDataGridViewTextBoxColumn.Name = "totTrfBcaColDataGridViewTextBoxColumn";
+            this.totTrfBcaColDataGridViewTextBoxColumn.ReadOnly = true;
+            this.totTrfBcaColDataGridViewTextBoxColumn.Width = 90;
+            // 
+            // totEdcBriColDataGridViewTextBoxColumn
+            // 
+            this.totEdcBriColDataGridViewTextBoxColumn.DataPropertyName = "TotTrfBcaCol";
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle15.Format = "N0";
+            this.totEdcBriColDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle15;
+            this.totEdcBriColDataGridViewTextBoxColumn.HeaderText = "";
+            this.totEdcBriColDataGridViewTextBoxColumn.Name = "totEdcBriColDataGridViewTextBoxColumn";
+            this.totEdcBriColDataGridViewTextBoxColumn.ReadOnly = true;
+            this.totEdcBriColDataGridViewTextBoxColumn.Width = 90;
+            // 
+            // totTrfBriColDataGridViewTextBoxColumn
+            // 
+            this.totTrfBriColDataGridViewTextBoxColumn.DataPropertyName = "TotEdcBriCol";
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle16.Format = "N0";
+            this.totTrfBriColDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle16;
+            this.totTrfBriColDataGridViewTextBoxColumn.HeaderText = "";
+            this.totTrfBriColDataGridViewTextBoxColumn.Name = "totTrfBriColDataGridViewTextBoxColumn";
+            this.totTrfBriColDataGridViewTextBoxColumn.ReadOnly = true;
+            this.totTrfBriColDataGridViewTextBoxColumn.Width = 90;
+            // 
+            // totJualKasDataGridViewTextBoxColumn
+            // 
+            this.totJualKasDataGridViewTextBoxColumn.DataPropertyName = "TotTrfBriCol";
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle17.Format = "N0";
+            this.totJualKasDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle17;
+            this.totJualKasDataGridViewTextBoxColumn.HeaderText = "";
+            this.totJualKasDataGridViewTextBoxColumn.Name = "totJualKasDataGridViewTextBoxColumn";
+            this.totJualKasDataGridViewTextBoxColumn.ReadOnly = true;
+            this.totJualKasDataGridViewTextBoxColumn.Width = 90;
+            // 
+            // dataColumn16
+            // 
+            this.dataColumn16.ColumnName = "DepositCol";
+            this.dataColumn16.DataType = typeof(decimal);
             // 
             // dataGridViewTextBoxColumn5
             // 
@@ -409,216 +630,15 @@
             this.TransferBri.ReadOnly = true;
             this.TransferBri.Width = 90;
             // 
-            // tanggalColDataGridViewTextBoxColumn
+            // DepositCol
             // 
-            this.tanggalColDataGridViewTextBoxColumn.DataPropertyName = "TanggalCol";
-            this.tanggalColDataGridViewTextBoxColumn.HeaderText = "Tanggal";
-            this.tanggalColDataGridViewTextBoxColumn.Name = "tanggalColDataGridViewTextBoxColumn";
-            // 
-            // jamColDataGridViewTextBoxColumn
-            // 
-            this.jamColDataGridViewTextBoxColumn.DataPropertyName = "JamCol";
-            this.jamColDataGridViewTextBoxColumn.HeaderText = "Jam";
-            this.jamColDataGridViewTextBoxColumn.Name = "jamColDataGridViewTextBoxColumn";
-            // 
-            // noTransaksiColDataGridViewTextBoxColumn
-            // 
-            this.noTransaksiColDataGridViewTextBoxColumn.DataPropertyName = "NoTransaksiCol";
-            this.noTransaksiColDataGridViewTextBoxColumn.HeaderText = "No.Transaksi";
-            this.noTransaksiColDataGridViewTextBoxColumn.Name = "noTransaksiColDataGridViewTextBoxColumn";
-            // 
-            // NamaCol
-            // 
-            this.NamaCol.DataPropertyName = "NamaCol";
-            this.NamaCol.HeaderText = "Nama";
-            this.NamaCol.Name = "NamaCol";
-            this.NamaCol.Width = 200;
-            // 
-            // NilaiKasCol
-            // 
-            this.NilaiKasCol.DataPropertyName = "NilaiKasCol";
+            this.DepositCol.DataPropertyName = "DepositCol";
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle8.Format = "N0";
-            dataGridViewCellStyle8.NullValue = "0";
-            this.NilaiKasCol.DefaultCellStyle = dataGridViewCellStyle8;
-            this.NilaiKasCol.HeaderText = "Nilai Kas";
-            this.NilaiKasCol.Name = "NilaiKasCol";
-            // 
-            // NilaiEdcBca
-            // 
-            this.NilaiEdcBca.DataPropertyName = "NilaiEdcBca";
-            this.NilaiEdcBca.HeaderText = "NilaiEdcBca";
-            this.NilaiEdcBca.Name = "NilaiEdcBca";
-            // 
-            // TransferBca
-            // 
-            this.TransferBca.DataPropertyName = "TransferBca";
-            this.TransferBca.HeaderText = "TransferBca";
-            this.TransferBca.Name = "TransferBca";
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "TanggalCol";
-            this.Column1.HeaderText = "Column1";
-            this.Column1.Name = "Column1";
-            // 
-            // JamCol
-            // 
-            this.JamCol.DataPropertyName = "JamCol";
-            this.JamCol.HeaderText = "JamCol";
-            this.JamCol.Name = "JamCol";
-            // 
-            // NoTransaksiCol
-            // 
-            this.NoTransaksiCol.DataPropertyName = "NoTransaksiCol";
-            this.NoTransaksiCol.HeaderText = "NoTransaksiCol";
-            this.NoTransaksiCol.Name = "NoTransaksiCol";
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "NamaCol";
-            this.dataGridViewTextBoxColumn1.HeaderText = "NamaCol";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "NilaiKasCol";
-            this.dataGridViewTextBoxColumn2.HeaderText = "NilaiKasCol";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "NilaiEdcBca";
-            this.dataGridViewTextBoxColumn3.HeaderText = "NilaiEdcBca";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "TransferBca";
-            this.dataGridViewTextBoxColumn4.HeaderText = "TransferBca";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.AllowUserToDeleteRows = false;
-            this.dataGridView2.AutoGenerateColumns = false;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn13,
-            this.dataGridViewTextBoxColumn15,
-            this.dataGridViewTextBoxColumn20,
-            this.totKasColDataGridViewTextBoxColumn,
-            this.totEdcBcaColDataGridViewTextBoxColumn,
-            this.totTrfBcaColDataGridViewTextBoxColumn,
-            this.totEdcBriColDataGridViewTextBoxColumn,
-            this.totTrfBriColDataGridViewTextBoxColumn,
-            this.totJualKasDataGridViewTextBoxColumn});
-            this.dataGridView2.DataSource = this.SaldoBindingSource;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.LemonChiffon;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle17;
-            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dataGridView2.Location = new System.Drawing.Point(0, 406);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.Size = new System.Drawing.Size(928, 44);
-            this.dataGridView2.TabIndex = 7;
-            // 
-            // dataGridViewTextBoxColumn13
-            // 
-            this.dataGridViewTextBoxColumn13.HeaderText = "";
-            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
-            this.dataGridViewTextBoxColumn13.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn15
-            // 
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle9.Format = "N0";
-            this.dataGridViewTextBoxColumn15.DefaultCellStyle = dataGridViewCellStyle9;
-            this.dataGridViewTextBoxColumn15.HeaderText = "";
-            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
-            this.dataGridViewTextBoxColumn15.ReadOnly = true;
-            this.dataGridViewTextBoxColumn15.Width = 90;
-            // 
-            // dataGridViewTextBoxColumn20
-            // 
-            this.dataGridViewTextBoxColumn20.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dataGridViewTextBoxColumn20.DefaultCellStyle = dataGridViewCellStyle10;
-            this.dataGridViewTextBoxColumn20.HeaderText = "";
-            this.dataGridViewTextBoxColumn20.Name = "dataGridViewTextBoxColumn20";
-            this.dataGridViewTextBoxColumn20.ReadOnly = true;
-            // 
-            // totKasColDataGridViewTextBoxColumn
-            // 
-            this.totKasColDataGridViewTextBoxColumn.DataPropertyName = "TotJualKas";
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle11.Format = "N0";
-            this.totKasColDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle11;
-            this.totKasColDataGridViewTextBoxColumn.HeaderText = "";
-            this.totKasColDataGridViewTextBoxColumn.Name = "totKasColDataGridViewTextBoxColumn";
-            this.totKasColDataGridViewTextBoxColumn.ReadOnly = true;
-            this.totKasColDataGridViewTextBoxColumn.Width = 90;
-            // 
-            // totEdcBcaColDataGridViewTextBoxColumn
-            // 
-            this.totEdcBcaColDataGridViewTextBoxColumn.DataPropertyName = "TotKasCol";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle12.Format = "N0";
-            this.totEdcBcaColDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle12;
-            this.totEdcBcaColDataGridViewTextBoxColumn.HeaderText = "";
-            this.totEdcBcaColDataGridViewTextBoxColumn.Name = "totEdcBcaColDataGridViewTextBoxColumn";
-            this.totEdcBcaColDataGridViewTextBoxColumn.ReadOnly = true;
-            this.totEdcBcaColDataGridViewTextBoxColumn.Width = 90;
-            // 
-            // totTrfBcaColDataGridViewTextBoxColumn
-            // 
-            this.totTrfBcaColDataGridViewTextBoxColumn.DataPropertyName = "TotEdcBcaCol";
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle13.Format = "N0";
-            this.totTrfBcaColDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle13;
-            this.totTrfBcaColDataGridViewTextBoxColumn.HeaderText = "";
-            this.totTrfBcaColDataGridViewTextBoxColumn.Name = "totTrfBcaColDataGridViewTextBoxColumn";
-            this.totTrfBcaColDataGridViewTextBoxColumn.ReadOnly = true;
-            this.totTrfBcaColDataGridViewTextBoxColumn.Width = 90;
-            // 
-            // totEdcBriColDataGridViewTextBoxColumn
-            // 
-            this.totEdcBriColDataGridViewTextBoxColumn.DataPropertyName = "TotTrfBcaCol";
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle14.Format = "N0";
-            this.totEdcBriColDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle14;
-            this.totEdcBriColDataGridViewTextBoxColumn.HeaderText = "";
-            this.totEdcBriColDataGridViewTextBoxColumn.Name = "totEdcBriColDataGridViewTextBoxColumn";
-            this.totEdcBriColDataGridViewTextBoxColumn.ReadOnly = true;
-            this.totEdcBriColDataGridViewTextBoxColumn.Width = 90;
-            // 
-            // totTrfBriColDataGridViewTextBoxColumn
-            // 
-            this.totTrfBriColDataGridViewTextBoxColumn.DataPropertyName = "TotEdcBriCol";
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle15.Format = "N0";
-            this.totTrfBriColDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle15;
-            this.totTrfBriColDataGridViewTextBoxColumn.HeaderText = "";
-            this.totTrfBriColDataGridViewTextBoxColumn.Name = "totTrfBriColDataGridViewTextBoxColumn";
-            this.totTrfBriColDataGridViewTextBoxColumn.ReadOnly = true;
-            this.totTrfBriColDataGridViewTextBoxColumn.Width = 90;
-            // 
-            // totJualKasDataGridViewTextBoxColumn
-            // 
-            this.totJualKasDataGridViewTextBoxColumn.DataPropertyName = "TotTrfBriCol";
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle16.Format = "N0";
-            this.totJualKasDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle16;
-            this.totJualKasDataGridViewTextBoxColumn.HeaderText = "";
-            this.totJualKasDataGridViewTextBoxColumn.Name = "totJualKasDataGridViewTextBoxColumn";
-            this.totJualKasDataGridViewTextBoxColumn.ReadOnly = true;
-            this.totJualKasDataGridViewTextBoxColumn.Width = 90;
+            this.DepositCol.DefaultCellStyle = dataGridViewCellStyle8;
+            this.DepositCol.HeaderText = "DepositCol";
+            this.DepositCol.Name = "DepositCol";
+            this.DepositCol.ReadOnly = true;
             // 
             // LaporanPenjualanForm
             // 
@@ -685,15 +705,6 @@
         private System.Data.DataColumn dataColumn14;
         private System.Data.DataColumn dataColumn15;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Total;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TransferBri;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn20;
@@ -705,5 +716,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn totJualKasDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button SearchButton;
         private System.Windows.Forms.TextBox SearchKeywordText;
+        private System.Data.DataColumn dataColumn16;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Total;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TransferBri;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DepositCol;
     }
 }
