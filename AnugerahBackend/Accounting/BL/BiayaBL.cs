@@ -14,7 +14,7 @@ namespace AnugerahBackend.Accounting.BL
 {
     public interface IBiayaBL : ISearch<BiayaSearchModel>
     {
-        BiayaModel Generate(LunasKasBonModel lunasKasBon);
+        IEnumerable<BiayaModel> Generate(LunasKasBonModel lunasKasBon);
         BiayaModel Save(BiayaModel model);
         void Delete(string id);
         BiayaModel GetData(string id);
@@ -120,8 +120,9 @@ namespace AnugerahBackend.Accounting.BL
             return result;
         }
 
-        public BiayaModel Generate(LunasKasBonModel lunasKasBon)
+        public IEnumerable<BiayaModel> Generate(LunasKasBonModel lunasKasBon)
         {
+            List<BiayaModel> result = null;
             if (lunasKasBon == null)
             {
                 throw new ArgumentNullException(nameof(lunasKasBon));
@@ -130,28 +131,45 @@ namespace AnugerahBackend.Accounting.BL
             {
                 throw new ArgumentNullException(nameof(lunasKasBon.ListLunas));
             }
-            //  cek apakah ada detil ListLunas yang BIAYA
-            LunasKasBonDetilModel itemBiaya = lunasKasBon.ListLunas.Where(x => x.JenisLunasID != "KAS").FirstOrDefault();
-            if (itemBiaya == null) return null;
 
+            //  cek kasbon-nya exist atau tidak
             var kasBon = _kasBonBL.GetData(lunasKasBon.KasBonID);
             if (kasBon == null) throw new ArgumentException("KasBon tidak ditemukasn");
+            
+            //  cek apakah ada detil ListLunas yang BIAYA
+            IEnumerable<LunasKasBonDetilModel> listDetilLunasKasBonBiaya =
+                from c in lunasKasBon.ListLunas
+                where c.JenisLunasID != "KAS"
+                select c;
+            if (listDetilLunasKasBonBiaya == null)
+                return null;
 
-            var jenisLunas = _jenisLunasBL.GetData(itemBiaya.JenisLunasID);
-            if (jenisLunas == null)
-                throw new ArgumentException("Generate Biaya failed. JenisLunas invalid");
-
-            var biaya = new BiayaModel
+            // Generate Biaya
+            var noUrut = 0;
+            foreach(var item in listDetilLunasKasBonBiaya)
             {
-                BiayaID = lunasKasBon.LunasKasBonID,
-                Tgl = lunasKasBon.Tgl,
-                Jam = lunasKasBon.Jam,
-                JenisBiayaID = jenisLunas.JenisBiayaID,
-                JenisKasID = kasBon.JenisKasID,
-                Keterangan = "Lunas KasBon " + kasBon.Keterangan,
-                NilaiBiaya = itemBiaya.NilaiLunas
-            };
-            var result = Save(biaya);
+                var jenisLunas = _jenisLunasBL.GetData(item.JenisLunasID);
+                if (jenisLunas == null)
+                    throw new ArgumentException("Generate Biaya failed. JenisLunas invalid");
+
+                var biaya = new BiayaModel
+                {
+                    BiayaID = lunasKasBon.LunasKasBonID +'-' + noUrut.ToString().PadLeft(2,'0'),
+                    Tgl = lunasKasBon.Tgl,
+                    Jam = lunasKasBon.Jam,
+                    JenisBiayaID = jenisLunas.JenisBiayaID,
+                    JenisKasID = kasBon.JenisKasID,
+                    Keterangan = "[LUNAS-KASBON] " + jenisLunas.JenisLunasName + ' ' + kasBon.Keterangan,
+                    NilaiBiaya = item.NilaiLunas
+                };
+                var itemResult = Save(biaya);
+
+                if (result == null)
+                    result = new List<BiayaModel>();
+
+                result.Add(itemResult);
+                noUrut++;
+            }
             return result;
         }
     }

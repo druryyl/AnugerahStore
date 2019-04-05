@@ -181,6 +181,9 @@ namespace AnugerahBackend.Accounting.BL
             }
 
             //  ambil data deposti dari penjualan tsb
+            if (listLunasKasBonJualDeposit == null)
+                return null;
+
             foreach(var item in listLunasKasBonJualDeposit)
             {
                 var penjualan = _penjualanDal.GetData(item.PenjualanID);
