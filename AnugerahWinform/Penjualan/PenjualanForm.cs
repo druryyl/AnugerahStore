@@ -8,6 +8,7 @@ using AnugerahBackend.StokBarang.Model;
 using AnugerahWinform.PrintDoc;
 using AnugerahWinform.Support;
 using Ics.Helper.Database;
+using Ics.Helper.Extensions;
 using Ics.Helper.StringDateTime;
 using System;
 using System.Collections.Generic;
@@ -543,10 +544,12 @@ namespace AnugerahWinform.Penjualan
                 {
                     //  save penjualan
                     result = _penjualanBL.Save(penjualan);
+                    
                     //  generate kas
                     BPKasModel bpKas = null;
                     if(penjualan.ListBayar != null)
                         bpKas = _bpKasBL.Generate(penjualan);
+                    
                     //  generate hutang lunas (kalo ada deposit)
                     BPHutangModel bpHutang = null;
                     if (penjualan.IsBayarDeposit)
@@ -554,8 +557,11 @@ namespace AnugerahWinform.Penjualan
                         var deposit = _depositBL.GetData(penjualan.DepositID);
                         bpHutang = _bpHutangBL.GenHutang(penjualan, deposit);
                     }
+
                     //  generate stok
-                    //  remove item2 jasa
+                    //  copy original list
+                    var listBrgOri = result.ListBrg.CloneObject();
+                    //  remove item2 jasa di list
                     var listBrg = new List<Penjualan2Model>();
                     foreach(var item in result.ListBrg)
                         if(item.BrgID.ToLower().Contains("jasa"))
@@ -568,8 +574,8 @@ namespace AnugerahWinform.Penjualan
                         }
                     result.ListBrg = listBrg;
                     var bpStok = _bpStokBL.Generate(result);
-
-
+                    //  kembalikan list original-nya (utk kepentingan cetak)
+                    result.ListBrg = listBrgOri;
                     trans.Complete();
                 }
             }

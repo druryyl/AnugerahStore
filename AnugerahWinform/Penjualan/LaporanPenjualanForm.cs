@@ -54,11 +54,11 @@ namespace AnugerahWinform.Penjualan
 
                 foreach (var itemBayar in item.ListBayar)
                 {
-                    if (itemBayar.JenisBayarID == "KAS") kas = itemBayar.NilaiBayar;
-                    if (itemBayar.JenisBayarID == "ED1") edcBca = itemBayar.NilaiBayar;
-                    if (itemBayar.JenisBayarID == "TR1") trfBca = itemBayar.NilaiBayar;
-                    if (itemBayar.JenisBayarID == "ED2") edcBri = itemBayar.NilaiBayar;
-                    if (itemBayar.JenisBayarID == "TR2") trfBri = itemBayar.NilaiBayar;
+                    if (itemBayar.JenisBayarID == "KAS") kas += itemBayar.NilaiBayar;
+                    if (itemBayar.JenisBayarID == "ED1") edcBca += itemBayar.NilaiBayar;
+                    if (itemBayar.JenisBayarID == "TR1") trfBca += itemBayar.NilaiBayar;
+                    if (itemBayar.JenisBayarID == "ED2") edcBri += itemBayar.NilaiBayar;
+                    if (itemBayar.JenisBayarID == "TR2") trfBri += itemBayar.NilaiBayar;
                 }
 
                 dataSource.Add(new LaporanPenjualanModel
