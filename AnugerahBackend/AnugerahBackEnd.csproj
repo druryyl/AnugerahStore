@@ -154,6 +154,7 @@
     <Compile Include="Penjualan\Dal\Penjualan2Dal.cs" />
     <Compile Include="Penjualan\Dal\PenjualanBayarDal.cs" />
     <Compile Include="Penjualan\Dal\PenjualanDal.cs" />
+    <Compile Include="Penjualan\Dal\PriceDal.cs" />
     <Compile Include="Penjualan\Dal\ReturJualDal.cs" />
     <Compile Include="Penjualan\Dal\ReturJualDetilDal.cs" />
     <Compile Include="Penjualan\Model\BrgPriceModel.cs" />
@@ -162,6 +163,8 @@
     <Compile Include="Penjualan\Model\Penjualan2Model.cs" />
     <Compile Include="Penjualan\Model\PenjualanBayarModel.cs" />
     <Compile Include="Penjualan\Model\PenjualanModel.cs" />
+    <Compile Include="Penjualan\Model\PriceModel.cs" />
+    <Compile Include="Penjualan\Model\PriceQtyModel.cs" />
     <Compile Include="Penjualan\Model\ReturJualDetilModel.cs" />
     <Compile Include="Penjualan\Model\ReturJualModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

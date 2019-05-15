@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[Price]
+(
+	PriceID VARCHAR(4) NOT NULL CONSTRAINT DF_Price_PriceID DEFAULT(''),
+	PriceName VARCHAR(30) NOT NULL CONSTRAINT DF_Price_PriceName DEFAULT(''),
+
+	CONSTRAINT PK_Price_PriceID PRIMARY KEY(PriceID)
+)
+GO
+

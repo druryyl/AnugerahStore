@@ -71,8 +71,8 @@
             this.ReturDepositButton = new System.Windows.Forms.RibbonButton();
             this.LapHutangButton = new System.Windows.Forms.RibbonButton();
             this.BPKasRibbon = new System.Windows.Forms.RibbonPanel();
-            this.LaporanBPKasButton = new System.Windows.Forms.RibbonButton();
             this.MutasiKasiButton = new System.Windows.Forms.RibbonButton();
+            this.LaporanBPKasButton = new System.Windows.Forms.RibbonButton();
             this.SuspendLayout();
             // 
             // ribbon1
@@ -453,15 +453,6 @@
             this.BPKasRibbon.Name = "BPKasRibbon";
             this.BPKasRibbon.Text = "Kas";
             // 
-            // LaporanBPKasButton
-            // 
-            this.LaporanBPKasButton.Image = ((System.Drawing.Image)(resources.GetObject("LaporanBPKasButton.Image")));
-            this.LaporanBPKasButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("LaporanBPKasButton.LargeImage")));
-            this.LaporanBPKasButton.Name = "LaporanBPKasButton";
-            this.LaporanBPKasButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("LaporanBPKasButton.SmallImage")));
-            this.LaporanBPKasButton.Text = "Laporan Kas";
-            this.LaporanBPKasButton.Click += new System.EventHandler(this.LaporanBPKasButton_Click);
-            // 
             // MutasiKasiButton
             // 
             this.MutasiKasiButton.Image = ((System.Drawing.Image)(resources.GetObject("MutasiKasiButton.Image")));
@@ -470,6 +461,15 @@
             this.MutasiKasiButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("MutasiKasiButton.SmallImage")));
             this.MutasiKasiButton.Text = "Mutasi Kas";
             this.MutasiKasiButton.Click += new System.EventHandler(this.MutasiKasiButton_Click);
+            // 
+            // LaporanBPKasButton
+            // 
+            this.LaporanBPKasButton.Image = ((System.Drawing.Image)(resources.GetObject("LaporanBPKasButton.Image")));
+            this.LaporanBPKasButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("LaporanBPKasButton.LargeImage")));
+            this.LaporanBPKasButton.Name = "LaporanBPKasButton";
+            this.LaporanBPKasButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("LaporanBPKasButton.SmallImage")));
+            this.LaporanBPKasButton.Text = "Laporan Kas";
+            this.LaporanBPKasButton.Click += new System.EventHandler(this.LaporanBPKasButton_Click);
             // 
             // MainMenuForm
             // 
