@@ -73,7 +73,6 @@ namespace AnugerahBackend.Penjualan.BL
             var prefix = "C";
             var result = _paramNoBL.GenNewID(prefix, 5);
             return result;
-
         }
         public void Delete(string id)
         {

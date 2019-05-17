@@ -148,6 +148,7 @@
     <Compile Include="Penjualan\BL\CustomerBL.cs" />
     <Compile Include="Penjualan\BL\JenisBayarBL.cs" />
     <Compile Include="Penjualan\BL\PenjualanBL.cs" />
+    <Compile Include="Penjualan\BL\PriceBL.cs" />
     <Compile Include="Penjualan\Dal\BrgPriceDal.cs" />
     <Compile Include="Penjualan\Dal\CustomerDal.cs" />
     <Compile Include="Penjualan\Dal\JenisBayarDal.cs" />
@@ -155,6 +156,7 @@
     <Compile Include="Penjualan\Dal\PenjualanBayarDal.cs" />
     <Compile Include="Penjualan\Dal\PenjualanDal.cs" />
     <Compile Include="Penjualan\Dal\PriceDal.cs" />
+    <Compile Include="Penjualan\Dal\PriceQtyDal.cs" />
     <Compile Include="Penjualan\Dal\ReturJualDal.cs" />
     <Compile Include="Penjualan\Dal\ReturJualDetilDal.cs" />
     <Compile Include="Penjualan\Model\BrgPriceModel.cs" />
