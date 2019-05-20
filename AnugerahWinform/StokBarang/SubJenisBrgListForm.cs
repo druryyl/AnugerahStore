@@ -261,7 +261,7 @@ namespace AnugerahWinform.StokBarang
                 DialogResult result =  MessageBox.Show("Delete data?", "Delete", MessageBoxButtons.YesNo);
                 switch (result)
                 {
-                    case DialogResult.OK:
+                    case DialogResult.Yes:
                         _subJenisBrgBL.Delete(tipeBrgID);
                         ListDataSubJenisBrg(jenisBrgID, "");
                         break;
