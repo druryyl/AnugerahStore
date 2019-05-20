@@ -108,6 +108,7 @@
     <Compile Include="Pembelian\ReceiptDalTest.cs" />
     <Compile Include="Pembelian\ReceiptDetilDalTest.cs" />
     <Compile Include="Pembelian\SupplierDalTest.cs" />
+    <Compile Include="Penjualan\BL\PriceBLTest.cs" />
     <Compile Include="Penjualan\Dal\PriceQtyDalTest.cs" />
     <Compile Include="Penjualan\Dal\ReturJualDalTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

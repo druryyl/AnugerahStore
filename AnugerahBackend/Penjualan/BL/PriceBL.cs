@@ -70,7 +70,7 @@ namespace AnugerahBackend.Penjualan.BL
                     Qty = g.Key,
                     Counter = g.Count()
                 };
-            if (listDoubleQty.Where(x => x.Counter > 1) != null)
+            if (listDoubleQty.Where(x => x.Counter > 1).Any())
                 throw new ArgumentException("Qty Double");
 
             //  simpan
