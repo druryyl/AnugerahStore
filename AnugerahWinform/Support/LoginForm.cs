@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AnugerahBackend.Support.BL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,7 +20,12 @@ namespace AnugerahWinform.Support
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-
+            var _userrBL = new UserrBL();
+            var userr = _userrBL.GetData(textBox1.Text);
+            if (userr == null)
+            {
+                return;
+            }
         }
     }
 }
