@@ -241,5 +241,34 @@ namespace AnugerahWinform.StokBarang
         {
 
         }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            //  ambil ID jenisbrg
+            var currentRow = JenisBrgGrid.CurrentRow;
+            if (currentRow == null)
+                return;
+            var jenisBrgID = currentRow.Cells["JenisBrgID"].Value.ToString();
+
+            //  ambil id tipebrg
+            currentRow = SubJenisBrgGrid.CurrentRow;
+            if (currentRow == null)
+                return;
+            var tipeBrgID = currentRow.Cells["SubJenisBrgID"].Value.ToString();
+
+            using (var formEntry = new SubJenisBrgEntryForm(jenisBrgID, tipeBrgID))
+            {
+                DialogResult result =  MessageBox.Show("Delete data?", "Delete", MessageBoxButtons.YesNo);
+                switch (result)
+                {
+                    case DialogResult.Yes:
+                        _subJenisBrgBL.Delete(tipeBrgID);
+                        ListDataSubJenisBrg(jenisBrgID, "");
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
     }
 }

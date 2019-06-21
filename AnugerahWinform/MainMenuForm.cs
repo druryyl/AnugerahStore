@@ -7,7 +7,9 @@ using AnugerahWinform.Support;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -26,6 +28,7 @@ namespace AnugerahWinform
         private void MainMenuForm_Load(object sender, EventArgs e)
         {
             Controls.OfType<MdiClient>().FirstOrDefault().BackColor = Color.DarkGray;
+            this.ShowConnectedDB();
         }
         private void BarangButton_Click(object sender, EventArgs e)
         {
@@ -353,6 +356,18 @@ namespace AnugerahWinform
                 StartPosition = FormStartPosition.CenterScreen
             };
             form.Show();
+        }
+
+        private void ShowConnectedDB()
+        {
+            var connString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            using (var conn = new SqlConnection(connString))
+            {
+                var server = conn.DataSource;
+                var database = conn.Database;
+                this.Text += string.Format(" [Connected to: {0} - {1}]", server, database);
+
+            }
         }
     }
 }
