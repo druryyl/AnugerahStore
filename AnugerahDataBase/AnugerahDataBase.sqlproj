@@ -66,6 +66,7 @@
     <Folder Include="Keuangan" />
     <Folder Include="Accounting" />
     <Folder Include="Pembelian" />
+    <Folder Include="DataClean" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Support\Userr.sql" />
@@ -132,12 +133,22 @@
     <Build Include="Penjualan\Price.sql" />
     <Build Include="Penjualan\PriceQty.sql" />
     <Build Include="Penjualan\PriceBrg.sql" />
+    <Build Include="StokBarang\BPStokInfo.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="AnugerahDevelopment.publish.xml" />
+    <None Include="AnugerahSPS.publish.xml" />
     <None Include="AnugerahTest.publish.xml" />
-    <None Include="OtherScript\JenisBayarContent.sql" />
+    <None Include="OtherScript\JenisBayarDataSeed.sql" />
     <None Include="OtherScript\JenisBiayaDataSeed.sql" />
+    <None Include="OtherScript\BrgDataSeed.sql" />
+    <None Include="OtherScript\JenisBrgDataSeed.sql" />
+    <None Include="OtherScript\SubJenisBrgDataSeed.sql" />
+    <None Include="OtherScript\BPStokDataSeed.sql" />
+    <None Include="OtherScript\BPStokDetilDataSeed.sql" />
+    <None Include="OtherScript\StokAdjustmentDataSeed.sql" />
+    <None Include="OtherScript\StokAdjustment2DataSeed.sql" />
+    <None Include="OtherScript\ParameterNoDataSeed.sql" />
+    <None Include="OtherScript\CustomerDataSeed.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="AnugerahDataBase.refactorlog" />
