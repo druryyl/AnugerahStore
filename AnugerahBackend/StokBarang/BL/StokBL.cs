@@ -15,18 +15,18 @@ namespace AnugerahBackend.StokBarang.BL
 {
     public interface IStokBL : ISearch<StokSearchModel>
     {
-        void AddStok(string brgID, long qty, double hpp,
+        void AddStok(string brgID, decimal Qty, double hpp,
             string tgl, string jam, string trsMasukID,
             string trsDOID, string jenisMutasiID);
 
-        void RemoveStok(string stokControlID, long qty, double hargaJual,
+        void RemoveStok(string stokControlID, decimal Qty, double hargaJual,
             string tgl, string jam, string trsReffID,
             string jenisMutasiID);
 
-        void RemoveStok(BrgModel brg, long qty, double hargaJual,
+        void RemoveStok(BrgModel brg, decimal Qty, double hargaJual,
             string jenisMutasiID, string trsReffID);
 
-        long GetStok(string brgID);
+        decimal GetStok(string brgID);
     }
 
     public class StokBL : IStokBL
@@ -66,7 +66,7 @@ namespace AnugerahBackend.StokBarang.BL
         }
         #endregion
 
-        public void AddStok(string brgID, long qty, double hpp,
+        public void AddStok(string brgID, decimal qty, double hpp,
             string tgl, string jam, string trsMasukID,
             string trsDOID, string jenisMutasiID)
         {
@@ -159,16 +159,16 @@ namespace AnugerahBackend.StokBarang.BL
             #endregion
         }
 
-        public long GetStok(string brgID)
+        public decimal GetStok(string brgID)
         {
-            long result = 0;
+            decimal result = 0;
             var listStok = _stokInDal.ListData(brgID);
             if (listStok != null)
                 result = listStok.Sum(x => x.QtySaldo);
             return result;
         }
 
-        public void RemoveStok(string stokControlID, long qty, double hargaJual,
+        public void RemoveStok(string stokControlID, decimal qty, double hargaJual,
             string tgl, string jam, string trsReffID,
             string jenisMutasiID)
         {
@@ -217,7 +217,7 @@ namespace AnugerahBackend.StokBarang.BL
             foreach (var item in listStokIn)
             {
                 //  tentukan qty remove stok per StokIn
-                long qtyRemove = 0;
+                decimal qtyRemove = 0;
                 if (item.QtySaldo <= qtyRemoveSisa)
                     qtyRemove = item.QtySaldo;
                 else
@@ -254,7 +254,7 @@ namespace AnugerahBackend.StokBarang.BL
             #endregion  
         }
 
-        public void RemoveStok(BrgModel brg, long qty, double hargaJual, string jenisMutasiID, string trsReffID)
+        public void RemoveStok(BrgModel brg, decimal Qty, double hargaJual, string jenisMutasiID, string trsReffID)
         {
             throw new NotImplementedException();
         }

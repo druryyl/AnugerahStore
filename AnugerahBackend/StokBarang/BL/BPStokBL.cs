@@ -320,7 +320,7 @@ namespace AnugerahBackend.StokBarang.BL
             // proses pengurangan
             foreach(var item in listBPStok)
             {
-                long qtyOut = 0;
+                decimal qtyOut = 0;
                 if (item.QtySisa >= qtyPengurang)
                     qtyOut = qtyPengurang;
                 else

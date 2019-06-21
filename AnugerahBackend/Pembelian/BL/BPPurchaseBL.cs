@@ -18,7 +18,7 @@ namespace AnugerahBackend.Pembelian.BL
         BPPurchaseModel Generate(ReceiptModel receipt);
         BPPurchaseModel GetData(string purchaseID);
         List<ReceiptDetilModel> ListDetil(string bPPurchaseID);
-        long GetQtyOutstanding(string bpPurchaseID, string brgID);
+        decimal GetQtyOutstanding(string bpPurchaseID, string brgID);
         void ClosePO(BPPurchaseModel bpPurchase);
     }
     public class BPPurchaseBL : IBPPurchaseBL
@@ -299,15 +299,15 @@ namespace AnugerahBackend.Pembelian.BL
             return result;
         }
 
-        public long GetQtyOutstanding(string bpPurchaseID, string brgID)
+        public decimal GetQtyOutstanding(string bpPurchaseID, string brgID)
         {
             var listData = _bpPurchaseReceiptDal.ListData(bpPurchaseID);
             if (listData == null) return 0;
-            long sumQtyReceipt = listData
+            decimal sumQtyReceipt = listData
                 .Where(x => x.BrgID == brgID)
                 .Sum(x => x.QtyReceipt);
 
-            long sumQtyPurchase = listData
+            decimal sumQtyPurchase = listData
                 .Where(x => x.BrgID == brgID)
                 .Sum(x => x.QtyPurchase);
 

@@ -13,7 +13,7 @@ namespace AnugerahBackend.StokBarang.Model
         public int NoUrut { get; set; }
         public string BrgID { get; set; }
         public string BrgName { get; set; }
-        public long Qty { get; set; }
+        public decimal Qty { get; set; }
         public decimal Hpp { get; set; }
         public string StokControl { get; set; }
     }

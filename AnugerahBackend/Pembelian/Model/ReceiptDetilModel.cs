@@ -13,7 +13,7 @@ namespace AnugerahBackend.Pembelian.Model
         public int NoUrut { get; set; }
         public string BrgID { get; set; }
         public string BrgName { get; set; }
-        public long Qty { get; set; }
+        public decimal Qty { get; set; }
         public decimal Harga { get; set; }
         public decimal Diskon { get; set; }
         public decimal TaxRupiah { get; set; }

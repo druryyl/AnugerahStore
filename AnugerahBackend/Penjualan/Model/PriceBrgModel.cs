@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AnugerahBackend.StokBarang.Model
+namespace AnugerahBackend.Penjualan.Model
 {
-    public class StokInfoModel
+    public class PriceBrgModel
     {
+        public string PriceID { get; set; }
         public string BrgID { get; set; }
         public string BrgName { get; set; }
-        public decimal Qty { get; set; }
     }
 }

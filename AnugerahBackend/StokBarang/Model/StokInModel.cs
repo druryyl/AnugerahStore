@@ -14,8 +14,8 @@ namespace AnugerahBackend.StokBarang.Model
         public string TglMasuk { get; set; }
         public string JamMasuk { get; set; }
         public string TrsMasukID { get; set; }
-        public long QtyIn { get; set; }
-        public long QtySaldo { get; set; }
+        public decimal QtyIn { get; set; }
+        public decimal QtySaldo { get; set; }
         public double Hpp { get; set; }
         
         public string StokControlID { get; set; }
@@ -27,6 +27,6 @@ namespace AnugerahBackend.StokBarang.Model
         public string BrgID { get; set; }
         public string BrgName { get; set; }
         public string BatchNo { get; set; }
-        public long Qty { get; set; }
+        public decimal Qty { get; set; }
     }
 }

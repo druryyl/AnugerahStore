@@ -11,5 +11,6 @@ namespace AnugerahBackend.Penjualan.Model
         public string PriceID { get; set; }
         public string PriceName { get; set; }
         public IEnumerable<PriceQtyModel> ListHarga { get; set; }
+        public IEnumerable<PriceBrgModel> ListBrg { get; set; }
     }
 }

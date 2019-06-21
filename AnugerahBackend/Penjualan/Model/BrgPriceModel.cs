@@ -12,6 +12,5 @@ namespace AnugerahBackend.Penjualan.Model
         public int Qty { get; set; }
         public double Harga { get; set; }
         public double Diskon { get; set; }
-
     }
 }

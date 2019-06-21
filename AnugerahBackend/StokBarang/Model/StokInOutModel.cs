@@ -21,8 +21,8 @@ namespace AnugerahBackend.StokBarang.Model
         public string StokControlID { get; set; }
 
 
-        public long QtyIn { get; set; }
-        public long QtyOut { get; set; }
+        public decimal QtyIn { get; set; }
+        public decimal QtyOut { get; set; }
         public double Hpp { get; set; }
         public double HargaJual { get; set; }
     }

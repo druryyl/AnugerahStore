@@ -13,9 +13,9 @@ namespace AnugerahBackend.StokBarang.Model
         public int NoUrut { get; set; }
         public string BrgID { get; set; }
         public string BrgName { get; set; }
-        public long QtyAwal { get; set; }
-        public long QtyAdjust { get; set; }
-        public long QtyAkhir { get; set; }
+        public decimal QtyAwal { get; set; }
+        public decimal QtyAdjust { get; set; }
+        public decimal QtyAkhir { get; set; }
         public decimal HppAdjust { get; set; }
     }
 }

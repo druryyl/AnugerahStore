@@ -131,6 +131,7 @@
     <Build Include="Accounting\MutasiKas.sql" />
     <Build Include="Penjualan\Price.sql" />
     <Build Include="Penjualan\PriceQty.sql" />
+    <Build Include="Penjualan\PriceBrg.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AnugerahDevelopment.publish.xml" />

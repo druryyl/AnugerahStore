@@ -36,7 +36,7 @@ namespace AnugerahWinform.Pembelian
             var listDataSort = listData.OrderBy(x => x.BPPurchaseID + x.BrgID + x.NoUrut.ToString("N0"));
             List<BPPurchaseReceiptInfo> result = new List<BPPurchaseReceiptInfo>();
 
-            long qtySisa = 0;
+            decimal qtySisa = 0;
             string supplierName = "";
             bool isClosedPO = false;
             PurchaseReceiptTable.Rows.Clear();

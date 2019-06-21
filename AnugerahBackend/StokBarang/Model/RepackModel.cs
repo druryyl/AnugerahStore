@@ -15,13 +15,13 @@ namespace AnugerahBackend.StokBarang.Model
         public string BPStokID { get; set; }
         public string BrgIDMaterial { get; set; }
         public string BrgNameMaterial { get; set; }
-        public long QtyMaterial { get; set; }
+        public decimal QtyMaterial { get; set; }
         public decimal HppMaterial { get; set; }
 
         public string BrgIDHasil { get; set; }
         public string BrgNameHasil { get; set; }
         public string SlotControl { get; set; }
-        public long QtyHasil { get; set; }
+        public decimal QtyHasil { get; set; }
         public decimal HppHasil { get; set; }
     }
 

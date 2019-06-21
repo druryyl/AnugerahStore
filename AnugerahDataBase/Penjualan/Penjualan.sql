@@ -13,15 +13,15 @@
 
     IsBayarDeposit BIT NOT NULL CONSTRAINT DF_Penjualan_IsBayarDeposit DEFAULT(0), 
     DepositID VARCHAR(10) NOT NULL CONSTRAINT DF_Penjualan_DepositID DEFAULT(''),
-	NilaiDeposit DECIMAL(18,0) NOT NULL CONSTRAINT DF_Penjualan_NilaiDeposit DEFAULT(''),
+	NilaiDeposit DECIMAL(18,2) NOT NULL CONSTRAINT DF_Penjualan_NilaiDeposit DEFAULT(''),
 
-	NilaiTotal DECIMAL(18,0) NOT NULL CONSTRAINT DF_Penjualan_NilaiTotal DEFAULT(0),
-	NilaiDiskonLain DECIMAL (18,0) NOT NULL CONSTRAINT DF_Penjualan_NilaiDiskonLAin DEFAULT(0),
-	NilaiBiayaLain DECIMAL(18,0) NOT NULL CONSTRAINT DF_Penjualan_NilaiBiayaLain DEFAULT(0),
-	NilaiGrandTotal DECIMAL(18,0) NOT NULL CONSTRAINT DF_Penjualan_NilaiGrandTotal DEFAULT(0),
+	NilaiTotal DECIMAL(18,2) NOT NULL CONSTRAINT DF_Penjualan_NilaiTotal DEFAULT(0),
+	NilaiDiskonLain DECIMAL (18,2) NOT NULL CONSTRAINT DF_Penjualan_NilaiDiskonLAin DEFAULT(0),
+	NilaiBiayaLain DECIMAL(18,2) NOT NULL CONSTRAINT DF_Penjualan_NilaiBiayaLain DEFAULT(0),
+	NilaiGrandTotal DECIMAL(18,2) NOT NULL CONSTRAINT DF_Penjualan_NilaiGrandTotal DEFAULT(0),
 
-	NilaiBayar DECIMAL(18,0) NOT NULL CONSTRAINT DF_Penjualan_NilaiBayar DEFAULT(0),
-	NilaiKembali DECIMAL(18,0) NOT NULL CONSTRAINT DF_Penjualan_NilaiKembali DEFAULT(0)
+	NilaiBayar DECIMAL(18,2) NOT NULL CONSTRAINT DF_Penjualan_NilaiBayar DEFAULT(0),
+	NilaiKembali DECIMAL(18,2) NOT NULL CONSTRAINT DF_Penjualan_NilaiKembali DEFAULT(0)
 
     CONSTRAINT PK_Penjualan_PenjualanID PRIMARY KEY CLUSTERED (PenjualanID)
 )

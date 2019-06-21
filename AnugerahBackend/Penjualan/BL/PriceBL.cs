@@ -13,9 +13,10 @@ namespace AnugerahBackend.Penjualan.BL
     public interface IPriceBL
     {
         PriceModel Save(PriceModel price);
-        PriceModel Delete(string id);
+        void Delete(string id);
         PriceModel GetData(string id);
         IEnumerable<PriceModel> ListData();
+        IEnumerable<PriceQtyModel> ListData(string id);
     }
 
     public class PriceBLDep
@@ -102,19 +103,34 @@ namespace AnugerahBackend.Penjualan.BL
             return result;
         }
 
-        public PriceModel Delete(string id)
+        public void Delete(string id)
         {
-            throw new NotImplementedException();
+            using (var trans = TransHelper.NewScope())
+            {
+                _dep.PriceQtyDal.Delete(id);
+                _dep.PriceQtyDal.Delete(id);
+                trans.Complete();
+            }
         }
 
         public PriceModel GetData(string id)
         {
-            throw new NotImplementedException();
+            var list = _dep.PriceQtyDal.ListData(id);
+            var result = _dep.PriceDal.GetData(id);
+            result.ListHarga = list;
+            return result;
         }
 
         public IEnumerable<PriceModel> ListData()
         {
-            throw new NotImplementedException();
+            var result = _dep.PriceDal.ListData();
+            return result;
+        }
+
+        public IEnumerable<PriceQtyModel> ListData(string id)
+        {
+            var result = _dep.PriceQtyDal.ListData(id);
+            return result;
         }
     }
 }

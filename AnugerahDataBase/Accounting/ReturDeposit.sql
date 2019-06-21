@@ -6,8 +6,8 @@
 	DepositID VARCHAR(10) NOT NULL CONSTRAINT  DF_ReturDeposit_DepositID DEFAULT(''),
 	JenisKasID VARCHAR(3) NOT NULL CONSTRAINT DF_ReturDeposit_JenisKasID DEFAULT(''),
 	Catatan VARCHAR(128) NOT NULL CONSTRAINT DF_ReturDeposit_Catatan DEFAULT(''),
-	NilaiSisaDeposit DECIMAL(18,0) NOT NULL CONSTRAINT DF_ReturDeposit_NilaiSisaDeposit DEFAULT(0),
-	NilaiReturDeposit DECIMAL(18,0) NOT NULL CONSTRAINT DF_ReturDeposit_NilaiRetur DEFAULT(0),
+	NilaiSisaDeposit DECIMAL(18,2) NOT NULL CONSTRAINT DF_ReturDeposit_NilaiSisaDeposit DEFAULT(0),
+	NilaiReturDeposit DECIMAL(18,2) NOT NULL CONSTRAINT DF_ReturDeposit_NilaiRetur DEFAULT(0),
 
 	CONSTRAINT PK_ReturDeposit_ReturDepositID PRIMARY KEY CLUSTERED(ReturDepositID)
 )

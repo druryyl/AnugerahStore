@@ -14,13 +14,13 @@ namespace AnugerahWinform.StokBarang.View
         string BPStokID { get; set; }        
         string BrgIDMaterial { get; set; }
         string BrgNameMaterial { get; set; }
-        long QtyMaterial { get; set; }
+        decimal QtyMaterial { get; set; }
         decimal HppMaterial { get; set; }
 
         string BrgIDHasil { get; set; }
         string BrgNameHasil { get; set; }
         string SlotControl { get; set; }
-        long QtyHasil { get; set; }
+        decimal QtyHasil { get; set; }
         decimal HppHasil { get; set; }
     }
 }

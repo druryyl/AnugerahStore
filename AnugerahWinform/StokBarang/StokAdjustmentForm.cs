@@ -94,7 +94,7 @@ namespace AnugerahWinform.StokBarang
                 brgName = brg.BrgName;
 
             //  get stok
-            long qtyAwal = _stokBL.GetStok(kodeBrg);
+            decimal qtyAwal = _stokBL.GetStok(kodeBrg);
 
             //  tampilkan di grid
             DetilAdjTable.Rows[rowIndex]["BrgName"] = brgName;

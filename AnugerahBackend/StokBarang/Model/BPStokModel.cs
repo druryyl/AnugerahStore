@@ -16,8 +16,8 @@ namespace AnugerahBackend.StokBarang.Model
         public string BrgID { get; set; }
         public string BrgName { get; set; }
         public decimal NilaiHpp { get; set; }
-        public long QtyIn { get; set; }
-        public long QtySisa { get; set; }
+        public decimal QtyIn { get; set; }
+        public decimal QtySisa { get; set; }
 
         public List<BPStokDetilModel> ListDetil { get; set; }
     }
@@ -26,7 +26,7 @@ namespace AnugerahBackend.StokBarang.Model
     {
         public string BPStokID { get; set; }
         public string BrgName { get; set; }
-        public long Qty { get; set; }
+        public decimal Qty { get; set; }
 
         public static explicit operator BPStokSearchModel(BPStokModel model)
         {
@@ -45,7 +45,7 @@ namespace AnugerahBackend.StokBarang.Model
     {
         public string BrgID { get; set; }
         public string BrgName { get; set; }
-        public long Qty { get; set; }
+        public decimal Qty { get; set; }
         public string BPStokID { get; set; }
     }
 }

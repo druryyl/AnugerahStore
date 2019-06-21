@@ -16,8 +16,8 @@ namespace AnugerahBackend.Pembelian.Model
         public string Jam { get; set; }
         public string Keterangan { get; set; }
         public string BrgID { get; set; }
-        public long QtyPurchase { get; set; }
-        public long QtyReceipt { get; set; }
+        public decimal QtyPurchase { get; set; }
+        public decimal QtyReceipt { get; set; }
         public decimal Harga { get; set; }
         public decimal Diskon { get; set; }
         public decimal Tax { get; set; }

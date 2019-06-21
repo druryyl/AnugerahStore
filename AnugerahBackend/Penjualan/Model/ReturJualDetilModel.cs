@@ -13,8 +13,8 @@ namespace AnugerahBackend.Penjualan.Model
         public int NoUrut { get; set; }
         public string BrgID { get; set; }
         public string BrgName { get; set; }
-        public long QtySisa { get; set; }
-        public long QtyRetur { get; set; }
+        public decimal QtySisa { get; set; }
+        public decimal QtyRetur { get; set; }
         public decimal HargaRetur { get; set; }
         public decimal SubTotal { get; set; }
     }

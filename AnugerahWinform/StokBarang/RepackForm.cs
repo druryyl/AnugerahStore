@@ -55,7 +55,7 @@ namespace AnugerahWinform.StokBarang
             get => BrgNameMaterialTextBox.Text;
             set => BrgNameMaterialTextBox.Text = value;
         }
-        public long QtyMaterial
+        public decimal QtyMaterial
         {
             get => Convert.ToInt64(QtyMaterialTextBox.Value);
             set => QtyMaterialTextBox.Value = value;
@@ -81,7 +81,7 @@ namespace AnugerahWinform.StokBarang
             get => SlotControlTextBox.Text;
             set => SlotControlTextBox.Text = value;
         }
-        public long QtyHasil
+        public decimal QtyHasil
         {
             get => Convert.ToInt64(QtyHasilTextBox.Value);
             set => QtyHasilTextBox.Value = value;

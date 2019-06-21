@@ -4,7 +4,7 @@
 	PenjualanID2 VARCHAR(13) NOT NULL CONSTRAINT DF_PenjualanBayar_PenjualanID2 DEFAULT(''),
 	NoUrut DECIMAL(18,0) NOT NULL CONSTRAINT DF_PenjualanBayar_NoUrut DEFAULT(0),
 	JenisBayarID VARCHAR(3) NOT NULL CONSTRAINT DF_PenjualanBayar_JenisBayarID DEFAULT(''),
-	NilaiBayar DECIMAL(18,0) NOT NULL CONSTRAINT DF_PenjualanBayar_NilaiBayar DEFAULT(0),
+	NilaiBayar DECIMAL(18,2) NOT NULL CONSTRAINT DF_PenjualanBayar_NilaiBayar DEFAULT(0),
 	Catatan VARCHAR(50) NOT NULL CONSTRAINT DF_PenjualanBayar_Catatan DEFAULT(''),
 
 	CONSTRAINT PK_PenjualanBayar_PenjualanID2 PRIMARY KEY CLUSTERED (PenjualanID2)
