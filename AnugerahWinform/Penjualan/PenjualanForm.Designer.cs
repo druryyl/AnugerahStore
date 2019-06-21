@@ -911,6 +911,7 @@
             this.BPStokID.DataPropertyName = "BPStokID";
             this.BPStokID.HeaderText = "Stok ID";
             this.BPStokID.Name = "BPStokID";
+            this.BPStokID.Visible = false;
             this.BPStokID.Width = 110;
             // 
             // SearchStokIDButton
@@ -918,13 +919,14 @@
             this.SearchStokIDButton.HeaderText = "...";
             this.SearchStokIDButton.Name = "SearchStokIDButton";
             this.SearchStokIDButton.ReadOnly = true;
+            this.SearchStokIDButton.Visible = false;
             this.SearchStokIDButton.Width = 25;
             // 
             // QtyCol
             // 
             this.QtyCol.DataPropertyName = "Qty";
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.Format = "N0";
+            dataGridViewCellStyle1.Format = "N2";
             dataGridViewCellStyle1.NullValue = "0";
             this.QtyCol.DefaultCellStyle = dataGridViewCellStyle1;
             this.QtyCol.HeaderText = "Qty";

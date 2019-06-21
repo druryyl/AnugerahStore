@@ -352,7 +352,7 @@ namespace AnugerahWinform.Penjualan
             string kodeBrg = (string)DetilPenjualanTable.Rows[rowIndex]["BrgID"];
 
             //  get qty
-            var qty = Convert.ToInt32(DetilPenjualanTable.Rows[rowIndex]["Qty"]);
+            var qty = Convert.ToDecimal(DetilPenjualanTable.Rows[rowIndex]["Qty"]);
             if (qty <= 0) qty = 1;
             //  get harga
             var listHarga = _brgPriceBL.ListData(kodeBrg);
@@ -377,7 +377,7 @@ namespace AnugerahWinform.Penjualan
             }
             DetilPenjualanTable.Rows[rowIndex]["Harga"] = harga;
             DetilPenjualanTable.Rows[rowIndex]["Diskon"] = diskon;
-            DetilPenjualanTable.Rows[rowIndex]["SubTotal"] = (harga - diskon) * qty;
+            DetilPenjualanTable.Rows[rowIndex]["SubTotal"] = (harga - diskon) * Convert.ToDouble(qty);
             ReCalcTotal();
         }
         private void ShowDataBrgGrid(int rowIndex)
@@ -470,7 +470,7 @@ namespace AnugerahWinform.Penjualan
                     BrgID = dr["BrgID"].ToString(),
                     BrgName = "",
                     BPStokID = dr["BPStokID"].ToString(),
-                    Qty = Convert.ToInt32(dr["Qty"]),
+                    Qty = Convert.ToDecimal(dr["Qty"]),
                     Harga = Convert.ToDecimal(dr["Harga"]),
                     Diskon = Convert.ToDecimal(dr["Diskon"]),
                     SubTotal = Convert.ToDecimal(dr["SubTotal"])
