@@ -225,7 +225,7 @@ namespace AnugerahWinform.Penjualan
 
                 var tempString = "";
                 if (item.Qty != 1)
-                    tempString = string.Format("x{0:n0} = ", item.Qty);
+                    tempString = string.Format("x{0:n2} = ", item.Qty);
 
                 tempString += string.Format("Rp.{0:n0}", item.Harga);
 
@@ -251,7 +251,7 @@ namespace AnugerahWinform.Penjualan
             foreach (DataGridViewRow item in PriceGrid.Rows)
             {
                 var qty = Convert.ToInt16(item.Cells["PriceQtyCol"].Value);
-                if (qty == 0) continue;
+                //if (qty == 0) continue;
 
                 var brgPrice = new PriceModel
                 {

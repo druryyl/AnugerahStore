@@ -1,0 +1,4 @@
+﻿DELETE JenisKas
+INSERT INTO JenisKas VALUES('K01','Kas Kecil')
+INSERT INTO JenisKas VALUES('K02','Bank BCA')
+INSERT INTO JenisKas VALUES('K03','Bank BRI')

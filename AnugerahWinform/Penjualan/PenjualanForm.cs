@@ -367,6 +367,11 @@ namespace AnugerahWinform.Penjualan
                     .OrderByDescending(x => x.Qty)
                     .FirstOrDefault();
 
+                if (dataHarga == null)
+                    dataHarga = listHarga
+                    .OrderByDescending(x => x.Qty)
+                    .FirstOrDefault();
+
                 harga = dataHarga.Harga;
                 diskon = dataHarga.Diskon;
             }

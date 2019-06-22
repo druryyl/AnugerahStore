@@ -129,7 +129,7 @@ namespace AnugerahBackend.StokBarang.Dal
 
             var sSql = @"
                 SELECT
-                    aa.Qty, aa.Harga
+                    aa.Qty, aa.Harga,
                     ISNULL(bb.BrgName, '') BrgName
                 FROM
                     BrgStokHarga aa

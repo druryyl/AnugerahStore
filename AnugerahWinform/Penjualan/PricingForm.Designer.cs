@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.MainSplitContainer = new ComponentFactory.Krypton.Toolkit.KryptonSplitContainer();
             this.PrgBar = new System.Windows.Forms.ProgressBar();
             this.LoadJenisBrgTreeView = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -49,14 +49,14 @@
             this.BrgPriceCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PriceSplitContainer = new ComponentFactory.Krypton.Toolkit.KryptonSplitContainer();
             this.PriceGrid = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
-            this.PriceQtyCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PriceHargaCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PriceDiskonCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExitButton = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.DeleteButton = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.SaveButton = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.PasteButton = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.CopyButton = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.PriceQtyCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PriceHargaCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PriceDiskonCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.MainSplitContainer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainSplitContainer.Panel1)).BeginInit();
             this.MainSplitContainer.Panel1.SuspendLayout();
@@ -187,8 +187,8 @@
             // 
             // BrgKodeCol
             // 
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.BrgKodeCol.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.BrgKodeCol.DefaultCellStyle = dataGridViewCellStyle1;
             this.BrgKodeCol.HeaderText = "Kode";
             this.BrgKodeCol.Name = "BrgKodeCol";
             this.BrgKodeCol.ReadOnly = true;
@@ -229,9 +229,9 @@
             // 
             // BrgPriceCol
             // 
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.BrgPriceCol.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.BrgPriceCol.DefaultCellStyle = dataGridViewCellStyle2;
             this.BrgPriceCol.HeaderText = "Price";
             this.BrgPriceCol.Name = "BrgPriceCol";
             this.BrgPriceCol.ReadOnly = true;
@@ -272,36 +272,6 @@
             this.PriceGrid.Name = "PriceGrid";
             this.PriceGrid.Size = new System.Drawing.Size(665, 180);
             this.PriceGrid.TabIndex = 0;
-            // 
-            // PriceQtyCol
-            // 
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle18.Format = "N0";
-            dataGridViewCellStyle18.NullValue = null;
-            this.PriceQtyCol.DefaultCellStyle = dataGridViewCellStyle18;
-            this.PriceQtyCol.HeaderText = "Min Qty";
-            this.PriceQtyCol.Name = "PriceQtyCol";
-            // 
-            // PriceHargaCol
-            // 
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle19.Format = "N0";
-            dataGridViewCellStyle19.NullValue = null;
-            this.PriceHargaCol.DefaultCellStyle = dataGridViewCellStyle19;
-            this.PriceHargaCol.HeaderText = "Harga";
-            this.PriceHargaCol.Name = "PriceHargaCol";
-            // 
-            // PriceDiskonCol
-            // 
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle20.Format = "N2";
-            dataGridViewCellStyle20.NullValue = null;
-            this.PriceDiskonCol.DefaultCellStyle = dataGridViewCellStyle20;
-            this.PriceDiskonCol.HeaderText = "Diskon";
-            this.PriceDiskonCol.Name = "PriceDiskonCol";
             // 
             // ExitButton
             // 
@@ -357,6 +327,36 @@
             this.CopyButton.Values.Text = "&Copy";
             this.CopyButton.Click += new System.EventHandler(this.CopyButton_Click);
             // 
+            // PriceQtyCol
+            // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.Format = "N2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.PriceQtyCol.DefaultCellStyle = dataGridViewCellStyle3;
+            this.PriceQtyCol.HeaderText = "Min Qty";
+            this.PriceQtyCol.Name = "PriceQtyCol";
+            // 
+            // PriceHargaCol
+            // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.Format = "N0";
+            dataGridViewCellStyle4.NullValue = null;
+            this.PriceHargaCol.DefaultCellStyle = dataGridViewCellStyle4;
+            this.PriceHargaCol.HeaderText = "Harga";
+            this.PriceHargaCol.Name = "PriceHargaCol";
+            // 
+            // PriceDiskonCol
+            // 
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.Format = "N2";
+            dataGridViewCellStyle5.NullValue = null;
+            this.PriceDiskonCol.DefaultCellStyle = dataGridViewCellStyle5;
+            this.PriceDiskonCol.HeaderText = "Diskon";
+            this.PriceDiskonCol.Name = "PriceDiskonCol";
+            // 
             // PricingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -406,9 +406,6 @@
         private ComponentFactory.Krypton.Toolkit.KryptonButton CopyButton;
         private ComponentFactory.Krypton.Toolkit.KryptonButton LoadJenisBrgTreeView;
         private System.Windows.Forms.ProgressBar PrgBar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PriceQtyCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PriceHargaCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PriceDiskonCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn BrgKodeCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn BrgNamaCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn BrgJenisCol;
@@ -417,5 +414,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn BrgColorCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn BrgPriceCol;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PriceQtyCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PriceHargaCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PriceDiskonCol;
     }
 }
