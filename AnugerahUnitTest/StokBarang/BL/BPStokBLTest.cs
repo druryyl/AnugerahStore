@@ -24,12 +24,15 @@ namespace AnugerahUnitTest.StokBarang.BL
         private IBPStokBL _bpStokBL;
         private Mock<IBPStokDal> _bpStokDal;
         private Mock<IBPStokDetilDal> _bpStokDetilDal;
+        private Mock<IBrgStokHargaBL> _brgStokHargaBL;
 
         public BPStokBLTest()
         {
             _bpStokDal = new Mock<IBPStokDal>();
             _bpStokDetilDal = new Mock<IBPStokDetilDal>();
-            _bpStokBL = new BPStokBL(_bpStokDal.Object, _bpStokDetilDal.Object);
+            _brgStokHargaBL = new Mock<IBrgStokHargaBL>();
+            _bpStokBL = new BPStokBL(_bpStokDal.Object, 
+                _bpStokDetilDal.Object, _brgStokHargaBL.Object);
         }
 
         #region DATA-FACTORY

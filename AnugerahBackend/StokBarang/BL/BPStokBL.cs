@@ -17,7 +17,7 @@ namespace AnugerahBackend.StokBarang.BL
         IEnumerable<BPStokModel> Generate(StokAdjustmentModel adjustment);
         IEnumerable<BPStokModel> Generate(PenjualanModel penjualan);
         IEnumerable<BPStokModel> Generate(ReceiptModel receipt);
-        BPStokModel Generate(RepackModel repack);
+        IEnumerable<BPStokModel> Generate(RepackModel repack);
         BPStokModel GetData(string BPStokID);
         IEnumerable<BPStokModel> ListData();
     }
@@ -26,21 +26,26 @@ namespace AnugerahBackend.StokBarang.BL
     {
         private IBPStokDal _bpStokDal;
         private IBPStokDetilDal _bpStokDetilDal;
-        private IBPStokInfoDal _bpStokInfoDal;
+        private IBrgStokHargaBL _brgStokHargaBL;
 
         public BPStokBL()
         {
             _bpStokDal = new BPStokDal();
+            _bpStokDetilDal = new BPStokDetilDal();
+            _brgStokHargaBL = new BrgStokHargaBL();
+
             SearchFilter = new SearchFilter
             {
                 IsDate = false
             };
         }
 
-        public BPStokBL(IBPStokDal bpStokDal, IBPStokDetilDal bPStokDetilDal)
+        public BPStokBL(IBPStokDal bpStokDal, IBPStokDetilDal bPStokDetilDal,
+                        IBrgStokHargaBL brgStokHargaBL)
         {
             _bpStokDal = bpStokDal;
             _bpStokDetilDal = bPStokDetilDal;
+            _brgStokHargaBL = brgStokHargaBL;
         }
 
         public IEnumerable<BPStokModel> Generate(StokAdjustmentModel adjustment)
@@ -94,6 +99,11 @@ namespace AnugerahBackend.StokBarang.BL
                 foreach(var item2 in genResult)
                     result.Add(item2);
             }
+
+            //  update stok info
+            foreach (var item in adjustment.ListBrg)
+                _brgStokHargaBL.UpdateStok(item.BrgID);
+
             return result;
         }
 
@@ -145,6 +155,11 @@ namespace AnugerahBackend.StokBarang.BL
                         _bpStokDetilDal.Insert(item2);
                 }
             }
+
+            //  update stok info
+            foreach (var item in penjualan.ListBrg)
+                _brgStokHargaBL.UpdateStok(item.BrgID);
+
             return result;
         }
 
@@ -178,12 +193,15 @@ namespace AnugerahBackend.StokBarang.BL
                 result.Add(genResult);
             }
 
+            //  update stok info
+            foreach (var item in receipt.ListBrg)
+                _brgStokHargaBL.UpdateStok(item.BrgID);
             return result;
         }
 
-        public BPStokModel Generate(RepackModel repack)
+        public IEnumerable<BPStokModel> Generate(RepackModel repack)
         {
-            BPStokModel result = null;
+            List<BPStokModel> result = null;
             if (repack == null)
                 throw new ArgumentNullException(nameof(repack));
 
@@ -218,6 +236,10 @@ namespace AnugerahBackend.StokBarang.BL
                 BPStokID = repack.SlotControl,
             };
             var bpStokHasil = AddStok(stokHasil);
+
+            //  update stok info
+            _brgStokHargaBL.UpdateStok(repack.BrgIDMaterial);
+            _brgStokHargaBL.UpdateStok(repack.BrgIDHasil);
 
             return result;
         }
@@ -285,9 +307,6 @@ namespace AnugerahBackend.StokBarang.BL
             _bpStokDal.Insert(result);
             foreach (var item in listDetil)
                 _bpStokDetilDal.Insert(item);
-
-            //  update BPStokInfo
-
 
             return result;
         }
@@ -425,6 +444,5 @@ namespace AnugerahBackend.StokBarang.BL
 
             return result;
         }
-
     }
 }

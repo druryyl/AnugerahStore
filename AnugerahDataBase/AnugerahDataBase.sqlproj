@@ -61,12 +61,10 @@
     <Folder Include="Support" />
     <Folder Include="StokBarang" />
     <Folder Include="Penjualan" />
-    <Folder Include="Queries" />
     <Folder Include="OtherScript" />
     <Folder Include="Keuangan" />
     <Folder Include="Accounting" />
     <Folder Include="Pembelian" />
-    <Folder Include="DataClean" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Support\Userr.sql" />
@@ -133,7 +131,7 @@
     <Build Include="Penjualan\Price.sql" />
     <Build Include="Penjualan\PriceQty.sql" />
     <Build Include="Penjualan\PriceBrg.sql" />
-    <Build Include="StokBarang\BPStokInfo.sql" />
+    <Build Include="StokBarang\BrgStokHarga.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AnugerahSPS.publish.xml" />
@@ -149,6 +147,8 @@
     <None Include="OtherScript\StokAdjustment2DataSeed.sql" />
     <None Include="OtherScript\ParameterNoDataSeed.sql" />
     <None Include="OtherScript\CustomerDataSeed.sql" />
+    <None Include="OtherScript\UpdateBrgStokHargaScript.sql" />
+    <None Include="OtherScript\BrgPriceDataSeed.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="AnugerahDataBase.refactorlog" />

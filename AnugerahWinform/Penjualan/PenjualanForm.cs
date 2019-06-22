@@ -35,6 +35,7 @@ namespace AnugerahWinform.Penjualan
         private IBPHutangBL _bpHutangBL;
         private IDepositBL _depositBL;
         private List<PenjualanBayarModel> _listBayarDetil;
+        private IBrgStokHargaBL _brgStokHargaBL;
         private IBPStokBL _bpStokBL;
 
         public PenjualanForm()
@@ -52,6 +53,7 @@ namespace AnugerahWinform.Penjualan
             _bpHutangBL = new BPHutangBL();
             _depositBL = new DepositBL();
             _bpStokBL = new BPStokBL();
+            _brgStokHargaBL = new BrgStokHargaBL();
         }
 
         private void PenjualanForm_Load(object sender, EventArgs e)
@@ -322,7 +324,7 @@ namespace AnugerahWinform.Penjualan
         }
         private void SearchBrg(int rowIndex)
         {
-            using (var searchForm = new SearchingForm<BrgSearchResultModel>(_brgBL))
+            using (var searchForm = new SearchingForm<BrgStokHargaModel>(_brgStokHargaBL))
             {
                 var resultDialog = searchForm.ShowDialog();
                 if (resultDialog == DialogResult.OK)

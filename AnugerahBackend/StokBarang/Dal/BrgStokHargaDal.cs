@@ -11,35 +11,35 @@ using Ics.Helper.StringDateTime;
 
 namespace AnugerahBackend.StokBarang.Dal
 {
-    public interface IBPStokInfoDal
+    public interface IBrgStokHargaDal
     {
-        IEnumerable<BPStokInfoModel> ListData();
-        void Insert(BPStokInfoModel model);
-        void Update(BPStokInfoModel model);
+        IEnumerable<BrgStokHargaModel> ListData();
+        void Insert(BrgStokHargaModel model);
+        void Update(BrgStokHargaModel model);
         void Delete(string id);
-        BPStokInfoModel GetData(string id);
+        BrgStokHargaModel GetData(string id);
         decimal ReCalcQty(string brgID);
 
     }
 
-    public class BPStokInfoDal : IBPStokInfoDal
+    public class BrgStokHargaDal : IBrgStokHargaDal
     {
         private string _connString;
 
-        public BPStokInfoDal()
+        public BrgStokHargaDal()
         {
             _connString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
         }
 
-        public IEnumerable<BPStokInfoModel> ListData()
+        public IEnumerable<BrgStokHargaModel> ListData()
         {
-            List<BPStokInfoModel> result = null;
+            List<BrgStokHargaModel> result = null;
             var sSql = @"
                 SELECT
-                    aa.BrgID, aa.Qty,
+                    aa.BrgID, aa.Qty, aa.Harga,
                     ISNULL(bb.BrgName, '') BrgName
                 FROM
-                    BPStokInfo aa
+                    BrgStokHarga aa
                     LEFT JOIN Brg bb ON aa.BrgID = bb.BrgID ";
 
             using (var conn = new SqlConnection(_connString))
@@ -50,14 +50,15 @@ namespace AnugerahBackend.StokBarang.Dal
                 {
                     if (!dr.HasRows) return null;
 
-                    result = new List<BPStokInfoModel>();
+                    result = new List<BrgStokHargaModel>();
                     while (dr.Read())
                     {
-                        var item = new BPStokInfoModel
+                        var item = new BrgStokHargaModel
                         {
                             BrgID = dr["BrgID"].ToString(),
                             BrgName = dr["BrgName"].ToString(),
-                            Qty = Convert.ToDecimal(dr["Qty"])
+                            Qty = Convert.ToDecimal(dr["Qty"]),
+                            Harga = Convert.ToDecimal(dr["Harga"])
                         };
                         result.Add(item);
                     }
@@ -66,29 +67,30 @@ namespace AnugerahBackend.StokBarang.Dal
             return result;
         }
 
-        public void Insert(BPStokInfoModel model)
+        public void Insert(BrgStokHargaModel model)
         {
             var sSql = @"
                 INSERT INTO
-                    BPStokInfo (
-                        BrgID, Qty )
+                    BrgStokHarga (
+                        BrgID, Qty, Harga )
                 VALUES (
-                        @BrgID, @Qty) ";
+                        @BrgID, @Qty, @Harga) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
                 cmd.AddParam("@BrgID", model.BrgID);
                 cmd.AddParam("@Qty", model.Qty);
+                cmd.AddParam("@Harga", model.Harga);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
         }
 
-        public void Update(BPStokInfoModel model)
+        public void Update(BrgStokHargaModel model)
         {
             var sSql = @"
                 UPDATE
-                    BPStokInfo 
+                    BrgStokHarga 
                 SET
                     Qty = @Qty 
                 WHERE
@@ -98,6 +100,7 @@ namespace AnugerahBackend.StokBarang.Dal
             {
                 cmd.AddParam("@BrgID", model.BrgID);
                 cmd.AddParam("@Qty", model.Qty);
+                cmd.AddParam("@Harga", model.Harga);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -107,7 +110,7 @@ namespace AnugerahBackend.StokBarang.Dal
         {
             var sSql = @"
                 DELETE
-                    BPStokInfo
+                    BrgStokHarga
                 WHERE
                     BrgID = @BrgID ";
 
@@ -120,16 +123,16 @@ namespace AnugerahBackend.StokBarang.Dal
             }
         }
 
-        public BPStokInfoModel GetData(string id)
+        public BrgStokHargaModel GetData(string id)
         {
-            BPStokInfoModel result = null;
+            BrgStokHargaModel result = null;
 
             var sSql = @"
                 SELECT
-                    aa.Qty, 
+                    aa.Qty, aa.Harga
                     ISNULL(bb.BrgName, '') BrgName
                 FROM
-                    BPStokInfo aa
+                    BrgStokHarga aa
                     LEFT JOIN Brg bb ON aa.BrgID = bb.BrgID
                 WHERE
                     aa.BrgID = @BrgID ";
@@ -144,11 +147,12 @@ namespace AnugerahBackend.StokBarang.Dal
                     if (!dr.HasRows) return null;
 
                     dr.Read();
-                    result = new BPStokInfoModel
+                    result = new BrgStokHargaModel
                     {
                         BrgID = id,
+                        BrgName = dr["BrgName"].ToString(),
                         Qty = Convert.ToDecimal(dr["Qty"]),
-                        BrgName = dr["BrgName"].ToString()
+                        Harga = Convert.ToDecimal(dr["Harga"])
                     };
                 }
             }
