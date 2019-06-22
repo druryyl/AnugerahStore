@@ -15,12 +15,12 @@ namespace AnugerahWinform.StokBarang
 {
     public partial class BukuStokInfoForm : Form
     {
-        private BPStokInfoDetilDal _bpStokInfoDal;
+        private BPStokDal _bpStokDal;
 
         public BukuStokInfoForm()
         {
             InitializeComponent();
-            _bpStokInfoDal = new BPStokInfoDetilDal();
+            _bpStokDal = new BPStokDal();
         }
 
         private void ProsesButton_Click(object sender, EventArgs e)
@@ -33,7 +33,7 @@ namespace AnugerahWinform.StokBarang
         {
             var tgl1 = dateTimePicker1.Value.ToString("dd-MM-yyyy");
             var tgl2 = dateTimePicker2.Value.ToString("dd-MM-yyyy");
-            var listData = _bpStokInfoDal.ListData(tgl1, tgl2);
+            var listData = _bpStokDal.ListData(tgl1, tgl2);
             if (listData == null) return null;
             return listData;
         }

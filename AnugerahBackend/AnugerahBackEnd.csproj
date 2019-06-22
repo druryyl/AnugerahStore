@@ -201,6 +201,7 @@
     <Compile Include="StokBarang\Dal\TipeBrgDal.cs" />
     <Compile Include="StokBarang\Model\BPStokDetilModel.cs" />
     <Compile Include="StokBarang\Model\BPStokInfoDetilModel.cs" />
+    <Compile Include="StokBarang\Model\BPStokInfoModel.cs" />
     <Compile Include="StokBarang\Model\BPStokModel.cs" />
     <Compile Include="StokBarang\Model\BrgModel.cs" />
     <Compile Include="StokBarang\Model\ColorModel.cs" />

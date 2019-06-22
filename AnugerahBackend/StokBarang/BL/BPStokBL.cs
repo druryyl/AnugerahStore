@@ -26,11 +26,11 @@ namespace AnugerahBackend.StokBarang.BL
     {
         private IBPStokDal _bpStokDal;
         private IBPStokDetilDal _bpStokDetilDal;
+        private IBPStokInfoDal _bpStokInfoDal;
 
         public BPStokBL()
         {
             _bpStokDal = new BPStokDal();
-            _bpStokDetilDal = new BPStokDetilDal();
             SearchFilter = new SearchFilter
             {
                 IsDate = false
@@ -285,6 +285,9 @@ namespace AnugerahBackend.StokBarang.BL
             _bpStokDal.Insert(result);
             foreach (var item in listDetil)
                 _bpStokDetilDal.Insert(item);
+
+            //  update BPStokInfo
+
 
             return result;
         }
