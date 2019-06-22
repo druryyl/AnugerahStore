@@ -1,4 +1,7 @@
-﻿INSERT INTO JenisBiaya VALUES('B01', 'Biaya Transport')
+﻿DELETE JenisBiaya
+GO
+
+INSERT INTO JenisBiaya VALUES('B01', 'Biaya Transport')
 GO
 
 INSERT INTO JenisBiaya VALUES ('B02', 'Biaya Makan')

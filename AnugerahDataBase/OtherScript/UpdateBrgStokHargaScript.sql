@@ -1,4 +1,4 @@
-﻿DELETE BPStokInfo
+﻿DELETE BrgStokHarga
 
 INSERT INTO BrgStokHarga
 	SELECT BrgID, Sum(QtySisa), 0
