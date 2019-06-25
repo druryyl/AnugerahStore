@@ -150,6 +150,7 @@
     <None Include="OtherScript\UpdateBrgStokHargaScript.sql" />
     <None Include="OtherScript\BrgPriceDataSeed.sql" />
     <None Include="OtherScript\JenisKasDataSeed.sql" />
+    <None Include="OtherScript\JenisLunasDataSeed.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="AnugerahDataBase.refactorlog" />

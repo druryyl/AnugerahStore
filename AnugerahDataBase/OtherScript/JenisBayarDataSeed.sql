@@ -18,5 +18,5 @@ VALUES('ED1','Mesin EDC BCA','E','K02',2)
 GO
 
 INSERT INTO JenisBayar
-VALUES ('ED2','Mesin EDC BRI','K03',5)
+VALUES ('ED2','Mesin EDC BRI','E', 'K03',5)
 GO
