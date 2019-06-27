@@ -132,6 +132,8 @@
     <Build Include="Penjualan\PriceQty.sql" />
     <Build Include="Penjualan\PriceBrg.sql" />
     <Build Include="StokBarang\BrgStokHarga.sql" />
+    <Build Include="Penjualan\OrderJual.sql" />
+    <Build Include="Penjualan\OrderJual2.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AnugerahSPS.publish.xml" />
