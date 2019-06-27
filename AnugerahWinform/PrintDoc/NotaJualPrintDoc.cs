@@ -76,6 +76,8 @@ namespace AnugerahWinform.PrintDoc
             {
                 var no = (item.NoUrut + 1).ToString().PadLeft(2,' ');
                 var namaBrg = item.BrgName.PadRight(43, ' ');
+                //if (namaBrg.ToLower().Contains("jasa"))
+                //    namaBrg = GetNamaBrgJasa(item.NoUrut);
                 var qty = item.Qty.ToString().PadLeft(5, ' ');
                 var harga = item.Harga.ToString("N0").PadLeft(11);
                 var diskon = item.Diskon.ToString("N0").PadLeft(11);
@@ -105,7 +107,6 @@ namespace AnugerahWinform.PrintDoc
 
             sw.Close();
         }
-
         private void PrintTextFileHandler(object sender, PrintPageEventArgs ppeArgs)
         {
             //Get the Graphics object  

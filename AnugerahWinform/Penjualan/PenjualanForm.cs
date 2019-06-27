@@ -697,7 +697,7 @@ namespace AnugerahWinform.Penjualan
             if ((brgName.Trim() != "") && (e.RowIndex == DetilPenjualanTable.Rows.Count - 1))
                 AddRow();
 
-            if (e.ColumnIndex == 4)
+            if ((e.ColumnIndex == 2) || (e.ColumnIndex == 4) || (e.ColumnIndex == 6))
             {
                 if (brgName.ToLower().Contains("jasa"))
                 {
