@@ -15,7 +15,6 @@ using System.Threading.Tasks;
 
 namespace AnugerahBackend.Penjualan.BL
 {
-
     public interface IPenjualanBL : ISearch<PenjualanSearchModel>
     {
         PenjualanModel Save(PenjualanModel penjualan);

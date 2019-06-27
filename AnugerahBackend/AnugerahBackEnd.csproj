@@ -99,7 +99,6 @@
     <Compile Include="Accounting\Model\LunasKasBonDetilModel.cs" />
     <Compile Include="Accounting\Model\LunasKasBonModel.cs" />
     <Compile Include="Accounting\Model\MutasiKasModel.cs" />
-    <Compile Include="Accounting\Model\OrderJualModel.cs" />
     <Compile Include="Accounting\Model\PegawaiModel.cs" />
     <Compile Include="Accounting\Model\PihakKeduaModel.cs" />
     <Compile Include="Accounting\Model\ReturDepositModel.cs" />
@@ -147,11 +146,14 @@
     <Compile Include="Penjualan\BL\BrgPriceBL.cs" />
     <Compile Include="Penjualan\BL\CustomerBL.cs" />
     <Compile Include="Penjualan\BL\JenisBayarBL.cs" />
+    <Compile Include="Penjualan\BL\OrderJualBL.cs" />
     <Compile Include="Penjualan\BL\PenjualanBL.cs" />
     <Compile Include="Penjualan\BL\PriceBL.cs" />
     <Compile Include="Penjualan\Dal\BrgPriceDal.cs" />
     <Compile Include="Penjualan\Dal\CustomerDal.cs" />
     <Compile Include="Penjualan\Dal\JenisBayarDal.cs" />
+    <Compile Include="Penjualan\Dal\OrderJual2Dal.cs" />
+    <Compile Include="Penjualan\Dal\OrderJualDal.cs" />
     <Compile Include="Penjualan\Dal\Penjualan2Dal.cs" />
     <Compile Include="Penjualan\Dal\PenjualanBayarDal.cs" />
     <Compile Include="Penjualan\Dal\PenjualanDal.cs" />
@@ -163,6 +165,8 @@
     <Compile Include="Penjualan\Model\BrgPriceModel.cs" />
     <Compile Include="Penjualan\Model\CustomerModel.cs" />
     <Compile Include="Penjualan\Model\JenisBayarModel.cs" />
+    <Compile Include="Penjualan\Model\OrderJual2Model.cs" />
+    <Compile Include="Penjualan\Model\OrderJualModel.cs" />
     <Compile Include="Penjualan\Model\Penjualan2Model.cs" />
     <Compile Include="Penjualan\Model\PenjualanBayarModel.cs" />
     <Compile Include="Penjualan\Model\PenjualanModel.cs" />
