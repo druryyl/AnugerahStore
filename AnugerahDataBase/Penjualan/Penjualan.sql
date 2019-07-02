@@ -15,6 +15,7 @@
     DepositID VARCHAR(10) NOT NULL CONSTRAINT DF_Penjualan_DepositID DEFAULT(''),
 	NilaiDeposit DECIMAL(18,2) NOT NULL CONSTRAINT DF_Penjualan_NilaiDeposit DEFAULT(''),
 
+	NilaiBiayaKirim DECIMAL(18,2) NOT NULL CONSTRAINT DF_Penjualan_NilaiBiayaKirim DEFAULT(0),
 	NilaiTotal DECIMAL(18,2) NOT NULL CONSTRAINT DF_Penjualan_NilaiTotal DEFAULT(0),
 	NilaiDiskonLain DECIMAL (18,2) NOT NULL CONSTRAINT DF_Penjualan_NilaiDiskonLAin DEFAULT(0),
 	NilaiBiayaLain DECIMAL(18,2) NOT NULL CONSTRAINT DF_Penjualan_NilaiBiayaLain DEFAULT(0),

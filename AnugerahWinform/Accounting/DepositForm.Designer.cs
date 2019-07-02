@@ -138,6 +138,7 @@
             this.ExitButton.Text = "Exit";
             this.ExitButton.UseVisualStyleBackColor = true;
             this.ExitButton.ClientSizeChanged += new System.EventHandler(this.ExitButton_Click);
+            this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click_1);
             // 
             // SaveButton
             // 

@@ -24,7 +24,8 @@ namespace AnugerahWinform.Accounting
         private IBPKasBL _bpKasBL;
         private IBPHutangBL _bpHutangBL;
 
-        public DepositForm()
+
+        public DepositForm(DepositModel deposit)
         {
             InitializeComponent();
 
@@ -36,6 +37,27 @@ namespace AnugerahWinform.Accounting
 
             LoadPihakKeduaCombo();
             LoadJenisBayarCombo();
+            if (deposit != null)
+                ShowGeneratedDeposit(deposit);
+        }
+
+        private void ShowGeneratedDeposit(DepositModel deposit)
+        {
+            if (deposit == null)
+            {
+                ClearForm();
+                return;
+            }
+
+            TglText.Value = deposit.Tgl.ToDate();
+            JamText.Text = deposit.Jam;
+            decimal estimasiBiayaKirim = deposit.NilaiDeposit -
+                deposit.ListBrg.Sum(x => x.SubTotal);
+            KeteranganText.Text = _depositBL
+                .ListBrgString(deposit.ListBrg, estimasiBiayaKirim);
+            PihakKeduaCombo.SelectedValue = deposit.PihakKeduaID;
+            JenisBayarCombo.SelectedValue = deposit.JenisBayarID;
+            NilIText.Value = deposit.NilaiDeposit;
         }
 
         private void LoadPihakKeduaCombo()
@@ -192,6 +214,11 @@ namespace AnugerahWinform.Accounting
             SearchKodeTrs();
             ShowData();
             TglText.Focus();
+        }
+
+        private void ExitButton_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

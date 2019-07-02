@@ -134,6 +134,7 @@
     <Build Include="StokBarang\BrgStokHarga.sql" />
     <Build Include="Penjualan\OrderJual.sql" />
     <Build Include="Penjualan\OrderJual2.sql" />
+    <Build Include="Accounting\DepositDetil.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AnugerahSPS.publish.xml" />

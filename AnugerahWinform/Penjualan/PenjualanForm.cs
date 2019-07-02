@@ -5,6 +5,7 @@ using AnugerahBackend.Penjualan.Dal;
 using AnugerahBackend.Penjualan.Model;
 using AnugerahBackend.StokBarang.BL;
 using AnugerahBackend.StokBarang.Model;
+using AnugerahWinform.Accounting;
 using AnugerahWinform.PrintDoc;
 using AnugerahWinform.Support;
 using Ics.Helper.Database;
@@ -197,6 +198,7 @@ namespace AnugerahWinform.Penjualan
             CatatanTextBox.Clear();
             DetilPenjualanTable.Rows.Clear();
 
+            BiayaKirimNumText.Value = 0;
             DiskonNumText.Value = 0;
             BiayaLainNumText.Value = 0;
             BayarCashNumText.Value = 0;
@@ -263,7 +265,7 @@ namespace AnugerahWinform.Penjualan
             DepositIDText.Text = penjualan.DepositID;
             ShowDeposit();
             NilaiDepositText.Value= penjualan.NilaiDeposit;
-             
+            BiayaKirimNumText.Value = penjualan.NilaiBiayaKirim;
 
             DiskonNumText.Value = penjualan.NilaiDiskonLain;
             BiayaLainNumText.Value = penjualan.NilaiBiayaLain;
@@ -428,7 +430,7 @@ namespace AnugerahWinform.Penjualan
                 BayarCashNumText.Value = _listBayarDetil.Where(x => x.JenisBayarID == "KAS").Sum(x => x.NilaiBayar);
             }
 
-            GrandTotalNumText.Value = nilaiTotal - DiskonNumText.Value + BiayaLainNumText.Value;
+            GrandTotalNumText.Value = BiayaKirimNumText.Value + nilaiTotal - DiskonNumText.Value + BiayaLainNumText.Value;
             decimal nilaiTotBayar = BayarNonCashNumText.Value + BayarCashNumText.Value;
             if (DepositCheckBox.Checked)
                 nilaiTotBayar += NilaiDepositText.Value;
@@ -453,6 +455,7 @@ namespace AnugerahWinform.Penjualan
             var noTelpon = NoTelpTextBox.Text;
             var catatan = CatatanTextBox.Text;
             //
+            var biayaKirim = BiayaKirimNumText.Value;
             var total = TotalNumText.Value;
             var diskon = DiskonNumText.Value;
             var biayaLain = BiayaLainNumText.Value ;
@@ -533,6 +536,7 @@ namespace AnugerahWinform.Penjualan
                 DepositID = DepositIDText.Text,
                 NilaiDeposit = NilaiDepositText.Value, 
 
+                NilaiBiayaKirim = biayaKirim,
                 NilaiTotal = total,
                 NilaiDiskonLain = diskon,
                 NilaiBiayaLain = biayaLain,
@@ -707,6 +711,66 @@ namespace AnugerahWinform.Penjualan
                 else
                     e.Cancel = true;
             }
+        }
+
+        private void BiayaKirimNumText_ValueChanged(object sender, EventArgs e)
+        {
+            ReCalcTotal();
+        }
+
+        private void Deposit_Click(object sender, EventArgs e)
+        {
+            CreateDeposit();
+        }
+
+        private void CreateDeposit()
+        {
+            //  ambil list brg
+            var listBrg = new List<DepositDetilModel>();
+            foreach (DataRow dr in DetilPenjualanTable.Rows)
+            {
+                if (dr["BrgID"].ToString().Trim() == "") continue;
+
+                var depositDetil = new DepositDetilModel()
+                {
+                    BrgID = dr["BrgID"].ToString(),
+                    Qty = Convert.ToDecimal(dr["Qty"]),
+                    Harga = Convert.ToDecimal(dr["Harga"]),
+                    Diskon = Convert.ToDecimal(dr["Diskon"]),
+                    SubTotal = Convert.ToDecimal(dr["SubTotal"])
+                };
+                listBrg.Add(depositDetil);
+            }
+
+            //  ambil jenis bayar
+            if (_listBayarDetil.Count() != 1)
+            {
+                MessageBox.Show("Jenis Pembayaran Deposit invalid");
+                return;
+            }
+
+            var jenisBayarID = _listBayarDetil.FirstOrDefault().JenisBayarID;
+            var nilaiDeposit = _listBayarDetil.Sum(x => x.NilaiBayar);
+
+            //  save deposit
+            var deposit = new DepositModel
+            {
+                Tgl = TanggalDateTime.Value.ToString("dd-MM-yyyy"),
+                Jam = JamTextBox.Text,
+                PihakKeduaID = CustomerComboBox.SelectedValue.ToString(),
+                JenisBayarID = jenisBayarID,
+                NilaiDeposit = GrandTotalNumText.Value,
+                ListBrg = listBrg
+            };
+
+            var form = new DepositForm(deposit)
+            {
+                MdiParent = this.MdiParent,
+                StartPosition = FormStartPosition.CenterScreen,
+            };
+            form.Show();
+
+
         }
     }
 }

@@ -108,6 +108,9 @@
             this.ExitButton = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
+            this.BiayaKirimNumText = new System.Windows.Forms.NumericUpDown();
+            this.label11 = new System.Windows.Forms.Label();
+            this.DepositButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PenjualanBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PenjualanDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DetilPenjualanTable)).BeginInit();
@@ -127,6 +130,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.TotalNumText)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BrgGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BiayaKirimNumText)).BeginInit();
             this.SuspendLayout();
             // 
             // PenjualanBindingSource
@@ -260,12 +264,13 @@
             this.mainTabControl.Location = new System.Drawing.Point(0, 0);
             this.mainTabControl.Name = "mainTabControl";
             this.mainTabControl.SelectedIndex = 0;
-            this.mainTabControl.Size = new System.Drawing.Size(979, 481);
+            this.mainTabControl.Size = new System.Drawing.Size(1087, 481);
             this.mainTabControl.TabIndex = 6;
             // 
             // entryDataTabPage
             // 
             this.entryDataTabPage.BackColor = System.Drawing.Color.Khaki;
+            this.entryDataTabPage.Controls.Add(this.DepositButton);
             this.entryDataTabPage.Controls.Add(this.BayarDepositPanel);
             this.entryDataTabPage.Controls.Add(this.DepositCheckBox);
             this.entryDataTabPage.Controls.Add(this.panel2);
@@ -277,7 +282,7 @@
             this.entryDataTabPage.Location = new System.Drawing.Point(4, 22);
             this.entryDataTabPage.Name = "entryDataTabPage";
             this.entryDataTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.entryDataTabPage.Size = new System.Drawing.Size(971, 455);
+            this.entryDataTabPage.Size = new System.Drawing.Size(1079, 455);
             this.entryDataTabPage.TabIndex = 0;
             this.entryDataTabPage.Text = "Entry Data";
             // 
@@ -402,6 +407,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.LemonChiffon;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.BiayaKirimNumText);
+            this.panel2.Controls.Add(this.label11);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.BayarCashNumText);
             this.panel2.Controls.Add(this.KembaliNumText);
@@ -418,13 +425,15 @@
             this.panel2.Controls.Add(this.label3);
             this.panel2.Location = new System.Drawing.Point(467, 304);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(498, 116);
+            this.panel2.Size = new System.Drawing.Size(606, 116);
             this.panel2.TabIndex = 18;
             // 
             // label8
             // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(291, 68);
+            this.label8.Location = new System.Drawing.Point(406, 68);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(74, 13);
             this.label8.TabIndex = 38;
@@ -432,8 +441,10 @@
             // 
             // BayarCashNumText
             // 
+            this.BayarCashNumText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.BayarCashNumText.InterceptArrowKeys = false;
-            this.BayarCashNumText.Location = new System.Drawing.Point(370, 65);
+            this.BayarCashNumText.Location = new System.Drawing.Point(485, 65);
             this.BayarCashNumText.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -455,9 +466,11 @@
             // 
             // KembaliNumText
             // 
+            this.KembaliNumText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.KembaliNumText.Enabled = false;
             this.KembaliNumText.InterceptArrowKeys = false;
-            this.KembaliNumText.Location = new System.Drawing.Point(370, 88);
+            this.KembaliNumText.Location = new System.Drawing.Point(485, 88);
             this.KembaliNumText.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -477,9 +490,11 @@
             // 
             // BayarNonCashNumText
             // 
+            this.BayarNonCashNumText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.BayarNonCashNumText.Enabled = false;
             this.BayarNonCashNumText.InterceptArrowKeys = false;
-            this.BayarNonCashNumText.Location = new System.Drawing.Point(370, 42);
+            this.BayarNonCashNumText.Location = new System.Drawing.Point(485, 42);
             this.BayarNonCashNumText.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -500,7 +515,9 @@
             // 
             // BayarButton
             // 
-            this.BayarButton.Location = new System.Drawing.Point(252, 42);
+            this.BayarButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BayarButton.Location = new System.Drawing.Point(367, 42);
             this.BayarButton.Name = "BayarButton";
             this.BayarButton.Size = new System.Drawing.Size(113, 23);
             this.BayarButton.TabIndex = 14;
@@ -510,9 +527,11 @@
             // 
             // GrandTotalNumText
             // 
+            this.GrandTotalNumText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.GrandTotalNumText.Enabled = false;
             this.GrandTotalNumText.InterceptArrowKeys = false;
-            this.GrandTotalNumText.Location = new System.Drawing.Point(370, 19);
+            this.GrandTotalNumText.Location = new System.Drawing.Point(485, 19);
             this.GrandTotalNumText.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -532,8 +551,10 @@
             // 
             // BiayaLainNumText
             // 
+            this.BiayaLainNumText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.BiayaLainNumText.InterceptArrowKeys = false;
-            this.BiayaLainNumText.Location = new System.Drawing.Point(252, 20);
+            this.BiayaLainNumText.Location = new System.Drawing.Point(367, 20);
             this.BiayaLainNumText.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -554,8 +575,10 @@
             // 
             // DiskonNumText
             // 
+            this.DiskonNumText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.DiskonNumText.InterceptArrowKeys = false;
-            this.DiskonNumText.Location = new System.Drawing.Point(134, 20);
+            this.DiskonNumText.Location = new System.Drawing.Point(248, 20);
             this.DiskonNumText.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -576,9 +599,11 @@
             // 
             // TotalNumText
             // 
+            this.TotalNumText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TotalNumText.Enabled = false;
             this.TotalNumText.InterceptArrowKeys = false;
-            this.TotalNumText.Location = new System.Drawing.Point(15, 20);
+            this.TotalNumText.Location = new System.Drawing.Point(129, 20);
             this.TotalNumText.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -598,8 +623,10 @@
             // 
             // label9
             // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(312, 92);
+            this.label9.Location = new System.Drawing.Point(427, 92);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(53, 13);
             this.label9.TabIndex = 29;
@@ -607,8 +634,10 @@
             // 
             // label7
             // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(368, 3);
+            this.label7.Location = new System.Drawing.Point(483, 3);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(73, 13);
             this.label7.TabIndex = 25;
@@ -616,8 +645,10 @@
             // 
             // label6
             // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(249, 3);
+            this.label6.Location = new System.Drawing.Point(364, 3);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(66, 13);
             this.label6.TabIndex = 24;
@@ -625,8 +656,10 @@
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(131, 3);
+            this.label5.Location = new System.Drawing.Point(245, 3);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(73, 13);
             this.label5.TabIndex = 23;
@@ -634,8 +667,10 @@
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 4);
+            this.label3.Location = new System.Drawing.Point(126, 4);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(34, 13);
             this.label3.TabIndex = 22;
@@ -666,13 +701,13 @@
             this.panel1.Controls.Add(this.BuyerNameLabel);
             this.panel1.Location = new System.Drawing.Point(6, 6);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(959, 112);
+            this.panel1.Size = new System.Drawing.Size(1067, 112);
             this.panel1.TabIndex = 13;
             // 
             // CatatanTextBox
             // 
             this.CatatanTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.CatatanTextBox.Location = new System.Drawing.Point(631, 54);
+            this.CatatanTextBox.Location = new System.Drawing.Point(739, 54);
             this.CatatanTextBox.Multiline = true;
             this.CatatanTextBox.Name = "CatatanTextBox";
             this.CatatanTextBox.Size = new System.Drawing.Size(313, 48);
@@ -682,7 +717,7 @@
             // 
             this.CatatanLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CatatanLabel.AutoSize = true;
-            this.CatatanLabel.Location = new System.Drawing.Point(573, 54);
+            this.CatatanLabel.Location = new System.Drawing.Point(681, 54);
             this.CatatanLabel.Name = "CatatanLabel";
             this.CatatanLabel.Size = new System.Drawing.Size(52, 13);
             this.CatatanLabel.TabIndex = 21;
@@ -692,7 +727,7 @@
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(566, 34);
+            this.label4.Location = new System.Drawing.Point(674, 34);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(59, 13);
             this.label4.TabIndex = 20;
@@ -702,7 +737,7 @@
             // 
             this.AlamatLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.AlamatLabel.AutoSize = true;
-            this.AlamatLabel.Location = new System.Drawing.Point(578, 11);
+            this.AlamatLabel.Location = new System.Drawing.Point(686, 11);
             this.AlamatLabel.Name = "AlamatLabel";
             this.AlamatLabel.Size = new System.Drawing.Size(47, 13);
             this.AlamatLabel.TabIndex = 19;
@@ -711,7 +746,7 @@
             // NoTelpTextBox
             // 
             this.NoTelpTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.NoTelpTextBox.Location = new System.Drawing.Point(631, 31);
+            this.NoTelpTextBox.Location = new System.Drawing.Point(739, 31);
             this.NoTelpTextBox.Name = "NoTelpTextBox";
             this.NoTelpTextBox.Size = new System.Drawing.Size(313, 21);
             this.NoTelpTextBox.TabIndex = 7;
@@ -719,7 +754,7 @@
             // AlamatTextBox
             // 
             this.AlamatTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.AlamatTextBox.Location = new System.Drawing.Point(631, 8);
+            this.AlamatTextBox.Location = new System.Drawing.Point(739, 8);
             this.AlamatTextBox.Name = "AlamatTextBox";
             this.AlamatTextBox.Size = new System.Drawing.Size(313, 21);
             this.AlamatTextBox.TabIndex = 6;
@@ -844,7 +879,7 @@
             this.BrgGrid.DataSource = this.PenjualanBindingSource;
             this.BrgGrid.Location = new System.Drawing.Point(6, 124);
             this.BrgGrid.Name = "BrgGrid";
-            this.BrgGrid.Size = new System.Drawing.Size(959, 162);
+            this.BrgGrid.Size = new System.Drawing.Size(1067, 162);
             this.BrgGrid.TabIndex = 9;
             this.BrgGrid.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.BrgGrid_CellBeginEdit);
             this.BrgGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BrgGrid_CellContentClick);
@@ -935,7 +970,7 @@
             // ExitButton
             // 
             this.ExitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ExitButton.Location = new System.Drawing.Point(864, 426);
+            this.ExitButton.Location = new System.Drawing.Point(979, 426);
             this.ExitButton.Name = "ExitButton";
             this.ExitButton.Size = new System.Drawing.Size(87, 23);
             this.ExitButton.TabIndex = 21;
@@ -946,7 +981,7 @@
             // deleteButton
             // 
             this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.deleteButton.Location = new System.Drawing.Point(771, 426);
+            this.deleteButton.Location = new System.Drawing.Point(886, 426);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(87, 23);
             this.deleteButton.TabIndex = 20;
@@ -956,7 +991,7 @@
             // saveButton
             // 
             this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveButton.Location = new System.Drawing.Point(678, 426);
+            this.saveButton.Location = new System.Drawing.Point(700, 426);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(87, 23);
             this.saveButton.TabIndex = 19;
@@ -964,11 +999,56 @@
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
+            // BiayaKirimNumText
+            // 
+            this.BiayaKirimNumText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BiayaKirimNumText.InterceptArrowKeys = false;
+            this.BiayaKirimNumText.Location = new System.Drawing.Point(11, 20);
+            this.BiayaKirimNumText.Maximum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            0});
+            this.BiayaKirimNumText.Minimum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            -2147483648});
+            this.BiayaKirimNumText.Name = "BiayaKirimNumText";
+            this.BiayaKirimNumText.Size = new System.Drawing.Size(113, 21);
+            this.BiayaKirimNumText.TabIndex = 39;
+            this.BiayaKirimNumText.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.BiayaKirimNumText.ThousandsSeparator = true;
+            this.BiayaKirimNumText.ValueChanged += new System.EventHandler(this.BiayaKirimNumText_ValueChanged);
+            // 
+            // label11
+            // 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(7, 4);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(73, 13);
+            this.label11.TabIndex = 40;
+            this.label11.Text = "Biaya Kirim";
+            // 
+            // DepositButton
+            // 
+            this.DepositButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.DepositButton.Location = new System.Drawing.Point(793, 426);
+            this.DepositButton.Name = "DepositButton";
+            this.DepositButton.Size = new System.Drawing.Size(87, 23);
+            this.DepositButton.TabIndex = 24;
+            this.DepositButton.Text = "Deposit";
+            this.DepositButton.UseVisualStyleBackColor = true;
+            this.DepositButton.Click += new System.EventHandler(this.Deposit_Click);
+            // 
             // PenjualanForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(979, 481);
+            this.ClientSize = new System.Drawing.Size(1087, 481);
             this.Controls.Add(this.mainTabControl);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "PenjualanForm";
@@ -997,6 +1077,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BrgGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BiayaKirimNumText)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1077,5 +1158,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn HargaCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn DiskonCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn SubTotalCol;
+        private System.Windows.Forms.NumericUpDown BiayaKirimNumText;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button DepositButton;
     }
 }

@@ -23,6 +23,7 @@ namespace AnugerahBackend.Penjualan.Model
         public string DepositID { get; set; }
         public decimal NilaiDeposit { get; set; }
 
+        public decimal NilaiBiayaKirim { get; set; }
         public decimal NilaiTotal { get; set; }
         public decimal NilaiDiskonLain { get; set; }
         public decimal NilaiBiayaLain { get; set; }

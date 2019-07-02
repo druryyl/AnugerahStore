@@ -19,6 +19,9 @@ namespace AnugerahBackend.Accounting.Model
         public string JenisKasID { get; set; }
         public string JenisKasName { get; set; }
         public decimal NilaiDeposit { get; set; }
+
+        public IEnumerable<DepositDetilModel> ListBrg { get; set; }
+
     }
 
     public class DepositSearchModel

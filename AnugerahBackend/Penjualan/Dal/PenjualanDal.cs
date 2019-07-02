@@ -37,14 +37,14 @@ namespace AnugerahBackend.Penjualan.Dal
                         PenjualanID, TglPenjualan, JamPenjualan, BuyerName,
                         CustomerID, Alamat, NoTelp, Catatan, 
                         IsBayarDeposit, DepositID, NilaiDeposit, 
-                        NilaiTotal, NilaiDiskonLain, NilaiBiayaLain, 
-                        NilaiGrandTotal, NilaiBayar, NilaiKembali)
+                        NilaiBiayaKirim, NilaiTotal, NilaiDiskonLain, 
+                        NilaiBiayaLain, NilaiGrandTotal, NilaiBayar, NilaiKembali)
                 VALUES (
                         @PenjualanID, @TglPenjualan, @JamPenjualan, @BuyerName,
                         @CustomerID, @Alamat, @NoTelp, @Catatan,
                         @IsBayarDeposit, @DepositID, @NilaiDeposit, 
-                        @NilaiTotal, @NilaiDiskonLain, @NilaiBiayaLain, 
-                        @NilaiGrandTotal, @NilaiBayar, @NilaiKembali) ";
+                        @NilaiBiayaKirim, @NilaiTotal, @NilaiDiskonLain, 
+                        @NilaiBiayaLain, @NilaiGrandTotal, @NilaiBayar, @NilaiKembali) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
@@ -59,6 +59,7 @@ namespace AnugerahBackend.Penjualan.Dal
                 cmd.AddParam("@IsBayarDeposit", penjualan.IsBayarDeposit);
                 cmd.AddParam("@NilaiDeposit", penjualan.NilaiDeposit);
                 cmd.AddParam("@DepositID", penjualan.DepositID);
+                cmd.AddParam("@NilaiBiayaKirim", penjualan.NilaiBiayaKirim);
                 cmd.AddParam("@NilaiTotal", penjualan.NilaiTotal); 
                 cmd.AddParam("@NilaiDiskonLain", penjualan.NilaiDiskonLain);
                 cmd.AddParam("@NilaiBiayaLain", penjualan.NilaiBiayaLain);
@@ -86,7 +87,8 @@ namespace AnugerahBackend.Penjualan.Dal
                     IsBayarDeposit = @IsBayarDeposit,
                     DepositID = @DepositID, 
                     NilaiDeposit = @NilaiDeposit, 
-    
+
+                    NilaiBiayaKirim = @NilaiBiayaKirim, 
                     NilaiTotal = @NilaiTotal, 
                     NilaiDiskonLain = @NilaiDiskonLain,
                     NilaiBiayaLain = @NilaiBiayaLain, 
@@ -109,6 +111,8 @@ namespace AnugerahBackend.Penjualan.Dal
                 cmd.AddParam("@IsBayarDeposit", penjualan.IsBayarDeposit);
                 cmd.AddParam("@DepositID", penjualan.DepositID);
                 cmd.AddParam("@NilaiDeposit", penjualan.NilaiDeposit);
+
+                cmd.AddParam("@NilaiBiayaKirim", penjualan.NilaiBiayaKirim);
                 cmd.AddParam("@NilaiTotal", penjualan.NilaiTotal);
                 cmd.AddParam("@NilaiDiskonLain", penjualan.NilaiDiskonLain);
                 cmd.AddParam("@NilaiBiayaLain", penjualan.NilaiBiayaLain);
@@ -143,7 +147,7 @@ namespace AnugerahBackend.Penjualan.Dal
                 SELECT
                     PenjualanID, TglPenjualan, JamPenjualan, BuyerName,
                     CustomerID, Alamat, NoTelp, Catatan, IsBayarDeposit, DepositID, 
-                    NilaiTotal, NilaiDiskonLain, NilaiDeposit, 
+                    NilaiBiayaKirim, NilaiTotal, NilaiDiskonLain, NilaiDeposit, 
                     NilaiBiayaLain, NilaiGrandTotal, NilaiBayar, NilaiKembali
                 FROM
                     Penjualan
@@ -175,6 +179,7 @@ namespace AnugerahBackend.Penjualan.Dal
                             DepositID = dr["DepositID"].ToString(),
                             NilaiDeposit = Convert.ToDecimal(dr["NilaiDeposit"]),
 
+                            NilaiBiayaKirim = Convert.ToDecimal(dr["NilaiBiayaKirim"]),
                             NilaiTotal = Convert.ToDecimal(dr["NilaiTotal"]),
                             NilaiDiskonLain = Convert.ToDecimal(dr["NilaiDiskonLain"]),
                             NilaiBiayaLain = Convert.ToDecimal(dr["NilaiBiayaLain"]),
@@ -198,7 +203,7 @@ namespace AnugerahBackend.Penjualan.Dal
                     PenjualanID, TglPenjualan, JamPenjualan, BuyerName,
                     CustomerID, Alamat, NoTelp, Catatan, 
                     IsBayarDeposit, DepositID, NilaiDeposit, 
-                    NilaiTotal, NilaiDiskonLain,
+                    NilaiBiayaKirim, NilaiTotal, NilaiDiskonLain,
                     NilaiBiayaLain, NilaiGrandTotal, NilaiBayar, NilaiKembali
                 FROM
                     Penjualan
@@ -233,6 +238,7 @@ namespace AnugerahBackend.Penjualan.Dal
                                 DepositID = dr["DepositID"].ToString(),
                                 NilaiDeposit = Convert.ToDecimal(dr["NilaiDeposit"]),
 
+                                NilaiBiayaKirim = Convert.ToDecimal(dr["NilaiBiayaKirim"]),
                                 NilaiTotal = Convert.ToDecimal(dr["NilaiTotal"]),
                                 NilaiDiskonLain = Convert.ToDecimal(dr["NilaiDiskonLain"]),
                                 NilaiBiayaLain = Convert.ToDecimal(dr["NilaiBiayaLain"]),

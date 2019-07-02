@@ -1,4 +1,5 @@
-﻿using AnugerahWinform.Accounting;
+﻿using AnugerahBackend.Accounting.Model;
+using AnugerahWinform.Accounting;
 using AnugerahWinform.Keuangan;
 using AnugerahWinform.Pembelian;
 using AnugerahWinform.Penjualan;
@@ -190,7 +191,8 @@ namespace AnugerahWinform
 
         private void DepositJualButton_Click(object sender, EventArgs e)
         {
-            var form = new DepositForm
+            DepositModel deposit = null;
+            var form = new DepositForm(deposit)
             {
                 MdiParent = this,
                 StartPosition = FormStartPosition.CenterScreen

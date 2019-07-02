@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AnugerahBackend.Accounting.Dal;
 using AnugerahBackend.Accounting.Model;
 using AnugerahBackend.Penjualan.BL;
+using AnugerahBackend.StokBarang.BL;
 using AnugerahBackend.Support;
 using AnugerahBackend.Support.BL;
 using Ics.Helper.Database;
@@ -19,6 +20,8 @@ namespace AnugerahBackend.Accounting.BL
         void Delete(string id);
         DepositModel GetData(string id);
         IEnumerable<DepositModel> ListData(string tgl1, string tgl2);
+        string ListBrgString(IEnumerable<DepositDetilModel> listBrg,
+            decimal estimasiBiayaKirim);
     }
     public class DepositBL : IDepositBL
     {
@@ -26,6 +29,8 @@ namespace AnugerahBackend.Accounting.BL
         private IPihakKeduaBL _pihakKeduaBL;
         private IParameterNoBL _paramNoBL;
         private IJenisBayarBL _jenisBayarBL;
+        private IBrgBL _brgBL;
+        private IDepositDetilDal _depositDetilDal;
 
         public DepositBL()
         {
@@ -33,6 +38,8 @@ namespace AnugerahBackend.Accounting.BL
             _pihakKeduaBL = new PihakKeduaBL();
             _paramNoBL = new ParameterNoBL();
             _jenisBayarBL = new JenisBayarBL();
+            _brgBL = new BrgBL();
+            _depositDetilDal = new DepositDetilDal();
 
             SearchFilter = new SearchFilter
             {
@@ -72,6 +79,17 @@ namespace AnugerahBackend.Accounting.BL
                 model.JenisKasName = jenisBayar.JenisKasName;
             }
 
+            if(model.ListBrg != null)
+            {
+                foreach(var item in model.ListBrg)
+                {
+
+                    var brg = _brgBL.GetData(item.BrgID);
+                    if (brg == null)
+                        throw new ArgumentException("BrgID invalid");
+                }
+            }
+
             //  cek nilai deposit
             if(model.NilaiDeposit <= 0 )
                 throw new ArgumentException("Nilai Deposit tidak boleh minus");
@@ -83,10 +101,23 @@ namespace AnugerahBackend.Accounting.BL
                 {
                     model.DepositID = GenNewID();
                     _depositDal.Insert(model);
+                    if(model.ListBrg != null)
+                        foreach (var item in model.ListBrg)
+                        {
+                            item.DepositID = model.DepositID;
+                            _depositDetilDal.Insert(item);
+                        }
                 }
                 else
                 {
+                    _depositDetilDal.Delete(model.DepositID);
                     _depositDal.Update(model);
+                    if (model.ListBrg != null)
+                        foreach (var item in model.ListBrg)
+                        {
+                            item.DepositID = model.DepositID;
+                            _depositDetilDal.Insert(item);
+                        }
                 }
                 trans.Complete();
             }
@@ -108,7 +139,12 @@ namespace AnugerahBackend.Accounting.BL
 
         public DepositModel GetData(string id)
         {
-            return _depositDal.GetData(id);
+            var listBrg = _depositDetilDal.ListBrg(id);
+
+            var result = _depositDal.GetData(id);
+            if (result != null)
+                result.ListBrg = listBrg;
+            return result;
         }
 
         public IEnumerable<DepositModel> ListData(string tgl1, string tgl2)
@@ -132,6 +168,33 @@ namespace AnugerahBackend.Accounting.BL
                     from c in result
                     where c.PihakKeduaName.ContainMultiWord(SearchFilter.UserKeyword)
                     select c;
+
+            return result;
+        }
+
+        public string ListBrgString(IEnumerable<DepositDetilModel> listBrg,
+            decimal estimasiBiayaKirim)
+        {
+            if (listBrg == null) return "";
+            string result = "";
+            foreach(var item in listBrg)
+            {
+                var brg = _brgBL.GetData(item.BrgID);
+                result += brg.BrgName;
+                result += Environment.NewLine;
+                result += string.Format("    {0}x  {1}",
+                    item.Qty.ToString(), item.Harga.ToString("N0"));
+                result += Environment.NewLine;
+            }
+
+            if(estimasiBiayaKirim != 0)
+            {
+                result += "Estimasi Biaya Kirim";
+                result += Environment.NewLine;
+                result += string.Format("    {0}x  {1}",
+                    1, estimasiBiayaKirim.ToString("N0"));
+                result += Environment.NewLine;
+            }
 
             return result;
         }
