@@ -769,7 +769,7 @@ namespace AnugerahWinform.Penjualan
                 StartPosition = FormStartPosition.CenterScreen,
             };
             form.Show();
-
+            ClearForm();
 
         }
     }
