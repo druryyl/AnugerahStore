@@ -229,6 +229,12 @@
     <Compile Include="Penjualan\LaporanPenjualanForm.Designer.cs">
       <DependentUpon>LaporanPenjualanForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Penjualan\OrderJualForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Penjualan\OrderJualForm.Designer.cs">
+      <DependentUpon>OrderJualForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Penjualan\PenjualanBayarForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -242,6 +248,7 @@
       <DependentUpon>PenjualanForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Penjualan\Presenter\CustomerPresenter.cs" />
+    <Compile Include="Penjualan\Presenter\OrderJualPresenter.cs" />
     <Compile Include="Penjualan\Price2Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -255,6 +262,7 @@
       <DependentUpon>PricingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Penjualan\View\CustomerView.cs" />
+    <Compile Include="Penjualan\View\IOrderJualView.cs" />
     <Compile Include="PrintDoc\NotaJualPrintDoc.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -431,6 +439,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Penjualan\LaporanPenjualanForm.resx">
       <DependentUpon>LaporanPenjualanForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Penjualan\OrderJualForm.resx">
+      <DependentUpon>OrderJualForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Penjualan\PenjualanBayarForm.resx">
       <DependentUpon>PenjualanBayarForm.cs</DependentUpon>

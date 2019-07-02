@@ -772,11 +772,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(47, 13);
+            this.label1.Location = new System.Drawing.Point(56, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 13);
+            this.label1.Size = new System.Drawing.Size(86, 13);
             this.label1.TabIndex = 6;
-            this.label1.Text = "No. Adjustment";
+            this.label1.Text = "No. Penjualan";
             // 
             // TanggalDateTime
             // 

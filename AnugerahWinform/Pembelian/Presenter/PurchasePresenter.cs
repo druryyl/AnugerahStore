@@ -90,7 +90,7 @@ namespace AnugerahWinform.Pembelian.Presenter
                     Harga = 0,
                     Diskon = 0,
                     TaxRupiah = 0,
-                    SubTotal = 0
+                    SubTotal = 0,
                 }
             };
         }

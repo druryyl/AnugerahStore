@@ -73,6 +73,7 @@
             this.BPKasRibbon = new System.Windows.Forms.RibbonPanel();
             this.MutasiKasiButton = new System.Windows.Forms.RibbonButton();
             this.LaporanBPKasButton = new System.Windows.Forms.RibbonButton();
+            this.OrderJualButton = new System.Windows.Forms.RibbonButton();
             this.SuspendLayout();
             // 
             // ribbon1
@@ -175,6 +176,7 @@
             // 
             // SalesRibbonPanel
             // 
+            this.SalesRibbonPanel.Items.Add(this.OrderJualButton);
             this.SalesRibbonPanel.Items.Add(this.SellingButton);
             this.SalesRibbonPanel.Items.Add(this.LaporanPenjualanButton);
             this.SalesRibbonPanel.Items.Add(this.ribbonSeparator1);
@@ -189,7 +191,7 @@
             this.SellingButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("SellingButton.LargeImage")));
             this.SellingButton.Name = "SellingButton";
             this.SellingButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("SellingButton.SmallImage")));
-            this.SellingButton.Text = "Selling";
+            this.SellingButton.Text = "Penjualan";
             this.SellingButton.Click += new System.EventHandler(this.SellingButton_Click);
             // 
             // LaporanPenjualanButton
@@ -471,6 +473,14 @@
             this.LaporanBPKasButton.Text = "Laporan Kas";
             this.LaporanBPKasButton.Click += new System.EventHandler(this.LaporanBPKasButton_Click);
             // 
+            // OrderJualButton
+            // 
+            this.OrderJualButton.Image = ((System.Drawing.Image)(resources.GetObject("OrderJualButton.Image")));
+            this.OrderJualButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("OrderJualButton.LargeImage")));
+            this.OrderJualButton.Name = "OrderJualButton";
+            this.OrderJualButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("OrderJualButton.SmallImage")));
+            this.OrderJualButton.Text = "Order Jual";
+            // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -536,6 +546,7 @@
         private System.Windows.Forms.RibbonButton ribbonButton2;
         private System.Windows.Forms.RibbonButton RepackButton;
         private System.Windows.Forms.RibbonButton MutasiKasiButton;
+        private System.Windows.Forms.RibbonButton OrderJualButton;
     }
 }
 
