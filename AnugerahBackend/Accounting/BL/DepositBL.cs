@@ -20,8 +20,7 @@ namespace AnugerahBackend.Accounting.BL
         void Delete(string id);
         DepositModel GetData(string id);
         IEnumerable<DepositModel> ListData(string tgl1, string tgl2);
-        string ListBrgString(IEnumerable<DepositDetilModel> listBrg,
-            decimal estimasiBiayaKirim);
+        string ListBrgString(DepositModel model);
     }
     public class DepositBL : IDepositBL
     {
@@ -172,12 +171,11 @@ namespace AnugerahBackend.Accounting.BL
             return result;
         }
 
-        public string ListBrgString(IEnumerable<DepositDetilModel> listBrg,
-            decimal estimasiBiayaKirim)
+        public string ListBrgString(DepositModel model)
         {
-            if (listBrg == null) return "";
+            if (model.ListBrg == null) return "";
             string result = "";
-            foreach(var item in listBrg)
+            foreach(var item in model.ListBrg)
             {
                 var brg = _brgBL.GetData(item.BrgID);
                 result += brg.BrgName;
@@ -187,12 +185,12 @@ namespace AnugerahBackend.Accounting.BL
                 result += Environment.NewLine;
             }
 
-            if(estimasiBiayaKirim != 0)
+            if(model.NilaiBiayaKirim != 0)
             {
                 result += "Estimasi Biaya Kirim";
                 result += Environment.NewLine;
                 result += string.Format("    {0}x  {1}",
-                    1, estimasiBiayaKirim.ToString("N0"));
+                    1, model.NilaiBiayaKirim.ToString("N0"));
                 result += Environment.NewLine;
             }
 

@@ -34,10 +34,12 @@ namespace AnugerahBackend.Accounting.Dal
                 INSERT INTO
                     Deposit (
                         DepositID, Tgl, Jam, PihakKeduaID,
-                        Keterangan, JenisBayarID, NilaiDeposit) 
+                        BuyerName, Keterangan, JenisBayarID, 
+                        NilaiBiayaKirim, NilaiDeposit) 
                 VALUES (
                         @DepositID, @Tgl, @Jam, @PihakKeduaID,
-                        @Keterangan, @JenisBayarID, @NilaiDeposit) ";
+                        @BuyerName, @Keterangan, @JenisBayarID, 
+                        @NilaiBiayaKirim, @NilaiDeposit) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql,conn))
             {
@@ -45,8 +47,12 @@ namespace AnugerahBackend.Accounting.Dal
                 cmd.AddParam("@Tgl", model.Tgl.ToTglYMD());
                 cmd.AddParam("@Jam", model.Jam);
                 cmd.AddParam("@PihakKeduaID", model.PihakKeduaID);
+                cmd.AddParam("@BuyerName", model.BuyerName);
+
                 cmd.AddParam("@Keterangan", model.Keterangan);
                 cmd.AddParam("@JenisBayarID", model.JenisBayarID);
+
+                cmd.AddParam("@NilaiBiayaKirim", model.NilaiBiayaKirim);
                 cmd.AddParam("@NilaiDeposit", model.NilaiDeposit);
                 conn.Open();
                 cmd.ExecuteNonQuery();
@@ -62,8 +68,10 @@ namespace AnugerahBackend.Accounting.Dal
                     Tgl = @Tgl, 
                     Jam = @Jam, 
                     PihakKeduaID = @PihakKeduaID,
+                    BuyerName = @BuyerName,
                     Keterangan = @Keterangan, 
                     JenisBayarID = @JenisBayarID, 
+                    NilaiBiayaKirim = @NilaiBiayaKirim, 
                     NilaiDeposit = @NilaiDeposit 
                 WHERE
                     DepositID = @DepositID ";
@@ -75,8 +83,12 @@ namespace AnugerahBackend.Accounting.Dal
                 cmd.AddParam("@Tgl", model.Tgl.ToTglYMD());
                 cmd.AddParam("@Jam", model.Jam);
                 cmd.AddParam("@PihakKeduaID", model.PihakKeduaID);
+                cmd.AddParam("@BuyerName", model.BuyerName);
+
                 cmd.AddParam("@Keterangan", model.Keterangan);
                 cmd.AddParam("@JenisBayarID", model.JenisBayarID);
+
+                cmd.AddParam("@NilaiBiayaKirim", model.NilaiBiayaKirim);
                 cmd.AddParam("@NilaiDeposit", model.NilaiDeposit);
                 conn.Open();
                 cmd.ExecuteNonQuery();
@@ -106,7 +118,8 @@ namespace AnugerahBackend.Accounting.Dal
             var sSql = @"
                 SELECT
                     aa.DepositID, aa.Tgl, aa.Jam, aa.PihakKeduaID,
-                    aa.Keterangan, aa.JenisBayarID, aa.NilaiDeposit,
+                    aa.BuyerName, aa.Keterangan, aa.JenisBayarID, 
+                    aa.NilaiBiayaKirim, aa.NilaiDeposit,
                     ISNULL(bb.PihakKeduaName, '') PihakKeduaName,
                     ISNULL(cc.JenisBayarName, '') JenisBayarName,
                     ISNULL(cc.JenisKasID, '') JenisKasID,
@@ -134,11 +147,14 @@ namespace AnugerahBackend.Accounting.Dal
                         Jam = dr["Jam"].ToString(),
                         PihakKeduaID = dr["PihakKeduaID"].ToString(),
                         PihakKeduaName = dr["PihakKeduaName"].ToString(),
+                        BuyerName = dr["BuyerName"].ToString(),
+                        
                         Keterangan = dr["Keterangan"].ToString(),
                         JenisBayarID = dr["JenisBayarID"].ToString(),
                         JenisBayarName = dr["JenisBayarName"].ToString(),
                         JenisKasID = dr["JenisKasID"].ToString(),
                         JenisKasName = dr["JenisKasName"].ToString(),
+                        NilaiBiayaKirim = Convert.ToDecimal(dr["NilaiBiayaKirim"]),
                         NilaiDeposit = Convert.ToDecimal(dr["NilaiDeposit"]),
                     };
                 }
@@ -153,7 +169,8 @@ namespace AnugerahBackend.Accounting.Dal
             var sSql = @"
                 SELECT
                     aa.DepositID, aa.Tgl, aa.Jam, aa.PihakKeduaID,
-                    aa.Keterangan, aa.JenisBayarID, aa.NilaiDeposit,
+                    aa.BuyerName, aa.Keterangan, aa.JenisBayarID, 
+                    aa.NilaiBiayaKirim, aa.NilaiDeposit,
                     ISNULL(bb.PihakKeduaName, '') PihakKeduaName,
                     ISNULL(cc.JenisBayarName, '') JenisBayarName,
                     ISNULL(cc.JenisKasID, '') JenisKasID,
@@ -184,11 +201,13 @@ namespace AnugerahBackend.Accounting.Dal
                             Jam = dr["Jam"].ToString(),
                             PihakKeduaID = dr["PihakKeduaID"].ToString(),
                             PihakKeduaName = dr["PihakKeduaName"].ToString(),
+                            BuyerName = dr["BuyerName"].ToString(),
                             Keterangan = dr["Keterangan"].ToString(),
                             JenisBayarID = dr["JenisBayarID"].ToString(),
                             JenisBayarName = dr["JenisBayarName"].ToString(),
                             JenisKasID = dr["JenisKasID"].ToString(),
                             JenisKasName = dr["JenisKasName"].ToString(),
+                            NilaiBiayaKirim = Convert.ToDecimal(dr["NilaiBiayaKirim"]),
                             NilaiDeposit = Convert.ToDecimal(dr["NilaiDeposit"]),
                         };
                         result.Add(item);

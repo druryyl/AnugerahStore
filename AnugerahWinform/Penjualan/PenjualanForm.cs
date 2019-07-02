@@ -742,23 +742,27 @@ namespace AnugerahWinform.Penjualan
                 listBrg.Add(depositDetil);
             }
 
-            //  ambil jenis bayar
-            if (_listBayarDetil.Count() != 1)
+            var jenisBayarID = "";
+            if (_listBayarDetil != null)
             {
-                MessageBox.Show("Jenis Pembayaran Deposit invalid");
-                return;
+                jenisBayarID = _listBayarDetil.FirstOrDefault().JenisBayarID;
+            }
+            var pihakKeduaID = "";
+            if(CustomerComboBox.SelectedValue != null)
+            {
+                pihakKeduaID = CustomerComboBox.SelectedValue.ToString();
             }
 
-            var jenisBayarID = _listBayarDetil.FirstOrDefault().JenisBayarID;
-            var nilaiDeposit = _listBayarDetil.Sum(x => x.NilaiBayar);
 
             //  save deposit
             var deposit = new DepositModel
             {
                 Tgl = TanggalDateTime.Value.ToString("dd-MM-yyyy"),
                 Jam = JamTextBox.Text,
-                PihakKeduaID = CustomerComboBox.SelectedValue.ToString(),
+                PihakKeduaID = pihakKeduaID,
+                BuyerName = BuyerNameTextBox.Text,
                 JenisBayarID = jenisBayarID,
+                NilaiBiayaKirim = BiayaKirimNumText.Value,
                 NilaiDeposit = GrandTotalNumText.Value,
                 ListBrg = listBrg
             };
@@ -770,7 +774,6 @@ namespace AnugerahWinform.Penjualan
             };
             form.Show();
             ClearForm();
-
         }
     }
 }

@@ -138,7 +138,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="AnugerahSPS.publish.xml" />
-    <None Include="AnugerahTest.publish.xml" />
     <None Include="OtherScript\JenisBayarDataSeed.sql" />
     <None Include="OtherScript\JenisBiayaDataSeed.sql" />
     <None Include="OtherScript\BrgDataSeed.sql" />

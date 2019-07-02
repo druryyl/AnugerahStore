@@ -51,11 +51,9 @@ namespace AnugerahWinform.Accounting
 
             TglText.Value = deposit.Tgl.ToDate();
             JamText.Text = deposit.Jam;
-            decimal estimasiBiayaKirim = deposit.NilaiDeposit -
-                deposit.ListBrg.Sum(x => x.SubTotal);
-            KeteranganText.Text = _depositBL
-                .ListBrgString(deposit.ListBrg, estimasiBiayaKirim);
+            KeteranganText.Text = _depositBL.ListBrgString(deposit);
             PihakKeduaCombo.SelectedValue = deposit.PihakKeduaID;
+            BuyerNameTextBox.Text = deposit.BuyerName;
             JenisBayarCombo.SelectedValue = deposit.JenisBayarID;
             NilIText.Value = deposit.NilaiDeposit;
         }
@@ -120,12 +118,30 @@ namespace AnugerahWinform.Accounting
 
         private void Save()
         {
+            ErrorProvider1.Clear();
+            if (PihakKeduaCombo.SelectedValue == null)
+            {
+                ErrorProvider1.SetError(LabelPihakKedua, "Pilih Pihak Kedua");
+                return;
+            }
+            if (JenisBayarCombo.SelectedValue == null)
+            {
+                ErrorProvider1.SetError(JenisBayarLabel, "Pilih Jenis Bayar");
+                return;
+            }
+            if(BuyerNameTextBox.Text == "")
+            {
+                ErrorProvider1.SetError(BuyerNameLabel, "Isi Contact Person Customer");
+                return;
+            }
+
             var deposit = new DepositModel
             {
                 DepositID = BiayaIDText.Text,
                 Tgl = TglText.Value.ToString("dd-MM-yyyy"),
                 Jam = JamText.Text,
                 PihakKeduaID = PihakKeduaCombo.SelectedValue.ToString(),
+                BuyerName = BuyerNameTextBox.Text,
                 JenisBayarID = JenisBayarCombo.SelectedValue.ToString(),
                 Keterangan = KeteranganText.Text,
                 NilaiDeposit = NilIText.Value
@@ -138,6 +154,8 @@ namespace AnugerahWinform.Accounting
                 _bpHutangBL.GenHutang(result);
                 trans.Complete();
             }
+            ClearForm();
+            TglText.Focus();
         }
 
         private void ClearForm()
@@ -149,6 +167,8 @@ namespace AnugerahWinform.Accounting
             JenisBayarCombo.SelectedIndex = -1;
             KeteranganText.Clear();
             NilIText.Value = 0;
+
+            ErrorProvider1.Clear();
         }
 
         private void NewButton_Click(object sender, EventArgs e)
@@ -159,8 +179,7 @@ namespace AnugerahWinform.Accounting
         private void SaveButton_Click(object sender, EventArgs e)
         {
             Save();
-            ClearForm();
-            TglText.Focus();
+
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
@@ -199,6 +218,7 @@ namespace AnugerahWinform.Accounting
             JamText.Text = deposit.Jam;
             KeteranganText.Text = deposit.Keterangan;
             PihakKeduaCombo.SelectedValue = deposit.PihakKeduaID;
+            BuyerNameTextBox.Text = deposit.BuyerName;
             JenisBayarCombo.SelectedValue = deposit.JenisBayarID;
             NilIText.Value = deposit.NilaiDeposit;
         }
