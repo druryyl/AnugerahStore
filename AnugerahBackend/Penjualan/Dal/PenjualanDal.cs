@@ -145,12 +145,14 @@ namespace AnugerahBackend.Penjualan.Dal
             PenjualanModel result = null;
             var sSql = @"
                 SELECT
-                    PenjualanID, TglPenjualan, JamPenjualan, BuyerName,
-                    CustomerID, Alamat, NoTelp, Catatan, IsBayarDeposit, DepositID, 
-                    NilaiBiayaKirim, NilaiTotal, NilaiDiskonLain, NilaiDeposit, 
-                    NilaiBiayaLain, NilaiGrandTotal, NilaiBayar, NilaiKembali
+                    aa.PenjualanID, aa.TglPenjualan, aa.JamPenjualan, aa.BuyerName,
+                    aa.CustomerID, aa.Alamat, aa.NoTelp, aa.Catatan, aa.IsBayarDeposit, aa.DepositID, 
+                    aa.NilaiBiayaKirim, aa.NilaiTotal, aa.NilaiDiskonLain, aa.NilaiDeposit, 
+                    aa.NilaiBiayaLain, aa.NilaiGrandTotal, aa.NilaiBayar, aa.NilaiKembali,
+                    ISNULL(bb.CustomerName, '') CustomerName
                 FROM
-                    Penjualan
+                    Penjualan aa
+                    LEFT JOIN Customer bb ON aa.CustomerID = bb.CustomerID
                 WHERE
                     PenjualanID = @PenjualanID ";
             using (var conn = new SqlConnection(_connString))
@@ -171,6 +173,7 @@ namespace AnugerahBackend.Penjualan.Dal
 
                             BuyerName = dr["BuyerName"].ToString(),
                             CustomerID = dr["CustomerID"].ToString(),
+                            CustomerName = dr["CustomerName"].ToString(),
                             Alamat = dr["Alamat"].ToString(),
                             NoTelp = dr["NoTelp"].ToString(),
                             Catatan = dr["Catatan"].ToString(),
@@ -200,13 +203,15 @@ namespace AnugerahBackend.Penjualan.Dal
             List<PenjualanModel> result = null;
             var sSql = @"
                 SELECT
-                    PenjualanID, TglPenjualan, JamPenjualan, BuyerName,
-                    CustomerID, Alamat, NoTelp, Catatan, 
-                    IsBayarDeposit, DepositID, NilaiDeposit, 
-                    NilaiBiayaKirim, NilaiTotal, NilaiDiskonLain,
-                    NilaiBiayaLain, NilaiGrandTotal, NilaiBayar, NilaiKembali
+                    aa.PenjualanID, aa.TglPenjualan, aa.JamPenjualan, aa.BuyerName,
+                    aa.CustomerID, aa.Alamat, aa.NoTelp, aa.Catatan, 
+                    aa.IsBayarDeposit, aa.DepositID, aa.NilaiDeposit, 
+                    aa.NilaiBiayaKirim, aa.NilaiTotal, aa.NilaiDiskonLain,
+                    aa.NilaiBiayaLain, aa.NilaiGrandTotal, aa.NilaiBayar, aa.NilaiKembali,
+                    ISNULL(bb.CustomerName, '') CustomerName
                 FROM
-                    Penjualan
+                    Penjualan aa
+                    LEFT JOIN Customer bb ON aa.CustomerID = bb.CustomerID
                 WHERE
                     TglPenjualan BETWEEN @Tgl1 AND @Tgl2 ";
             using (var conn = new SqlConnection(_connString))
@@ -230,6 +235,7 @@ namespace AnugerahBackend.Penjualan.Dal
 
                                 BuyerName = dr["BuyerName"].ToString(),
                                 CustomerID = dr["CustomerID"].ToString(),
+                                CustomerName = dr["CustomerName"].ToString(),
                                 Alamat = dr["Alamat"].ToString(),
                                 NoTelp = dr["NoTelp"].ToString(),
                                 Catatan = dr["Catatan"].ToString(),
