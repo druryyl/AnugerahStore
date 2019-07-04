@@ -167,9 +167,8 @@ namespace AnugerahWinform.PrintDoc
             sw.WriteLine(" ");
             sw.WriteLine("Kasir: DIAS ");
             sw.WriteLine(" ");
-            sw.WriteLine("Trimakasih sudah belanja.");
-            sw.WriteLine("Brg sudah dibeli tdk dapat");
-            sw.WriteLine("dikembalikan.");
+            sw.WriteLine("Trimakasih sudah belanja");
+            sw.WriteLine("di tempat kami.");
 
 
 
