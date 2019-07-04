@@ -30,7 +30,7 @@ namespace AnugerahWinform.PrintDoc
         }
         public void Print()
         {
-            CreateTextFile();
+            CreateTextFileTMU();
 
             //  print textfile
             reader = new StreamReader(_fileName);
@@ -107,6 +107,79 @@ namespace AnugerahWinform.PrintDoc
 
             sw.Close();
         }
+        private void CreateTextFileTMU()
+        {
+            var sw = new StreamWriter(_fileName);
+            //  header
+            //           "123456789 123456789 1234567"
+            sw.WriteLine("       ANUGERAH SPS        ");
+            sw.WriteLine("Jl.Kol.Sugiyono 65 - Jogja");
+            sw.WriteLine("Telp/WA 0811-268-1605");
+            sw.WriteLine(" ");
+            if (_penjualan.CustomerName.Trim() != "")
+            {
+                sw.WriteLine("Yth." + _penjualan.CustomerName);
+                if (_penjualan.BuyerName.Trim() != "")
+                    sw.WriteLine("(a/n " + _penjualan.BuyerName);
+            }
+            else
+            {
+                if (_penjualan.BuyerName.Trim() != "")
+                    sw.WriteLine("(Yth. " + _penjualan.BuyerName);
+            }
+            sw.WriteLine(" ");
+            sw.WriteLine(_penjualan.PenjualanID + " / " + _penjualan.TglPenjualan);
+            sw.WriteLine("Item Pembelian");
+            sw.WriteLine("---------------------------");
+            foreach (var item in _penjualan.ListBrg.OrderBy(x => x.NoUrut))
+            {
+                var no = (item.NoUrut + 1).ToString().PadLeft(2, ' ');
+                var namaBrg = item.BrgName.PadRight(27, ' ');
+                //  tentukan format qty; bulat atau pecaha
+                decimal xsisa = item.Qty % 1;
+                string qty;
+                if(xsisa !=0)
+                    qty = item.Qty.ToString().PadLeft(3, ' ');
+                else
+                    qty = item.Qty.ToString("N0").PadLeft(3, ' ');
+
+                var harga = item.Harga.ToString("N0").PadLeft(8);
+                var diskon = item.Diskon.ToString("N0").PadLeft(9);
+                var hrgDiskon = (item.Harga - item.Diskon).ToString("N0").PadLeft(8);
+                var subTotal = item.SubTotal.ToString("N0").PadLeft(9);
+                sw.WriteLine(namaBrg);
+                var lineStr = string.Format("  {0}x {1} = {2}",
+                    qty, hrgDiskon, subTotal);
+                sw.WriteLine(lineStr);
+            }
+            sw.WriteLine("---------------------------");
+            var nilaiTotal = "Total   : " + _penjualan.NilaiTotal.ToString("N0").PadLeft(11, ' ');
+            var nilaiDiskn = "Diskon  : " + _penjualan.NilaiDiskonLain.ToString("N0").PadLeft(11, ' ');
+            var nilaiBiaya = "Biaya   : " + _penjualan.NilaiBiayaLain.ToString("N0").PadLeft(11, ' ');
+            var nilaiGrand = "GrandTot: " + _penjualan.NilaiGrandTotal.ToString("N0").PadLeft(11, ' ');
+
+            sw.WriteLine(nilaiTotal.PadLeft(27));
+            sw.WriteLine(nilaiDiskn.PadLeft(27));
+            sw.WriteLine(nilaiBiaya.PadLeft(27));
+            sw.WriteLine(nilaiGrand.PadLeft(27));
+            sw.WriteLine(" ");
+            sw.WriteLine("Hormat Kami,");
+            sw.WriteLine(" ");
+            sw.WriteLine("Kasir: DIAS ");
+            sw.WriteLine(" ");
+            sw.WriteLine("Trimakasih sudah belanja.");
+            sw.WriteLine("Brg sudah dibeli tdk dapat");
+            sw.WriteLine("dikembalikan.");
+
+
+
+
+
+
+
+            sw.Close();
+        }
+
         private void PrintTextFileHandler(object sender, PrintPageEventArgs ppeArgs)
         {
             //Get the Graphics object  

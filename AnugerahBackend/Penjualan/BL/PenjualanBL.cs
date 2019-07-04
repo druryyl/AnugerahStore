@@ -36,6 +36,7 @@ namespace AnugerahBackend.Penjualan.BL
         private IParameterNoBL _paramNoBL;
         private IBrgBL _brgBL;
         private IJenisBayarDal _jenisBayarDal;
+        private ICustomerDal _customerDal;
 
         public PenjualanBL()
         {
@@ -45,6 +46,7 @@ namespace AnugerahBackend.Penjualan.BL
             _paramNoBL = new ParameterNoBL();
             _brgBL = new BrgBL();
             _jenisBayarDal = new JenisBayarDal();
+            _customerDal = new CustomerDal();
             SearchFilter = new SearchFilter
             {
                 IsDate = true,
@@ -55,12 +57,13 @@ namespace AnugerahBackend.Penjualan.BL
         }
 
         public PenjualanBL(IPenjualanDal injPenjualanDal, IPenjualan2Dal injPenjualan2Dal,
-            IBrgBL injBrgBL, IParameterNoBL injParamNoBL)
+            IBrgBL injBrgBL, IParameterNoBL injParamNoBL, ICustomerDal injCustomerDal)
         {
             _penjualanDal = injPenjualanDal;
             _penjualan2Dal = injPenjualan2Dal;
             _paramNoBL = injParamNoBL;
             _brgBL = injBrgBL;
+            _customerDal = injCustomerDal;
         }
 
         public PenjualanModel Save(PenjualanModel penjualan)
@@ -165,6 +168,13 @@ namespace AnugerahBackend.Penjualan.BL
             {
                 throw new ArgumentException("Invalid Jam.Penjualan");
             }
+
+            if (penjualan.CustomerID != "")
+            {
+                var customer = _customerDal.GetData(penjualan.CustomerID);
+                penjualan.CustomerName = customer.CustomerName;
+            }
+
             //  cek BrgID
             foreach (var item in penjualan.ListBrg)
             {
