@@ -122,7 +122,7 @@ namespace AnugerahWinform.PrintDoc
             {
                 sw.WriteLine("Yth." + _penjualan.CustomerName);
                 if (_penjualan.BuyerName.Trim() != "")
-                    sw.WriteLine("(a/n " + _penjualan.BuyerName);
+                    sw.WriteLine("(a/n " + _penjualan.BuyerName + ")");
             }
             else
             {
