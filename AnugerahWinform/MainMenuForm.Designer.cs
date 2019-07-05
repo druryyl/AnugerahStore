@@ -39,6 +39,7 @@
             this.LaporanTerimaBrgButton = new System.Windows.Forms.RibbonButton();
             this.ribbonButton2 = new System.Windows.Forms.RibbonButton();
             this.SalesRibbonPanel = new System.Windows.Forms.RibbonPanel();
+            this.OrderJualButton = new System.Windows.Forms.RibbonButton();
             this.SellingButton = new System.Windows.Forms.RibbonButton();
             this.LaporanPenjualanButton = new System.Windows.Forms.RibbonButton();
             this.ribbonSeparator1 = new System.Windows.Forms.RibbonSeparator();
@@ -73,7 +74,6 @@
             this.BPKasRibbon = new System.Windows.Forms.RibbonPanel();
             this.MutasiKasiButton = new System.Windows.Forms.RibbonButton();
             this.LaporanBPKasButton = new System.Windows.Forms.RibbonButton();
-            this.OrderJualButton = new System.Windows.Forms.RibbonButton();
             this.SuspendLayout();
             // 
             // ribbon1
@@ -184,6 +184,14 @@
             this.SalesRibbonPanel.Items.Add(this.CustomerButton);
             this.SalesRibbonPanel.Name = "SalesRibbonPanel";
             this.SalesRibbonPanel.Text = "Sales";
+            // 
+            // OrderJualButton
+            // 
+            this.OrderJualButton.Image = ((System.Drawing.Image)(resources.GetObject("OrderJualButton.Image")));
+            this.OrderJualButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("OrderJualButton.LargeImage")));
+            this.OrderJualButton.Name = "OrderJualButton";
+            this.OrderJualButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("OrderJualButton.SmallImage")));
+            this.OrderJualButton.Text = "Order Jual";
             // 
             // SellingButton
             // 
@@ -473,18 +481,11 @@
             this.LaporanBPKasButton.Text = "Laporan Kas";
             this.LaporanBPKasButton.Click += new System.EventHandler(this.LaporanBPKasButton_Click);
             // 
-            // OrderJualButton
-            // 
-            this.OrderJualButton.Image = ((System.Drawing.Image)(resources.GetObject("OrderJualButton.Image")));
-            this.OrderJualButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("OrderJualButton.LargeImage")));
-            this.OrderJualButton.Name = "OrderJualButton";
-            this.OrderJualButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("OrderJualButton.SmallImage")));
-            this.OrderJualButton.Text = "Order Jual";
-            // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::AnugerahWinform.Properties.Resources.background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(1370, 731);
             this.Controls.Add(this.ribbon1);

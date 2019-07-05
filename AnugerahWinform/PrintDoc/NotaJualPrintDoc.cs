@@ -116,16 +116,18 @@ namespace AnugerahWinform.PrintDoc
             sw.WriteLine("Jl.Kol.Sugiyono 65 - Jogja");
             sw.WriteLine("Telp/WA 0811-268-1605");
             sw.WriteLine(" ");
+            if (_penjualan.CustomerName == null)
+                _penjualan.CustomerName = "";
             if (_penjualan.CustomerName.Trim() != "")
             {
                 sw.WriteLine("Yth." + _penjualan.CustomerName);
                 if (_penjualan.BuyerName.Trim() != "")
-                    sw.WriteLine("(a/n " + _penjualan.BuyerName);
+                    sw.WriteLine("(a/n " + _penjualan.BuyerName + ")");
             }
             else
             {
                 if (_penjualan.BuyerName.Trim() != "")
-                    sw.WriteLine("(Yth. " + _penjualan.BuyerName);
+                    sw.WriteLine("Yth. " + _penjualan.BuyerName);
             }
             sw.WriteLine(" ");
             sw.WriteLine(_penjualan.PenjualanID + " / " + _penjualan.TglPenjualan);
