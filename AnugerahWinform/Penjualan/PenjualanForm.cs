@@ -601,6 +601,14 @@ namespace AnugerahWinform.Penjualan
 
             if(MessageBox.Show("Cetak Nota ?","Penjualan", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
+                
+                //  ubah nama barang menjadi nama brg versi pendek (utk print)
+                foreach(var item in result.ListBrg)
+                {
+                    var brg = _brgBL.GetData(item.BrgID);
+                    if(brg.BrgNamePrint.Trim() != "")
+                        item.BrgName = brg.BrgNamePrint;
+                }
                 var printDoc = new NotaJualPrintDoc(result);
                 printDoc.Print();
             }

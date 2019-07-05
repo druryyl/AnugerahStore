@@ -48,11 +48,11 @@ namespace AnugerahBackend.StokBarang.Dal
             var sSql = @"
                 INSERT INTO
                     Brg (
-                        BrgID, BrgName, Keterangan,
+                        BrgID, BrgName, BrgNamePrint, Keterangan,
                         SubJenisBrgID, MerkID, ColorID,
                         Kemasan)
                 VALUES (
-                        @BrgID, @BrgName, @Keterangan,
+                        @BrgID, @BrgName, @BrgNamePrint, @Keterangan,
                         @SubJenisBrgID, @MerkID, @ColorID, 
                         @Kemasan) ";
             using (var conn = new SqlConnection(_connString))
@@ -60,6 +60,7 @@ namespace AnugerahBackend.StokBarang.Dal
             {
                 cmd.AddParam("@BrgID", brg.BrgID);
                 cmd.AddParam("@BrgName", brg.BrgName);
+                cmd.AddParam("@BrgNamePrint", brg.BrgNamePrint);
                 cmd.AddParam("@Keterangan", brg.Keterangan);
                 cmd.AddParam("@SubJenisBrgID", brg.SubJenisBrgID);
                 cmd.AddParam("@MerkID", brg.MerkID);
@@ -76,6 +77,7 @@ namespace AnugerahBackend.StokBarang.Dal
                     Brg 
                 SET
                     BrgName = @BrgName,
+                    BrgNamePrint = @BrgNamePrint,
                     Keterangan = @Keterangan,
                     SubJenisBrgID = @SubJenisBrgID,
                     MerkID = @MerkID,
@@ -89,6 +91,7 @@ namespace AnugerahBackend.StokBarang.Dal
             {
                 cmd.AddParam("@BrgID", brg.BrgID);
                 cmd.AddParam("@BrgName", brg.BrgName);
+                cmd.AddParam("@BrgNamePrint", brg.BrgName);
                 cmd.AddParam("@Keterangan", brg.Keterangan);
                 cmd.AddParam("@SubJenisBrgID", brg.SubJenisBrgID);
                 cmd.AddParam("@MerkID", brg.MerkID);
@@ -119,7 +122,7 @@ namespace AnugerahBackend.StokBarang.Dal
             BrgModel result = null;
             var sSql = @"
                 SELECT
-                    aa.BrgName, aa.Keterangan,
+                    aa.BrgName, aa. BrgNamePrint, aa.Keterangan,
                     aa.SubJenisBrgID, aa.MerkID, aa.ColorID,
                     aa.Kemasan, 
                     aa.CreateTimestamp, aa.UpdateTimestamp,
@@ -145,6 +148,7 @@ namespace AnugerahBackend.StokBarang.Dal
                         {
                             BrgID = id,
                             BrgName = dr["BrgName"].ToString(),
+                            BrgNamePrint = dr["BrgNamePrint"].ToString(),
                             Keterangan = dr["Keterangan"].ToString(),
                             SubJenisBrgID = dr["SubJenisBrgID"].ToString(),
                             SubJenisBrgName = dr["SubJenisBrgName"].ToString(),
@@ -167,7 +171,7 @@ namespace AnugerahBackend.StokBarang.Dal
             List<BrgModel> result = null;
             var sSql = @"
                 SELECT
-                    aa.BrgID, aa.BrgName, aa.Keterangan,
+                    aa.BrgID, aa.BrgName, aa.BrgNamePrint, aa.Keterangan,
                     aa.SubJenisBrgID, aa.MerkID, aa.ColorID,
                     aa.Kemasan, 
                     aa.CreateTimestamp, aa.UpdateTimestamp,
@@ -223,6 +227,7 @@ namespace AnugerahBackend.StokBarang.Dal
                             {
                                 BrgID = dr["BrgID"].ToString(),
                                 BrgName = dr["BrgName"].ToString(),
+                                BrgNamePrint = dr["BrgNamePrint"].ToString(),
                                 Keterangan = dr["Keterangan"].ToString(),
                                 SubJenisBrgID = dr["SubJenisBrgID"].ToString(),
                                 SubJenisBrgName = dr["SubJenisBrgName"].ToString(),
@@ -350,7 +355,7 @@ namespace AnugerahBackend.StokBarang.Dal
             List<BrgModel> result = null;
             var sSql = @"
                 SELECT
-                    aa.BrgID, aa.BrgName, aa.Keterangan,
+                    aa.BrgID, aa.BrgName, aa.BrgNamePrint, aa.Keterangan,
                     aa.SubJenisBrgID, aa.MerkID, aa.ColorID,
                     aa.Kemasan, 
                     aa.CreateTimestamp, aa.UpdateTimestamp,
@@ -410,6 +415,7 @@ namespace AnugerahBackend.StokBarang.Dal
                             {
                                 BrgID = dr["BrgID"].ToString(),
                                 BrgName = dr["BrgName"].ToString(),
+                                BrgNamePrint = dr["BrgNamePrint"].ToString(),
                                 Keterangan = dr["Keterangan"].ToString(),
                                 SubJenisBrgID = dr["SubJenisBrgID"].ToString(),
                                 SubJenisBrgName = dr["SubJenisBrgName"].ToString(),

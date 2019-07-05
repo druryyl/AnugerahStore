@@ -10,6 +10,7 @@ namespace AnugerahBackend.StokBarang.Model
     {
         public string BrgID { get; set; }
         public string BrgName { get; set; }
+        public string BrgNamePrint { get; set; }
         public string Keterangan { get; set; }
         public string SubJenisBrgID { get; set; }
         public string SubJenisBrgName { get; set; }
