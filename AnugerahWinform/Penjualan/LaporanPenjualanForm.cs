@@ -47,19 +47,19 @@ namespace AnugerahWinform.Penjualan
                 decimal trfBca = 0;
                 decimal edcBri = 0;
                 decimal trfBri = 0;
+                //decimal deposit = 0;
 
                 item.ListBayar = _penjualanBayarDal.ListData(item.PenjualanID);
 
-                if (item.ListBayar == null) continue;
-
-                foreach (var itemBayar in item.ListBayar)
-                {
-                    if (itemBayar.JenisBayarID == "KAS") kas += itemBayar.NilaiBayar;
-                    if (itemBayar.JenisBayarID == "ED1") edcBca += itemBayar.NilaiBayar;
-                    if (itemBayar.JenisBayarID == "TR1") trfBca += itemBayar.NilaiBayar;
-                    if (itemBayar.JenisBayarID == "ED2") edcBri += itemBayar.NilaiBayar;
-                    if (itemBayar.JenisBayarID == "TR2") trfBri += itemBayar.NilaiBayar;
-                }
+                if (item.ListBayar != null)
+                    foreach (var itemBayar in item.ListBayar)
+                    {
+                        if (itemBayar.JenisBayarID == "KAS") kas += itemBayar.NilaiBayar;
+                        if (itemBayar.JenisBayarID == "ED1") edcBca += itemBayar.NilaiBayar;
+                        if (itemBayar.JenisBayarID == "TR1") trfBca += itemBayar.NilaiBayar;
+                        if (itemBayar.JenisBayarID == "ED2") edcBri += itemBayar.NilaiBayar;
+                        if (itemBayar.JenisBayarID == "TR2") trfBri += itemBayar.NilaiBayar;
+                    }
 
                 dataSource.Add(new LaporanPenjualanModel
                 {
@@ -72,6 +72,7 @@ namespace AnugerahWinform.Penjualan
                     NilaiTrfBca = trfBca,
                     NilaiEdcBri = edcBri,
                     NilaiTrfBri = trfBri,
+                    NilaiDeposit = item.NilaiDeposit
                 });
             }
             return dataSource;
@@ -94,7 +95,8 @@ namespace AnugerahWinform.Penjualan
                     item.NilaiTrfBca,
                     item.NilaiEdcBri,
                     item.NilaiTrfBri,
-                    item.NilaiPenjualan);
+                    item.NilaiPenjualan,
+                    item.NilaiDeposit);
             }
             var totJual = listData.Sum(x => x.NilaiPenjualan);
             var totKas = listData.Sum(x => x.NilaiKas);
@@ -102,9 +104,10 @@ namespace AnugerahWinform.Penjualan
             var totTrfBca = listData.Sum(x => x.NilaiTrfBca);
             var totEdcBri = listData.Sum(x => x.NilaiEdcBri);
             var totTrfBri = listData.Sum(x => x.NilaiTrfBri);
+            var totDeposit = listData.Sum(x => x.NilaiDeposit);
 
             SaldoTable.Rows.Clear();
-            SaldoTable.Rows.Add(totKas, totEdcBca, totTrfBca, totEdcBri, totTrfBri, totJual);
+            SaldoTable.Rows.Add(totKas, totEdcBca, totTrfBca, totEdcBri, totTrfBri, totJual, totDeposit);
         }
 
         private void SearchButton_Click(object sender, EventArgs e)
@@ -132,5 +135,6 @@ namespace AnugerahWinform.Penjualan
         public decimal NilaiTrfBca { get; set; }
         public decimal NilaiEdcBri { get; set; }
         public decimal NilaiTrfBri { get; set; }
+        public decimal NilaiDeposit { get; set; }
     }
 }
