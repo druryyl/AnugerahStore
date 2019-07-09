@@ -210,6 +210,14 @@ namespace AnugerahWinform.Penjualan
             DetilPenjualanTable.Rows.Clear();
             _listBayarDetil = null;
 
+            DepositIDText.Clear();
+            PihakKeduaNameText.Clear();
+            KeteranganText.Clear();
+            NilaiDepositText.Value = 0;
+            TglDepositText.Value = DateTime.Now;
+            JamDepositText.Text = "00:00:00";
+            DepositCheckBox.Checked = false;
+
             AddRow();
         }
         private void LoadCustomerComboBox()
@@ -699,8 +707,32 @@ namespace AnugerahWinform.Penjualan
             TglDepositText.Text = bpHutang.Tgl;
             JamDepositText.Text = bpHutang.Jam;
             PihakKeduaNameText.Text = bpHutang.PihakKeduaName;
+            CustomerComboBox.SelectedValue = bpHutang.PihakKeduaID;
             NilaiDepositText.Value = bpHutang.NilaiHutang - bpHutang.NilaiLunas;
             KeteranganText.Text = bpHutang.Keterangan;
+
+            //  jika ada detil barang, munculkan digrid
+            var deposit = _depositBL.GetData(bpHutang.BPHutangID);
+            if (deposit == null)
+                return;
+            if (deposit.ListBrg == null)
+                return;
+            BuyerNameTextBox.Text = deposit.BuyerName;
+            DetilPenjualanTable.Rows.Clear();
+            foreach (var item in deposit.ListBrg)
+            {
+                var brg = _brgBL.GetData(item.BrgID);
+                DetilPenjualanTable.Rows.Add(
+                    item.BrgID,
+                    brg.BrgName,
+                    item.Qty,
+                    item.Harga,
+                    item.Diskon,
+                    item.SubTotal, 
+                    ""
+                    );
+            }
+            ReCalcTotal();
         }
 
         private void BrgGrid_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)

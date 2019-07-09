@@ -30,7 +30,7 @@ namespace AnugerahBackend.Accounting.Dal
         {
             var sSql = @"
                 INSERT INTO
-                    DepositDeilt (
+                    DepositDetil (
                         DepositID, BrgID, Qty, Harga, SubTotal)
                 VALUES (
                         @DepositID, @BrgID, @Qty, @Harga, @SubTotal) ";

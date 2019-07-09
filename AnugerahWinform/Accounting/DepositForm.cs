@@ -24,6 +24,8 @@ namespace AnugerahWinform.Accounting
         private IBPKasBL _bpKasBL;
         private IBPHutangBL _bpHutangBL;
 
+        private IEnumerable<DepositDetilModel> _listBrg = null;
+
 
         public DepositForm(DepositModel deposit)
         {
@@ -56,6 +58,7 @@ namespace AnugerahWinform.Accounting
             BuyerNameTextBox.Text = deposit.BuyerName;
             JenisBayarCombo.SelectedValue = deposit.JenisBayarID;
             NilIText.Value = deposit.NilaiDeposit;
+            _listBrg = deposit.ListBrg;
         }
 
         private void LoadPihakKeduaCombo()
@@ -144,7 +147,8 @@ namespace AnugerahWinform.Accounting
                 BuyerName = BuyerNameTextBox.Text,
                 JenisBayarID = JenisBayarCombo.SelectedValue.ToString(),
                 Keterangan = KeteranganText.Text,
-                NilaiDeposit = NilIText.Value
+                NilaiDeposit = NilIText.Value,
+                ListBrg = _listBrg
             };
 
             using (var trans = TransHelper.NewScope())
@@ -167,7 +171,7 @@ namespace AnugerahWinform.Accounting
             JenisBayarCombo.SelectedIndex = -1;
             KeteranganText.Clear();
             NilIText.Value = 0;
-
+            _listBrg = null;
             ErrorProvider1.Clear();
         }
 
@@ -179,7 +183,6 @@ namespace AnugerahWinform.Accounting
         private void SaveButton_Click(object sender, EventArgs e)
         {
             Save();
-
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
