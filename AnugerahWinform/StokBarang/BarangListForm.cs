@@ -358,7 +358,8 @@ namespace AnugerahWinform.StokBarang
                 ColorID = colorID.ToString(),
                 SubJenisBrgID = subJenisID.ToString(),
                 MerkID = merkID.ToString(),
-                Kemasan = kemasan
+                Kemasan = kemasan,
+                BrgNamePrint = String.Concat(BrgNameText.Text,27)
             };
 
             try
