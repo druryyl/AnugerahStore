@@ -211,7 +211,7 @@ namespace AnugerahBackend.Penjualan.BL
             if (totalBayar < penjualan.NilaiGrandTotal)
                 throw new ArgumentException("Pembayaran kurang dari Nilai Grand Total");
 
-            penjualan.NilaiKembali = penjualan.NilaiGrandTotal - totalBayar;
+            penjualan.NilaiKembali = penjualan.NilaiBayar - penjualan.NilaiGrandTotal;
             return result;
         }
         

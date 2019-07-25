@@ -155,15 +155,20 @@ namespace AnugerahWinform.PrintDoc
                 sw.WriteLine(lineStr);
             }
             sw.WriteLine("---------------------------");
-            var nilaiTotal = "Total   : " + _penjualan.NilaiTotal.ToString("N0").PadLeft(11, ' ');
-            var nilaiDiskn = "Diskon  : " + _penjualan.NilaiDiskonLain.ToString("N0").PadLeft(11, ' ');
-            var nilaiBiaya = "Biaya   : " + _penjualan.NilaiBiayaLain.ToString("N0").PadLeft(11, ' ');
+            //var nilaiTotal = "Total   : " + _penjualan.NilaiTotal.ToString("N0").PadLeft(11, ' ');
+            //var nilaiDiskn = "Diskon  : " + _penjualan.NilaiDiskonLain.ToString("N0").PadLeft(11, ' ');
+            //var nilaiBiaya = "Biaya   : " + _penjualan.NilaiBiayaLain.ToString("N0").PadLeft(11, ' ');
             var nilaiGrand = "GrandTot: " + _penjualan.NilaiGrandTotal.ToString("N0").PadLeft(11, ' ');
+            var nilaiBayar = "Bayar   : " + _penjualan.NilaiBayar.ToString("N0").PadLeft(11, ' ');
+            var nilaiKembl = "Kembali : " + _penjualan.NilaiKembali.ToString("N0").PadLeft(11, ' ');
 
-            sw.WriteLine(nilaiTotal.PadLeft(27));
-            sw.WriteLine(nilaiDiskn.PadLeft(27));
-            sw.WriteLine(nilaiBiaya.PadLeft(27));
+            //sw.WriteLine(nilaiTotal.PadLeft(27));
+            //sw.WriteLine(nilaiDiskn.PadLeft(27));
+            //sw.WriteLine(nilaiBiaya.PadLeft(27));
             sw.WriteLine(nilaiGrand.PadLeft(27));
+            sw.WriteLine(nilaiBayar.PadLeft(27));
+            sw.WriteLine(nilaiKembl.PadLeft(27));
+
             sw.WriteLine(" ");
             sw.WriteLine("Hormat Kami,");
             sw.WriteLine(" ");
