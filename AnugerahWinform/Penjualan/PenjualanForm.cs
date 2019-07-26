@@ -197,6 +197,7 @@ namespace AnugerahWinform.Penjualan
             NoTelpTextBox.Clear();
             CatatanTextBox.Clear();
             DetilPenjualanTable.Rows.Clear();
+            _listBayarDetil.Clear();
 
             BiayaKirimNumText.Value = 0;
             DiskonNumText.Value = 0;
@@ -469,6 +470,7 @@ namespace AnugerahWinform.Penjualan
             var biayaLain = BiayaLainNumText.Value ;
             var grandTotal = GrandTotalNumText.Value;
             var bayarCash = BayarCashNumText.Value;
+            var totalBayar = BayarNonCashNumText.Value + BayarCashNumText.Value;
             var kembali = KembaliNumText.Value;
 
             //--ambil data grid barang
@@ -549,7 +551,7 @@ namespace AnugerahWinform.Penjualan
                 NilaiDiskonLain = diskon,
                 NilaiBiayaLain = biayaLain,
                 NilaiGrandTotal = grandTotal,
-                NilaiBayar = bayarCash,
+                NilaiBayar = totalBayar,
                 NilaiKembali = kembali,
                 
                 ListBrg = listDetilBrg,
