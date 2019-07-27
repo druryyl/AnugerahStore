@@ -369,6 +369,13 @@ namespace AnugerahWinform.Penjualan
             if (qty <= 0) qty = 1;
             //  get harga
             var listHarga = _brgPriceBL.ListData(kodeBrg);
+            if (listHarga != null)
+            {
+                //  karena ada qty pecahan, maka jk qty terkecil = 1 -> ubah jadi 0
+                var itemHarga = listHarga.OrderBy(x => x.Qty).FirstOrDefault();
+                if (itemHarga != null) itemHarga.Qty = 0;
+            }
+
             double harga = 0;
             double diskon = 0;
             if (listHarga != null)
