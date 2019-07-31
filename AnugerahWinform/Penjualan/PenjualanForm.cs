@@ -197,7 +197,9 @@ namespace AnugerahWinform.Penjualan
             NoTelpTextBox.Clear();
             CatatanTextBox.Clear();
             DetilPenjualanTable.Rows.Clear();
-            _listBayarDetil.Clear();
+
+            if(_listBayarDetil.IsNotNull())
+                _listBayarDetil.Clear();
 
             BiayaKirimNumText.Value = 0;
             DiskonNumText.Value = 0;
@@ -668,7 +670,10 @@ namespace AnugerahWinform.Penjualan
         {
             if(e.KeyCode == Keys.F1)
             {
-                BayarCashNumText.Value = GrandTotalNumText.Value - BayarNonCashNumText.Value;
+                var bayarDesosit = NilaiDepositText.Value;
+                var bayarCash = GrandTotalNumText.Value - bayarDesosit - BayarNonCashNumText.Value;
+                if (bayarCash < 0) bayarCash = 0;
+                BayarCashNumText.Value = bayarCash;
             }
         }
 

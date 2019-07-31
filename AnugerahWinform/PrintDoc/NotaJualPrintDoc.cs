@@ -154,20 +154,63 @@ namespace AnugerahWinform.PrintDoc
                     qty, hrgDiskon, subTotal);
                 sw.WriteLine(lineStr);
             }
-            sw.WriteLine("---------------------------");
-            //var nilaiTotal = "Total   : " + _penjualan.NilaiTotal.ToString("N0").PadLeft(11, ' ');
-            //var nilaiDiskn = "Diskon  : " + _penjualan.NilaiDiskonLain.ToString("N0").PadLeft(11, ' ');
-            //var nilaiBiaya = "Biaya   : " + _penjualan.NilaiBiayaLain.ToString("N0").PadLeft(11, ' ');
-            var nilaiGrand = "GrandTot: " + _penjualan.NilaiGrandTotal.ToString("N0").PadLeft(11, ' ');
-            var nilaiBayar = "Bayar   : " + _penjualan.NilaiBayar.ToString("N0").PadLeft(11, ' ');
-            var nilaiKembl = "Kembali : " + _penjualan.NilaiKembali.ToString("N0").PadLeft(11, ' ');
+            
+            //  tambah baris kosong jika ada biaya/diskon lain
+            if((_penjualan.NilaiBiayaKirim + _penjualan.NilaiBiayaLain + _penjualan.NilaiDiskonLain) != 0)
+                sw.WriteLine(" ");
 
-            //sw.WriteLine(nilaiTotal.PadLeft(27));
-            //sw.WriteLine(nilaiDiskn.PadLeft(27));
-            //sw.WriteLine(nilaiBiaya.PadLeft(27));
+            //  biaya kirim
+            if (_penjualan.NilaiBiayaKirim != 0)
+            {
+                var nilai = _penjualan.NilaiBiayaKirim.ToString("N0").PadLeft(9);
+                var lineStr = string.Format("Biaya Kirim     = {0}", nilai);
+                sw.WriteLine(lineStr);
+            }
+
+            //  biaya lain
+            if (_penjualan.NilaiBiayaLain != 0)
+            {
+                var nilai = _penjualan.NilaiBiayaLain.ToString("N0").PadLeft(9);
+                var lineStr = string.Format("Biaya Lain      = {0}", nilai);
+                sw.WriteLine(lineStr);
+            }
+
+            //  diskon lain
+            if (_penjualan.NilaiDiskonLain!= 0)
+            {
+                var nilai = _penjualan.NilaiDiskonLain.ToString("N0").PadLeft(9);
+                var lineStr = string.Format("Diskon Lain     = {0}", nilai);
+                sw.WriteLine(lineStr);
+            }
+
+
+            sw.WriteLine("---------------------------");
+            var nilaiGrand = "GrandTot: " + _penjualan.NilaiGrandTotal.ToString("N0").PadLeft(11, ' ');
+            List<string> listBayar = new List<string>();
+            if(_penjualan.NilaiDeposit != 0)
+                listBayar.Add("Deposit : " + _penjualan.NilaiDeposit.ToString("N0").PadLeft(11, ' '));
+
+            foreach (var item in _penjualan.ListBayar)
+            {
+                if(item.NilaiBayar != 0)
+                {
+                    var namaBayar = item.JenisBayarName.PadRight(8, ' ');
+                    if (item.NilaiBayar < 0) namaBayar = "Kembali";
+
+                    listBayar.Add(namaBayar + ": " + item.NilaiBayar.ToString("N0").PadLeft(11, ' '));
+
+                }
+            }
+            var nilaiKembl = "Kembali  : " + _penjualan.NilaiKembali.ToString("N0").PadLeft(11, ' ');
+
             sw.WriteLine(nilaiGrand.PadLeft(27));
-            sw.WriteLine(nilaiBayar.PadLeft(27));
-            sw.WriteLine(nilaiKembl.PadLeft(27));
+
+            //  jika ada multi bayar atau kembalian, kasih garis pisah
+            if (listBayar.Count() > 1)
+                sw.WriteLine("		 ----------");
+
+            foreach (var item in listBayar)
+                sw.WriteLine(item.PadLeft(27));
 
             sw.WriteLine(" ");
             sw.WriteLine("Hormat Kami,");
