@@ -195,13 +195,19 @@ namespace AnugerahWinform.PrintDoc
                 if(item.NilaiBayar != 0)
                 {
                     var namaBayar = item.JenisBayarName.PadRight(8, ' ');
-                    if (item.NilaiBayar < 0) namaBayar = "Kembali";
-
-                    listBayar.Add(namaBayar + ": " + item.NilaiBayar.ToString("N0").PadLeft(11, ' '));
+                    if (item.NilaiBayar < 0)
+                    {
+                        namaBayar = "Kembali ";
+                        listBayar.Add(namaBayar + ": " + (item.NilaiBayar * -1).ToString("N0").PadLeft(11, ' '));
+                    }
+                    else
+                    {
+                        listBayar.Add(namaBayar + ": " + item.NilaiBayar.ToString("N0").PadLeft(11, ' '));
+                    }
 
                 }
             }
-            var nilaiKembl = "Kembali  : " + _penjualan.NilaiKembali.ToString("N0").PadLeft(11, ' ');
+            //var nilaiKembl = "Kembali   : " + (_penjualan.NilaiKembali * -1).ToString("N0").PadLeft(11, ' ');
 
             sw.WriteLine(nilaiGrand.PadLeft(27));
 
