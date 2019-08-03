@@ -551,6 +551,8 @@
   <ItemGroup>
     <None Include="Resources\background.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\cuckoo_clock1_x.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

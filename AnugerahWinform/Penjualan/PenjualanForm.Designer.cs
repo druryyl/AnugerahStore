@@ -52,6 +52,7 @@
             this.listDataGrid = new System.Windows.Forms.DataGridView();
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.entryDataTabPage = new System.Windows.Forms.TabPage();
+            this.DepositButton = new System.Windows.Forms.Button();
             this.BayarDepositPanel = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
             this.NilaiDepositText = new System.Windows.Forms.NumericUpDown();
@@ -63,6 +64,8 @@
             this.DepositIDText = new System.Windows.Forms.TextBox();
             this.DepositCheckBox = new System.Windows.Forms.CheckBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.BiayaKirimNumText = new System.Windows.Forms.NumericUpDown();
+            this.label11 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.BayarCashNumText = new System.Windows.Forms.NumericUpDown();
             this.KembaliNumText = new System.Windows.Forms.NumericUpDown();
@@ -108,9 +111,6 @@
             this.ExitButton = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
-            this.BiayaKirimNumText = new System.Windows.Forms.NumericUpDown();
-            this.label11 = new System.Windows.Forms.Label();
-            this.DepositButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PenjualanBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PenjualanDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DetilPenjualanTable)).BeginInit();
@@ -121,6 +121,7 @@
             this.BayarDepositPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NilaiDepositText)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.BiayaKirimNumText)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BayarCashNumText)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.KembaliNumText)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BayarNonCashNumText)).BeginInit();
@@ -130,7 +131,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.TotalNumText)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BrgGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BiayaKirimNumText)).BeginInit();
             this.SuspendLayout();
             // 
             // PenjualanBindingSource
@@ -205,7 +205,7 @@
             this.listDataTabPage.Location = new System.Drawing.Point(4, 22);
             this.listDataTabPage.Name = "listDataTabPage";
             this.listDataTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.listDataTabPage.Size = new System.Drawing.Size(971, 455);
+            this.listDataTabPage.Size = new System.Drawing.Size(1079, 455);
             this.listDataTabPage.TabIndex = 1;
             this.listDataTabPage.Text = "List Data";
             this.listDataTabPage.UseVisualStyleBackColor = true;
@@ -264,7 +264,7 @@
             this.mainTabControl.Location = new System.Drawing.Point(0, 0);
             this.mainTabControl.Name = "mainTabControl";
             this.mainTabControl.SelectedIndex = 0;
-            this.mainTabControl.Size = new System.Drawing.Size(1087, 481);
+            this.mainTabControl.Size = new System.Drawing.Size(1087, 565);
             this.mainTabControl.TabIndex = 6;
             // 
             // entryDataTabPage
@@ -282,9 +282,20 @@
             this.entryDataTabPage.Location = new System.Drawing.Point(4, 22);
             this.entryDataTabPage.Name = "entryDataTabPage";
             this.entryDataTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.entryDataTabPage.Size = new System.Drawing.Size(1079, 455);
+            this.entryDataTabPage.Size = new System.Drawing.Size(1079, 539);
             this.entryDataTabPage.TabIndex = 0;
             this.entryDataTabPage.Text = "Entry Data";
+            // 
+            // DepositButton
+            // 
+            this.DepositButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.DepositButton.Location = new System.Drawing.Point(793, 510);
+            this.DepositButton.Name = "DepositButton";
+            this.DepositButton.Size = new System.Drawing.Size(87, 23);
+            this.DepositButton.TabIndex = 24;
+            this.DepositButton.Text = "Deposit";
+            this.DepositButton.UseVisualStyleBackColor = true;
+            this.DepositButton.Click += new System.EventHandler(this.Deposit_Click);
             // 
             // BayarDepositPanel
             // 
@@ -297,7 +308,7 @@
             this.BayarDepositPanel.Controls.Add(this.KeteranganText);
             this.BayarDepositPanel.Controls.Add(this.SearchDepositIDButton);
             this.BayarDepositPanel.Controls.Add(this.DepositIDText);
-            this.BayarDepositPanel.Location = new System.Drawing.Point(6, 305);
+            this.BayarDepositPanel.Location = new System.Drawing.Point(6, 389);
             this.BayarDepositPanel.Name = "BayarDepositPanel";
             this.BayarDepositPanel.Size = new System.Drawing.Size(453, 114);
             this.BayarDepositPanel.TabIndex = 23;
@@ -393,7 +404,7 @@
             // 
             this.DepositCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.DepositCheckBox.AutoSize = true;
-            this.DepositCheckBox.Location = new System.Drawing.Point(9, 288);
+            this.DepositCheckBox.Location = new System.Drawing.Point(9, 372);
             this.DepositCheckBox.Name = "DepositCheckBox";
             this.DepositCheckBox.Size = new System.Drawing.Size(167, 17);
             this.DepositCheckBox.TabIndex = 22;
@@ -423,10 +434,44 @@
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label3);
-            this.panel2.Location = new System.Drawing.Point(467, 304);
+            this.panel2.Location = new System.Drawing.Point(467, 388);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(606, 116);
             this.panel2.TabIndex = 18;
+            // 
+            // BiayaKirimNumText
+            // 
+            this.BiayaKirimNumText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BiayaKirimNumText.InterceptArrowKeys = false;
+            this.BiayaKirimNumText.Location = new System.Drawing.Point(11, 20);
+            this.BiayaKirimNumText.Maximum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            0});
+            this.BiayaKirimNumText.Minimum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            -2147483648});
+            this.BiayaKirimNumText.Name = "BiayaKirimNumText";
+            this.BiayaKirimNumText.Size = new System.Drawing.Size(113, 21);
+            this.BiayaKirimNumText.TabIndex = 39;
+            this.BiayaKirimNumText.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.BiayaKirimNumText.ThousandsSeparator = true;
+            this.BiayaKirimNumText.ValueChanged += new System.EventHandler(this.BiayaKirimNumText_ValueChanged);
+            // 
+            // label11
+            // 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(7, 4);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(73, 13);
+            this.label11.TabIndex = 40;
+            this.label11.Text = "Biaya Kirim";
             // 
             // label8
             // 
@@ -879,7 +924,7 @@
             this.BrgGrid.DataSource = this.PenjualanBindingSource;
             this.BrgGrid.Location = new System.Drawing.Point(6, 124);
             this.BrgGrid.Name = "BrgGrid";
-            this.BrgGrid.Size = new System.Drawing.Size(1067, 162);
+            this.BrgGrid.Size = new System.Drawing.Size(1067, 246);
             this.BrgGrid.TabIndex = 9;
             this.BrgGrid.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.BrgGrid_CellBeginEdit);
             this.BrgGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BrgGrid_CellContentClick);
@@ -970,7 +1015,7 @@
             // ExitButton
             // 
             this.ExitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ExitButton.Location = new System.Drawing.Point(979, 426);
+            this.ExitButton.Location = new System.Drawing.Point(979, 510);
             this.ExitButton.Name = "ExitButton";
             this.ExitButton.Size = new System.Drawing.Size(87, 23);
             this.ExitButton.TabIndex = 21;
@@ -981,7 +1026,7 @@
             // deleteButton
             // 
             this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.deleteButton.Location = new System.Drawing.Point(886, 426);
+            this.deleteButton.Location = new System.Drawing.Point(886, 510);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(87, 23);
             this.deleteButton.TabIndex = 20;
@@ -991,7 +1036,7 @@
             // saveButton
             // 
             this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveButton.Location = new System.Drawing.Point(700, 426);
+            this.saveButton.Location = new System.Drawing.Point(700, 510);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(87, 23);
             this.saveButton.TabIndex = 19;
@@ -999,56 +1044,11 @@
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
-            // BiayaKirimNumText
-            // 
-            this.BiayaKirimNumText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.BiayaKirimNumText.InterceptArrowKeys = false;
-            this.BiayaKirimNumText.Location = new System.Drawing.Point(11, 20);
-            this.BiayaKirimNumText.Maximum = new decimal(new int[] {
-            100000000,
-            0,
-            0,
-            0});
-            this.BiayaKirimNumText.Minimum = new decimal(new int[] {
-            100000000,
-            0,
-            0,
-            -2147483648});
-            this.BiayaKirimNumText.Name = "BiayaKirimNumText";
-            this.BiayaKirimNumText.Size = new System.Drawing.Size(113, 21);
-            this.BiayaKirimNumText.TabIndex = 39;
-            this.BiayaKirimNumText.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.BiayaKirimNumText.ThousandsSeparator = true;
-            this.BiayaKirimNumText.ValueChanged += new System.EventHandler(this.BiayaKirimNumText_ValueChanged);
-            // 
-            // label11
-            // 
-            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(7, 4);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(73, 13);
-            this.label11.TabIndex = 40;
-            this.label11.Text = "Biaya Kirim";
-            // 
-            // DepositButton
-            // 
-            this.DepositButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.DepositButton.Location = new System.Drawing.Point(793, 426);
-            this.DepositButton.Name = "DepositButton";
-            this.DepositButton.Size = new System.Drawing.Size(87, 23);
-            this.DepositButton.TabIndex = 24;
-            this.DepositButton.Text = "Deposit";
-            this.DepositButton.UseVisualStyleBackColor = true;
-            this.DepositButton.Click += new System.EventHandler(this.Deposit_Click);
-            // 
             // PenjualanForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1087, 481);
+            this.ClientSize = new System.Drawing.Size(1087, 565);
             this.Controls.Add(this.mainTabControl);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "PenjualanForm";
@@ -1067,6 +1067,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.NilaiDepositText)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.BiayaKirimNumText)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BayarCashNumText)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.KembaliNumText)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BayarNonCashNumText)).EndInit();
@@ -1077,7 +1078,6 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BrgGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BiayaKirimNumText)).EndInit();
             this.ResumeLayout(false);
 
         }

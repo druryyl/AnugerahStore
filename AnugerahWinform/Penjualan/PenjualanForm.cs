@@ -16,7 +16,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -179,6 +181,15 @@ namespace AnugerahWinform.Penjualan
         }
         private void SaveButton_Click(object sender, EventArgs e)
         {
+            //  jika tidak ada penjualan, maka batalkan penyimpanan
+            if (IsGridBrgEmpty())
+            {
+                Stream audio = Properties.Resources.cuckoo;
+                SoundPlayer s = new SoundPlayer(audio);
+                s.Play();
+                return;
+            }
+
             SaveTransaksi();
 
         }
@@ -458,6 +469,19 @@ namespace AnugerahWinform.Penjualan
             if (KembaliNumText.Value < 0) KembaliNumText.Value = 0;
 
         }
+
+        private bool IsGridBrgEmpty()
+        {
+            var retval = true;
+            foreach (DataRow dr in DetilPenjualanTable.Rows)
+                if (dr["BrgID"].ToString().Trim() != "")
+                {
+                    retval = false;
+                    break;
+                }
+            return retval;
+        }
+
         private void SaveTransaksi()
         {
             //  pindah textbox ke variable utk proses simpan
@@ -774,6 +798,8 @@ namespace AnugerahWinform.Penjualan
 
         private void Deposit_Click(object sender, EventArgs e)
         {
+            //  jika tidak ada penjualan, maka batalkan penyimpanan
+            if (IsGridBrgEmpty()) return;
             CreateDeposit();
         }
 
