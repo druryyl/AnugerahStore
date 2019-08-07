@@ -40,6 +40,7 @@ namespace AnugerahWinform.Penjualan
         private List<PenjualanBayarModel> _listBayarDetil;
         private IBrgStokHargaBL _brgStokHargaBL;
         private IBPStokBL _bpStokBL;
+        private IBPPiutangBL _bpPiutangBL;
 
         public PenjualanForm()
         {
@@ -57,6 +58,7 @@ namespace AnugerahWinform.Penjualan
             _depositBL = new DepositBL();
             _bpStokBL = new BPStokBL();
             _brgStokHargaBL = new BrgStokHargaBL();
+            _bpPiutangBL = new BPPiutangBL();
         }
 
         private void PenjualanForm_Load(object sender, EventArgs e)
@@ -612,7 +614,10 @@ namespace AnugerahWinform.Penjualan
                         bpHutang = _bpHutangBL.GenHutang(penjualan, deposit);
                     }
 
-                    //  generate stok
+                    //  Gen BP Piutang (Jika Ada)
+                    _bpPiutangBL.GenPiutang(penjualan);
+
+                        //  generate stok
                     //  copy original list
                     var listBrgOri = result.ListBrg.CloneObject();
                     //  remove item2 jasa di list
@@ -630,6 +635,8 @@ namespace AnugerahWinform.Penjualan
                     var bpStok = _bpStokBL.Generate(result);
                     //  kembalikan list original-nya (utk kepentingan cetak)
                     result.ListBrg = listBrgOri;
+
+
                     trans.Complete();
                 }
             }

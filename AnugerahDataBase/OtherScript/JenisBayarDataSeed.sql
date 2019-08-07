@@ -20,3 +20,7 @@ GO
 INSERT INTO JenisBayar
 VALUES ('ED2','EDC BRI','E', 'K03',5)
 GO
+
+INSERT INTO JenisBayar
+VALUES ('PTG','Piutang','P', 'K04',5)
+GO

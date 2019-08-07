@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AnugerahBackend.Accounting.Dal;
 using AnugerahBackend.Accounting.Model;
+using AnugerahBackend.Penjualan.Model;
 using AnugerahBackend.Support;
 using Ics.Helper.Database;
 using Ics.Helper.Extensions;
@@ -14,12 +15,14 @@ namespace AnugerahBackend.Accounting.BL
     public interface IBPPiutangBL : ISearch<BPPiutangSearchModel>
     {
         BPPiutangModel GenPiutang(KasBonModel kasBon);
+        BPPiutangModel GenPiutang(PenjualanModel penjualan);
         void GenPiutangDelete(KasBonModel kasBon);
         BPPiutangModel GenPiutang(LunasKasBonModel lunasKasBon, KasBonModel kasBon);
         BPPiutangModel GetData(string piutangID);
 
         //void GenLunas()
     }
+
 
     public class BPPiutangBL : IBPPiutangBL
     {
@@ -50,7 +53,7 @@ namespace AnugerahBackend.Accounting.BL
             return header;
         }
 
-        public BPPiutangModel GenPiutang(KasBonModel kasBon)
+         public BPPiutangModel GenPiutang(KasBonModel kasBon)
         {
             if (kasBon == null)
             {
@@ -122,6 +125,79 @@ namespace AnugerahBackend.Accounting.BL
             return result;
         }
 
+        private bool IsJualPiutang(PenjualanModel penjualan)
+        {
+            const string PiutangKasID = "P";
+            var isPiutang = false;
+            foreach (var item in penjualan.ListBayar)
+            {
+                if (item.JenisKasID == PiutangKasID)
+                {
+                    isPiutang = true;
+                    break;
+                }
+            }
+            return isPiutang;
+        }
+
+        private decimal GetNilaiPiutangJual(PenjualanModel penjualan)
+        {
+            const string PiutangKasID = "P";
+            decimal result = 0;
+            foreach (var item in penjualan.ListBayar)
+            {
+                if (item.JenisKasID == PiutangKasID)
+                    result += item.NilaiBayar;
+            }
+            return result;
+        }
+
+
+        public BPPiutangModel GenPiutang(PenjualanModel penjualan)
+        {
+            if (penjualan == null)
+            {
+                throw new ArgumentNullException(nameof(penjualan));
+            }
+
+            if (!IsJualPiutang(penjualan)) return null;
+
+            var nilaiPiutang = GetNilaiPiutangJual(penjualan);
+            //  header piutang
+            var bpPiutang = new BPPiutangModel
+            {
+                BPPiutangID = penjualan.PenjualanID,
+                Tgl = penjualan.TglPenjualan,
+                Jam = penjualan.JamPenjualan,
+                Keterangan = "Penjualan",
+                PihakKeduaID = penjualan.CustomerID,
+                PihakKeduaName = penjualan.CustomerName,
+                NilaiPiutang = nilaiPiutang,
+                NilaiLunas = 0
+            };
+
+            //  detil piutang
+            var resultDetil = new BPPiutangDetilModel
+            {
+                BPPiutangID = penjualan.PenjualanID,
+                BPPiutangDetilID = penjualan.PenjualanID + '-' + "01",
+                Tgl = penjualan.TglPenjualan,
+                Jam = penjualan.JamPenjualan,
+                Keterangan = "Piutang Jual",
+                ReffID = penjualan.PenjualanID,
+                NilaiPiutang = nilaiPiutang,
+                NilaiLunas = 0
+            };
+            var listDetil = new List<BPPiutangDetilModel>
+            {
+                resultDetil
+            };
+            bpPiutang.ListLunas = listDetil;
+
+            var result = Save(bpPiutang);
+            return result;
+        }
+
         private BPPiutangModel Save(BPPiutangModel model)
         {
             if (model == null)
@@ -180,7 +256,6 @@ namespace AnugerahBackend.Accounting.BL
 
             return result;
         }
-
 
     }
 }
