@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AnugerahBackend.Accounting.Dal;
 using AnugerahBackend.Accounting.Model;
+using AnugerahBackend.Penjualan.Dal;
 using AnugerahBackend.Penjualan.Model;
 using AnugerahBackend.Support;
 using Ics.Helper.Database;
@@ -30,6 +31,7 @@ namespace AnugerahBackend.Accounting.BL
         private IPihakKeduaBL _pihakKeduaBL;
         private IBPPiutangDal _bpPiutangDal;
         private IBPPiutangDetilDal _bpPiutangDetilDal;
+        private IJenisBayarDal _jenisBayarDal;
 
         public BPPiutangBL()
         {
@@ -37,6 +39,7 @@ namespace AnugerahBackend.Accounting.BL
             _pihakKeduaBL = new PihakKeduaBL();
             _bpPiutangDal = new BPPiutangDal();
             _bpPiutangDetilDal = new BPPiutangDetilDal();
+            _jenisBayarDal = new JenisBayarDal();
             SearchFilter = new SearchFilter
             {
                 IsDate = false,
@@ -127,11 +130,12 @@ namespace AnugerahBackend.Accounting.BL
 
         private bool IsJualPiutang(PenjualanModel penjualan)
         {
-            const string PiutangKasID = "P";
+            const string TipeKasPiutang = "PT";
             var isPiutang = false;
             foreach (var item in penjualan.ListBayar)
             {
-                if (item.JenisKasID == PiutangKasID)
+                var jenisBayar = _jenisBayarDal.GetData(item.JenisBayarID);
+                if (jenisBayar.TipeKas == TipeKasPiutang)
                 {
                     isPiutang = true;
                     break;
@@ -142,11 +146,12 @@ namespace AnugerahBackend.Accounting.BL
 
         private decimal GetNilaiPiutangJual(PenjualanModel penjualan)
         {
-            const string PiutangKasID = "P";
+            const string TipeKasPiutang = "PT";
             decimal result = 0;
             foreach (var item in penjualan.ListBayar)
             {
-                if (item.JenisKasID == PiutangKasID)
+                var jenisBayar = _jenisBayarDal.GetData(item.JenisBayarID);
+                if (jenisBayar.TipeKas == TipeKasPiutang)
                     result += item.NilaiBayar;
             }
             return result;

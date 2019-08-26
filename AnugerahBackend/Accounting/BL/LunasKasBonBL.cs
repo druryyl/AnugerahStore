@@ -60,7 +60,7 @@ namespace AnugerahBackend.Accounting.BL
 
             var kasBon = _kasBonDal.GetData(model.KasBonID);
             if (kasBon == null)
-                throw new ArgumentException("KasBonID invalid");
+                throw new ArgumentException("PiutangID invalid");
 
             //  validate pihak kedua
             var pihakKedua = _pihakKeduaDal.GetData(model.PihakKeduaID);
@@ -156,7 +156,8 @@ namespace AnugerahBackend.Accounting.BL
         {
             var header = _lunasKasBonDal.GetData(id);
             var detail = _lunasKasBonDetilDal.ListData(id);
-            header.ListLunas = detail;
+            if(header != null)
+                header.ListLunas = detail;
             return header;
         }
 

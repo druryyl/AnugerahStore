@@ -39,14 +39,15 @@ namespace AnugerahBackend.Accounting.Dal
             var sSql = @"
                 INSERT INTO
                     JenisKas (
-                        JenisKasID, JenisKasName)
+                        JenisKasID, JenisKasName, TipeKas)
                 VALUES (
-                        @JenisKasID, @JenisKasName) ";
+                        @JenisKasID, @JenisKasName, @TipeKas) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
                 cmd.AddParam("@JenisKasID", jenisKas.JenisKasID);
                 cmd.AddParam("@JenisKasName", jenisKas.JenisKasName);
+                cmd.AddParam("@TipeKas", jenisKas.TipeKas);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -58,7 +59,8 @@ namespace AnugerahBackend.Accounting.Dal
                 UPDATE
                     JenisKas 
                 SET
-                    JenisKasName = @JenisKasName
+                    JenisKasName = @JenisKasName,
+                    TipeKas = @TipeKas
                 WHERE
                     JenisKasID = @JenisKasID ";
             using (var conn = new SqlConnection(_connString))
@@ -66,6 +68,7 @@ namespace AnugerahBackend.Accounting.Dal
             {
                 cmd.AddParam("@JenisKasID", jenisKas.JenisKasID);
                 cmd.AddParam("@JenisKasName", jenisKas.JenisKasName);
+                cmd.AddParam("@TipeKas", jenisKas.TipeKas);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -92,7 +95,7 @@ namespace AnugerahBackend.Accounting.Dal
             JenisKasModel result = null;
             var sSql = @"
                 SELECT
-                    aa.JenisKasName
+                    aa.JenisKasName, aa.TipeKas
                 FROM
                     JenisKas aa
                 WHERE
@@ -110,7 +113,8 @@ namespace AnugerahBackend.Accounting.Dal
                         result = new JenisKasModel
                         {
                             JenisKasID = id,
-                            JenisKasName = dr["JenisKasName"].ToString()
+                            JenisKasName = dr["JenisKasName"].ToString(),
+                            TipeKas = dr["TipeKas"].ToString()
                         };
                     }
                 }
@@ -123,7 +127,7 @@ namespace AnugerahBackend.Accounting.Dal
             List<JenisKasModel> result = null;
             var sSql = @"
                 SELECT
-                    aa.JenisKasID, aa.JenisKasName
+                    aa.JenisKasID, aa.JenisKasName, aa.TipeKas
                 FROM
                     JenisKas aa ";
             using (var conn = new SqlConnection(_connString))
@@ -140,7 +144,8 @@ namespace AnugerahBackend.Accounting.Dal
                             var item = new JenisKasModel
                             {
                                 JenisKasID = dr["JenisKasID"].ToString(),
-                                JenisKasName = dr["JenisKasName"].ToString()
+                                JenisKasName = dr["JenisKasName"].ToString(),
+                                TipeKas = dr["TipeKas"].ToString(),
                             };
                             result.Add(item);
                         }

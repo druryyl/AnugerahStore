@@ -78,6 +78,7 @@
     <Compile Include="Accounting\Dal\KasBonDal.cs" />
     <Compile Include="Accounting\Dal\LunasKasBonDal.cs" />
     <Compile Include="Accounting\Dal\LunasKasBonDetilDal.cs" />
+    <Compile Include="Accounting\Dal\LunasPiutangDal.cs" />
     <Compile Include="Accounting\Dal\MutasiKasDal.cs" />
     <Compile Include="Accounting\Dal\PegawaiDal.cs" />
     <Compile Include="Accounting\Dal\PihakKeduaDal.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="Accounting\Model\KasBonModel.cs" />
     <Compile Include="Accounting\Model\LunasKasBonDetilModel.cs" />
     <Compile Include="Accounting\Model\LunasKasBonModel.cs" />
+    <Compile Include="Accounting\Model\LunasPiutangModel.cs" />
     <Compile Include="Accounting\Model\MutasiKasModel.cs" />
     <Compile Include="Accounting\Model\PegawaiModel.cs" />
     <Compile Include="Accounting\Model\PihakKeduaModel.cs" />

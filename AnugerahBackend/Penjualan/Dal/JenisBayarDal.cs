@@ -40,18 +40,18 @@ namespace AnugerahBackend.Penjualan.Dal
             var sSql = @"
                 INSERT INTO
                     JenisBayar (
-                        JenisBayarID, JenisBayarName, IsMesinEdc,
-                        JenisKasID)
+                        JenisBayarID, JenisBayarName, JenisKasID,
+                        NoUrut)
                 VALUES (
-                        @JenisBayarID, @JenisBayarName, @IsMesinEdc,
-                        @JenisKasID) ";
+                        @JenisBayarID, @JenisBayarName, @JenisKasID,
+                        @NoUrut) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
                 cmd.AddParam("@JenisBayarID", jenisBayar.JenisBayarID);
                 cmd.AddParam("@JenisBayarName", jenisBayar.JenisBayarName);
-                cmd.AddParam("@IsMesinEdc", jenisBayar.KasTransferEdc);
                 cmd.AddParam("@JenisKasID", jenisBayar.JenisKasID);
+                cmd.AddParam("@NoUrut", jenisBayar.NoUrut);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -64,8 +64,8 @@ namespace AnugerahBackend.Penjualan.Dal
                     JenisBayar 
                 SET
                     JenisBayarName = @JenisBayarName,
-                    IsMesinEdc = @IsMesinEdc,
-                    JenisKasID = @JenisKasID
+                    JenisKasID = @JenisKasID,
+                    NoUrut = @NoUrut
                 WHERE
                     JenisBayarID = @JenisBayarID ";
             using (var conn = new SqlConnection(_connString))
@@ -73,8 +73,8 @@ namespace AnugerahBackend.Penjualan.Dal
             {
                 cmd.AddParam("@JenisBayarID", jenisBayar.JenisBayarID);
                 cmd.AddParam("@JenisBayarName", jenisBayar.JenisBayarName);
-                cmd.AddParam("@IsMesinEdc", jenisBayar.KasTransferEdc);
                 cmd.AddParam("@JenisKasID", jenisBayar.JenisKasID);
+                cmd.AddParam("@NoUrut", jenisBayar.NoUrut);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -99,10 +99,9 @@ namespace AnugerahBackend.Penjualan.Dal
             JenisBayarModel result = null;
             var sSql = @"
                 SELECT
-                    aa.JenisBayarName,
-                    aa.KasTransferEdc,
-                    aa.JenisKasID, 
-                    ISNULL(bb.JenisKasName, '') JenisKasName    
+                    aa.JenisBayarName, aa.JenisKasID, aa.NoUrut,
+                    ISNULL(bb.JenisKasName, '') JenisKasName,
+                    ISNULL(bb.TipeKas, '') TipeKas
                 FROM
                     JenisBayar aa
                     LEFT JOIN JenisKas bb ON aa.JenisKasID = bb.JenisKasID
@@ -122,9 +121,10 @@ namespace AnugerahBackend.Penjualan.Dal
                         {
                             JenisBayarID = id,
                             JenisBayarName = dr["JenisBayarName"].ToString(),
-                            KasTransferEdc = dr["KasTransferEdc"].ToString(),
                             JenisKasID = dr["JenisKasID"].ToString(),
-                            JenisKasName = dr["JenisKasName"].ToString()
+                            JenisKasName = dr["JenisKasName"].ToString(),
+                            NoUrut = Convert.ToInt16(dr["NoUrut"]),
+                            TipeKas = dr["TipeKas"].ToString(),
                         };
                     }
                 }
@@ -137,9 +137,10 @@ namespace AnugerahBackend.Penjualan.Dal
             List<JenisBayarModel> result = null;
             var sSql = @"
                 SELECT
-                    aa.JenisBayarID, aa.JenisBayarName, aa.KasTransferEdc,
-                    aa.JenisKasID, 
-                    ISNULL(bb.JenisKasName, '') JenisKasName
+                    aa.JenisBayarID, 
+                    aa.JenisBayarName, aa.JenisKasID, aa.NoUrut,
+                    ISNULL(bb.JenisKasName, '') JenisKasName,
+                    ISNULL(bb.TipeKas, '') TipeKas
                 FROM
                     JenisBayar aa 
                     LEFT JOIN JenisKas bb ON aa.JenisKasID = bb.JenisKasID ";
@@ -158,9 +159,10 @@ namespace AnugerahBackend.Penjualan.Dal
                             {
                                 JenisBayarID = dr["JenisBayarID"].ToString(),
                                 JenisBayarName = dr["JenisBayarName"].ToString(),
-                                KasTransferEdc = dr["KasTransferEdc"].ToString(),
                                 JenisKasID = dr["JenisKasID"].ToString(),
-                                JenisKasName = dr["JenisKasName"].ToString()
+                                JenisKasName = dr["JenisKasName"].ToString(),
+                                NoUrut = Convert.ToInt16(dr["NoUrut"]),
+                                TipeKas = dr["TipeKas"].ToString(),
                             };
                             result.Add(item);
                         }

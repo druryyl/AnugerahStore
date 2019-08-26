@@ -590,7 +590,7 @@ namespace AnugerahWinform.Penjualan
                 NilaiKembali = kembali,
                 
                 ListBrg = listDetilBrg,
-                ListBayar = listDetilBayar
+                ListBayar = listDetilBayar 
             };
 
             PenjualanModel result = null;

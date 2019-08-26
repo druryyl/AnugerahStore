@@ -2,25 +2,25 @@
 GO
 
 INSERT INTO JenisBayar 
-VALUES ('KAS', 'Cash','K','K01',1)
+VALUES ('KAS', 'Cash','K01',1)
 GO
 
 INSERT INTO JenisBayar
-VALUES('TR1','Trf BCA','T','K02',4)
+VALUES('TR1','Trf BCA','K02',2)
 GO
 
 INSERT INTO JenisBayar
-VALUES('TR2','Trf BRI','T','K03',5)
+VALUES('TR2','Trf BRI','K03',3)
 GO
 
 INSERT INTO JenisBayar
-VALUES('ED1','EDC BCA','E','K02',2)
+VALUES('ED1','EDC BCA','K02',4)
 GO
 
 INSERT INTO JenisBayar
-VALUES ('ED2','EDC BRI','E', 'K03',5)
+VALUES ('ED2','EDC BRI', 'K03',5)
 GO
 
 INSERT INTO JenisBayar
-VALUES ('PTG','Piutang','P', 'K04',5)
+VALUES ('PTG','Piutang', 'K04',6)
 GO

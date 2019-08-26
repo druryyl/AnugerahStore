@@ -282,7 +282,7 @@ namespace AnugerahWinform.Accounting
             }
             lunasKasBon.ListLunas = listLunas;
             var kasBon = _kasBonBL.GetData(lunasKasBon.KasBonID);
-
+            
             using (var trans = TransHelper.NewScope())
             {
                 var result = _lunasKasBonBL.Save(lunasKasBon);

@@ -41,15 +41,6 @@ namespace AnugerahBackend.Penjualan.BL
             if (jenisBayar.JenisBayarID == "")
                 throw new ArgumentException("JenisBayarID empty");
 
-            switch (jenisBayar.KasTransferEdc)
-            {
-                case "E": break;
-                case "K": break;
-                case "T": break;
-                default:
-                    throw new ArgumentException("KasTransferEdc Invalid");
-            }
-
             if (jenisBayar.JenisBayarName == "")
                 throw new ArgumentException("JenisBayarName invalid");
 
