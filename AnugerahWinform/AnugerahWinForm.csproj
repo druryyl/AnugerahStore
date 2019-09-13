@@ -123,6 +123,12 @@
     <Compile Include="Accounting\LunasKasBonForm.Designer.cs">
       <DependentUpon>LunasKasBonForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Accounting\LunasPiutangForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\LunasPiutangForm.Designer.cs">
+      <DependentUpon>LunasPiutangForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Accounting\MutasiKasForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +141,7 @@
     <Compile Include="Accounting\PegawaiForm.Designer.cs">
       <DependentUpon>PegawaiForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Accounting\Presenter\LunasPiutangPresenter.cs" />
     <Compile Include="Accounting\Presenter\MutasiKasPresenter.cs" />
     <Compile Include="Accounting\Presenter\PegawaiPresenter.cs" />
     <Compile Include="Accounting\ReturDepositForm.cs">
@@ -143,6 +150,7 @@
     <Compile Include="Accounting\ReturDepositForm.Designer.cs">
       <DependentUpon>ReturDepositForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Accounting\View\LunasPiutangView.cs" />
     <Compile Include="Accounting\View\MutasiKasView.cs" />
     <Compile Include="Accounting\View\PegawaiView.cs" />
     <Compile Include="Keuangan\KasirForm.cs">
@@ -391,6 +399,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Accounting\LunasKasBonForm.resx">
       <DependentUpon>LunasKasBonForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\LunasPiutangForm.resx">
+      <DependentUpon>LunasPiutangForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Accounting\MutasiKasForm.resx">
       <DependentUpon>MutasiKasForm.cs</DependentUpon>

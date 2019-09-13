@@ -205,7 +205,7 @@
             this.listDataTabPage.Location = new System.Drawing.Point(4, 22);
             this.listDataTabPage.Name = "listDataTabPage";
             this.listDataTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.listDataTabPage.Size = new System.Drawing.Size(1079, 455);
+            this.listDataTabPage.Size = new System.Drawing.Size(1079, 539);
             this.listDataTabPage.TabIndex = 1;
             this.listDataTabPage.Text = "List Data";
             this.listDataTabPage.UseVisualStyleBackColor = true;

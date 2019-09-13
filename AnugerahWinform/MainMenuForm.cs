@@ -371,5 +371,15 @@ namespace AnugerahWinform
 
             }
         }
+
+        private void LunasPiutangButton_Click(object sender, EventArgs e)
+        {
+            LunasPiutangForm form = new LunasPiutangForm
+            {
+                MdiParent = this,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            form.Show();
+        }
     }
 }

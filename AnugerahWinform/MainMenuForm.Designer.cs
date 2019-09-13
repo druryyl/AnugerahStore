@@ -74,6 +74,7 @@
             this.BPKasRibbon = new System.Windows.Forms.RibbonPanel();
             this.MutasiKasiButton = new System.Windows.Forms.RibbonButton();
             this.LaporanBPKasButton = new System.Windows.Forms.RibbonButton();
+            this.LunasPiutangButton = new System.Windows.Forms.RibbonButton();
             this.SuspendLayout();
             // 
             // ribbon1
@@ -380,6 +381,7 @@
             // 
             this.ribbonPanel2.Items.Add(this.KasBonButton);
             this.ribbonPanel2.Items.Add(this.LunasKasBonButton);
+            this.ribbonPanel2.Items.Add(this.LunasPiutangButton);
             this.ribbonPanel2.Items.Add(this.LapPiutangButton);
             this.ribbonPanel2.Items.Add(this.PegawaiButton);
             this.ribbonPanel2.Name = "ribbonPanel2";
@@ -481,6 +483,15 @@
             this.LaporanBPKasButton.Text = "Laporan Kas";
             this.LaporanBPKasButton.Click += new System.EventHandler(this.LaporanBPKasButton_Click);
             // 
+            // LunasPiutangButton
+            // 
+            this.LunasPiutangButton.Image = ((System.Drawing.Image)(resources.GetObject("LunasPiutangButton.Image")));
+            this.LunasPiutangButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("LunasPiutangButton.LargeImage")));
+            this.LunasPiutangButton.Name = "LunasPiutangButton";
+            this.LunasPiutangButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("LunasPiutangButton.SmallImage")));
+            this.LunasPiutangButton.Text = "Lunas Piutang";
+            this.LunasPiutangButton.Click += new System.EventHandler(this.LunasPiutangButton_Click);
+            // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -547,6 +558,7 @@
         private System.Windows.Forms.RibbonButton RepackButton;
         private System.Windows.Forms.RibbonButton MutasiKasiButton;
         private System.Windows.Forms.RibbonButton OrderJualButton;
+        private System.Windows.Forms.RibbonButton LunasPiutangButton;
     }
 }
 
