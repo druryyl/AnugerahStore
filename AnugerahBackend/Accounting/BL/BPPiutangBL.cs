@@ -20,6 +20,7 @@ namespace AnugerahBackend.Accounting.BL
         void GenPiutangDelete(KasBonModel kasBon);
         BPPiutangModel GenPiutang(LunasKasBonModel lunasKasBon, KasBonModel kasBon);
         BPPiutangModel GetData(string piutangID);
+        IEnumerable<BPPiutangModel>ListByCustomer(string customerID);
 
         //void GenLunas()
     }
@@ -44,6 +45,11 @@ namespace AnugerahBackend.Accounting.BL
             {
                 IsDate = false,
             };
+        }
+
+        public BPPiutangBL(IBPPiutangDal bpPiutangDal)
+        {
+            _bpPiutangDal = bpPiutangDal;
         }
 
         public BPPiutangModel GetData(string piutangID)
@@ -258,6 +264,22 @@ namespace AnugerahBackend.Accounting.BL
                     from c in result
                     where c.PihakKeduaName.ContainMultiWord(SearchFilter.UserKeyword)
                     select c;
+
+            return result;
+        }
+
+        public IEnumerable<BPPiutangModel> ListByCustomer(string customerID)
+        {
+            var listBPPiutang = _bpPiutangDal.ListData(customerID);
+            if (listBPPiutang == null)
+                return null;
+
+            var result =
+                from c in listBPPiutang
+                where c.NilaiLunas != c.NilaiPiutang
+                select c;
+            if (!result.Any())
+                return null;
 
             return result;
         }

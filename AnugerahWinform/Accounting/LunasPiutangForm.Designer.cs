@@ -31,6 +31,9 @@
             this.components = new System.ComponentModel.Container();
             this.MainTab = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.JenisKasComboBox = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.TglTextBox = new System.Windows.Forms.DateTimePicker();
             this.JamTextBox = new System.Windows.Forms.TextBox();
@@ -40,18 +43,10 @@
             this.LunasPiutangIDTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.TotalBayarTextBox = new System.Windows.Forms.NumericUpDown();
-            this.BayarButton = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.TotalPiutangTextBox = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
             this.ListPiutangGrid = new System.Windows.Forms.DataGridView();
-            this.BPPiutangBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.BPPiutangDataSet = new System.Data.DataSet();
-            this.BPPiutang = new System.Data.DataTable();
-            this.dataColumn1 = new System.Data.DataColumn();
-            this.dataColumn2 = new System.Data.DataColumn();
-            this.dataColumn3 = new System.Data.DataColumn();
-            this.dataColumn4 = new System.Data.DataColumn();
             this.SearchCustomerButton = new System.Windows.Forms.Button();
             this.ExitButton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
@@ -59,6 +54,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.DeleteButton = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.BPPiutangBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.BPPiutangDataSet = new System.Data.DataSet();
+            this.BPPiutang = new System.Data.DataTable();
+            this.dataColumn1 = new System.Data.DataColumn();
+            this.dataColumn2 = new System.Data.DataColumn();
+            this.dataColumn3 = new System.Data.DataColumn();
+            this.dataColumn4 = new System.Data.DataColumn();
             this.MainTab.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TotalBayarTextBox)).BeginInit();
@@ -83,6 +85,9 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.Bisque;
+            this.tabPage1.Controls.Add(this.label5);
+            this.tabPage1.Controls.Add(this.label4);
+            this.tabPage1.Controls.Add(this.JenisKasComboBox);
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.TglTextBox);
             this.tabPage1.Controls.Add(this.JamTextBox);
@@ -92,7 +97,6 @@
             this.tabPage1.Controls.Add(this.LunasPiutangIDTextBox);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.TotalBayarTextBox);
-            this.tabPage1.Controls.Add(this.BayarButton);
             this.tabPage1.Controls.Add(this.label9);
             this.tabPage1.Controls.Add(this.TotalPiutangTextBox);
             this.tabPage1.Controls.Add(this.label7);
@@ -109,6 +113,34 @@
             this.tabPage1.Size = new System.Drawing.Size(519, 561);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Input Transaksi";
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(331, 484);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(65, 13);
+            this.label5.TabIndex = 31;
+            this.label5.Text = "Pelunasan";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 123);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(97, 13);
+            this.label4.TabIndex = 30;
+            this.label4.Text = "Cara Pelunasan";
+            // 
+            // JenisKasComboBox
+            // 
+            this.JenisKasComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.JenisKasComboBox.FormattingEnabled = true;
+            this.JenisKasComboBox.Location = new System.Drawing.Point(6, 139);
+            this.JenisKasComboBox.Name = "JenisKasComboBox";
+            this.JenisKasComboBox.Size = new System.Drawing.Size(505, 21);
+            this.JenisKasComboBox.TabIndex = 7;
             // 
             // label6
             // 
@@ -189,7 +221,6 @@
             // TotalBayarTextBox
             // 
             this.TotalBayarTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.TotalBayarTextBox.Enabled = false;
             this.TotalBayarTextBox.InterceptArrowKeys = false;
             this.TotalBayarTextBox.Location = new System.Drawing.Point(402, 482);
             this.TotalBayarTextBox.Maximum = new decimal(new int[] {
@@ -203,21 +234,12 @@
             0,
             -2147483648});
             this.TotalBayarTextBox.Name = "TotalBayarTextBox";
-            this.TotalBayarTextBox.ReadOnly = true;
             this.TotalBayarTextBox.Size = new System.Drawing.Size(111, 21);
             this.TotalBayarTextBox.TabIndex = 10;
             this.TotalBayarTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.TotalBayarTextBox.ThousandsSeparator = true;
-            // 
-            // BayarButton
-            // 
-            this.BayarButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BayarButton.Location = new System.Drawing.Point(285, 482);
-            this.BayarButton.Name = "BayarButton";
-            this.BayarButton.Size = new System.Drawing.Size(113, 23);
-            this.BayarButton.TabIndex = 9;
-            this.BayarButton.Text = "&Bayar Detil";
-            this.BayarButton.UseVisualStyleBackColor = true;
+            this.TotalBayarTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TotalBayarTextBox_KeyDown);
+            this.TotalBayarTextBox.Validated += new System.EventHandler(this.TotalBayarTextBox_Validated);
             // 
             // label9
             // 
@@ -246,14 +268,14 @@
             this.TotalPiutangTextBox.Name = "TotalPiutangTextBox";
             this.TotalPiutangTextBox.ReadOnly = true;
             this.TotalPiutangTextBox.Size = new System.Drawing.Size(111, 21);
-            this.TotalPiutangTextBox.TabIndex = 8;
+            this.TotalPiutangTextBox.TabIndex = 9;
             this.TotalPiutangTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.TotalPiutangTextBox.ThousandsSeparator = true;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 123);
+            this.label7.Location = new System.Drawing.Point(6, 163);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(72, 13);
             this.label7.TabIndex = 18;
@@ -265,61 +287,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ListPiutangGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ListPiutangGrid.Location = new System.Drawing.Point(6, 139);
+            this.ListPiutangGrid.Location = new System.Drawing.Point(6, 179);
             this.ListPiutangGrid.Name = "ListPiutangGrid";
-            this.ListPiutangGrid.Size = new System.Drawing.Size(507, 312);
-            this.ListPiutangGrid.TabIndex = 7;
+            this.ListPiutangGrid.Size = new System.Drawing.Size(507, 272);
+            this.ListPiutangGrid.TabIndex = 8;
             this.ListPiutangGrid.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.ListPiutangGrid_DataBindingComplete);
-            // 
-            // BPPiutangBindingSource
-            // 
-            this.BPPiutangBindingSource.DataMember = "BPPiutang";
-            this.BPPiutangBindingSource.DataSource = this.BPPiutangDataSet;
-            // 
-            // BPPiutangDataSet
-            // 
-            this.BPPiutangDataSet.DataSetName = "NewDataSet";
-            this.BPPiutangDataSet.Tables.AddRange(new System.Data.DataTable[] {
-            this.BPPiutang});
-            // 
-            // BPPiutang
-            // 
-            this.BPPiutang.Columns.AddRange(new System.Data.DataColumn[] {
-            this.dataColumn1,
-            this.dataColumn2,
-            this.dataColumn3,
-            this.dataColumn4});
-            this.BPPiutang.TableName = "BPPiutang";
-            // 
-            // dataColumn1
-            // 
-            this.dataColumn1.ColumnName = "BPPiutangID";
-            this.dataColumn1.DefaultValue = "";
-            // 
-            // dataColumn2
-            // 
-            this.dataColumn2.ColumnName = "Tgl";
-            this.dataColumn2.DefaultValue = "01-01-3000";
-            // 
-            // dataColumn3
-            // 
-            this.dataColumn3.ColumnName = "Nilai";
-            this.dataColumn3.DataType = typeof(decimal);
-            this.dataColumn3.DefaultValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            // 
-            // dataColumn4
-            // 
-            this.dataColumn4.ColumnName = "Bayar";
-            this.dataColumn4.DataType = typeof(decimal);
-            this.dataColumn4.DefaultValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
             // 
             // SearchCustomerButton
             // 
@@ -392,6 +364,56 @@
             this.tabPage2.Text = "Informasi";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // BPPiutangBindingSource
+            // 
+            this.BPPiutangBindingSource.DataMember = "BPPiutang";
+            this.BPPiutangBindingSource.DataSource = this.BPPiutangDataSet;
+            // 
+            // BPPiutangDataSet
+            // 
+            this.BPPiutangDataSet.DataSetName = "NewDataSet";
+            this.BPPiutangDataSet.Tables.AddRange(new System.Data.DataTable[] {
+            this.BPPiutang});
+            // 
+            // BPPiutang
+            // 
+            this.BPPiutang.Columns.AddRange(new System.Data.DataColumn[] {
+            this.dataColumn1,
+            this.dataColumn2,
+            this.dataColumn3,
+            this.dataColumn4});
+            this.BPPiutang.TableName = "BPPiutang";
+            // 
+            // dataColumn1
+            // 
+            this.dataColumn1.ColumnName = "BPPiutangID";
+            this.dataColumn1.DefaultValue = "";
+            // 
+            // dataColumn2
+            // 
+            this.dataColumn2.ColumnName = "Tgl";
+            this.dataColumn2.DefaultValue = "01-01-3000";
+            // 
+            // dataColumn3
+            // 
+            this.dataColumn3.ColumnName = "Nilai";
+            this.dataColumn3.DataType = typeof(decimal);
+            this.dataColumn3.DefaultValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // dataColumn4
+            // 
+            this.dataColumn4.ColumnName = "Bayar";
+            this.dataColumn4.DataType = typeof(decimal);
+            this.dataColumn4.DefaultValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
             // LunasPiutangForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -430,7 +452,6 @@
         private System.Windows.Forms.Button DeleteButton;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.NumericUpDown TotalBayarTextBox;
-        private System.Windows.Forms.Button BayarButton;
         private System.Windows.Forms.Button SearchLunasPiutangButton;
         private System.Windows.Forms.Button NewButton;
         private System.Windows.Forms.TextBox LunasPiutangIDTextBox;
@@ -447,5 +468,8 @@
         private System.Windows.Forms.DataGridView ListPiutangGrid;
         private System.Windows.Forms.BindingSource BPPiutangBindingSource;
         private System.Data.DataColumn dataColumn4;
+        private System.Windows.Forms.ComboBox JenisKasComboBox;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }

@@ -1,4 +1,6 @@
-﻿using AnugerahBackend.Penjualan.BL;
+﻿using AnugerahBackend.Accounting.BL;
+using AnugerahBackend.Accounting.Model;
+using AnugerahBackend.Penjualan.BL;
 using AnugerahBackend.Penjualan.Model;
 using AnugerahWinform.Accounting.View;
 using AnugerahWinform.Support;
@@ -13,7 +15,9 @@ namespace AnugerahWinform.Accounting.Presenter
 {
     public class LunasPiutangPresenterDependency
     {
-        public CustomerBL CustomerBL { get; set; }
+        public ICustomerBL CustomerBL { get; set; }
+        public IBPPiutangBL BPPiutangBL { get; set; }
+        public IJenisKasBL JenisKasBL { get; set; }
     }
 
     public class LunasPiutangPresenter
@@ -26,7 +30,9 @@ namespace AnugerahWinform.Accounting.Presenter
             _view = view;
             _dep = new LunasPiutangPresenterDependency
             {
-                CustomerBL = new CustomerBL()
+                CustomerBL = new CustomerBL(),
+                BPPiutangBL = new BPPiutangBL(),
+                JenisKasBL = new JenisKasBL()
             };
         }
 
@@ -44,7 +50,7 @@ namespace AnugerahWinform.Accounting.Presenter
             _view.CustomerID = "";
             _view.CustomerName = "";
             _view.ListPiutang.Clear();
-            _view.ListJenisBayar.Clear();
+            _view.JenisKasID = "KAS";
         }
 
         public void PilihCustomer()
@@ -63,10 +69,62 @@ namespace AnugerahWinform.Accounting.Presenter
             }
         }
 
+        public IEnumerable<JenisKasModel> ListJenisKas()
+        {
+            var listJenisKas = _dep.JenisKasBL.ListData();
+
+            //  escape point
+            if (listJenisKas == null)
+                return null;
+
+            var result =
+                from c in listJenisKas
+                where c.TipeKas != "PT"
+                select c;
+
+            //  escape point
+            if (!result.Any())
+                return null;
+
+            return result.ToList();
+        }
+
+        public void ListPiutang()
+        {
+            var listPiutang = _dep.BPPiutangBL.ListByCustomer(_view.CustomerID);
+
+            if (listPiutang == null)
+                return;
+
+            var listPiutangViewModel = new List<BPPiutangViewModel>();
+            foreach(var item in listPiutang)
+            {
+                var itemTemp = new BPPiutangViewModel
+                {
+                    BPPiutangID = item.BPPiutangID,
+                    Tgl = item.Tgl,
+                    Nilai = item.NilaiPiutang - item.NilaiLunas,
+                    Bayar = 0
+                };
+                listPiutangViewModel.Add(itemTemp);
+            }
+            _view.ListPiutang = listPiutangViewModel;
+        }
+
         public void ListPiutangValidated()
         {
             _view.TotalBayar = _view.ListPiutang.Sum(x => x.Bayar);
         }
-    }
 
+        public void PelunasanValidated()
+        {
+            var nilaiSisaBagi = _view.TotalBayar;
+            foreach(var item in _view.ListPiutang)
+            {
+                var bayar = Math.Min(nilaiSisaBagi, item.Nilai);
+                item.Bayar = bayar;
+                nilaiSisaBagi -= item.Bayar;
+            }
+        }
+    }
 }

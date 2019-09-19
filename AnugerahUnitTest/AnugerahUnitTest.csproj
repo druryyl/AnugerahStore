@@ -80,6 +80,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accounting\BL\BPPiutangBLTest.cs" />
     <Compile Include="Accounting\Dal\BiayaDalTest.cs" />
     <Compile Include="Accounting\Dal\BPKasDalTest.cs" />
     <Compile Include="Accounting\Dal\BPKasDetilDalTest.cs" />
@@ -147,9 +148,7 @@
   <ItemGroup>
     <Analyzer Include="..\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Accounting\BL\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -22,10 +22,11 @@ namespace AnugerahWinform.Accounting
         //  hidden property
         private string _customerID;
         private List<BPPiutangViewModel> _listPiutang = new List<BPPiutangViewModel>();
-        private List<JenisBayarViewModel> _listJenisBayar = new List<JenisBayarViewModel>();
+        private List<JenisKasModel> _listJenisKas = new List<JenisKasModel>();
 
         //  binding object
         private BindingSource _bpPiutangBindingSource = new BindingSource();
+        private BindingSource _jenisKasBindingSource = new BindingSource();
 
         public LunasPiutangForm()
         {
@@ -35,22 +36,48 @@ namespace AnugerahWinform.Accounting
             //  bind collection to grid
             _bpPiutangBindingSource.DataSource = _listPiutang;
             ListPiutangGrid.DataSource = _bpPiutangBindingSource;
+            this.GridStyling();
 
-            var numberStyle = new DataGridViewCellStyle
+            //  bind collection to combobox
+            _jenisKasBindingSource.DataSource = _presenter.ListJenisKas();
+            JenisKasComboBox.DataSource = _jenisKasBindingSource;
+            JenisKasComboBox.DisplayMember = "JenisKasName";
+            JenisKasComboBox.ValueMember = "JenisKasID";
+        }
+
+        private void GridStyling()
+        {
+            var numberReadOnlyStyle = new DataGridViewCellStyle
             {
                 Format = "N0",
-                Alignment = DataGridViewContentAlignment.MiddleRight
+                Alignment = DataGridViewContentAlignment.MiddleRight,
+                BackColor = Color.LightGray,
             };
+            var numberReadWriteStyle = new DataGridViewCellStyle
+            {
+                Format = "N0",
+                Alignment = DataGridViewContentAlignment.MiddleRight,
+                BackColor = Color.White
+            };
+            var stringReadOnlyStyle = new DataGridViewCellStyle
+            {
+                BackColor = Color.LightGray
+            };
+
             ListPiutangGrid.Columns["BPPiutangID"].ReadOnly = true;
             ListPiutangGrid.Columns["BPPiutangID"].HeaderText = "Piutang ID";
+            ListPiutangGrid.Columns["BPPiutangID"].DefaultCellStyle = stringReadOnlyStyle;
 
             ListPiutangGrid.Columns["Tgl"].ReadOnly = true;
             ListPiutangGrid.Columns["Tgl"].HeaderText = "Tgl Nota";
+            ListPiutangGrid.Columns["Tgl"].DefaultCellStyle = stringReadOnlyStyle;
 
-            ListPiutangGrid.Columns["Nilai"].DefaultCellStyle = numberStyle;
+            ListPiutangGrid.Columns["Nilai"].DefaultCellStyle = numberReadOnlyStyle;
             ListPiutangGrid.Columns["Nilai"].ReadOnly = true;
 
-            ListPiutangGrid.Columns["Bayar"].DefaultCellStyle = numberStyle;
+            ListPiutangGrid.Columns["Bayar"].DefaultCellStyle = numberReadWriteStyle;
+
+            ListPiutangGrid.AllowUserToAddRows = false;
         }
 
         public string LunasPiutangID
@@ -91,14 +118,22 @@ namespace AnugerahWinform.Accounting
         public List<BPPiutangViewModel> ListPiutang
         {
             get => _listPiutang;
-            set => _listPiutang = value;
+            set 
+            {
+                _listPiutang = value;
+                _bpPiutangBindingSource.DataSource = _listPiutang;
+            }
         }
-        public List<JenisBayarViewModel> ListJenisBayar
+        public string JenisKasID
         {
-            get => _listJenisBayar;
-            set => _listJenisBayar = value;
+            get => JenisKasComboBox.SelectedValue.ToString();
+            set => JenisKasComboBox.SelectedValue = value;
         }
 
+        public string JenisKasName
+        {
+            get => JenisKasComboBox.SelectedText;
+        }
         private void NewButton_Click(object sender, EventArgs e)
         {
             _presenter.NewLunasPiutang();
@@ -107,11 +142,26 @@ namespace AnugerahWinform.Accounting
         private void SearchCustomerButton_Click(object sender, EventArgs e)
         {
             _presenter.PilihCustomer();
+            _presenter.ListPiutang();
         }
 
         private void ListPiutangGrid_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             _presenter.ListPiutangValidated();
+        }
+
+        private void TotalBayarTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                SaveButton.Select();
+            }
+        }
+
+        private void TotalBayarTextBox_Validated(object sender, EventArgs e)
+        {
+            _presenter.PelunasanValidated();
+            _bpPiutangBindingSource.ResetBindings(false);
         }
     }
 }
