@@ -18,6 +18,7 @@ namespace AnugerahWinform.Accounting.Presenter
         public ICustomerBL CustomerBL { get; set; }
         public IBPPiutangBL BPPiutangBL { get; set; }
         public IJenisBayarBL JenisBayarBL { get; set; }
+        public ILunasPiutangBL LunasPiutangBL { get; set; }
     }
 
     public class LunasPiutangPresenter
@@ -33,7 +34,8 @@ namespace AnugerahWinform.Accounting.Presenter
             {
                 CustomerBL = new CustomerBL(),
                 BPPiutangBL = new BPPiutangBL(),
-                JenisBayarBL = new JenisBayarBL()
+                JenisBayarBL = new JenisBayarBL(),
+                LunasPiutangBL = new LunasPiutangBL(),
             };
         }
 
@@ -52,6 +54,9 @@ namespace AnugerahWinform.Accounting.Presenter
             _view.CustomerName = "";
             _view.ListPiutang.Clear();
             _view.JenisBayarID = DEFAULT_JENIS_BAYAR_ID;
+            _view.ListPiutang = new List<BPPiutangViewModel>();
+            _view.TotalPiutang = 0;
+            _view.TotalBayar = 0;
         }
 
         public void PilihCustomer()
@@ -110,6 +115,7 @@ namespace AnugerahWinform.Accounting.Presenter
                 listPiutangViewModel.Add(itemTemp);
             }
             _view.ListPiutang = listPiutangViewModel;
+            _view.TotalPiutang = listPiutangViewModel.Sum(x => x.Nilai);
         }
 
         public void ListPiutangValidated()
@@ -126,6 +132,85 @@ namespace AnugerahWinform.Accounting.Presenter
                 item.Bayar = bayar;
                 nilaiSisaBagi -= item.Bayar;
             }
+        }
+
+        public void Save()
+        {
+            List<LunasPiutangDetilModel> listDetil = null;
+            if (_view.ListPiutang != null)
+                listDetil = new List<LunasPiutangDetilModel>();
+
+            foreach(var item in _view.ListPiutang)
+            {
+                listDetil.Add(new LunasPiutangDetilModel
+                {
+                    PiutangID = item.BPPiutangID,
+                    Tgl = item.Tgl,
+                    NilaiSisaPiutang = item.Nilai,
+                    NilaiBayar = item.Bayar
+                });
+            }
+
+            var lunasPiutang = new LunasPiutangModel
+            {
+                LunasPiutangID = _view.LunasPiutangID,
+                Tgl = _view.Tgl,
+                Jam = _view.Jam,
+                PihakKeduaID = _view.CustomerID,
+                PihakKeduaName = _view.CustomerName,
+                JenisBayarID = _view.JenisBayarID,
+                JenisBayarName = _view.JenisBayarName,
+                TotalNilaiSisaPiutang = _view.TotalPiutang,
+                TotalNilaiBayar = _view.TotalBayar,
+                ListPiutangBayar = listDetil
+            };
+            _dep.LunasPiutangBL.Save(lunasPiutang);
+        }
+
+        public void GetData()
+        {
+            var lunasPiutang = _dep.LunasPiutangBL.GetData(_view.LunasPiutangID);
+            if (lunasPiutang == null)
+                return;
+
+            _view.Tgl = lunasPiutang.Tgl;
+            _view.Jam = lunasPiutang.Jam;
+            _view.CustomerID = lunasPiutang.PihakKeduaID;
+            _view.CustomerName = lunasPiutang.PihakKeduaName;
+            _view.JenisBayarID = lunasPiutang.JenisBayarID;
+            _view.ListPiutang.Clear();
+
+            if (_view.ListPiutang == null)
+                return;
+
+            var listDetil = new List<BPPiutangViewModel>();
+            foreach(var item in lunasPiutang.ListPiutangBayar)
+            {
+                listDetil.Add(new BPPiutangViewModel
+                {
+                    BPPiutangID = item.PiutangID,
+                    Tgl = item.Tgl,
+                    Bayar = item.NilaiBayar,
+                    Nilai = item.NilaiSisaPiutang
+                });
+            }
+            _view.ListPiutang = listDetil;
+            _view.TotalPiutang = listDetil.Sum(x => x.Nilai);
+
+        }
+
+        public void Delete()
+        {
+            _dep.LunasPiutangBL.Delete(_view.LunasPiutangID);
+        }
+
+        public void PilihLunasPiutang()
+        {
+            var searchForm = new SearchingForm<LunasPiutangSearchModel>(_dep.LunasPiutangBL);
+            var resultDialog = searchForm.ShowDialog();
+            if (resultDialog != DialogResult.OK) return;
+
+            _view.LunasPiutangID = searchForm.SelectedDataKey;
         }
     }
 }

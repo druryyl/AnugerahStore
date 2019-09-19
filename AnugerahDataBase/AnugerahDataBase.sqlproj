@@ -136,6 +136,7 @@
     <Build Include="Penjualan\OrderJual2.sql" />
     <Build Include="Accounting\DepositDetil.sql" />
     <Build Include="Accounting\LunasPiutangTable.sql" />
+    <Build Include="Accounting\LunasPiutangDetilTable.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AnugerahSPS.publish.xml" />

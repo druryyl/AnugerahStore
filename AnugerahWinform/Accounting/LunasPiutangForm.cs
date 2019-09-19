@@ -43,6 +43,8 @@ namespace AnugerahWinform.Accounting
             JenisBayarComboBox.DataSource = _jenisBayarBindingSource;
             JenisBayarComboBox.DisplayMember = "JenisBayarName";
             JenisBayarComboBox.ValueMember = "JenisBayarID";
+
+
         }
 
         private void GridStyling()
@@ -162,6 +164,37 @@ namespace AnugerahWinform.Accounting
         {
             _presenter.PelunasanValidated();
             _bpPiutangBindingSource.ResetBindings(false);
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            _presenter.Save();
+            _presenter.NewLunasPiutang();
+        }
+
+        private void LunasPiutangIDTextBox_Validated(object sender, EventArgs e)
+        {
+            _presenter.GetData();
+        }
+
+        private void SearchLunasPiutangButton_Click(object sender, EventArgs e)
+        {
+            _presenter.PilihLunasPiutang();
+            _presenter.GetData();
+        }
+
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            JamTextBox.Text = DateTime.Now.ToString("HH:mm:ss");
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Delete ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                return;
+
+            _presenter.Delete();
+            _presenter.NewLunasPiutang();
         }
     }
 }

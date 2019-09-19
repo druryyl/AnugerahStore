@@ -54,21 +54,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.DeleteButton = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.BPPiutangBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.BPPiutangDataSet = new System.Data.DataSet();
-            this.BPPiutang = new System.Data.DataTable();
-            this.dataColumn1 = new System.Data.DataColumn();
-            this.dataColumn2 = new System.Data.DataColumn();
-            this.dataColumn3 = new System.Data.DataColumn();
-            this.dataColumn4 = new System.Data.DataColumn();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.MainTab.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TotalBayarTextBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TotalPiutangTextBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ListPiutangGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BPPiutangBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BPPiutangDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BPPiutang)).BeginInit();
             this.SuspendLayout();
             // 
             // MainTab
@@ -187,6 +178,7 @@
             this.SearchLunasPiutangButton.TabIndex = 1;
             this.SearchLunasPiutangButton.Text = "...";
             this.SearchLunasPiutangButton.UseVisualStyleBackColor = true;
+            this.SearchLunasPiutangButton.Click += new System.EventHandler(this.SearchLunasPiutangButton_Click);
             // 
             // NewButton
             // 
@@ -208,6 +200,7 @@
             this.LunasPiutangIDTextBox.ReadOnly = true;
             this.LunasPiutangIDTextBox.Size = new System.Drawing.Size(390, 21);
             this.LunasPiutangIDTextBox.TabIndex = 0;
+            this.LunasPiutangIDTextBox.Validated += new System.EventHandler(this.LunasPiutangIDTextBox_Validated);
             // 
             // label2
             // 
@@ -324,6 +317,7 @@
             this.SaveButton.TabIndex = 11;
             this.SaveButton.Text = "Save";
             this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // CustomerNameTextBox
             // 
@@ -353,6 +347,7 @@
             this.DeleteButton.TabIndex = 12;
             this.DeleteButton.Text = "Delete";
             this.DeleteButton.UseVisualStyleBackColor = true;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // tabPage2
             // 
@@ -364,55 +359,11 @@
             this.tabPage2.Text = "Informasi";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // BPPiutangBindingSource
+            // timer1
             // 
-            this.BPPiutangBindingSource.DataMember = "BPPiutang";
-            this.BPPiutangBindingSource.DataSource = this.BPPiutangDataSet;
-            // 
-            // BPPiutangDataSet
-            // 
-            this.BPPiutangDataSet.DataSetName = "NewDataSet";
-            this.BPPiutangDataSet.Tables.AddRange(new System.Data.DataTable[] {
-            this.BPPiutang});
-            // 
-            // BPPiutang
-            // 
-            this.BPPiutang.Columns.AddRange(new System.Data.DataColumn[] {
-            this.dataColumn1,
-            this.dataColumn2,
-            this.dataColumn3,
-            this.dataColumn4});
-            this.BPPiutang.TableName = "BPPiutang";
-            // 
-            // dataColumn1
-            // 
-            this.dataColumn1.ColumnName = "BPPiutangID";
-            this.dataColumn1.DefaultValue = "";
-            // 
-            // dataColumn2
-            // 
-            this.dataColumn2.ColumnName = "Tgl";
-            this.dataColumn2.DefaultValue = "01-01-3000";
-            // 
-            // dataColumn3
-            // 
-            this.dataColumn3.ColumnName = "Nilai";
-            this.dataColumn3.DataType = typeof(decimal);
-            this.dataColumn3.DefaultValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            // 
-            // dataColumn4
-            // 
-            this.dataColumn4.ColumnName = "Bayar";
-            this.dataColumn4.DataType = typeof(decimal);
-            this.dataColumn4.DefaultValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // LunasPiutangForm
             // 
@@ -430,9 +381,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.TotalBayarTextBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TotalPiutangTextBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ListPiutangGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BPPiutangBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BPPiutangDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BPPiutang)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -460,16 +408,10 @@
         private System.Windows.Forms.DateTimePicker TglTextBox;
         private System.Windows.Forms.TextBox JamTextBox;
         private System.Windows.Forms.Label label3;
-        private System.Data.DataSet BPPiutangDataSet;
-        private System.Data.DataTable BPPiutang;
-        private System.Data.DataColumn dataColumn1;
-        private System.Data.DataColumn dataColumn2;
-        private System.Data.DataColumn dataColumn3;
         private System.Windows.Forms.DataGridView ListPiutangGrid;
-        private System.Windows.Forms.BindingSource BPPiutangBindingSource;
-        private System.Data.DataColumn dataColumn4;
         private System.Windows.Forms.ComboBox JenisBayarComboBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Timer timer1;
     }
 }
