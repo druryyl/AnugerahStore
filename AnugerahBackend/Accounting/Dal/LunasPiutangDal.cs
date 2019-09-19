@@ -54,8 +54,8 @@ namespace AnugerahBackend.Accounting.Dal
                 cmd.AddParam("@Jam", model.Jam);
                 cmd.AddParam("@PihakKeduaID", model.PihakKeduaID);
                 cmd.AddParam("@PiutangID", model.PiutangID);
-                cmd.AddParam("@NilaiSisaPiutang", model.NilaiSisaPiutang);
-                cmd.AddParam("@NilaiLunas", model.NilaiLunas);
+                //cmd.AddParam("@NilaiSisaPiutang", model.NilaiSisaPiutang);
+                //cmd.AddParam("@NilaiLunas", model.NilaiLunas);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -86,8 +86,8 @@ namespace AnugerahBackend.Accounting.Dal
                 cmd.AddParam("@Jam", model.Jam);
                 cmd.AddParam("@PihakKeduaID", model.PihakKeduaID);
                 cmd.AddParam("@PiutangID", model.PiutangID);
-                cmd.AddParam("@NilaiSisaPiutang", model.NilaiSisaPiutang);
-                cmd.AddParam("@NilaiLunas", model.NilaiLunas);
+                //cmd.AddParam("@NilaiSisaPiutang", model.NilaiSisaPiutang);
+                //cmd.AddParam("@NilaiLunas", model.NilaiLunas);
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
@@ -150,8 +150,8 @@ namespace AnugerahBackend.Accounting.Dal
                         PihakKeduaID = dr["PihakKeduaID"].ToString(),
                         PihaKeduaName = dr["PihakKeduaName"].ToString(),
                         PiutangID = dr["PiutangID"].ToString(),
-                        NilaiSisaPiutang = Convert.ToDecimal(dr["NilaiSisaPiutang"]),
-                        NilaiLunas = Convert.ToDecimal(dr["NilaiLunas"])
+                        //NilaiSisaPiutang = Convert.ToDecimal(dr["NilaiSisaPiutang"]),
+                        //NilaiLunas = Convert.ToDecimal(dr["NilaiLunas"])
                     };
                 }
             }
@@ -194,8 +194,8 @@ namespace AnugerahBackend.Accounting.Dal
                             PihakKeduaID = dr["PihakKeduaID"].ToString(),
                             PihaKeduaName = dr["PihakKeduaName"].ToString(),
                             PiutangID = dr["PiutangID"].ToString(),
-                            NilaiSisaPiutang = Convert.ToDecimal(dr["NilaiSisaPiutang"]),
-                            NilaiLunas = Convert.ToDecimal(dr["NilaiLunas"])
+                            //NilaiSisaPiutang = Convert.ToDecimal(dr["NilaiSisaPiutang"]),
+                            //NilaiLunas = Convert.ToDecimal(dr["NilaiLunas"])
                         };
                         result.Add(item);
                     }

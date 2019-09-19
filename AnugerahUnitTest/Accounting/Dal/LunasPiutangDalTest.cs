@@ -46,8 +46,8 @@ namespace AnugerahUnitTest.Accounting.Dal
                 PihakKeduaID = "B1",
                 PihaKeduaName = "",
                 PiutangID = "C1",
-                NilaiSisaPiutang = 2,
-                NilaiLunas = 1,
+                TotalNilaiSisaPiutang = 2,
+                TotalNilaiBayar = 1,
             };
             return result;
         }
@@ -61,8 +61,8 @@ namespace AnugerahUnitTest.Accounting.Dal
                 PihakKeduaID = "B2",
                 PihaKeduaName = "",
                 PiutangID = "C2",
-                NilaiSisaPiutang = 4,
-                NilaiLunas = 3,
+                TotalNilaiSisaPiutang = 4,
+                TotalNilaiBayar = 3,
             };
             return result;
         }

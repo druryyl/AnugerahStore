@@ -17,8 +17,8 @@ namespace AnugerahWinform.Accounting.View
         string CustomerName { get; set; }
         decimal TotalPiutang { get; set; }
         decimal TotalBayar { get; set; }
-        string JenisKasID { get; set; }
-        string JenisKasName { get; }
+        string JenisBayarID { get; set; }
+        string JenisBayarName { get; }
         List<BPPiutangViewModel> ListPiutang { get; set; }
     }
 

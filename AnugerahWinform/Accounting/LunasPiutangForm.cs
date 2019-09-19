@@ -22,11 +22,11 @@ namespace AnugerahWinform.Accounting
         //  hidden property
         private string _customerID;
         private List<BPPiutangViewModel> _listPiutang = new List<BPPiutangViewModel>();
-        private List<JenisKasModel> _listJenisKas = new List<JenisKasModel>();
+        private List<JenisBayarModel> _listJenisBayar = new List<JenisBayarModel>();
 
         //  binding object
         private BindingSource _bpPiutangBindingSource = new BindingSource();
-        private BindingSource _jenisKasBindingSource = new BindingSource();
+        private BindingSource _jenisBayarBindingSource = new BindingSource();
 
         public LunasPiutangForm()
         {
@@ -39,10 +39,10 @@ namespace AnugerahWinform.Accounting
             this.GridStyling();
 
             //  bind collection to combobox
-            _jenisKasBindingSource.DataSource = _presenter.ListJenisKas();
-            JenisKasComboBox.DataSource = _jenisKasBindingSource;
-            JenisKasComboBox.DisplayMember = "JenisKasName";
-            JenisKasComboBox.ValueMember = "JenisKasID";
+            _jenisBayarBindingSource.DataSource = _presenter.ListJenisBayar();
+            JenisBayarComboBox.DataSource = _jenisBayarBindingSource;
+            JenisBayarComboBox.DisplayMember = "JenisBayarName";
+            JenisBayarComboBox.ValueMember = "JenisBayarID";
         }
 
         private void GridStyling()
@@ -124,15 +124,15 @@ namespace AnugerahWinform.Accounting
                 _bpPiutangBindingSource.DataSource = _listPiutang;
             }
         }
-        public string JenisKasID
+        public string JenisBayarID
         {
-            get => JenisKasComboBox.SelectedValue.ToString();
-            set => JenisKasComboBox.SelectedValue = value;
+            get => JenisBayarComboBox.SelectedValue.ToString();
+            set => JenisBayarComboBox.SelectedValue = value;
         }
 
-        public string JenisKasName
+        public string JenisBayarName
         {
-            get => JenisKasComboBox.SelectedText;
+            get => JenisBayarComboBox.SelectedText;
         }
         private void NewButton_Click(object sender, EventArgs e)
         {

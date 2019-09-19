@@ -33,7 +33,7 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.JenisKasComboBox = new System.Windows.Forms.ComboBox();
+            this.JenisBayarComboBox = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.TglTextBox = new System.Windows.Forms.DateTimePicker();
             this.JamTextBox = new System.Windows.Forms.TextBox();
@@ -87,7 +87,7 @@
             this.tabPage1.BackColor = System.Drawing.Color.Bisque;
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.JenisKasComboBox);
+            this.tabPage1.Controls.Add(this.JenisBayarComboBox);
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.TglTextBox);
             this.tabPage1.Controls.Add(this.JamTextBox);
@@ -133,14 +133,14 @@
             this.label4.TabIndex = 30;
             this.label4.Text = "Cara Pelunasan";
             // 
-            // JenisKasComboBox
+            // JenisBayarComboBox
             // 
-            this.JenisKasComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.JenisKasComboBox.FormattingEnabled = true;
-            this.JenisKasComboBox.Location = new System.Drawing.Point(6, 139);
-            this.JenisKasComboBox.Name = "JenisKasComboBox";
-            this.JenisKasComboBox.Size = new System.Drawing.Size(505, 21);
-            this.JenisKasComboBox.TabIndex = 7;
+            this.JenisBayarComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.JenisBayarComboBox.FormattingEnabled = true;
+            this.JenisBayarComboBox.Location = new System.Drawing.Point(6, 139);
+            this.JenisBayarComboBox.Name = "JenisBayarComboBox";
+            this.JenisBayarComboBox.Size = new System.Drawing.Size(505, 21);
+            this.JenisBayarComboBox.TabIndex = 7;
             // 
             // label6
             // 
@@ -468,7 +468,7 @@
         private System.Windows.Forms.DataGridView ListPiutangGrid;
         private System.Windows.Forms.BindingSource BPPiutangBindingSource;
         private System.Data.DataColumn dataColumn4;
-        private System.Windows.Forms.ComboBox JenisKasComboBox;
+        private System.Windows.Forms.ComboBox JenisBayarComboBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
     }

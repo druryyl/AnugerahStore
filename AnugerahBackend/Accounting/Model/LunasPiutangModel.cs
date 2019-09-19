@@ -14,7 +14,16 @@ namespace AnugerahBackend.Accounting.Model
         public string PihakKeduaID { get; set; }
         public string PihaKeduaName { get; set; }
         public string PiutangID { get; set; }
+        public string JenisKasID { get; set; }
+        public decimal TotalNilaiSisaPiutang { get; set; }
+        public decimal TotalNilaiBayar { get; set; }
+    }
+
+    public class LunasPiutangDetilModel
+    {
+        public string PiutangID { get; set; }   
+        public string Tgl { get; set; }
         public decimal NilaiSisaPiutang { get; set; }
-        public decimal NilaiLunas { get; set; }
+        public decimal NilaiBayar { get; set; }
     }
 }

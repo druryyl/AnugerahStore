@@ -17,14 +17,15 @@ namespace AnugerahWinform.Accounting.Presenter
     {
         public ICustomerBL CustomerBL { get; set; }
         public IBPPiutangBL BPPiutangBL { get; set; }
-        public IJenisKasBL JenisKasBL { get; set; }
+        public IJenisBayarBL JenisBayarBL { get; set; }
     }
 
     public class LunasPiutangPresenter
     {
         private readonly ILunasPiutangView _view;
         private LunasPiutangPresenterDependency _dep;
-
+        private const string JENIS_KAS_PIUTANG = "K04";
+        private const string DEFAULT_JENIS_BAYAR_ID = "KAS";
         public LunasPiutangPresenter(ILunasPiutangView view)
         {
             _view = view;
@@ -32,7 +33,7 @@ namespace AnugerahWinform.Accounting.Presenter
             {
                 CustomerBL = new CustomerBL(),
                 BPPiutangBL = new BPPiutangBL(),
-                JenisKasBL = new JenisKasBL()
+                JenisBayarBL = new JenisBayarBL()
             };
         }
 
@@ -50,7 +51,7 @@ namespace AnugerahWinform.Accounting.Presenter
             _view.CustomerID = "";
             _view.CustomerName = "";
             _view.ListPiutang.Clear();
-            _view.JenisKasID = "KAS";
+            _view.JenisBayarID = DEFAULT_JENIS_BAYAR_ID;
         }
 
         public void PilihCustomer()
@@ -69,17 +70,17 @@ namespace AnugerahWinform.Accounting.Presenter
             }
         }
 
-        public IEnumerable<JenisKasModel> ListJenisKas()
+        public IEnumerable<JenisBayarModel> ListJenisBayar()
         {
-            var listJenisKas = _dep.JenisKasBL.ListData();
+            var listJenisBayar = _dep.JenisBayarBL.ListData();
 
             //  escape point
-            if (listJenisKas == null)
+            if (listJenisBayar == null)
                 return null;
 
             var result =
-                from c in listJenisKas
-                where c.TipeKas != "PT"
+                from c in listJenisBayar
+                where c.JenisKasID != JENIS_KAS_PIUTANG
                 select c;
 
             //  escape point
