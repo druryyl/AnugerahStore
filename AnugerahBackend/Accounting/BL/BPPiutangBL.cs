@@ -21,7 +21,8 @@ namespace AnugerahBackend.Accounting.BL
         BPPiutangModel GenPiutang(LunasKasBonModel lunasKasBon, KasBonModel kasBon);
         BPPiutangModel GetData(string piutangID);
         IEnumerable<BPPiutangModel>ListByCustomer(string customerID);
-
+        void GenLunasPiutang(LunasPiutangModel lunasPiutang);
+        void GenLunasPiutangCancel(LunasPiutangModel lunasPiutang);
         //void GenLunas()
     }
 
@@ -62,7 +63,7 @@ namespace AnugerahBackend.Accounting.BL
             return header;
         }
 
-         public BPPiutangModel GenPiutang(KasBonModel kasBon)
+        public BPPiutangModel GenPiutang(KasBonModel kasBon)
         {
             if (kasBon == null)
             {
@@ -72,6 +73,72 @@ namespace AnugerahBackend.Accounting.BL
             var result = Save(bpPiutang);
             return result;
         }
+
+        public void GenLunasPiutang(LunasPiutangModel lunasPiutang)
+        {
+            using (var trans = TransHelper.NewScope())
+            {
+                foreach (var item in lunasPiutang.ListPiutangBayar)
+                {
+                    if (item.NilaiBayar == 0)
+                        continue;
+
+                    var bpPiutang = this.GetData(item.PiutangID);
+                    var pelunasanBaru = new BPPiutangDetilModel
+                    {
+                        ReffID = item.LunasPiutangID,
+                        Tgl = lunasPiutang.Tgl,
+                        Jam = lunasPiutang.Jam,
+                        Keterangan = "Pelunasan Piutang",
+                        NilaiPiutang = 0,
+                        NilaiLunas = item.NilaiBayar
+                    };
+                    var newListLunas = new List<BPPiutangDetilModel>();
+                    newListLunas.AddRange(bpPiutang.ListLunas);
+                    newListLunas.Add(pelunasanBaru);
+                    var noUrut = 1;
+                    foreach(var item2 in newListLunas)
+                    {
+                        item2.BPPiutangID = item.PiutangID;
+                        item2.BPPiutangDetilID = string.Format("{0}-{1}",
+                            item.PiutangID, noUrut.ToString().PadLeft(2, '0'));
+                        noUrut++;
+                    }
+                    bpPiutang.ListLunas = newListLunas;
+                    this.Save(bpPiutang);
+                }
+                trans.Complete();
+            }
+        }
+
+        public void GenLunasPiutangCancel(LunasPiutangModel lunasPiutang)
+        {
+            using (var trans = TransHelper.NewScope())
+            {
+                foreach (var item in lunasPiutang.ListPiutangBayar)
+                {
+                    //  ambil data bpPiutang
+                    var bpPiutang = this.GetData(item.PiutangID);
+                    if (bpPiutang.ListLunas == null)
+                        continue;
+                    //  ubah ienumerable => list (biar bisa di-remove)
+                    var listLunas = new List<BPPiutangDetilModel>();
+                    listLunas.AddRange(bpPiutang.ListLunas);
+                    //  cari item pelunasannya
+                    var pelunasan = listLunas.Find(x => x.ReffID == lunasPiutang.LunasPiutangID);
+                    //  escape point
+                    if (pelunasan == null)
+                        continue;
+                    //  remove
+                    listLunas.Remove(pelunasan);
+                    bpPiutang.ListLunas = listLunas;
+                    //  proses
+                    this.Save(bpPiutang);
+                }
+                trans.Complete();
+            }
+        }
+
 
         public void GenPiutangDelete(KasBonModel kasBon)
         {

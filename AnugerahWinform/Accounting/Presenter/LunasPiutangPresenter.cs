@@ -165,6 +165,12 @@ namespace AnugerahWinform.Accounting.Presenter
                 ListPiutangBayar = listDetil
             };
             _dep.LunasPiutangBL.Save(lunasPiutang);
+            
+            //  generate lunas piutang
+            //  (hapus dulu pelunasan yg lama, kasus simpan ulang)
+            _dep.BPPiutangBL.GenLunasPiutangCancel(lunasPiutang);
+            //  baru di-generate
+            _dep.BPPiutangBL.GenLunasPiutang(lunasPiutang);
         }
 
         public void GetData()
@@ -201,6 +207,11 @@ namespace AnugerahWinform.Accounting.Presenter
 
         public void Delete()
         {
+            //  hapus BPPiutang
+            var lunasPiutang = _dep.LunasPiutangBL.GetData(_view.LunasPiutangID);
+            if(lunasPiutang != null)
+                _dep.BPPiutangBL.GenLunasPiutangCancel(lunasPiutang);
+            //  hapus LunasPiutang
             _dep.LunasPiutangBL.Delete(_view.LunasPiutangID);
         }
 
