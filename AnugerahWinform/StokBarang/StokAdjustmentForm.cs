@@ -21,6 +21,7 @@ namespace AnugerahWinform.StokBarang
         private IStokBL _stokBL;
         private IStokAdjustmentBL _stokAdjustmentBL;
         private IBPStokBL _bpStokBL;
+        private readonly IBrgStokHargaBL _brgStokHargaBL;
         public StokAdjustmentForm()
         {
             InitializeComponent();
@@ -28,6 +29,7 @@ namespace AnugerahWinform.StokBarang
             _brgBL = new BrgBL();
             _stokBL = new StokBL();
             _bpStokBL = new BPStokBL();
+            _brgStokHargaBL = new BrgStokHargaBL();
 
         }
         private void StokAdjustmentForm_Load(object sender, EventArgs e)
@@ -51,6 +53,13 @@ namespace AnugerahWinform.StokBarang
             if ((brgName.Trim() != "") && (e.RowIndex == DetilAdjTable.Rows.Count - 1))
                 AddRow();
 
+            //  column qty adjust
+            if(e.ColumnIndex == 4)
+            {
+                var qtyAwal = Convert.ToDecimal(DetilAdjTable.Rows[e.RowIndex]["QtyAwal"]);
+                var qtyAdjust = Convert.ToDecimal(DetilAdjTable.Rows[e.RowIndex]["QtyAdjust"]);
+                DetilAdjTable.Rows[e.RowIndex]["QtyAkhir"] = qtyAwal + qtyAdjust;
+            }
         }
         private void BrgGrid_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
@@ -62,13 +71,14 @@ namespace AnugerahWinform.StokBarang
 
         private void SearchBrg(int rowIndex)
         {
-            var searchForm = new SearchingForm<BrgSearchResultModel>(_brgBL);
+            var searchForm = new SearchingForm<BrgStokHargaModel>(_brgStokHargaBL);
             var resultDialog = searchForm.ShowDialog();
             if (resultDialog == DialogResult.OK)
             {
                 var result = searchForm.SelectedDataKey;
                 DetilAdjTable.Rows[rowIndex]["BrgID"] = result;
             }
+
         }
 
         private void SearchKodeTrs()
@@ -94,11 +104,13 @@ namespace AnugerahWinform.StokBarang
                 brgName = brg.BrgName;
 
             //  get stok
-            decimal qtyAwal = _stokBL.GetStok(kodeBrg);
+            decimal qtyAwal = _bpStokBL.GetStok(kodeBrg);
 
             //  tampilkan di grid
             DetilAdjTable.Rows[rowIndex]["BrgName"] = brgName;
             DetilAdjTable.Rows[rowIndex]["QtyAwal"] = qtyAwal;
+            var qtyAdjust = Convert.ToDecimal(DetilAdjTable.Rows[rowIndex]["QtyAdjust"]);
+            DetilAdjTable.Rows[rowIndex]["QtyAkhir"] = qtyAwal + qtyAdjust;
         }
         private void AddRow()
         {

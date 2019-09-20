@@ -20,6 +20,7 @@ namespace AnugerahBackend.StokBarang.BL
         IEnumerable<BPStokModel> Generate(RepackModel repack);
         BPStokModel GetData(string BPStokID);
         IEnumerable<BPStokModel> ListData();
+        decimal GetStok(string kodeBrg);
     }
 
     public class BPStokBL : IBPStokBL
@@ -441,6 +442,18 @@ namespace AnugerahBackend.StokBarang.BL
                     from c in result
                     where c.BrgName.ContainMultiWord(SearchFilter.UserKeyword)
                     select c;
+
+            return result;
+        }
+
+        public decimal GetStok(string kodeBrg)
+        {
+            decimal result = 0;
+            var listBPStok = _bpStokDal.ListData(kodeBrg);
+            if (listBPStok == null)
+                return 0;
+
+            result = listBPStok.Sum(x => x.QtySisa);
 
             return result;
         }
