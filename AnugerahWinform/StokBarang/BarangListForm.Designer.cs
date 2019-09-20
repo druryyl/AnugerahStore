@@ -69,6 +69,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.SearchButton = new System.Windows.Forms.Button();
             this.PrgBar = new System.Windows.Forms.ProgressBar();
+            this.AktifCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.BarangGrid)).BeginInit();
             this.BarangTabControl.SuspendLayout();
             this.KlasifikasiTab.SuspendLayout();
@@ -85,7 +86,7 @@
             this.SubJenisBrgTree.Location = new System.Drawing.Point(3, 3);
             this.SubJenisBrgTree.Name = "SubJenisBrgTree";
             this.tableLayoutPanel1.SetRowSpan(this.SubJenisBrgTree, 4);
-            this.SubJenisBrgTree.Size = new System.Drawing.Size(216, 555);
+            this.SubJenisBrgTree.Size = new System.Drawing.Size(217, 557);
             this.SubJenisBrgTree.TabIndex = 0;
             this.SubJenisBrgTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.SubJenisBrgTree_AfterSelect);
             // 
@@ -103,10 +104,10 @@
             this.Kemasan,
             this.ColorID});
             this.BarangGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BarangGrid.Location = new System.Drawing.Point(225, 53);
+            this.BarangGrid.Location = new System.Drawing.Point(226, 53);
             this.BarangGrid.Name = "BarangGrid";
             this.BarangGrid.ReadOnly = true;
-            this.BarangGrid.Size = new System.Drawing.Size(697, 175);
+            this.BarangGrid.Size = new System.Drawing.Size(699, 177);
             this.BarangGrid.TabIndex = 34;
             this.BarangGrid.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.BarangGrid_RowLeave);
             // 
@@ -160,7 +161,7 @@
             this.SearchText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.SearchText.Location = new System.Drawing.Point(10, 11);
             this.SearchText.Name = "SearchText";
-            this.SearchText.Size = new System.Drawing.Size(597, 21);
+            this.SearchText.Size = new System.Drawing.Size(599, 21);
             this.SearchText.TabIndex = 2;
             this.SearchText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SearchText_KeyDown);
             // 
@@ -170,10 +171,10 @@
             this.BarangTabControl.Controls.Add(this.PhotoTab);
             this.BarangTabControl.Controls.Add(this.PricingTab);
             this.BarangTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BarangTabControl.Location = new System.Drawing.Point(225, 234);
+            this.BarangTabControl.Location = new System.Drawing.Point(226, 236);
             this.BarangTabControl.Name = "BarangTabControl";
             this.BarangTabControl.SelectedIndex = 0;
-            this.BarangTabControl.Size = new System.Drawing.Size(697, 304);
+            this.BarangTabControl.Size = new System.Drawing.Size(699, 304);
             this.BarangTabControl.TabIndex = 6;
             // 
             // KlasifikasiTab
@@ -185,7 +186,7 @@
             this.KlasifikasiTab.Location = new System.Drawing.Point(4, 22);
             this.KlasifikasiTab.Name = "KlasifikasiTab";
             this.KlasifikasiTab.Padding = new System.Windows.Forms.Padding(3);
-            this.KlasifikasiTab.Size = new System.Drawing.Size(689, 278);
+            this.KlasifikasiTab.Size = new System.Drawing.Size(691, 278);
             this.KlasifikasiTab.TabIndex = 0;
             this.KlasifikasiTab.Text = "Data Barang";
             this.KlasifikasiTab.UseVisualStyleBackColor = true;
@@ -193,7 +194,7 @@
             // button3
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(524, 251);
+            this.button3.Location = new System.Drawing.Point(526, 251);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 32;
@@ -203,7 +204,7 @@
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(605, 251);
+            this.button2.Location = new System.Drawing.Point(607, 251);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 31;
@@ -214,7 +215,7 @@
             // SaveButton
             // 
             this.SaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.SaveButton.Location = new System.Drawing.Point(443, 251);
+            this.SaveButton.Location = new System.Drawing.Point(445, 251);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(75, 23);
             this.SaveButton.TabIndex = 30;
@@ -228,6 +229,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.Beige;
+            this.panel1.Controls.Add(this.AktifCheckBox);
             this.panel1.Controls.Add(this.ColorPanel);
             this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.KemasanComboBox);
@@ -247,7 +249,7 @@
             this.panel1.Controls.Add(this.BrgIDText);
             this.panel1.Location = new System.Drawing.Point(6, 6);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(674, 239);
+            this.panel1.Size = new System.Drawing.Size(676, 239);
             this.panel1.TabIndex = 29;
             // 
             // ColorPanel
@@ -255,7 +257,7 @@
             this.ColorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ColorPanel.BackColor = System.Drawing.Color.Salmon;
             this.ColorPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ColorPanel.Location = new System.Drawing.Point(600, 144);
+            this.ColorPanel.Location = new System.Drawing.Point(602, 144);
             this.ColorPanel.Name = "ColorPanel";
             this.ColorPanel.Size = new System.Drawing.Size(64, 51);
             this.ColorPanel.TabIndex = 45;
@@ -266,7 +268,7 @@
             // 
             this.label9.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(399, 184);
+            this.label9.Location = new System.Drawing.Point(401, 184);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(60, 13);
             this.label9.TabIndex = 44;
@@ -278,7 +280,7 @@
             this.KemasanComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.KemasanComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.KemasanComboBox.FormattingEnabled = true;
-            this.KemasanComboBox.Location = new System.Drawing.Point(402, 200);
+            this.KemasanComboBox.Location = new System.Drawing.Point(404, 200);
             this.KemasanComboBox.MaxLength = 20;
             this.KemasanComboBox.Name = "KemasanComboBox";
             this.KemasanComboBox.Size = new System.Drawing.Size(262, 21);
@@ -288,7 +290,7 @@
             // 
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(399, 140);
+            this.label8.Location = new System.Drawing.Point(401, 140);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(43, 13);
             this.label8.TabIndex = 42;
@@ -300,7 +302,7 @@
             this.ColorComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.ColorComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.ColorComboBox.FormattingEnabled = true;
-            this.ColorComboBox.Location = new System.Drawing.Point(402, 160);
+            this.ColorComboBox.Location = new System.Drawing.Point(404, 160);
             this.ColorComboBox.Name = "ColorComboBox";
             this.ColorComboBox.Size = new System.Drawing.Size(192, 21);
             this.ColorComboBox.TabIndex = 41;
@@ -310,7 +312,7 @@
             // 
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(399, 100);
+            this.label7.Location = new System.Drawing.Point(401, 100);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(35, 13);
             this.label7.TabIndex = 40;
@@ -322,7 +324,7 @@
             this.MerkComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.MerkComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.MerkComboBox.FormattingEnabled = true;
-            this.MerkComboBox.Location = new System.Drawing.Point(402, 116);
+            this.MerkComboBox.Location = new System.Drawing.Point(404, 116);
             this.MerkComboBox.Name = "MerkComboBox";
             this.MerkComboBox.Size = new System.Drawing.Size(262, 21);
             this.MerkComboBox.TabIndex = 39;
@@ -331,7 +333,7 @@
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(399, 60);
+            this.label6.Location = new System.Drawing.Point(401, 60);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(61, 13);
             this.label6.TabIndex = 38;
@@ -341,7 +343,7 @@
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(399, 20);
+            this.label5.Location = new System.Drawing.Point(401, 20);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(35, 13);
             this.label5.TabIndex = 37;
@@ -351,7 +353,7 @@
             // 
             this.KeteranganLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.KeteranganLabel.AutoSize = true;
-            this.KeteranganLabel.Location = new System.Drawing.Point(12, 100);
+            this.KeteranganLabel.Location = new System.Drawing.Point(12, 128);
             this.KeteranganLabel.Name = "KeteranganLabel";
             this.KeteranganLabel.Size = new System.Drawing.Size(73, 13);
             this.KeteranganLabel.TabIndex = 36;
@@ -363,7 +365,7 @@
             this.SubJenisBrgComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.SubJenisBrgComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.SubJenisBrgComboBox.FormattingEnabled = true;
-            this.SubJenisBrgComboBox.Location = new System.Drawing.Point(402, 76);
+            this.SubJenisBrgComboBox.Location = new System.Drawing.Point(404, 76);
             this.SubJenisBrgComboBox.Name = "SubJenisBrgComboBox";
             this.SubJenisBrgComboBox.Size = new System.Drawing.Size(262, 21);
             this.SubJenisBrgComboBox.TabIndex = 35;
@@ -374,7 +376,7 @@
             this.JenisBrgComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.JenisBrgComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.JenisBrgComboBox.FormattingEnabled = true;
-            this.JenisBrgComboBox.Location = new System.Drawing.Point(402, 36);
+            this.JenisBrgComboBox.Location = new System.Drawing.Point(404, 36);
             this.JenisBrgComboBox.Name = "JenisBrgComboBox";
             this.JenisBrgComboBox.Size = new System.Drawing.Size(262, 21);
             this.JenisBrgComboBox.TabIndex = 34;
@@ -383,18 +385,18 @@
             // KeteranganText
             // 
             this.KeteranganText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.KeteranganText.Location = new System.Drawing.Point(15, 116);
+            this.KeteranganText.Location = new System.Drawing.Point(15, 144);
             this.KeteranganText.MaxLength = 255;
             this.KeteranganText.Multiline = true;
             this.KeteranganText.Name = "KeteranganText";
-            this.KeteranganText.Size = new System.Drawing.Size(369, 105);
+            this.KeteranganText.Size = new System.Drawing.Size(371, 77);
             this.KeteranganText.TabIndex = 33;
             // 
             // label3
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 60);
+            this.label3.Location = new System.Drawing.Point(12, 84);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(40, 13);
             this.label3.TabIndex = 32;
@@ -404,10 +406,10 @@
             // 
             this.BrgNameText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.BrgNameText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.BrgNameText.Location = new System.Drawing.Point(15, 76);
+            this.BrgNameText.Location = new System.Drawing.Point(15, 100);
             this.BrgNameText.MaxLength = 35;
             this.BrgNameText.Name = "BrgNameText";
-            this.BrgNameText.Size = new System.Drawing.Size(369, 21);
+            this.BrgNameText.Size = new System.Drawing.Size(371, 21);
             this.BrgNameText.TabIndex = 31;
             // 
             // label2
@@ -427,7 +429,7 @@
             this.BrgIDText.Location = new System.Drawing.Point(15, 36);
             this.BrgIDText.MaxLength = 5;
             this.BrgIDText.Name = "BrgIDText";
-            this.BrgIDText.Size = new System.Drawing.Size(369, 21);
+            this.BrgIDText.Size = new System.Drawing.Size(371, 21);
             this.BrgIDText.TabIndex = 29;
             this.BrgIDText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BrgIDText_KeyDown);
             this.BrgIDText.Validating += new System.ComponentModel.CancelEventHandler(this.BrgIDText_Validating);
@@ -488,7 +490,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 310F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(925, 561);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(928, 563);
             this.tableLayoutPanel1.TabIndex = 32;
             // 
             // panel2
@@ -497,15 +499,15 @@
             this.panel2.Controls.Add(this.SearchButton);
             this.panel2.Controls.Add(this.SearchText);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(225, 3);
+            this.panel2.Location = new System.Drawing.Point(226, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(697, 44);
+            this.panel2.Size = new System.Drawing.Size(699, 44);
             this.panel2.TabIndex = 33;
             // 
             // SearchButton
             // 
             this.SearchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.SearchButton.Location = new System.Drawing.Point(613, 9);
+            this.SearchButton.Location = new System.Drawing.Point(615, 9);
             this.SearchButton.Name = "SearchButton";
             this.SearchButton.Size = new System.Drawing.Size(75, 23);
             this.SearchButton.TabIndex = 31;
@@ -516,16 +518,26 @@
             // PrgBar
             // 
             this.PrgBar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PrgBar.Location = new System.Drawing.Point(225, 544);
+            this.PrgBar.Location = new System.Drawing.Point(226, 546);
             this.PrgBar.Name = "PrgBar";
-            this.PrgBar.Size = new System.Drawing.Size(697, 14);
+            this.PrgBar.Size = new System.Drawing.Size(699, 14);
             this.PrgBar.TabIndex = 35;
+            // 
+            // AktifCheckBox
+            // 
+            this.AktifCheckBox.AutoSize = true;
+            this.AktifCheckBox.Location = new System.Drawing.Point(15, 64);
+            this.AktifCheckBox.Name = "AktifCheckBox";
+            this.AktifCheckBox.Size = new System.Drawing.Size(52, 17);
+            this.AktifCheckBox.TabIndex = 30;
+            this.AktifCheckBox.Text = "Aktif";
+            this.AktifCheckBox.UseVisualStyleBackColor = true;
             // 
             // BarangListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(925, 561);
+            this.ClientSize = new System.Drawing.Size(928, 563);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.button4);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -588,5 +600,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn MerkName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Kemasan;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColorID;
+        private System.Windows.Forms.CheckBox AktifCheckBox;
     }
 }

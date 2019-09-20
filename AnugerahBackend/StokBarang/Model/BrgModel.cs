@@ -23,6 +23,8 @@ namespace AnugerahBackend.StokBarang.Model
         public string Kemasan { get; set; }
         public DateTime CreateTimestamp { get; set; }
         public DateTime UpdateTimestamp { get; set; }
+
+        public bool IsAktif { get; set; }
     }
 
     public class BrgJenisModel
@@ -86,13 +88,15 @@ namespace AnugerahBackend.StokBarang.Model
     {
         public string BrgID { get; set; }
         public string BrgName { get; set; }
+        public bool IsAktif { get; set; }
 
         public static explicit operator BrgSearchResultModel(BrgModel barang)
         {
             return new BrgSearchResultModel
             {
                 BrgID = barang.BrgID,
-                BrgName = barang.BrgName
+                BrgName = barang.BrgName,
+                IsAktif = barang.IsAktif
             };
         }
     }

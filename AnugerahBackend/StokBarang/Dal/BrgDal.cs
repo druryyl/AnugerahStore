@@ -50,11 +50,11 @@ namespace AnugerahBackend.StokBarang.Dal
                     Brg (
                         BrgID, BrgName, BrgNamePrint, Keterangan,
                         SubJenisBrgID, MerkID, ColorID,
-                        Kemasan)
+                        Kemasan, IsAktif)
                 VALUES (
                         @BrgID, @BrgName, @BrgNamePrint, @Keterangan,
                         @SubJenisBrgID, @MerkID, @ColorID, 
-                        @Kemasan) ";
+                        @Kemasan, @IsAktif) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
@@ -66,6 +66,7 @@ namespace AnugerahBackend.StokBarang.Dal
                 cmd.AddParam("@MerkID", brg.MerkID);
                 cmd.AddParam("@ColorID", brg.ColorID);
                 cmd.AddParam("@Kemasan", brg.Kemasan);
+                cmd.AddParam("@IsAktif", brg.IsAktif);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -83,7 +84,8 @@ namespace AnugerahBackend.StokBarang.Dal
                     MerkID = @MerkID,
                     ColorID = @ColorID,
                     Kemasan = @Kemasan,
-                    UpdateTimestamp = @UpdateTimestamp
+                    UpdateTimestamp = @UpdateTimestamp,
+                    IsAktif = @IsAktif
                 WHERE
                     BrgID = @BrgID ";
             using (var conn = new SqlConnection(_connString))
@@ -98,6 +100,7 @@ namespace AnugerahBackend.StokBarang.Dal
                 cmd.AddParam("@ColorID", brg.ColorID);
                 cmd.AddParam("@Kemasan", brg.Kemasan);
                 cmd.AddParam("@UpdateTimestamp", DateTime.Now);
+                cmd.AddParam("@IsAktif", brg.IsAktif);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -126,6 +129,7 @@ namespace AnugerahBackend.StokBarang.Dal
                     aa.SubJenisBrgID, aa.MerkID, aa.ColorID,
                     aa.Kemasan, 
                     aa.CreateTimestamp, aa.UpdateTimestamp,
+                    aa.IsAktif,
                     ISNULL(bb.SubJenisBrgName, '') SubJenisBrgName,
                     ISNULL(cc.MerkName, '') MerkName
                 FROM
@@ -158,7 +162,10 @@ namespace AnugerahBackend.StokBarang.Dal
                             Kemasan = dr["Kemasan"].ToString(),
 
                             CreateTimestamp = Convert.ToDateTime(dr["CreateTimestamp"]),
-                            UpdateTimestamp = Convert.ToDateTime(dr["UpdateTimestamp"])
+                            UpdateTimestamp = Convert.ToDateTime(dr["UpdateTimestamp"]),
+
+                            IsAktif = Convert.ToBoolean(dr["IsAktif"])
+
                         };
                     }
                 }
@@ -175,6 +182,7 @@ namespace AnugerahBackend.StokBarang.Dal
                     aa.SubJenisBrgID, aa.MerkID, aa.ColorID,
                     aa.Kemasan, 
                     aa.CreateTimestamp, aa.UpdateTimestamp,
+                    aa.IsAktif,
                     ISNULL(bb.SubJenisBrgName, '') SubJenisBrgName,
                     ISNULL(cc.MerkName, '') MerkName,
                     ISNULL(bb.JenisBrgID, '') JenisBrgID,
@@ -239,7 +247,9 @@ namespace AnugerahBackend.StokBarang.Dal
                                 Kemasan = dr["Kemasan"].ToString(),
 
                                 CreateTimestamp = Convert.ToDateTime(dr["CreateTimestamp"]),
-                                UpdateTimestamp = Convert.ToDateTime(dr["UpdateTimestamp"])
+                                UpdateTimestamp = Convert.ToDateTime(dr["UpdateTimestamp"]),
+                                
+                                IsAktif = Convert.ToBoolean(dr["IsAktif"])
                             };
                             result.Add(item);
                         }
@@ -359,6 +369,7 @@ namespace AnugerahBackend.StokBarang.Dal
                     aa.SubJenisBrgID, aa.MerkID, aa.ColorID,
                     aa.Kemasan, 
                     aa.CreateTimestamp, aa.UpdateTimestamp,
+                    aa.IsAktif,
                     ISNULL(bb.SubJenisBrgName, '') SubJenisBrgName,
                     ISNULL(cc.MerkName, '') MerkName,
                     ISNULL(bb.JenisBrgID, '') JenisBrgID,
@@ -427,7 +438,8 @@ namespace AnugerahBackend.StokBarang.Dal
                                 Kemasan = dr["Kemasan"].ToString(),
 
                                 CreateTimestamp = Convert.ToDateTime(dr["CreateTimestamp"]),
-                                UpdateTimestamp = Convert.ToDateTime(dr["UpdateTimestamp"])
+                                UpdateTimestamp = Convert.ToDateTime(dr["UpdateTimestamp"]),
+                                IsAktif = Convert.ToBoolean(dr["IsAktif"])
                             };
                             result.Add(item);
                         }

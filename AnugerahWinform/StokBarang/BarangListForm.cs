@@ -359,7 +359,8 @@ namespace AnugerahWinform.StokBarang
                 SubJenisBrgID = subJenisID.ToString(),
                 MerkID = merkID.ToString(),
                 Kemasan = kemasan,
-                BrgNamePrint = String.Concat(BrgNameText.Text,27)
+                BrgNamePrint = String.Concat(BrgNameText.Text, 27),
+                IsAktif = AktifCheckBox.Checked
             };
 
             try
@@ -416,6 +417,7 @@ namespace AnugerahWinform.StokBarang
                 MerkComboBox.SelectedValue = brg.MerkID;
                 ColorComboBox.SelectedValue = brg.ColorID;
                 KemasanComboBox.Text = brg.Kemasan;
+                AktifCheckBox.Checked = brg.IsAktif;
             }
         }
         private void SubJenisBrgTree_AfterSelect(object sender, TreeViewEventArgs e)

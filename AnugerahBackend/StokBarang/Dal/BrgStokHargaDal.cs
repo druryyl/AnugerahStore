@@ -40,7 +40,9 @@ namespace AnugerahBackend.StokBarang.Dal
                     ISNULL(bb.BrgName, '') BrgName
                 FROM
                     BrgStokHarga aa
-                    LEFT JOIN Brg bb ON aa.BrgID = bb.BrgID ";
+                    LEFT JOIN Brg bb ON aa.BrgID = bb.BrgID 
+                WHERE
+                    bb.IsAktif = 1";
 
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))

@@ -78,7 +78,6 @@ namespace AnugerahBackend.StokBarang.BL
             }
         }
 
-
         public IEnumerable<BrgStokHargaModel> Search()
         {
             var listData = _brgStokHargaDal.ListData();
