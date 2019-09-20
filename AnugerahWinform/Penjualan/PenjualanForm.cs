@@ -192,9 +192,41 @@ namespace AnugerahWinform.Penjualan
                 return;
             }
 
-            SaveTransaksi();
+            //  jika tidak ada pembayaran, konfirmasi piutang
+            if (_listBayarDetil == null)
+                _listBayarDetil = new List<PenjualanBayarModel>();
 
+            if (_listBayarDetil.Sum(x => x.NilaiBayar) == 0)
+                if (MessageBox.Show("Penjualan Piutang?",
+                    "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    AutoPiutang();
+                }
+                else
+                {
+                    return;
+                }
+            SaveTransaksi();
         }
+
+        private const string JENIS_BAYAR_ID_PIUTANG = "PTG";
+        private const string JENIS_KAS_ID_PIUTANG = "K04";
+        private void AutoPiutang()
+        {
+
+            if (true)
+            _listBayarDetil = new List<PenjualanBayarModel>();
+
+            _listBayarDetil.Add(new PenjualanBayarModel
+            {
+                JenisBayarID = JENIS_BAYAR_ID_PIUTANG,
+                JenisKasID = JENIS_KAS_ID_PIUTANG,
+                NilaiBayar = GrandTotalNumText.Value,
+                Catatan = "",
+                NoUrut = 0,
+            });
+        }
+        
         private void ExitButton_Click(object sender, EventArgs e)
         {
             this.Close();

@@ -126,7 +126,8 @@
             // 
             // JenisBayarComboBox
             // 
-            this.JenisBayarComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.JenisBayarComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.JenisBayarComboBox.FormattingEnabled = true;
             this.JenisBayarComboBox.Location = new System.Drawing.Point(6, 139);
             this.JenisBayarComboBox.Name = "JenisBayarComboBox";
@@ -306,6 +307,7 @@
             this.ExitButton.TabIndex = 13;
             this.ExitButton.Text = "Exit";
             this.ExitButton.UseVisualStyleBackColor = true;
+            this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
             // SaveButton
             // 

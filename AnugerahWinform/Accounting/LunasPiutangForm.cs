@@ -196,5 +196,10 @@ namespace AnugerahWinform.Accounting
             _presenter.Delete();
             _presenter.NewLunasPiutang();
         }
+
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
