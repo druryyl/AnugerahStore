@@ -45,7 +45,6 @@ namespace AnugerahUnitTest.Accounting.Dal
                 Jam = "01:00:00",
                 PihakKeduaID = "B1",
                 PihakKeduaName = "",
-                PiutangID = "C1",
                 TotalNilaiSisaPiutang = 2,
                 TotalNilaiBayar = 1,
             };
@@ -60,7 +59,6 @@ namespace AnugerahUnitTest.Accounting.Dal
                 Jam = "02:00:00",
                 PihakKeduaID = "B2",
                 PihakKeduaName = "",
-                PiutangID = "C2",
                 TotalNilaiSisaPiutang = 4,
                 TotalNilaiBayar = 3,
             };
@@ -164,7 +162,7 @@ namespace AnugerahUnitTest.Accounting.Dal
                 _sut.Insert(expected2);
 
                 //  act
-                var actual = _sut.ListData();
+                var actual = _sut.ListData("01-01-2019","31-12-2019");
 
                 //  assert
                 actual.Should().BeEquivalentTo(actual);
@@ -179,7 +177,7 @@ namespace AnugerahUnitTest.Accounting.Dal
                 //  arrange
 
                 //  act
-                var actual = _sut.ListData();
+                var actual = _sut.ListData("01-01-2019", "31-12-2019");
 
                 //  assert
                 actual.Should().BeNull();
