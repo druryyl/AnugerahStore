@@ -180,8 +180,9 @@ namespace AnugerahBackend.StokBarang.BL
             if (listData == null) return null;
 
             var result = listData.Select(x => (StokAdjustmentSearchModel)x);
-
-            if (SearchFilter.UserKeyword != "")
+            if (!result.Any())
+                return null;
+            if (SearchFilter.UserKeyword != null)
                 return
                     from c in result
                     where c.Keterangan.ContainMultiWord(SearchFilter.UserKeyword)

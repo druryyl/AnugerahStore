@@ -164,7 +164,7 @@ namespace AnugerahBackend.StokBarang.Dal
             decimal result = 0;
             var sSql = @"
                 SELECT
-                    SUM(QtySisa) QtySisa
+                    ISNULL(SUM(QtySisa) ,0) QtySisa
                 FROM
                     BPStok
                 WHERE

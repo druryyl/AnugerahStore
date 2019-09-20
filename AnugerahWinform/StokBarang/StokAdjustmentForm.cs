@@ -78,8 +78,20 @@ namespace AnugerahWinform.StokBarang
                 var result = searchForm.SelectedDataKey;
                 DetilAdjTable.Rows[rowIndex]["BrgID"] = result;
             }
-
         }
+
+        private void SearchBrg2(int rowIndex)
+        {
+            var searchForm = new SearchingForm<BrgSearchResultModel>(_brgBL);
+            var resultDialog = searchForm.ShowDialog();
+            if (resultDialog == DialogResult.OK)
+            {
+                var result = searchForm.SelectedDataKey;
+                DetilAdjTable.Rows[rowIndex]["BrgID"] = result;
+            }
+        }
+
+
 
         private void SearchKodeTrs()
         {
@@ -91,6 +103,7 @@ namespace AnugerahWinform.StokBarang
                 NoTrsTextBox.Text = result;
             }
         }
+
 
         private void ShowDataBrgGrid(int rowIndex)
         {
@@ -199,6 +212,7 @@ namespace AnugerahWinform.StokBarang
             TanggalDateTime.Value = DateTime.Now;
             KeteranganTextBox.Clear();
             DetilAdjTable.Rows.Clear();
+            AddRow();
             JamTrsTimer.Enabled = true;
         }
 

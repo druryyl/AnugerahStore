@@ -37,6 +37,7 @@ namespace AnugerahBackend.StokBarang.BL
         private IMerkBL _merkBL;
         private IColorBL _colorBL;
         private IParameterNoBL _paramNoBL;
+        private readonly IBrgStokHargaBL _brgStokHargaBL;
 
         public BrgModel ItemJasaCutting()
         {
@@ -54,6 +55,7 @@ namespace AnugerahBackend.StokBarang.BL
             _merkBL = new MerkBL();
             _colorBL = new ColorBL();
             _paramNoBL = new ParameterNoBL();
+            _brgStokHargaBL = new BrgStokHargaBL();
         }
 
         public BrgBL(IBrgDal injBrgDal, ISubJenisBrgBL injSubJenisBrgBL,
@@ -78,6 +80,9 @@ namespace AnugerahBackend.StokBarang.BL
                 {
                     brg.BrgID = _paramNoBL.GenNewID("B", 5);
                     _brgDal.Insert(result);
+
+                    //  insert ke barangStokHarga
+                    _brgStokHargaBL.UpdateStok(brg.BrgID);
                 }
                 else
                 {
@@ -85,10 +90,14 @@ namespace AnugerahBackend.StokBarang.BL
                     if (dummyBrg == null)
                     {
                         _brgDal.Insert(result);
+                        //  insert ke barangStokHarga
+                        _brgStokHargaBL.UpdateStok(brg.BrgID);
                     }
                     else
                     {
                         _brgDal.Update(result);
+                        //  insert ke barangStokHarga
+                        _brgStokHargaBL.UpdateStok(brg.BrgID);
                     }
                 }
                 trans.Complete();
