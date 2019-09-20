@@ -22,6 +22,7 @@ namespace AnugerahBackend.Accounting.BL
         BPKasModel Generate(DepositModel deposit);
         BPKasModel Generate(ReturDepositModel returDeposit);
         BPKasModel Generate(MutasiKasModel mutasiKas);
+        BPKasModel Generate(LunasPiutangModel lunasPiutang);
         IEnumerable<BPKasModel> ListData(string tgl1, string tgl2);
     }
 
@@ -168,6 +169,22 @@ namespace AnugerahBackend.Accounting.BL
             var result = Save(bpKas);
             return result;
         }
+
+        public BPKasModel Generate(LunasPiutangModel lunasPiutang)
+        {
+            if (lunasPiutang == null)
+            {
+                throw new ArgumentNullException(nameof(lunasPiutang));
+            }
+            var jenisBayar = _jenisBayarBL.GetData(lunasPiutang.JenisBayarID);
+            if (jenisBayar != null)
+                lunasPiutang.JenisKasID = jenisBayar.JenisKasID;
+
+            var bpKas = (BPKasModel)lunasPiutang;
+            var result = Save(bpKas);
+            return result;
+        }
+
         public BPKasModel Generate(ReturDepositModel returDeposit)
         {
             if (returDeposit == null)

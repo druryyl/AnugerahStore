@@ -19,6 +19,7 @@ namespace AnugerahWinform.Accounting.Presenter
         public IBPPiutangBL BPPiutangBL { get; set; }
         public IJenisBayarBL JenisBayarBL { get; set; }
         public ILunasPiutangBL LunasPiutangBL { get; set; }
+        public IBPKasBL BPKasBL { get; set; }
     }
 
     public class LunasPiutangPresenter
@@ -36,6 +37,7 @@ namespace AnugerahWinform.Accounting.Presenter
                 BPPiutangBL = new BPPiutangBL(),
                 JenisBayarBL = new JenisBayarBL(),
                 LunasPiutangBL = new LunasPiutangBL(),
+                BPKasBL = new BPKasBL(),
             };
         }
 
@@ -164,13 +166,16 @@ namespace AnugerahWinform.Accounting.Presenter
                 TotalNilaiBayar = _view.TotalBayar,
                 ListPiutangBayar = listDetil
             };
-            _dep.LunasPiutangBL.Save(lunasPiutang);
-            
+
             //  generate lunas piutang
             //  (hapus dulu pelunasan yg lama, kasus simpan ulang)
             _dep.BPPiutangBL.GenLunasPiutangCancel(lunasPiutang);
-            //  baru di-generate
+            //  simpan lunas piutang
+            _dep.LunasPiutangBL.Save(lunasPiutang);
+            
+            //  baru di-generate ulang BPPiutangnya
             _dep.BPPiutangBL.GenLunasPiutang(lunasPiutang);
+            _dep.BPKasBL.Generate(lunasPiutang);
         }
 
         public void GetData()

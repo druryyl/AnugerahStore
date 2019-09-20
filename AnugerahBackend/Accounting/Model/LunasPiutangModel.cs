@@ -15,6 +15,7 @@ namespace AnugerahBackend.Accounting.Model
         public string PihakKeduaName { get; set; }
         public string JenisBayarID { get; set; }
         public string JenisBayarName { get; set; }
+        public string JenisKasID { get; set; }
         public decimal TotalNilaiSisaPiutang { get; set; }
         public decimal TotalNilaiBayar { get; set; }
         public IEnumerable<LunasPiutangDetilModel> ListPiutangBayar { get; set; }
