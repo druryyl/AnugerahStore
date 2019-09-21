@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AnugerahBackend.Accounting.BL;
 
 namespace AnugerahBackend.Accounting.Model
 {
@@ -139,6 +140,30 @@ namespace AnugerahBackend.Accounting.Model
                 NilaiKasKeluar = 0
             };
             result.ListDetil = new List<BPKasDetilModel> { resultDetilAsal, resultDetilTujuan };
+            return result;
+        }
+
+        public static explicit operator BPKasModel(LunasPiutangModel model)
+        {
+            var result = new BPKasModel
+            {
+                BPKasID = model.LunasPiutangID,
+                Tgl = model.Tgl,
+                Jam = model.Jam,
+                Keterangan = "Lunas Piutang " + model.PihakKeduaName,
+                NilaiTotalKas = model.TotalNilaiBayar
+            };
+
+            var resultDetil = new BPKasDetilModel
+            {
+                BPKasID = model.LunasPiutangID,
+                BPKasDetilID = model.LunasPiutangID + '-' + "01",
+                JenisKasID = model.JenisKasID,
+                NilaiKasMasuk = model.TotalNilaiBayar,
+                NilaiKasKeluar = 0
+            };
+
+            result.ListDetil = new List<BPKasDetilModel> { resultDetil };
             return result;
         }
     }

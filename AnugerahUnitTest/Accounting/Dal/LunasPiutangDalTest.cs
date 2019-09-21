@@ -44,10 +44,10 @@ namespace AnugerahUnitTest.Accounting.Dal
                 Tgl = "15-01-2019",
                 Jam = "01:00:00",
                 PihakKeduaID = "B1",
-                PihaKeduaName = "",
+                PihakKeduaName = "",
                 PiutangID = "C1",
-                NilaiSisaPiutang = 2,
-                NilaiLunas = 1,
+                TotalNilaiSisaPiutang = 2,
+                TotalNilaiBayar = 1,
             };
             return result;
         }
@@ -59,10 +59,10 @@ namespace AnugerahUnitTest.Accounting.Dal
                 Tgl = "16-01-2019",
                 Jam = "02:00:00",
                 PihakKeduaID = "B2",
-                PihaKeduaName = "",
+                PihakKeduaName = "",
                 PiutangID = "C2",
-                NilaiSisaPiutang = 4,
-                NilaiLunas = 3,
+                TotalNilaiSisaPiutang = 4,
+                TotalNilaiBayar = 3,
             };
             return result;
         }

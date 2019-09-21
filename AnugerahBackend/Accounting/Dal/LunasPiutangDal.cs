@@ -18,7 +18,7 @@ namespace AnugerahBackend.Accounting.Dal
         void Update(LunasPiutangModel model);
         void Delete(string id);
         LunasPiutangModel GetData(string id);
-        IEnumerable<LunasPiutangModel> ListData();
+        IEnumerable<LunasPiutangModel> ListData(string tgl1, string tgl2);
     }
 
 
@@ -38,12 +38,12 @@ namespace AnugerahBackend.Accounting.Dal
                 INSERT INTO
                     LunasPiutang (
                         LunasPiutangID, Tgl, Jam,
-                        PihakKeduaID, PiutangID, 
-                        NilaiSisaPiutang, NilaiLunas)
+                        PihakKeduaID, JenisBayarID,
+                        TotalNilaiSisaPiutang, TotalNilaiBayar)
                 VALUES (
-                        @LunasPiutangID, @Tgl, @Jam
-                        @PihakKeduaID, @PiutangID, 
-                        @NilaiSisaPiutang, @NilaiLunas) ";
+                        @LunasPiutangID, @Tgl, @Jam,
+                        @PihakKeduaID, @JenisBayarID,
+                        @TotalNilaiSisaPiutang, @TotalNilaiBayar) ";
 
             //  execute
             using (var conn = new SqlConnection(_connString))
@@ -53,9 +53,9 @@ namespace AnugerahBackend.Accounting.Dal
                 cmd.AddParam("@Tgl", model.Tgl.ToTglYMD());
                 cmd.AddParam("@Jam", model.Jam);
                 cmd.AddParam("@PihakKeduaID", model.PihakKeduaID);
-                cmd.AddParam("@PiutangID", model.PiutangID);
-                cmd.AddParam("@NilaiSisaPiutang", model.NilaiSisaPiutang);
-                cmd.AddParam("@NilaiLunas", model.NilaiLunas);
+                cmd.AddParam("@JenisBayarID", model.JenisBayarID);
+                cmd.AddParam("@TotalNilaiSisaPiutang", model.TotalNilaiSisaPiutang);
+                cmd.AddParam("@TotalNilaiBayar", model.TotalNilaiBayar);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -71,9 +71,9 @@ namespace AnugerahBackend.Accounting.Dal
                     Tgl = @Tgl,
                     Jam = @Jam,
                     PihakKeduaID = @PihakKeduaID,
-                    PiutangID = @PiutangID,
-                    NilaiSisaPiutang = @NilaiSisaPiutang,
-                    NilaiLunas = @NilaiLunas
+                    JenisBayarID = @JenisBayarID, 
+                    TotalNilaiSisaPiutang = @TotalNilaiSisaPiutang,
+                    TotalNilaiBayar = @TotalNilaiBayar
                 WHERE
                     LunasPiutangID = @LunasPiutangID ";
 
@@ -85,9 +85,9 @@ namespace AnugerahBackend.Accounting.Dal
                 cmd.AddParam("@Tgl", model.Tgl.ToTglYMD());
                 cmd.AddParam("@Jam", model.Jam);
                 cmd.AddParam("@PihakKeduaID", model.PihakKeduaID);
-                cmd.AddParam("@PiutangID", model.PiutangID);
-                cmd.AddParam("@NilaiSisaPiutang", model.NilaiSisaPiutang);
-                cmd.AddParam("@NilaiLunas", model.NilaiLunas);
+                cmd.AddParam("@JenisBayarID", model.JenisBayarID);
+                cmd.AddParam("@TotalNilaiSisaPiutang", model.TotalNilaiSisaPiutang);
+                cmd.AddParam("@TotalNilaiBayar", model.TotalNilaiBayar);
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
@@ -98,7 +98,7 @@ namespace AnugerahBackend.Accounting.Dal
         {
             //  define
             var sSql = @"
-                DELETE FROM 
+                DELETE 
                     LunasPiutang 
                 WHERE
                     LunasPiutangID = @LunasPiutangID ";
@@ -120,12 +120,14 @@ namespace AnugerahBackend.Accounting.Dal
             var sSql = @"
                 SELECT
                     aa.Tgl, aa.Jam,
-                    aa.PihakKeduaID, aa.PiutangID, 
+                    aa.PihakKeduaID, aa.JenisBayarID, 
+                    TotalNilaiSisaPiutang, TotalNilaiBayar,
                     ISNULL(bb.PihakKeduaName, '') PihakKeduaName,
-                    NilaiSisaPiutang, NilaiLunas
+                    ISNULL(cc.JenisBayarName, '') JenisBayarName
                 FROM
                     LunasPiutang aa
                     LEFT JOIN PihakKedua bb ON aa.PihakKeduaID = bb.PihakKeduaID
+                    LEFT JOIN JenisBayar cc ON aa.JenisBayarID = cc.JenisBayarID
                 WHERE
                     aa.LunasPiutangID = @LunasPiutangID ";
 
@@ -148,34 +150,41 @@ namespace AnugerahBackend.Accounting.Dal
                         Tgl = dr["Tgl"].ToString(),
                         Jam = dr["Jam"].ToString(),
                         PihakKeduaID = dr["PihakKeduaID"].ToString(),
-                        PihaKeduaName = dr["PihakKeduaName"].ToString(),
-                        PiutangID = dr["PiutangID"].ToString(),
-                        NilaiSisaPiutang = Convert.ToDecimal(dr["NilaiSisaPiutang"]),
-                        NilaiLunas = Convert.ToDecimal(dr["NilaiLunas"])
+                        PihakKeduaName = dr["PihakKeduaName"].ToString(),
+                        JenisBayarID = dr["JenisBayarID"].ToString(),
+                        JenisBayarName = dr["JenisBayarName"].ToString(),
+                        TotalNilaiSisaPiutang = Convert.ToDecimal(dr["TotalNilaiSisaPiutang"]),
+                        TotalNilaiBayar  = Convert.ToDecimal(dr["TotalNilaiBayar"])
                     };
                 }
             }
             return result;
         }
 
-        public IEnumerable<LunasPiutangModel> ListData()
+        public IEnumerable<LunasPiutangModel> ListData(string tgl1, string tgl2)
         {
             //   define
             List<LunasPiutangModel> result = null;
             var sSql = @"
                 SELECT
                     aa.LunasPiutangID, aa.Tgl, aa.Jam,
-                    aa.PihakKeduaID, aa.PiutangID,
-                    aa.NilaiSisaPiutang, aa.NilaiLunas,
-                    ISNULL(bb.PihakKeduaName, '') PihakKeduaName
+                    aa.PihakKeduaID, aa.JenisBayarID, 
+                    TotalNilaiSisaPiutang, TotalNilaiBayar,
+                    ISNULL(bb.PihakKeduaName, '') PihakKeduaName,
+                    ISNULL(cc.JenisBayarName, '') JenisBayarName
                 FROM
-                    LunasPiutang aa 
-                    LEFT JOIN PihakKedua bb ON aa.PihakKeduaID = bb.PihakKeduaID  ";
+                    LunasPiutang aa
+                    LEFT JOIN PihakKedua bb ON aa.PihakKeduaID = bb.PihakKeduaID
+                    LEFT JOIN JenisBayar cc ON aa.JenisBayarID = cc.JenisBayarID 
+                WHERE
+                    Tgl BETWEEN @Tgl1 AND @Tgl2 ";
 
             //  execute
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
+                cmd.AddParam("@Tgl1", tgl1.ToTglYMD());
+                cmd.AddParam("@Tgl2", tgl2.ToTglYMD());
                 conn.Open();
                 using (var dr = cmd.ExecuteReader())
                 {
@@ -192,10 +201,11 @@ namespace AnugerahBackend.Accounting.Dal
                             Tgl = dr["Tgl"].ToString(),
                             Jam = dr["Jam"].ToString(),
                             PihakKeduaID = dr["PihakKeduaID"].ToString(),
-                            PihaKeduaName = dr["PihakKeduaName"].ToString(),
-                            PiutangID = dr["PiutangID"].ToString(),
-                            NilaiSisaPiutang = Convert.ToDecimal(dr["NilaiSisaPiutang"]),
-                            NilaiLunas = Convert.ToDecimal(dr["NilaiLunas"])
+                            PihakKeduaName = dr["PihakKeduaName"].ToString(),
+                            JenisBayarID = dr["JenisBayarID"].ToString(),
+                            JenisBayarName = dr["JenisBayarName"].ToString(),
+                            TotalNilaiSisaPiutang = Convert.ToDecimal(dr["TotalNilaiSisaPiutang"]),
+                            TotalNilaiBayar = Convert.ToDecimal(dr["TotalNilaiBayar"])
                         };
                         result.Add(item);
                     }

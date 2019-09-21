@@ -15,6 +15,7 @@ namespace AnugerahBackend.Accounting.Dal
     public interface IBPPiutangDal : IHeaderTrsDal<BPPiutangModel>
     {
         IEnumerable<BPPiutangModel> ListData();
+        IEnumerable<BPPiutangModel> ListData(string customerID);
     }
     public class BPPiutangDal : IBPPiutangDal
     {
@@ -193,6 +194,48 @@ namespace AnugerahBackend.Accounting.Dal
             using (var cmd = new SqlCommand(sSql, conn))
             {
                 conn.Open();
+                using (var dr = cmd.ExecuteReader())
+                {
+                    if (!dr.HasRows) return null;
+                    result = new List<BPPiutangModel>();
+                    while (dr.Read())
+                    {
+                        var item = new BPPiutangModel
+                        {
+                            BPPiutangID = dr["BPPiutangID"].ToString(),
+                            Tgl = dr["Tgl"].ToString().ToTglDMY(),
+                            Jam = dr["Jam"].ToString(),
+                            PihakKeduaID = dr["PihakKeduaID"].ToString(),
+                            PihakKeduaName = dr["PihakKeduaName"].ToString(),
+                            Keterangan = dr["Keterangan"].ToString(),
+                            NilaiPiutang = Convert.ToDecimal(dr["NilaiPiutang"]),
+                            NilaiLunas = Convert.ToDecimal(dr["NilaiLunas"]),
+                        };
+                        result.Add(item);
+                    }
+                }
+            }
+            return result;
+        }
+
+        public IEnumerable<BPPiutangModel> ListData(string customerID)
+        {
+            List<BPPiutangModel> result = null;
+            var sSql = @"
+                SELECT
+                    aa.BPPiutangID, aa.Tgl, aa.Jam, aa.PihakKeduaID,
+                    aa.Keterangan, aa.NilaiPiutang, aa.NilaiLunas,
+                    ISNULL(bb.PihakKeduaName, '') PihakKeduaName 
+                FROM    
+                    BPPiutang aa
+                    LEFT JOIN PihakKedua bb ON aa.PihakKeduaID = bb.PihakKeduaID 
+                WHERE
+                    aa.PihakKeduaID = @PihakKeduaID ";
+            using (var conn = new SqlConnection(_connString))
+            using (var cmd = new SqlCommand(sSql, conn))
+            {
+                conn.Open();
+                cmd.AddParam("@PihakKeduaID", customerID);
                 using (var dr = cmd.ExecuteReader())
                 {
                     if (!dr.HasRows) return null;
