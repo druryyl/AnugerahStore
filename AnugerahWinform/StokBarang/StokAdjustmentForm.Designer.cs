@@ -47,13 +47,6 @@
             this.NewButton = new System.Windows.Forms.Button();
             this.catatanButton = new System.Windows.Forms.Label();
             this.BrgGrid = new System.Windows.Forms.DataGridView();
-            this.brgIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BrgGridButtonCol = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.brgNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.qtyAwalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.qtyAdjustDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.qtyAkhirDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hppDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StokAdjBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.StokAdjDataSet = new System.Data.DataSet();
             this.DetilAdjTable = new System.Data.DataTable();
@@ -73,6 +66,13 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.listDataGrid = new System.Windows.Forms.DataGridView();
             this.JamTrsTimer = new System.Windows.Forms.Timer(this.components);
+            this.brgIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BrgGridButtonCol = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.brgNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qtyAwalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qtyAdjustDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qtyAkhirDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hppDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mainTabControl.SuspendLayout();
             this.entryDataTabPage.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -238,73 +238,6 @@
             this.BrgGrid.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.BrgGrid_CellValidated);
             this.BrgGrid.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.BrgGrid_CellValidating);
             // 
-            // brgIDDataGridViewTextBoxColumn
-            // 
-            this.brgIDDataGridViewTextBoxColumn.DataPropertyName = "BrgID";
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.brgIDDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
-            this.brgIDDataGridViewTextBoxColumn.HeaderText = "BrgID";
-            this.brgIDDataGridViewTextBoxColumn.Name = "brgIDDataGridViewTextBoxColumn";
-            this.brgIDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // BrgGridButtonCol
-            // 
-            this.BrgGridButtonCol.HeaderText = "...";
-            this.BrgGridButtonCol.Name = "BrgGridButtonCol";
-            this.BrgGridButtonCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.BrgGridButtonCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.BrgGridButtonCol.Width = 25;
-            // 
-            // brgNameDataGridViewTextBoxColumn
-            // 
-            this.brgNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.brgNameDataGridViewTextBoxColumn.DataPropertyName = "BrgName";
-            this.brgNameDataGridViewTextBoxColumn.HeaderText = "BrgName";
-            this.brgNameDataGridViewTextBoxColumn.Name = "brgNameDataGridViewTextBoxColumn";
-            this.brgNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // qtyAwalDataGridViewTextBoxColumn
-            // 
-            this.qtyAwalDataGridViewTextBoxColumn.DataPropertyName = "QtyAwal";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "N0";
-            dataGridViewCellStyle2.NullValue = "0";
-            this.qtyAwalDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.qtyAwalDataGridViewTextBoxColumn.HeaderText = "QtyAwal";
-            this.qtyAwalDataGridViewTextBoxColumn.Name = "qtyAwalDataGridViewTextBoxColumn";
-            this.qtyAwalDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // qtyAdjustDataGridViewTextBoxColumn
-            // 
-            this.qtyAdjustDataGridViewTextBoxColumn.DataPropertyName = "QtyAdjust";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "N0";
-            dataGridViewCellStyle3.NullValue = "0";
-            this.qtyAdjustDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.qtyAdjustDataGridViewTextBoxColumn.HeaderText = "QtyAdjust";
-            this.qtyAdjustDataGridViewTextBoxColumn.Name = "qtyAdjustDataGridViewTextBoxColumn";
-            // 
-            // qtyAkhirDataGridViewTextBoxColumn
-            // 
-            this.qtyAkhirDataGridViewTextBoxColumn.DataPropertyName = "QtyAkhir";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Format = "N0";
-            dataGridViewCellStyle4.NullValue = "0";
-            this.qtyAkhirDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
-            this.qtyAkhirDataGridViewTextBoxColumn.HeaderText = "QtyAkhir";
-            this.qtyAkhirDataGridViewTextBoxColumn.Name = "qtyAkhirDataGridViewTextBoxColumn";
-            this.qtyAkhirDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // hppDataGridViewTextBoxColumn
-            // 
-            this.hppDataGridViewTextBoxColumn.DataPropertyName = "Hpp";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "N0";
-            dataGridViewCellStyle5.NullValue = "0";
-            this.hppDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
-            this.hppDataGridViewTextBoxColumn.HeaderText = "Hpp";
-            this.hppDataGridViewTextBoxColumn.Name = "hppDataGridViewTextBoxColumn";
-            // 
             // StokAdjBindingSource
             // 
             this.StokAdjBindingSource.AllowNew = true;
@@ -339,22 +272,22 @@
             // dataColumn3
             // 
             this.dataColumn3.ColumnName = "QtyAwal";
-            this.dataColumn3.DataType = typeof(int);
+            this.dataColumn3.DataType = typeof(decimal);
             // 
             // dataColumn4
             // 
             this.dataColumn4.ColumnName = "QtyAdjust";
-            this.dataColumn4.DataType = typeof(long);
+            this.dataColumn4.DataType = typeof(decimal);
             // 
             // dataColumn5
             // 
             this.dataColumn5.ColumnName = "QtyAkhir";
-            this.dataColumn5.DataType = typeof(int);
+            this.dataColumn5.DataType = typeof(decimal);
             // 
             // dataColumn6
             // 
             this.dataColumn6.ColumnName = "Hpp";
-            this.dataColumn6.DataType = typeof(double);
+            this.dataColumn6.DataType = typeof(decimal);
             // 
             // ExitButton
             // 
@@ -398,7 +331,7 @@
             this.listDataTabPage.Location = new System.Drawing.Point(4, 22);
             this.listDataTabPage.Name = "listDataTabPage";
             this.listDataTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.listDataTabPage.Size = new System.Drawing.Size(955, 514);
+            this.listDataTabPage.Size = new System.Drawing.Size(955, 455);
             this.listDataTabPage.TabIndex = 1;
             this.listDataTabPage.Text = "List Data";
             this.listDataTabPage.UseVisualStyleBackColor = true;
@@ -454,6 +387,73 @@
             this.JamTrsTimer.Enabled = true;
             this.JamTrsTimer.Interval = 1000;
             this.JamTrsTimer.Tick += new System.EventHandler(this.JamTrsTimer_Tick);
+            // 
+            // brgIDDataGridViewTextBoxColumn
+            // 
+            this.brgIDDataGridViewTextBoxColumn.DataPropertyName = "BrgID";
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.brgIDDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.brgIDDataGridViewTextBoxColumn.HeaderText = "BrgID";
+            this.brgIDDataGridViewTextBoxColumn.Name = "brgIDDataGridViewTextBoxColumn";
+            this.brgIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // BrgGridButtonCol
+            // 
+            this.BrgGridButtonCol.HeaderText = "...";
+            this.BrgGridButtonCol.Name = "BrgGridButtonCol";
+            this.BrgGridButtonCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.BrgGridButtonCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.BrgGridButtonCol.Width = 25;
+            // 
+            // brgNameDataGridViewTextBoxColumn
+            // 
+            this.brgNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.brgNameDataGridViewTextBoxColumn.DataPropertyName = "BrgName";
+            this.brgNameDataGridViewTextBoxColumn.HeaderText = "BrgName";
+            this.brgNameDataGridViewTextBoxColumn.Name = "brgNameDataGridViewTextBoxColumn";
+            this.brgNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // qtyAwalDataGridViewTextBoxColumn
+            // 
+            this.qtyAwalDataGridViewTextBoxColumn.DataPropertyName = "QtyAwal";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "N2";
+            dataGridViewCellStyle2.NullValue = "0";
+            this.qtyAwalDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.qtyAwalDataGridViewTextBoxColumn.HeaderText = "QtyAwal";
+            this.qtyAwalDataGridViewTextBoxColumn.Name = "qtyAwalDataGridViewTextBoxColumn";
+            this.qtyAwalDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // qtyAdjustDataGridViewTextBoxColumn
+            // 
+            this.qtyAdjustDataGridViewTextBoxColumn.DataPropertyName = "QtyAdjust";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "N2";
+            dataGridViewCellStyle3.NullValue = "0";
+            this.qtyAdjustDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.qtyAdjustDataGridViewTextBoxColumn.HeaderText = "QtyAdjust";
+            this.qtyAdjustDataGridViewTextBoxColumn.Name = "qtyAdjustDataGridViewTextBoxColumn";
+            // 
+            // qtyAkhirDataGridViewTextBoxColumn
+            // 
+            this.qtyAkhirDataGridViewTextBoxColumn.DataPropertyName = "QtyAkhir";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "N2";
+            dataGridViewCellStyle4.NullValue = "0";
+            this.qtyAkhirDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            this.qtyAkhirDataGridViewTextBoxColumn.HeaderText = "QtyAkhir";
+            this.qtyAkhirDataGridViewTextBoxColumn.Name = "qtyAkhirDataGridViewTextBoxColumn";
+            this.qtyAkhirDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // hppDataGridViewTextBoxColumn
+            // 
+            this.hppDataGridViewTextBoxColumn.DataPropertyName = "Hpp";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Format = "N0";
+            dataGridViewCellStyle5.NullValue = "0";
+            this.hppDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            this.hppDataGridViewTextBoxColumn.HeaderText = "Hpp";
+            this.hppDataGridViewTextBoxColumn.Name = "hppDataGridViewTextBoxColumn";
             // 
             // StokAdjustmentForm
             // 

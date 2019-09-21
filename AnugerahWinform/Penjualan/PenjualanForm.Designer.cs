@@ -99,6 +99,9 @@
             this.NewButton = new System.Windows.Forms.Button();
             this.BuyerNameLabel = new System.Windows.Forms.Label();
             this.BrgGrid = new System.Windows.Forms.DataGridView();
+            this.ExitButton = new System.Windows.Forms.Button();
+            this.deleteButton = new System.Windows.Forms.Button();
+            this.saveButton = new System.Windows.Forms.Button();
             this.BrgIDCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BrgGridButtonCol = new System.Windows.Forms.DataGridViewButtonColumn();
             this.BrgNameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -108,9 +111,6 @@
             this.HargaCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DiskonCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SubTotalCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ExitButton = new System.Windows.Forms.Button();
-            this.deleteButton = new System.Windows.Forms.Button();
-            this.saveButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PenjualanBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PenjualanDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DetilPenjualanTable)).BeginInit();
@@ -932,6 +932,38 @@
             this.BrgGrid.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.BrgGrid_CellValidating);
             this.BrgGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BrgGrid_KeyDown);
             // 
+            // ExitButton
+            // 
+            this.ExitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ExitButton.Location = new System.Drawing.Point(979, 510);
+            this.ExitButton.Name = "ExitButton";
+            this.ExitButton.Size = new System.Drawing.Size(87, 23);
+            this.ExitButton.TabIndex = 21;
+            this.ExitButton.Text = "E&xit";
+            this.ExitButton.UseVisualStyleBackColor = true;
+            this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
+            // 
+            // deleteButton
+            // 
+            this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.deleteButton.Location = new System.Drawing.Point(886, 510);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(87, 23);
+            this.deleteButton.TabIndex = 20;
+            this.deleteButton.Text = "&Delete";
+            this.deleteButton.UseVisualStyleBackColor = true;
+            // 
+            // saveButton
+            // 
+            this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.saveButton.Location = new System.Drawing.Point(700, 510);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(87, 23);
+            this.saveButton.TabIndex = 19;
+            this.saveButton.Text = "&Save";
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
+            // 
             // BrgIDCol
             // 
             this.BrgIDCol.DataPropertyName = "BrgID";
@@ -1011,38 +1043,6 @@
             this.SubTotalCol.HeaderText = "SubTotal";
             this.SubTotalCol.Name = "SubTotalCol";
             this.SubTotalCol.ReadOnly = true;
-            // 
-            // ExitButton
-            // 
-            this.ExitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ExitButton.Location = new System.Drawing.Point(979, 510);
-            this.ExitButton.Name = "ExitButton";
-            this.ExitButton.Size = new System.Drawing.Size(87, 23);
-            this.ExitButton.TabIndex = 21;
-            this.ExitButton.Text = "E&xit";
-            this.ExitButton.UseVisualStyleBackColor = true;
-            this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
-            // 
-            // deleteButton
-            // 
-            this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.deleteButton.Location = new System.Drawing.Point(886, 510);
-            this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(87, 23);
-            this.deleteButton.TabIndex = 20;
-            this.deleteButton.Text = "&Delete";
-            this.deleteButton.UseVisualStyleBackColor = true;
-            // 
-            // saveButton
-            // 
-            this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveButton.Location = new System.Drawing.Point(700, 510);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(87, 23);
-            this.saveButton.TabIndex = 19;
-            this.saveButton.Text = "&Save";
-            this.saveButton.UseVisualStyleBackColor = true;
-            this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // PenjualanForm
             // 
@@ -1149,6 +1149,9 @@
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.Button saveButton;
         private System.Data.DataColumn dataColumn7;
+        private System.Windows.Forms.NumericUpDown BiayaKirimNumText;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button DepositButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn BrgIDCol;
         private System.Windows.Forms.DataGridViewButtonColumn BrgGridButtonCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn BrgNameCol;
@@ -1158,8 +1161,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn HargaCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn DiskonCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn SubTotalCol;
-        private System.Windows.Forms.NumericUpDown BiayaKirimNumText;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Button DepositButton;
     }
 }
