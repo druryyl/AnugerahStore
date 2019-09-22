@@ -381,5 +381,15 @@ namespace AnugerahWinform
             };
             form.Show();
         }
+
+        private void OrderJualButton_Click(object sender, EventArgs e)
+        {
+            BPStokInfoForm form = new BPStokInfoForm
+            {
+                MdiParent = this,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            form.Show();
+        }
     }
 }

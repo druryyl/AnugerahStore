@@ -65,6 +65,7 @@
             this.ribbonPanel2 = new System.Windows.Forms.RibbonPanel();
             this.KasBonButton = new System.Windows.Forms.RibbonButton();
             this.LunasKasBonButton = new System.Windows.Forms.RibbonButton();
+            this.LunasPiutangButton = new System.Windows.Forms.RibbonButton();
             this.LapPiutangButton = new System.Windows.Forms.RibbonButton();
             this.PegawaiButton = new System.Windows.Forms.RibbonButton();
             this.ribbonPanel3 = new System.Windows.Forms.RibbonPanel();
@@ -74,7 +75,6 @@
             this.BPKasRibbon = new System.Windows.Forms.RibbonPanel();
             this.MutasiKasiButton = new System.Windows.Forms.RibbonButton();
             this.LaporanBPKasButton = new System.Windows.Forms.RibbonButton();
-            this.LunasPiutangButton = new System.Windows.Forms.RibbonButton();
             this.SuspendLayout();
             // 
             // ribbon1
@@ -193,6 +193,7 @@
             this.OrderJualButton.Name = "OrderJualButton";
             this.OrderJualButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("OrderJualButton.SmallImage")));
             this.OrderJualButton.Text = "Order Jual";
+            this.OrderJualButton.Click += new System.EventHandler(this.OrderJualButton_Click);
             // 
             // SellingButton
             // 
@@ -405,6 +406,15 @@
             this.LunasKasBonButton.Text = "Lunas KasBon";
             this.LunasKasBonButton.Click += new System.EventHandler(this.LunasKasBonButton_Click);
             // 
+            // LunasPiutangButton
+            // 
+            this.LunasPiutangButton.Image = ((System.Drawing.Image)(resources.GetObject("LunasPiutangButton.Image")));
+            this.LunasPiutangButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("LunasPiutangButton.LargeImage")));
+            this.LunasPiutangButton.Name = "LunasPiutangButton";
+            this.LunasPiutangButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("LunasPiutangButton.SmallImage")));
+            this.LunasPiutangButton.Text = "Lunas Piutang";
+            this.LunasPiutangButton.Click += new System.EventHandler(this.LunasPiutangButton_Click);
+            // 
             // LapPiutangButton
             // 
             this.LapPiutangButton.Image = ((System.Drawing.Image)(resources.GetObject("LapPiutangButton.Image")));
@@ -482,15 +492,6 @@
             this.LaporanBPKasButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("LaporanBPKasButton.SmallImage")));
             this.LaporanBPKasButton.Text = "Laporan Kas";
             this.LaporanBPKasButton.Click += new System.EventHandler(this.LaporanBPKasButton_Click);
-            // 
-            // LunasPiutangButton
-            // 
-            this.LunasPiutangButton.Image = ((System.Drawing.Image)(resources.GetObject("LunasPiutangButton.Image")));
-            this.LunasPiutangButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("LunasPiutangButton.LargeImage")));
-            this.LunasPiutangButton.Name = "LunasPiutangButton";
-            this.LunasPiutangButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("LunasPiutangButton.SmallImage")));
-            this.LunasPiutangButton.Text = "Lunas Piutang";
-            this.LunasPiutangButton.Click += new System.EventHandler(this.LunasPiutangButton_Click);
             // 
             // MainMenuForm
             // 

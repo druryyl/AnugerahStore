@@ -64,5 +64,13 @@ namespace AnugerahWinform.StokBarang
         {
             ShowData(Proses());
         }
+
+        private void SearchKeywordText_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                Search();
+            }
+        }
     }
 }

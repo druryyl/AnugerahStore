@@ -278,6 +278,7 @@
             this.SearchKeywordText.Name = "SearchKeywordText";
             this.SearchKeywordText.Size = new System.Drawing.Size(171, 21);
             this.SearchKeywordText.TabIndex = 3;
+            this.SearchKeywordText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SearchKeywordText_KeyDown);
             // 
             // SaldoBindingSource
             // 
