@@ -188,8 +188,8 @@ namespace AnugerahBackend.StokBarang.Dal
                             BrgID = dr["BrgID"].ToString(),
                             BrgName = dr["BrgName"].ToString(),
                             NilaiHpp = Convert.ToDecimal(dr["NilaiHpp"]),
-                            QtyIn = Convert.ToInt64(dr["QtyIn"]),
-                            QtySisa = Convert.ToInt64(dr["QtySisa"])
+                            QtyIn = Convert.ToDecimal(dr["QtyIn"]),
+                            QtySisa = Convert.ToDecimal(dr["QtySisa"])
                         };
                         result.Add(item);
                     }
