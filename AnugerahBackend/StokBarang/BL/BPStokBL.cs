@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AnugerahBackend.Pembelian.Model;
+using AnugerahBackend.Penjualan.BL;
 using AnugerahBackend.Penjualan.Model;
 using AnugerahBackend.StokBarang.Dal;
 using AnugerahBackend.StokBarang.Model;
 using AnugerahBackend.Support;
 using Ics.Helper.Extensions;
+using Ics.Helper.StringDateTime;
 
 namespace AnugerahBackend.StokBarang.BL
 {
@@ -21,6 +23,8 @@ namespace AnugerahBackend.StokBarang.BL
         BPStokModel GetData(string BPStokID);
         IEnumerable<BPStokModel> ListData();
         decimal GetStok(string kodeBrg);
+        IEnumerable<BPStokDetilView> ListDetil(string brgID, string tgl1, string tgl2);
+        decimal GetStokAwal(string brgID, string tgl1);
     }
 
     public class BPStokBL : IBPStokBL
@@ -28,12 +32,16 @@ namespace AnugerahBackend.StokBarang.BL
         private IBPStokDal _bpStokDal;
         private IBPStokDetilDal _bpStokDetilDal;
         private IBrgStokHargaBL _brgStokHargaBL;
+        private IBrgDal _brgDal;
+        private IPenjualanBL _penjualanBL;
 
         public BPStokBL()
         {
             _bpStokDal = new BPStokDal();
             _bpStokDetilDal = new BPStokDetilDal();
             _brgStokHargaBL = new BrgStokHargaBL();
+            _brgDal = new BrgDal();
+            _penjualanBL = new PenjualanBL();
 
             SearchFilter = new SearchFilter
             {
@@ -417,6 +425,107 @@ namespace AnugerahBackend.StokBarang.BL
         public IEnumerable<BPStokModel> ListData()
         {
             return _bpStokDal.ListData();
+        }
+
+        public IEnumerable<BPStokDetilView> ListDetil(string brgID, string tgl1, string tgl2)
+        {
+            var listBpStokDetil = _bpStokDetilDal.ListData(brgID, tgl1, tgl2);
+            if (listBpStokDetil == null)
+                return null;
+
+            var brg = _brgDal.GetData(brgID);
+            string brgName = "";
+            if (brg != null)
+                brgName = brg.BrgName;
+
+            var result = new List<BPStokDetilView>();
+
+            //  ambil stok awal;
+            decimal stokAwal = GetStokAwal(brgID, tgl1);
+            decimal sumQtyIn = stokAwal;
+            decimal sumQtyOut = 0;
+            decimal saldoQty = stokAwal;
+            int noUrut = 0;
+            result.Add(new BPStokDetilView
+            {
+                BrgID = brgID,
+                BrgName = brgName,
+                BPStokID = "STOK-AWAL",
+                BPStokDetilID = "STOK-AWAL-0",
+                Tgl = tgl1,
+                Jam = "00:00:00",
+                NoUrut = noUrut,
+                JenisMutasi = "",
+                QtyIn = stokAwal,
+                QtyOut = 0,
+                NilaiHpp = 0,
+                ReffID = "STOK-AWAL",
+                SaldoQty = stokAwal,
+                HargaJual = 0
+            });
+            foreach(var item in listBpStokDetil.OrderBy(x => x.Tgl.ToTglYMD() + x.Jam))
+            {
+                noUrut++;
+                sumQtyIn += item.QtyIn;
+                sumQtyOut += item.QtyOut;
+                saldoQty += (item.QtyIn - item.QtyOut);
+                var jenisTrs = "";
+                var item2 = new BPStokDetilView(item);
+                switch (item2.ReffID.Substring(0,2))
+                {
+                    case "JL":
+                        var jual = _penjualanBL.GetData(item.ReffID);
+                        if (jual != null)
+                            jenisTrs = string.Format("Jual - {0}", jual.BuyerName);
+                        else
+                            jenisTrs = "Jual";
+                        break;
+                    case "AJ":
+                        jenisTrs = "Adjust";
+                        break;
+                    default:
+                        break;
+                }
+                item2.JenisMutasi = jenisTrs;
+                item2.BrgID = "";
+                item2.BrgName = "";
+                item2.NoUrut = noUrut;
+                item2.SaldoQty = saldoQty;
+                result.Add(item2);
+            }
+            noUrut++;
+            var itemSummary = new BPStokDetilView
+            {
+                BrgID = "",
+                BrgName = "",
+                BPStokID = "",
+                BPStokDetilID = "",
+                Tgl = "",
+                Jam = "",
+                NoUrut = noUrut,
+                JenisMutasi = "BALANCE",
+                QtyIn = sumQtyIn,
+                QtyOut = sumQtyOut,
+                NilaiHpp = 0,
+                ReffID = "",
+                SaldoQty = saldoQty,
+                HargaJual = 0
+            };
+            result.Add(itemSummary);
+
+            return result;
+        }
+
+        public decimal GetStokAwal(string brgID, string tgl1)
+        {
+            DateTime dtTgl1 = tgl1.ToDate();
+            DateTime dtTgl0 = dtTgl1.AddDays(-1);
+            var tgl0 = dtTgl0.ToString("dd-MM-yyyy");
+            var listBPStok = _bpStokDetilDal.ListData(brgID, "01-01-1900", tgl0);
+            if (listBPStok == null)
+                return 0;
+            else
+                return listBPStok.Sum(x => x.QtyIn - x.QtyOut);
         }
 
         public SearchFilter SearchFilter { get; set; }

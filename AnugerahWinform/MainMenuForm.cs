@@ -232,7 +232,7 @@ namespace AnugerahWinform
 
         private void BukuStokDetilInfoButton_Click(object sender, EventArgs e)
         {
-            var form = new BukuStokInfoForm
+            var form = new BPStokInfoForm
             {
                 MdiParent = this,
                 StartPosition = FormStartPosition.CenterScreen

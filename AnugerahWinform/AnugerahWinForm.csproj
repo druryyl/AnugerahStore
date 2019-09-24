@@ -280,6 +280,7 @@
     <Compile Include="StokBarang\BPStokInfo.Designer.cs">
       <DependentUpon>BPStokInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="StokBarang\Presenter\BPStokInfoPresenter.cs" />
     <Compile Include="StokBarang\Presenter\ProduksiPresenter.cs" />
     <Compile Include="StokBarang\Presenter\RepackPresenter.cs" />
     <Compile Include="StokBarang\ProduksiForm.cs">
@@ -360,6 +361,7 @@
     <Compile Include="StokBarang\TipeBrgListForm.Designer.cs">
       <DependentUpon>TipeBrgListForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="StokBarang\View\IBPStokInfoView.cs" />
     <Compile Include="StokBarang\View\IProduksiView.cs" />
     <Compile Include="StokBarang\View\IRepackView.cs" />
     <Compile Include="Support\LoginForm.cs">

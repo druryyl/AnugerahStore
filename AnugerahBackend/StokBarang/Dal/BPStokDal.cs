@@ -20,6 +20,7 @@ namespace AnugerahBackend.StokBarang.Dal
         IEnumerable<BPStokModel> ListData(string brgID);
         IEnumerable<BPStokModel> ListData();
         IEnumerable<BPStokInfoDetilModel> ListData(string tgl1, string tgl2);
+        IEnumerable<BPStokModel> ListData(string brgID, string tgl1, string tgl2);
     }
 
     public class BPStokDal : IBPStokDal
@@ -300,5 +301,56 @@ namespace AnugerahBackend.StokBarang.Dal
             }
             return result;
         }
+
+        public IEnumerable<BPStokModel> ListData(string brgID, string tgl1, string tgl2)
+        {
+            List<BPStokModel> result = null;
+
+            var sSql = @"
+                SELECT
+                    aa.BPStokID, aa.ReffID, aa.StokControl,
+                    aa.Tgl, aa.Jam, aa.BrgID,
+                    aa.NilaiHpp, aa.QtyIn, aa.QtySisa,
+                    ISNULL(bb.BrgName, '') BrgName
+                FROM
+                    BPStok aa
+                    LEFT JOIN Brg bb ON aa.BrgID = bb.BrgID
+                WHERE
+                    aa.BrgID = @BrgID
+                    AND aa.Tgl BETWEEN @Tgl1 AND @Tgl2 ";
+            using (var conn = new SqlConnection(_connString))
+            using (var cmd = new SqlCommand(sSql, conn))
+            {
+                cmd.AddParam("@BrgID", brgID);
+                cmd.AddParam("@Tgl1", tgl1.ToTglYMD());
+                cmd.AddParam("@Tgl2", tgl2.ToTglYMD());
+                conn.Open();
+                using (var dr = cmd.ExecuteReader())
+                {
+                    if (!dr.HasRows) return null;
+
+                    result = new List<BPStokModel>();
+                    while (dr.Read())
+                    {
+                        var item = new BPStokModel
+                        {
+                            BPStokID = dr["BPStokID"].ToString(),
+                            ReffID = dr["ReffID"].ToString(),
+                            StokControl = dr["StokControl"].ToString(),
+                            Tgl = dr["Tgl"].ToString().ToTglDMY(),
+                            Jam = dr["Jam"].ToString(),
+                            BrgID = dr["BrgID"].ToString(),
+                            BrgName = dr["BrgName"].ToString(),
+                            NilaiHpp = Convert.ToDecimal(dr["NilaiHpp"]),
+                            QtyIn = Convert.ToInt64(dr["QtyIn"]),
+                            QtySisa = Convert.ToInt64(dr["QtySisa"])
+                        };
+                        result.Add(item);
+                    }
+                }
+            }
+            return result;
+        }
+
     }
 }
