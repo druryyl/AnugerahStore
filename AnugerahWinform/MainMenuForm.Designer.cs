@@ -39,7 +39,6 @@
             this.LaporanTerimaBrgButton = new System.Windows.Forms.RibbonButton();
             this.ribbonButton2 = new System.Windows.Forms.RibbonButton();
             this.SalesRibbonPanel = new System.Windows.Forms.RibbonPanel();
-            this.OrderJualButton = new System.Windows.Forms.RibbonButton();
             this.SellingButton = new System.Windows.Forms.RibbonButton();
             this.LaporanPenjualanButton = new System.Windows.Forms.RibbonButton();
             this.ribbonSeparator1 = new System.Windows.Forms.RibbonSeparator();
@@ -177,7 +176,6 @@
             // 
             // SalesRibbonPanel
             // 
-            this.SalesRibbonPanel.Items.Add(this.OrderJualButton);
             this.SalesRibbonPanel.Items.Add(this.SellingButton);
             this.SalesRibbonPanel.Items.Add(this.LaporanPenjualanButton);
             this.SalesRibbonPanel.Items.Add(this.ribbonSeparator1);
@@ -185,15 +183,6 @@
             this.SalesRibbonPanel.Items.Add(this.CustomerButton);
             this.SalesRibbonPanel.Name = "SalesRibbonPanel";
             this.SalesRibbonPanel.Text = "Sales";
-            // 
-            // OrderJualButton
-            // 
-            this.OrderJualButton.Image = ((System.Drawing.Image)(resources.GetObject("OrderJualButton.Image")));
-            this.OrderJualButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("OrderJualButton.LargeImage")));
-            this.OrderJualButton.Name = "OrderJualButton";
-            this.OrderJualButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("OrderJualButton.SmallImage")));
-            this.OrderJualButton.Text = "Order Jual";
-            this.OrderJualButton.Click += new System.EventHandler(this.OrderJualButton_Click);
             // 
             // SellingButton
             // 
@@ -260,6 +249,7 @@
             this.RepackButton.Name = "RepackButton";
             this.RepackButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("RepackButton.SmallImage")));
             this.RepackButton.Text = "Repack";
+            this.RepackButton.Visible = false;
             this.RepackButton.Click += new System.EventHandler(this.Repack_Click);
             // 
             // BukuStokDetilInfoButton
@@ -268,7 +258,7 @@
             this.BukuStokDetilInfoButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("BukuStokDetilInfoButton.LargeImage")));
             this.BukuStokDetilInfoButton.Name = "BukuStokDetilInfoButton";
             this.BukuStokDetilInfoButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("BukuStokDetilInfoButton.SmallImage")));
-            this.BukuStokDetilInfoButton.Text = "Buku Stok";
+            this.BukuStokDetilInfoButton.Text = "Kartu Stok";
             this.BukuStokDetilInfoButton.Click += new System.EventHandler(this.BukuStokDetilInfoButton_Click);
             // 
             // StokInfoButton
@@ -558,8 +548,8 @@
         private System.Windows.Forms.RibbonButton ribbonButton2;
         private System.Windows.Forms.RibbonButton RepackButton;
         private System.Windows.Forms.RibbonButton MutasiKasiButton;
-        private System.Windows.Forms.RibbonButton OrderJualButton;
         private System.Windows.Forms.RibbonButton LunasPiutangButton;
+        private System.Windows.Forms.RibbonPanel ribbonPanel5;
     }
 }
 

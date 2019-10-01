@@ -30,6 +30,8 @@ namespace AnugerahWinform.StokBarang
             ResultGridView.Columns["QtyIn"].DefaultCellStyle = NumericStyle();
             ResultGridView.Columns["QtyOut"].DefaultCellStyle = NumericStyle();
             ResultGridView.Columns["Saldo"].DefaultCellStyle = NumericStyle();
+
+            PeriodeLabel.Text = PeriodeMonthCalender.SelectionStart.Date.ToString("dd MMM yyyy");
         }
 
         private DataGridViewCellStyle NumericStyle()
@@ -73,20 +75,67 @@ namespace AnugerahWinform.StokBarang
                 _listResultBindingSource.DataSource = _listResultDataSource;
             }
         }
+        public int ProgressCounter
+        {
+            get => ProsesProgressBar.Value;
+            set => ProsesProgressBar.Value = value;
+        }
+
+        public int ProgressMax
+        {
+            get => ProsesProgressBar.Maximum;
+            set => ProsesProgressBar.Maximum = value;
+        }
+
 
         private void ProsesButton_Click(object sender, EventArgs e)
         {
+            ProsesProgressBar.Visible = true;
+
             _presenter.Proses();
             _listResultBindingSource.DataSource = _listResultDataSource;
             ResultGridView.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.DisplayedCells);
 
+            ProsesProgressBar.Value = 0;
+            ProsesProgressBar.Maximum = ResultGridView.Rows.Count;
+            //  baris stok awal diberi warna biru muda
             foreach (DataGridViewRow item in ResultGridView.Rows)
             {
+                ProsesProgressBar.Value++;
+
                 if (item.Cells["BrgID"].Value.ToString().Trim() != "")
                     item.DefaultCellStyle.BackColor = Color.LightBlue;
                 else
                     item.DefaultCellStyle.BackColor = Color.White;
             }
+
+            //  baris balance diberi warna biru tua
+            ProsesProgressBar.Value = 0;
+            ProsesProgressBar.Maximum = ResultGridView.Rows.Count;
+            foreach (DataGridViewRow row in ResultGridView.Rows)
+            {
+                ProsesProgressBar.Value++;
+                if (row.Cells["Keterangan"].Value.ToString().Trim() == "BALANCE")
+                {
+                    row.Cells["Keterangan"].Style.BackColor = Color.LightCoral;
+                    row.Cells["QtyIn"].Style.BackColor = Color.LightCoral;
+                    row.Cells["QtyOut"].Style.BackColor = Color.LightCoral;
+                    row.Cells["Saldo"].Style.BackColor = Color.LightCoral;
+                }
+            }
+            ProsesProgressBar.Value = 0;
+            ProsesProgressBar.Visible = false;
+        }
+
+        private void PeriodeMonthCalender_DateChanged(object sender, DateRangeEventArgs e)
+        {
+            if (PeriodeMonthCalender.SelectionStart.Date != PeriodeMonthCalender.SelectionEnd.Date)
+                PeriodeLabel.Text = string.Format("{0} - {1}",
+                    PeriodeMonthCalender.SelectionStart.ToString("dd MMM yyyy"),
+                    PeriodeMonthCalender.SelectionEnd.ToString("dd MMM yyyy"));
+            else
+                PeriodeLabel.Text = string.Format("{0}",
+                    PeriodeMonthCalender.SelectionStart.ToString("dd MMM yyyy"));
         }
     }
 }

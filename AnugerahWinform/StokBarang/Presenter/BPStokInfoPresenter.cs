@@ -55,17 +55,26 @@ namespace AnugerahWinform.StokBarang.Presenter
             }
 
             List<BPStokDetilView> result = new List<BPStokDetilView>();
+            int brgCount = listBrg.Count();
+            _view.ProgressCounter = 0;
+            _view.ProgressMax = brgCount;
             foreach(var item in listBrg)
             {
+                _view.ProgressCounter++;
                 var tgl1 = _view.PeriodeAwal.ToString("dd-MM-yyyy");
                 var tgl2 = _view.PeriodeAkhir.ToString("dd-MM-yyyy");
                 var result1 = _dep.BPStokBL.ListDetil(item.BrgID, tgl1, tgl2);
                 if(result1 != null)
                     result.AddRange(result1);
             }
+
+            _view.ProgressCounter = 0;
+            _view.ProgressMax = result.Count();
+
             var tempListResult = new List<BPStokInfoRowModel>();
             foreach(var item in result)
             {
+                _view.ProgressCounter++;
                 tempListResult.Add((BPStokInfoRowModel)item);
             }
             _view.ListResult = tempListResult;

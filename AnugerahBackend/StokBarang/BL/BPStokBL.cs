@@ -35,6 +35,9 @@ namespace AnugerahBackend.StokBarang.BL
         private IBrgDal _brgDal;
         private IPenjualanBL _penjualanBL;
 
+        private Int64 _counter;
+        private Int64 _max;
+
         public BPStokBL()
         {
             _bpStokDal = new BPStokDal();

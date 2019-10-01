@@ -41,11 +41,21 @@ namespace AnugerahBackend.StokBarang.Model
         }
     }
 
-    public class BPStokBrgSearchModel
+    public class BPStokView
     {
         public string BrgID { get; set; }
         public string BrgName { get; set; }
         public decimal Qty { get; set; }
-        public string BPStokID { get; set; }
+
+        public static implicit operator BPStokView(BPStokModel model)
+        {
+            var result = new BPStokView
+            {
+                BrgID = model.BrgID,
+                BrgName = model.BrgName,
+                Qty = model.QtySisa
+            };
+            return result;
+        }
     }
 }

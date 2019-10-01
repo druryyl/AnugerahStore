@@ -280,7 +280,14 @@
     <Compile Include="StokBarang\BPStokInfo.Designer.cs">
       <DependentUpon>BPStokInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="StokBarang\BPStokRekapForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StokBarang\BPStokRekapForm.Designer.cs">
+      <DependentUpon>BPStokRekapForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="StokBarang\Presenter\BPStokInfoPresenter.cs" />
+    <Compile Include="StokBarang\Presenter\BPStokRekapPresenter.cs" />
     <Compile Include="StokBarang\Presenter\ProduksiPresenter.cs" />
     <Compile Include="StokBarang\Presenter\RepackPresenter.cs" />
     <Compile Include="StokBarang\ProduksiForm.cs">
@@ -362,6 +369,7 @@
       <DependentUpon>TipeBrgListForm.cs</DependentUpon>
     </Compile>
     <Compile Include="StokBarang\View\IBPStokInfoView.cs" />
+    <Compile Include="StokBarang\View\IBPStokRekapView.cs" />
     <Compile Include="StokBarang\View\IProduksiView.cs" />
     <Compile Include="StokBarang\View\IRepackView.cs" />
     <Compile Include="Support\LoginForm.cs">
@@ -486,6 +494,9 @@
     </Compile>
     <EmbeddedResource Include="StokBarang\BPStokInfo.resx">
       <DependentUpon>BPStokInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StokBarang\BPStokRekapForm.resx">
+      <DependentUpon>BPStokRekapForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StokBarang\ProduksiForm.resx">
       <DependentUpon>ProduksiForm.cs</DependentUpon>

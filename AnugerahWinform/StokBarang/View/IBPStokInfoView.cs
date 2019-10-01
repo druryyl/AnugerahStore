@@ -13,6 +13,8 @@ namespace AnugerahWinform.StokBarang.View
         DateTime PeriodeAkhir { get; set; }
         string SearchKeyword { get; set; }
         bool IsDetail { get; set; }
+        int ProgressCounter { get; set; }
+        int ProgressMax { get; set; }
         List<BPStokInfoRowModel> ListResult { get; set; }
     }
 

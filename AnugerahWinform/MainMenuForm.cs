@@ -312,7 +312,7 @@ namespace AnugerahWinform
 
         private void StokInfoButton_Click(object sender, EventArgs e)
         {
-            var form = new StokInfoForm
+            var form = new BPStokRekapForm
             {
                 MdiParent = this,
                 StartPosition = FormStartPosition.CenterScreen
