@@ -44,7 +44,8 @@ namespace AnugerahWinform.StokBarang
             return result;
         }
 
-        private DataGridViewCellStyle StringStyle => new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleLeft };
+        private DataGridViewCellStyle StringStyle 
+            => new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleLeft };
 
         public DateTime PeriodeAwal
         {

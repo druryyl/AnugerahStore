@@ -131,7 +131,7 @@ namespace AnugerahWinform
 
         private void LaporanPenjualanButton_Click(object sender, EventArgs e)
         {
-            var form = new LaporanPenjualanForm
+            var form = new LapPenjualanForm
             {
                 MdiParent = this,
                 StartPosition = FormStartPosition.CenterScreen
