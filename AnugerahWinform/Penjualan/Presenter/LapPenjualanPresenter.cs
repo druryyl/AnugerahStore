@@ -84,23 +84,26 @@ namespace AnugerahWinform.Penjualan.Presenter
 
                 itemResult.Penjualan = jual.NilaiGrandTotal;
 
-                var tempItem = jual.ListBayar.Where(x => x.JenisBayarID == "KAS");
-                if (tempItem != null) itemResult.Kas = tempItem.Sum(x => x.NilaiBayar);
+                if (jual.ListBayar != null)
+                {
+                    var tempItem = jual.ListBayar.Where(x => x.JenisBayarID == "KAS");
+                    if (tempItem != null) itemResult.Kas = tempItem.Sum(x => x.NilaiBayar);
 
-                tempItem = jual.ListBayar.Where(x => x.JenisBayarID == "ED1");
-                if (tempItem != null) itemResult.BcaEdc = tempItem.Sum(x => x.NilaiBayar);
+                    tempItem = jual.ListBayar.Where(x => x.JenisBayarID == "ED1");
+                    if (tempItem != null) itemResult.BcaEdc = tempItem.Sum(x => x.NilaiBayar);
 
-                tempItem = jual.ListBayar.Where(x => x.JenisBayarID == "ED2");
-                if (tempItem != null) itemResult.BriEdc = tempItem.Sum(x => x.NilaiBayar);
+                    tempItem = jual.ListBayar.Where(x => x.JenisBayarID == "ED2");
+                    if (tempItem != null) itemResult.BriEdc = tempItem.Sum(x => x.NilaiBayar);
 
-                tempItem = jual.ListBayar.Where(x => x.JenisBayarID == "TR1");
-                if (tempItem != null) itemResult.BcaTrf = tempItem.Sum(x => x.NilaiBayar);
+                    tempItem = jual.ListBayar.Where(x => x.JenisBayarID == "TR1");
+                    if (tempItem != null) itemResult.BcaTrf = tempItem.Sum(x => x.NilaiBayar);
 
-                tempItem = jual.ListBayar.Where(x => x.JenisBayarID == "TR2");
-                if (tempItem != null) itemResult.BriTrf = tempItem.Sum(x => x.NilaiBayar);
+                    tempItem = jual.ListBayar.Where(x => x.JenisBayarID == "TR2");
+                    if (tempItem != null) itemResult.BriTrf = tempItem.Sum(x => x.NilaiBayar);
 
-                tempItem = jual.ListBayar.Where(x => x.JenisBayarID == "PTG");
-                if (tempItem != null) itemResult.Piutang = tempItem.Sum(x => x.NilaiBayar);
+                    tempItem = jual.ListBayar.Where(x => x.JenisBayarID == "PTG");
+                    if (tempItem != null) itemResult.Piutang = tempItem.Sum(x => x.NilaiBayar); 
+                }
 
                 itemResult.Deposit = jual.NilaiDeposit;
                 itemResult.Keterangan = jual.DepositID != "" ? $"Deposit: {jual.DepositID}" : "";

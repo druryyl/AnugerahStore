@@ -196,7 +196,9 @@ namespace AnugerahWinform.Penjualan
             if (_listBayarDetil == null)
                 _listBayarDetil = new List<PenjualanBayarModel>();
 
-            if (_listBayarDetil.Sum(x => x.NilaiBayar) == 0)
+            var bayarDeposit = NilaiDepositText.Value;
+            var bayarNonDep = _listBayarDetil.Sum(x => x.NilaiBayar);
+            if ( bayarDeposit + bayarNonDep == 0)
                 if (MessageBox.Show("Penjualan Piutang?",
                     "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
@@ -495,8 +497,8 @@ namespace AnugerahWinform.Penjualan
 
             GrandTotalNumText.Value = BiayaKirimNumText.Value + nilaiTotal - DiskonNumText.Value + BiayaLainNumText.Value;
             decimal nilaiTotBayar = BayarNonCashNumText.Value + BayarCashNumText.Value;
-            if (DepositCheckBox.Checked)
-                nilaiTotBayar += NilaiDepositText.Value;
+            //if (DepositCheckBox.Checked)
+            //    nilaiTotBayar += NilaiDepositText.Value;
 
             KembaliNumText.Value = nilaiTotBayar - GrandTotalNumText.Value;
 
@@ -597,6 +599,9 @@ namespace AnugerahWinform.Penjualan
                 listDetilBayar.Add(itemKembali);
             }
 
+            //  cari nilai deposit
+            var bayarDepositDeposit = grandTotal - totalBayar;
+
 
             var penjualan = new PenjualanModel
             {
@@ -611,7 +616,7 @@ namespace AnugerahWinform.Penjualan
 
                 IsBayarDeposit = DepositCheckBox.Checked,
                 DepositID = DepositIDText.Text,
-                NilaiDeposit = NilaiDepositText.Value, 
+                NilaiDeposit = bayarDepositDeposit, 
 
                 NilaiBiayaKirim = biayaKirim,
                 NilaiTotal = total,
@@ -649,7 +654,7 @@ namespace AnugerahWinform.Penjualan
                     //  Gen BP Piutang (Jika Ada)
                     _bpPiutangBL.GenPiutang(penjualan);
 
-                        //  generate stok
+                    //  generate stok
                     //  copy original list
                     var listBrgOri = result.ListBrg.CloneObject();
                     //  remove item2 jasa di list
@@ -667,7 +672,6 @@ namespace AnugerahWinform.Penjualan
                     var bpStok = _bpStokBL.Generate(result);
                     //  kembalikan list original-nya (utk kepentingan cetak)
                     result.ListBrg = listBrgOri;
-
 
                     trans.Complete();
                 }

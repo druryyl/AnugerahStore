@@ -205,6 +205,7 @@ namespace AnugerahBackend.Accounting.BL
         {
             const string TipeKasPiutang = "PT";
             var isPiutang = false;
+            if (penjualan.ListBayar == null) return false;     
             foreach (var item in penjualan.ListBayar)
             {
                 var jenisBayar = _jenisBayarDal.GetData(item.JenisBayarID);
