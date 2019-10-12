@@ -44,7 +44,9 @@ namespace AnugerahBackend.Accounting.BL
             _jenisBayarDal = new JenisBayarDal();
             SearchFilter = new SearchFilter
             {
-                IsDate = false,
+                IsDate = true,
+                Date1 = DateTime.Now,
+                Date2 = DateTime.Now
             };
         }
 

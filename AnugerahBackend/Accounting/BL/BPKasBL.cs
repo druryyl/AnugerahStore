@@ -7,11 +7,13 @@ using AnugerahBackend.Accounting.Dal;
 using AnugerahBackend.Accounting.Model;
 using AnugerahBackend.Penjualan.BL;
 using AnugerahBackend.Penjualan.Model;
+using AnugerahBackend.Support;
 using Ics.Helper.Database;
+using Ics.Helper.Extensions;
 
 namespace AnugerahBackend.Accounting.BL
 {
-    public interface IBPKasBL
+    public interface IBPKasBL : ISearch<BPKasSearchModel>
     {
         BPKasModel Generate(BiayaModel biaya);
         void GenDelete(BiayaModel biaya);
@@ -41,6 +43,12 @@ namespace AnugerahBackend.Accounting.BL
             _biayaBL = new BiayaBL();
             _jenisKasBL = new JenisKasBL();
             _jenisBayarBL = new JenisBayarBL();
+            SearchFilter = new SearchFilter
+            {
+                IsDate = true,
+                Date1 = DateTime.Now,
+                Date2 = DateTime.Now
+            };
         }
 
         public BPKasModel Generate(BiayaModel biaya)
@@ -248,6 +256,26 @@ namespace AnugerahBackend.Accounting.BL
             var result = Save(bpKas);
             return result;
 
+        }
+
+        public SearchFilter SearchFilter { get; set; }
+
+        public IEnumerable<BPKasSearchModel> Search()
+        {
+            var listData = _bpKasDal.ListData(SearchFilter.TglDMY1, SearchFilter.TglDMY2);
+            if (listData == null) return null;
+
+            //  convert ke SearchModel
+            var result = listData.Select(x => (BPKasSearchModel)x);
+
+            //  filter
+            if (SearchFilter.UserKeyword != null)
+                return
+                    from c in result
+                    where c.Keterangan.ContainMultiWord(SearchFilter.UserKeyword)
+                    select c;
+
+            return result;
         }
     }
 }

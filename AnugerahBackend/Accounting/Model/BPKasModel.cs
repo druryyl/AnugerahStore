@@ -166,5 +166,29 @@ namespace AnugerahBackend.Accounting.Model
             result.ListDetil = new List<BPKasDetilModel> { resultDetil };
             return result;
         }
+
+    }
+
+    public class BPKasSearchModel
+    {
+        public string BPKasID { get; set; }
+        public string Tgl { get; set; }
+        public string Jam { get; set; }
+        public string Keterangan { get; set; }
+        public string PihakKe2 { get; set; }
+        public decimal NilaiTotalKas { get; set; }
+
+        public static explicit operator BPKasSearchModel(BPKasModel bpKas)
+        {
+            var result = new BPKasSearchModel
+            {
+                BPKasID = bpKas.BPKasID,
+                Tgl = bpKas.Tgl,
+                Jam = bpKas.Jam,
+                Keterangan = bpKas.Keterangan,
+                NilaiTotalKas = bpKas.NilaiTotalKas
+            };
+            return result;
+        }
     }
 }

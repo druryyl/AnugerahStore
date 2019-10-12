@@ -117,6 +117,12 @@
     <Compile Include="Accounting\BPKasInfoForm.Designer.cs">
       <DependentUpon>BPKasInfoForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Accounting\LapKasForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\LapKasForm.Designer.cs">
+      <DependentUpon>LapKasForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Accounting\LunasKasBonForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,6 +147,7 @@
     <Compile Include="Accounting\PegawaiForm.Designer.cs">
       <DependentUpon>PegawaiForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Accounting\Presenter\LapKasPresenter.cs" />
     <Compile Include="Accounting\Presenter\LunasPiutangPresenter.cs" />
     <Compile Include="Accounting\Presenter\MutasiKasPresenter.cs" />
     <Compile Include="Accounting\Presenter\PegawaiPresenter.cs" />
@@ -150,6 +157,8 @@
     <Compile Include="Accounting\ReturDepositForm.Designer.cs">
       <DependentUpon>ReturDepositForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Accounting\View\ILapKasView.cs" />
+    <Compile Include="Accounting\View\LapKasModel.cs" />
     <Compile Include="Accounting\View\LunasPiutangView.cs" />
     <Compile Include="Accounting\View\MutasiKasView.cs" />
     <Compile Include="Accounting\View\PegawaiView.cs" />
@@ -420,6 +429,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Accounting\BPKasInfoForm.resx">
       <DependentUpon>BPKasInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\LapKasForm.resx">
+      <DependentUpon>LapKasForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Accounting\LunasKasBonForm.resx">
       <DependentUpon>LunasKasBonForm.cs</DependentUpon>

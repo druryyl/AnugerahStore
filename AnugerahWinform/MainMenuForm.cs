@@ -121,7 +121,7 @@ namespace AnugerahWinform
 
         private void LaporanKasirButton_Click(object sender, EventArgs e)
         {
-            var form = new LaporanKasirForm
+            var form = new LapKasForm
             {
                 MdiParent = this,
                 StartPosition = FormStartPosition.CenterScreen
@@ -171,7 +171,7 @@ namespace AnugerahWinform
 
         private void LaporanBPKasButton_Click(object sender, EventArgs e)
         {
-            var form = new BPKasInfoForm
+            var form = new LapKasForm
             {
                 MdiParent = this,
                 StartPosition = FormStartPosition.CenterScreen

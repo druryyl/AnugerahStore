@@ -1,6 +1,6 @@
-﻿namespace AnugerahWinform.Penjualan
+﻿namespace AnugerahWinform.Accounting
 {
-    partial class LapPenjualanForm
+    partial class LapKasForm
     {
         /// <summary>
         /// Required designer variable.
@@ -66,11 +66,11 @@
             this.splitContainer1.Panel2.Controls.Add(this.ResultGridView);
             this.splitContainer1.Size = new System.Drawing.Size(1132, 607);
             this.splitContainer1.SplitterDistance = 271;
-            this.splitContainer1.TabIndex = 1;
+            this.splitContainer1.TabIndex = 2;
             // 
             // ProsesProgressBar
             // 
-            this.ProsesProgressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ProsesProgressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ProsesProgressBar.Location = new System.Drawing.Point(12, 271);
             this.ProsesProgressBar.Name = "ProsesProgressBar";
@@ -127,7 +127,6 @@
             this.PeriodeMonthCalender.MaxSelectionCount = 31;
             this.PeriodeMonthCalender.Name = "PeriodeMonthCalender";
             this.PeriodeMonthCalender.TabIndex = 0;
-            this.PeriodeMonthCalender.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.PeriodeMonthCalender_DateChanged);
             // 
             // ProsesButton
             // 
@@ -155,7 +154,7 @@
             this.ResultGridView.Size = new System.Drawing.Size(851, 577);
             this.ResultGridView.TabIndex = 3;
             // 
-            // LapPenjualanForm
+            // LapKasForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -163,8 +162,8 @@
             this.ClientSize = new System.Drawing.Size(1132, 607);
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Name = "LapPenjualanForm";
-            this.Text = "Laporan Penjualan";
+            this.Name = "LapKasForm";
+            this.Text = "Laporan Kas";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
