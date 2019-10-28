@@ -163,9 +163,9 @@ namespace AnugerahWinform.StokBarang
                     NoUrut = noUrut,
                     BrgID = dr["BrgID"].ToString(),
                     BrgName = "",
-                    QtyAwal = Convert.ToInt32(dr["QtyAwal"]),
-                    QtyAdjust = Convert.ToInt32(dr["QtyAdjust"]),
-                    QtyAkhir = Convert.ToInt32(dr["QtyAkhir"]),
+                    QtyAwal = Convert.ToDecimal(dr["QtyAwal"]),
+                    QtyAdjust = Convert.ToDecimal(dr["QtyAdjust"]),
+                    QtyAkhir = Convert.ToDecimal(dr["QtyAkhir"]),
                     HppAdjust = Convert.ToDecimal(dr["Hpp"])
                 };
                 listDetilAdj.Add(dtlAdj);

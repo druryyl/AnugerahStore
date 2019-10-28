@@ -135,6 +135,7 @@
     <Compile Include="Accounting\LunasPiutangForm.Designer.cs">
       <DependentUpon>LunasPiutangForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Accounting\Model\LapHutangModel.cs" />
     <Compile Include="Accounting\MutasiKasForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -402,12 +403,21 @@
       <DependentUpon>MarvelReporting.cs</DependentUpon>
     </Compile>
     <Compile Include="Support\Presenter\LoginPresenter.cs" />
+    <Compile Include="Support\Presenter\ReportPresenter.cs" />
+    <Compile Include="Support\Reporting\IReportingBL.cs" />
     <Compile Include="Support\SearchingForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Support\SearchingForm.Designer.cs">
       <DependentUpon>SearchingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Support\UserrSetupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Support\UserrSetupForm.Designer.cs">
+      <DependentUpon>UserrSetupForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Support\View\IReportingView.cs" />
     <Compile Include="Support\View\LoginView.cs" />
     <EmbeddedResource Include="Accounting\BiayaForm.resx">
       <DependentUpon>BiayaForm.cs</DependentUpon>
@@ -569,6 +579,9 @@
     <EmbeddedResource Include="Support\SearchingForm.resx">
       <DependentUpon>SearchingForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Support\UserrSetupForm.resx">
+      <DependentUpon>UserrSetupForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -609,6 +622,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\cuckoo_clock1_x.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Prototype\Presenter\" />
+    <Folder Include="Prototype\View\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

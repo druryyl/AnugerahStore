@@ -600,7 +600,12 @@ namespace AnugerahWinform.Penjualan
             }
 
             //  cari nilai deposit
-            var bayarDepositDeposit = grandTotal - totalBayar;
+            decimal bayarDepositDeposit = 0;
+            if (DepositCheckBox.Checked)
+            {
+                decimal nilaiDeposit = NilaiDepositText.Value;
+                bayarDepositDeposit = Math.Min((grandTotal - totalBayar), nilaiDeposit);
+            }
 
 
             var penjualan = new PenjualanModel

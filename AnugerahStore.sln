@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2048
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29409.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnugerahWinForm", "AnugerahWinform\AnugerahWinForm.csproj", "{AE0C8CF8-62B1-4ADC-ACF7-5E300D9D75E6}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnugerahUnitTest", "AnugerahUnitTest\AnugerahUnitTest.csproj", "{6D6DA207-EFFB-4E7F-B348-F54C0DCC707D}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "AnugerahDataBase", "AnugerahDataBase\AnugerahDataBase.sqlproj", "{8C46F5CA-61E9-4EBA-920F-28228A0769D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarvelReporting", "MarvelReporting\MarvelReporting.csproj", "{17DE38A6-5245-4DC3-8874-BA56C60D54DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{8C46F5CA-61E9-4EBA-920F-28228A0769D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C46F5CA-61E9-4EBA-920F-28228A0769D3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8C46F5CA-61E9-4EBA-920F-28228A0769D3}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{17DE38A6-5245-4DC3-8874-BA56C60D54DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17DE38A6-5245-4DC3-8874-BA56C60D54DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17DE38A6-5245-4DC3-8874-BA56C60D54DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17DE38A6-5245-4DC3-8874-BA56C60D54DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

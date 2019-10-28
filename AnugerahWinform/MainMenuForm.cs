@@ -1,10 +1,14 @@
-﻿using AnugerahBackend.Accounting.Model;
+﻿using AnugerahBackend.Accounting.BL;
+using AnugerahBackend.Accounting.Model;
 using AnugerahWinform.Accounting;
+using AnugerahWinform.Accounting.Model;
 using AnugerahWinform.Keuangan;
 using AnugerahWinform.Pembelian;
 using AnugerahWinform.Penjualan;
+//using AnugerahWinform.Prototype.Presenter;
 using AnugerahWinform.StokBarang;
 using AnugerahWinform.Support;
+using AnugerahWinform.Support.Presenter;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -384,12 +388,16 @@ namespace AnugerahWinform
 
         private void OrderJualButton_Click(object sender, EventArgs e)
         {
-            BPStokInfoForm form = new BPStokInfoForm
-            {
-                MdiParent = this,
-                StartPosition = FormStartPosition.CenterScreen
-            };
-            form.Show();
+            var bpHutangBL = new BPHutangBL();
+            //var presenter = new ReportPresenter<LapHutangModel, BPHutangSearchModel>(bpHutangBL);
+
+
+            //BPStokInfoForm form = new BPStokInfoForm
+            //{
+            //    MdiParent = this,
+            //    StartPosition = FormStartPosition.CenterScreen
+            //};
+            //form.Show();
         }
     }
 }
