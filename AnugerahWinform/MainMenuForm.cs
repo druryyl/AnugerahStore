@@ -399,5 +399,15 @@ namespace AnugerahWinform
             //};
             //form.Show();
         }
+
+        private void SetupUserButton_Click(object sender, EventArgs e)
+        {
+            SetupUserrForm form = new SetupUserrForm
+            {
+                MdiParent = this,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            form.Show();
+        }
     }
 }

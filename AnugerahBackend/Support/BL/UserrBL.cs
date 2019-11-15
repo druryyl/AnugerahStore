@@ -13,6 +13,7 @@ namespace AnugerahBackend.Support.BL
     public interface IUserrBL
     {
         UserrModel Save(UserrModel userr);
+        void Save(string userName, string pass1, string pass2, string jenis);
 
         void Delete(string id);
 
@@ -114,6 +115,39 @@ namespace AnugerahBackend.Support.BL
                 return true;
             else
                 return false;
+        }
+
+        public void Save(string userName, string pass1, string pass2, string jenis)
+        {
+            if (userName.Trim() == "")
+                throw new ArgumentException("UserName empty");
+
+            if (pass1.Trim() == "")
+                throw new ArgumentException("Password empty");
+
+            if (pass1 != pass2)
+                throw new ArgumentException("Password not match");
+
+            var passHash = HashFunctions.GetHashString(pass1);
+
+            var existing = _userrDal.GetData(userName);
+            if (existing == null)
+                _userrDal.Insert(new UserrModel
+                {
+                    UserrID = userName,
+                    UserrName = userName,
+                    Password = passHash,
+                    Jenis = jenis
+                });
+            else
+                _userrDal.Update(new UserrModel
+                {
+                    UserrID = userName,
+                    UserrName = userName,
+                    Password = passHash,
+                    Jenis = jenis
+                });
+
         }
     }
 

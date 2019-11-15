@@ -38,15 +38,16 @@ namespace AnugerahBackend.Support.Dal
             var sSql = @"
                 INSERT INTO
                     Userr (
-                        UserrID, UserrName, Password)
+                        UserrID, UserrName, Password, UserType)
                 VALUES (
-                        @UserrID, @UserrName, @Password) ";
+                        @UserrID, @UserrName, @Password, @UserType) ";
             using (var conn = new SqlConnection(_connString))
             using (var cmd = new SqlCommand(sSql, conn))
             {
                 cmd.AddParam("@UserrID", userr.UserrID);
                 cmd.AddParam("@UserrName", userr.UserrName);
                 cmd.AddParam("@Password", userr.Password);
+                cmd.AddParam("@UserType", userr.Jenis);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -59,7 +60,8 @@ namespace AnugerahBackend.Support.Dal
                     Userr 
                 SET
                     UserrName = @UserrName,
-                    Password = @Password
+                    Password = @Password,
+                    UserType = @UserType
                 WHERE
                     UserrID = @UserrID ";
             using (var conn = new SqlConnection(_connString))
@@ -68,6 +70,7 @@ namespace AnugerahBackend.Support.Dal
                 cmd.AddParam("@UserrID", userr.UserrID);
                 cmd.AddParam("@UserrName", userr.UserrName);
                 cmd.AddParam("@Password", userr.Password);
+                cmd.AddParam("@UserType", userr.Jenis);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -92,7 +95,7 @@ namespace AnugerahBackend.Support.Dal
             UserrModel result = null;
             var sSql = @"
                 SELECT
-                    aa.UserrName, aa.Password
+                    aa.UserrName, aa.Password, aa.UserType
                 FROM
                     Userr aa
                 WHERE
@@ -111,7 +114,8 @@ namespace AnugerahBackend.Support.Dal
                         {
                             UserrID = id,
                             UserrName = dr["UserrName"].ToString(),
-                            Password = dr["Password"].ToString()
+                            Password = dr["Password"].ToString(),
+                            Jenis = dr["UserType"].ToString(),
                         };
                     }
                 }
@@ -124,7 +128,7 @@ namespace AnugerahBackend.Support.Dal
             List<UserrModel> result = null;
             var sSql = @"
                 SELECT
-                    aa.UserrID, aa.UserrName, aa.Password
+                    aa.UserrID, aa.UserrName, aa.Password, aa.UserType
                 FROM
                     Userr aa ";
             using (var conn = new SqlConnection(_connString))
@@ -142,7 +146,8 @@ namespace AnugerahBackend.Support.Dal
                             {
                                 UserrID = dr["UserrID"].ToString(),
                                 UserrName = dr["UserrName"].ToString(),
-                                Password = dr["Password"].ToString()
+                                Password = dr["Password"].ToString(),
+                                Jenis = dr["UserType"].ToString()
                             };
                             result.Add(item);
                         }

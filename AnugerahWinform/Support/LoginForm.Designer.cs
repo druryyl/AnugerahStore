@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.PasswordTextBox = new System.Windows.Forms.MaskedTextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -44,7 +44,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.Beige;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.maskedTextBox1);
+            this.panel1.Controls.Add(this.PasswordTextBox);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
@@ -53,13 +53,13 @@
             this.panel1.Size = new System.Drawing.Size(341, 144);
             this.panel1.TabIndex = 0;
             // 
-            // maskedTextBox1
+            // PasswordTextBox
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(125, 72);
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.PasswordChar = '*';
-            this.maskedTextBox1.Size = new System.Drawing.Size(133, 21);
-            this.maskedTextBox1.TabIndex = 3;
+            this.PasswordTextBox.Location = new System.Drawing.Point(125, 72);
+            this.PasswordTextBox.Name = "PasswordTextBox";
+            this.PasswordTextBox.PasswordChar = '*';
+            this.PasswordTextBox.Size = new System.Drawing.Size(133, 21);
+            this.PasswordTextBox.TabIndex = 3;
             // 
             // textBox1
             // 
@@ -109,7 +109,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "LoginForm";
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LoginForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.LoginForm_FormClosed);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -120,7 +122,7 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button OkButton;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.MaskedTextBox PasswordTextBox;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;

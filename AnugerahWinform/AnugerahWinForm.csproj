@@ -411,6 +411,12 @@
     <Compile Include="Support\SearchingForm.Designer.cs">
       <DependentUpon>SearchingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Support\SetupUserrForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Support\SetupUserrForm.Designer.cs">
+      <DependentUpon>SetupUserrForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Support\UserrSetupForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -578,6 +584,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Support\SearchingForm.resx">
       <DependentUpon>SearchingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Support\SetupUserrForm.resx">
+      <DependentUpon>SetupUserrForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Support\UserrSetupForm.resx">
       <DependentUpon>UserrSetupForm.cs</DependentUpon>

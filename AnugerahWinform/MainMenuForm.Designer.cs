@@ -74,6 +74,9 @@
             this.BPKasRibbon = new System.Windows.Forms.RibbonPanel();
             this.MutasiKasiButton = new System.Windows.Forms.RibbonButton();
             this.LaporanBPKasButton = new System.Windows.Forms.RibbonButton();
+            this.ribbonTab2 = new System.Windows.Forms.RibbonTab();
+            this.ribbonPanel6 = new System.Windows.Forms.RibbonPanel();
+            this.SetupUserButton = new System.Windows.Forms.RibbonButton();
             this.SuspendLayout();
             // 
             // ribbon1
@@ -96,6 +99,7 @@
             this.ribbon1.TabIndex = 5;
             this.ribbon1.Tabs.Add(this.ribbonTab1);
             this.ribbon1.Tabs.Add(this.ribbonTab3);
+            this.ribbon1.Tabs.Add(this.ribbonTab2);
             this.ribbon1.TabsMargin = new System.Windows.Forms.Padding(12, 2, 20, 0);
             this.ribbon1.Text = "ribbon1";
             this.ribbon1.ThemeColor = System.Windows.Forms.RibbonTheme.Black;
@@ -483,6 +487,27 @@
             this.LaporanBPKasButton.Text = "Laporan Kas";
             this.LaporanBPKasButton.Click += new System.EventHandler(this.LaporanBPKasButton_Click);
             // 
+            // ribbonTab2
+            // 
+            this.ribbonTab2.Name = "ribbonTab2";
+            this.ribbonTab2.Panels.Add(this.ribbonPanel6);
+            this.ribbonTab2.Text = "ribbonTab2";
+            // 
+            // ribbonPanel6
+            // 
+            this.ribbonPanel6.Items.Add(this.SetupUserButton);
+            this.ribbonPanel6.Name = "ribbonPanel6";
+            this.ribbonPanel6.Text = "ribbonPanel6";
+            // 
+            // SetupUserButton
+            // 
+            this.SetupUserButton.Image = ((System.Drawing.Image)(resources.GetObject("SetupUserButton.Image")));
+            this.SetupUserButton.LargeImage = ((System.Drawing.Image)(resources.GetObject("SetupUserButton.LargeImage")));
+            this.SetupUserButton.Name = "SetupUserButton";
+            this.SetupUserButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("SetupUserButton.SmallImage")));
+            this.SetupUserButton.Text = "Setup User";
+            this.SetupUserButton.Click += new System.EventHandler(this.SetupUserButton_Click);
+            // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -551,6 +576,9 @@
         private System.Windows.Forms.RibbonButton MutasiKasiButton;
         private System.Windows.Forms.RibbonButton LunasPiutangButton;
         private System.Windows.Forms.RibbonPanel ribbonPanel5;
+        private System.Windows.Forms.RibbonTab ribbonTab2;
+        private System.Windows.Forms.RibbonPanel ribbonPanel6;
+        private System.Windows.Forms.RibbonButton SetupUserButton;
     }
 }
 
