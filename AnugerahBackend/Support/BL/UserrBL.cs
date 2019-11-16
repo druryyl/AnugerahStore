@@ -109,7 +109,7 @@ namespace AnugerahBackend.Support.BL
         public bool IsValidPassword(UserrModel userr, string pass)
         {
             var userr2 = _userrDal.GetData(userr.UserrID);
-            var hash1 = HashFunctions.GetHashString(userr2.Password);
+            var hash1 = userr2.Password;
             var hash2 = HashFunctions.GetHashString(pass);
             if (hash1 == hash2)
                 return true;
