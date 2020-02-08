@@ -28,7 +28,7 @@ namespace AnugerahWinform.Support
             var pass2 = maskedTextBox1.Text;
             var jenis = "F";
             if (radioButton2.Checked)
-                jenis = "B";
+                jenis = "A";
 
             try
             {

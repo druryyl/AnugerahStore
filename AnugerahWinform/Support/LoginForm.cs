@@ -14,6 +14,8 @@ namespace AnugerahWinform.Support
     public partial class LoginForm : Form
     {
         public bool IsSuccess { get; set; }
+        public string AksesLevel { get; internal set; }
+
         private int _counter = 0;
 
         public LoginForm()
@@ -24,9 +26,11 @@ namespace AnugerahWinform.Support
 
         private void OkButton_Click(object sender, EventArgs e)
         {
+            AksesLevel = "F";
             if (PasswordTextBox.Text == "asdfasdf")
             {
                 IsSuccess = true;
+                AksesLevel = "A";
                 this.Close();
                 return;
             }
@@ -54,6 +58,7 @@ namespace AnugerahWinform.Support
             }
 
             IsSuccess = true;
+            AksesLevel = userr.JenisAkses;
             this.Close();
         }
 

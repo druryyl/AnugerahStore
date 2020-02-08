@@ -11,6 +11,6 @@ namespace AnugerahBackend.Support.Model
         public string UserrID { get; set; }
         public string UserrName { get; set; }
         public string Password { get; set; }
-        public string Jenis { get; set; }
+        public string JenisAkses { get; set; }
     }
 }

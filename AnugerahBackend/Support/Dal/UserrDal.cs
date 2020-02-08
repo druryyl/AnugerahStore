@@ -47,7 +47,7 @@ namespace AnugerahBackend.Support.Dal
                 cmd.AddParam("@UserrID", userr.UserrID);
                 cmd.AddParam("@UserrName", userr.UserrName);
                 cmd.AddParam("@Password", userr.Password);
-                cmd.AddParam("@UserType", userr.Jenis);
+                cmd.AddParam("@UserType", userr.JenisAkses);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -70,7 +70,7 @@ namespace AnugerahBackend.Support.Dal
                 cmd.AddParam("@UserrID", userr.UserrID);
                 cmd.AddParam("@UserrName", userr.UserrName);
                 cmd.AddParam("@Password", userr.Password);
-                cmd.AddParam("@UserType", userr.Jenis);
+                cmd.AddParam("@UserType", userr.JenisAkses);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -115,7 +115,7 @@ namespace AnugerahBackend.Support.Dal
                             UserrID = id,
                             UserrName = dr["UserrName"].ToString(),
                             Password = dr["Password"].ToString(),
-                            Jenis = dr["UserType"].ToString(),
+                            JenisAkses = dr["UserType"].ToString(),
                         };
                     }
                 }
@@ -147,7 +147,7 @@ namespace AnugerahBackend.Support.Dal
                                 UserrID = dr["UserrID"].ToString(),
                                 UserrName = dr["UserrName"].ToString(),
                                 Password = dr["Password"].ToString(),
-                                Jenis = dr["UserType"].ToString()
+                                JenisAkses = dr["UserType"].ToString()
                             };
                             result.Add(item);
                         }

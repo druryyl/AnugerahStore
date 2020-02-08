@@ -30,6 +30,17 @@ namespace AnugerahWinform
             InitializeComponent();
         }
 
+        public MainMenuForm(string aksesMenu)
+        {
+            InitializeComponent();
+            if(aksesMenu == "F")
+            {
+                PricingButton.Visible = false;
+                Adjustment.Visible = false;
+            }
+        }
+
+
         private void MainMenuForm_Load(object sender, EventArgs e)
         {
             Controls.OfType<MdiClient>().FirstOrDefault().BackColor = Color.DarkGray;

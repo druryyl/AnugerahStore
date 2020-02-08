@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.OkButton = new System.Windows.Forms.Button();
+            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.PasswordTextBox = new System.Windows.Forms.MaskedTextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.OkButton = new System.Windows.Forms.Button();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,17 +60,22 @@
             this.panel1.Size = new System.Drawing.Size(359, 155);
             this.panel1.TabIndex = 0;
             // 
-            // OkButton
+            // maskedTextBox1
             // 
-            this.OkButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.OkButton.Location = new System.Drawing.Point(14, 173);
-            this.OkButton.Name = "OkButton";
-            this.OkButton.Size = new System.Drawing.Size(359, 23);
-            this.OkButton.TabIndex = 3;
-            this.OkButton.Text = "Save";
-            this.OkButton.UseVisualStyleBackColor = true;
-            this.OkButton.Click += new System.EventHandler(this.OkButton_Click);
+            this.maskedTextBox1.Location = new System.Drawing.Point(142, 95);
+            this.maskedTextBox1.Name = "maskedTextBox1";
+            this.maskedTextBox1.PasswordChar = '*';
+            this.maskedTextBox1.Size = new System.Drawing.Size(133, 21);
+            this.maskedTextBox1.TabIndex = 2;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(83, 98);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Re-Type";
             // 
             // PasswordTextBox
             // 
@@ -105,44 +110,39 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "User ID";
             // 
-            // maskedTextBox1
+            // OkButton
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(142, 95);
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.PasswordChar = '*';
-            this.maskedTextBox1.Size = new System.Drawing.Size(133, 21);
-            this.maskedTextBox1.TabIndex = 2;
+            this.OkButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.OkButton.Location = new System.Drawing.Point(14, 173);
+            this.OkButton.Name = "OkButton";
+            this.OkButton.Size = new System.Drawing.Size(359, 23);
+            this.OkButton.TabIndex = 3;
+            this.OkButton.Text = "Save";
+            this.OkButton.UseVisualStyleBackColor = true;
+            this.OkButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
-            // label3
+            // radioButton2
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(83, 98);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 13);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Re-Type";
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(239, 122);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(61, 17);
+            this.radioButton2.TabIndex = 10;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Admin";
+            this.radioButton2.UseVisualStyleBackColor = true;
             // 
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(86, 122);
+            this.radioButton1.Location = new System.Drawing.Point(142, 122);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(91, 17);
             this.radioButton1.TabIndex = 9;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Front Office";
             this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(184, 122);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(90, 17);
-            this.radioButton2.TabIndex = 10;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Back Office";
-            this.radioButton2.UseVisualStyleBackColor = true;
             // 
             // SetupUserrForm
             // 

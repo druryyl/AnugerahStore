@@ -137,7 +137,7 @@ namespace AnugerahBackend.Support.BL
                     UserrID = userName,
                     UserrName = userName,
                     Password = passHash,
-                    Jenis = jenis
+                    JenisAkses = jenis
                 });
             else
                 _userrDal.Update(new UserrModel
@@ -145,7 +145,7 @@ namespace AnugerahBackend.Support.BL
                     UserrID = userName,
                     UserrName = userName,
                     Password = passHash,
-                    Jenis = jenis
+                    JenisAkses = jenis
                 });
 
         }

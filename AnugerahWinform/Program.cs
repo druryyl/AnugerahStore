@@ -19,8 +19,9 @@ namespace AnugerahWinform
             Application.SetCompatibleTextRenderingDefault(false);
             var login = new LoginForm();
             var result = login.ShowDialog();
+            var loginAkses = login.AksesLevel;
             if(result == DialogResult.OK)
-                Application.Run(new MainMenuForm());
+                Application.Run(new MainMenuForm(loginAkses));
         }
     }
 }
