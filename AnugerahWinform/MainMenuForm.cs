@@ -37,6 +37,7 @@ namespace AnugerahWinform
             {
                 PricingButton.Visible = false;
                 Adjustment.Visible = false;
+                ribbonTab2.Visible = false;
             }
         }
 
