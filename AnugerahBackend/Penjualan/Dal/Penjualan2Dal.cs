@@ -103,7 +103,7 @@ namespace AnugerahBackend.Penjualan.Dal
                                 BPStokID = dr["BPStokID"].ToString(),
                                 BrgName = dr["BrgName"].ToString(),
 
-                                Qty = Convert.ToInt32(dr["Qty"]),
+                                Qty = Convert.ToDecimal(dr["Qty"]),
                                 Harga = Convert.ToDecimal(dr["Harga"]),
                                 Diskon = Convert.ToDecimal(dr["Diskon"]),
                                 SubTotal = Convert.ToDecimal(dr["SubTotal"])

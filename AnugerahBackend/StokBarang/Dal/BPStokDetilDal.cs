@@ -107,9 +107,9 @@ namespace AnugerahBackend.StokBarang.Dal
                             ReffID = dr["ReffID"].ToString(),
                             Tgl = dr["Tgl"].ToString().ToTglDMY(),
                             Jam = dr["Jam"].ToString(),
-                            QtyIn = Convert.ToInt64(dr["QtyIn"]),
+                            QtyIn = Convert.ToDecimal(dr["QtyIn"]),
                             NilaiHpp = Convert.ToDecimal(dr["NilaiHpp"]),
-                            QtyOut = Convert.ToInt64(dr["QtyOut"]),
+                            QtyOut = Convert.ToDecimal(dr["QtyOut"]),
                             HargaJual = Convert.ToDecimal(dr["HargaJual"])
                         };
                         result.Add(item);
