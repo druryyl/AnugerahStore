@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AnugerahBackend.Pembelian.Dal;
 using AnugerahBackend.Pembelian.Model;
 using AnugerahBackend.Penjualan.BL;
+using AnugerahBackend.Penjualan.Dal;
 using AnugerahBackend.Penjualan.Model;
 using AnugerahBackend.StokBarang.Dal;
 using AnugerahBackend.StokBarang.Model;
@@ -27,16 +29,54 @@ namespace AnugerahBackend.StokBarang.BL
         decimal GetStokAwal(string brgID, string tgl1);
     }
 
+    public class ProsesRegenStokEventArgs : EventArgs
+    {
+        public string Tgl { get; set; }
+        public string TrsID { get; set; }
+        public Int32 Counter { get; set; }
+    }
+
+    public class StartProsesStokEventArgs : EventArgs
+    {
+        public string ProsesName { get; set; }
+        public Int32 DataCount { get; set; }
+    }
+
     public class BPStokBL : IBPStokBL
     {
+        public event ProsesRegenStokEventHandler ProsesRegenStok;
+        public event StartProsesStokEventHandler StartProses;
+
+        protected virtual void OnProsesRegenStok(ProsesRegenStokEventArgs e)
+        {
+            ProsesRegenStokEventHandler handler = ProsesRegenStok;
+            handler?.Invoke(this, e);
+        }
+
+        protected virtual void OnStartProses(StartProsesStokEventArgs e)
+        {
+            StartProsesStokEventHandler handler = StartProses;
+            handler?.Invoke(this, e);
+        }
+
+        public delegate void ProsesRegenStokEventHandler(object sender, ProsesRegenStokEventArgs e);
+        public delegate void StartProsesStokEventHandler(object sender, StartProsesStokEventArgs e);
+
+
         private IBPStokDal _bpStokDal;
         private IBPStokDetilDal _bpStokDetilDal;
         private IBrgStokHargaBL _brgStokHargaBL;
         private IBrgDal _brgDal;
         private IPenjualanBL _penjualanBL;
 
-        private Int64 _counter;
-        private Int64 _max;
+        private IStokAdjustment2Dal _stokAdj2Dal;
+        private IStokAdjustmentDal _stokAdjDal;
+
+        private IPenjualan2Dal _penjualan2Dal;
+        private IPenjualanDal _penjualanDal;
+
+        private IReceiptDal _receiptDal;
+        private IReceiptDetilDal _receiptDetilDal;
 
         public BPStokBL()
         {
@@ -45,6 +85,13 @@ namespace AnugerahBackend.StokBarang.BL
             _brgStokHargaBL = new BrgStokHargaBL();
             _brgDal = new BrgDal();
             _penjualanBL = new PenjualanBL();
+            _stokAdj2Dal = new StokAdjustment2Dal();
+            _penjualan2Dal = new Penjualan2Dal();
+            _receiptDetilDal = new ReceiptDetilDal();
+
+            _penjualanDal = new PenjualanDal();
+            _stokAdjDal = new StokAdjustmentDal();
+            _receiptDal = new ReceiptDal();
 
             SearchFilter = new SearchFilter
             {
@@ -254,6 +301,185 @@ namespace AnugerahBackend.StokBarang.BL
             _brgStokHargaBL.UpdateStok(repack.BrgIDHasil);
 
             return result;
+        }
+
+
+        public void Generate(string brgID)
+        {
+
+            //  listing brg
+            //  from adjustment plus
+            var listStok = new List<StokItem>();
+            var listAdj = _stokAdj2Dal.ListDataBrg(brgID);
+            if(listAdj != null)
+            {
+                Int32 i2 = 0;
+                var e1 = new StartProsesStokEventArgs
+                {
+                    ProsesName = "List Data Adjustment",
+                    DataCount = listAdj.Count()
+                };
+                OnStartProses(e1);
+
+                foreach(var item in listAdj)
+                {
+                    i2++;
+                    var header = _stokAdjDal.GetData(item.StokAdjustmentID);
+                    if (header is null) continue;
+
+                    var e = new ProsesRegenStokEventArgs
+                    {
+                        Counter = i2,
+                        Tgl = header.TglTrs,
+                        TrsID = header.StokAdjustmentID
+                    };
+                    OnProsesRegenStok(e);
+                    StokItem stok;
+                    if (item.QtyAdjust > 0)
+                        stok = new StokItem
+                        {
+                            ReffID = item.StokAdjustmentID,
+                            Tgl = header.TglTrs,
+                            Jam = header.JamTrs,
+                            BrgID = item.BrgID,
+                            BrgName = item.BrgName,
+                            QtyIn = item.QtyAdjust,
+                            NilaiHpp = item.HppAdjust,
+                            QtyOut = 0,
+                            HargaJual = 0,
+                            BPStokID = ""
+                        };
+                    else
+                        stok = new StokItem
+                        {
+                            ReffID = item.StokAdjustmentID,
+                            Tgl = header.TglTrs,
+                            Jam = header.JamTrs,
+                            BrgID = item.BrgID,
+                            BrgName = item.BrgName,
+                            QtyIn = 0,
+                            NilaiHpp = 0,
+                            QtyOut = item.QtyAdjust * -1,
+                            HargaJual = 0,
+                            BPStokID = "",
+                        };
+                    listStok.Add(stok);
+                }
+            }
+
+            var listJual = _penjualan2Dal.ListDataBrg(brgID);
+            if (listJual != null)
+            {
+                Int32 i2 = 0;
+                var e1 = new StartProsesStokEventArgs
+                {
+                    ProsesName = "List Data Penjualan",
+                    DataCount = listJual.Count()
+                };
+                OnStartProses(e1);
+                foreach (var item in listJual)
+                {
+                    i2++;
+                    var header = _penjualanDal.GetData(item.PenjualanID);
+                    if (header is null) continue;
+                    var e = new ProsesRegenStokEventArgs
+                    {
+                        Counter = i2,
+                        Tgl = header.TglPenjualan,
+                        TrsID = header.PenjualanID
+                    };
+                    OnProsesRegenStok(e);
+                    var stok = new StokItem 
+                    { 
+                        ReffID = header.PenjualanID,
+                        Tgl = header.TglPenjualan,
+                        Jam = header.JamPenjualan,
+                        BrgID = item.BrgID,
+                        BPStokID = item.BPStokID,
+                        BrgName = item.BrgName,
+                        QtyIn = 0,
+                        NilaiHpp = 0,
+                        QtyOut = item.Qty,
+                        HargaJual = item.Harga,
+                    };
+                    listStok.Add(stok);
+                }
+            }
+
+            var listReceipt = _receiptDetilDal.ListData(brgID);
+            if (listReceipt != null)
+            {
+                Int32 i2 = 0;
+                var e1 = new StartProsesStokEventArgs
+                {
+                    ProsesName = "List Data PenReceiptjualan",
+                    DataCount = listReceipt.Count()
+                };
+                OnStartProses(e1);
+                foreach (var item in listReceipt)
+                {
+                    i2++;
+                    var header = _receiptDal.GetData(item.ReceiptID);
+                    if (header is null) continue;
+                    var e = new ProsesRegenStokEventArgs
+                    {
+                        Counter = i2,
+                        Tgl = header.Tgl,
+                        TrsID = header.ReceiptID
+                    };
+                    OnProsesRegenStok(e);
+                    var stok = new StokItem
+                    {
+                        ReffID = header.ReceiptID,
+                        Tgl = header.Tgl,
+                        Jam = header.Jam,
+                        BrgID = item.BrgID,
+                        BrgName = item.BrgName,
+                        QtyIn = item.Qty,
+                        NilaiHpp = item.Harga - item.Diskon - item.TaxRupiah,
+                        QtyOut = 0,
+                        HargaJual = 0,
+                        BPStokID = "",
+                    };
+                    listStok.Add(stok);
+                }
+            }
+
+            Int32 i3 = 0;
+            var e3 = new StartProsesStokEventArgs
+            {
+                ProsesName = "Re-generate stok",
+                DataCount = listStok.Count()
+            };
+            OnStartProses(e3);
+            var listProsesAdd = listStok.Where(x => x.QtyIn > 0);
+            foreach (var item in listProsesAdd.OrderBy(x => x.Tgl + x.Jam))
+            {
+                i3++;
+                var e = new ProsesRegenStokEventArgs
+                {
+                    Counter = i3,
+                    Tgl = item.Tgl,
+                    TrsID = item.ReffID
+                };
+                OnProsesRegenStok(e);
+                _ = AddStok(item);
+            }
+
+            var listProsesRemove = listStok.Where(x => x.QtyOut > 0);
+            foreach (var item in listProsesRemove.OrderBy(x => x.Tgl + x.Jam))
+            {
+                i3++;
+                var e = new ProsesRegenStokEventArgs
+                {
+                    Counter = i3,
+                    Tgl = item.Tgl,
+                    TrsID = item.ReffID
+                };
+                OnProsesRegenStok(e);
+                _ = RemoveStok(item);
+            }
+
         }
 
         private IEnumerable<BPStokModel> ListData(string brgID)

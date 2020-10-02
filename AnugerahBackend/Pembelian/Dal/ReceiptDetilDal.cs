@@ -15,6 +15,8 @@ namespace AnugerahBackend.Pembelian.Dal
         void Insert(ReceiptDetilModel model);
         void Delete(string receiptID);
         IEnumerable<ReceiptDetilModel> ListData(string receiptID);
+        IEnumerable<ReceiptDetilModel> ListDataBrg(string brgID);
+
     }
 
     public class ReceiptDetilDal : IReceiptDetilDal
@@ -88,6 +90,50 @@ namespace AnugerahBackend.Pembelian.Dal
             using (var cmd = new SqlCommand(sSql, conn))
             {
                 cmd.AddParam("@ReceiptID", receiptID);
+                conn.Open();
+                using (var dr = cmd.ExecuteReader())
+                {
+                    if (!dr.HasRows) return null;
+                    result = new List<ReceiptDetilModel>();
+                    while (dr.Read())
+                    {
+                        var item = new ReceiptDetilModel
+                        {
+                            ReceiptID = dr["ReceiptID"].ToString(),
+                            ReceiptDetilID = dr["ReceiptDetilID"].ToString(),
+                            NoUrut = Convert.ToInt16(dr["NoUrut"]),
+                            BrgID = dr["BrgID"].ToString(),
+                            BrgName = dr["BrgName"].ToString(),
+                            Qty = Convert.ToInt64(dr["Qty"]),
+                            Harga = Convert.ToDecimal(dr["Harga"]),
+                            Diskon = Convert.ToDecimal(dr["Diskon"]),
+                            SubTotal = Convert.ToDecimal(dr["SubTotal"]),
+                            TaxRupiah = Convert.ToDecimal(dr["TaxRupiah"])
+                        };
+                        result.Add(item);
+                    }
+                }
+            }
+            return result;
+        }
+        public IEnumerable<ReceiptDetilModel> ListDataBrg(string brgID)
+        {
+            List<ReceiptDetilModel> result = null;
+            var sSql = @"
+                SELECT
+                    aa.ReceiptID, aa.ReceiptDetilID, aa.NoUrut, aa.BrgID,
+                    aa.Qty, aa.Harga, aa.Diskon, aa.TaxRupiah,
+                    aa.SubTotal,
+                    ISNULL(bb.BrgName, '') BrgName 
+                FROM
+                    ReceiptDetil aa
+                    LEFT JOIN Brg bb ON aa.BrgID = bb.BrgID 
+                WHERE
+                    aa.BrgID = @BrgID ";
+            using (var conn = new SqlConnection(_connString))
+            using (var cmd = new SqlCommand(sSql, conn))
+            {
+                cmd.AddParam("@BrgID", brgID);
                 conn.Open();
                 using (var dr = cmd.ExecuteReader())
                 {

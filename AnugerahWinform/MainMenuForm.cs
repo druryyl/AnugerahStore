@@ -421,5 +421,15 @@ namespace AnugerahWinform
             };
             form.Show();
         }
+
+        private void RegenStokButton_Click(object sender, EventArgs e)
+        {
+            RegenStokForm form = new RegenStokForm
+            {
+                MdiParent = this,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            form.Show();
+        }
     }
 }

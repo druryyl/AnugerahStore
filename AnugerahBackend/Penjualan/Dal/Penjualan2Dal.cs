@@ -15,6 +15,7 @@ namespace AnugerahBackend.Penjualan.Dal
         void Insert(Penjualan2Model penjualan2);
         void Delete(string penjualanID);
         IEnumerable<Penjualan2Model> ListData(string penjualanID);
+        IEnumerable<Penjualan2Model> ListDataBrg(string brgID);
     }
     public class Penjualan2Dal : IPenjualan2Dal
     {
@@ -96,6 +97,53 @@ namespace AnugerahBackend.Penjualan.Dal
                             var item = new Penjualan2Model
                             {
                                 PenjualanID = penjualanID,
+                                PenjualanID2 = dr["PenjualanID2"].ToString(),
+                                NoUrut = Convert.ToInt16(dr["NoUrut"]),
+
+                                BrgID = dr["BrgID"].ToString(),
+                                BPStokID = dr["BPStokID"].ToString(),
+                                BrgName = dr["BrgName"].ToString(),
+
+                                Qty = Convert.ToDecimal(dr["Qty"]),
+                                Harga = Convert.ToDecimal(dr["Harga"]),
+                                Diskon = Convert.ToDecimal(dr["Diskon"]),
+                                SubTotal = Convert.ToDecimal(dr["SubTotal"])
+                            };
+                            result.Add(item);
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+        public IEnumerable<Penjualan2Model> ListDataBrg(string brgID)
+        {
+            List<Penjualan2Model> result = null;
+            var sSql = @"
+                SELECT
+                    aa.PenjualanID, aa.PenjualanID2, aa.NoUrut, aa.BrgID,
+                    aa.BPStokID, aa.Qty, aa.Harga, aa.Diskon, aa.SubTotal,
+                    ISNULL(bb.BrgName, '') BrgName
+                FROM
+                    Penjualan2 aa
+                    LEFT JOIN Brg bb ON aa.BrgID = bb.BrgID 
+                WHERE
+                    aa.BrgID = @BrgID ";
+            using (var conn = new SqlConnection(_connString))
+            using (var cmd = new SqlCommand(sSql, conn))
+            {
+                cmd.AddParam("@BrgID", brgID);
+                conn.Open();
+                using (var dr = cmd.ExecuteReader())
+                {
+                    if (dr.HasRows)
+                    {
+                        result = new List<Penjualan2Model>();
+                        while (dr.Read())
+                        {
+                            var item = new Penjualan2Model
+                            {
+                                PenjualanID = dr["PenjualanID"].ToString(),
                                 PenjualanID2 = dr["PenjualanID2"].ToString(),
                                 NoUrut = Convert.ToInt16(dr["NoUrut"]),
 

@@ -74,6 +74,8 @@
             this.BPKasRibbon = new System.Windows.Forms.RibbonPanel();
             this.MutasiKasiButton = new System.Windows.Forms.RibbonButton();
             this.LaporanBPKasButton = new System.Windows.Forms.RibbonButton();
+            this.ribbonPanel7 = new System.Windows.Forms.RibbonPanel();
+            this.RegenStokButton = new System.Windows.Forms.RibbonButton();
             this.ribbonTab2 = new System.Windows.Forms.RibbonTab();
             this.ribbonPanel6 = new System.Windows.Forms.RibbonPanel();
             this.SetupUserButton = new System.Windows.Forms.RibbonButton();
@@ -345,6 +347,7 @@
             this.ribbonTab3.Panels.Add(this.ribbonPanel2);
             this.ribbonTab3.Panels.Add(this.ribbonPanel3);
             this.ribbonTab3.Panels.Add(this.BPKasRibbon);
+            this.ribbonTab3.Panels.Add(this.ribbonPanel7);
             this.ribbonTab3.Text = "Keuangan";
             // 
             // ribbonPanel1
@@ -487,6 +490,21 @@
             this.LaporanBPKasButton.Text = "Laporan Kas";
             this.LaporanBPKasButton.Click += new System.EventHandler(this.LaporanBPKasButton_Click);
             // 
+            // ribbonPanel7
+            // 
+            this.ribbonPanel7.Items.Add(this.RegenStokButton);
+            this.ribbonPanel7.Name = "ribbonPanel7";
+            this.ribbonPanel7.Text = "Tools";
+            // 
+            // RegenStokButton
+            // 
+            this.RegenStokButton.Image = global::AnugerahWinform.Properties.Resources.process_40px;
+            this.RegenStokButton.LargeImage = global::AnugerahWinform.Properties.Resources.process_40px;
+            this.RegenStokButton.Name = "RegenStokButton";
+            this.RegenStokButton.SmallImage = ((System.Drawing.Image)(resources.GetObject("RegenStokButton.SmallImage")));
+            this.RegenStokButton.Text = "Regen Stok";
+            this.RegenStokButton.Click += new System.EventHandler(this.RegenStokButton_Click);
+            // 
             // ribbonTab2
             // 
             this.ribbonTab2.Name = "ribbonTab2";
@@ -579,6 +597,8 @@
         private System.Windows.Forms.RibbonTab ribbonTab2;
         private System.Windows.Forms.RibbonPanel ribbonPanel6;
         private System.Windows.Forms.RibbonButton SetupUserButton;
+        private System.Windows.Forms.RibbonPanel ribbonPanel7;
+        private System.Windows.Forms.RibbonButton RegenStokButton;
     }
 }
 

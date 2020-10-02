@@ -18,6 +18,7 @@ namespace AnugerahBackend.StokBarang.Dal
         void Delete(string id);
 
         IEnumerable<StokAdjustment2Model> ListData(string id);
+        IEnumerable<StokAdjustment2Model> ListDataBrg(string brgID);
     }
 
 
@@ -106,9 +107,9 @@ namespace AnugerahBackend.StokBarang.Dal
                                 NoUrut = Convert.ToInt16(dr["NoUrut"]),
                                 BrgID = dr["BrgID"].ToString(),
                                 BrgName = dr["BrgName"].ToString(),
-                                QtyAwal = Convert.ToInt32(dr["QtyAwal"]),
-                                QtyAdjust = Convert.ToInt32(dr["QtyAdjust"]),
-                                QtyAkhir = Convert.ToInt32(dr["QtyAkhir"]),
+                                QtyAwal = Convert.ToDecimal(dr["QtyAwal"]),
+                                QtyAdjust = Convert.ToDecimal(dr["QtyAdjust"]),
+                                QtyAkhir = Convert.ToDecimal(dr["QtyAkhir"]),
                                 HppAdjust = Convert.ToDecimal(dr["HppAdjust"])
                             };
                             result.Add(item);
@@ -118,5 +119,53 @@ namespace AnugerahBackend.StokBarang.Dal
             }
             return result;
         }
+
+        public IEnumerable<StokAdjustment2Model> ListDataBrg(string brgID)
+        {
+            List<StokAdjustment2Model> result = null;
+            var sSql = @"
+                SELECT
+                    aa.StokAdjustmentID, aa.StokAdjustmentID2, 
+                    aa.NoUrut,  aa.BrgID, 
+                    aa.QtyAwal, aa.QtyAdjust, 
+                    aa.QtyAkhir, aa.HppAdjust,
+                    ISNULL(bb.BrgName, '') BrgName
+                FROM
+                    StokAdjustment2 aa 
+                    LEFT JOIN Brg bb ON aa.BrgID = bb.BrgID 
+                WHERE
+                    aa.BrgID = @BrgID ";
+            using (var conn = new SqlConnection(_connString))
+            using (var cmd = new SqlCommand(sSql, conn))
+            {
+                cmd.AddParam("@BrgID", brgID);
+                conn.Open();
+                using (var dr = cmd.ExecuteReader())
+                {
+                    if (dr.HasRows)
+                    {
+                        result = new List<StokAdjustment2Model>();
+                        while (dr.Read())
+                        {
+                            var item = new StokAdjustment2Model
+                            {
+                                StokAdjustmentID = dr["StokAdjustmentID"].ToString(),
+                                StokAdjustmentID2 = dr["StokAdjustmentID2"].ToString(),
+                                NoUrut = Convert.ToInt16(dr["NoUrut"]),
+                                BrgID = dr["BrgID"].ToString(),
+                                BrgName = dr["BrgName"].ToString(),
+                                QtyAwal = Convert.ToDecimal(dr["QtyAwal"]),
+                                QtyAdjust = Convert.ToDecimal(dr["QtyAdjust"]),
+                                QtyAkhir = Convert.ToDecimal(dr["QtyAkhir"]),
+                                HppAdjust = Convert.ToDecimal(dr["HppAdjust"])
+                            };
+                            result.Add(item);
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+
     }
 }
